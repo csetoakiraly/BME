@@ -509,12 +509,19 @@
                 </div>
 
                 <h3>5. Analitikus függvény</h3>
-                <p>Azokat a függvényeket nevezzük analitikusnak egy pontban, amelyeket a pont körüli nyílt intervallumon <b>hibátlanul előállít a saját Taylor-soruk</b>:</p>
+                <p>Egy $f$ függvényt analitikusnak nevezünk az $x_0$ pontban, ha egy $x_0$ körüli nyílt intervallumon előállítható hatványsorként:</p>
                 <div class="formula">
-                    $$f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n$$
+                    $$f(x) = \sum_{n=0}^{\infty} a_n(x - x_0)^n$$
                 </div>
 
-                <h3>6. Nevezetes Maclaurin-sorok ($x_0 = 0$)</h3>
+                <h3>6. A pontbeli analitikusság jellemzése</h3>
+                <p>Legyen $f: \mathbb{R} \to \mathbb{R}$ függvény és $x_0$ egy belső pontja $\text{Dom}(f)$-nek. Ekkor a következő állítások ekvivalensek:</p>
+                <ul>
+                    <li>(i) Az $f$ függvény analitikus az $x_0$ pontban.</li>
+                    <li>(ii) Létezik olyan $r > 0$, hogy minden $x \in ]x_0 - r, x_0 + r[$ esetén $f(x) = T_{x_0}^f(x)$. (Azaz $f$ Taylor-sora előállítja $f$-et az intervallumon.)</li>
+                </ul>
+
+                <h3>7. Nevezetes Maclaurin-sorok ($x_0 = 0$)</h3>
                 <p>A legfontosabb alapfüggvények sorfejtései (ezeket érdemes tudni, és csak <b>behelyettesíteni</b> vizsgán az $x$ helyére deriválás helyett):</p>
                 <div class="formula" style="text-align: left; padding-left: 40px;">
                     $e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \dots \quad (x \in \mathbb{R})$<br><br>
