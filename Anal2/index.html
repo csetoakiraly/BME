@@ -92,6 +92,24 @@
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
         }
 
+        .sidebar .back-link {
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.4);
+            border-left: 4px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar .back-link:hover {
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid rgba(255, 255, 255, 0.3);
+            text-shadow: none;
+        }
+
         .main-content {
             margin-left: 280px;
             padding: 50px;
@@ -263,6 +281,10 @@
 
     <div class="sidebar">
         <h2>Analízis 2<br>Zárthelyi Segédlet</h2>
+        <a href="../index.html" class="back-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Vissza a főmenübe
+        </a>
         <a href="#" class="active-link" onclick="showSection('s6', this)">6. Hatványsorok</a>
         <a href="#" onclick="showSection('s7', this)">7. Taylor-sorok</a>
         <a href="#" onclick="showSection('s8', this)">8. Többváltozós Határérték</a>
@@ -352,51 +374,75 @@
             <h1>7. Taylor-sorok</h1>
             <div class="card glass">
                 
-                <h3>1. A Taylor-polinom és a Taylor-sor</h3>
-                <p>Egy $f$ függvény $x_0$ pontbeli $n$-edfokú <b>Taylor-polinomja</b> ($T_{n,x_0}^f$) a függvényt közelítő polinom:</p>
+                <h3>1. Definíció: Taylor-polinom</h3>
+                <p>Legyen $n \in \mathbb{N}$, $x_0 \in \mathbb{R}$, és tegyük fel, hogy az $f: \mathbb{R} \to \mathbb{R}$ függvény $n$-szer differenciálható az $x_0$ pontban. Ekkor az</p>
                 <div class="formula">
-                    $$T_{n,x_0}^f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!}(x-x_0)^k$$
+                    $$\mathbb{R} \to \mathbb{R}; \quad x \mapsto \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!}(x-x_0)^k$$
                 </div>
-                <p>Ha az $f$ függvény az $x_0$ pontban <b>végtelenszer differenciálható</b>, akkor felírhatjuk a <b>Taylor-sorát</b> ($T_{x_0}^f$):</p>
+                <p>függvényt az $f$ függvény $x_0$ középpontú $n$-edrendű <b>Taylor-polinomjának</b> nevezzük és $T_{n,x_0}^f$-lal jelöljük.</p>
+                <div class="explanation">
+                    <strong>Emberi nyelven:</strong> A Taylor-polinom egy módszer arra, hogy bonyolult függvényeket (pl. $\sin x$, $e^x$) megpróbáljunk egyszerű alapműveletekből (összeadás, szorzás) álló polinomokkal <b>közelíteni</b> egy adott $x_0$ pont környékén. Minél nagyobb az $n$ (minél több tagot adunk össze), annál jobban "rásimul" a mi egyszerű polinomunk az eredeti bonyolult függvényre.
+                </div>
+
+                <h3>2. Tétel: Lagrange-maradéktagos Taylor-formula</h3>
+                <p>Legyen $x_0 \in \mathbb{R}$, $r > 0$, $n \in \mathbb{N}$, és tegyük fel, hogy az $f: \mathbb{R} \to \mathbb{R}$ függvény $n+1$-szer differenciálható az $]x_0 - r, x_0 + r[$ intervallumon. Ekkor minden $x \in ]x_0 - r, x_0 + r[$ esetén létezik olyan $\xi$, amely $x_0$ és $x$ "közé esik" (azaz $\xi \in ]x_0, x[$ vagy $\xi \in ]x, x_0[$), és</p>
                 <div class="formula">
-                    $$T_{x_0}^f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n$$
+                    $$f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!}(x - x_0)^k + \frac{f^{(n+1)}(\xi)}{(n+1)!}(x - x_0)^{n+1}$$
                 </div>
                 <div class="explanation">
-                    <strong>Miért csináljuk ezt?</strong> A Taylor-sor abban segít, hogy egy bonyolult függvényt (pl. exponenciális vagy szinusz) felírjunk egy végtelen polinomként (csupa alapművelet: összeadás és szorzás). Minél több tagot adunk össze, annál pontosabb másolatát kapjuk az eredeti függvénynek az $x_0$ pont (a közelítés középpontja) körül.
+                    <strong>Mit jelent a maradéktag?</strong> Mivel a Taylor-polinomunk csak <i>véges</i> sok tagból áll, szinte sosem lesz tökéletes másolata az eredeti függvénynek. A maradéktag pontosan ezt a hibát mutatja meg. Olyan, mintha vennénk a polinom "következő", $(n+1)$-edik tagját, de a deriváltat nem a kényelmes $x_0$ pontban számoljuk, hanem egy ismeretlen $\xi$ (kszí) pontban valahol útközben. Ennek a képletnek a segítségével kiválóan lehet becsülni a ZH-ban, hogy <b>legfeljebb mekkora hibát vétünk</b> a közelítéssel.
                 </div>
 
-                <h3>2. Hibabecslés: A Lagrange-maradéktag</h3>
-                <p>Ha a függvényt csupán egy $n$-edfokú Taylor-polinommal közelítjük, a közelítés hibáját a Lagrange-féle maradéktag ($R_n(x)$) adja meg:</p>
+                <h3>3. Definíció: Taylor-sor</h3>
+                <p>Legyen $x_0 \in \mathbb{R}$, és tegyük fel, hogy az $f: \mathbb{R} \to \mathbb{R}$ függvény végtelenszer differenciálható az $x_0$ pontban. Ekkor a $(T_{n,x_0}^f)_{n \in \mathbb{N}}$ függvénysort az $f$ függvény $x_0$-beli <b>Taylor-sorának</b> nevezzük, és az összegfüggvényét $T_{x_0}^f$-fel jelöljük. Azaz minden $x \in \text{Dom}(T_{x_0}^f)$ esetén:</p>
                 <div class="formula">
-                    $$f(x) = T_{n,x_0}^f(x) + R_n(x) \quad \text{ahol} \quad R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x_0)^{n+1}$$
+                    $$T_{x_0}^f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n$$
                 </div>
                 <div class="explanation">
-                    <strong>Mit jelent a maradéktag?</strong> Ez pontosan úgy néz ki, mint a "következő" ($n+1$. fokú) levágott Taylor-tag, azzal az egyetlen különbséggel, hogy az $(n+1)$-edik deriváltat nem az $x_0$ középpontban, hanem egy ismeretlen $\xi$ (kszí) pontban kell vizsgálni, amely valahol az $x_0$ és a behelyettesített $x$ érték között helyezkedik el. Ezzel a képlettel megkereshetjük a lehetséges <b>maximális hibát</b>.
+                    <strong>Szemléletesen:</strong> Ez a Taylor-polinom "végtelen testvére". Ha nem állunk meg $n$-nél, hanem végtelen sok tagot adunk össze, akkor a polinom nem csak egy pici pont körül fog hasonlítani a függvényre, hanem (bizonyos feltételek mellett) tökéletesen egybe fog olvadni vele egy egész intervallumon.
                 </div>
 
-                <h3>3. Hatványsor együtthatóinak egyértelműsége</h3>
-                <p>Minden $f(x)$ függvénynek legfeljebb egyetlen hatványsor-előállítása létezik az $x_0$ pont körül. Ez azt jelenti, hogy <b>ha egy függvényt sikerül felírni hatványsorként, akkor az a sor garantáltan a függvény Taylor-sora.</b></p>
+                <h3>4. Tétel: Hatványsor együtthatóinak egyértelműsége</h3>
+                <p>Legyen $(a_n)_{n \in \mathbb{N}}$ számsorozat, $x_0 \in \mathbb{R}$, és tegyük fel, hogy $R_a > 0$, valamint legyen</p>
                 <div class="formula">
-                    $$\text{Ha } \quad f(x) = \sum_{n=0}^{\infty} a_n(x-x_0)^n \quad \text{akkor biztosan } \quad a_n = \frac{f^{(n)}(x_0)}{n!}$$
+                    $$f(x) := \sum_{n=0}^{\infty} a_n(x - x_0)^n$$
                 </div>
-
-                <h3>4. Analitikus függvények</h3>
-                <p>Azt mondjuk, hogy egy $f$ függvény <b>analitikus</b> egy $x_0$ pontban, ha létezik olyan $r > 0$ sugár, hogy a $]x_0 - r, x_0 + r[$ intervallumon a Taylor-sora hibátlanul előállítja magát a függvényt, azaz minden ottani $x$-re:</p>
+                <p>minden olyan $x \in \mathbb{R}$ esetén, amelyre a $\sum_{n \in \mathbb{N}} a_n(x-x_0)^n$ sor konvergens. Ekkor $f$ végtelenszer differenciálható $x_0$-ban és minden $k \in \mathbb{N}$ esetén</p>
                 <div class="formula">
-                    $$ f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n $$
+                    $$f^{(k)}(x_0) = k! a_k$$
+                </div>
+                <div class="explanation">
+                    <strong>Trükk a számolásokhoz:</strong> Ez azt jelenti, hogy <b>minden konvergens hatványsor egyben Taylor-sor is</b>. Ha egy bonyolult függvényt ügyeskedve (pl. mértani sorok segítségével, deriválás nélkül) fel tudsz írni valamilyen végtelen szummaként, akkor garantált, hogy pont a Taylor-sorát találtad meg! Ebből a sorból ráadásul egyből leolvashatod a függvény bármelyik, akár a 100. deriváltjának értékét is a középpontban.
                 </div>
 
-                <h3>5. Nevezetes függvények Maclaurin-sorai ($x_0=0$)</h3>
+                <h3>5. Definíció: Analitikus függvény</h3>
+                <p>Azt mondjuk, hogy az $f: \mathbb{R} \to \mathbb{R}$ függvény <b>analitikus az $x_0 \in \mathbb{R}$ pontban</b>, ha létezik olyan $(a_n)_{n \in \mathbb{N}}$ számsorozat és $r > 0$, hogy $]x_0 - r, x_0 + r[ \subseteq \text{Dom}(f)$ és minden $x \in ]x_0 - r, x_0 + r[$ esetén:</p>
+                <div class="formula">
+                    $$f(x) = \sum_{n=0}^{\infty} a_n(x - x_0)^n$$
+                </div>
+                <div class="explanation">
+                    <strong>Mitől más ez, mint simán differenciálhatónak lenni?</strong> Lehet egy függvény akárhányszor deriválható, de mégsem biztos, hogy a Taylor-sora jó közelítést ad. Az "analitikus" egy elit klub: ide azok a szép, jól viselkedő függvények tartoznak, amiket a $x_0$ pont környékén <b>ténylegesen, hibátlanul</b> előállít a saját Taylor-soruk.
+                </div>
+
+                <h3>6. Tétel: A pontbeli analitikusság jellemzése</h3>
+                <p>Legyen $f: \mathbb{R} \to \mathbb{R}$ függvény és $x_0$ egy belső pontja $\text{Dom}(f)$-nek. Ekkor a következő állítások ekvivalensek:</p>
+                <ul>
+                    <li>(i) Az $f$ függvény analitikus az $x_0$ pontban.</li>
+                    <li>(ii) Létezik olyan $r > 0$, hogy minden $x \in ]x_0 - r, x_0 + r[$ esetén $f(x) = T_{x_0}^f(x)$. (Ezt a tényt úgy fejezzük ki, hogy az $f$ függvény $x_0$ középpontú Taylor sora előállítja $f$-et az $]x_0 - r, x_0 + r[$ intervallumon.)</li>
+                </ul>
+
+                <h3>7. Tétel: Nevezetes függvények hatványsor-előállítása</h3>
+                <p>Az $\exp, \sin, \cos, \text{sh}, \text{ch}$ függvényeket előállítja a $0$ középpontú Taylor soruk $\mathbb{R}$-en, és minden $x \in \mathbb{R}$ esetén:</p>
                 <div class="formula" style="text-align: left; padding-left: 40px;">
-                    $e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \dots \quad (x \in \mathbb{R})$<br><br>
-                    $\sin(x) = \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n+1}}{(2n+1)!} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \dots \quad (x \in \mathbb{R})$<br><br>
-                    $\cos(x) = \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n}}{(2n)!} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \dots \quad (x \in \mathbb{R})$<br><br>
-                    $\text{sh}(x) = \sum_{n=0}^{\infty} \frac{x^{2n+1}}{(2n+1)!} = x + \frac{x^3}{3!} + \frac{x^5}{5!} + \dots \quad (x \in \mathbb{R})$<br><br>
-                    $\text{ch}(x) = \sum_{n=0}^{\infty} \frac{x^{2n}}{(2n)!} = 1 + \frac{x^2}{2!} + \frac{x^4}{4!} + \dots \quad (x \in \mathbb{R})$<br><br>
-                    $\ln(1+x) = \sum_{n=1}^{\infty} (-1)^{n+1} \frac{x^n}{n} = x - \frac{x^2}{2} + \frac{x^3}{3} - \dots \quad (x \in ]-1, 1])$
+                    $e^x = \sum_{k=0}^{\infty} \frac{x^k}{k!} = 1 + x + \frac{x^2}{2!} + \dots$<br><br>
+                    $\sin(x) = \sum_{k=0}^{\infty} (-1)^k \frac{x^{2k+1}}{(2k+1)!} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \dots$<br><br>
+                    $\cos(x) = \sum_{k=0}^{\infty} (-1)^k \frac{x^{2k}}{(2k)!} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \dots$<br><br>
+                    $\text{sh}(x) = \sum_{k=0}^{\infty} \frac{x^{2k+1}}{(2k+1)!} = x + \frac{x^3}{3!} + \frac{x^5}{5!} + \dots$<br><br>
+                    $\text{ch}(x) = \sum_{k=0}^{\infty} \frac{x^{2k}}{(2k)!} = 1 + \frac{x^2}{2!} + \frac{x^4}{4!} + \dots$
                 </div>
                 <div class="explanation">
-                    Ezeket érdemes fejből tudni, mert a ZH-ban sok feladat megoldható ezen sorok okos <b>behelyettesítésével</b> (pl. ha a feladat az $e^{-x^2}$ sorfejtése, csak a fenti $e^x$ képletében minden $x$ helyére beírod a $(-x^2)$-et, és nem kell a deriváltakat nulláról kiszámolni).
+                    (Plusz megjegyzés a gyakorlatokhoz: $\ln(1+x) = \sum_{n=1}^{\infty} (-1)^{n+1} \frac{x^n}{n}$ ha $x \in ]-1, 1]$)<br><br>
+                    <strong>ZH Túlélő Tipp:</strong> Ezeket érdemes fejből tudni! Ha a feladat pl. az $f(x) = e^{-x^2}$ sorfejtése, eszedbe ne jusson elkezdeni deriválni! Csak vedd elő a fenti $e^x$ képletét, és minden $x$ helyére írj $(-x^2)$-et. Kész is vagy.
                 </div>
 
                 <div class="example">
