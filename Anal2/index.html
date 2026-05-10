@@ -40,6 +40,10 @@
             overflow-x: hidden;
         }
 
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         .MathJax { color: var(--text-light) !important; }
 
         .glass {
@@ -349,6 +353,21 @@
             .formula {
                 font-size: 1rem;
                 padding: 15px 10px;
+                overflow-x: auto;
+            }
+            .example, .explanation {
+                padding: 15px;
+                overflow-x: auto;
+            }
+            p, li, .card {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+            mjx-container {
+                max-width: 100%;
+                overflow-x: auto;
+                overflow-y: hidden;
             }
         }
     </style>
