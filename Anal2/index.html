@@ -389,6 +389,7 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
             Vissza a főmenübe
         </a>
+        <a href="#" onclick="showSection('s1', this)">1. Szétválasztható vál.</a>
         <a href="#" class="active-link" onclick="showSection('s6', this)">6. Hatványsorok</a>
         <a href="#" onclick="showSection('s7', this)">7. Taylor-sorok</a>
         <a href="#" onclick="showSection('s8', this)">8. Többváltozós Határérték</a>
@@ -397,6 +398,82 @@
 
     <div class="main-content">
         
+        <!-- 1. Gyakorlat -->
+        <section id="s1">
+            <h1>1. Szétválasztható változójú egyenletek</h1>
+            <div class="card glass">
+                
+                <h3>1. Általános alak</h3>
+                <p>Olyan elsőrendű differenciálegyenlet, ahol a jobb oldalon az $x$-től és az $y$-tól függő részek szorzatként (vagy hányadosként) szétválaszthatók:</p>
+                <div class="formula">
+                    $$y'(x) = f(x) \cdot g(y(x)) \quad (x \in I)$$
+                </div>
+                <div class="explanation">
+                    <b>Feltétel:</b> $I, J \subseteq \mathbb{R}$ nyílt intervallumok, $f : I \to \mathbb{R}$ és $g : J \to \mathbb{R}$ pedig folytonos függvények.
+                </div>
+
+                <h3>2. Triviális (konstans) megoldások keresése</h3>
+                <p>Mielőtt bármit integrálnánk, meg kell vizsgálni a $g(y)$ zérushelyeit. Ha $g(y_0) = 0$ valamilyen $y_0 \in J$ esetén, akkor a konstans függvény megoldás:</p>
+                <div class="formula">
+                    $$y \equiv y_0 \quad \text{megoldása a differenciálegyenletnek.}$$
+                </div>
+                <div class="explanation">
+                    <b>Miért fontos ez?</b> Mert a következő lépésben osztani fogunk $g(y)$-nal, és nullával nem oszthatunk. Ezeket a megoldásokat a végén külön kell kezelni (hacsak nem olvadnak bele az általános megoldásba).
+                </div>
+
+                <h3>3. Szétválasztás és integrálás (Precíz módszer)</h3>
+                <p>Tegyük fel, hogy $g(y)$ nem nulla. Osszuk el mindkét oldalt $g(y(x))$-szel, és integráljunk $x$ szerint:</p>
+                <div class="formula">
+                    $$\frac{y'(x)}{g(y(x))} = f(x) \implies \int \frac{1}{g(y(x))} y'(x) dx = \int f(x) dx$$
+                </div>
+                <p>Elvégezve az integrálást, kapjuk a megoldást egy implicit $H(y(x)) = F(x) + C$ alakban (ahol $H' = 1/g$ és $F' = f$).</p>
+
+                <h3>4. Formális átalakítás (Gyakorlati módszer)</h3>
+                <p>Ugyanez a gondolatmenet rövidebben is leírható. Bár matematikailag "értelmetlen" a deriváltat törtként kezelni, a gyakorlatban tökéletesen működik:</p>
+                <div class="formula">
+                    $$\frac{dy}{dx} = f(x)g(y)$$
+                </div>
+                <p>"Szorzunk $dx$-szel", osztunk $g(y)$-nal, és mindkét oldal elé írunk egy integráljelet:</p>
+                <div class="formula">
+                    $$\int \frac{1}{g(y)} dy = \int f(x) dx$$
+                </div>
+                <div class="explanation">
+                    <b>ZH Trükk:</b> Számolásnál mindig ezt a formális átalakítást használd! Sokkal gyorsabb és átláthatóbb. Gyűjts mindent, amiben $y$ van, a $dy$ oldalára, és mindent, amiben $x$ van, a $dx$ oldalára.
+                </div>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Szétválasztható változójú egyenlet megoldása</h3>
+                    <p>Oldjuk meg a következő differenciálegyenletet: $y' = 2x y^2$</p>
+                    <p><b>Megoldás:</b><br>1. Vizsgáljuk meg a triviális megoldást ($g(y) = 0$):</p>
+                    <div class="formula">
+                        $$ y^2 = 0 \implies y = 0 $$
+                    </div>
+                    <p>Tehát az $y \equiv 0$ egy megoldás. Most tegyük fel, hogy $y \neq 0$.</p>
+
+                    <p>2. Alkalmazzuk a formális átalakítást ($y' \to \frac{dy}{dx}$):</p>
+                    <div class="formula">
+                        $$ \frac{dy}{dx} = 2x y^2 $$
+                    </div>
+                    <p>Vigyük az $y$-os kifejezéseket a bal oldalra, az $x$-eseket a jobb oldalra (osztunk $y^2$-tel, szorzunk $dx$-szel):</p>
+                    <div class="formula">
+                        $$ \frac{1}{y^2} dy = 2x dx $$
+                    </div>
+
+                    <p>3. Integráljuk mindkét oldalt:</p>
+                    <div class="formula">
+                        $$ \int y^{-2} dy = \int 2x dx \implies -\frac{1}{y} = x^2 + C \quad (C \in \mathbb{R}) $$
+                    </div>
+
+                    <p>4. Fejezzük ki $y$-t (általános megoldás):</p>
+                    <div class="formula">
+                        $$ y(x) = \frac{-1}{x^2 + C} $$
+                    </div>
+                    <p><b>Végeredmény:</b> A megoldások: $y(x) = \frac{-1}{x^2 + C}$ és az $y \equiv 0$ triviális megoldás.</p>
+                </div>
+
+            </div>
+        </section>
+
         <!-- 6. Gyakorlat -->
         <section id="s6" class="active">
             <h1>6. Hatványsorok</h1>
@@ -450,25 +527,24 @@
                 </ul>
 
                 <div class="example">
-                    <b>Komplett Példafeladat:</b> Határozzuk meg a $\sum_{n=1}^{\infty} \frac{(-1)^n}{n \cdot 3^n} (x+2)^n$ hatványsor konvergenciatartományát!<br><br>
-                    <b>1. Lépés: Középpont és együttható azonosítása</b><br>
-                    Látjuk, hogy $(x+2)^n = (x - (-2))^n$, tehát a középpont <b>$x_0 = -2$</b>. Az együttható ami az $x$ előtt áll: <b>$a_n = \frac{(-1)^n}{n \cdot 3^n}$</b>.<br><br>
-                    
-                    <b>2. Lépés: A Sugár (R) kiszámítása a Hányadoskritériummal</b><br>
-                    $$ R_a = \lim_{n \to \infty} \left| \frac{a_n}{a_{n+1}} \right| = \lim_{n \to \infty} \left| \frac{\frac{(-1)^n}{n \cdot 3^n}}{\frac{(-1)^{n+1}}{(n+1) \cdot 3^{n+1}}} \right| $$
-                    Emeletes törtet szorzunk a reciprokával, a $(-1)^n$ eltűnik az abszolútérték miatt:
-                    $$ = \lim_{n \to \infty} \frac{(n+1)3^{n+1}}{n \cdot 3^n} = \lim_{n \to \infty} \frac{n+1}{n} \cdot \frac{3^{n+1}}{3^n} = \lim_{n \to \infty} \left(1 + \frac{1}{n}\right) \cdot 3 = \mathbf{3} $$
-                    A sugár tehát $R_a = 3$.<br><br>
-                    
-                    <b>3. Lépés: A belső, biztos intervallum felírása</b><br>
-                    A középponttól ($x_0 = -2$) lépünk 3-at balra és jobbra: <b>$]-5, 1[$</b>. Itt abszolút konvergens.<br><br>
-
-                    <b>4. Lépés: A határok letesztelése</b><br>
-                    Itt egyesével betesszük az $x$ helyére az $1$-et és a $-5$-öt az eredeti képletbe.<br>
-                    - <b>$x = 1$ esetén:</b>  $(1+2)^n = 3^n$. A sor: $\sum \frac{(-1)^n}{n \cdot 3^n} 3^n = \sum \frac{(-1)^n}{n}$. Ez egy alternáló harmonikus sor, ami a Leibniz-kritérium miatt <b>feltételesen konvergens</b>.<br>
-                    - <b>$x = -5$ esetén:</b> $(-5+2)^n = (-3)^n = (-1)^n 3^n$. A sor: $\sum \frac{(-1)^n (-1)^n 3^n}{n \cdot 3^n} = \sum \frac{1}{n}$. Ez egy sima harmonikus sor, amiről tudjuk, hogy <b>divergens</b>.<br><br>
-                    
-                    <b>Végeredmény:</b> A konvergenciatartomány: <b>$]-5, 1]$</b>.
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Hatványsor konvergenciatartománya</h3>
+                    <p>Határozzuk meg a $\sum_{n=1}^{\infty} \frac{2^n}{n} (x-3)^n$ hatványsor konvergenciatartományát!</p>
+                    <p><b>Megoldás:</b><br>1. Középpont és együttható azonosítása:</p>
+                    <ul>
+                        <li>Középpont: $x_0 = 3$</li>
+                        <li>Együttható: $a_n = \frac{2^n}{n}$</li>
+                    </ul>
+                    <p>2. A konvergenciasugár ($R_a$) kiszámítása a hányadoskritériummal:</p>
+                    <div class="formula">
+                        $$ R_a = \lim_{n \to \infty} \left| \frac{a_n}{a_{n+1}} \right| = \lim_{n \to \infty} \frac{\frac{2^n}{n}}{\frac{2^{n+1}}{n+1}} = \lim_{n \to \infty} \frac{2^n(n+1)}{n 2^{n+1}} = \lim_{n \to \infty} \frac{n+1}{2n} = \frac{1}{2} $$
+                    </div>
+                    <p>A biztos konvergencia intervalluma (a középpontból jobbra-balra $R_a$-t lépve): $]3 - 0.5, 3 + 0.5[ = ]2.5, 3.5[$.</p>
+                    <p>3. Határok (végpontok) vizsgálata:</p>
+                    <ul>
+                        <li><b>$x = 3.5$ esetén:</b> Behelyettesítve a képletbe a sor: $\sum \frac{2^n}{n}(0.5)^n = \sum \frac{1}{n}$. Ez a harmonikus sor, ami <b>divergens</b>.</li>
+                        <li><b>$x = 2.5$ esetén:</b> Behelyettesítve a képletbe a sor: $\sum \frac{2^n}{n}(-0.5)^n = \sum \frac{(-1)^n}{n}$. Ez az alternáló harmonikus sor, ami a Leibniz-kritérium miatt <b>konvergens</b>.</li>
+                    </ul>
+                    <p><b>Végeredmény:</b> A konvergenciatartomány (ahol a sor biztosan nem tart végtelenhez): $[2.5, 3.5[$.</p>
                 </div>
             </div>
         </section>
@@ -533,138 +609,145 @@
                 </div>
 
                 <div class="example">
-                    <b>Komplett Példafeladat 1: Taylor-polinom és hibabecslés</b><br>
-                    Írjuk fel az $f(x) = x^4 - 4x + \sin(3x)$ függvény $x_0 = 0$ pontbeli negyedfokú Taylor-polinomját és a Lagrange-féle hibatagot! Majd becsüljük meg a hibát $x=0.1$ esetén!<br><br>
-                    <b>1. Lépés: Deriváltak kiszámítása $n=4+1=5$-ig</b><br>
-                    $f(x) = x^4 - 4x + \sin(3x)$<br>
-                    $f'(x) = 4x^3 - 4 + 3\cos(3x)$<br>
-                    $f''(x) = 12x^2 - 9\sin(3x)$<br>
-                    $f'''(x) = 24x - 27\cos(3x)$<br>
-                    $f^{(4)}(x) = 24 + 81\sin(3x)$<br>
-                    $f^{(5)}(x) = 243\cos(3x)$<br><br>
+                    <h3 style="margin-top: 0; color: #f59e0b;">1-2. Példa: Taylor-polinom és hibabecslés</h3>
+                    <p>Írjuk fel az $f(x) = \ln(1+x)$ függvény $x_0 = 0$ körüli másodfokú Taylor-polinomját, és becsüljük meg a hibát az $x=0.1$ pontban!</p>
+                    <p><b>Megoldás:</b><br>1. Deriváltak és helyettesítési értékek $x_0=0$-ban (a másodfokúhoz $n=2$, a hibához kell az $n=3$ is):</p>
+                    <ul>
+                        <li>$f(x) = \ln(1+x) \implies f(0) = \ln(1) = 0$</li>
+                        <li>$f'(x) = \frac{1}{1+x} = (1+x)^{-1} \implies f'(0) = 1$</li>
+                        <li>$f''(x) = -(1+x)^{-2} \implies f''(0) = -1$</li>
+                        <li>$f'''(x) = 2(1+x)^{-3} \implies f'''(\xi) = \frac{2}{(1+\xi)^3}$</li>
+                    </ul>
+                    <p>2. A Taylor-polinom ($T_2$):</p>
+                    <div class="formula">
+                        $$ T_2(x) = 0 + \frac{1}{1!}x + \frac{-1}{2!}x^2 = x - \frac{x^2}{2} $$
+                    </div>
+                    <p>3. Hibabecslés ($x=0.1$ esetén): A Lagrange-maradéktag $R_2(x) = \frac{f'''(\xi)}{3!}x^3$.</p>
+                    <div class="formula">
+                        $$ R_2(0.1) = \frac{\frac{2}{(1+\xi)^3}}{6} (0.1)^3 = \frac{1}{3(1+\xi)^3} \cdot 0.001 $$
+                    </div>
+                    <p>Mivel $\xi \in ]0, 0.1[$, a tört nevezője nagyobb 1-nél, így a kifejezés maximális értéke $\xi=0$ esetén lesz. A hiba tehát biztosan kisebb, mint $\frac{1}{3} \cdot 0.001 \approx 0.00033$.</p>
 
-                    <b>2. Lépés: Deriváltak helyettesítési értéke $x_0 = 0$-ban</b><br>
-                    $f(0) = 0 - 0 + \sin(0) = 0$<br>
-                    $f'(0) = 0 - 4 + 3\cos(0) = -4 + 3 = -1$<br>
-                    $f''(0) = 0 - 9\sin(0) = 0$<br>
-                    $f'''(0) = 0 - 27\cos(0) = -27$<br>
-                    $f^{(4)}(0) = 24 + 81\sin(0) = 24$<br><br>
+                    <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
 
-                    <b>3. Lépés: A 4. fokú Taylor-polinom ($T_4$) felírása a képlettel</b><br>
-                    $$T_4(x) = f(0) + \frac{f'(0)}{1!}x + \frac{f''(0)}{2!}x^2 + \frac{f'''(0)}{3!}x^3 + \frac{f^{(4)}(0)}{4!}x^4$$
-                    $$T_4(x) = 0 + \frac{-1}{1}x + \frac{0}{2}x^2 + \frac{-27}{6}x^3 + \frac{24}{24}x^4$$
-                    Egyszerűsítve: <b>$T_4(x) = -x - \frac{9}{2}x^3 + x^4$</b><br><br>
-
-                    <b>4. Lépés: A Lagrange-féle hibatag ($R_4$) felírása</b><br>
-                    A hibataghoz az 5. deriváltat használjuk, de nem $x_0=0$-ban, hanem egy $\xi \in ]0, x[$ pontban:<br>
-                    $$R_4(x) = \frac{f^{(5)}(\xi)}{5!} x^5 = \frac{243\cos(3\xi)}{120}x^5 = \mathbf{\frac{81}{40}\cos(3\xi)x^5}$$<br>
-                    
-                    <b>5. Lépés: Hibabecslés adott pontban ($x=0.1$)</b><br>
-                    Tudjuk, hogy a $\cos$ függvény maximális értéke 1 (vagyis $|\cos(\dots)| \le 1$).<br>
-                    $$|R_4(0.1)| \le \left| \frac{81}{40} \cdot 1 \cdot (0.1)^5 \right| = \frac{81}{40} \cdot \frac{1}{100000} \approx 2 \cdot 10^{-5}$$<br>
-
-                    <hr style="border-color: rgba(255,255,255,0.1); margin: 30px 0;">
-
-                    <b>Példafeladat 2: Magasrendű derivált kiszámítása trükkösen</b><br>
-                    Kérdés: Legyen $f(x) = \frac{1}{x^2 - 5}$. Mennyi a függvény $99.$ és $100.$ deriváltja az $x_0=0$ pontban ($f^{(99)}(0) = ?$ és $f^{(100)}(0) = ?$)?<br><br>
-                    Itt őrültség lenne ténylegesen elkezdeni 100-szor deriválni a függvényt! Ehelyett az <b>Együtthatók egyértelműsége</b> tételt használjuk. Írjuk fel a függvényt Taylor-sorként a mértani sorozat képletét ($1 / (1-q)$) alkalmazva:<br>
-                    $$ f(x) = \frac{-1}{5} \cdot \frac{1}{1 - \frac{x^2}{5}} = \frac{-1}{5} \sum_{n=0}^{\infty} \left(\frac{x^2}{5}\right)^n = \sum_{n=0}^{\infty} \frac{-1}{5^{n+1}} x^{2n} $$
-                    Tudjuk, hogy egy Taylor-sor általános alakja: $\sum a_k x^k$, ahol $\mathbf{a_k = \frac{f^{(k)}(0)}{k!}}$.<br>
-                    A sorunkban csak <b>páros</b> hatványok ($x^{2n}$) szerepelnek. Ezért minden páratlan kitevőjű tag együtthatója nulla!<br>
-                    - Mivel 99 páratlan: $a_{99} = 0 \implies \frac{f^{(99)}(0)}{99!} = 0 \implies \mathbf{f^{(99)}(0) = 0}$<br>
-                    - A 100 páros, ami $n=50$ esetén jön ki ($2n=100$). Az ehhez tartozó együttható a szummából: $a_{100} = \frac{-1}{5^{51}}$.<br>
-                    Ebből: $\frac{f^{(100)}(0)}{100!} = \frac{-1}{5^{51}} \implies \mathbf{f^{(100)}(0) = \frac{-100!}{5^{51}}}$.
+                    <h3 style="color: #f59e0b;">4-7. Példa: Nevezetes sorok és Egyértelműség</h3>
+                    <p>Legyen $f(x) = \frac{1}{1+2x^2}$. Határozzuk meg az $x_0 = 0$ körüli Taylor-sorát, majd számítsuk ki az $f^{(50)}(0)$ értékét deriválás nélkül!</p>
+                    <p><b>Megoldás:</b><br>1. Használjuk a mértani sor képletét $\frac{1}{1-q} = \sum q^n$. Itt a $q$ helyére $(-2x^2)$-et írunk:</p>
+                    <div class="formula">
+                        $$ f(x) = \frac{1}{1 - (-2x^2)} = \sum_{n=0}^{\infty} (-2x^2)^n = \sum_{n=0}^{\infty} (-1)^n 2^n x^{2n} $$
+                    </div>
+                    <p>Ez egy konvergens hatványsor (ha $|2x^2|<1$), tehát az egyértelműség miatt <b>ez maga a Taylor-sor</b>.</p>
+                    <p>2. A $50.$ derivált meghatározása: Tudjuk, hogy a $k$-adik deriváltat az $x^k$ együtthatója adja meg: $a_k = \frac{f^{(k)}(0)}{k!}$.</p>
+                    <p>Az $50$-es kitevőt akkor kapjuk, ha $2n = 50$, azaz $n = 25$. Az együttható ($a_{50}$): $(-1)^{25} 2^{25} = -2^{25}$.</p>
+                    <div class="formula">
+                        $$ \frac{f^{(50)}(0)}{50!} = -2^{25} \quad \implies \quad f^{(50)}(0) = -2^{25} \cdot 50! $$
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- 8. Gyakorlat -->
         <section id="s8">
-            <h1>8. Binomiális sor és Határérték</h1>
+            <h1>8. Binomiális sor és Többváltozós Határérték</h1>
             <div class="card glass">
                 
-                <h3>1. Az általánosított Binomiális Együttható és a Binomiális Sor</h3>
-                <p>Középiskolából ismert az $\binom{n}{k}$ fogalma. Az Analízisben ezt kiterjesztjük bármely valós $\alpha \in \mathbb{R}$ számra:</p>
+                <h3>1. Általánosított binomiális együttható</h3>
+                <p>Kiterjeszti a kombinatorikát bármely valós $\alpha \in \mathbb{R}$ számra ($k \in \mathbb{N}$):</p>
                 <div class="formula">
-                    $$\binom{\alpha}{k} := \frac{\alpha(\alpha - 1) \dots (\alpha - k + 1)}{k!}, \quad \text{ahol } k \in \mathbb{N}^+ \text{ és } \binom{\alpha}{0} := 1$$
+                    $$\binom{\alpha}{k} := \begin{cases} 1 & \text{ha } k = 0 \\ \frac{\alpha(\alpha - 1) \dots (\alpha - k + 1)}{k!} & \text{ha } k \neq 0 \end{cases}$$
                 </div>
-                <p>Erre épül a <b>Binomiális sor</b>, amely az $(1+x)^\alpha$ hatványsor-előállítása (ez egy rendkívül hasznos Taylor-sor):</p>
+                
+                <h3>2. Binomiális sor</h3>
+                <p>Az $(1+x)^\alpha$ kifejezés hatványsor-előállítása (ez egy rendkívül hasznos Taylor-sor):</p>
                 <div class="formula">
-                    $$(1+x)^\alpha = \sum_{k=0}^{\infty} \binom{\alpha}{k} x^k \quad \text{konvergens, ha } x \in ]-1, 1[$$
+                    $$(1+x)^\alpha = \sum_{k=0}^{\infty} \binom{\alpha}{k} x^k \quad \text{minden } \alpha \in \mathbb{R} \text{ és } x \in ]-1, 1[ \text{ esetén}$$
                 </div>
                 <div class="explanation">
-                    <strong>Miért fontos ez?</strong> Gyökös vagy törtes kifejezéseket (pl. $\frac{1}{\sqrt{1-x}}$ vagy $\sqrt[3]{1+x^2}$) pillanatok alatt sorba tudunk fejteni anélkül, hogy bonyolult deriválásokat csinálnánk! Csak át kell írni a gyököt/törtet hatványos alakba: $\alpha = -1/2$ vagy $\alpha = 1/3$.
-                </div>
-                
-                <div class="example">
-                    <b>Példafeladat 1: Binomiális sorfejtés</b><br>
-                    Írjuk fel az $f(x) = \frac{1}{\sqrt[6]{64 - 2x^2}}$ hatványsorát $x_0 = 0$ körül!<br><br>
-                    <b>1. Lépés: Kiemelés, hogy az $(1 + \dots)^\alpha$ alakot megkapjuk</b><br>
-                    A gyök alatt kiemelünk $64$-et: $\sqrt[6]{64(1 - \frac{2x^2}{64})} = 2 \cdot (1 - \frac{x^2}{32})^{1/6}$.<br>
-                    Az eredeti tört tehát így néz ki: $f(x) = \frac{1}{2} \cdot \left(1 + \left(-\frac{x^2}{32}\right)\right)^{-1/6}$.<br><br>
-                    <b>2. Lépés: Alkalmazzuk a Binomiális sort</b><br>
-                    Tudjuk, hogy $(1+u)^\alpha = \sum \binom{\alpha}{k} u^k$. Itt $\alpha = -1/6$, a belső kifejezés pedig $u = -\frac{x^2}{32}$.<br>
-                    $$ f(x) = \frac{1}{2} \sum_{k=0}^{\infty} \binom{-1/6}{k} \left(-\frac{x^2}{32}\right)^k = \frac{1}{2} \sum_{k=0}^{\infty} \binom{-1/6}{k} \frac{(-1)^k}{32^k} x^{2k} $$<br>
-                    <b>3. Lépés: Konvergenciasugár</b><br>
-                    A binomiális sor feltétele, hogy a zárójeles rész abszolút értéke kisebb legyen 1-nél: $\left|-\frac{x^2}{32}\right| < 1 \implies x^2 < 32 \implies |x| < \sqrt{32} = 4\sqrt{2}$. Tehát $R = 4\sqrt{2}$.
+                    <b>Mire jó?</b> Gyökös és törtes kifejezéseket (pl. $\sqrt{1+x}$) pillanatok alatt sorba tudunk fejteni hosszú deriválások nélkül. Csak írd át az egészet hatványos alakra!
                 </div>
 
-                <hr style="border-color: rgba(255,255,255,0.1); margin: 40px 0;">
+                <h3>3. Konvergens sorozat $\mathbb{R}^n$-ben</h3>
+                <p>Egy $(\mathbf{x}_k)_{k\in\mathbb{N}}$ vektorokból álló sorozat pontosan akkor tart az $\mathbf{x} \in \mathbb{R}^n$ vektorhoz, ha a távolságuk nullához tart:</p>
+                <div class="formula">
+                    $$\lim_{k \to \infty} ||\mathbf{x}_k - \mathbf{x}|| = 0 \quad \text{Jelölés:} \quad \mathbf{x}_k \xrightarrow{k\to\infty} \mathbf{x}$$
+                </div>
 
-                <h3>2. $\mathbb{R}^n$-ben haladó sorozatok (Koordinátánkénti konvergencia)</h3>
-                <p>Ha van egy vektorokból álló számsorozatunk ($\mathbf{x}_k \in \mathbb{R}^n$), akkor ez a sorozat pontosan akkor konvergens egy $\mathbf{x}$ vektorhoz, ha <b>koordinátánként külön-külön</b> minden koordinátasorozat konvergens a megfelelő határérték-koordinátákhoz.</p>
-                
-                <h3>3. A Határérték logikája térben és az Átviteli elv</h3>
-                <p>Az <b>Átviteli elv</b> pontos definíciója szerint egy $f: \mathbb{R}^n \to \mathbb{R}$ függvény határértéke az $\mathbf{a}$ pontban pontosan akkor $b$, ha <b>bármely</b> $\mathbf{x}_k \to \mathbf{a}$ sorozat esetén (ahol $\mathbf{x}_k \neq \mathbf{a}$) az $f(\mathbf{x}_k)$ sorozat is a $b$-hez tart.</p>
+                <h3>4. Koordinátánkénti konvergencia</h3>
+                <p>A térbeli konvergencia egyszerűbben megfogalmazva: egy vektorsorozat pontosan akkor tart egy adott ponthoz, ha <b>minden egyes koordinátája külön-külön</b> konvergens a megfelelő ponthoz.</p>
+                <div class="formula">
+                    $$\mathbf{x}_k \to \mathbf{x} \iff \forall i \in \{1, \dots, n\}: (\mathbf{x}_k)_i \to x_i$$
+                </div>
+
+                <h3>5. Átviteli elv (Határértékhez)</h3>
+                <p>Egy $f$ többváltozós függvény határértéke az $\mathbf{a}$ pontban pontosan akkor $b$, ha <b>bármilyen létező</b> $\mathbf{x}_k \to \mathbf{a}$ sorozat (útvonal) esetén a függvényértékek is a $b$-hez tartanak.</p>
                 <div class="formula">
                     $$\lim_{\mathbf{x} \to \mathbf{a}} f(\mathbf{x}) = b \iff \forall (\mathbf{x}_k)_{k \in \mathbb{N}}, \mathbf{x}_k \to \mathbf{a} \implies f(\mathbf{x}_k) \to b$$
                 </div>
-                <div class="explanation">
-                    <strong>Hogyan képzeld el?</strong> Egyváltozós függvénynél egy pontot csak balról és jobbról tudtunk megközelíteni. Egy felületen (2 változó) az origót <b>végtelen sok irányból</b> és görbén (egyenesen, parabolán) át meg lehet közelíteni. A határérték csak akkor létezik, ha <b>bármilyen létező útvonalon</b> sétálva az origó felé, pontosan ugyanahhoz a $b$ magassághoz érünk.
-                </div>
-                
-                <h3>4. Cáfolat (Szükséges feltételek hiánya az origóban)</h3>
-                <p>Ha a határérték létezik a $(0,0)$-ban és értéke $b$, akkor szükségképpen teljesülnie kell a következőknek:</p>
-                <ul>
-                    <li>$\lim_{x\to0} f(x, 0) = b$ (Közelítés az X tengelyen)</li>
-                    <li>$\lim_{y\to0} f(0, y) = b$ (Közelítés az Y tengelyen)</li>
-                    <li>Minden $m \in \mathbb{R}$ esetén $\lim_{x\to0} f(x, mx) = b$ (Közelítés bármilyen $y=mx$ egyenesen)</li>
-                </ul>
-                <p><b>Következmény:</b> Ha találunk két különböző útvonalat, ami más-más határértéket ad, akkor a függvénynek a pontban <b>nem létezik határértéke</b>.</p>
-                
-                <div class="example">
-                    <b>Példafeladat 2: Határérték cáfolata $y = mx$ egyenesekkel</b><br>
-                    Vizsgáljuk meg a következőt: $\lim_{(x,y)\to(0,0)} \frac{xy}{2x^2 + 2y^2}$<br><br>
-                    Közelítsünk $y=mx$ egyenesek mentén. Behelyettesítjük az $y$ helyére az $mx$-et a határértékben:<br>
-                    $$\lim_{x\to0} \frac{x(mx)}{2x^2+2(mx)^2} = \lim_{x\to0} \frac{mx^2}{2x^2(1+m^2)}$$<br>
-                    Egyszerűsítsünk az $x^2$-zettel (mivel $x \neq 0$):
-                    $$= \frac{m}{2(1+m^2)}$$<br>
-                    Mivel az eredményben benne maradt az $m$, ez azt jelenti, hogy ha egy lankás úton ($m=0$) megyünk, a határérték $0$. De ha egy $45^\circ$-os úton ($m=1$) megyünk, a határérték $1/4$. Két különböző érték $\implies$ <b>a határérték nem létezik</b>.
-                </div>
-                
-                <h3>5. Bizonyítás Polárkoordinátás transzformációval</h3>
-                <p>Ha gyanítjuk, hogy a határérték mégis létezik az origóban (például ha a számláló "fokszáma" nagyobb, mint a nevezőé), érdemes a rendszert polárkoordinátákba átírni ($r$ a távolság, $\varphi$ a szög).</p>
+
+                <h3>6. Szükséges feltételek az origóbeli határértékhez</h3>
+                <p>Ha a határérték létezik a $(0,0)$-ban és értéke $b$, akkor bármelyik tengelyen vagy tetszőleges $y=mx$ egyenesen közelítve is ugyanazt a $b$ értéket kell kapnunk:</p>
                 <div class="formula">
-                    $x = r \cos \varphi, \quad y = r \sin \varphi$<br>
-                    $$\lim_{r \to 0} f(r\cos\varphi, r\sin\varphi)$$
+                    $$\lim_{x\to0} f(x, 0) = b, \quad \lim_{y\to0} f(0, y) = b, \quad \lim_{x\to0} f(x, mx) = b$$
                 </div>
                 <div class="explanation">
-                    <strong>Miért jó ez?</strong> Amikor $r \to 0$ (a távolság nulla lesz), akkor egyetlen lépésben teszteljük az <b>összes létező</b> $\varphi$ szögből (irányból) történő közeledést! Ha a számolás végén a kapott eredmény független a $\varphi$-től (pl. $0 \times \text{korlátos} = 0$), akkor a határérték biztosan létezik, és független az iránytól.
+                    <b>Cáfolat (ZH Trükk):</b> Ha találsz két különböző útvonalat (pl. $y=0$ és $y=x$), ahol megközelítve más-más eredményt ad a Limesz, akkor a határérték <b>biztosan nem létezik</b>.
+                </div>
+                
+                <h3>7. Polárkoordinátás transzformáció</h3>
+                <p>Origóbeli határérték <b>bizonyításához</b> hasznos. A közeledést lecseréljük egyetlen távolsági változóra ($r \to 0$), egy tetszőleges $\varphi$ szög mellett.</p>
+                <div class="formula">
+                    $$x = r \cos \varphi, \quad y = r \sin \varphi \implies \lim_{r \to 0} f(r\cos\varphi, r\sin\varphi)$$
+                </div>
+                <div class="explanation">
+                    <b>Miért jó?</b> Amikor $r \to 0$, egyszerre teszteljük az <i>összes létező irányt</i> ($\varphi$). Ha a kapott Limesz (pl. a Rendőrelv miatt) nullát ad és független lesz a $\varphi$ szögtől, akkor bizonyítottuk, hogy a határérték létezik.
                 </div>
 
                 <div class="example">
-                    <b>Példafeladat 3: Polárkoordinátás határérték bizonyítás</b><br>
-                    Vizsgáljuk meg a következő határértéket: $\lim_{(x,y)\to(0,0)} \frac{3xy^3}{4x^2 + 5y^2}$<br><br>
-                    <b>1. Lépés: Polár helyettesítés ($x = r\cos\varphi, y = r\sin\varphi$)</b><br>
-                    $$ f(r,\varphi) = \frac{3(r\cos\varphi)(r\sin\varphi)^3}{4(r\cos\varphi)^2 + 5(r\sin\varphi)^2} = \frac{3r^4 \cos\varphi \sin^3\varphi}{r^2(4\cos^2\varphi + 5\sin^2\varphi)} $$<br>
-                    <b>2. Lépés: Egyszerűsítés $r$-rel</b><br>
-                    A kifejezést $r^2$-zettel le tudjuk egyszerűsíteni (kiemelés a nevezőből: $r^2(4\cos^2\varphi + 5\sin^2\varphi)$):
-                    $$ = r^2 \cdot \frac{3\cos\varphi \sin^3\varphi}{4\cos^2\varphi + 5\sin^2\varphi} $$<br>
-                    <b>3. Lépés: Limesz $r \to 0$ esetén (Rendőrelv)</b><br>
-                    A jobb oldali nagy törtről belátható, hogy <b>korlátos</b>. (Egyrészt a számláló trig. függvények szorzata, tehát abszolút értékben nem nagyobb 3-nál, a nevező pedig sosem nulla, sőt mindig $\ge 4$, mert $4\cos^2 + 5\sin^2 \ge 4(\cos^2+\sin^2) = 4$).<br>
-                    Tudjuk, hogy: $\text{"Nullához tartó sorozat"} \times \text{"Korlátos függvény"} \to 0$.<br>
-                    Mivel $r^2 \to 0$ ha $r \to 0$, ezért az egész kifejezés határértéke a szög ($\varphi$) értékétől függetlenül $0$ lesz.<br><br>
-                    <b>Végeredmény: A határérték létezik, és értéke $0$.</b>
+                    <h3 style="margin-top: 0; color: #f59e0b;">1-2. Példa: Binomiális sorfejtés</h3>
+                    <p>Fejtsük sorba az $f(x) = \frac{1}{\sqrt[3]{8+x}}$ függvényt az origó körül!</p>
+                    <p><b>Megoldás:</b> Átírjuk hatványos alakra és kiemelünk $8$-at, hogy megkapjuk a szükséges $(1+\dots)^\alpha$ alakot:</p>
+                    <div class="formula">
+                        $$ f(x) = (8+x)^{-1/3} = 8^{-1/3}\left(1+\frac{x}{8}\right)^{-1/3} = \frac{1}{2}\left(1+\frac{x}{8}\right)^{-1/3} $$
+                    </div>
+                    <p>A binomiális sor képletét használva ($\alpha = -1/3$ és az $x$ helyett $x/8$ szerepel):</p>
+                    <div class="formula">
+                        $$ f(x) = \frac{1}{2} \sum_{k=0}^{\infty} \binom{-1/3}{k} \left(\frac{x}{8}\right)^k $$
+                    </div>
+
+                    <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
+
+                    <h3 style="color: #f59e0b;">3-4. Példa: Vektorsorozat konvergenciája</h3>
+                    <p>Hova tart az $\mathbf{x}_k = \left( \frac{\sin k}{k}, \frac{2k-1}{k} \right)$ sorozat, ha $k \to \infty$?</p>
+                    <p><b>Megoldás:</b> Koordinátánként külön vizsgáljuk a konvergenciát:</p>
+                    <ul>
+                        <li>X-koordináta: $\lim_{k\to\infty} \frac{\sin k}{k} = 0$ (korlátos osztva végtelennel).</li>
+                        <li>Y-koordináta: $\lim_{k\to\infty} \frac{2k-1}{k} = \lim_{k\to\infty} \left(2 - \frac{1}{k}\right) = 2$.</li>
+                    </ul>
+                    <p>Tehát a vektorsorozat konvergens, és a határértéke a $(0, 2)$ pont.</p>
+
+                    <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
+
+                    <h3 style="color: #f59e0b;">5-6. Példa: Határérték cáfolata</h3>
+                    <p>Létezik-e a $\lim_{(x,y)\to(0,0)} \frac{x^2y}{x^4+y^2}$ határérték?</p>
+                    <p><b>Megoldás:</b> Próbáljuk megközelíteni az origót különböző görbéken! Ha az egyeneseken ($y=mx$) megyünk:</p>
+                    <div class="formula">
+                        $$ \lim_{x\to 0} \frac{x^2(mx)}{x^4+(mx)^2} = \lim_{x\to 0} \frac{mx^3}{x^2(x^2+m^2)} = \lim_{x\to 0} \frac{mx}{x^2+m^2} = 0 $$
+                    </div>
+                    <p>Minden egyenesen $0$ jött ki. De mi van, ha az $y=x^2$ parabolán közelítünk?</p>
+                    <div class="formula">
+                        $$ \lim_{x\to 0} \frac{x^2(x^2)}{x^4+(x^2)^2} = \lim_{x\to 0} \frac{x^4}{2x^4} = \frac{1}{2} $$
+                    </div>
+                    <p>Mivel a két útvonalon eltérő értéket kaptunk ($0 \neq 1/2$), a határérték <b>nem létezik</b>.</p>
+
+                    <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
+
+                    <h3 style="color: #f59e0b;">7. Példa: Határérték bizonyítása (Polárkoordinátákkal)</h3>
+                    <p>Létezik-e a $\lim_{(x,y)\to(0,0)} \frac{x^3+y^3}{x^2+y^2}$ határérték?</p>
+                    <p><b>Megoldás:</b> Használjuk a polárkoordinátás helyettesítést ($x=r\cos\varphi, y=r\sin\varphi$):</p>
+                    <div class="formula">
+                        $$ \lim_{r\to 0} \frac{r^3\cos^3\varphi + r^3\sin^3\varphi}{r^2\cos^2\varphi + r^2\sin^2\varphi} = \lim_{r\to 0} \frac{r^3(\cos^3\varphi + \sin^3\varphi)}{r^2(1)} = \lim_{r\to 0} r(\cos^3\varphi + \sin^3\varphi) $$
+                    </div>
+                    <p>A szögfüggvényes zárójeles rész korlátos, az $r$ pedig nullához tart. Mivel $0 \cdot \text{korlátos} = 0$, a szög ($\varphi$) értékétől teljesen függetlenül mindig nullát kapunk. Tehát a határérték létezik és értéke $0$.</p>
                 </div>
 
             </div>
@@ -675,81 +758,105 @@
             <h1>9. Parciális Derivált & Gradiens</h1>
             <div class="card glass">
                 
-                <h3>1. Parciális deriváltak ($\partial_i f$)</h3>
-                <p>Legyen $f: \mathbb{R}^n \to \mathbb{R}$ egy többváltozós függvény. Az $i$-edik változó ($x_i$) szerinti <b>parciális deriváltja</b> az $a$ pontban ($\partial_i f(a)$ vagy $f'_{x_i}(a)$) úgy kapható meg, hogy minden más változót konstansnak tekintünk, és csak $x_i$ szerint hajtjuk végre az egyváltozós deriválási szabályokat.</p>
+                <h3>1. Parciális derivált ($\partial_i f$)</h3>
+                <p>A hivatalos definíció szerint egy egyváltozós függvény deriváltja az $a_i$ pontban, ahol a többi koordinátát rögzítjük:</p>
+                <div class="formula">
+                    $$x \mapsto f(a_1, \dots, x, \dots, a_n)$$
+                </div>
                 <div class="explanation">
-                    <strong>Szemléletesen (2D-ben):</strong> Elvágod a hegyet az X vagy az Y tengellyel párhuzamosan, és megnézed annak az 1 dimenziós metszet-vonalnak a meredekségét.
+                    <b>Gyakorlatban (Számoláshoz):</b> Csak az $i$-edik változó ($x_i$) szerint deriválunk az $\mathbf{a}$ pontban, a többi változót konstansként (sima számként) kezeljük. Jelölése: $\partial_i f(\mathbf{a})$ vagy $f'_{x_i}(\mathbf{a})$.
                 </div>
                 
-                <h3>2. Totális Differenciálhatóság (Precíz Definíció)</h3>
-                <p>Azt mondjuk, hogy egy $f: \mathbb{R}^n \to \mathbb{R}$ függvény az $\mathbf{a}$ belső pontban <b>(totálisan) differenciálható</b>, ha létezik egy olyan $A \in \mathbb{R}^n$ vektor, amelyre teljesül, hogy:</p>
+                <h3>2. Totális differenciálhatóság és Gradiens</h3>
+                <p>Egy $f: \mathbb{R}^n \to \mathbb{R}$ függvény az $\mathbf{a}$ belső pontban totálisan differenciálható, ha létezik egy $A \in \mathbb{R}^n$ vektor, amelyre:</p>
                 <div class="formula">
                     $$\lim_{\mathbf{x} \to \mathbf{a}} \frac{f(\mathbf{x}) - f(\mathbf{a}) - \langle A, \mathbf{x} - \mathbf{a} \rangle}{||\mathbf{x} - \mathbf{a}||} = 0$$
                 </div>
-                <p>Ezt az $A$ vektort nevezzük a függvény $\mathbf{a}$ pontbeli (totális) deriváltjának, vagyis a <b>Gradiens vektornak</b> (jelölése: $\text{grad } f(\mathbf{a})$ vagy $\nabla f(\mathbf{a})$).</p>
+                <p>Ezt az $A$ vektort a függvény <b>Gradiensének</b> nevezzük ($\text{grad } f(\mathbf{a})$, $f'(\mathbf{a})$ vagy $(Df)(\mathbf{a})$).</p>
 
-                <h3>3. A Totális differenciálhatóság Feltételei</h3>
-                <p>A puszta parciális deriváltak létezése még nem garantálja a fenti definíció teljesülését (a felület "simaságát").</p>
-                <ul>
-                    <li><b>Szükséges feltétel:</b> Ha a függvény totálisan differenciálható az $\mathbf{a}$ pontban, akkor ott feltétlenül <b>folytonos</b> is, és léteznek a parciális deriváltjai is. A gradiens vektort ekkor pontosan a parciális deriváltak alkotják:
-                    <br>$$\text{grad } f(\mathbf{a}) = \left( \partial_1 f(\mathbf{a}), \dots, \partial_n f(\mathbf{a}) \right)$$
-                    </li>
-                    <li><b>Elégséges feltétel:</b> Ha a függvény parciális deriváltjai léteznek és <b>folytonosak</b> az $\mathbf{a}$ pont egy környezetében, akkor a függvény ott garantáltan totálisan differenciálható.</li>
-                </ul>
-
-                <h3>4. Az Érintősík egyenlete</h3>
-                <p>Ha egy kétváltozós függvény az $(x_0, y_0)$ pontban totálisan differenciálható, akkor pontosan ráfektethető egy érintősík, melynek egyenlete:</p>
+                <h3>3. Érintősík egyenlete</h3>
+                <p>Ha $f$ totálisan differenciálható $(x_0, y_0)$-ban, a pontbeli érintősík egyenlete:</p>
                 <div class="formula">
                     $$\partial_1 f(x_0, y_0)(x - x_0) + \partial_2 f(x_0, y_0)(y - y_0) - (z - f(x_0, y_0)) = 0$$
                 </div>
 
-                <h3>5. Iránymenti derivált ($D_\mathbf{e} f$)</h3>
-                <p>Megadja, hogy a függvény milyen gyorsan változik az $\mathbf{a}$ pontból egy tetszőleges $\mathbf{e}$ <b>egységvektor</b> irányába indulva. Hivatalos limeszes definíciója:</p>
+                <h3>4. Szükséges feltételek a totális deriválhatósághoz</h3>
+                <p>Ha $f$ totálisan differenciálható $\mathbf{a}$-ban, akkor szükségképpen:</p>
+                <ul>
+                    <li>(i) $f$ <b>folytonos</b> az $\mathbf{a}$ pontban.</li>
+                    <li>(ii) Léteznek a parciális deriváltak, és a gradiens vektor pontosan ezekből áll:
+                    <div class="formula">$$\text{grad } f(\mathbf{a}) = \left( \partial_1 f(\mathbf{a}), \dots, \partial_n f(\mathbf{a}) \right)$$</div>
+                    </li>
+                </ul>
+
+                <h3>5. Elégséges feltétel a totális deriválhatósághoz</h3>
+                <p>Ha a $\partial_i f$ parciális deriváltfüggvények léteznek egy környezetben és <b>folytonosak</b> $\mathbf{a}$-ban, akkor $f$ biztosan totálisan differenciálható $\mathbf{a}$-ban.</p>
+
+                <h3>6. Iránymenti derivált ($D_\mathbf{e} f$)</h3>
+                <p>A függvény változási gyorsasága az $\mathbf{a}$ pontból egy tetszőleges $\mathbf{e}$ <b>egységvektor</b> ($||\mathbf{e}|| = 1$) irányába indulva:</p>
                 <div class="formula">
                     $$D_{\mathbf{e}} f(\mathbf{a}) = \lim_{t \to 0^+} \frac{f(\mathbf{a} + t\mathbf{e}) - f(\mathbf{a})}{t}$$
                 </div>
-                <p><b>Kiszámítása:</b> Ha a függvény totálisan differenciálható, az iránymenti derivált kiszámítható a gradiens és az <b>egységnyi hosszúra normált</b> irányvektor ($\mathbf{e} = \frac{\mathbf{v}}{||\mathbf{v}||}$) skaláris szorzataként:</p>
+
+                <h3>7. Iránymenti derivált kiszámítása</h3>
+                <p>Ha $f$ totálisan differenciálható, a kiszámítás egyszerű skaláris szorzattal történik:</p>
                 <div class="formula">
-                    $$D_{\mathbf{e}} f(\mathbf{a}) = \langle \text{grad } f(\mathbf{a}), \mathbf{e} \rangle = ||\text{grad } f(\mathbf{a})|| \cdot \cos \alpha$$
+                    $$D_{\mathbf{e}} f(\mathbf{a}) = \langle \text{grad } f(\mathbf{a}), \mathbf{e} \rangle$$
                 </div>
-                
                 <div class="explanation">
-                    A skaláris szorzatból ($\cos \alpha$) adódik az iránymenti derivált viselkedése:
-                    <ul style="margin-top: 10px; margin-bottom: 0;">
-                        <li><b>Maximális:</b> Ha pontosan a gradiens irányába mész ($\alpha = 0 \implies \cos(0)=1$). Értéke: $||\text{grad } f(\mathbf{a})||$. Tehát a gradiens <b>mindig a legmeredekebb emelkedő irányába mutat.</b></li>
-                        <li><b>Minimális:</b> Ha háttal mész a gradiensnek ($\alpha = \pi \implies \cos(\pi)=-1$). Értéke: $-||\text{grad } f(\mathbf{a})||$.</li>
-                        <li><b>Nulla:</b> Ha merőlegesen mész a gradiensre ($\alpha = \pi/2 \implies \cos(\pi/2)=0$). A szintvonalon sétálsz.</li>
-                    </ul>
+                    <b>ZH Trükk:</b> Az $\mathbf{e}$ vektor hossza kötelezően $1$ kell, hogy legyen! Ha a feladat egy $\mathbf{v}$ vektort ad, azt le kell normálni: $\mathbf{e} = \frac{\mathbf{v}}{||\mathbf{v}||}$.
                 </div>
+
+                <h3>8. Iránymenti derivált becslése</h3>
+                <p>Az iránymenti derivált értéke mindig a gradiens hosszának korlátai közé esik:</p>
+                <div class="formula">
+                    $$-||\text{grad } f(\mathbf{a})|| \le D_{\mathbf{e}} f(\mathbf{a}) \le ||\text{grad } f(\mathbf{a})||$$
+                </div>
+
+                <h3>9. Maximális és minimális irányok</h3>
+                <p>Mivel $D_{\mathbf{e}} f(\mathbf{a}) = ||\text{grad } f(\mathbf{a})|| \cos(\alpha)$ (ahol $\alpha$ a gradiens és az $\mathbf{e}$ szöge), az iránymenti derivált:</p>
+                <ul>
+                    <li><b>Maximális</b> ($+||\text{grad } f(\mathbf{a})||$), ha $\alpha = 0$ (pontosan a gradiens irányába megyünk).</li>
+                    <li><b>Minimális</b> ($-||\text{grad } f(\mathbf{a})||$), ha $\alpha = \pi$ (a gradienssel ellentétes irányba megyünk).</li>
+                    <li><b>Nulla</b>, ha $\alpha = \pi/2$ (merőlegesen, azaz szintvonalon haladunk).</li>
+                </ul>
 
                 <div class="example">
-                    <b>Komplett Példafeladat: Érintősík és Iránymenti derivált</b><br>
-                    Legyen $f(x, y) = 4(x - 3y)^3 - 6x + 4y^2$.<br>
-                    a) Írjuk fel a $P_0 = (3, 1)$ pontbeli érintősík egyenletét!<br>
-                    b) Adjuk meg a függvény $P_0$-beli iránymenti deriváltját a $\mathbf{v} = (4, 3)$ vektor irányában!<br><br>
+                    <h3 style="margin-top: 0; color: #f59e0b;">1-5. Példa: Parciális deriváltak, Gradiens és Érintősík</h3>
+                    <p>Legyen $f(x,y) = x^2y + e^{xy}$. Számítsuk ki a parciális deriváltjait, a gradiens vektorát, és írjuk fel az érintősík egyenletét a $P(1, 0)$ pontban!</p>
+                    <p><b>Megoldás:</b><br>1. Parciális deriváltak számítása (mivel a deriváltak folytonosak, a függvény totálisan differenciálható):</p>
+                    <ul>
+                        <li>X-szerint (az $y$ konstans): $\partial_1 f(x,y) = 2xy + y e^{xy}$</li>
+                        <li>Y-szerint (az $x$ konstans): $\partial_2 f(x,y) = x^2 + x e^{xy}$</li>
+                    </ul>
+                    <p>2. Behelyettesítés a $P(1,0)$ pontba a gradienshez:</p>
+                    <ul>
+                        <li>$\partial_1 f(1,0) = 2(1)(0) + 0 \cdot e^0 = 0$</li>
+                        <li>$\partial_2 f(1,0) = 1^2 + 1 \cdot e^0 = 1 + 1 = 2$</li>
+                    </ul>
+                    <p>Tehát a gradiens vektor: $\text{grad } f(1,0) = (0, 2)$. A függvényérték: $f(1,0) = 1^2(0) + e^0 = 1$.</p>
+                    <p>3. Érintősík egyenlete a képlet alapján:</p>
+                    <div class="formula">
+                        $$ 0(x - 1) + 2(y - 0) - (z - 1) = 0 \quad \implies \quad 2y - z + 1 = 0 $$
+                    </div>
 
-                    <b>1. Lépés: Parciális deriváltak kiszámítása</b><br>
-                    $x$ szerint (az $y$-t konstansként kezelve):<br>
-                    $\partial_1 f(x, y) = 4 \cdot 3(x - 3y)^2 \cdot 1 - 6 = 12(x - 3y)^2 - 6$<br>
-                    $y$ szerint (az $x$-et konstansként kezelve):<br>
-                    $\partial_2 f(x, y) = 4 \cdot 3(x - 3y)^2 \cdot (-3) + 8y = -36(x - 3y)^2 + 8y$<br><br>
+                    <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
 
-                    <b>2. Lépés: Behelyettesítés a $P_0 = (3, 1)$ pontba</b><br>
-                    $\partial_1 f(3, 1) = 12(3 - 3)^2 - 6 = \mathbf{-6}$<br>
-                    $\partial_2 f(3, 1) = -36(3 - 3)^2 + 8(1) = \mathbf{8}$<br>
-                    A függvényérték: $f(3, 1) = 4(3 - 3)^3 - 6(3) + 4(1)^2 = -18 + 4 = \mathbf{-14}$<br><br>
-
-                    <b>3. Lépés: Érintősík egyenlete</b><br>
-                    Képlet: $\partial_1 f(P_0)(x - x_0) + \partial_2 f(P_0)(y - y_0) - (z - f(P_0)) = 0$<br>
-                    $ -6(x - 3) + 8(y - 1) - (z - (-14)) = 0 $<br>
-                    <b>$ -6x + 8y - z = 4 $</b><br><br>
-
-                    <b>4. Lépés: Iránymenti derivált</b><br>
-                    Gradiens a pontban: $\text{grad } f(3, 1) = (-6, 8)$<br>
-                    Irányvektor normálása (egységvektorrá alakítás):<br>
-                    $||\mathbf{v}|| = \sqrt{4^2 + 3^2} = \sqrt{25} = 5 \implies \mathbf{e} = (\frac{4}{5}, \frac{3}{5})$<br>
-                    Skaláris szorzat elvégzése:<br>
-                    $D_{\mathbf{e}} f(3, 1) = \langle (-6, 8), (\frac{4}{5}, \frac{3}{5}) \rangle = -6 \cdot \frac{4}{5} + 8 \cdot \frac{3}{5} = -\frac{24}{5} + \frac{24}{5} = \mathbf{0}$
+                    <h3 style="color: #f59e0b;">6-9. Példa: Iránymenti derivált és Szélsőértékek</h3>
+                    <p>Határozzuk meg az előző $f(x,y)$ függvény iránymenti deriváltját a $P(1, 0)$ pontból a $\mathbf{v} = (3, 4)$ vektor irányába! Mik a lehetséges maximális és minimális iránymenti derivált értékek?</p>
+                    <p><b>Megoldás:</b><br>1. Az irányvektor <b>normálása</b> (egységvektorrá alakítása):</p>
+                    <div class="formula">
+                        $$ ||\mathbf{v}|| = \sqrt{3^2 + 4^2} = \sqrt{25} = 5 \quad \implies \quad \mathbf{e} = \left(\frac{3}{5}, \frac{4}{5}\right) $$
+                    </div>
+                    <p>2. Iránymenti derivált kiszámítása a gradiens és az egységvektor skaláris szorzataként:</p>
+                    <div class="formula">
+                        $$ D_{\mathbf{e}} f(1,0) = \langle \text{grad } f(1,0), \mathbf{e} \rangle = \left\langle (0, 2), \left(\frac{3}{5}, \frac{4}{5}\right) \right\rangle = 0 \cdot \frac{3}{5} + 2 \cdot \frac{4}{5} = \frac{8}{5} $$
+                    </div>
+                    <p>3. Becslés és szélsőértékek: A gradiens hossza $||\text{grad } f(1,0)|| = \sqrt{0^2 + 2^2} = 2$.</p>
+                    <ul>
+                        <li>A <b>maximális</b> iránymenti derivált értéke: $+2$ (ha pontosan a gradiens irányába indulunk).</li>
+                        <li>A <b>minimális</b> iránymenti derivált értéke: $-2$ (ha a gradiensnek háttal indulunk).</li>
+                    </ul>
                 </div>
             </div>
         </section>
