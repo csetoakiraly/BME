@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analízis 2 Összefoglaló (6-9)</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7; /* Lila szín */
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .MathJax { color: var(--text-light) !important; }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .sidebar {
+            width: 280px;
+            height: 100vh;
+            position: fixed;
+            padding-top: 20px;
+            z-index: 10;
+            border-right: 1px solid var(--glass-border);
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            overflow-y: auto;
+            border-top-right-radius: 24px;
+            border-bottom-right-radius: 24px;
+        }
+        
+        .sidebar h2 {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            color: var(--secondary);
+            font-weight: 800;
+            text-shadow: 0 0 15px var(--secondary-glow);
+        }
+
+        .sidebar a {
+            display: block;
+            color: var(--text-muted);
+            padding: 15px 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            font-weight: 600;
+            margin: 5px 15px;
+            border-radius: 16px;
+        }
+
+        .sidebar a:hover, .sidebar a.active-link {
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--secondary);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
+
+        .main-content {
+            margin-left: 280px;
+            padding: 50px;
+            width: calc(100% - 280px); /* Kiterjesztve a teljes jobb oldalra */
+            box-sizing: border-box;
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        section.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            border-radius: 24px; /* Mindenhol lekerekített */
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        h1 { 
+            color: var(--text-light); 
+            border-bottom: 2px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            margin-top: 0;
+            font-weight: 800; /* Extra vastag, mint a képen */
+            letter-spacing: -0.5px;
+            font-size: 2.8rem; /* Kicsit nagyobb, mint a képen */
+        }
+
+        h3 { 
+            color: var(--secondary); 
+            margin-top: 35px; 
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: -0.3px;
+        }
+
+        .explanation {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 4px solid var(--secondary);
+            padding: 15px 20px;
+            border-radius: 0 16px 16px 0;
+            margin: 20px 0;
+            color: #e2e8f0;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        
+        .explanation strong {
+            color: var(--secondary);
+            font-weight: 800;
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+        }
+
+        p, li { 
+            line-height: 1.8; 
+            color: #94a3b8; /* Halványabb szürkésszöveg a kevésbé fontos részekhez */
+            font-size: 1.08rem; 
+            font-weight: 500; /* Vastagabb alap betűtípus */
+        }
+
+        b, strong { 
+            color: #ffffff; /* Erős, ragyogó fehér a fontos kiemeléseknek */
+            font-weight: 800; 
+            letter-spacing: 0.5px;
+        }
+
+        .formula {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            margin: 25px 0;
+            overflow-x: auto;
+            text-align: center;
+            font-size: 1.1rem;
+            box-shadow: inset 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .example {
+            background: rgba(245, 158, 11, 0.05);
+            padding: 30px;
+            border-radius: 24px;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .example::before {
+            content: 'Példa Levezetéssel';
+            position: absolute;
+            top: -14px;
+            left: 30px;
+            background: #f59e0b;
+            color: #fff;
+            padding: 4px 15px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        ul { padding-left: 25px; }
+        li { margin-bottom: 12px; }
+        
+        .graph-box {
+            width: 100%;
+            height: 220px;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 24px;
+            margin-top: 25px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .circle-anim {
+            width: 140px;
+            height: 140px;
+            border: 3px dashed var(--secondary-glow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: #ef4444;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #ef4444;
+        }
+
+        .graph-label {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.95rem;
+            color: var(--secondary);
+            font-weight: bold;
+            letter-spacing: 1px;
+            background: rgba(0,0,0,0.6);
+            padding: 6px 16px;
+            border-radius: 16px;
+            backdrop-filter: blur(5px);
+        }
+
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-track { background: var(--primary); }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
+
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>Analízis 2<br>Zárthelyi Segédlet</h2>
+        <a href="#" class="active-link" onclick="showSection('s6', this)">6. Hatványsorok</a>
+        <a href="#" onclick="showSection('s7', this)">7. Taylor-sorok</a>
+        <a href="#" onclick="showSection('s8', this)">8. Többváltozós Határérték</a>
+        <a href="#" onclick="showSection('s9', this)">9. Parciális Derivált</a>
+    </div>
+
+    <div class="main-content">
+        
+        <!-- 6. Gyakorlat -->
+        <section id="s6" class="active">
+            <h1>6. Hatványsorok</h1>
+            <div class="card glass">
+                
+                <h3>A Hatványsor fogalma</h3>
+                <div class="formula">
+                    $$\sum_{n=0}^{\infty} a_n (x - x_0)^n$$
+                </div>
+                <div class="explanation">
+                    <strong>Mit jelent ez?</strong> Képzelj el egy végtelenül hosszú polinomot. Az $x_0$ a "középpont", ahonnan a vizsgálatot indítjuk, az $a_n$ számok pedig a polinom együtthatói. A célunk kideríteni, hogy milyen $x$ értékeket helyettesíthetünk be anélkül, hogy az összeg végtelenhez tartana.
+                </div>
+
+                <h3>A Cauchy-féle Konvergenciasugár ($R_a$) precíz definíciója</h3>
+                <p>Legyen $(a_n)_{n\in\mathbb{N}}$ egy valós számsorozat. A hatványsorhoz tartozó konvergenciasugár definíciója:</p>
+                <div class="formula">
+                    $$ R_a := \begin{cases} 
+                    \frac{1}{\limsup_{n \to \infty} \sqrt[n]{|a_n|}} & \text{ha } 0 < \limsup_{n \to \infty} \sqrt[n]{|a_n|} < +\infty \\ 
+                    0 & \text{ha } \limsup_{n \to \infty} \sqrt[n]{|a_n|} = +\infty \\ 
+                    +\infty & \text{ha } \limsup_{n \to \infty} \sqrt[n]{|a_n|} = 0 
+                    \end{cases} $$
+                </div>
+
+                <h3>A sugár meghatározása (Hányadoskritériummal)</h3>
+                <p>A jegyzet alapján, ha az $\left| \frac{a_{n+1}}{a_n} \right|$ sorozatnak létezik határértéke, akkor ez megegyezik a gyökkritérium határértékével, így a sugár:</p>
+                <div class="formula">
+                    $$ R_a = \frac{1}{\lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right|} $$
+                </div>
+
+                <h3>Cauchy–Hadamard-tétel</h3>
+                <p>A $\sum a_n (x - x_0)^n$ hatványsorra igaz, hogy:</p>
+                <ul>
+                    <li>Ha $|x - x_0| < R_a$, akkor a sor <b>abszolút konvergens</b>.</li>
+                    <li>Ha $|x - x_0| > R_a$, akkor a sor <b>divergens</b>.</li>
+                </ul>
+                <div class="explanation">
+                    <strong>Hogyan képzeld el?</strong> Az $x_0$ pont körül húzunk egy $R_a$ sugarú kört (intervallumot). Ha belül vagyunk, biztos a konvergencia, ha kívül, biztos a divergencia. Ha pontosan a határon vagyunk ($|x - x_0| = R_a$), ott külön le kell tesztelni a behelyettesítést!
+                </div>
+
+                <h3>Elemi analitikus függvények tulajdonságai</h3>
+                <p>Ha $f(x) := \sum_{n=0}^{\infty} a_n (x - x_0)^n$ és a konvergenciasugár $R_a > 0$, akkor a konvergencia-intervallumon ($]x_0 - R_a, x_0 + R_a[$) a következő állítások igazak:</p>
+                <ul>
+                    <li><b>Értelmezési tartomány:</b> $]x_0 - R_a, x_0 + R_a[ \subseteq \text{Dom}(f) \subseteq [x_0 - R_a, x_0 + R_a]$. A végpontok hovatartozása egyedileg vizsgálandó.</li>
+                    <li><b>Folytonosság:</b> Az $f$ függvény az értelmezési tartományának minden pontjában folytonos.</li>
+                    <li><b>Tagonkénti deriválás:</b> A sor a nyílt intervallumon belül tagonként differenciálható, a kapott új sor konvergenciasugara megegyezik az eredetivel:
+                        <br>$$ f'(x) = \sum_{n=1}^{\infty} n a_n (x - x_0)^{n-1} $$
+                    </li>
+                    <li><b>Tagonkénti integrálás:</b> Ha $\alpha, \beta \in ]x_0 - R_a, x_0 + R_a[$, akkor az $f$ integrálható, és az integrálás bevihető a szumma mögé:
+                        <br>$$ \int_\alpha^\beta f(x) dx = \sum_{n=0}^{\infty} \int_\alpha^\beta a_n(x - x_0)^n dx $$
+                    </li>
+                </ul>
+
+                <div class="example">
+                    <b>Komplett Példafeladat:</b> Határozzuk meg a $\sum_{n=1}^{\infty} \frac{(-1)^n}{n \cdot 3^n} (x+2)^n$ hatványsor konvergenciatartományát!<br><br>
+                    <b>1. Lépés: Középpont és együttható azonosítása</b><br>
+                    Látjuk, hogy $(x+2)^n = (x - (-2))^n$, tehát a középpont <b>$x_0 = -2$</b>. Az együttható ami az $x$ előtt áll: <b>$a_n = \frac{(-1)^n}{n \cdot 3^n}$</b>.<br><br>
+                    
+                    <b>2. Lépés: A Sugár (R) kiszámítása a Hányadoskritériummal</b><br>
+                    $$ R_a = \lim_{n \to \infty} \left| \frac{a_n}{a_{n+1}} \right| = \lim_{n \to \infty} \left| \frac{\frac{(-1)^n}{n \cdot 3^n}}{\frac{(-1)^{n+1}}{(n+1) \cdot 3^{n+1}}} \right| $$
+                    Emeletes törtet szorzunk a reciprokával, a $(-1)^n$ eltűnik az abszolútérték miatt:
+                    $$ = \lim_{n \to \infty} \frac{(n+1)3^{n+1}}{n \cdot 3^n} = \lim_{n \to \infty} \frac{n+1}{n} \cdot \frac{3^{n+1}}{3^n} = \lim_{n \to \infty} \left(1 + \frac{1}{n}\right) \cdot 3 = \mathbf{3} $$
+                    A sugár tehát $R_a = 3$.<br><br>
+                    
+                    <b>3. Lépés: A belső, biztos intervallum felírása</b><br>
+                    A középponttól ($x_0 = -2$) lépünk 3-at balra és jobbra: <b>$]-5, 1[$</b>. Itt abszolút konvergens.<br><br>
+
+                    <b>4. Lépés: A határok letesztelése</b><br>
+                    Itt egyesével betesszük az $x$ helyére az $1$-et és a $-5$-öt az eredeti képletbe.<br>
+                    - <b>$x = 1$ esetén:</b>  $(1+2)^n = 3^n$. A sor: $\sum \frac{(-1)^n}{n \cdot 3^n} 3^n = \sum \frac{(-1)^n}{n}$. Ez egy alternáló harmonikus sor, ami a Leibniz-kritérium miatt <b>feltételesen konvergens</b>.<br>
+                    - <b>$x = -5$ esetén:</b> $(-5+2)^n = (-3)^n = (-1)^n 3^n$. A sor: $\sum \frac{(-1)^n (-1)^n 3^n}{n \cdot 3^n} = \sum \frac{1}{n}$. Ez egy sima harmonikus sor, amiről tudjuk, hogy <b>divergens</b>.<br><br>
+                    
+                    <b>Végeredmény:</b> A konvergenciatartomány: <b>$]-5, 1]$</b>.
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Gyakorlat -->
+        <section id="s7">
+            <h1>7. Taylor-sorok</h1>
+            <div class="card glass">
+                
+                <h3>1. A Taylor-polinom és a Taylor-sor</h3>
+                <p>Egy $f$ függvény $x_0$ pontbeli $n$-edfokú <b>Taylor-polinomja</b> ($T_{n,x_0}^f$) a függvényt közelítő polinom:</p>
+                <div class="formula">
+                    $$T_{n,x_0}^f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!}(x-x_0)^k$$
+                </div>
+                <p>Ha az $f$ függvény az $x_0$ pontban <b>végtelenszer differenciálható</b>, akkor felírhatjuk a <b>Taylor-sorát</b> ($T_{x_0}^f$):</p>
+                <div class="formula">
+                    $$T_{x_0}^f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n$$
+                </div>
+                <div class="explanation">
+                    <strong>Miért csináljuk ezt?</strong> A Taylor-sor abban segít, hogy egy bonyolult függvényt (pl. exponenciális vagy szinusz) felírjunk egy végtelen polinomként (csupa alapművelet: összeadás és szorzás). Minél több tagot adunk össze, annál pontosabb másolatát kapjuk az eredeti függvénynek az $x_0$ pont (a közelítés középpontja) körül.
+                </div>
+
+                <h3>2. Hibabecslés: A Lagrange-maradéktag</h3>
+                <p>Ha a függvényt csupán egy $n$-edfokú Taylor-polinommal közelítjük, a közelítés hibáját a Lagrange-féle maradéktag ($R_n(x)$) adja meg:</p>
+                <div class="formula">
+                    $$f(x) = T_{n,x_0}^f(x) + R_n(x) \quad \text{ahol} \quad R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x_0)^{n+1}$$
+                </div>
+                <div class="explanation">
+                    <strong>Mit jelent a maradéktag?</strong> Ez pontosan úgy néz ki, mint a "következő" ($n+1$. fokú) levágott Taylor-tag, azzal az egyetlen különbséggel, hogy az $(n+1)$-edik deriváltat nem az $x_0$ középpontban, hanem egy ismeretlen $\xi$ (kszí) pontban kell vizsgálni, amely valahol az $x_0$ és a behelyettesített $x$ érték között helyezkedik el. Ezzel a képlettel megkereshetjük a lehetséges <b>maximális hibát</b>.
+                </div>
+
+                <h3>3. Hatványsor együtthatóinak egyértelműsége</h3>
+                <p>Minden $f(x)$ függvénynek legfeljebb egyetlen hatványsor-előállítása létezik az $x_0$ pont körül. Ez azt jelenti, hogy <b>ha egy függvényt sikerül felírni hatványsorként, akkor az a sor garantáltan a függvény Taylor-sora.</b></p>
+                <div class="formula">
+                    $$\text{Ha } \quad f(x) = \sum_{n=0}^{\infty} a_n(x-x_0)^n \quad \text{akkor biztosan } \quad a_n = \frac{f^{(n)}(x_0)}{n!}$$
+                </div>
+
+                <h3>4. Analitikus függvények</h3>
+                <p>Azt mondjuk, hogy egy $f$ függvény <b>analitikus</b> egy $x_0$ pontban, ha létezik olyan $r > 0$ sugár, hogy a $]x_0 - r, x_0 + r[$ intervallumon a Taylor-sora hibátlanul előállítja magát a függvényt, azaz minden ottani $x$-re:</p>
+                <div class="formula">
+                    $$ f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n $$
+                </div>
+
+                <h3>5. Nevezetes függvények Maclaurin-sorai ($x_0=0$)</h3>
+                <div class="formula" style="text-align: left; padding-left: 40px;">
+                    $e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \dots \quad (x \in \mathbb{R})$<br><br>
+                    $\sin(x) = \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n+1}}{(2n+1)!} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \dots \quad (x \in \mathbb{R})$<br><br>
+                    $\cos(x) = \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n}}{(2n)!} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \dots \quad (x \in \mathbb{R})$<br><br>
+                    $\text{sh}(x) = \sum_{n=0}^{\infty} \frac{x^{2n+1}}{(2n+1)!} = x + \frac{x^3}{3!} + \frac{x^5}{5!} + \dots \quad (x \in \mathbb{R})$<br><br>
+                    $\text{ch}(x) = \sum_{n=0}^{\infty} \frac{x^{2n}}{(2n)!} = 1 + \frac{x^2}{2!} + \frac{x^4}{4!} + \dots \quad (x \in \mathbb{R})$<br><br>
+                    $\ln(1+x) = \sum_{n=1}^{\infty} (-1)^{n+1} \frac{x^n}{n} = x - \frac{x^2}{2} + \frac{x^3}{3} - \dots \quad (x \in ]-1, 1])$
+                </div>
+                <div class="explanation">
+                    Ezeket érdemes fejből tudni, mert a ZH-ban sok feladat megoldható ezen sorok okos <b>behelyettesítésével</b> (pl. ha a feladat az $e^{-x^2}$ sorfejtése, csak a fenti $e^x$ képletében minden $x$ helyére beírod a $(-x^2)$-et, és nem kell a deriváltakat nulláról kiszámolni).
+                </div>
+
+                <div class="example">
+                    <b>Komplett Példafeladat 1: Taylor-polinom és hibabecslés</b><br>
+                    Írjuk fel az $f(x) = x^4 - 4x + \sin(3x)$ függvény $x_0 = 0$ pontbeli negyedfokú Taylor-polinomját és a Lagrange-féle hibatagot! Majd becsüljük meg a hibát $x=0.1$ esetén!<br><br>
+                    <b>1. Lépés: Deriváltak kiszámítása $n=4+1=5$-ig</b><br>
+                    $f(x) = x^4 - 4x + \sin(3x)$<br>
+                    $f'(x) = 4x^3 - 4 + 3\cos(3x)$<br>
+                    $f''(x) = 12x^2 - 9\sin(3x)$<br>
+                    $f'''(x) = 24x - 27\cos(3x)$<br>
+                    $f^{(4)}(x) = 24 + 81\sin(3x)$<br>
+                    $f^{(5)}(x) = 243\cos(3x)$<br><br>
+
+                    <b>2. Lépés: Deriváltak helyettesítési értéke $x_0 = 0$-ban</b><br>
+                    $f(0) = 0 - 0 + \sin(0) = 0$<br>
+                    $f'(0) = 0 - 4 + 3\cos(0) = -4 + 3 = -1$<br>
+                    $f''(0) = 0 - 9\sin(0) = 0$<br>
+                    $f'''(0) = 0 - 27\cos(0) = -27$<br>
+                    $f^{(4)}(0) = 24 + 81\sin(0) = 24$<br><br>
+
+                    <b>3. Lépés: A 4. fokú Taylor-polinom ($T_4$) felírása a képlettel</b><br>
+                    $$T_4(x) = f(0) + \frac{f'(0)}{1!}x + \frac{f''(0)}{2!}x^2 + \frac{f'''(0)}{3!}x^3 + \frac{f^{(4)}(0)}{4!}x^4$$
+                    $$T_4(x) = 0 + \frac{-1}{1}x + \frac{0}{2}x^2 + \frac{-27}{6}x^3 + \frac{24}{24}x^4$$
+                    Egyszerűsítve: <b>$T_4(x) = -x - \frac{9}{2}x^3 + x^4$</b><br><br>
+
+                    <b>4. Lépés: A Lagrange-féle hibatag ($R_4$) felírása</b><br>
+                    A hibataghoz az 5. deriváltat használjuk, de nem $x_0=0$-ban, hanem egy $\xi \in ]0, x[$ pontban:<br>
+                    $$R_4(x) = \frac{f^{(5)}(\xi)}{5!} x^5 = \frac{243\cos(3\xi)}{120}x^5 = \mathbf{\frac{81}{40}\cos(3\xi)x^5}$$<br>
+                    
+                    <b>5. Lépés: Hibabecslés adott pontban ($x=0.1$)</b><br>
+                    Tudjuk, hogy a $\cos$ függvény maximális értéke 1 (vagyis $|\cos(\dots)| \le 1$).<br>
+                    $$|R_4(0.1)| \le \left| \frac{81}{40} \cdot 1 \cdot (0.1)^5 \right| = \frac{81}{40} \cdot \frac{1}{100000} \approx 2 \cdot 10^{-5}$$<br>
+
+                    <hr style="border-color: rgba(255,255,255,0.1); margin: 30px 0;">
+
+                    <b>Példafeladat 2: Magasrendű derivált kiszámítása trükkösen</b><br>
+                    Kérdés: Legyen $f(x) = \frac{1}{x^2 - 5}$. Mennyi a függvény $99.$ és $100.$ deriváltja az $x_0=0$ pontban ($f^{(99)}(0) = ?$ és $f^{(100)}(0) = ?$)?<br><br>
+                    Itt őrültség lenne ténylegesen elkezdeni 100-szor deriválni a függvényt! Ehelyett az <b>Együtthatók egyértelműsége</b> tételt használjuk. Írjuk fel a függvényt Taylor-sorként a mértani sorozat képletét ($1 / (1-q)$) alkalmazva:<br>
+                    $$ f(x) = \frac{-1}{5} \cdot \frac{1}{1 - \frac{x^2}{5}} = \frac{-1}{5} \sum_{n=0}^{\infty} \left(\frac{x^2}{5}\right)^n = \sum_{n=0}^{\infty} \frac{-1}{5^{n+1}} x^{2n} $$
+                    Tudjuk, hogy egy Taylor-sor általános alakja: $\sum a_k x^k$, ahol $\mathbf{a_k = \frac{f^{(k)}(0)}{k!}}$.<br>
+                    A sorunkban csak <b>páros</b> hatványok ($x^{2n}$) szerepelnek. Ezért minden páratlan kitevőjű tag együtthatója nulla!<br>
+                    - Mivel 99 páratlan: $a_{99} = 0 \implies \frac{f^{(99)}(0)}{99!} = 0 \implies \mathbf{f^{(99)}(0) = 0}$<br>
+                    - A 100 páros, ami $n=50$ esetén jön ki ($2n=100$). Az ehhez tartozó együttható a szummából: $a_{100} = \frac{-1}{5^{51}}$.<br>
+                    Ebből: $\frac{f^{(100)}(0)}{100!} = \frac{-1}{5^{51}} \implies \mathbf{f^{(100)}(0) = \frac{-100!}{5^{51}}}$.
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Gyakorlat -->
+        <section id="s8">
+            <h1>8. Binomiális sor és Határérték</h1>
+            <div class="card glass">
+                
+                <h3>1. Az általánosított Binomiális Együttható és a Binomiális Sor</h3>
+                <p>Középiskolából ismert az $\binom{n}{k}$ fogalma. Az Analízisben ezt kiterjesztjük bármely valós $\alpha \in \mathbb{R}$ számra:</p>
+                <div class="formula">
+                    $$\binom{\alpha}{k} := \frac{\alpha(\alpha - 1) \dots (\alpha - k + 1)}{k!}, \quad \text{ahol } k \in \mathbb{N}^+ \text{ és } \binom{\alpha}{0} := 1$$
+                </div>
+                <p>Erre épül a <b>Binomiális sor</b>, amely az $(1+x)^\alpha$ hatványsor-előállítása (ez egy rendkívül hasznos Taylor-sor):</p>
+                <div class="formula">
+                    $$(1+x)^\alpha = \sum_{k=0}^{\infty} \binom{\alpha}{k} x^k \quad \text{konvergens, ha } x \in ]-1, 1[$$
+                </div>
+                <div class="explanation">
+                    <strong>Miért fontos ez?</strong> Gyökös vagy törtes kifejezéseket (pl. $\frac{1}{\sqrt{1-x}}$ vagy $\sqrt[3]{1+x^2}$) pillanatok alatt sorba tudunk fejteni anélkül, hogy bonyolult deriválásokat csinálnánk! Csak át kell írni a gyököt/törtet hatványos alakba: $\alpha = -1/2$ vagy $\alpha = 1/3$.
+                </div>
+                
+                <div class="example">
+                    <b>Példafeladat 1: Binomiális sorfejtés</b><br>
+                    Írjuk fel az $f(x) = \frac{1}{\sqrt[6]{64 - 2x^2}}$ hatványsorát $x_0 = 0$ körül!<br><br>
+                    <b>1. Lépés: Kiemelés, hogy az $(1 + \dots)^\alpha$ alakot megkapjuk</b><br>
+                    A gyök alatt kiemelünk $64$-et: $\sqrt[6]{64(1 - \frac{2x^2}{64})} = 2 \cdot (1 - \frac{x^2}{32})^{1/6}$.<br>
+                    Az eredeti tört tehát így néz ki: $f(x) = \frac{1}{2} \cdot \left(1 + \left(-\frac{x^2}{32}\right)\right)^{-1/6}$.<br><br>
+                    <b>2. Lépés: Alkalmazzuk a Binomiális sort</b><br>
+                    Tudjuk, hogy $(1+u)^\alpha = \sum \binom{\alpha}{k} u^k$. Itt $\alpha = -1/6$, a belső kifejezés pedig $u = -\frac{x^2}{32}$.<br>
+                    $$ f(x) = \frac{1}{2} \sum_{k=0}^{\infty} \binom{-1/6}{k} \left(-\frac{x^2}{32}\right)^k = \frac{1}{2} \sum_{k=0}^{\infty} \binom{-1/6}{k} \frac{(-1)^k}{32^k} x^{2k} $$<br>
+                    <b>3. Lépés: Konvergenciasugár</b><br>
+                    A binomiális sor feltétele, hogy a zárójeles rész abszolút értéke kisebb legyen 1-nél: $\left|-\frac{x^2}{32}\right| < 1 \implies x^2 < 32 \implies |x| < \sqrt{32} = 4\sqrt{2}$. Tehát $R = 4\sqrt{2}$.
+                </div>
+
+                <hr style="border-color: rgba(255,255,255,0.1); margin: 40px 0;">
+
+                <h3>2. $\mathbb{R}^n$-ben haladó sorozatok (Koordinátánkénti konvergencia)</h3>
+                <p>Ha van egy vektorokból álló számsorozatunk ($\mathbf{x}_k \in \mathbb{R}^n$), akkor ez a sorozat pontosan akkor konvergens egy $\mathbf{x}$ vektorhoz, ha <b>koordinátánként külön-külön</b> minden koordinátasorozat konvergens a megfelelő határérték-koordinátákhoz.</p>
+                
+                <h3>3. A Határérték logikája térben és az Átviteli elv</h3>
+                <p>Az <b>Átviteli elv</b> pontos definíciója szerint egy $f: \mathbb{R}^n \to \mathbb{R}$ függvény határértéke az $\mathbf{a}$ pontban pontosan akkor $b$, ha <b>bármely</b> $\mathbf{x}_k \to \mathbf{a}$ sorozat esetén (ahol $\mathbf{x}_k \neq \mathbf{a}$) az $f(\mathbf{x}_k)$ sorozat is a $b$-hez tart.</p>
+                <div class="formula">
+                    $$\lim_{\mathbf{x} \to \mathbf{a}} f(\mathbf{x}) = b \iff \forall (\mathbf{x}_k)_{k \in \mathbb{N}}, \mathbf{x}_k \to \mathbf{a} \implies f(\mathbf{x}_k) \to b$$
+                </div>
+                <div class="explanation">
+                    <strong>Hogyan képzeld el?</strong> Egyváltozós függvénynél egy pontot csak balról és jobbról tudtunk megközelíteni. Egy felületen (2 változó) az origót <b>végtelen sok irányból</b> és görbén (egyenesen, parabolán) át meg lehet közelíteni. A határérték csak akkor létezik, ha <b>bármilyen létező útvonalon</b> sétálva az origó felé, pontosan ugyanahhoz a $b$ magassághoz érünk.
+                </div>
+                
+                <h3>4. Cáfolat (Szükséges feltételek hiánya az origóban)</h3>
+                <p>Ha a határérték létezik a $(0,0)$-ban és értéke $b$, akkor szükségképpen teljesülnie kell a következőknek:</p>
+                <ul>
+                    <li>$\lim_{x\to0} f(x, 0) = b$ (Közelítés az X tengelyen)</li>
+                    <li>$\lim_{y\to0} f(0, y) = b$ (Közelítés az Y tengelyen)</li>
+                    <li>Minden $m \in \mathbb{R}$ esetén $\lim_{x\to0} f(x, mx) = b$ (Közelítés bármilyen $y=mx$ egyenesen)</li>
+                </ul>
+                <p><b>Következmény:</b> Ha találunk két különböző útvonalat, ami más-más határértéket ad, akkor a függvénynek a pontban <b>nem létezik határértéke</b>.</p>
+                
+                <div class="example">
+                    <b>Példafeladat 2: Határérték cáfolata $y = mx$ egyenesekkel</b><br>
+                    Vizsgáljuk meg a következőt: $\lim_{(x,y)\to(0,0)} \frac{xy}{2x^2 + 2y^2}$<br><br>
+                    Közelítsünk $y=mx$ egyenesek mentén. Behelyettesítjük az $y$ helyére az $mx$-et a határértékben:<br>
+                    $$\lim_{x\to0} \frac{x(mx)}{2x^2+2(mx)^2} = \lim_{x\to0} \frac{mx^2}{2x^2(1+m^2)}$$<br>
+                    Egyszerűsítsünk az $x^2$-zettel (mivel $x \neq 0$):
+                    $$= \frac{m}{2(1+m^2)}$$<br>
+                    Mivel az eredményben benne maradt az $m$, ez azt jelenti, hogy ha egy lankás úton ($m=0$) megyünk, a határérték $0$. De ha egy $45^\circ$-os úton ($m=1$) megyünk, a határérték $1/4$. Két különböző érték $\implies$ <b>a határérték nem létezik</b>.
+                </div>
+                
+                <h3>5. Bizonyítás Polárkoordinátás transzformációval</h3>
+                <p>Ha gyanítjuk, hogy a határérték mégis létezik az origóban (például ha a számláló "fokszáma" nagyobb, mint a nevezőé), érdemes a rendszert polárkoordinátákba átírni ($r$ a távolság, $\varphi$ a szög).</p>
+                <div class="formula">
+                    $x = r \cos \varphi, \quad y = r \sin \varphi$<br>
+                    $$\lim_{r \to 0} f(r\cos\varphi, r\sin\varphi)$$
+                </div>
+                <div class="explanation">
+                    <strong>Miért jó ez?</strong> Amikor $r \to 0$ (a távolság nulla lesz), akkor egyetlen lépésben teszteljük az <b>összes létező</b> $\varphi$ szögből (irányból) történő közeledést! Ha a számolás végén a kapott eredmény független a $\varphi$-től (pl. $0 \times \text{korlátos} = 0$), akkor a határérték biztosan létezik, és független az iránytól.
+                </div>
+
+                <div class="example">
+                    <b>Példafeladat 3: Polárkoordinátás határérték bizonyítás</b><br>
+                    Vizsgáljuk meg a következő határértéket: $\lim_{(x,y)\to(0,0)} \frac{3xy^3}{4x^2 + 5y^2}$<br><br>
+                    <b>1. Lépés: Polár helyettesítés ($x = r\cos\varphi, y = r\sin\varphi$)</b><br>
+                    $$ f(r,\varphi) = \frac{3(r\cos\varphi)(r\sin\varphi)^3}{4(r\cos\varphi)^2 + 5(r\sin\varphi)^2} = \frac{3r^4 \cos\varphi \sin^3\varphi}{r^2(4\cos^2\varphi + 5\sin^2\varphi)} $$<br>
+                    <b>2. Lépés: Egyszerűsítés $r$-rel</b><br>
+                    A kifejezést $r^2$-zettel le tudjuk egyszerűsíteni (kiemelés a nevezőből: $r^2(4\cos^2\varphi + 5\sin^2\varphi)$):
+                    $$ = r^2 \cdot \frac{3\cos\varphi \sin^3\varphi}{4\cos^2\varphi + 5\sin^2\varphi} $$<br>
+                    <b>3. Lépés: Limesz $r \to 0$ esetén (Rendőrelv)</b><br>
+                    A jobb oldali nagy törtről belátható, hogy <b>korlátos</b>. (Egyrészt a számláló trig. függvények szorzata, tehát abszolút értékben nem nagyobb 3-nál, a nevező pedig sosem nulla, sőt mindig $\ge 4$, mert $4\cos^2 + 5\sin^2 \ge 4(\cos^2+\sin^2) = 4$).<br>
+                    Tudjuk, hogy: $\text{"Nullához tartó sorozat"} \times \text{"Korlátos függvény"} \to 0$.<br>
+                    Mivel $r^2 \to 0$ ha $r \to 0$, ezért az egész kifejezés határértéke a szög ($\varphi$) értékétől függetlenül $0$ lesz.<br><br>
+                    <b>Végeredmény: A határérték létezik, és értéke $0$.</b>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 9. Gyakorlat -->
+        <section id="s9">
+            <h1>9. Parciális Derivált & Gradiens</h1>
+            <div class="card glass">
+                
+                <h3>1. Parciális deriváltak ($\partial_i f$)</h3>
+                <p>Legyen $f: \mathbb{R}^n \to \mathbb{R}$ egy többváltozós függvény. Az $i$-edik változó ($x_i$) szerinti <b>parciális deriváltja</b> az $a$ pontban ($\partial_i f(a)$ vagy $f'_{x_i}(a)$) úgy kapható meg, hogy minden más változót konstansnak tekintünk, és csak $x_i$ szerint hajtjuk végre az egyváltozós deriválási szabályokat.</p>
+                <div class="explanation">
+                    <strong>Szemléletesen (2D-ben):</strong> Elvágod a hegyet az X vagy az Y tengellyel párhuzamosan, és megnézed annak az 1 dimenziós metszet-vonalnak a meredekségét.
+                </div>
+                
+                <h3>2. Totális Differenciálhatóság (Precíz Definíció)</h3>
+                <p>Azt mondjuk, hogy egy $f: \mathbb{R}^n \to \mathbb{R}$ függvény az $\mathbf{a}$ belső pontban <b>(totálisan) differenciálható</b>, ha létezik egy olyan $A \in \mathbb{R}^n$ vektor, amelyre teljesül, hogy:</p>
+                <div class="formula">
+                    $$\lim_{\mathbf{x} \to \mathbf{a}} \frac{f(\mathbf{x}) - f(\mathbf{a}) - \langle A, \mathbf{x} - \mathbf{a} \rangle}{||\mathbf{x} - \mathbf{a}||} = 0$$
+                </div>
+                <p>Ezt az $A$ vektort nevezzük a függvény $\mathbf{a}$ pontbeli (totális) deriváltjának, vagyis a <b>Gradiens vektornak</b> (jelölése: $\text{grad } f(\mathbf{a})$ vagy $\nabla f(\mathbf{a})$).</p>
+
+                <h3>3. A Totális differenciálhatóság Feltételei</h3>
+                <p>A puszta parciális deriváltak létezése még nem garantálja a fenti definíció teljesülését (a felület "simaságát").</p>
+                <ul>
+                    <li><b>Szükséges feltétel:</b> Ha a függvény totálisan differenciálható az $\mathbf{a}$ pontban, akkor ott feltétlenül <b>folytonos</b> is, és léteznek a parciális deriváltjai is. A gradiens vektort ekkor pontosan a parciális deriváltak alkotják:
+                    <br>$$\text{grad } f(\mathbf{a}) = \left( \partial_1 f(\mathbf{a}), \dots, \partial_n f(\mathbf{a}) \right)$$
+                    </li>
+                    <li><b>Elégséges feltétel:</b> Ha a függvény parciális deriváltjai léteznek és <b>folytonosak</b> az $\mathbf{a}$ pont egy környezetében, akkor a függvény ott garantáltan totálisan differenciálható.</li>
+                </ul>
+
+                <h3>4. Az Érintősík egyenlete</h3>
+                <p>Ha egy kétváltozós függvény az $(x_0, y_0)$ pontban totálisan differenciálható, akkor pontosan ráfektethető egy érintősík, melynek egyenlete:</p>
+                <div class="formula">
+                    $$\partial_1 f(x_0, y_0)(x - x_0) + \partial_2 f(x_0, y_0)(y - y_0) - (z - f(x_0, y_0)) = 0$$
+                </div>
+
+                <h3>5. Iránymenti derivált ($D_\mathbf{e} f$)</h3>
+                <p>Megadja, hogy a függvény milyen gyorsan változik az $\mathbf{a}$ pontból egy tetszőleges $\mathbf{e}$ <b>egységvektor</b> irányába indulva. Hivatalos limeszes definíciója:</p>
+                <div class="formula">
+                    $$D_{\mathbf{e}} f(\mathbf{a}) = \lim_{t \to 0^+} \frac{f(\mathbf{a} + t\mathbf{e}) - f(\mathbf{a})}{t}$$
+                </div>
+                <p><b>Kiszámítása:</b> Ha a függvény totálisan differenciálható, az iránymenti derivált kiszámítható a gradiens és az <b>egységnyi hosszúra normált</b> irányvektor ($\mathbf{e} = \frac{\mathbf{v}}{||\mathbf{v}||}$) skaláris szorzataként:</p>
+                <div class="formula">
+                    $$D_{\mathbf{e}} f(\mathbf{a}) = \langle \text{grad } f(\mathbf{a}), \mathbf{e} \rangle = ||\text{grad } f(\mathbf{a})|| \cdot \cos \alpha$$
+                </div>
+                
+                <div class="explanation">
+                    A skaláris szorzatból ($\cos \alpha$) adódik az iránymenti derivált viselkedése:
+                    <ul style="margin-top: 10px; margin-bottom: 0;">
+                        <li><b>Maximális:</b> Ha pontosan a gradiens irányába mész ($\alpha = 0 \implies \cos(0)=1$). Értéke: $||\text{grad } f(\mathbf{a})||$. Tehát a gradiens <b>mindig a legmeredekebb emelkedő irányába mutat.</b></li>
+                        <li><b>Minimális:</b> Ha háttal mész a gradiensnek ($\alpha = \pi \implies \cos(\pi)=-1$). Értéke: $-||\text{grad } f(\mathbf{a})||$.</li>
+                        <li><b>Nulla:</b> Ha merőlegesen mész a gradiensre ($\alpha = \pi/2 \implies \cos(\pi/2)=0$). A szintvonalon sétálsz.</li>
+                    </ul>
+                </div>
+
+                <div class="example">
+                    <b>Komplett Példafeladat: Érintősík és Iránymenti derivált</b><br>
+                    Legyen $f(x, y) = 4(x - 3y)^3 - 6x + 4y^2$.<br>
+                    a) Írjuk fel a $P_0 = (3, 1)$ pontbeli érintősík egyenletét!<br>
+                    b) Adjuk meg a függvény $P_0$-beli iránymenti deriváltját a $\mathbf{v} = (4, 3)$ vektor irányában!<br><br>
+
+                    <b>1. Lépés: Parciális deriváltak kiszámítása</b><br>
+                    $x$ szerint (az $y$-t konstansként kezelve):<br>
+                    $\partial_1 f(x, y) = 4 \cdot 3(x - 3y)^2 \cdot 1 - 6 = 12(x - 3y)^2 - 6$<br>
+                    $y$ szerint (az $x$-et konstansként kezelve):<br>
+                    $\partial_2 f(x, y) = 4 \cdot 3(x - 3y)^2 \cdot (-3) + 8y = -36(x - 3y)^2 + 8y$<br><br>
+
+                    <b>2. Lépés: Behelyettesítés a $P_0 = (3, 1)$ pontba</b><br>
+                    $\partial_1 f(3, 1) = 12(3 - 3)^2 - 6 = \mathbf{-6}$<br>
+                    $\partial_2 f(3, 1) = -36(3 - 3)^2 + 8(1) = \mathbf{8}$<br>
+                    A függvényérték: $f(3, 1) = 4(3 - 3)^3 - 6(3) + 4(1)^2 = -18 + 4 = \mathbf{-14}$<br><br>
+
+                    <b>3. Lépés: Érintősík egyenlete</b><br>
+                    Képlet: $\partial_1 f(P_0)(x - x_0) + \partial_2 f(P_0)(y - y_0) - (z - f(P_0)) = 0$<br>
+                    $ -6(x - 3) + 8(y - 1) - (z - (-14)) = 0 $<br>
+                    <b>$ -6x + 8y - z = 4 $</b><br><br>
+
+                    <b>4. Lépés: Iránymenti derivált</b><br>
+                    Gradiens a pontban: $\text{grad } f(3, 1) = (-6, 8)$<br>
+                    Irányvektor normálása (egységvektorrá alakítás):<br>
+                    $||\mathbf{v}|| = \sqrt{4^2 + 3^2} = \sqrt{25} = 5 \implies \mathbf{e} = (\frac{4}{5}, \frac{3}{5})$<br>
+                    Skaláris szorzat elvégzése:<br>
+                    $D_{\mathbf{e}} f(3, 1) = \langle (-6, 8), (\frac{4}{5}, \frac{3}{5}) \rangle = -6 \cdot \frac{4}{5} + 8 \cdot \frac{3}{5} = -\frac{24}{5} + \frac{24}{5} = \mathbf{0}$
+                </div>
+            </div>
+        </section>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function showSection(id, element) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+
+            const links = document.querySelectorAll('.sidebar a');
+            links.forEach(l => l.classList.remove('active-link'));
+            element.classList.add('active-link');
+        }
+    </script>
+</body>
+</html>
