@@ -479,16 +479,8 @@
             <h1>6. Hatványsorok</h1>
             <div class="card glass">
                 
-                <h3>A Hatványsor fogalma</h3>
-                <div class="formula">
-                    $$\sum_{n=0}^{\infty} a_n (x - x_0)^n$$
-                </div>
-                <div class="explanation">
-                    <strong>Mit jelent ez?</strong> Képzelj el egy végtelenül hosszú polinomot. Az $x_0$ a "középpont", ahonnan a vizsgálatot indítjuk, az $a_n$ számok pedig a polinom együtthatói. A célunk kideríteni, hogy milyen $x$ értékeket helyettesíthetünk be anélkül, hogy az összeg végtelenhez tartana.
-                </div>
-
-                <h3>A Cauchy-féle Konvergenciasugár ($R_a$) precíz definíciója</h3>
-                <p>Legyen $(a_n)_{n\in\mathbb{N}}$ egy valós számsorozat. A hatványsorhoz tartozó konvergenciasugár definíciója:</p>
+                <h3>1. Cauchy-féle konvergenciasugár ($R_a$)</h3>
+                <p>A $\sum_{n=0}^{\infty} a_n (x - x_0)^n$ hatványsorhoz tartozó sugár hivatalos definíciója (gyökkritérium alapján):</p>
                 <div class="formula">
                     $$ R_a := \begin{cases} 
                     \frac{1}{\limsup_{n \to \infty} \sqrt[n]{|a_n|}} & \text{ha } 0 < \limsup_{n \to \infty} \sqrt[n]{|a_n|} < +\infty \\ 
@@ -497,32 +489,31 @@
                     \end{cases} $$
                 </div>
 
-                <h3>A sugár meghatározása (Hányadoskritériummal)</h3>
-                <p>A jegyzet alapján, ha az $\left| \frac{a_{n+1}}{a_n} \right|$ sorozatnak létezik határértéke, akkor ez megegyezik a gyökkritérium határértékével, így a sugár:</p>
+                <h3>2. A sugár meghatározása hányadoskritériummal</h3>
+                <p>A gyakorlatban sokkal egyszerűbb kiszámolni a sugarat a szomszédos együtthatók hányadosával (ha a határérték létezik):</p>
                 <div class="formula">
-                    $$ R_a = \frac{1}{\lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right|} $$
+                    $$ R_a = \lim_{n \to \infty} \left| \frac{a_n}{a_{n+1}} \right| $$
                 </div>
 
-                <h3>Cauchy–Hadamard-tétel</h3>
-                <p>A $\sum a_n (x - x_0)^n$ hatványsorra igaz, hogy:</p>
+                <h3>3. Cauchy–Hadamard-tétel</h3>
+                <p>Megadja a hatványsor konvergenciatartományát a sugár segítségével:</p>
                 <ul>
-                    <li>Ha $|x - x_0| < R_a$, akkor a sor <b>abszolút konvergens</b>.</li>
-                    <li>Ha $|x - x_0| > R_a$, akkor a sor <b>divergens</b>.</li>
+                    <li>Ha $|x - x_0| < R_a$, akkor a sor <b>abszolút konvergens</b> (a belső nyílt intervallumban).</li>
+                    <li>Ha $|x - x_0| > R_a$, akkor a sor <b>divergens</b> (az intervallumon kívül).</li>
                 </ul>
                 <div class="explanation">
-                    <strong>Hogyan képzeld el?</strong> Az $x_0$ pont körül húzunk egy $R_a$ sugarú kört (intervallumot). Ha belül vagyunk, biztos a konvergencia, ha kívül, biztos a divergencia. Ha pontosan a határon vagyunk ($|x - x_0| = R_a$), ott külön le kell tesztelni a behelyettesítést!
+                    <b>Mi a helyzet a határokon?</b> Ha pontosan $|x - x_0| = R_a$ (azaz az intervallum két szélén vagyunk), a tétel nem mond semmit! Ezeket az $x$ értékeket mindig külön, manuálisan kell letesztelni a képletbe behelyettesítve.
                 </div>
 
-                <h3>Elemi analitikus függvények tulajdonságai</h3>
-                <p>Ha $f(x) := \sum_{n=0}^{\infty} a_n (x - x_0)^n$ és a konvergenciasugár $R_a > 0$, akkor a konvergencia-intervallumon ($]x_0 - R_a, x_0 + R_a[$) a következő állítások igazak:</p>
+                <h3>4. Elemi analitikus függvények tulajdonságai</h3>
+                <p>Ha egy függvény $f(x) := \sum_{n=0}^{\infty} a_n (x - x_0)^n$ alakban van megadva, és $R_a > 0$, akkor a konvergencia-intervallumon ($]x_0 - R_a, x_0 + R_a[$):</p>
                 <ul>
-                    <li><b>Értelmezési tartomány:</b> $]x_0 - R_a, x_0 + R_a[ \subseteq \text{Dom}(f) \subseteq [x_0 - R_a, x_0 + R_a]$. A végpontok hovatartozása egyedileg vizsgálandó.</li>
-                    <li><b>Folytonosság:</b> Az $f$ függvény az értelmezési tartományának minden pontjában folytonos.</li>
-                    <li><b>Tagonkénti deriválás:</b> A sor a nyílt intervallumon belül tagonként differenciálható, a kapott új sor konvergenciasugara megegyezik az eredetivel:
-                        <br>$$ f'(x) = \sum_{n=1}^{\infty} n a_n (x - x_0)^{n-1} $$
+                    <li><b>Folytonosság:</b> Az $f$ függvény minden belső pontban folytonos.</li>
+                    <li><b>Tagonkénti deriválás:</b> A sor belül tagonként differenciálható, és az új sor konvergenciasugara <b>ugyanaz marad</b>:
+                        <div class="formula">$$ f'(x) = \sum_{n=1}^{\infty} n a_n (x - x_0)^{n-1} $$</div>
                     </li>
-                    <li><b>Tagonkénti integrálás:</b> Ha $\alpha, \beta \in ]x_0 - R_a, x_0 + R_a[$, akkor az $f$ integrálható, és az integrálás bevihető a szumma mögé:
-                        <br>$$ \int_\alpha^\beta f(x) dx = \sum_{n=0}^{\infty} \int_\alpha^\beta a_n(x - x_0)^n dx $$
+                    <li><b>Tagonkénti integrálás:</b> A sor tagonként Riemann-integrálható az intervallumon belül:
+                        <div class="formula">$$ \int_\alpha^\beta f(x) dx = \sum_{n=0}^{\infty} \int_\alpha^\beta a_n(x - x_0)^n dx $$</div>
                     </li>
                 </ul>
 
