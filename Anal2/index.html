@@ -394,6 +394,7 @@
         <a href="#" onclick="showSection('s7', this)">7. Taylor-sorok</a>
         <a href="#" onclick="showSection('s8', this)">8. Többváltozós Határérték</a>
         <a href="#" onclick="showSection('s9', this)">9. Parciális Derivált</a>
+        <a href="#" onclick="showSection('s10', this)">10. Szélsőértékek</a>
     </div>
 
     <div class="main-content">
@@ -851,6 +852,106 @@
                 </div>
             </div>
         </section>
+
+        <!-- 10. Gyakorlat -->
+        <section id="s10">
+            <h1>10. Szélsőértékek és Derivált Mátrixok</h1>
+            <div class="card glass">
+                
+                <h3>1. Young-tétel</h3>
+                <p>Ha egy $f: \mathbb{R}^n \to \mathbb{R}$ függvény másodrendű parciális deriváltjai folytonosak az $\mathbf{a}$ pontban, akkor a deriválás sorrendje felcserélhető:</p>
+                <div class="formula">
+                    $$\partial_{i,j} f(\mathbf{a}) = \partial_{j,i} f(\mathbf{a})$$
+                </div>
+                <div class="explanation">
+                    <b>Miért jó?</b> Ha kétszer deriválsz (pl. előbb $x$, aztán $y$ szerint), nem kell aggódnod a sorrend miatt. Az $f''_{xy}$ és az $f''_{yx}$ garantáltan ugyanazt az eredményt adja!
+                </div>
+
+                <h3>2. Szimmetrikus mátrix definitsége</h3>
+                <p>Egy $n \times n$-es szimmetrikus mátrix (például a Hesse-mátrix) sajátértékei ($\lambda$) alapján osztályozható:</p>
+                <ul>
+                    <li><b>Pozitív definit:</b> Minden sajátérték pozitív ($\lambda > 0$).</li>
+                    <li><b>Negatív definit:</b> Minden sajátérték negatív ($\lambda < 0$).</li>
+                    <li><b>Indefinit:</b> Vannak pozitív és negatív sajátértékei is.</li>
+                    <li><b>Pozitív/Negatív szemidefinit:</b> Ha megengedett a nulla is ($\lambda \ge 0$ vagy $\lambda \le 0$).</li>
+                </ul>
+
+                <h3>3. Sylvester-kritérium (Főminorok)</h3>
+                <p>Sajátértékek számolása helyett a determinánsokkal ($D_k$) is eldönthető a definitség. Legyen $D_k$ a bal felső $k \times k$-as mátrix determinánsa:</p>
+                <ul>
+                    <li><b>Pozitív definit:</b> Minden főminor szigorúan pozitív ($D_1 > 0, D_2 > 0, \dots, D_n > 0$).</li>
+                    <li><b>Negatív definit:</b> A főminorok előjele alternál, és negatívval kezdődik ($D_1 < 0, D_2 > 0, D_3 < 0, \dots$).</li>
+                </ul>
+
+                <h3>4. Hesse-mátrix ($H_f(\mathbf{a})$)</h3>
+                <p>A másodrendű parciális deriváltakból álló $n \times n$-es mátrix. A Young-tétel miatt ez a mátrix mindig szimmetrikus.</p>
+                <div class="formula">
+                    $$H_f(\mathbf{a}) = \begin{pmatrix} \partial_{1,1} f(\mathbf{a}) & \dots & \partial_{1,n} f(\mathbf{a}) \\ \vdots & \ddots & \vdots \\ \partial_{n,1} f(\mathbf{a}) & \dots & \partial_{n,n} f(\mathbf{a}) \end{pmatrix}$$
+                </div>
+
+                <h3>5. Lokális szélsőérték létezése</h3>
+                <p>Többváltozós függvény szélsőértékének keresése két lépésből áll:</p>
+                <ul>
+                    <li><b>Szükséges feltétel (Stacionárius pont):</b> A gradiens vektor nulla az adott $\mathbf{a}$ pontban ($\text{grad } f(\mathbf{a}) = \mathbf{0}$).</li>
+                    <li><b>Elégséges feltétel (Osztályozás):</b> Megnézzük a Hesse-mátrix $H_f(\mathbf{a})$ definitségét:
+                        <ul>
+                            <li>Ha pozitív definit $\implies$ <b>lokális minimum</b>.</li>
+                            <li>Ha negatív definit $\implies$ <b>lokális maximum</b>.</li>
+                            <li>Ha indefinit $\implies$ <b>nyeregpont</b> (nincs szélsőérték).</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>6. Jacobi-mátrix ($f'(\mathbf{a})$)</h3>
+                <p>Ha a függvény nem egyetlen számot, hanem egy vektort ad vissza ($f = (f_1, \dots, f_m): \mathbb{R}^n \to \mathbb{R}^m$), akkor a deriváltja nem egy gradiens vektor, hanem egy $m \times n$-es mátrix, amelynek sorai a koordinátafüggvények gradiensei:</p>
+                <div class="formula">
+                    $$f'(\mathbf{a}) = \begin{pmatrix} \partial_1 f_1(\mathbf{a}) & \dots & \partial_n f_1(\mathbf{a}) \\ \vdots & \ddots & \vdots \\ \partial_1 f_m(\mathbf{a}) & \dots & \partial_n f_m(\mathbf{a}) \end{pmatrix}$$
+                </div>
+
+                <h3>7. Láncszabály (Függvénykompozíció differenciálása)</h3>
+                <p>Két többváltozós vektorfüggvény kompozíciójának deriváltja megkapható a Jacobi-mátrixok <b>mátrixszorzataként</b>:</p>
+                <div class="formula">
+                    $$(f \circ g)'(\mathbf{a}) = f'(g(\mathbf{a})) \cdot g'(\mathbf{a})$$
+                </div>
+                <div class="explanation">
+                    <b>ZH Trükk:</b> Ne feledd, hogy a mátrixszorzás sorrendje nem felcserélhető! Mindig a "külső" függvény deriváltmátrixát (kiértékelve a belső függvény pontjában) szorozzuk balról a "belső" függvény deriváltmátrixával.
+                </div>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">1-5. Példa: Lokális szélsőérték keresése</h3>
+                    <p>Keressük meg az $f(x, y) = x^3 - 3x + y^2 - 2y$ függvény lokális szélsőértékeit!</p>
+                    <p><b>Megoldás:</b><br>1. <b>Gradiens (első deriváltak) és stacionárius pontok:</b><br>
+                    $\partial_1 f(x, y) = 3x^2 - 3$<br>
+                    $\partial_2 f(x, y) = 2y - 2$<br>
+                    Tegyük egyenlővé nullával mindkettőt:<br>
+                    $3x^2 - 3 = 0 \implies x^2 = 1 \implies x = \pm 1$<br>
+                    $2y - 2 = 0 \implies 2y = 2 \implies y = 1$<br>
+                    Két stacionárius pontunk van: $P_1(1, 1)$ és $P_2(-1, 1)$.</p>
+
+                    <p>2. <b>Hesse-mátrix (másodlagos deriváltak):</b><br>
+                    $\partial_{1,1} f(x, y) = 6x$<br>
+                    $\partial_{2,2} f(x, y) = 2$<br>
+                    $\partial_{1,2} f(x, y) = \partial_{2,1} f(x, y) = 0$ (Young-tétel miatt szimmetrikus)<br>
+                    </p>
+                    <div class="formula">
+                        $$H_f(x,y) = \begin{pmatrix} 6x & 0 \\ 0 & 2 \end{pmatrix}$$
+                    </div>
+
+                    <p>3. <b>Pontok osztályozása a Sylvester-kritériummal:</b><br>
+                    <b>A $P_1(1, 1)$ pontban:</b></p>
+                    <div class="formula">
+                        $$H_f(1,1) = \begin{pmatrix} 6 & 0 \\ 0 & 2 \end{pmatrix}$$
+                    </div>
+                    <p>A főminorok: $D_1 = 6 > 0$, és a determináns $D_2 = 6 \cdot 2 - 0 = 12 > 0$.<br>
+                    Mivel minden $D_k > 0$, a mátrix <b>pozitív definit</b>, így itt <b>lokális minimum</b> van.</p>
+
+                    <p><b>A $P_2(-1, 1)$ pontban:</b></p>
+                    <div class="formula">
+                        $$H_f(-1,1) = \begin{pmatrix} -6 & 0 \\ 0 & 2 \end{pmatrix}$$
+                    </div>
+                    <p>A főminorok: $D_1 = -6 < 0$, és a determináns $D_2 = -6 \cdot 2 - 0 = -12 < 0$.<br>
+                    Mivel $D_2$ negatív, a Sylvester-kritérium (alternáló előjel $D_2>0$-val) nem teljesül. A mátrix <b>indefinit</b>, így itt <b>nyeregpont</b> van (nincs szélsőérték).</p>
+                </div>
             </div>
         </section>
     </div>
