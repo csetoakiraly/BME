@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analízis 2 - Hivatalos Definíciók</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #3b82f6; /* Kékes szín a definícióknak */
+            --secondary-glow: rgba(59, 130, 246, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        h1 { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 2.8rem; 
+            text-align: center; 
+            margin-bottom: 50px; 
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            margin-top: 0; 
+            border-bottom: 2px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            font-weight: 800;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .def-box {
+            background: rgba(59, 130, 246, 0.05);
+            border-left: 4px solid var(--secondary);
+            padding: 20px 25px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 25px;
+            font-size: 1.15rem;
+            color: #e2e8f0;
+            line-height: 1.8;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .def-box strong {
+            color: #60a5fa;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+            letter-spacing: 0.5px;
+        }
+
+        .math-block {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .mjx-chtml { color: white !important; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 30px 15px; }
+            .card { padding: 25px 20px; }
+            h1 { font-size: 2.2rem; }
+            .def-box { font-size: 1.05rem; }
+            mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Vissza az Összefoglalóhoz
+        </a>
+
+        <h1>Hivatalos Definíciók Gyűjteménye</h1>
+
+        <!-- 6. Fejezet -->
+        <div class="card">
+            <h2>6. Hatványsorok</h2>
+            
+            <div class="def-box">
+                <strong>Hatványsor</strong>
+                A $\sum_{n=0}^{\infty} a_n (x - x_0)^n$ alakú függvénysort hatványsornak nevezzük, ahol $x_0 \in \mathbb{R}$ a sor középpontja, az $a_n \in \mathbb{R}$ számok pedig az együtthatók.
+            </div>
+
+            <div class="def-box">
+                <strong>Cauchy-féle konvergenciasugár</strong>
+                A hatványsor konvergenciasugara ($R$) a gyökkritérium alapján hivatalosan így definiálható:
+                <div class="math-block">
+                    $$ R = \frac{1}{\limsup_{n \to \infty} \sqrt[n]{|a_n|}} $$
+                </div>
+                (Kiegészítés: ha a limesz szuprémum értéke $0$, akkor $R = +\infty$; ha pedig $+\infty$, akkor $R = 0$).
+            </div>
+
+            <div class="def-box">
+                <strong>Cauchy–Hadamard-tétel</strong>
+                Ha egy hatványsor konvergenciasugara $R$, akkor a sor <b>abszolút konvergens</b> az $]x_0-R, x_0+R[$ nyílt intervallumban (azaz $|x-x_0| < R$ esetén), és <b>divergens</b> az intervallumon kívül (azaz $|x-x_0| > R$ esetén).
+            </div>
+
+            <div class="def-box">
+                <strong>Hatványsor összegfüggvényének folytonossága</strong>
+                Egy hatványsor $f(x)$ összegfüggvénye a konvergenciaintervallum ($]x_0-R, x_0+R[$) minden belső pontjában <b>folytonos</b>.
+            </div>
+        </div>
+
+        <!-- 7. Fejezet -->
+        <div class="card">
+            <h2>7. Taylor-sorok</h2>
+
+            <div class="def-box">
+                <strong>Taylor-polinom</strong>
+                Az $f$ függvény $x_0$ belső pont körüli $n$-edik Taylor-polinomja:
+                <div class="math-block">
+                    $$ T_{n, x_0}^f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!} (x - x_0)^k $$
+                </div>
+            </div>
+
+            <div class="def-box">
+                <strong>Taylor-sor</strong>
+                Ha az $f$ függvény az $x_0$ pont egy környezetében akárhányszor differenciálható, akkor az $x_0$ pontbeli Taylor-sora:
+                <div class="math-block">
+                    $$ T_{x_0}^f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!} (x - x_0)^n $$
+                </div>
+            </div>
+
+            <div class="def-box">
+                <strong>Lagrange-féle maradéktag (Hibabecslés)</strong>
+                Ha $f$ legalább $(n+1)$-szer differenciálható, akkor a függvényérték felírható $f(x) = T_{n, x_0}^f(x) + R_n(x)$ alakban, ahol a hiba (maradéktag):
+                <div class="math-block">
+                    $$ R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x - x_0)^{n+1} $$
+                </div>
+                ahol $\xi$ egy, az $x_0$ és $x$ közé eső (ismeretlen) érték.
+            </div>
+
+            <div class="def-box">
+                <strong>Analitikus függvény</strong>
+                Egy $f$ függvényt az $x_0$ pontban analitikusnak nevezzük, ha az $x_0$ egy (elég kicsi) környezetében előállítható konvergens hatványsorként (vagyis az adott környezetben egybeesik a saját Taylor-sorával).
+            </div>
+        </div>
+
+        <!-- 8. Fejezet -->
+        <div class="card">
+            <h2>8. Többváltozós Határérték</h2>
+
+            <div class="def-box">
+                <strong>Vektorsorozat konvergenciája</strong>
+                Az $\mathbb{R}^n$-beli $(\mathbf{x}_k)$ vektorsorozat az $\mathbf{a} \in \mathbb{R}^n$ vektorhoz konvergál (azaz $\lim_{k\to\infty} \mathbf{x}_k = \mathbf{a}$), ha a vektoraik távolsága nullához tart:
+                <div class="math-block">
+                    $$ \lim_{k\to\infty} ||\mathbf{x}_k - \mathbf{a}|| = 0 $$
+                </div>
+            </div>
+
+            <div class="def-box">
+                <strong>Átviteli elv a többváltozós határértékre</strong>
+                A $\lim_{\mathbf{x} \to \mathbf{a}} f(\mathbf{x}) = b$ határérték pontosan akkor teljesül, ha <b>minden olyan</b> $(\mathbf{x}_k)$ sorozatra, amelyre $\lim_{k\to\infty} \mathbf{x}_k = \mathbf{a}$ és $\mathbf{x}_k \neq \mathbf{a}$, a függvényértékek sorozata is $b$-hez tart:
+                <div class="math-block">
+                    $$ \lim_{k\to\infty} f(\mathbf{x}_k) = b $$
+                </div>
+            </div>
+
+            <div class="def-box">
+                <strong>Átviteli elv a folytonosságra</strong>
+                Az $f$ többváltozós függvény folytonos az $\mathbf{a}$ pontban pontosan akkor, ha <b>minden olyan</b> $(\mathbf{x}_k)$ sorozat esetén, ahol $\lim_{k\to\infty} \mathbf{x}_k = \mathbf{a}$, teljesül, hogy a függvényértékek sorozata a függvény helyettesítési értékéhez tart:
+                <div class="math-block">
+                    $$ \lim_{k\to\infty} f(\mathbf{x}_k) = f(\mathbf{a}) $$
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. Fejezet -->
+        <div class="card">
+            <h2>9. Parciális Derivált & Gradiens</h2>
+
+            <div class="def-box">
+                <strong>Parciális derivált</strong>
+                Az $f: \mathbb{R}^n \to \mathbb{R}$ függvény $i$-edik változó ($x_i$) szerinti parciális deriváltja az $\mathbf{a}$ pontban a megfelelő egyváltozós függvény differenciálhányadosa:
+                <div class="math-block">
+                    $$ \partial_i f(\mathbf{a}) = \lim_{t \to 0} \frac{f(\mathbf{a} + t \mathbf{e}_i) - f(\mathbf{a})}{t} $$
+                </div>
+                (ahol $\mathbf{e}_i$ az $i$-edik bázisvektor).
+            </div>
+
+            <div class="def-box">
+                <strong>Totális differenciálhatóság</strong>
+                Az $f: \mathbb{R}^n \to \mathbb{R}$ függvény totálisan differenciálható az $\mathbf{a}$ belső pontban, ha létezik egy $\mathbf{A} \in \mathbb{R}^n$ vektor, amelyre teljesül, hogy:
+                <div class="math-block">
+                    $$ \lim_{\mathbf{x} \to \mathbf{a}} \frac{f(\mathbf{x}) - f(\mathbf{a}) - \langle \mathbf{A}, \mathbf{x} - \mathbf{a} \rangle}{||\mathbf{x} - \mathbf{a}||} = 0 $$
+                </div>
+            </div>
+
+            <div class="def-box">
+                <strong>Gradiens vektor</strong>
+                Ha az $f$ függvény az $\mathbf{a}$ pontban totálisan differenciálható, akkor a fenti definícióban szereplő $\mathbf{A}$ vektort a függvény gradiensének nevezzük, amelynek koordinátái pontosan a parciális deriváltak:
+                <div class="math-block">
+                    $$ \text{grad } f(\mathbf{a}) = \left( \partial_1 f(\mathbf{a}), \partial_2 f(\mathbf{a}), \dots, \partial_n f(\mathbf{a}) \right) $$
+                </div>
+            </div>
+
+            <div class="def-box">
+                <strong>Iránymenti derivált</strong>
+                Az $f$ függvény adott $\mathbf{e}$ egységvektor ($||\mathbf{e}||=1$) irányába vett iránymenti deriváltja az $\mathbf{a}$ pontban:
+                <div class="math-block">
+                    $$ D_{\mathbf{e}} f(\mathbf{a}) = \lim_{t \to 0^+} \frac{f(\mathbf{a} + t\mathbf{e}) - f(\mathbf{a})}{t} $$
+                </div>
+                (Megjegyzés: Ha $f$ totálisan differenciálható $\mathbf{a}$-ban, akkor $D_{\mathbf{e}} f(\mathbf{a}) = \langle \text{grad } f(\mathbf{a}), \mathbf{e} \rangle$).
+            </div>
+        </div>
+
+        <!-- 10. Fejezet -->
+        <div class="card">
+            <h2>10. Szélsőértékek</h2>
+
+            <div class="def-box">
+                <strong>Young-tétel</strong>
+                Ha az $f$ függvény másodrendű parciális deriváltjai folytonosak az $\mathbf{a}$ pont egy környezetében, akkor a vegyes parciális deriváltak kiszámításának sorrendje felcserélhető:
+                <div class="math-block">
+                    $$ \partial_{i,j} f(\mathbf{a}) = \partial_{j,i} f(\mathbf{a}) $$
+                </div>
+            </div>
+
+            <div class="def-box">
+                <strong>Hesse-mátrix</strong>
+                Az $f$ függvény másodrendű parciális deriváltjaiból alkotott $n \times n$-es mátrix. A Young-tétel miatt (kellően szép függvényeknél) ez a mátrix mindig szimmetrikus:
+                <div class="math-block">
+                    $$ (H_f(\mathbf{a}))_{i,j} = \partial_{i,j} f(\mathbf{a}) $$
+                </div>
+            </div>
+
+            <div class="def-box">
+                <strong>Lokális szélsőérték SZÜKSÉGES feltétele</strong>
+                Ha az $f$ totálisan differenciálható függvénynek az $\mathbf{a}$ belső pontban lokális szélsőértéke van, akkor abban a pontban a gradiens kötelezően nullvektor:
+                <div class="math-block">
+                    $$ \text{grad } f(\mathbf{a}) = \mathbf{0} $$
+                </div>
+                (Az ilyen pontokat stacionárius pontoknak nevezzük).
+            </div>
+
+            <div class="def-box">
+                <strong>Lokális szélsőérték ELÉGSÉGES feltétele</strong>
+                Tegyük fel, hogy $\mathbf{a}$ stacionárius pont ($\text{grad } f(\mathbf{a}) = \mathbf{0}$). Ekkor megvizsgálva a Hesse-mátrixot ($H_f(\mathbf{a})$):
+                <ul>
+                    <li>Ha $H_f(\mathbf{a})$ <b>pozitív definit</b> $\implies$ az $\mathbf{a}$-ban <b>lokális minimum</b> van.</li>
+                    <li>Ha $H_f(\mathbf{a})$ <b>negatív definit</b> $\implies$ az $\mathbf{a}$-ban <b>lokális maximum</b> van.</li>
+                    <li>Ha $H_f(\mathbf{a})$ <b>indefinit</b> $\implies$ az $\mathbf{a}$-ban nincs szélsőérték (nyeregpont).</li>
+                </ul>
+            </div>
+
+            <div class="def-box">
+                <strong>Jacobi-mátrix</strong>
+                Egy vektorértékű többváltozós függvény ($f: \mathbb{R}^n \to \mathbb{R}^m$) differenciálhányadosa egy $m \times n$-es mátrix, amelynek soraiban a koordinátafüggvények ($f_1, \dots, f_m$) gradiensei állnak:
+                <div class="math-block">
+                    $$ (f'(\mathbf{a}))_{i,j} = \partial_j f_i(\mathbf{a}) $$
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
