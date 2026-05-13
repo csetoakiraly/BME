@@ -7,7 +7,8 @@
     <script>
     MathJax = {
       tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']]
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
       }
     };
     </script>
@@ -19,6 +20,8 @@
             --primary: #0f172a;
             --secondary: #a855f7;
             --secondary-glow: rgba(168, 85, 247, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
             --text-light: #f8fafc;
             --text-muted: #94a3b8;
             --glass-bg: rgba(255, 255, 255, 0.03);
@@ -39,7 +42,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px; /* Slightly wider for larger formulas */
             margin: 0 auto;
             padding: 50px 20px;
         }
@@ -78,7 +81,7 @@
         h1 { 
             color: white; 
             font-weight: 800; 
-            font-size: 2.5rem; 
+            font-size: 2.8rem; 
             text-align: center; 
             margin-bottom: 50px; 
             letter-spacing: -0.5px;
@@ -90,43 +93,76 @@
             border-bottom: 1px solid var(--glass-border); 
             padding-bottom: 15px; 
             font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        /* UJ: Feladat leiras stilus */
+        .task-description {
+            background: var(--task-bg);
+            border-left: 5px solid var(--task-color);
+            padding: 25px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 35px;
+            font-size: 1.25rem;
+            color: #e0f2fe;
+            line-height: 1.7;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .task-description strong {
+            color: var(--task-color);
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
 
         .formula-box {
             background: rgba(168, 85, 247, 0.08);
             border-left: 4px solid var(--secondary);
-            padding: 15px 20px;
+            padding: 20px 25px;
             border-radius: 0 16px 16px 0;
-            margin: 20px 0;
-            font-size: 1.1rem;
+            margin: 25px 0;
+            font-size: 1.25rem;
             color: #e2e8f0;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         .formula-box b {
             color: var(--secondary);
             text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+            display: block;
+            margin-bottom: 10px;
         }
 
+        /* NAGYOBB SZÁMOLÁSOK */
         .calc-step {
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 3px solid rgba(255,255,255,0.15);
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            line-height: 2;
+        }
+
+        .math-block {
             margin: 15px 0;
-            padding-left: 15px;
-            border-left: 2px solid rgba(255,255,255,0.1);
-            font-size: 1.05rem;
-            color: #cbd5e1;
-            line-height: 1.8;
+            overflow-x: auto;
+            padding: 10px 0;
         }
 
         .result {
             background: rgba(34, 197, 94, 0.1);
             border: 1px solid rgba(34, 197, 94, 0.3);
             color: #4ade80;
-            padding: 15px 20px;
+            padding: 20px 25px;
             border-radius: 16px;
-            display: inline-block;
+            display: block; /* Sorkizárt, nagyobb blokk */
             font-weight: 700;
-            margin-top: 20px;
-            font-size: 1.1rem;
+            margin-top: 30px;
+            font-size: 1.4rem;
+            text-align: center;
             box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);
         }
 
@@ -135,7 +171,9 @@
         @media (max-width: 768px) {
             .container { padding: 30px 15px; }
             .card { padding: 25px 20px; }
-            h1 { font-size: 2rem; }
+            h1 { font-size: 2.2rem; }
+            .task-description, .calc-step { font-size: 1.1rem; }
+            .result { font-size: 1.2rem; }
             mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
         }
     </style>
@@ -152,23 +190,58 @@
         <!-- 1. a) -->
         <div class="card">
             <h2>1. a) Hatványsor konvergenciatartománya</h2>
+            
+            <div class="task-description">
+                <strong>Feladat:</strong>
+                Határozza meg a következő hatványsor konvergenciatartományát!
+                $$ \sum_{n=1}^\infty \frac{(x+2)^n}{3n \cdot 2^n} $$
+            </div>
+
             <div class="formula-box">
-                <b>Képlet (Cauchy-gyökkritérium):</b> $R_a = \frac{1}{\lim_{n\to\infty} \sqrt[n]{|a_n|}}$
+                <b>Alkalmazott Képlet (Cauchy-gyökkritérium):</b> 
+                $$ R_a = \frac{1}{\lim_{n\to\infty} \sqrt[n]{|a_n|}} $$
             </div>
+
             <div class="calc-step">
-                $a_n = \frac{1}{3n \cdot 2^n}$
+                1. A sor együtthatója az $(x+2)^n$ tag előtt:
+                <div class="math-block">
+                    $$ a_n = \frac{1}{3n \cdot 2^n} $$
+                </div>
             </div>
+            
             <div class="calc-step">
-                $\sqrt[n]{|a_n|} = \frac{1}{\sqrt[n]{3n \cdot 2^n}} = \frac{1}{\sqrt[n]{3} \cdot \sqrt[n]{n} \cdot 2} \xrightarrow{n\to\infty} \frac{1}{1 \cdot 1 \cdot 2} = \frac{1}{2}$
+                2. Határozzuk meg az együttható n-edik gyökének határértékét:
+                <div class="math-block">
+                    $$ \lim_{n\to\infty} \sqrt[n]{|a_n|} = \lim_{n\to\infty} \frac{1}{\sqrt[n]{3n \cdot 2^n}} = \lim_{n\to\infty} \frac{1}{\sqrt[n]{3} \cdot \sqrt[n]{n} \cdot 2} = \frac{1}{1 \cdot 1 \cdot 2} = \frac{1}{2} $$
+                </div>
             </div>
+
             <div class="calc-step">
-                Súgár: $R_a = \frac{1}{1/2} = 2$. Konvergens, ha $|x + 2| < 2 \implies x \in ]-4, 0[$
+                3. A konvergenciasugár ($R_a$):
+                <div class="math-block">
+                    $$ R_a = \frac{1}{1/2} = 2 $$
+                </div>
+                A sor biztosan konvergens, ha a belső kifejezés abszolútértéke kisebb a sugárnál:
+                <div class="math-block">
+                    $$ |x + 2| < 2 \implies -2 < x + 2 < 2 \implies -4 < x < 0 $$
+                </div>
             </div>
+
             <div class="calc-step">
-                <b>Végpontok vizsgálata:</b><br>
-                - $x = -4$: $\sum \frac{(-2)^n}{3n \cdot 2^n} = \sum \frac{(-1)^n}{3n}$ $\rightarrow$ Leibniz-sor, <b>konvergens</b>.<br>
-                - $x = 0$: $\sum \frac{2^n}{3n \cdot 2^n} = \sum \frac{1}{3n}$ $\rightarrow$ Harmonikus sor, <b>divergens</b>.
+                4. <b>Végpontok vizsgálata:</b><br><br>
+                - Ha <b>$x = -4$</b>, a sor alakja:
+                <div class="math-block">
+                    $$ \sum_{n=1}^\infty \frac{(-4+2)^n}{3n \cdot 2^n} = \sum_{n=1}^\infty \frac{(-2)^n}{3n \cdot 2^n} = \sum_{n=1}^\infty \frac{(-1)^n \cdot 2^n}{3n \cdot 2^n} = \sum_{n=1}^\infty \frac{(-1)^n}{3n} $$
+                </div>
+                Ez egy alternáló (Leibniz) sor. Mivel $\frac{1}{3n}$ monoton csökkenve tart a nullához, a sor <b>konvergens</b>.<br><br>
+                
+                - Ha <b>$x = 0$</b>, a sor alakja:
+                <div class="math-block">
+                    $$ \sum_{n=1}^\infty \frac{(0+2)^n}{3n \cdot 2^n} = \sum_{n=1}^\infty \frac{2^n}{3n \cdot 2^n} = \sum_{n=1}^\infty \frac{1}{3n} = \frac{1}{3} \sum_{n=1}^\infty \frac{1}{n} $$
+                </div>
+                Ez a harmonikus sor konstansszorosa, ami <b>divergens</b>.
             </div>
+
             <div class="result">
                 Eredmény: $x \in [-4, 0[$
             </div>
@@ -177,18 +250,39 @@
         <!-- 1. b) -->
         <div class="card">
             <h2>1. b) Hatványsor összegfüggvénye</h2>
+            
+            <div class="task-description">
+                <strong>Feladat:</strong>
+                Adja meg az alábbi hatványsor összegfüggvényét!
+                $$ \sum_{n=0}^\infty \frac{x^{4n+2}}{(2n+1)!} $$
+            </div>
+
             <div class="formula-box">
-                <b>Képlet (Nevezetes sor):</b> $\text{sh}(x) = \sum_{n=0}^\infty \frac{x^{2n+1}}{(2n+1)!}$
+                <b>Alkalmazott Képlet (A hiperbolikus szinusz Taylor-sora):</b> 
+                $$ \text{sh}(x) = \sum_{n=0}^\infty \frac{x^{2n+1}}{(2n+1)!} $$
             </div>
+
             <div class="calc-step">
-                Keresett sor: $\sum_{n=0}^\infty \frac{x^{4n+2}}{(2n+1)!}$
+                1. Alakítsuk át a feladatban szereplő sor kitevőjét úgy, hogy az hasonlítson a nevezetes sorhoz:
+                <div class="math-block">
+                    $$ x^{4n+2} = x^{2(2n+1)} = (x^2)^{2n+1} $$
+                </div>
             </div>
+
             <div class="calc-step">
-                Kitevő átalakítása: $x^{4n+2} = (x^2)^{2n+1}$
+                2. Írjuk vissza az átalakított kitevőt a szummába:
+                <div class="math-block">
+                    $$ \sum_{n=0}^\infty \frac{(x^2)^{2n+1}}{(2n+1)!} $$
+                </div>
             </div>
+
             <div class="calc-step">
-                Behelyettesítés az alapképletbe $x$ helyett $x^2$-et írva: $\sum_{n=0}^\infty \frac{(x^2)^{2n+1}}{(2n+1)!} = \text{sh}(x^2)$
+                3. Vegyük észre, hogy ez pontosan az $\text{sh}(x)$ sorfejtése, csak $x$ helyett mindenhol $x^2$ szerepel.
+                <div class="math-block">
+                    $$ \sum_{n=0}^\infty \frac{(x^2)^{2n+1}}{(2n+1)!} = \text{sh}(x^2) $$
+                </div>
             </div>
+
             <div class="result">
                 Eredmény: $\text{sh}(x^2)$
             </div>
@@ -197,134 +291,307 @@
         <!-- 2. Feladat -->
         <div class="card">
             <h2>2. Taylor-sorfejtés és 99. derivált</h2>
+            
+            <div class="task-description">
+                <strong>Feladat:</strong>
+                Adja meg az $f(x) = \frac{1}{(4-x)^2}$ függvény $x_0 = 0$ pont körüli Taylor-sorát, és határozza meg a sor konvergenciasugarát! Számítsa ki az $f^{(99)}(0)$ értékét!
+            </div>
+
             <div class="formula-box">
-                <b>Képlet 1 (Mértani sor):</b> $\frac{1}{1-q} = \sum_{n=0}^\infty q^n$<br>
-                <b>Képlet 2 (Taylor együttható):</b> $a_k = \frac{f^{(k)}(x_0)}{k!} \implies f^{(k)}(x_0) = a_k \cdot k!$
+                <b>Alkalmazott Képletek:</b><br><br>
+                1. Mértani sor összegképlete:
+                $$ \frac{1}{1-q} = \sum_{n=0}^\infty q^n \quad (\text{ha } |q| < 1) $$
+                2. Taylor együttható kapcsolata a deriválttal:
+                $$ a_k = \frac{f^{(k)}(x_0)}{k!} \implies f^{(k)}(x_0) = a_k \cdot k! $$
             </div>
+
             <div class="calc-step">
-                Alapfüggvény kitalálása deriválás előtt: $g(x) = \frac{1}{4-x}$. Ekkor $g'(x) = \frac{1}{(4-x)^2} = f(x)$.
+                1. Vegyük észre, hogy az $f(x)$ függvény előáll egy egyszerűbb függvény deriváltjaként. Legyen a primitív függvénye $g(x)$:
+                <div class="math-block">
+                    $$ g(x) = \frac{1}{4-x} \implies g'(x) = \frac{1}{(4-x)^2} = f(x) $$
+                </div>
             </div>
+
             <div class="calc-step">
-                $g(x)$ sorfejtése: $\frac{1}{4-x} = \frac{1}{4} \cdot \frac{1}{1 - \frac{x}{4}} = \frac{1}{4} \sum_{n=0}^\infty \left(\frac{x}{4}\right)^n = \sum_{n=0}^\infty \frac{1}{4^{n+1}} x^n$
+                2. Fejtsük sorba a $g(x)$ függvényt a mértani sor segítségével:
+                <div class="math-block">
+                    $$ g(x) = \frac{1}{4-x} = \frac{1}{4} \cdot \frac{1}{1 - \frac{x}{4}} = \frac{1}{4} \sum_{n=0}^\infty \left(\frac{x}{4}\right)^n = \sum_{n=0}^\infty \frac{x^n}{4^{n+1}} $$
+                </div>
             </div>
+
             <div class="calc-step">
-                Konvergenciasugár: $|q| < 1 \implies \left|\frac{x}{4}\right| < 1 \implies |x| < 4$. Súgár: <b>$R_a = 4$</b>. (Deriválás nem változtatja).
+                3. A konvergenciasugár vizsgálata: A mértani sor akkor konvergens, ha a kvóciens abszolútértéke kisebb mint 1.
+                <div class="math-block">
+                    $$ |q| < 1 \implies \left|\frac{x}{4}\right| < 1 \implies |x| < 4 $$
+                </div>
+                A konvergenciasugár tehát <b>$R_a = 4$</b>. (Tudjuk, hogy tagonkénti deriválás során a konvergenciasugár nem változik).
             </div>
+
             <div class="calc-step">
-                $f(x)$ sora ($g(x)$ deriváltja tagonként): $f(x) = g'(x) = \sum_{n=1}^\infty \frac{n}{4^{n+1}} x^{n-1} = \sum_{n=0}^\infty \frac{n+1}{4^{n+2}} x^n$
+                4. Fejtsük sorba az $f(x)$-et $g(x)$ tagonkénti deriválásával:
+                <div class="math-block">
+                    $$ f(x) = g'(x) = \frac{d}{dx} \left( \sum_{n=0}^\infty \frac{x^n}{4^{n+1}} \right) = \sum_{n=1}^\infty \frac{n \cdot x^{n-1}}{4^{n+1}} $$
+                </div>
+                Indexeltolással ($n$ helyett $n+1$-et írva, hogy $x^n$ legyen):
+                <div class="math-block">
+                    $$ f(x) = \sum_{n=0}^\infty \frac{n+1}{4^{n+2}} x^n $$
+                </div>
             </div>
+
             <div class="calc-step">
-                99. derivált számítása az $x^{99}$ együtthatójából ($n=99$): $a_{99} = \frac{99+1}{4^{99+2}} = \frac{100}{4^{101}}$
+                5. A 99. derivált kiszámítása az $x^{99}$ tag együtthatójából ($n=99$ behelyettesítve a sorba):
+                <div class="math-block">
+                    $$ a_{99} = \frac{99+1}{4^{99+2}} = \frac{100}{4^{101}} $$
+                </div>
+                Felhasználva a Taylor-képletet ($f^{(k)}(0) = a_k \cdot k!$):
+                <div class="math-block">
+                    $$ f^{(99)}(0) = 99! \cdot a_{99} = \frac{99! \cdot 100}{4^{101}} $$
+                </div>
             </div>
+
             <div class="result">
-                Eredmény: $f^{(99)}(0) = 99! \cdot a_{99} = \frac{99! \cdot 100}{4^{101}} = \frac{100!}{4^{101}}$
+                Eredmény: $\displaystyle \sum_{n=0}^\infty \frac{n+1}{4^{n+2}} x^n, \quad R_a = 4, \quad f^{(99)}(0) = \frac{100!}{4^{101}} $
             </div>
         </div>
 
         <!-- 3. Feladat -->
         <div class="card">
-            <h2>3. Átviteli elv és Határérték</h2>
+            <h2>3. Átviteli elv és Kétváltozós Határérték</h2>
+            
+            <div class="task-description">
+                <strong>3. Feladat</strong><br>
+                a) Mondja ki a határértékre vonatkozó átviteli elvet!<br>
+                b) Számítsa ki az alábbi kétváltozós határértéket, amennyiben létezik!
+                $$ \lim_{(x,y)\to(0,0)} \sin(x^2y) \cdot \cos\left(\frac{1}{x^2+2y^6}\right) $$
+            </div>
+
             <div class="formula-box">
-                <b>Átviteli elv Képlet:</b> $\lim_{x\to a} f(x) = b \iff \forall (x_k) \to a, \text{ahol } x_k \neq a \implies f(x_k) \to b$<br>
-                <b>Számolási elv:</b> Nullához tartó $\cdot$ Korlátos = 0.
+                <b>Alkalmazott Elvek:</b><br><br>
+                1. Átviteli elv a határértékre.<br>
+                2. Rendőrelv specifikus esete: <b>"Nullához tartó sorozat szorozva egy korlátos sorozattal az mindig nullához tart."</b>
             </div>
+
             <div class="calc-step">
-                Határérték: $\lim_{(x,y)\to(0,0)} \sin(x^2y) \cdot \cos\left(\frac{1}{x^2+2y^6}\right)$
+                <b>a) Átviteli elv a határértékre:</b><br>
+                <div class="math-block">
+                    Egy $f$ többváltozós függvény határértéke az $\mathbf{a}$ pontban pontosan akkor $b$, ha minden olyan $(\mathbf{x}_k)$ sorozatra, amelyre $\mathbf{x}_k \neq \mathbf{a}$ és $\lim_{k\to\infty} \mathbf{x}_k = \mathbf{a}$, teljesül, hogy a függvényértékek sorozata is tart a $b$ értékhez:
+                    $$ \lim_{\mathbf{x}\to \mathbf{a}} f(\mathbf{x}) = b \iff \forall (\mathbf{x}_k) \to \mathbf{a} \text{ (ahol } \mathbf{x}_k \neq \mathbf{a}\text{)} \implies \lim_{k\to\infty} f(\mathbf{x}_k) = b $$
+                </div>
             </div>
+
             <div class="calc-step">
-                Vegyünk egy tetszőleges $(x_k, y_k) \to (0,0)$ sorozatot.
+                <b>b) Határérték kiszámítása:</b><br>
+                1. Vegyünk egy tetszőleges $(x_k, y_k) \to (0,0)$ pontsorozatot, amely az origóhoz tart. Vizsgáljuk meg a szorzat két tényezőjét külön-külön!
             </div>
+
             <div class="calc-step">
-                1. Tényező: $\lim_{k\to\infty} \sin(x_k^2 y_k) = \sin(0 \cdot 0) = 0$ (Nullához tart)
+                2. Az <b>első tényező</b> viselkedése:
+                <div class="math-block">
+                    $$ \lim_{(x_k,y_k)\to(0,0)} \sin(x_k^2 y_k) = \sin(0^2 \cdot 0) = \sin(0) = 0 $$
+                </div>
+                Ez a kifejezés tehát <b>nullához tart</b>.
             </div>
+
             <div class="calc-step">
-                2. Tényező: $\cos\left(\frac{1}{x_k^2+2y_k^6}\right)$ mindig $[-1, 1]$ intervallumban van. (Korlátos)
+                3. A <b>második tényező</b> viselkedése:
+                <div class="math-block">
+                    $$ \cos\left(\frac{1}{x_k^2+2y_k^6}\right) $$
+                </div>
+                Tudjuk, hogy a koszinusz függvény értéke a valós számok halmazán mindig a $[-1, 1]$ zárt intervallumba esik, bármi is legyen az argumentuma. Tehát ez a kifejezés <b>korlátos</b>.
             </div>
+
+            <div class="calc-step">
+                4. Alkalmazzuk az elvet: Mivel a szorzat egyik fele a $0$-hoz tart, a másik fele pedig korlátos marad (nem száll el végtelenbe), a kettő szorzata biztosan $0$ lesz.
+            </div>
+
             <div class="result">
-                Eredmény: $\lim = 0$ (Mivel $0 \cdot \text{korlátos} = 0$)
+                Eredmény: $\displaystyle \lim_{(x,y)\to(0,0)} f(x,y) = 0 $
             </div>
         </div>
 
         <!-- 4. Feladat -->
         <div class="card">
             <h2>4. Parciális derivált és Differenciálhatóság</h2>
+            
+            <div class="task-description">
+                <strong>Feladat:</strong>
+                Adott az alábbi kétváltozós függvény:
+                $$ f(x,y) = \begin{cases} \frac{3x \text{ch}(y)}{x^2+2y^2}, & \text{ha } (x,y) \neq (0,0) \\ 0, & \text{ha } (x,y) = (0,0) \end{cases} $$
+                a) Határozza meg a parciális deriváltakat a sík minden pontjában!<br>
+                b) Totálisan differenciálható-e a függvény az origóban?
+            </div>
+
             <div class="formula-box">
-                <b>Képlet (Tört deriváltja):</b> $\left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2}$<br>
-                <b>Képlet (Definíció szerinti derivált az origóban):</b> $\partial_x f(0,0) = \lim_{x\to 0} \frac{f(x,0) - f(0,0)}{x-0}$
+                <b>Alkalmazott Képletek:</b><br><br>
+                1. Tört deriválási szabálya:<br>
+                $$ \left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2} $$
+                2. Parciális derivált definíciója az origóban ($x$ szerint):<br>
+                $$ \partial_x f(0,0) = \lim_{x\to 0} \frac{f(x,0) - f(0,0)}{x-0} $$
             </div>
+
             <div class="calc-step">
-                Függvény: $f(x,y) = \frac{3x \text{ch}(y)}{x^2+2y^2}$
+                <b>a) A deriváltak a sík többi pontjában ($(x,y) \neq (0,0)$):</b><br><br>
+                Deriválás $x$ szerint (az $y$ konstanak tekintendő):
+                <div class="math-block">
+                    $$ \partial_x f(x,y) = \frac{3\text{ch}(y) \cdot (x^2+2y^2) - 3x\text{ch}(y) \cdot (2x)}{(x^2+2y^2)^2} = \frac{3\text{ch}(y)(2y^2-x^2)}{(x^2+2y^2)^2} $$
+                </div>
+                Deriválás $y$ szerint (az $x$ konstanak tekintendő):
+                <div class="math-block">
+                    $$ \partial_y f(x,y) = \frac{3x\text{sh}(y) \cdot (x^2+2y^2) - 3x\text{ch}(y) \cdot (4y)}{(x^2+2y^2)^2} $$
+                </div>
             </div>
+
             <div class="calc-step">
-                <b>a) Sík többi pontján (szabályokkal deriválva):</b><br>
-                $\partial_x f = \frac{3\text{ch}(y)(x^2+2y^2) - 3x\text{ch}(y)(2x)}{(x^2+2y^2)^2}$<br>
-                $\partial_y f = \frac{3x\text{sh}(y)(x^2+2y^2) - 3x\text{ch}(y)(4y)}{(x^2+2y^2)^2}$
+                <b>a) A deriváltak az origóban ($(0,0)$) definíció alapján:</b><br><br>
+                Vizsgáljuk az $x$ szerinti deriváltat:
+                <div class="math-block">
+                    $$ \partial_x f(0,0) = \lim_{x\to 0} \frac{f(x,0) - 0}{x} = \lim_{x\to 0} \frac{\frac{3x \cdot \text{ch}(0)}{x^2+0} - 0}{x} $$
+                </div>
+                Mivel $\text{ch}(0) = 1$:
+                <div class="math-block">
+                    $$ \lim_{x\to 0} \frac{\frac{3x}{x^2}}{x} = \lim_{x\to 0} \frac{3}{x^2} = +\infty $$
+                </div>
+                Mivel a határérték végtelen, az origóban az $x$ szerinti parciális derivált <b>nem létezik</b>.
             </div>
+
             <div class="calc-step">
-                <b>a) Az origóban (definícióval):</b><br>
-                $\partial_x f(0,0) = \lim_{x\to 0} \frac{\frac{3x \cdot \text{ch}(0)}{x^2+0} - 0}{x} = \lim_{x\to 0} \frac{\frac{3x}{x^2}}{x} = \lim_{x\to 0} \frac{3}{x^2} = +\infty$ $\rightarrow$ <b>Nem létezik</b>.<br>
-                $\partial_y f(0,0) = \lim_{y\to 0} \frac{\frac{0}{0+2y^2} - 0}{y} = \lim_{y\to 0} \frac{0}{y} = 0$
+                Vizsgáljuk az $y$ szerinti deriváltat az origóban:
+                <div class="math-block">
+                    $$ \partial_y f(0,0) = \lim_{y\to 0} \frac{f(0,y) - 0}{y} = \lim_{y\to 0} \frac{\frac{0 \cdot \text{ch}(y)}{0+2y^2} - 0}{y} = \lim_{y\to 0} \frac{0}{y} = 0 $$
+                </div>
             </div>
+
             <div class="calc-step">
-                <b>b) Totális differenciálhatóság vizsgálata:</b> Mivel az origóban az $x$ szerinti derivált nem létezik, ott biztosan nem totálisan differenciálható.
+                <b>b) Totális differenciálhatóság az origóban:</b><br><br>
+                A totális differenciálhatóság egyik szükséges (de nem elégséges) feltétele a parciális deriváltak létezése a vizsgált pontban. Mivel beláttuk, hogy $\partial_x f(0,0)$ nem létezik (végtelen), a függvény biztosan <b>nem lehet totálisan differenciálható</b> az origóban.
             </div>
+
             <div class="result">
-                Eredmény: Az origóban <b>NEM</b> differenciálható. A sík többi pontján <b>IGEN</b> (mert ott a deriváltak folytonosak).
+                Eredmény: Az origóban <b>NEM</b> differenciálható (mert $\partial_x f$ nem létezik). A sík többi pontján igen, a képletekkel leírt deriváltakkal.
             </div>
         </div>
 
         <!-- 5. Feladat -->
         <div class="card">
             <h2>5. Szélsőérték, Iránymenti derivált és Érintősík</h2>
-            <div class="formula-box">
-                <b>Lokális Szélsőérték:</b> $\text{grad } f = 0$, majd Hesse-mátrix ($H_f$) Sylvester-kritériuma.<br>
-                <b>Iránymenti derivált:</b> $D_{\mathbf{e}} f = \langle \text{grad } f, \mathbf{e} \rangle$<br>
-                <b>Érintősík:</b> $\partial_x f(x_0,y_0)(x-x_0) + \partial_y f(x_0,y_0)(y-y_0) - (z-z_0) = 0$
+            
+            <div class="task-description">
+                <strong>Feladat:</strong>
+                Adott az $f(x,y) = x^3 + y^3 - 3xy$ kétváltozós függvény.<br>
+                a) Keresse meg a függvény lokális szélsőértékeit és osztályozza azokat!<br>
+                b) Számítsa ki az iránymenti deriváltat a $P(-1,1)$ pontban, a $\mathbf{v} = \frac{1}{\sqrt{2}}(1, -1)$ irányban!<br>
+                c) Írja fel az érintősík egyenletét a $P(-1,1)$ ponthoz tartozó felületi pontban!
             </div>
+
             <div class="calc-step">
-                Függvény: $f(x,y) = x^3 + y^3 - 3xy$
+                <b>a) Lokális Szélsőérték keresése:</b><br><br>
+                1. Képezzük a parciális deriváltakat, és tegyük őket egyenlővé nullával (Stacionárius pontok):
+                <div class="math-block">
+                    $$ \partial_x f = 3x^2 - 3y = 0 \implies y = x^2 $$
+                    $$ \partial_y f = 3y^2 - 3x = 0 $$
+                </div>
+                Helyettesítsük be az első egyenletet a másodikba:
+                <div class="math-block">
+                    $$ 3(x^2)^2 - 3x = 0 \implies 3x^4 - 3x = 0 \implies 3x(x^3 - 1) = 0 $$
+                </div>
+                Ebből két valós megoldás adódik: $x_1 = 0 \implies y_1 = 0$, és $x_2 = 1 \implies y_2 = 1$.<br>
+                A két vizsgálandó pont: $P_1(0,0)$ és $P_2(1,1)$.
             </div>
+
             <div class="calc-step">
-                <b>a) Lokális Szélsőérték:</b><br>
-                1. Stacionárius pontok:<br>
-                $\partial_x f = 3x^2 - 3y = 0 \implies y = x^2$<br>
-                $\partial_y f = 3y^2 - 3x = 0 \implies 3(x^2)^2 - 3x = 0 \implies x(x^3-1) = 0 \implies x_1=0, x_2=1$<br>
-                Két pont: $P_1(0,0)$ és $P_2(1,1)$.
+                2. Állítsuk fel a Hesse-mátrixot ($H_f$) a második deriváltakból:
+                <div class="math-block">
+                    $$ \partial_{xx} f = 6x, \quad \partial_{yy} f = 6y, \quad \partial_{xy} f = \partial_{yx} f = -3 $$
+                    $$ H_f(x,y) = \begin{pmatrix} 6x & -3 \\ -3 & 6y \end{pmatrix} $$
+                </div>
             </div>
+
             <div class="calc-step">
-                2. Hesse-mátrix és osztályozás: $H_f = \begin{pmatrix} 6x & -3 \\ -3 & 6y \end{pmatrix}$<br>
-                - $P_1(0,0)$-ban: $\det\begin{pmatrix} 0 & -3 \\ -3 & 0 \end{pmatrix} = -9 < 0 \implies$ <b>Indefinit (Nyeregpont)</b>.<br>
-                - $P_2(1,1)$-ben: $D_1 = 6 > 0$ és $\det\begin{pmatrix} 6 & -3 \\ -3 & 6 \end{pmatrix} = 27 > 0 \implies$ <b>Pozitív definit (Lokális Minimum)</b>.
+                3. Vizsgáljuk meg a stacionárius pontokat (Sylvester-kritérium):<br><br>
+                - A $P_1(0,0)$ pontban:
+                <div class="math-block">
+                    $$ H_f(0,0) = \begin{pmatrix} 0 & -3 \\ -3 & 0 \end{pmatrix} \implies \det(H) = 0 - 9 = -9 $$
+                </div>
+                Mivel a determináns negatív, a mátrix indefinit. Ez a pont <b>Nyeregpont</b> (nincs szélsőérték).<br><br>
+                
+                - A $P_2(1,1)$ pontban:
+                <div class="math-block">
+                    $$ H_f(1,1) = \begin{pmatrix} 6 & -3 \\ -3 & 6 \end{pmatrix} \implies \det(H) = 36 - 9 = 27 $$
+                </div>
+                A determináns pozitív, és a bal felső elem is pozitív ($D_1 = 6 > 0$). A mátrix pozitív definit. Ez a pont egy <b>Lokális Minimum</b>.
             </div>
+
             <div class="calc-step">
-                <b>b) Iránymenti derivált $P(-1,1)$-ben, $v = \frac{1}{\sqrt{2}}(1, -1)$ irányban:</b><br>
-                Gradiens behelyettesítve: $\text{grad } f(-1,1) = (3(-1)^2-3(1), 3(1)^2-3(-1)) = (0, 6)$.<br>
-                Irányvektor normálva van ($|v| = 1$). Szorzás: $D_v f = 0 \cdot \frac{1}{\sqrt{2}} + 6 \cdot \left(\frac{-1}{\sqrt{2}}\right) = \frac{-6}{\sqrt{2}} = -3\sqrt{2}$.
+                <b>b) Iránymenti derivált a $P(-1,1)$ pontban:</b><br><br>
+                1. Gradiens vektor meghatározása $P(-1,1)$-ben:
+                <div class="math-block">
+                    $$ \text{grad } f(x,y) = (3x^2 - 3y, 3y^2 - 3x) $$
+                    $$ \text{grad } f(-1,1) = (3(-1)^2 - 3(1), 3(1)^2 - 3(-1)) = (0, 6) $$
+                </div>
+                2. Az irányvektor $\mathbf{v} = (\frac{1}{\sqrt{2}}, \frac{-1}{\sqrt{2}})$. Hosszát ellenőrizzük: $|v| = \sqrt{\frac{1}{2} + \frac{1}{2}} = 1$. Mivel egységvektor, csak a skaláris szorzatot kell venni.
+                <div class="math-block">
+                    $$ D_{\mathbf{v}} f(-1,1) = \langle \text{grad } f(-1,1), \mathbf{v} \rangle = 0 \cdot \frac{1}{\sqrt{2}} + 6 \cdot \left(\frac{-1}{\sqrt{2}}\right) = -\frac{6}{\sqrt{2}} = -3\sqrt{2} $$
+                </div>
             </div>
+
             <div class="calc-step">
-                <b>c) Érintősík $P(-1,1)$-ben:</b><br>
-                Függvényérték: $z_0 = f(-1,1) = (-1)^3 + 1^3 - 3(-1)(1) = 3$. Gradiens: $(0,6)$.<br>
-                Egyenlet: $0 \cdot (x+1) + 6 \cdot (y-1) - (z-3) = 0 \implies 6y - z = 3$.
+                <b>c) Érintősík egyenlete a $P(-1,1)$ pontban:</b><br><br>
+                1. Függvényérték kiszámítása a pontban ($z_0$):
+                <div class="math-block">
+                    $$ z_0 = f(-1,1) = (-1)^3 + 1^3 - 3(-1)(1) = -1 + 1 + 3 = 3 $$
+                </div>
+                2. Az érintősík egyenletének képlete: $\partial_x f(P)(x-x_0) + \partial_y f(P)(y-y_0) - (z-z_0) = 0$.
+                A gradiens koordinátáit már kiszámoltuk: $\partial_x f = 0$, $\partial_y f = 6$.
+                <div class="math-block">
+                    $$ 0 \cdot (x - (-1)) + 6 \cdot (y - 1) - (z - 3) = 0 $$
+                    $$ 6y - 6 - z + 3 = 0 \implies 6y - z = 3 $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény:<br>
+                a) $P_1(0,0)$ nyeregpont, $P_2(1,1)$ lokális minimum.<br>
+                b) $D_{\mathbf{v}} f = -3\sqrt{2}$<br>
+                c) $6y - z = 3$
             </div>
         </div>
         
         <!-- 6. Feladat -->
         <div class="card">
-            <h2>6. Egyenletes konvergencia (Plusz feladat)</h2>
+            <h2>6. Egyenletes konvergencia (Elméleti kérdés)</h2>
+            
+            <div class="task-description">
+                <strong>Feladat:</strong>
+                Igaz-e, hogy a $\sin(x)$ függvény $x_0=0$ körüli Taylor-sora egyenletesen konvergál a $\sin(x)$ függvényhez a teljes $\mathbb{R}$ halmazon? Válaszát részletesen indokolja!
+            </div>
+
             <div class="formula-box">
-                <b>Képlet (Definíció):</b> $\lim_{n\to\infty} \left( \sup_{x\in\mathbb{R}} |f(x) - T_{n,x_0}(x)| \right) = 0$ a feltétele az egyenletes konvergenciának.
+                <b>Alkalmazott Definíció (Egyenletes konvergencia feltétele):</b> 
+                $$ \lim_{n\to\infty} \left( \sup_{x\in\mathbb{R}} |f(x) - T_{n}(x)| \right) = 0 $$
+                A különbség szuprémumának (legnagyobb távolságának) nullához kell tartania.
             </div>
+
             <div class="calc-step">
-                A $\sin(x)$ függvény <b>korlátos</b> ($[-1, 1]$ között mozog $\mathbb{R}$-en).
+                1. Vizsgáljuk meg a behelyettesített függvényt! A $\sin(x)$ függvény a teljes valós tengelyen <b>korlátos</b>, mivel minden $x \in \mathbb{R}$ esetén $-1 \le \sin(x) \le 1$.
             </div>
+
             <div class="calc-step">
-                A Taylor-polinomja $T_{n,0}(x)$ viszont egy $n$-edfokú polinom, ami a végtelenben <b>nem korlátos</b> (értéke $\pm \infty$-hez tart).
+                2. A Taylor-sor részletösszege ($T_n(x)$) egy $n$-ed fokú <b>polinom</b>. Tudjuk, hogy minden véges fokszámú, nem konstans polinom értéke a végtelenben elszáll (plusz vagy mínusz végtelenbe tart). Azaz a Taylor-polinom <b>nem korlátos</b> a teljes $\mathbb{R}$-en.
             </div>
+
             <div class="calc-step">
-                Emiatt a különbségük maximuma (supremuma) a teljes $\mathbb{R}$ halmazon végtelen lesz minden véges $n$ esetén: $\sup_{x\in\mathbb{R}} |\sin(x) - T_{n,0}(x)| = +\infty$. Mivel ez nem tart nullához...
+                3. Vonjunk ki egy nem korlátos függvényből egy korlátosat: a különbség továbbra is nem korlátos marad! Így bármely rögzített $n$ esetén a különbség szuprémuma végtelen:
+                <div class="math-block">
+                    $$ \sup_{x\in\mathbb{R}} |\sin(x) - T_{n}(x)| = +\infty $$
+                </div>
             </div>
+
+            <div class="calc-step">
+                4. Mivel a különbség szuprémuma végtelen, a határértéke semmiképp sem lehet nulla. Így az egyenletes konvergencia feltétele a teljes valós tengelyen nem teljesül (noha lokálisan, bármely korlátos intervallumon egyenletesen konvergálna).
+            </div>
+
             <div class="result">
-                Eredmény: <b>NEM</b> egyenletesen konvergens.
+                Eredmény: <b>NEM</b>, a konvergencia nem egyenletes az egész $\mathbb{R}$ halmazon.
             </div>
         </div>
 

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2023. ZH2 Megoldások</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7;
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        h1 { 
+            color: white; 
+            font-weight: 800; 
+            font-size: 2.8rem; 
+            text-align: center; 
+            margin-bottom: 50px; 
+            letter-spacing: -0.5px;
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            margin-top: 0; 
+            border-bottom: 1px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .task-description {
+            background: var(--task-bg);
+            border-left: 5px solid var(--task-color);
+            padding: 25px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 35px;
+            font-size: 1.25rem;
+            color: #e0f2fe;
+            line-height: 1.7;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .task-description strong {
+            color: var(--task-color);
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .formula-box {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 4px solid var(--secondary);
+            padding: 20px 25px;
+            border-radius: 0 16px 16px 0;
+            margin: 25px 0;
+            font-size: 1.25rem;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        .formula-box b {
+            color: var(--secondary);
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .calc-step {
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 3px solid rgba(255,255,255,0.15);
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            line-height: 2;
+        }
+
+        .math-block {
+            margin: 15px 0;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .result {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+            padding: 20px 25px;
+            border-radius: 16px;
+            display: block;
+            font-weight: 700;
+            margin-top: 30px;
+            font-size: 1.4rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);
+        }
+
+        .mjx-chtml { color: white !important; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 30px 15px; }
+            .card { padding: 25px 20px; }
+            h1 { font-size: 2.2rem; }
+            .task-description, .calc-step { font-size: 1.1rem; }
+            .result { font-size: 1.2rem; }
+            mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Vissza az Összefoglalóhoz
+        </a>
+
+        <h1>2023. Május 25. ZH2 Megoldások</h1>
+
+        <!-- 1. Feladat -->
+        <div class="card">
+            <h2>1. Hatványsor összegfüggvénye és deriváltjai</h2>
+            
+            <div class="task-description">
+                <strong>1. Feladat (17 pont)</strong>
+                Számolja ki az alábbi sor konvergenciatartományát és $f(x)$ összegfüggvényét! Mennyi lesz $f^{(100)}(0)$ és $f^{(101)}(0)$?
+                $$ \sum_{n=1}^\infty \frac{4^n x^{2n+2}}{(2n + 1)!} $$
+            </div>
+
+            <div class="formula-box">
+                <b>Alkalmazott Nevezetes Sor (Hiperbolikus szinusz):</b> 
+                $$ \text{sh}(x) = \sum_{n=0}^\infty \frac{x^{2n+1}}{(2n+1)!} = x + \sum_{n=1}^\infty \frac{x^{2n+1}}{(2n+1)!} $$
+            </div>
+
+            <div class="calc-step">
+                1. Alakítsuk át az $f(x)$ függvény sorát, hogy a nevezetes sorhoz hasonlítson:
+                <div class="math-block">
+                    $$ f(x) = \sum_{n=1}^\infty \frac{4^n x^{2n+2}}{(2n + 1)!} = \sum_{n=1}^\infty \frac{2^{2n} \cdot x^{2n+1} \cdot x}{(2n + 1)!} = x \sum_{n=1}^\infty \frac{(2x)^{2n+1}}{2 \cdot (2n+1)!} $$
+                </div>
+            </div>
+            
+            <div class="calc-step">
+                2. Emeljük ki az $\frac{x}{2}$-et a szummából:
+                <div class="math-block">
+                    $$ f(x) = \frac{x}{2} \sum_{n=1}^\infty \frac{(2x)^{2n+1}}{(2n+1)!} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                3. Vegyük észre a kapcsolatot az $\text{sh}$ függvénnyel! Mivel $\text{sh}(z) = z + \sum_{n=1}^\infty \frac{z^{2n+1}}{(2n+1)!}$, átrendezve $\sum_{n=1}^\infty \frac{z^{2n+1}}{(2n+1)!} = \text{sh}(z) - z$. Helyettesítsük be $z = 2x$-et:
+                <div class="math-block">
+                    $$ f(x) = \frac{x}{2} \Big( \text{sh}(2x) - 2x \Big) $$
+                </div>
+                Ennek a sornak (a $\text{sh}(x)$ miatt) a konvergenciatartománya $\mathbb{R}$.
+            </div>
+
+            <div class="calc-step">
+                4. <b>Deriváltak vizsgálata a Taylor-együtthatókkal:</b><br><br>
+                A sor általános tagja: $a_k \cdot x^k$, ahol a Taylor képlet alapján $a_k = \frac{f^{(k)}(0)}{k!}$. A sorban csak $2n+2$ alakú, azaz <b>páros hatványok</b> szerepelnek ($n=1 \implies x^4$, $n=2 \implies x^6$, stb.).
+                <br><br>
+                - A 100. deriválthoz a $k=100$ hatványt keressük: $2n+2 = 100 \implies 2n = 98 \implies n=49$.
+                <div class="math-block">
+                    $$ a_{100} = \frac{4^{49}}{(2 \cdot 49 + 1)!} = \frac{4^{49}}{99!} $$
+                </div>
+                Így az $f^{(100)}(0)$ értéke: $100! \cdot a_{100} = 100! \cdot \frac{4^{49}}{99!} = 100 \cdot 4^{49}$.
+                <br><br>
+                - A 101. deriválthoz a $k=101$ hatványt keressük, ami egy páratlan hatvány. Mivel ilyen tag nincs a sorban, az együtthatója 0. Tehát $f^{(101)}(0) = 0$.
+            </div>
+
+            <div class="result">
+                Eredmény:<br>
+                KT: $\mathbb{R}$<br>
+                $f(x) = \frac{x}{2}(\text{sh}(2x) - 2x)$<br>
+                $f^{(100)}(0) = 100 \cdot 4^{49}$ és $f^{(101)}(0) = 0$
+            </div>
+        </div>
+
+        <!-- 2. Feladat -->
+        <div class="card">
+            <h2>2. Taylor-polinom és Integrálközelítés</h2>
+            
+            <div class="task-description">
+                <strong>2. Feladat (23 pont)</strong>
+                Írja fel az $f(x) = \frac{3}{\sqrt[5]{32 + x^4}}$ függvény 0 középpontú nyolcadfokú Taylor-polinomját, majd adjon becslést arra, milyen jól közelíthető az $\int_0^1 \frac{3}{\sqrt[5]{32 + x^4}} dx$ integrál a nyolcadfokú Taylor-polinom integráljával!
+            </div>
+
+            <div class="formula-box">
+                <b>Alkalmazott Képlet (Binomiális sorfejtés):</b> 
+                $$ (1+z)^\alpha = \sum_{n=0}^\infty \binom{\alpha}{n} z^n $$
+            </div>
+
+            <div class="calc-step">
+                1. Hozzuk a függvényt az $(1+z)^\alpha$ alakra:
+                <div class="math-block">
+                    $$ f(x) = 3(32 + x^4)^{-1/5} = 3 \left( 32 \left( 1 + \frac{x^4}{32} \right) \right)^{-1/5} = 3 \cdot 32^{-1/5} \left( 1 + \frac{x^4}{32} \right)^{-1/5} = \frac{3}{2} \left( 1 + \frac{x^4}{32} \right)^{-1/5} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                2. Alkalmazzuk a binomiális sorfejtést $\alpha = -1/5$ és $z = \frac{x^4}{32}$ behelyettesítésével:
+                <div class="math-block">
+                    $$ f(x) = \frac{3}{2} \sum_{n=0}^\infty \binom{-1/5}{n} \left(\frac{x^4}{32}\right)^n = \frac{3}{2} \sum_{n=0}^\infty \binom{-1/5}{n} \frac{x^{4n}}{32^n} $$
+                </div>
+                A konvergenciasugár: $\left| \frac{x^4}{32} \right| < 1 \implies |x^4| < 32 \implies |x| < \sqrt[4]{32}$.
+            </div>
+
+            <div class="calc-step">
+                3. A nyolcadfokú Taylor-polinomhoz ($T_8(x)$) a szumma első három tagja kell ($n=0, 1, 2$), mivel $x^{4n} \le x^8$:
+                <div class="math-block">
+                    - $n=0 \implies \binom{-1/5}{0} = 1$<br>
+                    - $n=1 \implies \binom{-1/5}{1} = -\frac{1}{5}$<br>
+                    - $n=2 \implies \binom{-1/5}{2} = \frac{(-\frac{1}{5}) \cdot (-\frac{6}{5})}{2} = \frac{6}{50} = \frac{3}{25}$
+                </div>
+                A Taylor-polinom:
+                <div class="math-block">
+                    $$ T_8(x) = \frac{3}{2} \left[ 1 - \frac{1}{5} \frac{x^4}{32} + \frac{6}{2 \cdot 25} \frac{x^8}{32^2} \right] $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                4. Integráljuk az eredeti végtelen sort az integrál kiszámításához:
+                <div class="math-block">
+                    $$ \int_0^1 \frac{3}{\sqrt[5]{32 + x^4}} dx = \int_0^1 \frac{3}{2} \sum_{n=0}^\infty \binom{-1/5}{n} \frac{x^{4n}}{32^n} dx = \frac{3}{2} \sum_{n=0}^\infty \binom{-1/5}{n} \frac{1}{32^n(4n+1)} $$
+                </div>
+                Mivel ez egy Leibniz-típusú (alternáló) sor, a közelítés hibája felülről becsülhető az első elhagyott tag ($n=3$) abszolútértékével:
+                <div class="math-block">
+                    $$ |Hiba| < \frac{3}{2} \left| \binom{-1/5}{3} \right| \frac{1}{32^3(4 \cdot 3 + 1)} = \frac{3}{2} \left| \frac{(-\frac{1}{5})(-\frac{6}{5})(-\frac{11}{5})}{6} \right| \frac{1}{13 \cdot 32^3} $$
+                    $$ |Hiba| < \frac{3}{2} \cdot \frac{66}{6 \cdot 125} \cdot \frac{1}{13 \cdot 32^3} < 10^{-7} $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: $\displaystyle T_8(x) = \frac{3}{2} \left( 1 - \frac{1}{5}\frac{x^4}{32} + \frac{6}{50}\frac{x^8}{32^2} \right), \quad \text{Hiba} < 10^{-7} $
+            </div>
+        </div>
+
+        <!-- 3. Feladat -->
+        <div class="card">
+            <h2>3. Totális Differenciálhatóság</h2>
+            
+            <div class="task-description">
+                <strong>3. Feladat (28 pont)</strong><br>
+                a) Írja fel egy $f : I \subset \mathbb{R}^n \to \mathbb{R}$ függvény totális differenciálhatóságának definícióját!<br>
+                b) Hol folytonos, illetve totálisan differenciálható az alábbi függvény? Írja fel a parciális deriváltakat!
+                $$ f(x,y) = \begin{cases} \frac{2xy}{x^2+3y^2}, & \text{ha } (x,y) \neq (0,0) \\ 0, & \text{ha } (x,y) = (0,0) \end{cases} $$
+            </div>
+
+            <div class="calc-step">
+                <b>a) A definíció:</b><br>
+                Az $f : \mathbb{R}^n \supset D_f \to \mathbb{R}$ függvény totálisan differenciálható a $D_f$ egy $x$ belső pontjában, ha elegendően kicsiny $h \in \mathbb{R}^n$ esetén a függvény növekménye:
+                <div class="math-block">
+                    $$ \Delta f = f(x + h) - f(x) = v \cdot h + \delta(x, h) $$
+                </div>
+                alakban írható fel, ahol $v \in \mathbb{R}^n$ független $h$-tól, és $\displaystyle \lim_{h\to 0} \frac{\delta(x, h)}{|h|} = 0$. Ekkor $v = \text{grad } f(x)$ az $f$ totális differenciálja az $x$-ben.
+            </div>
+
+            <div class="calc-step">
+                <b>b) Folytonosság az origóban:</b><br>
+                Közelítsünk az $y = mx$ egyenesek mentén:
+                <div class="math-block">
+                    $$ \lim_{(x,y)\to(0,0)} \frac{2xy}{x^2+3y^2} = \lim_{x\to 0} \frac{2x(mx)}{x^2+3(mx)^2} = \frac{2m}{1+3m^2} $$
+                </div>
+                Mivel a határérték függ az $m$ meredekségtől, az origóban a határérték nem létezik, így a függvény <b>nem folytonos</b>. Emiatt <b>nem is totálisan differenciálható</b> a $(0,0)$-ban.
+            </div>
+
+            <div class="calc-step">
+                <b>Parciális deriváltak az origóban (definíció szerint):</b>
+                <div class="math-block">
+                    $$ \partial_x f(0,0) = \lim_{x\to 0} \frac{f(x,0) - f(0,0)}{x} = \lim_{x\to 0} \frac{0}{x} = 0 $$
+                    $$ \partial_y f(0,0) = \lim_{y\to 0} \frac{f(0,y) - f(0,0)}{y} = \lim_{y\to 0} \frac{0}{y} = 0 $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>Parciális deriváltak az origón kívül (törtderiválással):</b>
+                <div class="math-block">
+                    $$ \partial_x f(x,y) = \frac{2y(x^2+3y^2) - 2xy(2x)}{(x^2+3y^2)^2} = \frac{2y(x^2+3y^2) - 4x^2y}{(x^2+3y^2)^2} $$
+                    $$ \partial_y f(x,y) = \frac{2x(x^2+3y^2) - 2xy(6y)}{(x^2+3y^2)^2} = \frac{2x(x^2+3y^2) - 12xy^2}{(x^2+3y^2)^2} $$
+                </div>
+                Ezek a deriváltak racionális törtfüggvények, a nevezőjük az origón kívül nem nulla, folytonosak, így az $\mathbb{R}^2 \setminus \{(0,0)\}$ nyílt halmazon a függvény <b>totálisan differenciálható</b>.
+            </div>
+        </div>
+
+        <!-- 4. Feladat -->
+        <div class="card">
+            <h2>4. Kétváltozós Lokális Szélsőérték</h2>
+            
+            <div class="task-description">
+                <strong>4. Feladat (22 pont)</strong>
+                Határozza meg az $f(x, y) = x^3 + 2xy - 6x - 4y^2$ függvény lokális szélsőértékhelyeit és azok típusát!
+            </div>
+
+            <div class="calc-step">
+                1. Határozzuk meg a stacionárius pontokat a parciális deriváltak nullával egyenlővé tételével:
+                <div class="math-block">
+                    $$ \partial_x f = 3x^2 + 2y - 6 = 0 $$
+                    $$ \partial_y f = 2x - 8y = 0 \implies 2x = 8y \implies x = 4y \implies y = \frac{x}{4} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                2. Helyettesítsük be az $y$-t az első egyenletbe:
+                <div class="math-block">
+                    $$ 3x^2 + 2\left(\frac{x}{4}\right) - 6 = 0 \implies 3x^2 + \frac{x}{2} - 6 = 0 \implies 6x^2 + x - 12 = 0 $$
+                </div>
+                A másodfokú egyenlet megoldásai:
+                <div class="math-block">
+                    $$ x_{1,2} = \frac{-1 \pm \sqrt{1 - 4(6)(-12)}}{12} = \frac{-1 \pm \sqrt{289}}{12} = \frac{-1 \pm 17}{12} $$
+                </div>
+                - $x_1 = \frac{16}{12} = \frac{4}{3} \implies y_1 = \frac{1}{3} \implies P_1\left(\frac{4}{3}, \frac{1}{3}\right)$<br>
+                - $x_2 = -\frac{18}{12} = -\frac{3}{2} \implies y_2 = -\frac{3}{8} \implies P_2\left(-\frac{3}{2}, -\frac{3}{8}\right)$
+            </div>
+
+            <div class="calc-step">
+                3. Írjuk fel a Hesse-mátrixot a másodrendű deriváltakból:
+                <div class="math-block">
+                    $$ \partial_{xx} f = 6x, \quad \partial_{yy} f = -8, \quad \partial_{xy} f = 2 $$
+                    $$ H_f(x,y) = \begin{pmatrix} 6x & 2 \\ 2 & -8 \end{pmatrix} \implies \det(H) = -48x - 4 $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                4. Vizsgáljuk a kritikus pontokat (Sylvester-kritérium):<br><br>
+                - <b>A $P_1(4/3, 1/3)$ pontban:</b> $\det(H) = -48 \cdot \frac{4}{3} - 4 = -64 - 4 = -68 < 0$.<br>
+                Mivel a determináns negatív, a mátrix indefinit. Itt <b>nincs szélsőérték (Nyeregpont)</b>.<br><br>
+                - <b>A $P_2(-3/2, -3/8)$ pontban:</b> $\det(H) = -48 \cdot \left(-\frac{3}{2}\right) - 4 = 72 - 4 = 68 > 0$.<br>
+                A determináns pozitív. Nézzük a bal felső elemet: $\partial_{xx} f(-3/2) = 6 \cdot (-3/2) = -9 < 0$. A mátrix negatív definit. Itt <b>Lokális Maximum</b> van.
+            </div>
+
+            <div class="result">
+                Eredmény: $P_1(4/3, 1/3)$ Nyeregpont, $P_2(-3/2, -3/8)$ Lokális Maximum.
+            </div>
+        </div>
+
+        <!-- 5. Feladat -->
+        <div class="card">
+            <h2>5. Kettős integrál háromszögtartományon</h2>
+            
+            <div class="task-description">
+                <strong>5. Feladat (10 pont)</strong>
+                Számolja ki az $f(x, y) = \cos(x + 2y)$ függvény integrálját a $(0, 0), (2, 1), (3, 0)$ csúcsú háromszöglapon!
+            </div>
+
+            <div class="calc-step">
+                1. Határozzuk meg a háromszög oldalait egyenletek formájában a $y$ változó szerinti integráláshoz:
+                <div class="math-block">
+                    - Az alsó határ: $y = 0$<br>
+                    - A bal felső egyenes $(0,0)$ és $(2,1)$ között: $y = \frac{x}{2} \implies x = 2y$<br>
+                    - A jobb felső egyenes $(2,1)$ és $(3,0)$ között: $m = -1 \implies y = -x + 3 \implies x = 3 - y$
+                </div>
+                Az integrálási tartomány tehát normáltartaomány $y$ szerint: $y \in [0, 1]$, belső határ $x \in [2y, 3-y]$.
+            </div>
+
+            <div class="calc-step">
+                2. Írjuk fel a kettős integrált és végezzük el a belső integrálást $x$ szerint:
+                <div class="math-block">
+                    $$ \int_0^1 \int_{2y}^{3-y} \cos(x + 2y) dx dy = \int_0^1 \Big[ \sin(x + 2y) \Big]_{x=2y}^{3-y} dy $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                3. Helyettesítsük be a határokat és integráljunk $y$ szerint:
+                <div class="math-block">
+                    $$ = \int_0^1 \Big( \sin((3-y) + 2y) - \sin(2y + 2y) \Big) dy = \int_0^1 \Big( \sin(3 + y) - \sin(4y) \Big) dy $$
+                </div>
+                Az integrálási szabályokkal (belső derivált reciprokával való szorzás):
+                <div class="math-block">
+                    $$ = \left[ -\cos(3 + y) + \frac{\cos(4y)}{4} \right]_0^1 $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                4. Végezzük el a kiértékelést a határokon ($1$-nél és $0$-nál):
+                <div class="math-block">
+                    $$ = \left( -\cos(4) + \frac{\cos(4)}{4} \right) - \left( -\cos(3) + \frac{\cos(0)}{4} \right) = -\cos(4) + \cos(3) + \frac{\cos(4)}{4} - \frac{1}{4} $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: $-\cos(4) + \cos(3) + \frac{\cos(4)}{4} - \frac{1}{4}$
+            </div>
+        </div>
+        
+        <!-- IMSC Feladat -->
+        <div class="card">
+            <h2>IMSC Feladat (Szöveges Szélsőérték)</h2>
+            
+            <div class="task-description">
+                <strong>IMSC Feladat (8 pont)</strong>
+                Csapadékvíz-megtartás céljából az út szélére trapéz keresztmetszetű szikkasztóárkot szeretnénk létesíteni. Az árok adatai az ábrán láthatók (alul $27-2x$, oldalt $x$, szöge $\alpha$). Adja meg $x$ és $\alpha$ értékét, hogy a lehető legtöbb vizet tudjuk megfogni!
+            </div>
+
+            <div class="calc-step">
+                A trapéz területfüggvényének felírása:
+                <div class="math-block">
+                    Mivel a magasság $x \sin\alpha$ és a trapéz felső alapja $(27 - 2x) + 2x\cos\alpha$, a terület:
+                    $$ T(x, \alpha) = (27 - 2x + x \cos\alpha) x \sin\alpha $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                A parciális deriváltak és a maximumhely:
+                <div class="math-block">
+                    $\partial_x T = 0 \implies \cos\alpha = 2 - \frac{27}{2x}$<br>
+                    Ezt és a $\partial_\alpha T = 0$ egyenletet megoldva kapjuk, hogy $x = 9$ és $\alpha = \frac{\pi}{3}$.<br>
+                    A második parciális deriváltakat kiszámítva a determináns pozitív és $T_{xx} < 0$, tehát ez valóban lokális (és a vizsgált tartományon globális) maximum.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: Keresztmetszet $x=9$ és $\alpha = \frac{\pi}{3}$ választással lesz maximális.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

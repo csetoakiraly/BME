@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2022. ZH2 Megoldások</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7;
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        h1 { 
+            color: white; 
+            font-weight: 800; 
+            font-size: 2.8rem; 
+            text-align: center; 
+            margin-bottom: 50px; 
+            letter-spacing: -0.5px;
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            margin-top: 0; 
+            border-bottom: 1px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .task-description {
+            background: var(--task-bg);
+            border-left: 5px solid var(--task-color);
+            padding: 25px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 35px;
+            font-size: 1.25rem;
+            color: #e0f2fe;
+            line-height: 1.7;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .task-description strong {
+            color: var(--task-color);
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .formula-box {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 4px solid var(--secondary);
+            padding: 20px 25px;
+            border-radius: 0 16px 16px 0;
+            margin: 25px 0;
+            font-size: 1.25rem;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        .formula-box b {
+            color: var(--secondary);
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .calc-step {
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 3px solid rgba(255,255,255,0.15);
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            line-height: 2;
+        }
+
+        .math-block {
+            margin: 15px 0;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .result {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+            padding: 20px 25px;
+            border-radius: 16px;
+            display: block;
+            font-weight: 700;
+            margin-top: 30px;
+            font-size: 1.4rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);
+        }
+
+        .mjx-chtml { color: white !important; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 30px 15px; }
+            .card { padding: 25px 20px; }
+            h1 { font-size: 2.2rem; }
+            .task-description, .calc-step { font-size: 1.1rem; }
+            .result { font-size: 1.2rem; }
+            mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Vissza az Összefoglalóhoz
+        </a>
+
+        <h1>2022. Május 12. ZH2 Megoldások</h1>
+
+        <!-- 1. Feladat -->
+        <div class="card">
+            <h2>1. Hatványsorok konvergenciája és összegfüggvénye</h2>
+            
+            <div class="task-description">
+                <strong>1. Feladat (20 pont)</strong>
+                Milyen $x \in \mathbb{R}$ esetén konvergensek az alábbi sorok? A b) részben adjuk meg a hatványsor összegfüggvényét is!
+                <br>a) $\displaystyle \sum_{k \in \mathbb{N}^+} \frac{(x + 1)^k}{k \cdot 2^k}$
+                <br>b) $\displaystyle \sum_{k \in \mathbb{N}} (-1)^k \frac{x^{2k}}{k!}$
+            </div>
+
+            <div class="formula-box">
+                <b>Alkalmazott Képlet (Cauchy-gyökkritérium és Exponenciális sor):</b> 
+                $$ R = \frac{1}{\lim_{k\to\infty} \sqrt[k]{|a_k|}} \quad \text{és} \quad e^z = \sum_{k=0}^\infty \frac{z^k}{k!} $$
+            </div>
+
+            <div class="calc-step">
+                <b>a) rész:</b>
+                <div class="math-block">
+                    1. A sor együtthatója $a_k = \frac{1}{k \cdot 2^k}$. A konvergenciasugár ($R_a$) kiszámítása:
+                    $$ \lim_{k\to\infty} \sqrt[k]{|a_k|} = \lim_{k\to\infty} \frac{1}{\sqrt[k]{k} \cdot 2} = \frac{1}{1 \cdot 2} = \frac{1}{2} $$
+                </div>
+                A sugár $R_a = \frac{1}{1/2} = 2$.
+                Tehát a sor mindenképpen konvergens, ha $|x + 1| < 2 \implies x \in ]-3, 1[$.
+            </div>
+            
+            <div class="calc-step">
+                2. Végpontok vizsgálata:
+                <div class="math-block">
+                    - Ha $x = -3$, a sor: $\displaystyle \sum_{k \in \mathbb{N}^+} \frac{(-3 + 1)^k}{k \cdot 2^k} = \sum_{k \in \mathbb{N}^+} \frac{(-2)^k}{k \cdot 2^k} = \sum_{k \in \mathbb{N}^+} \frac{(-1)^k}{k} $<br>
+                    Ez az alternáló harmonikus sor, ami a Leibniz-kritérium alapján <b>konvergens</b>.
+                    <br><br>
+                    - Ha $x = 1$, a sor: $\displaystyle \sum_{k \in \mathbb{N}^+} \frac{(1 + 1)^k}{k \cdot 2^k} = \sum_{k \in \mathbb{N}^+} \frac{2^k}{k \cdot 2^k} = \sum_{k \in \mathbb{N}^+} \frac{1}{k} $<br>
+                    Ez a harmonikus sor, ami <b>divergens</b>.
+                </div>
+                Összegezve: a sor pontosan akkor konvergens, ha $x \in [-3, 1[$.
+            </div>
+
+            <div class="calc-step">
+                <b>b) rész:</b> Összegfüggvény keresése
+                <div class="math-block">
+                    Alakítsuk át az általános tagot úgy, hogy felismerhető legyen egy nevezetes sor:
+                    $$ \sum_{k=0}^\infty (-1)^k \frac{x^{2k}}{k!} = \sum_{k=0}^\infty \frac{(-x^2)^k}{k!} $$
+                </div>
+                <div class="math-block">
+                    Ez pont az exponenciális függvény Taylor-sora, ahol $z = -x^2$. Mivel az $e^z$ sorfejtése mindenhol konvergens:
+                    $$ \sum_{k=0}^\infty \frac{(-x^2)^k}{k!} = e^{-x^2} $$
+                </div>
+                Konvergenciatartomány: $x \in \mathbb{R}$.
+            </div>
+
+            <div class="result">
+                Eredmény: a) Konvergens, ha $x \in [-3, 1[$.<br>
+                b) Összegfüggvény: $e^{-x^2}$, minden $x \in \mathbb{R}$ esetén.
+            </div>
+        </div>
+
+        <!-- 2. Feladat -->
+        <div class="card">
+            <h2>2. Taylor-sorfejtés $x_0 = 0$ körül</h2>
+            
+            <div class="task-description">
+                <strong>2. Feladat (14 pont)</strong>
+                Határozzuk meg az alábbi függvény $x_0 = 0$ körüli Taylor-sorfejtését és a Taylor-sorának konvergenciasugarát!
+                $$ f(x) := \frac{x^3}{4 - x^2} \quad (x \in \mathbb{R} \setminus \{\pm 2\}) $$
+            </div>
+
+            <div class="formula-box">
+                <b>Alkalmazott Képlet (Mértani sor összegképlete):</b> 
+                $$ \frac{1}{1-q} = \sum_{k=0}^\infty q^k \quad \text{ha } |q| < 1 $$
+            </div>
+
+            <div class="calc-step">
+                1. Alakítsuk át a függvényt, hogy a mértani sor összegképletére hasonlítson:
+                <div class="math-block">
+                    $$ f(x) = \frac{x^3}{4 - x^2} = x^3 \cdot \frac{1}{4\left(1 - \frac{x^2}{4}\right)} = \frac{x^3}{4} \cdot \frac{1}{1 - \frac{x^2}{4}} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                2. Használjuk a mértani sort $q = \frac{x^2}{4}$ helyettesítéssel:
+                <div class="math-block">
+                    $$ f(x) = \frac{x^3}{4} \sum_{k=0}^\infty \left( \frac{x^2}{4} \right)^k = \frac{x^3}{4} \sum_{k=0}^\infty \frac{x^{2k}}{4^k} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                3. Vigyük be a szorzót a szummába:
+                <div class="math-block">
+                    $$ f(x) = \sum_{k=0}^\infty \frac{x^{2k+3}}{4^{k+1}} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                4. A konvergenciasugár vizsgálata:
+                <div class="math-block">
+                    A sor pontosan akkor konvergens, ha $|q| < 1$:
+                    $$ \left| \frac{x^2}{4} \right| < 1 \implies x^2 < 4 \implies |x| < 2 $$
+                </div>
+                A konvergenciasugár tehát $R = 2$.
+            </div>
+
+            <div class="result">
+                Eredmény: $\displaystyle f(x) = \sum_{k=0}^\infty \frac{x^{2k+3}}{4^{k+1}}, \quad R = 2 $
+            </div>
+        </div>
+
+        <!-- 3. Feladat -->
+        <div class="card">
+            <h2>3. Kétváltozós Határérték</h2>
+            
+            <div class="task-description">
+                <strong>3. Feladat (14 pont)</strong>
+                Határozzuk meg az alábbi határértéket (amennyiben létezik)!
+                $$ \lim_{(x,y)\to(0,0)} \frac{2x^2 + xy}{\sqrt{x^2 + y^2}} = ? $$
+            </div>
+
+            <div class="calc-step">
+                1. Alkalmazzunk polárkoordinátás helyettesítést ($x = r\cos\varphi, y = r\sin\varphi$), és vizsgáljuk meg az origó környezetében ($r \to 0$):
+                <div class="math-block">
+                    $$ f(r\cos\varphi, r\sin\varphi) = \frac{2(r\cos\varphi)^2 + (r\cos\varphi)(r\sin\varphi)}{\sqrt{(r\cos\varphi)^2 + (r\sin\varphi)^2}} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                2. Egyszerűsítsük a kifejezést:
+                <div class="math-block">
+                    $$ = \frac{2r^2\cos^2\varphi + r^2\cos\varphi\sin\varphi}{\sqrt{r^2(\cos^2\varphi + \sin^2\varphi)}} = \frac{r^2(2\cos^2\varphi + \cos\varphi\sin\varphi)}{r} $$
+                    $$ = r \left( 2\cos^2\varphi + \cos\varphi\sin\varphi \right) $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                3. Határérték vizsgálata:
+                <div class="math-block">
+                    $$ \lim_{r \to 0} \underbrace{r}_{\to 0} \underbrace{\left( 2\cos^2\varphi + \cos\varphi\sin\varphi \right)}_{\text{korlátos}} = 0 $$
+                </div>
+                Mivel egy nullához tartó kifejezést szorzunk egy korlátossal, az eredmény biztosan 0, és ez független a $\varphi$ szögtől (tehát minden irányból közelítve 0-t kapunk).
+            </div>
+
+            <div class="result">
+                Eredmény: A határérték létezik és értéke 0.
+            </div>
+        </div>
+
+        <!-- 4. Feladat -->
+        <div class="card">
+            <h2>4. Folytonosság és Totális Differenciálhatóság</h2>
+            
+            <div class="task-description">
+                <strong>4. Feladat (28 pont)</strong>
+                Legyen
+                $$ f(x,y) := \begin{cases} \frac{3xy}{x^2+2y^2}, & \text{ha } (x,y) \neq (0,0) \\ 0, & \text{ha } (x,y) = (0,0) \end{cases} $$
+                a) Mikor mondjuk, hogy egy $\mathbb{R}^n \to \mathbb{R}$ függvény totálisan differenciálható az $a \in \mathbb{R}^n$ pontban? Adjunk elégséges feltételt!<br>
+                b) Folytonos-e az $f$ függvény? (Indokoljunk!)<br>
+                c) Számítsuk ki $f$ elsőrendű parciális deriváltjait!<br>
+                d) A sík mely pontjaiban differenciálható $f$?
+            </div>
+
+            <div class="calc-step">
+                <b>a) Definíció és Elégséges Feltétel:</b>
+                <div class="math-block">
+                    <b>Definíció:</b> Egy $f$ függvény totálisan differenciálható az értelmezési tartomány $\mathbf{a}$ belső pontjában, ha létezik olyan $\mathbf{A} \in \mathbb{R}^n$ gradiens vektor, melyre teljesül:
+                    $$ \lim_{\mathbf{x}\to\mathbf{a}} \frac{f(\mathbf{x}) - f(\mathbf{a}) - \langle \mathbf{A}, \mathbf{x} - \mathbf{a} \rangle}{||\mathbf{x} - \mathbf{a}||} = 0 $$
+                    <b>Elégséges feltétel:</b> Ha a függvény összes parciális deriváltja létezik és folytonos az $\mathbf{a}$ pontban (vagy egy környezetében), akkor ott totálisan differenciálható.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>b) Folytonosság vizsgálata az origóban:</b>
+                <div class="math-block">
+                    Vizsgáljuk a határértéket az $y = x$ egyenes (azaz $x_k = 1/k, y_k = 1/k$) mentén, miközben az origóba tartunk:
+                    $$ \lim_{(x,y)\to(0,0)} \frac{3xy}{x^2+2y^2} \implies \lim_{x\to 0} \frac{3x^2}{x^2+2x^2} = \lim_{x\to 0} \frac{3x^2}{3x^2} = 1 $$
+                    Mivel ez a limesz $1$, de $f(0,0) = 0$, a két érték eltér. A függvény <b>nem folytonos</b> az origóban.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>c) Elsőrendű parciális deriváltak:</b>
+                <div class="math-block">
+                    Origón kívül ($(x,y) \neq (0,0)$) törtderiválással:
+                    $$ \partial_x f(x,y) = \frac{3y(x^2+2y^2) - 3xy(2x)}{(x^2+2y^2)^2} = \frac{3y(x^2+2y^2) - 6x^2y}{(x^2+2y^2)^2} $$
+                    $$ \partial_y f(x,y) = \frac{3x(x^2+2y^2) - 3xy(4y)}{(x^2+2y^2)^2} = \frac{3x(x^2+2y^2) - 12xy^2}{(x^2+2y^2)^2} $$
+                </div>
+                <div class="math-block">
+                    Origóban definíció alapján:
+                    $$ \partial_x f(0,0) = \lim_{x\to 0} \frac{\frac{0}{x^2} - 0}{x} = 0 \quad \text{és} \quad \partial_y f(0,0) = \lim_{y\to 0} \frac{\frac{0}{2y^2} - 0}{y} = 0 $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>d) Differenciálhatóság helyei:</b>
+                <div class="math-block">
+                    - <b>Origóban:</b> Mivel a függvény ott nem folytonos, biztosan <b>nem differenciálható</b>.
+                    <br>- <b>Origón kívül:</b> Mivel a parciális deriváltak folytonos racionális törtfüggvények (a nevező sehol sem 0), az elégséges feltétel értelmében a függvény az $\mathbb{R}^2 \setminus \{(0,0)\}$ nyílt halmazon <b>mindenhol totálisan differenciálható</b>.
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Feladat -->
+        <div class="card">
+            <h2>5. Lokális Szélsőértékek</h2>
+            
+            <div class="task-description">
+                <strong>5. Feladat (14 pont)</strong>
+                Legyen
+                $$ f(x,y) := x^2 + y^2 + xy - 3x \quad ((x,y) \in \mathbb{R}^2) $$
+                Határozzuk meg $f$ lokális szélsőértékeit és ezek típusát!
+            </div>
+
+            <div class="calc-step">
+                1. Stacionárius pontok keresése a gradiens nullává tételével:
+                <div class="math-block">
+                    $$ \partial_x f(x,y) = 2x + y - 3 = 0 $$
+                    $$ \partial_y f(x,y) = 2y + x = 0 \implies x = -2y $$
+                </div>
+                Helyettesítsük be a második egyenletet az elsőbe:
+                <div class="math-block">
+                    $$ 2(-2y) + y - 3 = 0 \implies -4y + y - 3 = 0 \implies -3y = 3 \implies y = -1 $$
+                </div>
+                Ekkor $x = -2(-1) = 2$. Tehát egyetlen stacionárius pont van: $P(2, -1)$.
+            </div>
+
+            <div class="calc-step">
+                2. Hesse-mátrix felírása a másodrendű deriváltakkal:
+                <div class="math-block">
+                    $$ \partial_{xx} f = 2, \quad \partial_{yy} f = 2, \quad \partial_{xy} f = 1 $$
+                    $$ H_f(x,y) = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                3. Szélsőérték osztályozása a Sylvester-kritériummal $P(2,-1)$-ben:
+                <div class="math-block">
+                    A főminorok:
+                    $$ D_1 = 2 > 0 $$
+                    $$ \det(H) = 2 \cdot 2 - 1 \cdot 1 = 4 - 1 = 3 > 0 $$
+                </div>
+                Mivel $D_1 > 0$ és a determináns is pozitív, a Hesse-mátrix <b>Pozitív definit</b>. A vizsgált pontban a függvénynek <b>Lokális minimuma</b> van.
+            </div>
+
+            <div class="result">
+                Eredmény: A $P(2, -1)$ pontban lokális minimum van.
+            </div>
+        </div>
+        
+        <!-- 6. Feladat -->
+        <div class="card">
+            <h2>6. Kettős Integrál Háromszögön</h2>
+            
+            <div class="task-description">
+                <strong>6. Feladat (10 pont)</strong>
+                Számítsuk ki az $\int_H f$ integrál értékét, ahol $H$ a $(0,0), (1,0), (0,2)$ csúcspontok által meghatározott háromszög, és $f(x,y) := x^2 y$.
+            </div>
+
+            <div class="calc-step">
+                1. A normáltartomány felírása:
+                <div class="math-block">
+                    A háromszöget határoló egyenesek:
+                    - $x=0$ és $y=0$ a koordinátatengelyek.
+                    - A $(1,0)$ és $(0,2)$ közötti egyenes egyenlete: $y = -2x + 2 = 2 - 2x$.
+                    A tartomány határai: $0 \le x \le 1$ és $0 \le y \le 2 - 2x$.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                2. Írjuk fel a kettős integrált és végezzük el a belső integrálást $y$ szerint:
+                <div class="math-block">
+                    $$ \int_0^1 \left( \int_0^{2-2x} x^2 y \, dy \right) dx = \int_0^1 \left[ x^2 \frac{y^2}{2} \right]_{y=0}^{2-2x} dx $$
+                </div>
+                Helyettesítsük be az $y$ határait:
+                <div class="math-block">
+                    $$ = \int_0^1 x^2 \frac{(2-2x)^2}{2} \, dx = \int_0^1 \frac{x^2}{2} \cdot 4(1-x)^2 \, dx = \int_0^1 2x^2 (1-x)^2 \, dx $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                3. Bontsuk fel a zárójelet és integráljunk $x$ szerint:
+                <div class="math-block">
+                    $$ = \int_0^1 2x^2 (1 - 2x + x^2) \, dx = \int_0^1 (2x^2 - 4x^3 + 2x^4) \, dx $$
+                </div>
+                <div class="math-block">
+                    $$ = \left[ 2 \frac{x^3}{3} - 4 \frac{x^4}{4} + 2 \frac{x^5}{5} \right]_0^1 = \left[ \frac{2}{3}x^3 - x^4 + \frac{2}{5}x^5 \right]_0^1 $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                4. Helyettesítsük be a határokat ($x=1$ és $x=0$):
+                <div class="math-block">
+                    $$ = \frac{2}{3} - 1 + \frac{2}{5} = \frac{10}{15} - \frac{15}{15} + \frac{6}{15} = \frac{1}{15} $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: $\frac{1}{15}$
+            </div>
+        </div>
+
+        <!-- IMSc Feladat -->
+        <div class="card">
+            <h2>IMSc Feladat: Arcsin Taylor-sora</h2>
+            
+            <div class="task-description">
+                <strong>IMSc Feladat (15 pont)</strong>
+                Határozzuk meg az $\arcsin$ függvény $0$ középpontú Taylor-sorfejtését!
+            </div>
+
+            <div class="calc-step">
+                1. Vegyük észre, hogy az arcsin függvény deriváltja egy olyan kifejezés, ami sorba fejthető a binomiális sorral:
+                <div class="math-block">
+                    $$ (\arcsin x)' = \frac{1}{\sqrt{1 - x^2}} = (1 - x^2)^{-1/2} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                2. Fejtsük sorba a binomiális sor képletével ($\alpha = -1/2$, argumentum $=-x^2$):
+                <div class="math-block">
+                    $$ (1 - x^2)^{-1/2} = \sum_{k=0}^\infty \binom{-1/2}{k} (-x^2)^k = \sum_{k=0}^\infty (-1)^k \binom{-1/2}{k} x^{2k} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                3. Integráljuk vissza a sort tagonként, hogy megkapjuk az eredeti arcsin függvényt (mivel $\arcsin(0) = 0$, az integrációs konstans $C=0$):
+                <div class="math-block">
+                    $$ \arcsin x = \int_0^x \left( \sum_{k=0}^\infty (-1)^k \binom{-1/2}{k} t^{2k} \right) dt = \sum_{k=0}^\infty \left( (-1)^k \binom{-1/2}{k} \int_0^x t^{2k} \, dt \right) $$
+                </div>
+                A végeredmény a tagonkénti integrálás után:
+                <div class="math-block">
+                    $$ = \sum_{k=0}^\infty (-1)^k \binom{-1/2}{k} \frac{x^{2k+1}}{2k+1} $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: $\displaystyle \arcsin(x) = \sum_{k=0}^\infty (-1)^k \binom{-1/2}{k} \frac{x^{2k+1}}{2k+1} $
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

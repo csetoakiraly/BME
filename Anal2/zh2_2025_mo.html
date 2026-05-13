@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025. ZH2 Megoldások</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7;
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        h1 { 
+            color: white; 
+            font-weight: 800; 
+            font-size: 2.8rem; 
+            text-align: center; 
+            margin-bottom: 50px; 
+            letter-spacing: -0.5px;
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            margin-top: 0; 
+            border-bottom: 1px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .task-description {
+            background: var(--task-bg);
+            border-left: 5px solid var(--task-color);
+            padding: 25px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 35px;
+            font-size: 1.25rem;
+            color: #e0f2fe;
+            line-height: 1.7;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .task-description strong {
+            color: var(--task-color);
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .formula-box {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 4px solid var(--secondary);
+            padding: 20px 25px;
+            border-radius: 0 16px 16px 0;
+            margin: 25px 0;
+            font-size: 1.25rem;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        .formula-box b {
+            color: var(--secondary);
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .calc-step {
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 3px solid rgba(255,255,255,0.15);
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            line-height: 2;
+        }
+
+        .math-block {
+            margin: 15px 0;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .result {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+            padding: 20px 25px;
+            border-radius: 16px;
+            display: block;
+            font-weight: 700;
+            margin-top: 30px;
+            font-size: 1.4rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);
+        }
+
+        .mjx-chtml { color: white !important; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 30px 15px; }
+            .card { padding: 25px 20px; }
+            h1 { font-size: 2.2rem; }
+            .task-description, .calc-step { font-size: 1.1rem; }
+            .result { font-size: 1.2rem; }
+            mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Vissza az Összefoglalóhoz
+        </a>
+
+        <h1>2025. Május 22. ZH2 Megoldások</h1>
+
+        <!-- 1. Feladat -->
+        <div class="card">
+            <h2>1. Hatványsorok konvergenciája és összegfüggvénye</h2>
+            
+            <div class="task-description">
+                <strong>1. Feladat (22 pont)</strong>
+                Milyen $x \in \mathbb{R}$ esetén konvergensek az alábbi sorok? A b) részben adjuk meg a hatványsor összegfüggvényét is.
+                <br>a) $\displaystyle \sum_{n \in \mathbb{N}^+} \frac{(x + 3)^n}{2^n \cdot n^n}$
+                <br>b) $\displaystyle \sum_{n \in \mathbb{N}^+} \frac{n}{2}(x + 1)^n$
+            </div>
+
+            <div class="formula-box">
+                <b>Alkalmazott Képlet (Cauchy-gyökkritérium):</b> 
+                $$ R = \frac{1}{\lim_{n\to\infty} \sqrt[n]{|a_n|}} $$
+            </div>
+
+            <div class="calc-step">
+                <b>a) rész:</b> $\sum_{n \in \mathbb{N}^+} \frac{(x + 3)^n}{2^n \cdot n^n}$
+                <div class="math-block">
+                    1. A sor együtthatója $a_n = \frac{1}{2^n \cdot n^n}$.
+                </div>
+                <div class="math-block">
+                    2. A konvergenciasugár ($R_a$) kiszámítása:
+                    $$ \lim_{n\to\infty} \sqrt[n]{|a_n|} = \lim_{n\to\infty} \frac{1}{2n} = 0 $$
+                </div>
+                Mivel a limesz 0, a sugár $R_a = \frac{1}{0} = +\infty$.<br>
+                Tehát minden $x \in \mathbb{R}$ esetén konvergens a sor.
+            </div>
+            
+            <div class="calc-step">
+                <b>b) rész:</b> $\sum_{n \in \mathbb{N}^+} \frac{n}{2}(x + 1)^n$
+                <div class="math-block">
+                    1. A sor együtthatója $b_n = \frac{n}{2}$. A konvergenciasugár ($R_b$):
+                    $$ \lim_{n\to\infty} \sqrt[n]{|b_n|} = \lim_{n\to\infty} \frac{\sqrt[n]{n}}{\sqrt[n]{2}} = \frac{1}{1} = 1 $$
+                </div>
+                A sugár $R_b = 1$. A belső tartomány tehát: $|x + 1| < 1 \implies x \in ]-2, 0[$.
+            </div>
+
+            <div class="calc-step">
+                2. Végpontok vizsgálata:
+                <div class="math-block">
+                    - Ha $x = 0$, a sor: $\sum_{n \in \mathbb{N}^+} \frac{n}{2}$, ami divergens, mert az általános tag nem tart nullához.
+                    <br>- Ha $x = -2$, a sor: $\sum_{n \in \mathbb{N}^+} (-1)^n \frac{n}{2}$, ami szintén divergens.
+                </div>
+                A hatványsor pontosan az $x \in ]-2, 0[$ intervallumon konvergens.
+            </div>
+
+            <div class="calc-step">
+                3. Összegfüggvény kiszámítása (nevezetes sor deriválásával):
+                <div class="math-block">
+                    $$ f(x) = \sum_{n=1}^\infty \frac{n}{2}(x + 1)^n = \frac{x + 1}{2} \sum_{n=1}^\infty n(x + 1)^{n-1} $$
+                </div>
+                A belső szumma felírható egy mértani sor deriváltjaként, hiszen $(t^n)' = n t^{n-1}$, ahol $t = x+1$:
+                <div class="math-block">
+                    $$ \sum_{n=1}^\infty n(t)^{n-1} = \left( \sum_{n=0}^\infty t^n \right)' = \left( \frac{1}{1-t} \right)' = \frac{1}{(1-t)^2} $$
+                </div>
+                Visszahelyettesítve $t = x+1$-et:
+                <div class="math-block">
+                    $$ f(x) = \frac{x+1}{2} \cdot \frac{1}{(1 - (x+1))^2} = \frac{x+1}{2} \cdot \frac{1}{(-x)^2} = \frac{x+1}{2x^2} $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: a) Konvergens minden $x \in \mathbb{R}$-re.<br>
+                b) Konvergens, ha $x \in ]-2, 0[$, és $f(x) = \frac{x+1}{2x^2}$.
+            </div>
+        </div>
+
+        <!-- 2. Feladat -->
+        <div class="card">
+            <h2>2. Taylor-sorfejtés $x_0 = -1$ körül</h2>
+            
+            <div class="task-description">
+                <strong>2. Feladat (22 pont)</strong>
+                Határozzuk meg az alábbi függvények $x_0 = -1$ körüli Taylor-sorfejtését, valamint a Taylor-sor konvergenciasugarát és konvergenciatartományát!
+                <br>a) $f(x) := \frac{1}{3 + x} \quad (x \in \mathbb{R} \setminus \{-3\})$
+                <br>b) $g(x) := e^{2x} \quad (x \in \mathbb{R})$
+            </div>
+
+            <div class="formula-box">
+                <b>Alkalmazott Képletek:</b> 
+                $$ \frac{1}{1-q} = \sum_{n=0}^\infty q^n \quad \text{és} \quad e^z = \sum_{n=0}^\infty \frac{z^n}{n!} $$
+            </div>
+
+            <div class="calc-step">
+                <b>a) rész:</b> $f(x) = \frac{1}{3 + x}$
+                <div class="math-block">
+                    1. Alakítsuk át úgy, hogy megjelenjen benne az $(x+1)$ kifejezés, mert $-1$ a középpont:
+                    $$ f(x) = \frac{1}{2 + (x + 1)} = \frac{1}{2 \left(1 + \frac{x+1}{2}\right)} = \frac{1}{2} \cdot \frac{1}{1 - \left(-\frac{x+1}{2}\right)} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    2. Alkalmazzuk a mértani sor képletét $q = -\frac{x+1}{2}$ választással:
+                    $$ f(x) = \frac{1}{2} \sum_{n=0}^\infty \left( -\frac{x + 1}{2} \right)^n = \sum_{n=0}^\infty \frac{(-1)^n}{2^{n+1}} (x + 1)^n $$
+                </div>
+                Konvergencia feltétel: $|q| < 1 \implies \left|-\frac{x+1}{2}\right| < 1 \implies |x+1| < 2$.<br>
+                Így a konvergenciasugár $R = 2$, a tartomány pedig $]-3, 1[$.
+            </div>
+
+            <div class="calc-step">
+                <b>b) rész:</b> $g(x) = e^{2x}$
+                <div class="math-block">
+                    1. Alakítsuk át az exponenciális kifejezést úgy, hogy az $(x+1)$ hatványt tartalmazza:
+                    $$ e^{2x} = e^{2(x+1 - 1)} = e^{-2} \cdot e^{2(x+1)} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    2. Használjuk az $e^z$ ismert Taylor-sorát $z = 2(x+1)$ helyettesítéssel:
+                    $$ g(x) = e^{-2} \sum_{n=0}^\infty \frac{(2(x+1))^n}{n!} = \sum_{n=0}^\infty \frac{2^n}{e^2 \cdot n!} (x + 1)^n $$
+                </div>
+                Az exponenciális sor konvergenciasugara $R = +\infty$, így minden $x \in \mathbb{R}$ esetén konvergens.
+            </div>
+
+            <div class="result">
+                Eredmény: a) $\sum_{n=0}^\infty \frac{(-1)^n}{2^{n+1}}(x+1)^n$, $R=2$, $x \in ]-3, 1[$<br>
+                b) $\sum_{n=0}^\infty \frac{2^n}{e^2 n!}(x+1)^n$, $R=+\infty$, $x \in \mathbb{R}$
+            </div>
+        </div>
+
+        <!-- 3. Feladat -->
+        <div class="card">
+            <h2>3. Átviteli elv és folytonosság</h2>
+            
+            <div class="task-description">
+                <strong>3. Feladat (16 pont)</strong><br>
+                a) Mit mond ki a folytonosságra vonatkozó átviteli elv? ($\mathbb{R}^n \to \mathbb{R}$ függvények esetén)<br>
+                b) Folytonos-e $f$ a $(0,0)$ pontban?
+                $$ f(x,y) := \begin{cases} \frac{3xe^{2y}}{x^2+2y^2}, & \text{ha } (x,y) \neq (0,0) \\ 0, & \text{ha } (x,y) = (0,0) \end{cases} $$
+            </div>
+
+            <div class="calc-step">
+                <b>a) Átviteli elv a folytonosságra:</b><br>
+                Egy $f : \mathbb{R}^n \to \mathbb{R}$ függvény folytonos az értelmezési tartomány $\mathbf{a}$ belső pontjában pontosan akkor, ha:
+                <div class="math-block">
+                    Minden olyan $(\mathbf{x}_k)$ sorozatra, amelyre $\lim_{k\to\infty} \mathbf{x}_k = \mathbf{a}$, teljesül, hogy a függvényértékek sorozata is tart a függvény értékéhez a pontban:
+                    $$ \lim_{k\to\infty} f(\mathbf{x}_k) = f(\mathbf{a}) $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>b) Folytonosság vizsgálata az origóban:</b><br>
+                Válasszunk egy tetszőleges sorozatot, ami az origóba tart, például: $(x_k, y_k) = (\frac{1}{k}, 0)$, ami esetén egyértelmű, hogy $\lim_{k\to\infty} (\frac{1}{k}, 0) = (0,0)$.
+                <div class="math-block">
+                    Helyettesítsük be ezt a sorozatot a függvénybe:
+                    $$ f\left(\frac{1}{k}, 0\right) = \frac{3 \left(\frac{1}{k}\right) e^{0}}{\left(\frac{1}{k}\right)^2 + 0} = \frac{\frac{3}{k}}{\frac{1}{k^2}} = 3k $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                Vegyük a kapott sorozat határértékét:
+                <div class="math-block">
+                    $$ \lim_{k\to\infty} 3k = +\infty $$
+                </div>
+                Mivel a kapott határérték $+\infty$, de a függvényérték az origóban $f(0,0) = 0$, a két érték nem egyezik meg. Az átviteli elv alapján a függvény <b>nem folytonos</b> az origóban.
+            </div>
+
+            <div class="result">
+                Eredmény: A függvény <b>NEM</b> folytonos a $(0,0)$ pontban.
+            </div>
+        </div>
+
+        <!-- 4. Feladat -->
+        <div class="card">
+            <h2>4. Parciális derivált és Differenciálhatóság</h2>
+            
+            <div class="task-description">
+                <strong>4. Feladat (14 pont)</strong>
+                Legyen
+                $$ f(x,y) := \begin{cases} \frac{3x\cos(y)}{x^2+2y^2}, & \text{ha } (x,y) \neq (0,0) \\ 0, & \text{ha } (x,y) = (0,0) \end{cases} $$
+                a) Számítsuk ki $f$ elsőrendű parciális deriváltjait a sík minden pontjában.<br>
+                b) A sík mely pontjaiban differenciálható (totálisan) $f$? (Indokoljunk.)
+            </div>
+
+            <div class="calc-step">
+                <b>a) Parciális deriváltak origón kívül ($(x,y) \neq (0,0)$):</b>
+                <div class="math-block">
+                    A tört deriválási szabályát használva ($x$ és $y$ szerint külön-külön deriválva):
+                    $$ \partial_x f(x,y) = \frac{3\cos(y)(x^2+2y^2) - 3x\cos(y)(2x)}{(x^2+2y^2)^2} = \frac{3\cos(y)(2y^2 - x^2)}{(x^2+2y^2)^2} $$
+                    $$ \partial_y f(x,y) = \frac{-3x\sin(y)(x^2+2y^2) - 3x\cos(y)(4y)}{(x^2+2y^2)^2} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>a) Parciális deriváltak az origóban (definícióval):</b>
+                <div class="math-block">
+                    Deriválás $x$ szerint:
+                    $$ \partial_x f(0,0) = \lim_{x\to 0} \frac{f(x,0) - f(0,0)}{x} = \lim_{x\to 0} \frac{\frac{3x\cos(0)}{x^2} - 0}{x} = \lim_{x\to 0} \frac{3}{x^2} = +\infty $$
+                    Mivel a limesz végtelen, $\partial_x f(0,0)$ <b>nem létezik</b>.
+                </div>
+                <div class="math-block">
+                    Deriválás $y$ szerint:
+                    $$ \partial_y f(0,0) = \lim_{y\to 0} \frac{f(0,y) - f(0,0)}{y} = \lim_{y\to 0} \frac{0 - 0}{y} = 0 $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>b) Totális differenciálhatóság vizsgálata:</b>
+                <div class="math-block">
+                    - <b>Origóban:</b> Mivel az $x$ szerinti parciális derivált nem létezik az origóban, $f$ itt biztosan <b>nem differenciálható</b>.<br>
+                    - <b>Origón kívül:</b> A parciális deriváltak mindenhol máshol racionális és folytonos függvények (a nevező sosem nulla), így az elégséges feltétel miatt az $\mathbb{R}^2 \setminus \{(0,0)\}$ nyílt halmazon a függvény <b>totálisan differenciálható</b>.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: Csak az origón kívül, az $\mathbb{R}^2 \setminus \{(0,0)\}$ halmazon differenciálható.
+            </div>
+        </div>
+
+        <!-- 5. Feladat -->
+        <div class="card">
+            <h2>5. Lokális Szélsőérték és Érintősík</h2>
+            
+            <div class="task-description">
+                <strong>5. Feladat (26 pont)</strong>
+                Legyen $f(x,y) := -x^2 + 4xy + y^4 + 4y^3$.<br>
+                a) Határozzuk meg $f$ lokális szélsőértékeit és ezek típusát.<br>
+                b) Határozzuk meg az $f$ függvény $(1,0)$ pontbeli érintősíkjának egyenletét.
+            </div>
+
+            <div class="calc-step">
+                <b>a) Lokális Szélsőértékek:</b>
+                <div class="math-block">
+                    1. Határozzuk meg a stacionárius pontokat a gradiens nullával egyenlővé tételével:
+                    $$ \partial_x f(x,y) = -2x + 4y = 0 \implies x = 2y $$
+                    $$ \partial_y f(x,y) = 4x + 4y^3 + 12y^2 = 0 $$
+                </div>
+                Helyettesítsük be $x=2y$-t a második egyenletbe:
+                <div class="math-block">
+                    $$ 4(2y) + 4y^3 + 12y^2 = 0 \implies 8y + 4y^3 + 12y^2 = 0 $$
+                    $$ 4y(y^2 + 3y + 2) = 0 $$
+                </div>
+                A másodfokú tényező gyökei $-1$ és $-2$. A három $y$ megoldás: $0, -1, -2$.<br>
+                A stacionárius pontok: $P_1(0,0)$, $P_2(-2,-1)$, és $P_3(-4,-2)$.
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    2. Írjuk fel a Hesse-mátrixot a másodrendű deriváltakkal:
+                    $$ \partial_{xx} f = -2, \quad \partial_{yy} f = 12y^2 + 24y, \quad \partial_{xy} f = 4 $$
+                    $$ H_f(x,y) = \begin{pmatrix} -2 & 4 \\ 4 & 12y^2+24y \end{pmatrix} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                3. Vizsgáljuk a pontokat (Sylvester-kritérium):
+                <div class="math-block">
+                    - <b>$P_1(0,0)$-ban:</b> $\det H_f(0,0) = \det \begin{pmatrix} -2 & 4 \\ 4 & 0 \end{pmatrix} = -16 < 0 \implies$ <b>Indefinit (Nyeregpont)</b>.
+                    <br><br>
+                    - <b>$P_3(-4,-2)$-ben:</b> $\det H_f(-4,-2) = \det \begin{pmatrix} -2 & 4 \\ 4 & 12(4)+24(-2) \end{pmatrix} = \det \begin{pmatrix} -2 & 4 \\ 4 & 0 \end{pmatrix} = -16 < 0 \implies$ <b>Indefinit (Nyeregpont)</b>.
+                    <br><br>
+                    - <b>$P_2(-2,-1)$-ben:</b> $\det H_f(-2,-1) = \det \begin{pmatrix} -2 & 4 \\ 4 & 12-24 \end{pmatrix} = \det \begin{pmatrix} -2 & 4 \\ 4 & -12 \end{pmatrix} = 24 - 16 = 8 > 0$.<br>
+                    Mivel $D_1 = -2 < 0$ és a determináns pozitív, a mátrix <b>Negatív definit (Lokális Maximum)</b>.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>b) Érintősík egyenlete az $(1,0)$ pontban:</b>
+                <div class="math-block">
+                    Számítsuk ki a gradiens koordinátáit és a függvényértéket a pontban:
+                    $$ \partial_x f(1,0) = -2(1) + 4(0) = -2 $$
+                    $$ \partial_y f(1,0) = 4(1) + 4(0)^3 + 12(0)^2 = 4 $$
+                    $$ z_0 = f(1,0) = -(1)^2 + 4(1)(0) + 0 + 0 = -1 $$
+                </div>
+                A normálvektor: $(-2, 4, -1)$. Az érintősík egyenlete:
+                <div class="math-block">
+                    $$ -2(x - 1) + 4(y - 0) - (z - (-1)) = 0 $$
+                    $$ -2x + 2 + 4y - z - 1 = 0 \implies -2x + 4y - z = -1 $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: a) $P_1$ és $P_3$ nyeregpont, $P_2(-2,-1)$ lokális maximum.<br>
+                b) Az érintősík egyenlete: $-2x + 4y - z = -1$.
+            </div>
+        </div>
+        
+        <!-- 6. Feladat -->
+        <div class="card">
+            <h2>6. Taylor-polinomiális Integrálközelítés és Hibabecslés</h2>
+            
+            <div class="task-description">
+                <strong>6. Feladat (plusz 10 pont)</strong>
+                Legfeljebb mekkora hibát követünk el, ha az $\int_0^1 \sqrt[4]{4+x^2} dx$ integrált az integrandus 0 középpontú negyedfokú Taylor-polinomjával közelítjük? A becsléshez használjuk az integrandus Taylor-sorfejtését.
+            </div>
+
+            <div class="calc-step">
+                1. Fejtsük sorba a függvényt a binomiális sor segítségével:
+                <div class="math-block">
+                    $$ f(x) = \sqrt[4]{4+x^2} = \left( 4 \left( 1 + \frac{x^2}{4} \right) \right)^{1/4} = \sqrt{2} \left( 1 + \frac{x^2}{4} \right)^{1/4} $$
+                </div>
+                A binomiális sor ($\alpha = 1/4$, $z = \frac{x^2}{4}$):
+                <div class="math-block">
+                    $$ f(x) = \sqrt{2} \sum_{k=0}^\infty \binom{1/4}{k} \left( \frac{x^2}{4} \right)^k = \sqrt{2} \sum_{k=0}^\infty \binom{1/4}{k} \frac{x^{2k}}{2^{2k}} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                2. A negyedfokú Taylor-polinomhoz ($T_4$) a $2k \le 4$ hatványok kellenek, tehát $k=0, 1, 2$:
+                <div class="math-block">
+                    $$ T_4(x) = \sqrt{2} \sum_{k=0}^2 \binom{1/4}{k} \frac{x^{2k}}{2^{2k}} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                3. Az integrálás közelítésének hibája az eredeti sor és a Taylor-polinom integráljának különbsége:
+                <div class="math-block">
+                    $$ \text{Hiba} = \left| \sqrt{2} \int_0^1 f(x) dx - \sqrt{2} \int_0^1 T_4(x) dx \right| = \sqrt{2} \left| \int_0^1 \sum_{k=3}^\infty \binom{1/4}{k} \frac{x^{2k}}{2^{2k}} dx \right| $$
+                </div>
+                Tagonként integrálva:
+                <div class="math-block">
+                    $$ \text{Hiba} = \sqrt{2} \left| \sum_{k=3}^\infty \binom{1/4}{k} \frac{1}{(2k+1) \cdot 2^{2k}} \right| $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                4. Hibabecslés a Leibniz-sor tulajdonságaival:
+                <div class="math-block">
+                    Bizonyítható, hogy a szummán belüli sor alternáló és abszolút értékben monoton csökkenve tart a nullához (Leibniz-típusú). A hiba így felülről becsülhető a sor első elhagyott tagjának ($k=3$) abszolút értékével:
+                    $$ \text{Hiba} \le \sqrt{2} \left| \binom{1/4}{3} \frac{1}{(2 \cdot 3 + 1) \cdot 2^6} \right| = \sqrt{2} \left| \binom{1/4}{3} \right| \frac{1}{7 \cdot 2^6} $$
+                </div>
+                Ezzel a feladatot megoldottuk, a hiba maximum ekkora lehet.
+            </div>
+
+            <div class="result">
+                Eredmény: $\displaystyle \text{Hiba} \le \sqrt{2} \left| \binom{1/4}{3} \right| \frac{1}{7 \cdot 2^6} $
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
