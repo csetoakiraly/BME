@@ -1035,10 +1035,12 @@
                 <div class="formula">$$ a_n = \frac{f^{(n)}(x_0)}{n!} \quad \implies \quad f^{(n)}(x_0) = n! \cdot a_n $$</div>
                 <p><b>Nevezetes Maclaurin-sorok ($x_0 = 0$):</b></p>
                 <ul>
-                    <li>$e^x = \sum \frac{x^n}{n!}$</li>
-                    <li>$\sin(x) = \sum (-1)^n \frac{x^{2n+1}}{(2n+1)!}$, $\quad \cos(x) = \sum (-1)^n \frac{x^{2n}}{(2n)!}$</li>
-                    <li>$\text{sh}(x) = \sum \frac{x^{2n+1}}{(2n+1)!}$, $\quad \text{ch}(x) = \sum \frac{x^{2n}}{(2n)!}$</li>
-                    <li>$(1+x)^\alpha = \sum \binom{\alpha}{n} x^n \quad (\alpha \in \mathbb{R})$ (Binomiális sor)</li>
+                    <li>$e^x = \sum_{n=0}^\infty \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots$</li>
+                    <li>$\sin(x) = \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{(2n+1)!} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \dots$</li>
+                    <li>$\cos(x) = \sum_{n=0}^\infty (-1)^n \frac{x^{2n}}{(2n)!} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \dots$</li>
+                    <li>$\text{sh}(x) = \sum_{n=0}^\infty \frac{x^{2n+1}}{(2n+1)!} = x + \frac{x^3}{3!} + \frac{x^5}{5!} + \dots$</li>
+                    <li>$\text{ch}(x) = \sum_{n=0}^\infty \frac{x^{2n}}{(2n)!} = 1 + \frac{x^2}{2!} + \frac{x^4}{4!} + \dots$</li>
+                    <li>$(1+x)^\alpha = \sum_{n=0}^\infty \binom{\alpha}{n} x^n = 1 + \alpha x + \frac{\alpha(\alpha-1)}{2!}x^2 + \dots \quad (\alpha \in \mathbb{R})$ (Binomiális sor)</li>
                 </ul>
                 <p><b>Hibabecslés (Leibniz-sorral történő integrálközelítésnél):</b><br>
                 Ha alternáló (váltakozó előjelű) és nullához tartó sorral integrálunk, a közelítés hibája felülről becsülhető <b>az első elhagyott tag abszolút értékével</b>.</p>
