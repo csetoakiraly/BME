@@ -396,6 +396,7 @@
         <a href="#" onclick="showSection('s9', this)">9. Parciális Derivált</a>
         <a href="#" onclick="showSection('s10', this)">10. Szélsőértékek</a>
         <a href="#" style="color: #f59e0b; margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;" onclick="showSection('zh2', this)">★ ZH2 Összefoglaló</a>
+        <a href="puska.html" style="color: #ef4444; font-weight: bold; background: rgba(239, 68, 68, 0.1);">🔥 Túlélő Puska</a>
         <a href="zh2_2025_mo.html" style="color: #4ade80;">★ 2025. ZH2 Megoldások</a>
         <a href="zh2_2024_mo.html" style="color: #4ade80;">★ 2024. ZH2 Megoldások</a>
         <a href="zh2_2023_mo.html" style="color: #4ade80;">★ 2023. ZH2 Megoldások</a>
@@ -1027,13 +1028,11 @@
             <h1 style="color: #f59e0b;">★ ZH2 Szuper-Összefoglaló</h1>
             <div class="card glass" style="border-color: rgba(245, 158, 11, 0.3);">
                 
-                <h3 style="color: #f59e0b;">1. Hatványsorok és Taylor-sorok</h3>
+                <h3 style="color: #f59e0b;">1. Hatványsorok, Taylor-sorok és Integrálközelítés</h3>
                 <p><b>Konvergenciasugár (Hányadoskritériummal):</b></p>
                 <div class="formula">$$ R_a = \lim_{n \to \infty} \left| \frac{a_n}{a_{n+1}} \right| $$</div>
                 <p><b>Taylor-polinom / Taylor-sor együtthatója:</b></p>
                 <div class="formula">$$ a_n = \frac{f^{(n)}(x_0)}{n!} \quad \implies \quad f^{(n)}(x_0) = n! \cdot a_n $$</div>
-                <p><b>Lagrange-maradéktag (Hibabecslés):</b></p>
-                <div class="formula">$$ R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}(x - x_0)^{n+1} $$</div>
                 <p><b>Nevezetes Maclaurin-sorok ($x_0 = 0$):</b></p>
                 <ul>
                     <li>$e^x = \sum \frac{x^n}{n!}$</li>
@@ -1041,33 +1040,34 @@
                     <li>$\text{sh}(x) = \sum \frac{x^{2n+1}}{(2n+1)!}$, $\quad \text{ch}(x) = \sum \frac{x^{2n}}{(2n)!}$</li>
                     <li>$(1+x)^\alpha = \sum \binom{\alpha}{n} x^n \quad (\alpha \in \mathbb{R})$ (Binomiális sor)</li>
                 </ul>
+                <p><b>Hibabecslés (Leibniz-sorral történő integrálközelítésnél):</b><br>
+                Ha alternáló (váltakozó előjelű) és nullához tartó sorral integrálunk, a közelítés hibája felülről becsülhető <b>az első elhagyott tag abszolút értékével</b>.</p>
 
                 <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
 
-                <h3 style="color: #f59e0b;">2. Többváltozós Határérték</h3>
-                <p><b>Cáfolat ($y=mx$ egyenesekkel):</b> Helyettesítsd be az $y=mx$-et! Ha a határérték függ $m$-től, a Limesz <b>nem létezik</b>.</p>
+                <h3 style="color: #f59e0b;">2. Folytonosság és Többváltozós Határérték</h3>
+                <p><b>Átviteli elv a folytonosságra:</b> Egy $f$ függvény pontosan akkor folytonos $\mathbf{a}$-ban, ha minden $\mathbf{x}_k \to \mathbf{a}$ sorozat esetén $f(\mathbf{x}_k) \to f(\mathbf{a})$.</p>
+                <p><b>Cáfolat ($y=mx$ egyenesekkel):</b> Helyettesítsd be az $y=mx$-et! Ha a határérték függ $m$-től, a Limesz <b>nem létezik</b> (így a függvény nem is folytonos).</p>
                 <p><b>Bizonyítás (Polárkoordinátákkal):</b> Helyettesítsd be: $x=r\cos\varphi, y=r\sin\varphi$. Ha $r \to 0$ esetén a kifejezés $0 \cdot \text{korlátos}$ alakú (függetlenül $\varphi$-től), a Limesz <b>létezik és 0</b>.</p>
 
                 <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
 
-                <h3 style="color: #f59e0b;">3. Differenciálhatóság és Iránymenti Derivált</h3>
-                <p><b>Gradiens vektor:</b> A parciális deriváltak vektora.</p>
+                <h3 style="color: #f59e0b;">3. Parciális Deriváltak és Differenciálhatóság</h3>
+                <p><b>Origóbeli derivált (Definíció alapján kötelező!):</b></p>
+                <div class="formula">$$ \partial_x f(0,0) = \lim_{x\to 0} \frac{f(x,0) - f(0,0)}{x} $$</div>
+                <p><b>Totális differenciálhatóság elégséges feltétele:</b> Ha a parciális deriváltak léteznek és <b>folytonosak</b> egy adott pontban (vagy nyílt halmazon), akkor a függvény ott totálisan differenciálható.</p>
+                <p><b>Gradiens vektor:</b></p>
                 <div class="formula">$$ \text{grad } f(\mathbf{a}) = \left( \partial_1 f(\mathbf{a}), \partial_2 f(\mathbf{a}) \right) $$</div>
                 <p><b>Érintősík egyenlete:</b></p>
                 <div class="formula">$$ \partial_1 f(x_0, y_0)(x - x_0) + \partial_2 f(x_0, y_0)(y - y_0) - (z - f(x_0, y_0)) = 0 $$</div>
                 <p><b>Iránymenti derivált ($D_\mathbf{e} f$):</b> FIGYELEM: Az irányvektort <b>normálni kell</b> ($||\mathbf{e}|| = 1$)!</p>
                 <div class="formula">$$ D_{\mathbf{e}} f(\mathbf{a}) = \langle \text{grad } f(\mathbf{a}), \mathbf{e} \rangle $$</div>
-                <ul>
-                    <li>Legmeredekebb <b>emelkedés</b> iránya: pontosan a $\text{grad } f$ iránya. Értéke: $+||\text{grad } f||$.</li>
-                    <li>Legmeredekebb <b>lejtés</b> iránya: a gradienssel ellentétes. Értéke: $-||\text{grad } f||$.</li>
-                </ul>
-                <p><b>Teljes differenciál (Hibabecslés):</b> $|\Delta f| \le |\partial_1 f| \cdot |\Delta x| + |\partial_2 f| \cdot |\Delta y|$</p>
 
                 <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
 
-                <h3 style="color: #f59e0b;">4. Szélsőértékek (Lokális és Feltételes)</h3>
+                <h3 style="color: #f59e0b;">4. Szélsőértékek és Kettős Integrál</h3>
                 <p><b>Lokális Szélsőérték:</b></p>
-                <p>1. <b>Szükséges feltétel:</b> Keresd meg a stacionárius pontokat: $\text{grad } f(x,y) = (0,0)$.</p>
+                <p>1. <b>Stacionárius pontok:</b> $\text{grad } f(x,y) = (0,0)$.</p>
                 <p>2. <b>Hesse-mátrix:</b> $H_f = \begin{pmatrix} \partial_{1,1} f & \partial_{1,2} f \\ \partial_{2,1} f & \partial_{2,2} f \end{pmatrix}$</p>
                 <p>3. <b>Sylvester-kritérium:</b> A főminorok ($D_1 = \partial_{1,1} f$, $D_2 = \det(H_f)$) alapján:</p>
                 <ul>
@@ -1075,13 +1075,11 @@
                     <li>Ha $D_1 < 0$ és $D_2 > 0$ $\implies$ <b>Lokális maximum</b>.</li>
                     <li>Ha $D_2 < 0$ $\implies$ <b>Nyeregpont</b> (nincs szélsőérték).</li>
                 </ul>
-
-                <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
-
                 <p><b>Feltételes Szélsőérték ($g(x,y)=0$ mellett):</b></p>
-                <p>1. <b>Lagrange-függvény:</b> $L(x, y, \lambda) = f(x, y) - \lambda \cdot g(x, y)$</p>
-                <p>2. <b>Egyenletrendszer:</b> Oldd meg a $\partial_x L = 0$, $\partial_y L = 0$, és $g(x,y) = 0$ rendszert.</p>
-                <p>3. <b>Döntés:</b> Helyettesítsd a kapott $(x,y)$ pontokat az eredeti $f$ függvénybe. A legnagyobb a maximum, a legkisebb a minimum.</p>
+                <p>Lagrange-függvény: $L(x, y, \lambda) = f(x, y) - \lambda \cdot g(x, y)$. Deriváld $x, y, \lambda$ szerint, tedd egyenlővé nullával.</p>
+                <p><b>Kettős Integrál normáltartományon:</b></p>
+                <p>Ha a tartomány (pl. háromszög) felírható $a \le x \le b$ és $g_1(x) \le y \le g_2(x)$ alakban, akkor a külső integrál fix számos határok között megy, a belső pedig függvényhatárokkal:</p>
+                <div class="formula">$$ \int_a^b \left( \int_{g_1(x)}^{g_2(x)} f(x,y) \, dy \right) dx $$</div>
             </div>
         </section>
     </div>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analízis 2 ZH2 - Puska (Lépésről lépésre)</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #ef4444; /* Pirosas/Narancsos puskás szín */
+            --secondary-glow: rgba(239, 68, 68, 0.5);
+            --task-color: #f59e0b; /* Sárga a tippeknek */
+            --task-bg: rgba(245, 158, 11, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(239, 68, 68, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(245, 158, 11, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        h1 { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 3rem; 
+            text-align: center; 
+            margin-bottom: 50px; 
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            margin-top: 0; 
+            border-bottom: 2px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            font-weight: 800;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .recognition {
+            background: rgba(56, 189, 248, 0.1);
+            border-left: 5px solid #38bdf8;
+            padding: 20px 25px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            color: #e0f2fe;
+            line-height: 1.6;
+        }
+        
+        .recognition strong {
+            color: #38bdf8;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+        }
+
+        .steps-list {
+            margin: 0;
+            padding-left: 0;
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .steps-list li {
+            position: relative;
+            padding-left: 55px;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: #f1f5f9;
+        }
+
+        .steps-list li::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: -2px;
+            width: 35px;
+            height: 35px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            box-shadow: 0 0 10px var(--secondary-glow);
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px dashed var(--secondary);
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+            color: #fca5a5;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .formula-inline {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-family: monospace;
+            color: #a78bfa;
+        }
+
+        .mjx-chtml { color: white !important; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 30px 15px; }
+            .card { padding: 25px 20px; }
+            h1 { font-size: 2.2rem; }
+            .steps-list li { font-size: 1.1rem; }
+            mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Vissza az Összefoglalóhoz
+        </a>
+
+        <h1>🔥 Túlélő Puska: Lépésről Lépésre 🔥</h1>
+
+        <!-- 1. Hatványsorok -->
+        <div class="card">
+            <h2>1. Hatványsorok (Konvergencia & Összeg)</h2>
+            <div class="recognition">
+                <strong>Mit látsz a feladatban?</strong><br>
+                Szumma jelet ($\sum$), benne egy $(x-x_0)^n$ vagy $x^n$ hatványos kifejezéssel.<br>
+                Kérdés: <i>"Milyen x esetén konvergens?"</i> vagy <i>"Mi az összegfüggvénye?"</i>
+            </div>
+            
+            <ol class="steps-list">
+                <li><b>Együttható azonosítása:</b> Írd ki, mi az $a_n$ (minden, ami nem az $(x-x_0)^n$).</li>
+                <li><b>Konvergenciasugár ($R$) számítása:</b> Használd a gyökkritériumot ($R = \frac{1}{\lim \sqrt[n]{|a_n|}}$) vagy a hányadoskritériumot ($R = \lim |\frac{a_n}{a_{n+1}}|$).</li>
+                <li><b>Belső tartomány felírása:</b> $|x - x_0| < R$. Ebből kapsz egy nyílt intervallumot (pl. $]-2, 0[$).</li>
+                <li><b>VÉGPONTOK (A legfontosabb!):</b> Helyettesítsd be az intervallum két szélét az EREDETI szummába az $x$ helyére!
+                    <div class="warning-box">
+                        Az egyiknél általában egy sima, a másiknál egy alternáló $(-1)^n$-es sor jön ki. Ha harmonikus $\implies$ divergens. Ha alternáló és nullához tart $\implies$ konvergens (Leibniz).
+                    </div>
+                </li>
+                <li><b>Összegfüggvény:</b> Ne próbáld nulláról felépíteni! Alakítsd át úgy a sort, hogy ráhúzható legyen a mértani sorra ($\sum q^n = \frac{1}{1-q}$) vagy az exponenciális sorra ($e^z = \sum \frac{z^n}{n!}$). Ha $n$ van a szorzóban, az deriválásból jön.</li>
+            </ol>
+        </div>
+
+        <!-- 2. Taylor sorok -->
+        <div class="card">
+            <h2>2. Taylor-sorfejtés & Deriváltak</h2>
+            <div class="recognition">
+                <strong>Mit látsz a feladatban?</strong><br>
+                Adott egy függvény (pl. egy tört vagy $e^{\dots}$), és kérik az $x_0$ körüli Taylor-sorát, vagy a $k$-adik deriváltját (pl. $f^{(100)}(0)$).
+            </div>
+            
+            <ol class="steps-list">
+                <li><b>NE DERIVÁLJ!</b> Hacsak nem egy nagyon rövid polinomról van szó, sose kezdj el láncszabállyal deriválgatni.</li>
+                <li><b>Alakítsd át ismert formára:</b>
+                    <ul>
+                        <li>Ha <b>tört</b>: Hozd $\frac{1}{1-q}$ alakra, és használd a $\sum q^n$ sort.</li>
+                        <li>Ha $e^{\dots}$: Használd az $\sum \frac{z^n}{n!}$ sort.</li>
+                        <li>Ha gyök (pl. $\sqrt[3]{1+x}$): Hozd $(1+z)^\alpha$ alakra, és használd a binomiális sort: $\sum \binom{\alpha}{n} z^n$.</li>
+                    </ul>
+                </li>
+                <li><b>Ha $x_0 \neq 0$:</b> Manipulálj a kifejezésen! Adj hozzá és vonj ki, vagy emelj ki úgy, hogy megjelenjen az $(x - x_0)$ tag. (Pl. $x_0 = -1$ esetén kényszerítsd ki az $(x+1)$ formát).</li>
+                <li><b>Derivált kiszámítása a sorból:</b> Ha kérik az $f^{(k)}(0)$-t, keresd meg a sorodban az $x^k$ együtthatóját ($a_k$). A képlet: <span class="formula-inline">$f^{(k)}(0) = a_k \cdot k!$</span>. Helyettesíts és szorozz!</li>
+            </ol>
+        </div>
+
+        <!-- 3. Kétváltozós Határérték -->
+        <div class="card">
+            <h2>3. Kétváltozós Határérték (Limesz)</h2>
+            <div class="recognition">
+                <strong>Mit látsz a feladatban?</strong><br>
+                $\lim_{(x,y)\to(0,0)} f(x,y) = ?$ 
+            </div>
+            
+            <ol class="steps-list">
+                <li><b>Gyanú: Nem létezik (Pl. polinom osztva polinommal).</b>
+                    <br>Közelíts az $y = mx$ egyeneseken! Helyettesítsd $y$ helyére az $mx$-et a képletben, egyszerűsíts $x$-szel. Ha az eredményben benne marad az $m$ (tehát $m$-től függ), akkor a Limesz <b>nem létezik</b>.
+                </li>
+                <li><b>Gyanú: Létezik és 0 (Pl. trig. függvények, vegyes szorzatok).</b>
+                    <br>Használj polárkoordinátákat! $x = r\cos\varphi$, $y = r\sin\varphi$. Vizsgáld meg, mi történik, ha $r \to 0$. Ha a kifejezés felírható $\underbrace{r}_{\to 0} \cdot \underbrace{(\text{szögfüggvények})}_{\text{korlátos}}$ alakban, akkor a Limesz <b>biztosan 0</b>.
+                </li>
+                <li><b>Átviteli Elv (Elmélet):</b> Bármilyen sorozatot választunk, ami a ponthoz tart (de nem maga a pont), a függvényértékeknek is ugyanahhoz a Limeszhez kell tartaniuk.</li>
+            </ol>
+        </div>
+
+        <!-- 4. Folytonosság és Differenciálhatóság -->
+        <div class="card">
+            <h2>4. Folytonosság és Parciális Deriváltak</h2>
+            <div class="recognition">
+                <strong>Mit látsz a feladatban?</strong><br>
+                Egy "kapcsos zárójeles" függvény, ami az origóban ($0,0$) külön van definiálva (általában 0). Hol folytonos? Hol differenciálható?
+            </div>
+            
+            <ol class="steps-list">
+                <li><b>Folytonosság az origóban:</b> Pontosan úgy, mint a Határértéknél. Számold ki a Limeszt $y=mx$-szel. Ha nem az jön ki, ami a kapcsos zárójel alsó sorában van (általában 0), akkor <b>nem folytonos</b>.</li>
+                <li><b>Deriválás az origón KÍVÜL:</b> Sima deriválási szabályok (törtszabály). Az $x$ deriválásánál $y$ konstans, és fordítva. (Ide <b>NEM KELL</b> definíció).</li>
+                <li><b>Deriválás az ORIGÓBAN (KÖTELEZŐ!):</b> Itt tilos szabályokkal deriválni! Írd fel a definíciót:
+                    <div class="math-block">
+                        $\partial_x f(0,0) = \lim_{x\to 0} \frac{f(x,0) - f(0,0)}{x}$
+                    </div>
+                    (Ugyanez $y$-ra). Ha a Limesz végtelen, akkor a derivált <b>nem létezik</b>.
+                </li>
+                <li><b>Totális differenciálhatóság konklúziója:</b> 
+                    <br>- Ha az origóban NEM folytonos, vagy egy derivált NEM létezik $\implies$ Ott <b>NEM differenciálható</b>.
+                    <br>- Az origón kívül, mivel a deriváltak folytonos törtek (és a nevező nem 0) $\implies$ <b>Mindenhol máshol differenciálható</b>.
+                </li>
+            </ol>
+        </div>
+
+        <!-- 5. Lokális Szélsőérték -->
+        <div class="card">
+            <h2>5. Lokális Szélsőérték (Max/Min keresés)</h2>
+            <div class="recognition">
+                <strong>Mit látsz a feladatban?</strong><br>
+                Egy sima többváltozós polinom (pl. $x^2 + y^2 + xy - 3x$). "Keresse meg a lokális szélsőértékeket és osztályozza őket!"
+            </div>
+            
+            <ol class="steps-list">
+                <li><b>Gradiens = 0 (Stacionárius pontok):</b> Számold ki $\partial_x f$-et és $\partial_y f$-et. Tedd mindkettőt egyenlővé nullával.
+                <li><b>Oldd meg az egyenletrendszert:</b> Fejezd ki az egyikből valamelyik változót (pl. $x = 2y$), és helyettesítsd a másikba. Keresd meg a pontokat (pl. $(0,0)$ és $(2,-1)$).</li>
+                <li><b>Hesse-mátrix felírása:</b> Deriváld tovább az első deriváltakat, hogy megkapd a másodrendűeket ($\partial_{xx}, \partial_{yy}, \partial_{xy}$). Rendezd mátrixba:
+                    <div class="math-block">
+                        $H = \begin{pmatrix} f_{xx} & f_{xy} \\ f_{yx} & f_{yy} \end{pmatrix}$
+                    </div>
+                </li>
+                <li><b>Sylvester-kritérium (Osztályozás):</b> Helyettesítsd be a pontokat a mátrixba. Vizsgáld a determinánst ($\det H$) és a bal felső elemet ($f_{xx}$):
+                    <ul>
+                        <li>Ha $\det H < 0 \implies$ <b>Nyeregpont</b> (Nincs szélsőérték).</li>
+                        <li>Ha $\det H > 0$ ÉS $f_{xx} > 0 \implies$ <b>Lokális MINIMUM</b>.</li>
+                        <li>Ha $\det H > 0$ ÉS $f_{xx} < 0 \implies$ <b>Lokális MAXIMUM</b>.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <!-- 6. Iránymenti & Érintősík -->
+        <div class="card">
+            <h2>6. Vegyes: Iránymenti Derivált & Érintősík</h2>
+            <div class="recognition">
+                <strong>Mit látsz a feladatban?</strong><br>
+                "Adja meg az érintősík egyenletét a pontban." VAGY "Mennyi az iránymenti derivált a $\mathbf{v}$ irányban?"
+            </div>
+            
+            <ol class="steps-list">
+                <li><b>Érintősík egyenlete:</b>
+                    <br>1. Számold ki $\partial_x f$ és $\partial_y f$ értékét az adott $(x_0, y_0)$ pontban.
+                    <br>2. Számold ki a magasságot: $z_0 = f(x_0, y_0)$.
+                    <br>3. Írd be a képletbe: <span class="formula-inline">$\partial_x f \cdot (x-x_0) + \partial_y f \cdot (y-y_0) - (z-z_0) = 0$</span>.
+                </li>
+                <li><b>Iránymenti Derivált ($D_{\mathbf{e}} f$):</b>
+                    <br>1. <b>NORMÁLD A VEKTORT!</b> Ez a leggyakoribb hiba. Osszad el a vektort a saját hosszával ($||\mathbf{v}|| = \sqrt{x^2+y^2}$), hogy egységvektort ($\mathbf{e}$) kapj.
+                    <br>2. Számold ki a gradienst a pontban.
+                    <br>3. Szorozd össze őket skalárisan: <span class="formula-inline">$D_{\mathbf{e}} f = (\partial_x f \cdot e_1) + (\partial_y f \cdot e_2)$</span>.
+                </li>
+            </ol>
+        </div>
+
+    </div>
+</body>
+</html>
