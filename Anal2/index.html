@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analízis 2 Összefoglaló (6-9)</title>
+    <title>Analízis 2 ZH2 Összefoglaló</title>
     <script>
     MathJax = {
       tex: {
@@ -814,6 +814,15 @@
                     <li><b>Nulla</b>, ha $\alpha = \pi/2$ (merőlegesen, azaz szintvonalon haladunk).</li>
                 </ul>
 
+                <h3>10. Teljes differenciál (Hibabecslés)</h3>
+                <p>Kis megváltozások közelítő számítására használjuk (elsőrendű Taylor-polinom). Ha a bemeneti változók $\Delta x$ és $\Delta y$ értékkel változnak, a függvényérték változása (hiba) közelítőleg:</p>
+                <div class="formula">
+                    $$\Delta f \approx df = \partial_1 f(x_0, y_0) \Delta x + \partial_2 f(x_0, y_0) \Delta y$$
+                </div>
+                <div class="explanation">
+                    <b>Relatív hiba:</b> A százalékos hibát úgy kapjuk, hogy a hibát elosztjuk a függvényértékkel: $\frac{\Delta f}{f}$. Maximális hiba számításakor az abszolút értékek összegét vesszük: $|\Delta f| \le |\partial_1 f| |\Delta x| + |\partial_2 f| |\Delta y|$.
+                </div>
+
                 <div class="example">
                     <h3 style="margin-top: 0; color: #f59e0b;">1-5. Példa: Parciális deriváltak, Gradiens és Érintősík</h3>
                     <p>Legyen $f(x,y) = x^2y + e^{xy}$. Számítsuk ki a parciális deriváltjait, a gradiens vektorát, és írjuk fel az érintősík egyenletét a $P(1, 0)$ pontban!</p>
@@ -850,6 +859,20 @@
                         <li>A <b>maximális</b> iránymenti derivált értéke: $+2$ (ha pontosan a gradiens irányába indulunk).</li>
                         <li>A <b>minimális</b> iránymenti derivált értéke: $-2$ (ha a gradiensnek háttal indulunk).</li>
                     </ul>
+
+                    <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
+
+                    <h3 style="color: #f59e0b;">10. Példa: Hibabecslés (Teljes differenciál)</h3>
+                    <p>Egy henger sugara $r=2\pm 0.1$ cm, magassága $h=5\pm 0.2$ cm. Becsüljük meg a térfogat maximális hibáját!</p>
+                    <p><b>Megoldás:</b> A térfogat $V(r, h) = r^2 \pi h$. A parciális deriváltak:</p>
+                    <ul>
+                        <li>$\partial_r V = 2r\pi h \implies \partial_r V(2,5) = 20\pi$</li>
+                        <li>$\partial_h V = r^2\pi \implies \partial_h V(2,5) = 4\pi$</li>
+                    </ul>
+                    <p>A maximális hiba becslése a teljes differenciállal:</p>
+                    <div class="formula">
+                        $$ |\Delta V| \le |\partial_r V| \cdot |\Delta r| + |\partial_h V| \cdot |\Delta h| = 20\pi \cdot 0.1 + 4\pi \cdot 0.2 = 2\pi + 0.8\pi = 2.8\pi $$
+                    </div>
                 </div>
             </div>
         </section>
@@ -918,6 +941,24 @@
                     <b>ZH Trükk:</b> Ne feledd, hogy a mátrixszorzás sorrendje nem felcserélhető! Mindig a "külső" függvény deriváltmátrixát (kiértékelve a belső függvény pontjában) szorozzuk balról a "belső" függvény deriváltmátrixával.
                 </div>
 
+                <h3>8. Feltételes szélsőérték (Lagrange-multiplikátorok)</h3>
+                <p>Keressük az $f(x, y)$ függvény szélsőértékét úgy, hogy egy $g(x, y) = 0$ feltételnek is teljesülnie kell (pl. keressük a maximumot egy adott körön). Segédfüggvényt írunk fel (Lagrange-függvény):</p>
+                <div class="formula">
+                    $$L(x, y, \lambda) = f(x, y) - \lambda \cdot g(x, y)$$
+                </div>
+                <p><b>Megoldás menete:</b></p>
+                <ul>
+                    <li>1. Kiszámítjuk a parciális deriváltakat $x$, $y$ és $\lambda$ szerint (ami maga a feltétel), majd nullával egyenlővé tesszük őket.</li>
+                    <li>2. Megoldjuk az egyenletrendszert:
+                    <div class="formula" style="text-align: left; padding-left: 40px;">
+                        $\partial_x L = 0 \implies \partial_x f - \lambda \partial_x g = 0$<br>
+                        $\partial_y L = 0 \implies \partial_y f - \lambda \partial_y g = 0$<br>
+                        $\partial_\lambda L = 0 \implies -g(x,y) = 0$
+                    </div>
+                    </li>
+                    <li>3. A kapott $(x, y)$ pontokat behelyettesítjük $f(x,y)$-ba, a legnagyobb a maximum, a legkisebb a minimum.</li>
+                </ul>
+
                 <div class="example">
                     <h3 style="margin-top: 0; color: #f59e0b;">1-5. Példa: Lokális szélsőérték keresése</h3>
                     <p>Keressük meg az $f(x, y) = x^3 - 3x + y^2 - 2y$ függvény lokális szélsőértékeit!</p>
@@ -952,6 +993,27 @@
                     </div>
                     <p>A főminorok: $D_1 = -6 < 0$, és a determináns $D_2 = -6 \cdot 2 - 0 = -12 < 0$.<br>
                     Mivel $D_2$ negatív, a Sylvester-kritérium (alternáló előjel $D_2>0$-val) nem teljesül. A mátrix <b>indefinit</b>, így itt <b>nyeregpont</b> van (nincs szélsőérték).</p>
+
+                    <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
+
+                    <h3 style="color: #f59e0b;">6. Példa: Feltételes szélsőérték</h3>
+                    <p>Keressük az $f(x,y) = xy$ szélsőértékeit az $x^2 + y^2 = 8$ feltétel mellett!</p>
+                    <p><b>Megoldás:</b><br>1. A feltétel nullára rendezve: $g(x,y) = x^2 + y^2 - 8 = 0$. A Lagrange-függvény:</p>
+                    <div class="formula">
+                        $$ L(x, y, \lambda) = xy - \lambda(x^2 + y^2 - 8) $$
+                    </div>
+                    <p>2. Egyenletrendszer felírása:</p>
+                    <ul>
+                        <li>(1) $\partial_x L = y - 2\lambda x = 0 \implies y = 2\lambda x$</li>
+                        <li>(2) $\partial_y L = x - 2\lambda y = 0 \implies x = 2\lambda y$</li>
+                        <li>(3) $x^2 + y^2 = 8$</li>
+                    </ul>
+                    <p>3. Megoldás: Helyettesítsük (1)-et (2)-be: $x = 2\lambda(2\lambda x) = 4\lambda^2 x$. Mivel $x=0$-ból $y=0$ jönne (ami nem ad 8-at a kör egyenletében), leoszthatunk $x$-szel: $1 = 4\lambda^2 \implies \lambda = \pm \frac{1}{2}$.</p>
+                    <ul>
+                        <li>Ha $\lambda = \frac{1}{2}$, akkor $y = x$. Beírva (3)-ba: $2x^2 = 8 \implies x^2 = 4 \implies x = \pm 2$. Pontok: $(2,2)$ és $(-2,-2)$.</li>
+                        <li>Ha $\lambda = -\frac{1}{2}$, akkor $y = -x$. Beírva (3)-ba: $2x^2 = 8 \implies x^2 = 4 \implies x = \pm 2$. Pontok: $(2,-2)$ és $(-2,2)$.</li>
+                    </ul>
+                    <p>4. Függvényértékek: $f(2,2) = 4$, $f(-2,-2) = 4$ (ezek a <b>maximumok</b>). $f(2,-2) = -4$, $f(-2,2) = -4$ (ezek a <b>minimumok</b>).</p>
                 </div>
             </div>
         </section>
@@ -995,18 +1057,27 @@
                     <li>Legmeredekebb <b>emelkedés</b> iránya: pontosan a $\text{grad } f$ iránya. Értéke: $+||\text{grad } f||$.</li>
                     <li>Legmeredekebb <b>lejtés</b> iránya: a gradienssel ellentétes. Értéke: $-||\text{grad } f||$.</li>
                 </ul>
+                <p><b>Teljes differenciál (Hibabecslés):</b> $|\Delta f| \le |\partial_1 f| \cdot |\Delta x| + |\partial_2 f| \cdot |\Delta y|$</p>
 
                 <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
 
-                <h3 style="color: #f59e0b;">4. Lokális Szélsőérték</h3>
+                <h3 style="color: #f59e0b;">4. Szélsőértékek (Lokális és Feltételes)</h3>
+                <p><b>Lokális Szélsőérték:</b></p>
                 <p>1. <b>Szükséges feltétel:</b> Keresd meg a stacionárius pontokat: $\text{grad } f(x,y) = (0,0)$.</p>
-                <p>2. <b>Hesse-mátrix (Második deriváltak):</b> $H_f = \begin{pmatrix} \partial_{1,1} f & \partial_{1,2} f \\ \partial_{2,1} f & \partial_{2,2} f \end{pmatrix}$</p>
-                <p>3. <b>Sylvester-kritérium (Osztályozás):</b> A főminorok ($D_1 = \partial_{1,1} f$, $D_2 = \det(H_f)$) alapján:</p>
+                <p>2. <b>Hesse-mátrix:</b> $H_f = \begin{pmatrix} \partial_{1,1} f & \partial_{1,2} f \\ \partial_{2,1} f & \partial_{2,2} f \end{pmatrix}$</p>
+                <p>3. <b>Sylvester-kritérium:</b> A főminorok ($D_1 = \partial_{1,1} f$, $D_2 = \det(H_f)$) alapján:</p>
                 <ul>
                     <li>Ha $D_1 > 0$ és $D_2 > 0$ $\implies$ <b>Lokális minimum</b>.</li>
                     <li>Ha $D_1 < 0$ és $D_2 > 0$ $\implies$ <b>Lokális maximum</b>.</li>
                     <li>Ha $D_2 < 0$ $\implies$ <b>Nyeregpont</b> (nincs szélsőérték).</li>
                 </ul>
+
+                <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
+
+                <p><b>Feltételes Szélsőérték ($g(x,y)=0$ mellett):</b></p>
+                <p>1. <b>Lagrange-függvény:</b> $L(x, y, \lambda) = f(x, y) - \lambda \cdot g(x, y)$</p>
+                <p>2. <b>Egyenletrendszer:</b> Oldd meg a $\partial_x L = 0$, $\partial_y L = 0$, és $g(x,y) = 0$ rendszert.</p>
+                <p>3. <b>Döntés:</b> Helyettesítsd a kapott $(x,y)$ pontokat az eredeti $f$ függvénybe. A legnagyobb a maximum, a legkisebb a minimum.</p>
             </div>
         </section>
     </div>
