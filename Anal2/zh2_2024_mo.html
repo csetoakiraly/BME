@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024. ZH2 Megoldások</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7;
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        h1 { 
+            color: white; 
+            font-weight: 800; 
+            font-size: 2.5rem; 
+            text-align: center; 
+            margin-bottom: 50px; 
+            letter-spacing: -0.5px;
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            margin-top: 0; 
+            border-bottom: 1px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            font-weight: 700;
+        }
+
+        .formula-box {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 4px solid var(--secondary);
+            padding: 15px 20px;
+            border-radius: 0 16px 16px 0;
+            margin: 20px 0;
+            font-size: 1.1rem;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        .formula-box b {
+            color: var(--secondary);
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+        }
+
+        .calc-step {
+            margin: 15px 0;
+            padding-left: 15px;
+            border-left: 2px solid rgba(255,255,255,0.1);
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+
+        .result {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+            padding: 15px 20px;
+            border-radius: 16px;
+            display: inline-block;
+            font-weight: 700;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);
+        }
+
+        .mjx-chtml { color: white !important; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 30px 15px; }
+            .card { padding: 25px 20px; }
+            h1 { font-size: 2rem; }
+            mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Vissza az Összefoglalóhoz
+        </a>
+
+        <h1>2024. Május 16. ZH2 Megoldások</h1>
+
+        <!-- 1. a) -->
+        <div class="card">
+            <h2>1. a) Hatványsor konvergenciatartománya</h2>
+            <div class="formula-box">
+                <b>Képlet (Cauchy-gyökkritérium):</b> $R_a = \frac{1}{\lim_{n\to\infty} \sqrt[n]{|a_n|}}$
+            </div>
+            <div class="calc-step">
+                $a_n = \frac{1}{3n \cdot 2^n}$
+            </div>
+            <div class="calc-step">
+                $\sqrt[n]{|a_n|} = \frac{1}{\sqrt[n]{3n \cdot 2^n}} = \frac{1}{\sqrt[n]{3} \cdot \sqrt[n]{n} \cdot 2} \xrightarrow{n\to\infty} \frac{1}{1 \cdot 1 \cdot 2} = \frac{1}{2}$
+            </div>
+            <div class="calc-step">
+                Súgár: $R_a = \frac{1}{1/2} = 2$. Konvergens, ha $|x + 2| < 2 \implies x \in ]-4, 0[$
+            </div>
+            <div class="calc-step">
+                <b>Végpontok vizsgálata:</b><br>
+                - $x = -4$: $\sum \frac{(-2)^n}{3n \cdot 2^n} = \sum \frac{(-1)^n}{3n}$ $\rightarrow$ Leibniz-sor, <b>konvergens</b>.<br>
+                - $x = 0$: $\sum \frac{2^n}{3n \cdot 2^n} = \sum \frac{1}{3n}$ $\rightarrow$ Harmonikus sor, <b>divergens</b>.
+            </div>
+            <div class="result">
+                Eredmény: $x \in [-4, 0[$
+            </div>
+        </div>
+
+        <!-- 1. b) -->
+        <div class="card">
+            <h2>1. b) Hatványsor összegfüggvénye</h2>
+            <div class="formula-box">
+                <b>Képlet (Nevezetes sor):</b> $\text{sh}(x) = \sum_{n=0}^\infty \frac{x^{2n+1}}{(2n+1)!}$
+            </div>
+            <div class="calc-step">
+                Keresett sor: $\sum_{n=0}^\infty \frac{x^{4n+2}}{(2n+1)!}$
+            </div>
+            <div class="calc-step">
+                Kitevő átalakítása: $x^{4n+2} = (x^2)^{2n+1}$
+            </div>
+            <div class="calc-step">
+                Behelyettesítés az alapképletbe $x$ helyett $x^2$-et írva: $\sum_{n=0}^\infty \frac{(x^2)^{2n+1}}{(2n+1)!} = \text{sh}(x^2)$
+            </div>
+            <div class="result">
+                Eredmény: $\text{sh}(x^2)$
+            </div>
+        </div>
+
+        <!-- 2. Feladat -->
+        <div class="card">
+            <h2>2. Taylor-sorfejtés és 99. derivált</h2>
+            <div class="formula-box">
+                <b>Képlet 1 (Mértani sor):</b> $\frac{1}{1-q} = \sum_{n=0}^\infty q^n$<br>
+                <b>Képlet 2 (Taylor együttható):</b> $a_k = \frac{f^{(k)}(x_0)}{k!} \implies f^{(k)}(x_0) = a_k \cdot k!$
+            </div>
+            <div class="calc-step">
+                Alapfüggvény kitalálása deriválás előtt: $g(x) = \frac{1}{4-x}$. Ekkor $g'(x) = \frac{1}{(4-x)^2} = f(x)$.
+            </div>
+            <div class="calc-step">
+                $g(x)$ sorfejtése: $\frac{1}{4-x} = \frac{1}{4} \cdot \frac{1}{1 - \frac{x}{4}} = \frac{1}{4} \sum_{n=0}^\infty \left(\frac{x}{4}\right)^n = \sum_{n=0}^\infty \frac{1}{4^{n+1}} x^n$
+            </div>
+            <div class="calc-step">
+                Konvergenciasugár: $|q| < 1 \implies \left|\frac{x}{4}\right| < 1 \implies |x| < 4$. Súgár: <b>$R_a = 4$</b>. (Deriválás nem változtatja).
+            </div>
+            <div class="calc-step">
+                $f(x)$ sora ($g(x)$ deriváltja tagonként): $f(x) = g'(x) = \sum_{n=1}^\infty \frac{n}{4^{n+1}} x^{n-1} = \sum_{n=0}^\infty \frac{n+1}{4^{n+2}} x^n$
+            </div>
+            <div class="calc-step">
+                99. derivált számítása az $x^{99}$ együtthatójából ($n=99$): $a_{99} = \frac{99+1}{4^{99+2}} = \frac{100}{4^{101}}$
+            </div>
+            <div class="result">
+                Eredmény: $f^{(99)}(0) = 99! \cdot a_{99} = \frac{99! \cdot 100}{4^{101}} = \frac{100!}{4^{101}}$
+            </div>
+        </div>
+
+        <!-- 3. Feladat -->
+        <div class="card">
+            <h2>3. Átviteli elv és Határérték</h2>
+            <div class="formula-box">
+                <b>Átviteli elv Képlet:</b> $\lim_{x\to a} f(x) = b \iff \forall (x_k) \to a, \text{ahol } x_k \neq a \implies f(x_k) \to b$<br>
+                <b>Számolási elv:</b> Nullához tartó $\cdot$ Korlátos = 0.
+            </div>
+            <div class="calc-step">
+                Határérték: $\lim_{(x,y)\to(0,0)} \sin(x^2y) \cdot \cos\left(\frac{1}{x^2+2y^6}\right)$
+            </div>
+            <div class="calc-step">
+                Vegyünk egy tetszőleges $(x_k, y_k) \to (0,0)$ sorozatot.
+            </div>
+            <div class="calc-step">
+                1. Tényező: $\lim_{k\to\infty} \sin(x_k^2 y_k) = \sin(0 \cdot 0) = 0$ (Nullához tart)
+            </div>
+            <div class="calc-step">
+                2. Tényező: $\cos\left(\frac{1}{x_k^2+2y_k^6}\right)$ mindig $[-1, 1]$ intervallumban van. (Korlátos)
+            </div>
+            <div class="result">
+                Eredmény: $\lim = 0$ (Mivel $0 \cdot \text{korlátos} = 0$)
+            </div>
+        </div>
+
+        <!-- 4. Feladat -->
+        <div class="card">
+            <h2>4. Parciális derivált és Differenciálhatóság</h2>
+            <div class="formula-box">
+                <b>Képlet (Tört deriváltja):</b> $\left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2}$<br>
+                <b>Képlet (Definíció szerinti derivált az origóban):</b> $\partial_x f(0,0) = \lim_{x\to 0} \frac{f(x,0) - f(0,0)}{x-0}$
+            </div>
+            <div class="calc-step">
+                Függvény: $f(x,y) = \frac{3x \text{ch}(y)}{x^2+2y^2}$
+            </div>
+            <div class="calc-step">
+                <b>a) Sík többi pontján (szabályokkal deriválva):</b><br>
+                $\partial_x f = \frac{3\text{ch}(y)(x^2+2y^2) - 3x\text{ch}(y)(2x)}{(x^2+2y^2)^2}$<br>
+                $\partial_y f = \frac{3x\text{sh}(y)(x^2+2y^2) - 3x\text{ch}(y)(4y)}{(x^2+2y^2)^2}$
+            </div>
+            <div class="calc-step">
+                <b>a) Az origóban (definícióval):</b><br>
+                $\partial_x f(0,0) = \lim_{x\to 0} \frac{\frac{3x \cdot \text{ch}(0)}{x^2+0} - 0}{x} = \lim_{x\to 0} \frac{\frac{3x}{x^2}}{x} = \lim_{x\to 0} \frac{3}{x^2} = +\infty$ $\rightarrow$ <b>Nem létezik</b>.<br>
+                $\partial_y f(0,0) = \lim_{y\to 0} \frac{\frac{0}{0+2y^2} - 0}{y} = \lim_{y\to 0} \frac{0}{y} = 0$
+            </div>
+            <div class="calc-step">
+                <b>b) Totális differenciálhatóság vizsgálata:</b> Mivel az origóban az $x$ szerinti derivált nem létezik, ott biztosan nem totálisan differenciálható.
+            </div>
+            <div class="result">
+                Eredmény: Az origóban <b>NEM</b> differenciálható. A sík többi pontján <b>IGEN</b> (mert ott a deriváltak folytonosak).
+            </div>
+        </div>
+
+        <!-- 5. Feladat -->
+        <div class="card">
+            <h2>5. Szélsőérték, Iránymenti derivált és Érintősík</h2>
+            <div class="formula-box">
+                <b>Lokális Szélsőérték:</b> $\text{grad } f = 0$, majd Hesse-mátrix ($H_f$) Sylvester-kritériuma.<br>
+                <b>Iránymenti derivált:</b> $D_{\mathbf{e}} f = \langle \text{grad } f, \mathbf{e} \rangle$<br>
+                <b>Érintősík:</b> $\partial_x f(x_0,y_0)(x-x_0) + \partial_y f(x_0,y_0)(y-y_0) - (z-z_0) = 0$
+            </div>
+            <div class="calc-step">
+                Függvény: $f(x,y) = x^3 + y^3 - 3xy$
+            </div>
+            <div class="calc-step">
+                <b>a) Lokális Szélsőérték:</b><br>
+                1. Stacionárius pontok:<br>
+                $\partial_x f = 3x^2 - 3y = 0 \implies y = x^2$<br>
+                $\partial_y f = 3y^2 - 3x = 0 \implies 3(x^2)^2 - 3x = 0 \implies x(x^3-1) = 0 \implies x_1=0, x_2=1$<br>
+                Két pont: $P_1(0,0)$ és $P_2(1,1)$.
+            </div>
+            <div class="calc-step">
+                2. Hesse-mátrix és osztályozás: $H_f = \begin{pmatrix} 6x & -3 \\ -3 & 6y \end{pmatrix}$<br>
+                - $P_1(0,0)$-ban: $\det\begin{pmatrix} 0 & -3 \\ -3 & 0 \end{pmatrix} = -9 < 0 \implies$ <b>Indefinit (Nyeregpont)</b>.<br>
+                - $P_2(1,1)$-ben: $D_1 = 6 > 0$ és $\det\begin{pmatrix} 6 & -3 \\ -3 & 6 \end{pmatrix} = 27 > 0 \implies$ <b>Pozitív definit (Lokális Minimum)</b>.
+            </div>
+            <div class="calc-step">
+                <b>b) Iránymenti derivált $P(-1,1)$-ben, $v = \frac{1}{\sqrt{2}}(1, -1)$ irányban:</b><br>
+                Gradiens behelyettesítve: $\text{grad } f(-1,1) = (3(-1)^2-3(1), 3(1)^2-3(-1)) = (0, 6)$.<br>
+                Irányvektor normálva van ($|v| = 1$). Szorzás: $D_v f = 0 \cdot \frac{1}{\sqrt{2}} + 6 \cdot \left(\frac{-1}{\sqrt{2}}\right) = \frac{-6}{\sqrt{2}} = -3\sqrt{2}$.
+            </div>
+            <div class="calc-step">
+                <b>c) Érintősík $P(-1,1)$-ben:</b><br>
+                Függvényérték: $z_0 = f(-1,1) = (-1)^3 + 1^3 - 3(-1)(1) = 3$. Gradiens: $(0,6)$.<br>
+                Egyenlet: $0 \cdot (x+1) + 6 \cdot (y-1) - (z-3) = 0 \implies 6y - z = 3$.
+            </div>
+        </div>
+        
+        <!-- 6. Feladat -->
+        <div class="card">
+            <h2>6. Egyenletes konvergencia (Plusz feladat)</h2>
+            <div class="formula-box">
+                <b>Képlet (Definíció):</b> $\lim_{n\to\infty} \left( \sup_{x\in\mathbb{R}} |f(x) - T_{n,x_0}(x)| \right) = 0$ a feltétele az egyenletes konvergenciának.
+            </div>
+            <div class="calc-step">
+                A $\sin(x)$ függvény <b>korlátos</b> ($[-1, 1]$ között mozog $\mathbb{R}$-en).
+            </div>
+            <div class="calc-step">
+                A Taylor-polinomja $T_{n,0}(x)$ viszont egy $n$-edfokú polinom, ami a végtelenben <b>nem korlátos</b> (értéke $\pm \infty$-hez tart).
+            </div>
+            <div class="calc-step">
+                Emiatt a különbségük maximuma (supremuma) a teljes $\mathbb{R}$ halmazon végtelen lesz minden véges $n$ esetén: $\sup_{x\in\mathbb{R}} |\sin(x) - T_{n,0}(x)| = +\infty$. Mivel ez nem tart nullához...
+            </div>
+            <div class="result">
+                Eredmény: <b>NEM</b> egyenletesen konvergens.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
