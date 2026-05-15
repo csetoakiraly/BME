@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=8 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8. Binomiális sor és többváltozós függvények határértéke - Analízis 2</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --main-color: #f43f5e;
+            --main-color-soft: #f43f5e22; 
+        }
+    </style>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <layout-wrapper>
+        <analizis-sidebar>
+            <sidebar-header>
+                <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+            </sidebar-header>
+            <sidebar-list>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter681a.html?id=1'"
+                        class=""
+                        id="sidebar-item-1"
+                    >
+                        <span class="ch-num">1.</span>
+                        <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0b30.html?id=2'"
+                        class=""
+                        id="sidebar-item-2"
+                    >
+                        <span class="ch-num">2.</span>
+                        <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd708.html?id=3'"
+                        class=""
+                        id="sidebar-item-3"
+                    >
+                        <span class="ch-num">3.</span>
+                        <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterdcfd.html?id=4'"
+                        class=""
+                        id="sidebar-item-4"
+                    >
+                        <span class="ch-num">4.</span>
+                        <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                        <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd61c.html?id=5'"
+                        class=""
+                        id="sidebar-item-5"
+                    >
+                        <span class="ch-num">5.</span>
+                        <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                        <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter3a9f.html?id=6'"
+                        class=""
+                        id="sidebar-item-6"
+                    >
+                        <span class="ch-num">6.</span>
+                        <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                        <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter8803.html?id=7'"
+                        class=""
+                        id="sidebar-item-7"
+                    >
+                        <span class="ch-num">7.</span>
+                        <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                        <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterc3c9.html?id=8'"
+                        class="active"
+                        id="sidebar-item-8"
+                    >
+                        <span class="ch-num">8.</span>
+                        <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                        <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter5255.html?id=9'"
+                        class=""
+                        id="sidebar-item-9"
+                    >
+                        <span class="ch-num">9.</span>
+                        <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                        <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterf41b.html?id=10'"
+                        class=""
+                        id="sidebar-item-10"
+                    >
+                        <span class="ch-num">10.</span>
+                        <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                        <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0055.html?id=11'"
+                        class=""
+                        id="sidebar-item-11"
+                    >
+                        <span class="ch-num">11.</span>
+                        <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                        <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter4ef9.html?id=12'"
+                        class=""
+                        id="sidebar-item-12"
+                    >
+                        <span class="ch-num">12.</span>
+                        <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                        <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter6e03.html?id=13'"
+                        class=""
+                        id="sidebar-item-13"
+                    >
+                        <span class="ch-num">13.</span>
+                        <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                        <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+                    </sidebar-item>
+                            </sidebar-list>
+            <sidebar-footer>
+                <div class="overall-progress">
+                    <div class="progress-label">Kurzus haladás: <span id="totalPercent">0%</span></div>
+                    <div class="progress-track">
+                        <div id="totalProgressBar" class="progress-fill"></div>
+                    </div>
+                </div>
+                
+            </sidebar-footer>
+        </analizis-sidebar>
+
+        <main-content>
+            <analizis-nav>
+                <nav-title><b>8. Binomiális sor és többváltozós függvények határértéke<b></nav-title>
+                <nav-actions>
+                    <button id="themeToggle" class="theme-btn">🌙 Éjszakai mód</button>
+                    <button id="theory-menu-toggle" class="menu-toggle-btn">
+    <span>☰</span> Menü
+</button>
+
+<analizis-sidebar id="theory-menu">
+    <sidebar-header>
+        <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+    </sidebar-header>
+    
+    <sidebar-list>
+                    <sidebar-item 
+                onclick="window.location.href='chapter681a.html?id=1'"
+                class=""
+                id="sidebar-item-1"
+            >
+                <span class="ch-num">1.</span>
+                <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0b30.html?id=2'"
+                class=""
+                id="sidebar-item-2"
+            >
+                <span class="ch-num">2.</span>
+                <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd708.html?id=3'"
+                class=""
+                id="sidebar-item-3"
+            >
+                <span class="ch-num">3.</span>
+                <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterdcfd.html?id=4'"
+                class=""
+                id="sidebar-item-4"
+            >
+                <span class="ch-num">4.</span>
+                <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd61c.html?id=5'"
+                class=""
+                id="sidebar-item-5"
+            >
+                <span class="ch-num">5.</span>
+                <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter3a9f.html?id=6'"
+                class=""
+                id="sidebar-item-6"
+            >
+                <span class="ch-num">6.</span>
+                <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter8803.html?id=7'"
+                class=""
+                id="sidebar-item-7"
+            >
+                <span class="ch-num">7.</span>
+                <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterc3c9.html?id=8'"
+                class="active"
+                id="sidebar-item-8"
+            >
+                <span class="ch-num">8.</span>
+                <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter5255.html?id=9'"
+                class=""
+                id="sidebar-item-9"
+            >
+                <span class="ch-num">9.</span>
+                <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterf41b.html?id=10'"
+                class=""
+                id="sidebar-item-10"
+            >
+                <span class="ch-num">10.</span>
+                <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0055.html?id=11'"
+                class=""
+                id="sidebar-item-11"
+            >
+                <span class="ch-num">11.</span>
+                <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter4ef9.html?id=12'"
+                class=""
+                id="sidebar-item-12"
+            >
+                <span class="ch-num">12.</span>
+                <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter6e03.html?id=13'"
+                class=""
+                id="sidebar-item-13"
+            >
+                <span class="ch-num">13.</span>
+                <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+            </sidebar-item>
+            </sidebar-list>
+</analizis-sidebar>
+</button>
+
+                </nav-actions>
+            </analizis-nav>
+            
+            <analizis-content>
+                <theory-section>
+                    <section-header>Elméleti összefoglaló</section-header>
+                    <theory-body>
+        <section>
+            <h2>1. A binomiális sor</h2>
+            <p>A hatványfüggvények Taylor-sorfejtéséhez bevezetjük az általánosított binomiális együtthatót.</p>
+            
+            <div style="background: #5ba181; padding: 15px; border-radius: 8px; border-left: 5px solid #10b981; margin: 10px 0;">
+                <b>1. Definíció: Általánosított binomiális együttható</b><br>
+                Legyen \( \alpha \in \mathbb{R} \) és \( k \in \mathbb{N} \):
+                \[ \binom{\alpha}{k} := \begin{cases} 
+                    1, & \text{ha } k = 0 \
+                    \frac{\alpha(\alpha-1)\dots(\alpha-k+1)}{k!}, & \text{ha } k \neq 0 
+                \end{cases} \]
+            </div>
+
+            <p><b>2. Tétel: Binomiális sorfejtés</b><br>
+            A \( (1+x)^\alpha \) függvény Taylor-sora minden \( \alpha \in \mathbb{R} \) és \( x \in ]-1, 1[ \) esetén konvergens, és előállítja a függvényt:
+            \[ (1+x)^\alpha = \sum_{k=0}^\infty \binom{\alpha}{k} x^k \]
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>2. Sorozatok az \( \mathbb{R}^n \) térben</h2>
+            <p>Több változó esetén a pontok helyzetét vektorokkal írjuk le.</p>
+            <ul>
+                <li><b>3. Definíció:</b> Egy \( (x_k)_{k \in \mathbb{N}} \) \( \mathbb{R}^n \)-beli sorozat konvergens és határértéke \( \underline{x} \), ha a távolságuk nullához tart: \( ||x_k - \underline{x}|| \to 0 \).</li>
+                <li><b>4. Állítás (Koordinátánkénti konvergencia):</b> Egy vektorsorozat pontosan akkor konvergens, ha minden egyes koordináta-sorozata külön-külön konvergens.</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>3. Többváltozós határérték és folytonosság</h2>
+            <p>Egy többváltozós függvény (\( f: \mathbb{R}^n \to \mathbb{R} \)) viselkedését vizsgáljuk egy adott pont környezetében.</p>
+            
+            <ul>
+                <li><b>5. Állítás (Átviteli elv):</b> A függvény határértéke \( \underline{a} \)-ban \( b \), ha minden \( \underline{a} \)-hoz tartó sorozat esetén a függvényértékek \( b \)-hez tartanak.</li>
+                <li><b>Folytonosság:</b> \( f \) folytonos \( \underline{a} \)-ban, ha \( \lim_{\underline{x} \to \underline{a}} f(\underline{x}) = f(\underline{a}) \).</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>4. Határérték-számítás két változóra (\( \mathbb{R}^2 \))</h2>
+            <p>Az origóbeli (\( \underline{0} \)) határérték létezéséhez szükséges, hogy bármely irányból közelítve ugyanazt az értéket kapjuk:</p>
+            <ol>
+                <li>A tengelyek mentén: \( \lim_{x \to 0} f(x, 0) \) és \( \lim_{y \to 0} f(0, y) \).</li>
+                <li>Egyenesek mentén: \( \lim_{x \to 0} f(x, mx) \).</li>
+            </ol>
+            <p><b>7. Megjegyzés (Polárkoordináták):</b> Ha a határérték létezése kérdéses, érdemes az \( x = r \cos \phi, y = r \sin \phi \) áttérést használni. Ha \( r \to 0 \) esetén az eredmény független \( \phi \)-től, megkaptuk a határértéket.</p>
+        </section>
+    </theory-body>
+                </theory-section>
+
+                <practice-section>
+    <section-header>Példafeladatok</section-header>
+    
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat: Határérték számítása Taylor-sorok segítségével</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="limit+%281-cos%28x%5E2%29%29%2F%28x%5E4%2Acos%28x%29%29+as+x-%3E0"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="0">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="0">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">2. feladat: Taylor-sorfejtés binomiális sorral és deriváltak meghatározása</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="taylor+series+of+1%2F%2864-2x%5E2%29%5E%281%2F6%29+at+x%3D0"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="1">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="1">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">3. feladat: Határozott integrál közelítése binomiális sorral és hibabecslés</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="integrate+sqrt%2816%2Bx%5E4%29+from+0+to+1%3B+taylor+series+of+sqrt%2816%2Bx%5E4%29+at+x%3D0"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="2">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="2">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">4. feladat: Számítsuk ki az alábbi többváltozós határértékeket (amennyiben léteznek).</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="limit+%28x%5E2%2Ay%2B6%29%2F%28x%2Ay%5E2%2B2%29+as+%28x%2Cy%29-%3E%280%2C0%29%3B+limit+sin%28x%5E2%2Ay%5E3%29%2F%28x%2Ay%2Acos%282%2Ax%2Ay%5E2%29%29+as+%28x%2Cy%29-%3E%280%2C0%29%3B+limit+arcsin%28x%2Ay%29%2Acos%281%2F%28x%5E4%2B2%2Ay%5E2%29%29+as+%28x%2Cy%29-%3E%280%2C0%29%3B+limit+x%2Fy+as+%28x%2Cy%29-%3E%280%2C0%29%3B+limit+%283%2Ax%2Ay%5E3%29%2F%284%2Ax%5E2%2B5%2Ay%5E2%29+as+%28x%2Cy%29-%3E%280%2C0%29%3B+limit+%284%2Ax%5E2%2B7%2Ay%5E2%29%2F%283%2Ax%5E2%2B5%2Ay%5E2%29+as+%28x%2Cy%29-%3E%280%2C0%29%3B+limit+%28x%2Ay%29%2F%282%2Ax%5E2%2B2%2Ay%5E2%29+as+%28x%2Cy%29-%3E%280%2C0%29%3B+limit+%28x%2Bx%2Ay-y%29%2F%28x%2Bx%2Ay%2By%29+as+%28x%2Cy%29-%3E%280%2C0%29%3B+limit+%28x%5E2%2Asin%282%2Ay%29%29%2F%282%2Ax%5E2%2B5%2Ay%5E2%29+as+%28x%2Cy%29-%3E%280%2C0%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="3">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="3">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">5. feladat: Folytonosak-e az alábbi függvények?</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="is+f%28x%2Cy%29+%3D+piecewise%5B%7B%7B%282%2Ax%5E2%2Ay%5E2%29%2F%285%2Ax%5E4%2B6%2Ay%5E4%29%2C+%28x%2Cy%29+%21%3D+%280%2C0%29%7D%2C+%7B0%2C+%28x%2Cy%29+%3D%3D+%280%2C0%29%7D%7D%5D+continuous%3F%3B+is+g%28x%2Cy%29+%3D+piecewise%5B%7B%7B%282%2Ax%5E2%2Ay%5E2%29%2F%285%2Ax%5E2%2B6%2Ay%5E2%29%2C+%28x%2Cy%29+%21%3D+%280%2C0%29%7D%2C+%7B0%2C+%28x%2Cy%29+%3D%3D+%280%2C0%29%7D%7D%5D+continuous%3F"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="4">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="4">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+    
+</practice-section>
+
+<script>
+    const allTasks = [{"title":"1. feladat: Hat\u00e1r\u00e9rt\u00e9k sz\u00e1m\u00edt\u00e1sa Taylor-sorok seg\u00edts\u00e9g\u00e9vel","wolfram":"limit (1-cos(x^2))\/(x^4*cos(x)) as x->0","steps":["<b>1. L\u00e9p\u00e9s: A sz\u00fcks\u00e9ges Taylor-sorfejt\u00e9s r\u00f6gz\u00edt\u00e9se.<\/b><br>\r\n                A 7. fejezet 7. t\u00e9tele alapj\u00e1n tudjuk, hogy a koszinusz f\u00fcggv\u00e9ny Maclaurin-sora (\\( x_0=0 \\)):\r\n                \\[ \\cos(u) = 1 - \\frac{u^2}{2!} + \\frac{u^4}{4!} - \\dots = \\sum_{k=0}^\\infty (-1)^k \\frac{u^{2k}}{(2k)!} \\]","<b>2. L\u00e9p\u00e9s: A sz\u00e1ml\u00e1l\u00f3 sorba fejt\u00e9se.<\/b><br>\r\n                Helyettes\u00edts\u00fcnk a koszinusz sor\u00e1ba \\( u = x^2 \\) kifejez\u00e9st:\r\n                \\[ \\cos(x^2) = 1 - \\frac{(x^2)^2}{2!} + \\frac{(x^2)^4}{4!} - \\dots = 1 - \\frac{x^4}{2} + \\frac{x^8}{24} - \\dots \\]\r\n                Ekkor a sz\u00e1ml\u00e1l\u00f3 alakja:\r\n                \\[ 1 - \\cos(x^2) = 1 - \\left( 1 - \\frac{x^4}{2} + \\frac{x^8}{24} - \\dots \\right) = \\frac{x^4}{2} - \\frac{x^8}{24} + \\dots \\]","<b>3. L\u00e9p\u00e9s: A nevez\u0151 sorba fejt\u00e9se.<\/b><br>\r\n                A nevez\u0151ben a koszinusz alap-sor\u00e1t szorozzuk meg \\( x^4 \\)-gyel:\r\n                \\[ x^4 \\cos(x) = x^4 \\left( 1 - \\frac{x^2}{2} + \\dots \\right) = x^4 - \\frac{x^6}{2} + \\dots \\]","<b>4. L\u00e9p\u00e9s: A hat\u00e1r\u00e9rt\u00e9k kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                Helyettes\u00edts\u00fck be a kapott polinom-k\u00f6zel\u00edt\u00e9seket a hat\u00e1r\u00e9rt\u00e9kbe:\r\n                \\[ \\lim_{x \\to 0} \\frac{\\frac{1}{2}x^4 - \\frac{1}{24}x^8 + \\dots}{x^4 - \\frac{1}{2}x^6 + \\dots} \\]\r\n                Emelj\u00fcnk ki a sz\u00e1ml\u00e1l\u00f3b\u00f3l \u00e9s a nevez\u0151b\u0151l is \\( x^4 \\)-et, majd egyszer\u0171s\u00edts\u00fcnk:\r\n                \\[ \\lim_{x \\to 0} \\frac{x^4 \\left( \\frac{1}{2} - \\frac{1}{24}x^4 + \\dots \\right)}{x^4 \\left( 1 - \\frac{1}{2}x^2 + \\dots \\right)} = \\lim_{x \\to 0} \\frac{\\frac{1}{2} - \\frac{1}{24}x^4 + \\dots}{1 - \\frac{1}{2}x^2 + \\dots} \\]","<b>5. Konkl\u00fazi\u00f3.<\/b><br>\r\n                Ahogy \\( x \\) tart a null\u00e1hoz, minden olyan tag, amelyben \\( x \\) szerepel, eleny\u00e9szik.\r\n                A marad\u00e9k \u00e9rt\u00e9kek h\u00e1nyadosa megadja a keresett hat\u00e1r\u00e9rt\u00e9ket:\r\n                \\[ \\frac{1\/2}{1} = \\mathbf{\\frac{1}{2}} \\]\r\n                V\u00e9geredm\u00e9ny: <b>1\/2<\/b>."]},{"title":"2. feladat: Taylor-sorfejt\u00e9s binomi\u00e1lis sorral \u00e9s deriv\u00e1ltak meghat\u00e1roz\u00e1sa","wolfram":"taylor series of 1\/(64-2x^2)^(1\/6) at x=0","steps":["<h3>1. Az elm\u00e9leti alapok r\u00f6gz\u00edt\u00e9se<\/h3>\r\n                A feladat megold\u00e1s\u00e1hoz a <b>binomi\u00e1lis sort<\/b> haszn\u00e1ljuk fel:\r\n                \\[ (1+u)^\\alpha = \\sum_{k=0}^\\infty \\binom{\\alpha}{k} u^k \\quad \\text{ha } |u| < 1 \\]\r\n                Ahol \\( \\binom{\\alpha}{k} \\) az \u00e1ltal\u00e1nos\u00edtott binomi\u00e1lis egy\u00fctthat\u00f3.\r\n                Tov\u00e1bb\u00e1 haszn\u00e1ljuk a Taylor-egy\u00fctthat\u00f3k \u00e9s a deriv\u00e1ltak kapcsolat\u00e1t:\r\n                \\[ f^{(k)}(x_0) = k! \\cdot a_k \\]","<h3>2. Az \\( f(x) \\) f\u00fcggv\u00e9ny \u00e1talak\u00edt\u00e1sa \u00e9s sorfejt\u00e9se<\/h3>\r\n                <b>L\u00e9p\u00e9s 2.1: Alaplakra hoz\u00e1s.<\/b><br>\r\n                A f\u00fcggv\u00e9ny \\( f(x) = \\frac{1}{\\sqrt[6]{64 - 2x^2}} = (64 - 2x^2)^{-1\/6} \\). Ahhoz, hogy a binomi\u00e1lis sort alkalmazhassuk, a z\u00e1r\u00f3jelen bel\u00fcl \"1\"-et kell kapnunk. Emelj\u00fcnk ki 64-et:\r\n                \\[ f(x) = (64(1 - \\frac{2x^2}{64}))^{-1\/6} = 64^{-1\/6} \\cdot (1 - \\frac{x^2}{32})^{-1\/6} \\]\r\n                Mivel \\( 64^{-1\/6} = (2^6)^{-1\/6} = 2^{-1} = \\frac{1}{2} \\), a f\u00fcggv\u00e9ny alakja:\r\n                \\[ f(x) = \\frac{1}{2} \\left( 1 + \\left( -\\frac{x^2}{32} \\right) \\right)^{-1\/6} \\]","<b>L\u00e9p\u00e9s 2.2: A szumma alak fel\u00edr\u00e1sa.<\/b><br>\r\n                Alkalmazzuk a binomi\u00e1lis sort \\( \\alpha = -1\/6 \\) \u00e9s \\( u = -\\frac{x^2}{32} \\) helyettes\u00edt\u00e9ssel:\r\n                \\[ f(x) = \\frac{1}{2} \\sum_{k=0}^\\infty \\binom{-1\/6}{k} \\left( -\\frac{x^2}{32} \\right)^k = \\mathbf{\\frac{1}{2} \\sum_{k=0}^\\infty \\binom{-1\/6}{k} \\frac{x^{2k}}{(-32)^k}} \\]\r\n                \r\n                <b>L\u00e9p\u00e9s 2.3: Konvergenciasug\u00e1r meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                A sor akkor konvergens, ha a behelyettes\u00edtett \\( u \\) abszol\u00fat \u00e9rt\u00e9ke kisebb 1-n\u00e9l:\r\n                \\[ \\left| -\\frac{x^2}{32} \\right| < 1 \\implies x^2 < 32 \\implies |x| < \\sqrt{32} = \\mathbf{4\\sqrt{2}} \\]\r\n                A konvergenciasug\u00e1r teh\u00e1t \\( R = 4\\sqrt{2} \\).","<h3>3. Az \\( a_8 \\) egy\u00fctthat\u00f3 meghat\u00e1roz\u00e1sa<\/h3>\r\n                Keress\u00fck az \\( x^8 \\) tag egy\u00fctthat\u00f3j\u00e1t. A sorunkban a hatv\u00e1ny \\( x^{2k} \\), teh\u00e1t \\( 2k = 8 \\implies k = 4 \\).\r\n                Az egy\u00fctthat\u00f3 a \\( \\frac{1}{2} \\cdot \\binom{-1\/6}{k} \\cdot \\frac{1}{(-32)^k} \\) k\u00e9pletb\u0151l \\( k=4 \\)-re:\r\n                \\[ a_8 = \\frac{1}{2} \\cdot \\binom{-1\/6}{4} \\cdot \\frac{1}{(-32)^4} \\]\r\n                Fejts\u00fck ki a binomi\u00e1lis egy\u00fctthat\u00f3t a defin\u00edci\u00f3 alapj\u00e1n (\\( k=4 \\) t\u00e9nyez\u0151vel):\r\n                \\[ \\mathbf{a_8 = \\frac{1}{2} \\cdot \\frac{-\\frac{1}{6}(-\\frac{1}{6}-1)(-\\frac{1}{6}-2)(-\\frac{1}{6}-3)}{24} \\cdot \\frac{1}{32^4}} \\]","<h3>4. Magasabb rend\u0171 deriv\u00e1ltak kisz\u00e1m\u00edt\u00e1sa<\/h3>\r\n                Haszn\u00e1ljuk az \\( f^{(k)}(0) = k! \\cdot a_k \\) \u00f6sszef\u00fcgg\u00e9st:\r\n                <ul>\r\n                    <li><b>8. deriv\u00e1lt:<\/b> \\( f^{(8)}(0) = 8! \\cdot a_8 \\). Behelyettes\u00edtve a kor\u00e1bban kisz\u00e1molt \\( a_8 \\) \u00e9rt\u00e9ket megkapjuk a deriv\u00e1ltat.<\/li>\r\n                    <li><b>9. deriv\u00e1lt:<\/b> Vizsg\u00e1ljuk meg a sort. Mivel csak p\u00e1ros hatv\u00e1nyok (\\( x^{2k} \\)) szerepelnek benne, az \\( x^9 \\) tag egy\u00fctthat\u00f3ja \\( a_9 = 0 \\).\r\n                        \\[ \\mathbf{f^{(9)}(0) = 9! \\cdot 0 = 0} \\]\r\n                    <\/li>\r\n                <\/ul>"]},{"title":"3. feladat: Hat\u00e1rozott integr\u00e1l k\u00f6zel\u00edt\u00e9se binomi\u00e1lis sorral \u00e9s hibabecsl\u00e9s","wolfram":"integrate sqrt(16+x^4) from 0 to 1; taylor series of sqrt(16+x^4) at x=0","steps":["<h3>1. Az integrandus \u00e1talak\u00edt\u00e1sa \u00e9s sorfejt\u00e9se<\/h3>\r\n                <b>L\u00e9p\u00e9s 1.1: Alaplakra hoz\u00e1s a binomi\u00e1lis sorhoz.<\/b><br>\r\n                A 2. t\u00e9tel szerinti \\( (1+u)^\\alpha \\) alak el\u00e9r\u00e9s\u00e9hez emelj\u00fcnk ki 16-ot a gy\u00f6kjel al\u00f3l:\r\n                \\[ f(x) = \\sqrt{16 + x^4} = (16 + x^4)^{1\/2} = 16^{1\/2} \\left( 1 + \\frac{x^4}{16} \\right)^{1\/2} \\]\r\n                Mivel \\( 16^{1\/2} = 4 \\), a f\u00fcggv\u00e9ny: \\( f(x) = 4 \\left( 1 + \\frac{x^4}{16} \\right)^{1\/2} \\).","<b>L\u00e9p\u00e9s 1.2: A binomi\u00e1lis sor fel\u00edr\u00e1sa.<\/b><br>\r\n                Alkalmazzuk a 2. t\u00e9telt \\( \\alpha = 1\/2 \\) \u00e9s \\( u = \\frac{x^4}{16} \\) helyettes\u00edt\u00e9ssel:\r\n                \\[ f(x) = 4 \\left[ \\binom{1\/2}{0} + \\binom{1\/2}{1} \\left( \\frac{x^4}{16} \\right) + \\binom{1\/2}{2} \\left( \\frac{x^4}{16} \\right)^2 + \\dots \\right] \\]\r\n                A binomi\u00e1lis egy\u00fctthat\u00f3kat kifejtve (\\( \\binom{1\/2}{0}=1, \\binom{1\/2}{1}=1\/2 \\)):\r\n                \\[ f(x) = 4 \\left[ 1 + \\frac{1}{2} \\cdot \\frac{x^4}{16} + \\binom{1\/2}{2} \\frac{x^8}{256} + \\dots \\right] = 4 + \\frac{x^4}{8} + \\frac{4 \\binom{1\/2}{2}}{256} x^8 + \\dots \\]","<h3>2. K\u00f6zel\u00edt\u00e9s a negyedfok\u00fa Taylor-polinommal (a r\u00e9sz)<\/h3>\r\n                <b>L\u00e9p\u00e9s 2.1: A polinom kiv\u00e1laszt\u00e1sa.<\/b><br>\r\n                A negyedfok\u00fa Taylor-polinom (\\( T_4 \\)) a sor els\u0151 k\u00e9t tagj\u00e1t tartalmazza:\r\n                \\[ T_4(x) = 4 + \\frac{x^4}{8} \\]\r\n                \r\n                <b>L\u00e9p\u00e9s 2.2: Az integr\u00e1l kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                V\u00e9gezz\u00fck el a tagonk\u00e9nti integr\u00e1l\u00e1st a \\( [0, 1] \\) intervallumon:\r\n                \\[ \\int_0^1 \\left( 4 + \\frac{x^4}{8} \\right) dx = \\left[ 4x + \\frac{x^5}{40} \\right]_0^1 = 4(1) + \\frac{1^5}{40} - 0 = \\mathbf{4 + \\frac{1}{40}} \\]\r\n                Ez megfelel a feladatlapv\u00e9geredm\u00e9ny\u00e9nek.","<h3>3. Hibabecsl\u00e9s (b r\u00e9sz)<\/h3>\r\n                <b>L\u00e9p\u00e9s 3.1: A hiba elm\u00e9leti meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                A sor v\u00e1ltakoz\u00f3 el\u0151jel\u0171 (altern\u00e1l\u00f3) a \\( k=1 \\) indext\u0151l kezdve, mivel \\( \\binom{1\/2}{k} \\) el\u0151jele v\u00e1ltakozik. Leibniz-t\u00edpus\u00fa sorokn\u00e1l a hiba kisebb, mint az els\u0151 elhagyott tag abszol\u00fat \u00e9rt\u00e9ke.\r\n                Az els\u0151 elhagyott tag az \\( x^8 \\)-as tag integr\u00e1lja:\r\n                \\[ \\text{Hiba} \\leq \\left| \\int_0^1 4 \\binom{1\/2}{2} \\frac{x^8}{16^2} dx \\right| = \\left| 4 \\binom{1\/2}{2} \\frac{1}{2^8} \\left[ \\frac{x^9}{9} \\right]_0^1 \\right| \\]\r\n                \r\n                <b>L\u00e9p\u00e9s 3.2: A hiba sz\u00e1mszer\u0171s\u00edt\u00e9se.<\/b><br>\r\n                \\[ \\text{Hiba} \\leq \\left| \\binom{1\/2}{2} \\right| \\frac{4}{2^8} \\cdot \\frac{1}{9} \\]\r\n                Mivel \\( \\binom{1\/2}{2} = \\frac{(1\/2)(-1\/2)}{2} = -1\/8 \\), a becsl\u00e9s pontos \u00e9rt\u00e9ke:\r\n                \\[ \\frac{1}{8} \\cdot \\frac{4}{256 \\cdot 9} = \\frac{1}{2 \\cdot 256 \\cdot 9} = \\frac{1}{4608} \\]\r\n                <b>V\u00e9geredm\u00e9ny: K\u00f6zel\u00edt\u00e9s: \\( 4,025 \\), hiba becsl\u00e9se: \\( \\left| \\binom{1\/2}{2} \\right| \\frac{4}{2^8} \\frac{1}{9} \\).<\/b>"]},{"title":"4. feladat: Sz\u00e1m\u00edtsuk ki az al\u00e1bbi t\u00f6bbv\u00e1ltoz\u00f3s hat\u00e1r\u00e9rt\u00e9keket (amennyiben l\u00e9teznek).","wolfram":"limit (x^2*y+6)\/(x*y^2+2) as (x,y)->(0,0); limit sin(x^2*y^3)\/(x*y*cos(2*x*y^2)) as (x,y)->(0,0); limit arcsin(x*y)*cos(1\/(x^4+2*y^2)) as (x,y)->(0,0); limit x\/y as (x,y)->(0,0); limit (3*x*y^3)\/(4*x^2+5*y^2) as (x,y)->(0,0); limit (4*x^2+7*y^2)\/(3*x^2+5*y^2) as (x,y)->(0,0); limit (x*y)\/(2*x^2+2*y^2) as (x,y)->(0,0); limit (x+x*y-y)\/(x+x*y+y) as (x,y)->(0,0); limit (x^2*sin(2*y))\/(2*x^2+5*y^2) as (x,y)->(0,0)","steps":["<h3>1. Csoport: K\u00f6zvetlen helyettes\u00edt\u00e9ssel \u00e9s nevezetes hat\u00e1r\u00e9rt\u00e9kekkel sz\u00e1molhat\u00f3 esetek<\/h3>\r\n                <ul>\r\n                    <li><b>(a) r\u00e9sz:<\/b> \\( \\lim_{(x,y) \\to (0,0)} \\frac{x^2y+6}{xy^2+2} \\)<br>\r\n                        Mivel a f\u00fcggv\u00e9ny racion\u00e1lis \u00e9s a nevez\u0151 a \\((0,0)\\) pontban nem nulla (\\(0+2=2\\)), a hat\u00e1r\u00e9rt\u00e9k a helyettes\u00edt\u00e9si \u00e9rt\u00e9k:\r\n                        \\[ \\frac{0^2 \\cdot 0 + 6}{0 \\cdot 0^2 + 2} = \\frac{6}{2} = \\mathbf{3} \\]\r\n                    <\/li>\r\n                    <li><b>(b) r\u00e9sz:<\/b> \\( \\lim_{(x,y) \\to (0,0)} \\frac{\\sin(x^2y^3)}{xy \\cos(2xy^2)} \\)<br>\r\n                        Haszn\u00e1ljuk a \\(\\lim_{u \\to 0} \\frac{\\sin u}{u} = 1\\) nevezetes hat\u00e1r\u00e9rt\u00e9ket:\r\n                        \\[ \\frac{\\sin(x^2y^3)}{x^2y^3} \\cdot \\frac{x^2y^3}{xy \\cos(2xy^2)} = 1 \\cdot \\frac{xy^2}{\\cos(2xy^2)} \\to \\frac{0}{1} = \\mathbf{0} \\]\r\n                    <\/li>\r\n                    <li><b>(c) r\u00e9sz:<\/b> \\( \\lim_{(x,y) \\to (0,0)} \\arcsin(xy) \\cdot \\cos\\left(\\frac{1}{x^4+2y^2}\\right) \\)<br>\r\n                        Az \\(\\arcsin(xy)\\) t\u00e9nyez\u0151 null\u00e1hoz tart, m\u00edg a \\(\\cos(\\dots)\\) korl\u00e1tos (\\([-1, 1]\\) k\u00f6z\u00f6tt). Egy nullasorozat \u00e9s egy korl\u00e1tos sorozat szorzata null\u00e1hoz tart:\r\n                        \\[ 0 \\cdot \\text{korl\u00e1tos} = \\mathbf{0} \\]\r\n                    <\/li>\r\n                <\/ul>","<h3>2. Csoport: Ir\u00e1nymenti hat\u00e1r\u00e9rt\u00e9kkel c\u00e1folhat\u00f3 (nem l\u00e9tez\u0151) hat\u00e1r\u00e9rt\u00e9kek<\/h3>\r\n                A 6. \u00e1ll\u00edt\u00e1s alapj\u00e1n, ha k\u00e9t k\u00fcl\u00f6nb\u00f6z\u0151 g\u00f6rbe ment\u00e9n m\u00e1s hat\u00e1r\u00e9rt\u00e9ket kapunk, a hat\u00e1r\u00e9rt\u00e9k nem l\u00e9tezik.\r\n                <ul>\r\n                    <li><b>(d) r\u00e9sz:<\/b> \\( \\frac{x}{y} \\). K\u00f6zel\u00edts\u00fcnk \\(y=mx\\) egyeneseken: \\(\\frac{x}{mx} = \\frac{1}{m}\\). Az eredm\u00e9ny f\u00fcgg az \\(m\\) meredeks\u00e9gt\u0151l \\(\\implies\\) <b>Nem l\u00e9tezik.<\/b><\/li>\r\n                    <li><b>(f) r\u00e9sz:<\/b> \\( \\frac{4x^2+7y^2}{3x^2+5y^2} \\). \\(x\\)-tengely ment\u00e9n (\\(y=0\\)): \\(4\/3\\); \\(y\\)-tengely ment\u00e9n (\\(x=0\\)): \\(7\/5\\). K\u00fcl\u00f6nb\u00f6z\u0151 \\(\\implies\\) <b>Nem l\u00e9tezik.<\/b><\/li>\r\n                    <li><b>(g) r\u00e9sz:<\/b> \\( \\frac{xy}{2x^2+2y^2} \\). \\(y=0\\) ment\u00e9n: \\(0\\); \\(y=x\\) ment\u00e9n: \\(\\frac{x^2}{4x^2} = 1\/4\\). K\u00fcl\u00f6nb\u00f6z\u0151 \\(\\implies\\) <b>Nem l\u00e9tezik.<\/b><\/li>\r\n                    <li><b>(h) r\u00e9sz:<\/b> \\( \\frac{x+xy-y}{x+xy+y} \\). \\(y=0\\) ment\u00e9n: \\(x\/x=1\\); \\(x=0\\) ment\u00e9n: \\(-y\/y=-1\\). K\u00fcl\u00f6nb\u00f6z\u0151 \\(\\implies\\) <b>Nem l\u00e9tezik.<\/b><\/li>\r\n                <\/ul>","<h3>3. Csoport: Pol\u00e1rkoordin\u00e1t\u00e1s m\u00f3dszerrel bizony\u00edthat\u00f3 hat\u00e1r\u00e9rt\u00e9kek<\/h3>\r\n                Haszn\u00e1ljuk az \\(x = r\\cos\\phi, y = r\\sin\\phi\\) helyettes\u00edt\u00e9st, ahol \\(r \\to 0\\).\r\n                <ul>\r\n                    <li><b>(e) r\u00e9sz:<\/b> \\( \\frac{3xy^3}{4x^2+5y^2} \\)<br>\r\n                        \\[ \\frac{3(r\\cos\\phi)(r\\sin\\phi)^3}{r^2(4\\cos^2\\phi+5\\sin^2\\phi)} = r^2 \\cdot \\frac{3\\cos\\phi\\sin^3\\phi}{4\\cos^2\\phi+5\\sin^2\\phi} \\]\r\n                        Mivel a t\u00f6rt r\u00e9sz korl\u00e1tos (a nevez\u0151 sosem nulla), \\(r^2 \\to 0\\) miatt a hat\u00e1r\u00e9rt\u00e9k: <b>0<\/b>.\r\n                    <\/li>\r\n                    <li><b>(i) r\u00e9sz:<\/b> \\( \\frac{x^2 \\sin(2y)}{2x^2+5y^2} \\)<br>\r\n                        Haszn\u00e1ljuk a \\(\\sin(2y) \\approx 2y\\) k\u00f6zel\u00edt\u00e9st kis \\(y\\)-ra:\r\n                        \\[ \\frac{2x^2y}{2x^2+5y^2} \\to \\frac{2(r\\cos\\phi)^2(r\\sin\\phi)}{r^2(2\\cos^2\\phi+5\\sin^2\\phi)} = r \\cdot \\frac{2\\cos^2\\phi\\sin\\phi}{2\\cos^2\\phi+5\\sin^2\\phi} \\]\r\n                        \\(r \\to 0\\) miatt a hat\u00e1r\u00e9rt\u00e9k itt is: <b>0<\/b>.\r\n                    <\/li>\r\n                <\/ul>"]},{"title":"5. feladat: Folytonosak-e az al\u00e1bbi f\u00fcggv\u00e9nyek?","wolfram":"is f(x,y) = piecewise[{{(2*x^2*y^2)\/(5*x^4+6*y^4), (x,y) != (0,0)}, {0, (x,y) == (0,0)}}] continuous?; is g(x,y) = piecewise[{{(2*x^2*y^2)\/(5*x^2+6*y^2), (x,y) != (0,0)}, {0, (x,y) == (0,0)}}] continuous?","steps":["<h3>1. Az \\( f(x,y) \\) f\u00fcggv\u00e9ny vizsg\u00e1lata az orig\u00f3ban<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: A folytonoss\u00e1g felt\u00e9tele.<\/b><br>\r\n                Az 5. \u00e1ll\u00edt\u00e1s szerint a f\u00fcggv\u00e9ny akkor folytonos az \\( \\underline{a}=(0,0) \\) pontban, ha l\u00e9tezik a hat\u00e1r\u00e9rt\u00e9ke ebben a pontban, \u00e9s az megegyezik a helyettes\u00edt\u00e9si \u00e9rt\u00e9kkel: \\( \\lim_{(x,y) \\to (0,0)} f(x,y) = f(0,0) = 0 \\).","<b>2. L\u00e9p\u00e9s: Hat\u00e1r\u00e9rt\u00e9k vizsg\u00e1lata k\u00fcl\u00f6nb\u00f6z\u0151 ir\u00e1nyokb\u00f3l.<\/b><br>\r\n                Pr\u00f3b\u00e1ljuk megk\u00f6zel\u00edteni az orig\u00f3t az \\( y = mx \\) egyenesek ment\u00e9n:\r\n                \\[ f(x, mx) = \\frac{2x^2(mx)^2}{5x^4 + 6(mx)^4} = \\frac{2m^2x^4}{5x^4 + 6m^4x^4} = \\frac{2m^2x^4}{x^4(5 + 6m^4)} \\]\r\n                Egyszer\u0171s\u00edt\u00e9s ut\u00e1n:\r\n                \\[ \\lim_{x \\to 0} \\frac{2m^2}{5 + 6m^4} = \\frac{2m^2}{5 + 6m^4} \\]\r\n                Mivel a hat\u00e1r\u00e9rt\u00e9k f\u00fcgg az \\( m \\) meredeks\u00e9gt\u0151l (p\u00e9ld\u00e1ul \\( m=0 \\implies 0 \\), de \\( m=1 \\implies 2\/11 \\)), a f\u00fcggv\u00e9nynek <b>nincs hat\u00e1r\u00e9rt\u00e9ke<\/b> az orig\u00f3ban.","<b>3. Konkl\u00fazi\u00f3:<\/b><br>\r\n                Mivel a hat\u00e1r\u00e9rt\u00e9k nem l\u00e9tezik, a f\u00fcggv\u00e9ny <b>nem folytonos<\/b> az orig\u00f3ban.","<hr>\r\n\r\n                <h3>2. A \\( g(x,y) \\) f\u00fcggv\u00e9ny vizsg\u00e1lata az orig\u00f3ban<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Hat\u00e1r\u00e9rt\u00e9k sz\u00e1m\u00edt\u00e1sa pol\u00e1rkoordin\u00e1t\u00e1kkal.<\/b><br>\r\n                Haszn\u00e1ljuk a 7. megjegyz\u00e9s szerinti \\( x = r\\cos\\phi, y = r\\sin\\phi \\) helyettes\u00edt\u00e9st, ahol \\( r \\to 0 \\):\r\n                \\[ g(r\\cos\\phi, r\\sin\\phi) = \\frac{2(r\\cos\\phi)^2(r\\sin\\phi)^2}{5(r\\cos\\phi)^2 + 6(r\\sin\\phi)^2} \\]\r\n                \\[ = \\frac{2r^4\\cos^2\\phi\\sin^2\\phi}{r^2(5\\cos^2\\phi + 6\\sin^2\\phi)} = r^2 \\cdot \\frac{2\\cos^2\\phi\\sin^2\\phi}{5\\cos^2\\phi + 6\\sin^2\\phi} \\]","<b>2. L\u00e9p\u00e9s: A kifejez\u00e9s becsl\u00e9se.<\/b><br>\r\n                A t\u00f6rt r\u00e9sz sz\u00e1ml\u00e1l\u00f3ja \u00e9s nevez\u0151je is korl\u00e1tos, r\u00e1ad\u00e1sul a nevez\u0151 sosem nulla (\\( 5 \\le 5\\cos^2\\phi + 6\\sin^2\\phi \\le 6 \\)).\r\n                \u00cdgy egy null\u00e1hoz tart\u00f3 sorozat (\\( r^2 \\)) \u00e9s egy korl\u00e1tos kifejez\u00e9s szorzat\u00e1t kaptuk:\r\n                \\[ \\lim_{r \\to 0} \\left( r^2 \\cdot \\text{korl\u00e1tos} \\right) = \\mathbf{0} \\]\r\n                Mivel a hat\u00e1r\u00e9rt\u00e9k (\\( 0 \\)) f\u00fcggetlen \\( \\phi \\)-t\u0151l \u00e9s megegyezik \\( g(0,0) \\) \u00e9rt\u00e9k\u00e9vel, a hat\u00e1r\u00e9rt\u00e9k l\u00e9tezik.","<b>3. Konkl\u00fazi\u00f3:<\/b><br>\r\n                Mivel a hat\u00e1r\u00e9rt\u00e9k megegyezik a helyettes\u00edt\u00e9si \u00e9rt\u00e9kkel, a f\u00fcggv\u00e9ny <b>folytonos<\/b> az orig\u00f3ban."]}];
+    const chapterId = 8;
+</script>
+
+<script src="script.js"></script>
+</body>
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=8 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+</html>

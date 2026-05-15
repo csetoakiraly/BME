@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=1 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:34 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. Szétválasztható változójú differenciálegyenletek - Analízis 2</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --main-color: #3b82f6;
+            --main-color-soft: #3b82f622; 
+        }
+    </style>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <layout-wrapper>
+        <analizis-sidebar>
+            <sidebar-header>
+                <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+            </sidebar-header>
+            <sidebar-list>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter681a.html?id=1'"
+                        class="active"
+                        id="sidebar-item-1"
+                    >
+                        <span class="ch-num">1.</span>
+                        <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0b30.html?id=2'"
+                        class=""
+                        id="sidebar-item-2"
+                    >
+                        <span class="ch-num">2.</span>
+                        <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd708.html?id=3'"
+                        class=""
+                        id="sidebar-item-3"
+                    >
+                        <span class="ch-num">3.</span>
+                        <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterdcfd.html?id=4'"
+                        class=""
+                        id="sidebar-item-4"
+                    >
+                        <span class="ch-num">4.</span>
+                        <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                        <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd61c.html?id=5'"
+                        class=""
+                        id="sidebar-item-5"
+                    >
+                        <span class="ch-num">5.</span>
+                        <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                        <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter3a9f.html?id=6'"
+                        class=""
+                        id="sidebar-item-6"
+                    >
+                        <span class="ch-num">6.</span>
+                        <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                        <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter8803.html?id=7'"
+                        class=""
+                        id="sidebar-item-7"
+                    >
+                        <span class="ch-num">7.</span>
+                        <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                        <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterc3c9.html?id=8'"
+                        class=""
+                        id="sidebar-item-8"
+                    >
+                        <span class="ch-num">8.</span>
+                        <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                        <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter5255.html?id=9'"
+                        class=""
+                        id="sidebar-item-9"
+                    >
+                        <span class="ch-num">9.</span>
+                        <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                        <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterf41b.html?id=10'"
+                        class=""
+                        id="sidebar-item-10"
+                    >
+                        <span class="ch-num">10.</span>
+                        <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                        <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0055.html?id=11'"
+                        class=""
+                        id="sidebar-item-11"
+                    >
+                        <span class="ch-num">11.</span>
+                        <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                        <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter4ef9.html?id=12'"
+                        class=""
+                        id="sidebar-item-12"
+                    >
+                        <span class="ch-num">12.</span>
+                        <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                        <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter6e03.html?id=13'"
+                        class=""
+                        id="sidebar-item-13"
+                    >
+                        <span class="ch-num">13.</span>
+                        <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                        <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+                    </sidebar-item>
+                            </sidebar-list>
+            <sidebar-footer>
+                <div class="overall-progress">
+                    <div class="progress-label">Kurzus haladás: <span id="totalPercent">0%</span></div>
+                    <div class="progress-track">
+                        <div id="totalProgressBar" class="progress-fill"></div>
+                    </div>
+                </div>
+                
+            </sidebar-footer>
+        </analizis-sidebar>
+
+        <main-content>
+            <analizis-nav>
+                <nav-title><b>1. Szétválasztható változójú differenciálegyenletek<b></nav-title>
+                <nav-actions>
+                    <button id="themeToggle" class="theme-btn">🌙 Éjszakai mód</button>
+                    <button id="theory-menu-toggle" class="menu-toggle-btn">
+    <span>☰</span> Menü
+</button>
+
+<analizis-sidebar id="theory-menu">
+    <sidebar-header>
+        <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+    </sidebar-header>
+    
+    <sidebar-list>
+                    <sidebar-item 
+                onclick="window.location.href='chapter681a.html?id=1'"
+                class="active"
+                id="sidebar-item-1"
+            >
+                <span class="ch-num">1.</span>
+                <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0b30.html?id=2'"
+                class=""
+                id="sidebar-item-2"
+            >
+                <span class="ch-num">2.</span>
+                <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd708.html?id=3'"
+                class=""
+                id="sidebar-item-3"
+            >
+                <span class="ch-num">3.</span>
+                <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterdcfd.html?id=4'"
+                class=""
+                id="sidebar-item-4"
+            >
+                <span class="ch-num">4.</span>
+                <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd61c.html?id=5'"
+                class=""
+                id="sidebar-item-5"
+            >
+                <span class="ch-num">5.</span>
+                <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter3a9f.html?id=6'"
+                class=""
+                id="sidebar-item-6"
+            >
+                <span class="ch-num">6.</span>
+                <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter8803.html?id=7'"
+                class=""
+                id="sidebar-item-7"
+            >
+                <span class="ch-num">7.</span>
+                <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterc3c9.html?id=8'"
+                class=""
+                id="sidebar-item-8"
+            >
+                <span class="ch-num">8.</span>
+                <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter5255.html?id=9'"
+                class=""
+                id="sidebar-item-9"
+            >
+                <span class="ch-num">9.</span>
+                <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterf41b.html?id=10'"
+                class=""
+                id="sidebar-item-10"
+            >
+                <span class="ch-num">10.</span>
+                <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0055.html?id=11'"
+                class=""
+                id="sidebar-item-11"
+            >
+                <span class="ch-num">11.</span>
+                <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter4ef9.html?id=12'"
+                class=""
+                id="sidebar-item-12"
+            >
+                <span class="ch-num">12.</span>
+                <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter6e03.html?id=13'"
+                class=""
+                id="sidebar-item-13"
+            >
+                <span class="ch-num">13.</span>
+                <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+            </sidebar-item>
+            </sidebar-list>
+</analizis-sidebar>
+</button>
+
+                </nav-actions>
+            </analizis-nav>
+            
+            <analizis-content>
+                <theory-section>
+                    <section-header>Elméleti összefoglaló</section-header>
+                    <theory-body>
+            <h3>Általános alak</h3>
+            <p>$$y'(x) = f(x)g(y(x)) \quad (x \in I)$$</p>
+            <p>ahol \( I, J \subseteq \mathbb{R} \) nyílt intervallumok, \( f: I \to \mathbb{R} \) és \( g: J \to \mathbb{R} \) pedig folytonos függvények.</p>
+            
+            <h3>Megoldási módszer</h3>
+            <ul>
+                <li>Ha \( g(y_0) = 0 \) valamilyen \( y_0 \in J \) esetén, akkor \( y \equiv y_0 \) konstans függvény megoldása a differenciálegyenletnek.</li>
+                <li>További megoldásokat úgy kapunk, hogy feltesszük: \( g(y) \neq 0 \). Ekkor a \( g(y(x)) \)-szel való osztás után:
+                    <p>$$\frac{y'(x)}{g(y(x))} = f(x) \quad (x \in I)$$</p>
+                </li>
+            </ul>
+            <p>Integrálva mindkét oldalt: \( H(y(x)) = \int \frac{1}{g(y(x))} y'(x) dx = \int f(x) dx = F(x) + C \).</p>
+            
+            <p><b>Megjegyzés:</b> A gyakorlatban a \(\frac{dy}{dx} = f(x)g(y)\) formális átalakítást használjuk:</p>
+            <p>$$\int \frac{1}{g(y)} dy = \int f(x) dx$$</p>
+        </theory-body>
+                </theory-section>
+
+                <practice-section>
+    <section-header>Példafeladatok</section-header>
+    
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat: Mutassuk meg, hogy az \( y(x) := e^{-x} \int_{0}^{x} e^{t^4} dt - 2e^{-x} \) függvény megoldása az \( y'(x) + y(x) = e^{x^4-x} \) differenciálegyenletnek.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27%28x%29+%2B+y%28x%29+%3D+exp%28x%5E4+-+x%29%2C+y%280%29+%3D+-2"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="0">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="0">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">2. feladat: Adjuk meg az \( y''(x) = \text{sh}(2x) - x^2 \quad (x \in \mathbb{R}) \) differenciálegyenlet (a) általános megoldását és (b) azon partikuláris megoldását, amely eleget tesz az \( y(0)=2, y'(0)=1 \) kezdeti feltételeknek.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27%27%28x%29+%3D+sinh%282x%29+-+x%5E2%2C+y%280%29%3D2%2C+y%27%280%29%3D1"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="1">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="1">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">3. feladat: Oldjuk meg az \( y'(x) = \frac{x}{y(x)}e^{4x^2-5y(x)} \quad (y(x) \neq 0) \) differenciálegyenletet.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27+%3D+%28x%2Fy%29+%2A+exp%284x%5E2+-+5y%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="2">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="2">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">4. feladat: Adott az \( y' = \frac{y + 1}{(x - 1)y} \quad (x \neq 1, y \neq 0) \) differenciálegyenlet. (a) Oldjuk meg a differenciálegyenletet. (b) Oldjuk meg az \( y(2) = -1, y(2) = 2, \) illetve \( y(2) = -2 \) kezdetiérték-problémákat.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27+%3D+%28y+%2B+1%29+%2F+%28%28x+-+1%29+%2A+y%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="3">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="3">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">5. feladat: Oldjuk meg az \( y' = \frac{y^2 + 2y + 5}{(x - 2)(x + 4)} \quad (x \neq 2, -4) \) differenciálegyenletet.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27+%3D+%28y%5E2+%2B+2y+%2B+5%29+%2F+%28%28x+-+2%29+%2A+%28x+%2B+4%29%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="4">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="4">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">6. feladat: Oldjuk meg az \( y' = (2x + 3)^6(y^2 + 5y) \) differenciálegyenletet.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27+%3D+%282x+%2B+3%29%5E6+%2A+%28y%5E2+%2B+5y%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="5">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="5">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">7. feladat: Oldjuk meg az \( y' = \frac{\sin(y)}{\cos(y)}x^2(3x^3 + 2)^5 \quad (-\frac{\pi}{2} < y < \frac{\pi}{2}) \) differenciálegyenletet.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27+%3D+tan%28y%29+%2A+x%5E2+%2A+%283x%5E3+%2B+2%29%5E5"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="6">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="6">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">8. feladat: A polónium bomlási sebessége arányos a pillanatnyi polóniummennyiséggel. Tudjuk, hogy a polónium felezési ideje 2900 év. A kiindulási anyag mennyiségének hány százaléka bomlik fel 200 év alatt?</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27%28t%29+%3D+-k%2Ay%28t%29%2C+y%282900%29%3Dy0%2F2%2C+find+%28y0-y%28200%29%29%2Fy0"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="7">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="7">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+    
+</practice-section>
+
+<script>
+    const allTasks = [{"title":"1. feladat: Mutassuk meg, hogy az \\( y(x) := e^{-x} \\int_{0}^{x} e^{t^4} dt - 2e^{-x} \\) f\u00fcggv\u00e9ny megold\u00e1sa az \\( y'(x) + y(x) = e^{x^4-x} \\) differenci\u00e1legyenletnek.","wolfram":"solve y'(x) + y(x) = exp(x^4 - x), y(0) = -2","steps":["<b>1. L\u00e9p\u00e9s: A bizony\u00edt\u00e1s strat\u00e9gi\u00e1j\u00e1nak meghat\u00e1roz\u00e1sa.<\/b><br>Ahhoz, hogy bebizony\u00edtsuk, hogy egy adott f\u00fcggv\u00e9ny megold\u00e1sa egy differenci\u00e1legyenletnek, a f\u00fcggv\u00e9nyt \u00e9s annak deriv\u00e1ltj\u00e1t be kell helyettes\u00edten\u00fcnk az egyenlet bal oldal\u00e1ba (LHS). Ha az egyszer\u0171s\u00edt\u00e9sek ut\u00e1n megkapjuk az egyenlet jobb oldal\u00e1t (RHS), a bizony\u00edt\u00e1s k\u00e9sz. Els\u0151k\u00e9nt teh\u00e1t ki kell sz\u00e1molnunk \\( y'(x) \\) \u00e9rt\u00e9k\u00e9t.","<b>2. L\u00e9p\u00e9s: A deriv\u00e1l\u00e1s el\u0151k\u00e9sz\u00edt\u00e9se \u00e9s a szorzat-szab\u00e1ly alkalmaz\u00e1sa.<\/b><br>A megadott f\u00fcggv\u00e9ny \\( y(x) = e^{-x} \\cdot \\left( \\int_{0}^{x} e^{t^4} dt \\right) - 2e^{-x} \\). Az els\u0151 tag egy szorzat, ahol az egyik t\u00e9nyez\u0151 az \\( e^{-x} \\), a m\u00e1sik pedig egy integr\u00e1lf\u00fcggv\u00e9ny. A deriv\u00e1l\u00e1shoz a szorzat-szab\u00e1lyt (\\( (u \\cdot v)' = u'v + uv' \\)) kell alkalmaznunk az els\u0151 tagra, a m\u00e1sodikat pedig tagonk\u00e9nt deriv\u00e1ljuk.","<b>3. L\u00e9p\u00e9s: Az integr\u00e1lf\u00fcggv\u00e9ny deriv\u00e1l\u00e1sa (Leibniz-szab\u00e1ly).<\/b><br>Az anal\u00edzis alapt\u00e9tele (vagy Leibniz-szab\u00e1ly) kimondja, hogy ha egy integr\u00e1l fels\u0151 hat\u00e1ra a v\u00e1ltoz\u00f3 (\\( x \\)), akkor annak deriv\u00e1ltja maga az integr\u00e1land\u00f3 f\u00fcggv\u00e9ny, a v\u00e1ltoz\u00f3val behelyettes\u00edtve: \\[ \\frac{d}{dx} \\left( \\int_{0}^{x} e^{t^4} dt \\right) = e^{x^4} \\] Ez kulcsfontoss\u00e1g\u00fa l\u00e9p\u00e9s a levezet\u00e9sben.","<b>4. L\u00e9p\u00e9s: A teljes deriv\u00e1lt (\\( y'(x) \\)) fel\u00edr\u00e1sa.<\/b><br>V\u00e9gezz\u00fck el a deriv\u00e1l\u00e1st tagonk\u00e9nt: \\[ y'(x) = \\underbrace{(-e^{-x}) \\cdot \\int_{0}^{x} e^{t^4} dt + e^{-x} \\cdot e^{x^4}}_{\\text{az els\u0151 tag deriv\u00e1ltja}} - \\underbrace{2 \\cdot (-e^{-x})}_{\\text{a m\u00e1sodik tag deriv\u00e1ltja}} \\] Rendezz\u00fck a kifejez\u00e9st: \\[ y'(x) = -e^{-x} \\int_{0}^{x} e^{t^4} dt + e^{x^4-x} + 2e^{-x} \\]","<b>5. L\u00e9p\u00e9s: Behelyettes\u00edt\u00e9s a differenci\u00e1legyenlet bal oldal\u00e1ba.<\/b><br>Most \u00edrjuk fel az \\( y'(x) + y(x) \\) \u00f6sszeget a kisz\u00e1m\u00edtott deriv\u00e1lt \u00e9s az eredeti f\u00fcggv\u00e9ny seg\u00edts\u00e9g\u00e9vel: \\[ \\text{LHS} = \\left( -e^{-x} \\int_{0}^{x} e^{t^4} dt + e^{x^4-x} + 2e^{-x} \\right) + \\left( e^{-x} \\int_{0}^{x} e^{t^4} dt - 2e^{-x} \\right) \\]","<b>6. L\u00e9p\u00e9s: Az egyszer\u0171s\u00edt\u00e9s \u00e9s a konkl\u00fazi\u00f3 levon\u00e1sa.<\/b><br>Figyelj\u00fck meg a tagokat: az integr\u00e1los kifejez\u00e9sek (\\( -e^{-x}\\int \\) \u00e9s \\( +e^{-x}\\int \\)) \u00f6sszege nulla, \u00e9s a konstansos tagok (\\( +2e^{-x} \\) \u00e9s \\( -2e^{-x} \\)) is kiejtik egym\u00e1st. Marad teh\u00e1t: \\[ \\text{LHS} = e^{x^4-x} \\] Mivel ez pontosan megegyezik a differenci\u00e1legyenlet jobb oldal\u00e1val (RHS), bebizony\u00edtottuk, hogy a f\u00fcggv\u00e9ny val\u00f3ban megold\u00e1s."]},{"title":"2. feladat: Adjuk meg az \\( y''(x) = \\text{sh}(2x) - x^2 \\quad (x \\in \\mathbb{R}) \\) differenci\u00e1legyenlet (a) \u00e1ltal\u00e1nos megold\u00e1s\u00e1t \u00e9s (b) azon partikul\u00e1ris megold\u00e1s\u00e1t, amely eleget tesz az \\( y(0)=2, y'(0)=1 \\) kezdeti felt\u00e9teleknek.","wolfram":"solve y''(x) = sinh(2x) - x^2, y(0)=2, y'(0)=1","steps":["<b>1. L\u00e9p\u00e9s: A feladat t\u00edpus\u00e1nak meghat\u00e1roz\u00e1sa \u00e9s a strat\u00e9gia.<\/b><br>Egy m\u00e1sodrend\u0171 differenci\u00e1legyenlettel van dolgunk, ahol a jobb oldalon csak \\( x \\)-t\u0151l f\u00fcgg\u0151 kifejez\u00e9s \u00e1ll. Az elm\u00e9let szerint az ilyen t\u00edpus\u00fa (\\( y^{(n)} = f(x) \\)) egyenletek megold\u00e1s\u00e1hoz \\( n \\)-szeres egym\u00e1st k\u00f6vet\u0151 integr\u00e1l\u00e1sra van sz\u00fcks\u00e9g. Mivel itt m\u00e1sodrend\u0171 (\\( y'' \\)) a deriv\u00e1lt, k\u00e9tszer fogunk integr\u00e1lni.","<b>2. L\u00e9p\u00e9s: Az els\u0151 integr\u00e1l\u00e1s v\u00e9grehajt\u00e1sa (\\( y'(x) \\) meghat\u00e1roz\u00e1sa).<\/b><br>Integr\u00e1ljuk az egyenlet mindk\u00e9t oldal\u00e1t \\( x \\) szerint. Ezzel a m\u00e1sodrend\u0171 deriv\u00e1ltb\u00f3l els\u0151rend\u0171 deriv\u00e1ltat kapunk: \\[ y'(x) = \\int y''(x) \\, dx = \\int (\\text{sh}(2x) - x^2) \\, dx \\] Haszn\u00e1ljuk az alapintegr\u00e1lokat: \\( \\int \\text{sh}(ax) \\, dx = \\frac{1}{a}\\text{ch}(ax) \\) \u00e9s \\( \\int x^n \\, dx = \\frac{x^{n+1}}{n+1} \\). V\u00e9gezz\u00fck el a m\u0171veletet: \\[ y'(x) = \\frac{\\text{ch}(2x)}{2} - \\frac{x^3}{3} + C \\] Ahol \\( C \\) az els\u0151 integr\u00e1l\u00e1si konstans.","<b>3. L\u00e9p\u00e9s: A m\u00e1sodik integr\u00e1l\u00e1s v\u00e9grehajt\u00e1sa (Az \u00e1ltal\u00e1nos megold\u00e1s).<\/b><br>Az eredeti \\( y(x) \\) f\u00fcggv\u00e9ny megkap\u00e1s\u00e1hoz integr\u00e1ljuk az el\u0151bb kapott \\( y'(x) \\) f\u00fcggv\u00e9nyt: \\[ y(x) = \\int y'(x) \\, dx = \\int \\left( \\frac{\\text{ch}(2x)}{2} - \\frac{x^3}{3} + C \\right) \\, dx \\] Alkalmazzuk a szab\u00e1lyokat tagonk\u00e9nt (tudva, hogy a \\( \\text{ch}(2x) \\) integr\u00e1lja \\( \\text{sh}(2x)\/2 \\)): \\[ y(x) = \\frac{1}{2} \\cdot \\frac{\\text{sh}(2x)}{2} - \\frac{1}{3} \\cdot \\frac{x^4}{4} + Cx + D \\] Egyszer\u0171s\u00edtve kapjuk az <b>\u00e1ltal\u00e1nos megold\u00e1st<\/b>: \\[ y_{\\text{\u00e1lt}}(x) = \\frac{\\text{sh}(2x)}{4} - \\frac{x^4}{12} + Cx + D \\]","<b>4. L\u00e9p\u00e9s: Az els\u0151 konstans (\\( C \\)) meghat\u00e1roz\u00e1sa a kezdeti felt\u00e9telb\u0151l.<\/b><br>Haszn\u00e1ljuk az \\( y'(0) = 1 \\) felt\u00e9telt a 2. l\u00e9p\u00e9sben kapott \\( y'(x) \\) egyenletben. Tudjuk, hogy \\( \\text{ch}(0) = 1 \\): \\[ 1 = \\frac{\\text{ch}(2 \\cdot 0)}{2} - \\frac{0^3}{3} + C \\Rightarrow 1 = \\frac{1}{2} + C \\] Ebb\u0151l megkapjuk az els\u0151 konstanst: <b>C = 1\/2<\/b>.","<b>5. L\u00e9p\u00e9s: A m\u00e1sodik konstans (\\( D \\)) meghat\u00e1roz\u00e1sa.<\/b><br>Haszn\u00e1ljuk az \\( y(0) = 2 \\) felt\u00e9telt az \u00e1ltal\u00e1nos megold\u00e1sban, behelyettes\u00edtve a m\u00e1r ismert \\( C = 1\/2 \\) \u00e9rt\u00e9ket. Tudjuk, hogy \\( \\text{sh}(0) = 0 \\): \\[ 2 = \\frac{\\text{sh}(2 \\cdot 0)}{4} - \\frac{0^4}{12} + \\frac{1}{2} \\cdot 0 + D \\Rightarrow 2 = 0 - 0 + 0 + D \\] Teh\u00e1t a m\u00e1sodik konstans \u00e9rt\u00e9ke: <b>D = 2<\/b>.","<b>6. L\u00e9p\u00e9s: A partikul\u00e1ris megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>Helyettes\u00edts\u00fck vissza a kisz\u00e1m\u00edtott konstansokat (\\( C = 1\/2, D = 2 \\)) az \u00e1ltal\u00e1nos megold\u00e1sba: \\[ y_p(x) = \\frac{\\text{sh}(2x)}{4} - \\frac{x^4}{12} + \\frac{1}{2}x + 2 \\] Ezzel megkaptuk azt a konkr\u00e9t f\u00fcggv\u00e9nyt, amely eleget tesz mind a differenci\u00e1legyenletnek, mind a megadott kezdeti felt\u00e9teleknek."]},{"title":"3. feladat: Oldjuk meg az \\( y'(x) = \\frac{x}{y(x)}e^{4x^2-5y(x)} \\quad (y(x) \\neq 0) \\) differenci\u00e1legyenletet.","wolfram":"solve y' = (x\/y) * exp(4x^2 - 5y)","steps":["<b>1. L\u00e9p\u00e9s: Az egyenlet \u00e1talak\u00edt\u00e1sa \u00e9s a t\u00edpus azonos\u00edt\u00e1sa.<\/b><br>Haszn\u00e1ljuk a hatv\u00e1nyoz\u00e1s azonoss\u00e1gait (\\( e^{a-b} = e^a \\cdot e^{-b} \\)), hogy az egyenletet \u00e1tl\u00e1that\u00f3bb form\u00e1ra hozzuk: \\[ y'(x) = \\frac{x \\cdot e^{4x^2}}{y(x) \\cdot e^{5y(x)}} \\] L\u00e1that\u00f3, hogy a jobb oldalon a kifejez\u00e9s felbonthat\u00f3 egy tiszta \\( x \\)-t\u0151l \u00e9s egy tiszta \\( y \\)-t\u00f3l f\u00fcgg\u0151 f\u00fcggv\u00e9ny szorzat\u00e1ra. Ez teh\u00e1t egy sz\u00e9tv\u00e1laszthat\u00f3 v\u00e1ltoz\u00f3j\u00fa differenci\u00e1legyenlet.","<b>2. L\u00e9p\u00e9s: A v\u00e1ltoz\u00f3k sz\u00e9tv\u00e1laszt\u00e1sa.<\/b><br>\u00cdrjuk \u00e1t az \\( y'(x) \\) deriv\u00e1ltat \\( \\frac{dy}{dx} \\) alakba, majd rendezz\u00fck az egyenletet \u00fagy, hogy az \u00f6sszes \\( y \\) v\u00e1ltoz\u00f3 a bal oldalon, az \u00f6sszes \\( x \\) v\u00e1ltoz\u00f3 pedig a jobb oldalon szerepeljen: \\[ y \\cdot e^{5y} \\, dy = x \\cdot e^{4x^2} \\, dx \\] Ezzel el\u0151k\u00e9sz\u00edtett\u00fck az egyenletet a mindk\u00e9t oldali integr\u00e1l\u00e1shoz.","<b>3. L\u00e9p\u00e9s: Az integr\u00e1l\u00e1si m\u0171veletek kijel\u00f6l\u00e9se.<\/b><br>Tegy\u00fcnk integr\u00e1ljelet mindk\u00e9t oldal el\u00e9: \\[ \\int y e^{5y} \\, dy = \\int x e^{4x^2} \\, dx \\] Vegy\u00fck \u00e9szre, hogy a k\u00e9t oldal teljesen elt\u00e9r\u0151 integr\u00e1l\u00e1si technik\u00e1t ig\u00e9nyel: a bal oldalon parci\u00e1lis integr\u00e1l\u00e1st, a jobb oldalon pedig helyettes\u00edt\u00e9ses integr\u00e1l\u00e1st kell alkalmaznunk.","<b>4. L\u00e9p\u00e9s: A bal oldal integr\u00e1l\u00e1sa (Parci\u00e1lis integr\u00e1l\u00e1s).<\/b><br>Alkalmazzuk a \\( \\int u v' = uv - \\int u' v \\) szab\u00e1lyt (\\( u = y, v' = e^{5y} \\)): \\[ \\int y e^{5y} \\, dy = \\frac{1}{5}y e^{5y} - \\int \\frac{1}{5}e^{5y} \\, dy = \\frac{1}{5}y e^{5y} - \\frac{1}{25}e^{5y} \\]","<b>5. L\u00e9p\u00e9s: A jobb oldal integr\u00e1l\u00e1sa (Helyettes\u00edt\u00e9s).<\/b><br>A jobb oldalon a bels\u0151 f\u00fcggv\u00e9ny (\\( 4x^2 \\)) deriv\u00e1ltja (\\( 8x \\)) konstans szorz\u00f3t\u00f3l eltekintve szerepel a kifejez\u00e9sben. V\u00e9gezz\u00fcnk \\( w = 4x^2 \\) helyettes\u00edt\u00e9st: \\[ \\int x e^{4x^2} \\, dx = \\frac{1}{8} \\int e^w \\, dw = \\frac{1}{8} e^{4x^2} \\]","<b>6. L\u00e9p\u00e9s: Az integr\u00e1lt alakok \u00f6sszeilleszt\u00e9se \u00e9s a konstans hozz\u00e1ad\u00e1sa.<\/b><br>Tegy\u00fck egyenl\u0151v\u00e9 a k\u00e9t kisz\u00e1m\u00edtott integr\u00e1lt, \u00e9s ne felejts\u00fck el a tetsz\u0151leges integr\u00e1l\u00e1si konstanst (\\( C \\)) hozz\u00e1adni: \\[ \\frac{1}{5}y e^{5y} - \\frac{1}{25}e^{5y} = \\frac{1}{8} e^{4x^2} + C \\]","<b>7. L\u00e9p\u00e9s: A v\u00e9geredm\u00e9ny kiemel\u00e9se \u00e9s rendez\u00e9se.<\/b><br>Emelj\u00fcnk ki a bal oldalon \\( \\frac{1}{5} \\)-\u00f6t, hogy megkapjuk a k\u00e9rt form\u00e1t: \\[ \\frac{1}{5} \\left( y e^{5y} - \\frac{1}{5}e^{5y} \\right) = \\frac{1}{8} e^{4x^2} + C \\] Ezzel megadtuk a differenci\u00e1legyenlet \u00e1ltal\u00e1nos megold\u00e1s\u00e1t implicit alakban."]},{"title":"4. feladat: Adott az \\( y' = \\frac{y + 1}{(x - 1)y} \\quad (x \\neq 1, y \\neq 0) \\) differenci\u00e1legyenlet. (a) Oldjuk meg a differenci\u00e1legyenletet. (b) Oldjuk meg az \\( y(2) = -1, y(2) = 2, \\) illetve \\( y(2) = -2 \\) kezdeti\u00e9rt\u00e9k-probl\u00e9m\u00e1kat.","wolfram":"solve y' = (y + 1) \/ ((x - 1) * y)","steps":["<b>1. L\u00e9p\u00e9s: Az egyenlet azonos\u00edt\u00e1sa \u00e9s a v\u00e1ltoz\u00f3k sz\u00e9tv\u00e1laszt\u00e1sa.<\/b><br> Az egyenlet fel\u00edrhat\u00f3 \\( y' = \\frac{1}{x-1} \\cdot \\frac{y+1}{y} \\) alakban. Ez egy sz\u00e9tv\u00e1laszthat\u00f3 v\u00e1ltoz\u00f3j\u00fa differenci\u00e1legyenlet, ahol \\( f(x) = \\frac{1}{x-1} \\) \u00e9s \\( g(y) = \\frac{y+1}{y} \\). A megold\u00e1s sor\u00e1n a c\u00e9lunk az \\( x \\) \u00e9s \\( y \\) v\u00e1ltoz\u00f3k k\u00fcl\u00f6n oldalra rendez\u00e9se.","<b>2. L\u00e9p\u00e9s: Konstans megold\u00e1sok vizsg\u00e1lata.<\/b><br> Az elm\u00e9let szerint ha \\( g(y_0) = 0 \\), akkor \\( y \\equiv y_0 \\) konstans megold\u00e1s. N\u00e9zz\u00fck meg, mikor nulla a t\u00f6rt sz\u00e1ml\u00e1l\u00f3ja:  \\[ y + 1 = 0 \\Rightarrow y \\equiv -1 \\] Mivel a konstans deriv\u00e1ltja nulla, \u00e9s behelyettes\u00edtve is null\u00e1t kapunk a jobb oldalon, az **\\( y(x) \\equiv -1 \\)** egy megold\u00e1s. Ez kritikus lesz a (b) pont els\u0151 k\u00e9rd\u00e9s\u00e9n\u00e9l.","<b>3. L\u00e9p\u00e9s: A v\u00e1ltoz\u00f3k sz\u00e9tv\u00e1laszt\u00e1sa (Leibniz-jel\u00f6l\u00e9ssel).<\/b><br> \u00cdrjuk \u00e1t \\( y' \\)-et \\( \\frac{dy}{dx} \\) alakba, \u00e9s rendezz\u00fck az egyenletet: \\[ \\frac{y}{y+1} \\, dy = \\frac{1}{x-1} \\, dx \\] Fontos felt\u00e9tel: itt felt\u00e9telezz\u00fck, hogy \\( y \\neq -1 \\), mivel ezzel osztottunk.","<b>4. L\u00e9p\u00e9s: Integr\u00e1l\u00e1s el\u0151k\u00e9sz\u00edt\u00e9se (LHS).<\/b><br> A bal oldali integr\u00e1l \\( \\int \\frac{y}{y+1} dy \\) nem alapintegr\u00e1l, ez\u00e9rt \u00e1t kell alak\u00edtanunk. Alkalmazzunk egy egyszer\u0171 tr\u00fckk\u00f6t: a sz\u00e1ml\u00e1l\u00f3hoz adjunk hozz\u00e1 \u00e9s vonjunk ki egyet: \\[ \\frac{y+1-1}{y+1} = \\frac{y+1}{y+1} - \\frac{1}{y+1} = 1 - \\frac{1}{y+1} \\]","<b>5. L\u00e9p\u00e9s: Az integr\u00e1lok kisz\u00e1m\u00edt\u00e1sa.<\/b><br> V\u00e9gezz\u00fck el az integr\u00e1l\u00e1st mindk\u00e9t oldalon: \\[ \\int \\left( 1 - \\frac{1}{y+1} \\right) dy = \\int \\frac{1}{x-1} dx \\] Az alapintegr\u00e1lok szab\u00e1lyai szerint: \\[ y - \\ln|y + 1| = \\ln|x - 1| + C \\] Ez a differenci\u00e1legyenlet **\u00e1ltal\u00e1nos implicit megold\u00e1sa**.","<b>6. L\u00e9p\u00e9s: Kezdeti\u00e9rt\u00e9k-probl\u00e9ma I. (\\( y(2) = -1 \\)).<\/b><br>\r\n                    Itt nem kell behelyettes\u00edten\u00fcnk az \u00e1ltal\u00e1nos megold\u00e1sba. A 2. l\u00e9p\u00e9sben tal\u00e1ltunk egy konstans megold\u00e1st: \\( y \\equiv -1 \\). Mivel ez a f\u00fcggv\u00e9ny minden pontban -1 \u00e9rt\u00e9ket vesz fel, \u00edgy a \\( 2 \\) helyen is. \r\n                    Teh\u00e1t: **\\( y(x) = -1 \\)**.","<b>7. L\u00e9p\u00e9s: Kezdeti\u00e9rt\u00e9k-probl\u00e9ma II. (\\( y(2) = 2 \\)).<\/b><br>\r\n                    Helyettes\u00edts\u00fcnk az \u00e1ltal\u00e1nos megold\u00e1sba: \\( x=2, y=2 \\). Mivel \\( y+1=3 \\) \u00e9s \\( x-1=1 \\) pozit\u00edvak, elhagyhatjuk az abszol\u00fat\u00e9rt\u00e9ket:\r\n                    \\[ 2 - \\ln(2 + 1) = \\ln(2 - 1) + C \\]\r\n                    \\[ 2 - \\ln 3 = 0 + C \\Rightarrow C = 2 - \\ln 3 \\]\r\n                    A megold\u00e1s: **\\( y - \\ln(y + 1) = \\ln(x - 1) + 2 - \\ln 3 \\)**.","<b>8. L\u00e9p\u00e9s: Kezdeti\u00e9rt\u00e9k-probl\u00e9ma III. (\\( y(2) = -2 \\)).<\/b><br>\r\n                    Itt \\( y = -2 \\), teh\u00e1t \\( y+1 = -1 \\). Az abszol\u00fat\u00e9rt\u00e9k miatt \\( |y+1| = | -1 | = 1 \\). \r\n                    \\[ -2 - \\ln|-2 + 1| = \\ln|2 - 1| + C \\]\r\n                    \\[ -2 - \\ln 1 = \\ln 1 + C \\Rightarrow -2 - 0 = 0 + C \\Rightarrow C = -2 \\]\r\n                    Mivel \\( y < -1 \\) k\u00f6rnyezet\u00e9ben vagyunk, \\( |y+1| = -(y+1) \\). \r\n                    A megold\u00e1s: **\\( y - \\ln(-y - 1) = \\ln(x - 1) - 2 \\)**."]},{"title":"5. feladat: Oldjuk meg az \\( y' = \\frac{y^2 + 2y + 5}{(x - 2)(x + 4)} \\quad (x \\neq 2, -4) \\) differenci\u00e1legyenletet.","wolfram":"solve y' = (y^2 + 2y + 5) \/ ((x - 2) * (x + 4))","steps":["<b>1. L\u00e9p\u00e9s: Az egyenlet t\u00edpus\u00e1nak azonos\u00edt\u00e1sa.<\/b><br>\r\n                    Az egyenlet jobb oldala egy tiszta \\( y \\)-t\u00f3l f\u00fcgg\u0151 sz\u00e1ml\u00e1l\u00f3b\u00f3l \u00e9s egy tiszta \\( x \\)-t\u0151l f\u00fcgg\u0151 nevez\u0151b\u0151l \u00e1ll, \u00edgy fel\u00edrhat\u00f3 \\( y' = f(x)g(y) \\) alakban. Ez egy sz\u00e9tv\u00e1laszthat\u00f3 v\u00e1ltoz\u00f3j\u00fa differenci\u00e1legyenlet, ahol:\r\n                    \\[ f(x) = \\frac{1}{(x-2)(x+4)} \\quad \\text{\u00e9s} \\quad g(y) = y^2 + 2y + 5 \\]","<b>2. L\u00e9p\u00e9s: Konstans megold\u00e1sok keres\u00e9se.<\/b><br>\r\n                    Vizsg\u00e1ljuk meg, hogy a \\( g(y) = y^2 + 2y + 5 \\) kifejez\u00e9s lehet-e nulla. Ehhez sz\u00e1moljuk ki a m\u00e1sodfok\u00fa egyenlet diszkrimin\u00e1ns\u00e1t:\r\n                    \\[ D = 2^2 - 4 \\cdot 1 \\cdot 5 = 4 - 20 = -16 \\]\r\n                    Mivel a diszkrimin\u00e1ns negat\u00edv, a kifejez\u00e9snek nincs val\u00f3s gy\u00f6ke, teh\u00e1t \\( g(y) \\) sosem nulla. Ebb\u0151l k\u00f6vetkezik, hogy ebben a feladatban <b>nincs konstans megold\u00e1s<\/b>.","<b>3. L\u00e9p\u00e9s: A v\u00e1ltoz\u00f3k sz\u00e9tv\u00e1laszt\u00e1sa \u00e9s az integr\u00e1lok kijel\u00f6l\u00e9se.<\/b><br>\r\n                    Rendezz\u00fck az egyenletet \u00fagy, hogy az \\( y \\) tagok a bal oldalon, az \\( x \\) tagok a jobb oldalon legyenek, majd tegy\u00fck ki az integr\u00e1ljeleket:\r\n                    \\[ \\int \\frac{1}{y^2 + 2y + 5} \\, dy = \\int \\frac{1}{(x - 2)(x + 4)} \\, dx \\]\r\n                    L\u00e1that\u00f3, hogy mindk\u00e9t oldal k\u00fcl\u00f6nleges technik\u00e1t ig\u00e9nyel az integr\u00e1l\u00e1shoz.","<b>4. L\u00e9p\u00e9s: A bal oldal integr\u00e1l\u00e1sa (Teljes n\u00e9gyzett\u00e9 kieg\u00e9sz\u00edt\u00e9s).<\/b><br>\r\n                    A bal oldali nevez\u0151 m\u00e1sodfok\u00fa, gy\u00f6kei nincsenek, ez\u00e9rt alak\u00edtsuk \u00e1t teljes n\u00e9gyzett\u00e9:\r\n                    \\[ y^2 + 2y + 5 = (y + 1)^2 + 4 \\]\r\n                    Alkalmazzuk az \\( \\int \\frac{1}{u^2 + a^2} du = \\frac{1}{a} \\text{arctg}\\left(\\frac{u}{a}\\right) \\) alapintegr\u00e1lt (itt \\( u = y+1 \\) \u00e9s \\( a = 2 \\)):\r\n                    \\[ \\int \\frac{1}{(y + 1)^2 + 4} \\, dy = \\frac{1}{2} \\text{arctg}\\left(\\frac{y + 1}{2}\\right) \\]","<b>5. L\u00e9p\u00e9s: A jobb oldal integr\u00e1l\u00e1sa (Parci\u00e1lis t\u00f6rtekre bont\u00e1s).<\/b><br>\r\n                    Bontsuk fel a nevez\u0151t parci\u00e1lis t\u00f6rtekre:\r\n                    \\[ \\frac{1}{(x - 2)(x + 4)} = \\frac{A}{x - 2} + \\frac{B}{x + 4} \\]\r\n                    A k\u00f6z\u00f6s nevez\u0151re hoz\u00e1s \u00e9s az egy\u00fctthat\u00f3k egyeztet\u00e9se ut\u00e1n (vagy a letakar\u00e1sos m\u00f3dszerrel) kapjuk: \\( A = 1\/6 \\) \u00e9s \\( B = -1\/6 \\).\r\n                    \\[ \\int \\left( \\frac{1\/6}{x - 2} - \\frac{1\/6}{x + 4} \\right) \\, dx = \\frac{1}{6} (\\ln|x - 2| - \\ln|x + 4|) = \\frac{1}{6} \\ln\\left| \\frac{x - 2}{x + 4} \\right| \\]","<b>6. L\u00e9p\u00e9s: Az integr\u00e1lt alakok \u00f6sszeilleszt\u00e9se.<\/b><br>\r\n                    Tegy\u00fck egyenl\u0151v\u00e9 a k\u00e9t oldalt \u00e9s adjuk hozz\u00e1 az integr\u00e1l\u00e1si konstanst (\\( K \\)):\r\n                    \\[ \\frac{1}{2} \\text{arctg}\\left(\\frac{y + 1}{2}\\right) = \\frac{1}{6} \\ln\\left| \\frac{x - 2}{x + 4} \\right| + K \\]\r\n                    Szorozzuk meg az egyenletet 2-vel, hogy elkezdj\u00fck \\( y \\)-ra rendezni (legyen \\( C = 2K \\)):\r\n                    \\[ \\text{arctg}\\left(\\frac{y + 1}{2}\\right) = \\frac{1}{3} \\ln\\left| \\frac{x - 2}{x + 4} \\right| + C \\]","<b>7. L\u00e9p\u00e9s: Az explicit megold\u00e1s (y) kifejez\u00e9se.<\/b><br>\r\n                    Alkalmazzuk a tangens f\u00fcggv\u00e9nyt mindk\u00e9t oldalra, majd fejezz\u00fck be a rendez\u00e9st:\r\n                    \\[ \\frac{y + 1}{2} = \\text{tg}\\left( \\frac{1}{3} \\ln\\left| \\frac{x - 2}{x + 4} \\right| + C \\right) \\]\r\n                    \\[ y + 1 = 2 \\text{tg}\\left( \\frac{1}{3} \\ln\\left| \\frac{x - 2}{x + 4} \\right| + C \\right) \\]\r\n                    A v\u00e9geredm\u00e9ny:\r\n                    \\[ y_{\\text{\u00e1lt}}(x) = 2 \\text{tg}\\left( \\frac{1}{3} \\ln\\left| \\frac{x - 2}{x + 4} \\right| + C \\right) - 1 \\]\r\n                    Ez a differenci\u00e1legyenlet \u00e1ltal\u00e1nos megold\u00e1sa a megadott \u00e9rtelmez\u00e9si tartom\u00e1nyon."]},{"title":"6. feladat: Oldjuk meg az \\( y' = (2x + 3)^6(y^2 + 5y) \\) differenci\u00e1legyenletet.","wolfram":"solve y' = (2x + 3)^6 * (y^2 + 5y)","steps":["<b>1. L\u00e9p\u00e9s: Az egyenlet azonos\u00edt\u00e1sa \u00e9s a komponensek meghat\u00e1roz\u00e1sa.<\/b><br>\r\n        Az egyenlet \\( y' = f(x)g(y) \\) alak\u00fa, ahol az \\( x \\)-t\u0151l f\u00fcgg\u0151 r\u00e9sz \\( f(x) = (2x + 3)^6 \\), az \\( y \\)-t\u00f3l f\u00fcgg\u0151 r\u00e9sz pedig \\( g(y) = y^2 + 5y \\). Ez egy sz\u00e9tv\u00e1laszthat\u00f3 v\u00e1ltoz\u00f3j\u00fa differenci\u00e1legyenlet.","<b>2. L\u00e9p\u00e9s: Konstans megold\u00e1sok keres\u00e9se.<\/b><br>\r\n        Az elm\u00e9leti \u00fatmutat\u00f3 alapj\u00e1n keress\u00fck meg azokat az \\( y_0 \\) \u00e9rt\u00e9keket, amelyekre \\( g(y_0) = 0 \\):\r\n        \\[ y^2 + 5y = 0 \\Rightarrow y(y + 5) = 0 \\]\r\n        A szorzat akkor nulla, ha valamelyik t\u00e9nyez\u0151je nulla, \u00edgy k\u00e9t konstans megold\u00e1st kapunk:\r\n        - **\\( y \\equiv 0 \\)**\r\n        - **\\( y \\equiv -5 \\)**\r\n        Ezek a f\u00fcggv\u00e9nyek kiel\u00e9g\u00edtik a differenci\u00e1legyenletet, mivel deriv\u00e1ltjuk nulla, \u00e9s a jobb oldal is null\u00e1v\u00e1 v\u00e1lik.","<b>3. L\u00e9p\u00e9s: A v\u00e1ltoz\u00f3k sz\u00e9tv\u00e1laszt\u00e1sa \u00e9s integr\u00e1l\u00e1si alak fel\u00edr\u00e1sa.<\/b><br>\r\n        Tegy\u00fck fel, hogy \\( y \\neq 0 \\) \u00e9s \\( y \\neq -5 \\). Osszuk el az egyenletet \\( g(y) \\)-nal, szorozzunk \\( dx \\)-szel, majd tegy\u00fck ki az integr\u00e1ljeleket:\r\n        \\[ \\int \\frac{1}{y^2 + 5y} \\, dy = \\int (2x + 3)^6 \\, dx \\]\r\n        L\u00e1tjuk, hogy mindk\u00e9t oldalon alapvet\u0151, de k\u00fcl\u00f6nb\u00f6z\u0151 integr\u00e1l\u00e1si technik\u00e1kra lesz sz\u00fcks\u00e9g.","<b>4. L\u00e9p\u00e9s: A bal oldal integr\u00e1l\u00e1sa (Parci\u00e1lis t\u00f6rtekre bont\u00e1s).<\/b><br>\r\n        A nevez\u0151t \\( y(y + 5) \\) alakban szorzatt\u00e1 bontjuk, majd fel\u00edrjuk a parci\u00e1lis t\u00f6rteket:\r\n        \\[ \\frac{1}{y(y + 5)} = \\frac{A}{y} + \\frac{B}{y + 5} \\]\r\n        K\u00f6z\u00f6s nevez\u0151re hozva: \\( 1 = A(y + 5) + By \\).\r\n        - Ha \\( y = 0 \\), akkor \\( 1 = 5A \\Rightarrow A = 1\/5 \\).\r\n        - Ha \\( y = -5 \\), akkor \\( 1 = -5B \\Rightarrow B = -1\/5 \\).\r\n        Az integr\u00e1l teh\u00e1t:\r\n        \\[ \\int \\frac{1}{5} \\left( \\frac{1}{y} - \\frac{1}{y + 5} \\right) dy = \\frac{1}{5} (\\ln|y| - \\ln|y + 5|) = \\frac{1}{5} \\ln \\left| \\frac{y}{y + 5} \\right| \\]","<b>5. L\u00e9p\u00e9s: A jobb oldal integr\u00e1l\u00e1sa (Line\u00e1ris helyettes\u00edt\u00e9s).<\/b><br>\r\n        Alkalmazzuk a hatv\u00e1nyf\u00fcggv\u00e9ny integr\u00e1l\u00e1si szab\u00e1ly\u00e1t, figyelembe v\u00e9ve a bels\u0151 f\u00fcggv\u00e9ny (\\( 2x + 3 \\)) line\u00e1ris egy\u00fctthat\u00f3j\u00e1t:\r\n        \\[ \\int (2x + 3)^6 \\, dx = \\frac{1}{2} \\cdot \\frac{(2x + 3)^7}{7} = \\frac{1}{14}(2x + 3)^7 \\]\r\n        Itt az \\( 1\/2 \\)-es szorz\u00f3 az\u00e9rt jelenik meg, mert a bels\u0151 f\u00fcggv\u00e9ny deriv\u00e1ltja 2.","<b>6. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos megold\u00e1s megad\u00e1sa.<\/b><br>\r\n        Illessz\u00fck \u00f6ssze a k\u00e9t oldalt \u00e9s adjuk hozz\u00e1 az integr\u00e1l\u00e1si konstanst (\\( C \\)):\r\n        \\[ \\frac{1}{5} \\ln \\left| \\frac{y}{y + 5} \\right| = \\frac{1}{14}(2x + 3)^7 + C \\]\r\n        Ez a differenci\u00e1legyenlet \u00e1ltal\u00e1nos megold\u00e1sa implicit alakban, kieg\u00e9sz\u00edtve a 2. l\u00e9p\u00e9sben tal\u00e1lt \\( y \\equiv 0 \\) \u00e9s \\( y \\equiv -5 \\) konstans megold\u00e1sokkal."]},{"title":"7. feladat: Oldjuk meg az \\( y' = \\frac{\\sin(y)}{\\cos(y)}x^2(3x^3 + 2)^5 \\quad (-\\frac{\\pi}{2} < y < \\frac{\\pi}{2}) \\) differenci\u00e1legyenletet.","wolfram":"solve y' = tan(y) * x^2 * (3x^3 + 2)^5","steps":["<b>1. L\u00e9p\u00e9s: Az egyenlet azonos\u00edt\u00e1sa \u00e9s \u00e1talak\u00edt\u00e1sa.<\/b><br>\r\n        Vegy\u00fck \u00e9szre, hogy a jobb oldalon az \\( y \\)-t\u00f3l f\u00fcgg\u0151 r\u00e9sz a \\( \\frac{\\sin(y)}{\\cos(y)} \\), ami nem m\u00e1s, mint a \\( \\text{tg}(y) \\) f\u00fcggv\u00e9ny. Az egyenlet teh\u00e1t sz\u00e9tv\u00e1laszthat\u00f3 v\u00e1ltoz\u00f3j\u00fa:\r\n        \\[ y' = \\text{tg}(y) \\cdot [x^2(3x^3 + 2)^5] \\]\r\n        Itt \\( f(x) = x^2(3x^3 + 2)^5 \\) \u00e9s \\( g(y) = \\text{tg}(y) \\).","<b>2. L\u00e9p\u00e9s: Konstans megold\u00e1sok vizsg\u00e1lata.<\/b><br>\r\n        Keress\u00fck meg azokat az \\( y_0 \\) \u00e9rt\u00e9keket, ahol \\( g(y_0) = 0 \\):\r\n        \\[ \\text{tg}(y) = 0 \\Rightarrow \\frac{\\sin(y)}{\\cos(y)} = 0 \\Rightarrow \\sin(y) = 0 \\]\r\n        A megadott \\( (-\\frac{\\pi}{2}, \\frac{\\pi}{2}) \\) intervallumon az egyetlen ilyen \u00e9rt\u00e9k az \\( y = 0 \\).\r\n        Teh\u00e1t az <b>\\( y(x) \\equiv 0 \\)<\/b> egy konstans megold\u00e1s.","<b>3. L\u00e9p\u00e9s: A v\u00e1ltoz\u00f3k sz\u00e9tv\u00e1laszt\u00e1sa.<\/b><br>\r\n        Tegy\u00fck fel, hogy \\( y \\neq 0 \\). Osszuk el az egyenletet \\( \\text{tg}(y) \\)-nal (ami ugyanaz, mintha szorozn\u00e1nk \\( \\frac{\\cos(y)}{\\sin(y)} \\)-nal), \u00e9s szorozzunk \\( dx \\)-szel:\r\n        \\[ \\frac{\\cos(y)}{\\sin(y)} \\, dy = x^2(3x^3 + 2)^5 \\, dx \\]\r\n        Ezzel el\u00e9rt\u00fck a sz\u00e9tv\u00e1lasztott alakot, j\u00f6het az integr\u00e1l\u00e1s mindk\u00e9t oldalon.","<b>4. L\u00e9p\u00e9s: A bal oldal integr\u00e1l\u00e1sa (Logaritmikus integr\u00e1l).<\/b><br>\r\n        A bal oldalon a t\u00f6rt sz\u00e1ml\u00e1l\u00f3ja (\\( \\cos y \\)) pontosan a nevez\u0151 (\\( \\sin y \\)) deriv\u00e1ltja. Alkalmazzuk az \\( \\int \\frac{u'}{u} = \\ln|u| \\) szab\u00e1lyt:\r\n        \\[ \\int \\frac{\\cos(y)}{\\sin(y)} \\, dy = \\ln|\\sin(y)| \\]","<b>5. L\u00e9p\u00e9s: A jobb oldal integr\u00e1l\u00e1sa (Helyettes\u00edt\u00e9ses integr\u00e1l\u00e1s).<\/b><br>\r\n        A jobb oldalon a bels\u0151 f\u00fcggv\u00e9ny (\\( 3x^3 + 2 \\)) deriv\u00e1ltja (\\( 9x^2 \\)) konstans szorz\u00f3t\u00f3l eltekintve szerepel az integr\u00e1lban.\r\n        Alkalmazzuk a \\( w = 3x^3 + 2 \\) helyettes\u00edt\u00e9st, ekkor \\( dw = 9x^2 \\, dx \\), azaz \\( x^2 \\, dx = \\frac{1}{9} dw \\):\r\n        \\[ \\int x^2(3x^3 + 2)^5 \\, dx = \\int \\frac{1}{9} w^5 \\, dw = \\frac{1}{9} \\cdot \\frac{w^6}{6} = \\frac{1}{54} w^6 \\]\r\n        Visszahelyettes\u00edtve: \\( \\frac{1}{54}(3x^3 + 2)^6 \\).","<b>6. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n        Illessz\u00fck \u00f6ssze a k\u00e9t oldal eredm\u00e9ny\u00e9t, \u00e9s ne felejts\u00fck el az integr\u00e1l\u00e1si konstanst (\\( C \\)):\r\n        \\[ \\ln|\\sin(y)| = \\frac{1}{54}(3x^3 + 2)^6 + C \\]\r\n        Ez a differenci\u00e1legyenlet \u00e1ltal\u00e1nos megold\u00e1sa implicit alakban, kieg\u00e9sz\u00edtve a 2. l\u00e9p\u00e9sben tal\u00e1lt \\( y \\equiv 0 \\) konstans megold\u00e1ssal."]},{"title":"8. feladat: A pol\u00f3nium boml\u00e1si sebess\u00e9ge ar\u00e1nyos a pillanatnyi pol\u00f3niummennyis\u00e9ggel. Tudjuk, hogy a pol\u00f3nium felez\u00e9si ideje 2900 \u00e9v. A kiindul\u00e1si anyag mennyis\u00e9g\u00e9nek h\u00e1ny sz\u00e1zal\u00e9ka bomlik fel 200 \u00e9v alatt?","wolfram":"solve y'(t) = -k*y(t), y(2900)=y0\/2, find (y0-y(200))\/y0","steps":["<b>1. L\u00e9p\u00e9s: A matematikai modell fel\u00e1ll\u00edt\u00e1sa.<\/b><br>\r\n        A sz\u00f6veg szerint a boml\u00e1si sebess\u00e9g (\\( y'(t) \\)) ar\u00e1nyos a pillanatnyi mennyis\u00e9ggel (\\( y(t) \\)). Mivel az anyag fogy, a sebess\u00e9g negat\u00edv. A differenci\u00e1legyenlet teh\u00e1t:\r\n        \\[ y'(t) = -k \\cdot y(t) \\]\r\n        ahol \\( k > 0 \\) a boml\u00e1si \u00e1lland\u00f3, \\( t \\) pedig az id\u0151 \u00e9vekben.","<b>2. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos megold\u00e1s meghat\u00e1roz\u00e1sa.<\/b><br>\r\n        Ez egy egyszer\u0171 sz\u00e9tv\u00e1laszthat\u00f3 v\u00e1ltoz\u00f3j\u00fa egyenlet. A v\u00e1ltoz\u00f3k sz\u00e9tv\u00e1laszt\u00e1sa \u00e9s integr\u00e1l\u00e1sa ut\u00e1n:\r\n        \\[ \\frac{dy}{dt} = -k y \\Rightarrow \\int \\frac{1}{y} dy = \\int -k dt \\]\r\n        \\[ \\ln|y| = -kt + C \\Rightarrow y(t) = y_0 \\cdot e^{-kt} \\]\r\n        ahol \\( y_0 \\) a kiindul\u00e1si anyagmennyis\u00e9g a \\( t = 0 \\) id\u0151pillanatban.","<b>3. L\u00e9p\u00e9s: A boml\u00e1si \u00e1lland\u00f3 (\\( k \\)) meghat\u00e1roz\u00e1sa a felez\u00e9si id\u0151b\u0151l.<\/b><br>\r\n        Tudjuk, hogy 2900 \u00e9v alatt az anyag fele bomlik el, teh\u00e1t \\( y(2900) = \\frac{1}{2}y_0 \\):\r\n        \\[ \\frac{1}{2}y_0 = y_0 \\cdot e^{-k \\cdot 2900} \\Rightarrow \\frac{1}{2} = e^{-2900k} \\]\r\n        Vegy\u00fck mindk\u00e9t oldal logaritmus\u00e1t: \\( \\ln(1\/2) = -2900k \\). Mivel \\( \\ln(1\/2) = -\\ln 2 \\), \u00edgy:\r\n        \\[ k = \\frac{\\ln 2}{2900} \\]","<b>4. L\u00e9p\u00e9s: A megold\u00e1s fel\u00edr\u00e1sa 2 alap\u00fa hatv\u00e1nyk\u00e9nt.<\/b><br>\r\n        Helyettes\u00edts\u00fck vissza \\( k \\)-t az egyenletbe. Haszn\u00e1ljuk az \\( e^{\\ln 2} = 2 \\) azonoss\u00e1got:\r\n        \\[ y(t) = y_0 \\cdot (e^{\\ln 2})^{-\\frac{t}{2900}} = y_0 \\cdot 2^{-\\frac{t}{2900}} \\]\r\n        Ez a forma sokkal k\u00e9nyelmesebb a felez\u00e9si id\u0151s feladatokn\u00e1l.","<b>5. L\u00e9p\u00e9s: A 200 \u00e9v ut\u00e1n megmaradt mennyis\u00e9g kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n        Helyettes\u00edts\u00fcnk \\( t = 200 \\)-at a k\u00e9pletbe:\r\n        \\[ y(200) = y_0 \\cdot 2^{-\\frac{200}{2900}} = y_0 \\cdot 2^{-\\frac{2}{29}} = y_0 \\cdot 2^{-\\frac{1}{14.5}} \\]\r\n        Ez az \u00e9rt\u00e9k megmutatja, hogy a kiindul\u00e1si mennyis\u00e9gnek mekkora r\u00e9sze **maradt meg**.","<b>6. L\u00e9p\u00e9s: A felbomlott mennyis\u00e9g \u00e9s a v\u00e9geredm\u00e9ny meghat\u00e1roz\u00e1sa.<\/b><br>\r\n        A feladat azt k\u00e9rdezi, h\u00e1ny sz\u00e1zal\u00e9k **bomlott fel**. Ez a kiindul\u00e1si mennyis\u00e9g (\\( y_0 \\)) \u00e9s a megmaradt mennyis\u00e9g k\u00fcl\u00f6nbs\u00e9ge:\r\n        \\[ \\text{Bomlott mennyis\u00e9g} = y_0 - y(200) = y_0 - y_0 \\cdot 2^{-\\frac{1}{14.5}} \\]\r\n        Kiemelve \\( y_0 \\)-t:\r\n        \\[ y_0 \\left( 1 - 2^{-\\frac{1}{14.5}} \\right) \\]\r\n        A keresett ar\u00e1ny (sz\u00e1zal\u00e9kban kifejezve):\r\n        \\[ 1 - 2^{-\\frac{1}{14.5}} \\]\r\n        Ez pontosan megegyezik a feladatlapon szerepl\u0151 v\u00e9geredm\u00e9nnyel."]}];
+    const chapterId = 1;
+</script>
+
+<script src="script.js"></script>
+</body>
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=1 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+</html>

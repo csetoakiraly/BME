@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=5 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5. Sorok konvergenciakritériumai - Analízis 2</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --main-color: #f59e0b;
+            --main-color-soft: #f59e0b22; 
+        }
+    </style>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <layout-wrapper>
+        <analizis-sidebar>
+            <sidebar-header>
+                <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+            </sidebar-header>
+            <sidebar-list>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter681a.html?id=1'"
+                        class=""
+                        id="sidebar-item-1"
+                    >
+                        <span class="ch-num">1.</span>
+                        <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0b30.html?id=2'"
+                        class=""
+                        id="sidebar-item-2"
+                    >
+                        <span class="ch-num">2.</span>
+                        <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd708.html?id=3'"
+                        class=""
+                        id="sidebar-item-3"
+                    >
+                        <span class="ch-num">3.</span>
+                        <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterdcfd.html?id=4'"
+                        class=""
+                        id="sidebar-item-4"
+                    >
+                        <span class="ch-num">4.</span>
+                        <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                        <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd61c.html?id=5'"
+                        class="active"
+                        id="sidebar-item-5"
+                    >
+                        <span class="ch-num">5.</span>
+                        <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                        <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter3a9f.html?id=6'"
+                        class=""
+                        id="sidebar-item-6"
+                    >
+                        <span class="ch-num">6.</span>
+                        <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                        <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter8803.html?id=7'"
+                        class=""
+                        id="sidebar-item-7"
+                    >
+                        <span class="ch-num">7.</span>
+                        <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                        <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterc3c9.html?id=8'"
+                        class=""
+                        id="sidebar-item-8"
+                    >
+                        <span class="ch-num">8.</span>
+                        <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                        <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter5255.html?id=9'"
+                        class=""
+                        id="sidebar-item-9"
+                    >
+                        <span class="ch-num">9.</span>
+                        <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                        <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterf41b.html?id=10'"
+                        class=""
+                        id="sidebar-item-10"
+                    >
+                        <span class="ch-num">10.</span>
+                        <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                        <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0055.html?id=11'"
+                        class=""
+                        id="sidebar-item-11"
+                    >
+                        <span class="ch-num">11.</span>
+                        <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                        <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter4ef9.html?id=12'"
+                        class=""
+                        id="sidebar-item-12"
+                    >
+                        <span class="ch-num">12.</span>
+                        <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                        <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter6e03.html?id=13'"
+                        class=""
+                        id="sidebar-item-13"
+                    >
+                        <span class="ch-num">13.</span>
+                        <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                        <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+                    </sidebar-item>
+                            </sidebar-list>
+            <sidebar-footer>
+                <div class="overall-progress">
+                    <div class="progress-label">Kurzus haladás: <span id="totalPercent">0%</span></div>
+                    <div class="progress-track">
+                        <div id="totalProgressBar" class="progress-fill"></div>
+                    </div>
+                </div>
+                
+            </sidebar-footer>
+        </analizis-sidebar>
+
+        <main-content>
+            <analizis-nav>
+                <nav-title><b>5. Sorok konvergenciakritériumai<b></nav-title>
+                <nav-actions>
+                    <button id="themeToggle" class="theme-btn">🌙 Éjszakai mód</button>
+                    <button id="theory-menu-toggle" class="menu-toggle-btn">
+    <span>☰</span> Menü
+</button>
+
+<analizis-sidebar id="theory-menu">
+    <sidebar-header>
+        <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+    </sidebar-header>
+    
+    <sidebar-list>
+                    <sidebar-item 
+                onclick="window.location.href='chapter681a.html?id=1'"
+                class=""
+                id="sidebar-item-1"
+            >
+                <span class="ch-num">1.</span>
+                <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0b30.html?id=2'"
+                class=""
+                id="sidebar-item-2"
+            >
+                <span class="ch-num">2.</span>
+                <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd708.html?id=3'"
+                class=""
+                id="sidebar-item-3"
+            >
+                <span class="ch-num">3.</span>
+                <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterdcfd.html?id=4'"
+                class=""
+                id="sidebar-item-4"
+            >
+                <span class="ch-num">4.</span>
+                <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd61c.html?id=5'"
+                class="active"
+                id="sidebar-item-5"
+            >
+                <span class="ch-num">5.</span>
+                <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter3a9f.html?id=6'"
+                class=""
+                id="sidebar-item-6"
+            >
+                <span class="ch-num">6.</span>
+                <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter8803.html?id=7'"
+                class=""
+                id="sidebar-item-7"
+            >
+                <span class="ch-num">7.</span>
+                <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterc3c9.html?id=8'"
+                class=""
+                id="sidebar-item-8"
+            >
+                <span class="ch-num">8.</span>
+                <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter5255.html?id=9'"
+                class=""
+                id="sidebar-item-9"
+            >
+                <span class="ch-num">9.</span>
+                <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterf41b.html?id=10'"
+                class=""
+                id="sidebar-item-10"
+            >
+                <span class="ch-num">10.</span>
+                <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0055.html?id=11'"
+                class=""
+                id="sidebar-item-11"
+            >
+                <span class="ch-num">11.</span>
+                <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter4ef9.html?id=12'"
+                class=""
+                id="sidebar-item-12"
+            >
+                <span class="ch-num">12.</span>
+                <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter6e03.html?id=13'"
+                class=""
+                id="sidebar-item-13"
+            >
+                <span class="ch-num">13.</span>
+                <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+            </sidebar-item>
+            </sidebar-list>
+</analizis-sidebar>
+</button>
+
+                </nav-actions>
+            </analizis-nav>
+            
+            <analizis-content>
+                <theory-section>
+                    <section-header>Elméleti összefoglaló</section-header>
+                    <theory-body>
+        <section>
+            <h2>1. Gyök- és hányadoskritérium</h2>
+            <p>Ezek a kritériumok a sor tagjainak növekedési ütemét hasonlítják egy geometriai sorhoz:</p>
+            
+            <ul>
+                <li><b>Gyökkritérium:</b> Legyen $(a_n)_{n \in \mathbb{N}}$ nemnegatív tagú sorozat.
+                    <ul>
+                        <li>Ha $\limsup_{n \to \infty} \sqrt[n]{a_n} < 1$, akkor $\sum a_n$ konvergens.</li>
+                        <li>Ha $\limsup_{n \to \infty} \sqrt[n]{a_n} > 1$, akkor $\sum a_n$ divergens.</li>
+                    </ul>
+                </li>
+                <br>
+                <li><b>Hányadoskritérium:</b> Legyen $(a_n)_{n \in \mathbb{N}}$ pozitív tagú sorozat.
+                    <ul>
+                        <li>Ha $\limsup_{n \to \infty} \frac{a_{n+1}}{a_n} < 1$, akkor $\sum a_n$ konvergens.</li>
+                        <li>Ha $\liminf_{n \to \infty} \frac{a_{n+1}}{a_n} > 1$, akkor $\sum a_n$ divergens.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p><i>Megjegyzés: Ha a határérték pontosan 1, a kritérium nem dönt.</i></p>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>2. Integrálkritérium</h2>
+            <p>Ha $f: [1, +\infty[ \to \mathbb{R}_+$ egy monoton csökkenő függvény, akkor a sor konvergenciája megegyezik a megfelelő improprius integrál konvergenciájával:</p>
+            <div style="text-align: center; margin: 20px 0;">
+                $$ \sum_{n=1}^\infty f(n) < +\infty \iff \int_1^\infty f(x) \, dx < +\infty $$
+            </div>
+                    </section>
+
+        <hr>
+
+        <section>
+            <h2>3. Leibniz-sorok (Alternáló sorok)</h2>
+            <p>Egy $\sum a_n$ numerikus sort <b>Leibniz-sornak</b> nevezünk, ha:</p>
+            <ol>
+                <li>Alternáló előjelű ($a_{n+1} \cdot a_n \le 0$).</li>
+                <li>Az abszolút értékek sorozata ($|a_n|$) monoton csökkenő.</li>
+                <li>A tagok nullához tartanak ($\lim_{n \to \infty} |a_n| = 0$).</li>
+            </ol>
+            <p><b>Leibniz-kritérium:</b> Minden Leibniz-sor konvergens.</p>
+            
+            <h3>Hibabecslés Leibniz-sorokra</h3>
+            <p>Az $n$-edik részletösszeg hibája nem nagyobb az első elhagyott tag abszolút értékénél:</p>
+            $$ \left| \sum_{k=0}^n a_k - S \right| \le |a_{n+1}| $$
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>4. Abszolút és feltételes konvergencia</h2>
+            <p>A sorokat a "szigorúság" alapján két csoportba oszthatjuk:</p>
+            <ul>
+                <li><b>Abszolút konvergens:</b> Ha a tagok abszolút értékeiből képzett $\sum |a_n|$ sor konvergens.</li>
+                <li><b>Feltételesen konvergens:</b> Ha a sor konvergens, de nem abszolút konvergens.</li>
+            </ul>
+            <p><i>Tétel: Minden abszolút konvergens sor egyben konvergens is.</i></p>
+        </section>
+    </theory-body>
+                </theory-section>
+
+                <practice-section>
+    <section-header>Példafeladatok</section-header>
+    
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat (a): Vizsgáljuk meg konvergencia szempontjából a \( \sum_{n \in \mathbb{N}^+} \frac{7^{n-3}}{n!} \) sort.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="sum+n%3D1+to+infinity+%287%5E%28n-3%29%29%2F%28n%21%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="0">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="0">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat (b): Vizsgáljuk meg konvergencia szempontjából a \( \sum_{n \in \mathbb{N}^+} \frac{3^{5n}}{n^3} \) sort.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="sum+n%3D1+to+infinity+%283%5E%285n%29%29%2F%28n%5E3%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="1">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="1">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat (c): Vizsgáljuk meg konvergencia szempontjából a \( \sum_{n \in \mathbb{N}^+} \frac{(n+2)!}{n^{n+1}} \) sort.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="sum+n%3D1+to+infinity+%28%28n%2B2%29%21%29%2F%28n%5E%28n%2B1%29%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="2">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="2">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat (d): Vizsgáljuk meg konvergencia szempontjából a \( \sum_{n \in \mathbb{N}^+} \frac{(n+4)2^{n-1}}{7^{n+1}} \) sort.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="sum+n%3D1+to+infinity+%28%28n%2B4%29%2A2%5E%28n-1%29%29%2F%287%5E%28n%2B1%29%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="3">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="3">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat (e): Vizsgáljuk meg konvergencia szempontjából a \( \sum_{n \in \mathbb{N}^+} \frac{n^3(2n+5)^{n^2}}{(2n+3)^{n^2}} \) sort.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="sum+n%3D1+to+infinity+%28n%5E3+%2A+%28%282n%2B5%29%2F%282n%2B3%29%29%5E%28n%5E2%29%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="4">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="4">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat (f): Vizsgáljuk meg konvergencia szempontjából a \( \sum_{n \in \mathbb{N}^+} \left(\frac{5+n^3}{3+n^3}\right)^{n^4} \frac{n^4}{3^{2n+1}} \) sort.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="sum+n%3D1+to+infinity+%28%285%2Bn%5E3%29%2F%283%2Bn%5E3%29%29%5E%28n%5E4%29+%2A+n%5E4+%2F+3%5E%282n%2B1%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="5">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="5">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat (g): Vizsgáljuk meg konvergencia szempontjából a \( \sum_{n \in \mathbb{N}} \left(\frac{n^2-1}{n^2+4}\right)^{n^2} \) sort.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="sum+n%3D0+to+infinity+%28%28n%5E2-1%29%2F%28n%5E2%2B4%29%29%5E%28n%5E2%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="6">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="6">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat (h): Vizsgáljuk meg konvergencia szempontjából a \( \sum_{n \in \mathbb{N}} \left(\frac{n^2-1}{n^2+4}\right)^n \) sort.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="sum+n%3D0+to+infinity+%28%28n%5E2-1%29%2F%28n%5E2%2B4%29%29%5En"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="7">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="7">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat (i): Vizsgáljuk meg konvergencia szempontjából a \( \sum_{n \in \mathbb{N}} \left(\frac{n^2-1}{n^2+4}\right)^{n^3} \) sort.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="sum+n%3D0+to+infinity+%28%28n%5E2-1%29%2F%28n%5E2%2B4%29%29%5E%28n%5E3%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="8">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="8">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">2. feladat: Bizonyítsuk be, hogy az alábbi sorok konvergensek, és adjunk becslést a 100. részletösszeg hibájára.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="is+sum+%28n%2B3%29%2A5%5E%28n-2%29%2F%28%28n%2B4%29%2An%21%29+convergent%3F%3B+is+sum+%28%282n%2B3%29%2F%288n-2%29%29%5E%282n%29+convergent%3F"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="9">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="9">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">3. feladat: Vizsgáljuk meg a sorok konvergenciáját és adjunk becslést a 100. részletösszeg hibájára.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="is+sum+3%2F%285n%2Aln%28n%5E2%29%29+convergent%3F%3B+is+sum+3%2F%285n%2A%28ln%28n%29%2B11%29%5E2%29+convergent%3F"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="10">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="10">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">4. feladat: Konvergensek-e az alábbi sorok?</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="is+sum+%28-1%29%5En+%2A+1%2F%28n%5E%281%2F3%29%2B4%29+convergent%3F%3B+is+sum+%28-1%29%5En+%2A+1%2F%28n%5E%281%2Fn%29%5E4%2B4%29+convergent%3F%3B+is+sum+%28-1%29%5En+%2A+cos%28n%5E2%29%2F%28n%5E2%2B1%29+convergent%3F"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="11">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="11">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">5. feladat: Mutassuk meg, hogy az alábbi sor Leibniz-típusú (tágabb értelemben), és adjunk becslést a 99. részletösszeg hibájára.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="sum+n%3D1+to+infinity+%28-1%29%5E%28n%2B1%29+%2A+7%5En+%2F+%283%5En+%2B+8%5En%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="12">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="12">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">6. feladat: Abszolút vagy feltételesen konvergensek-e az alábbi sorok? Feltételes esetben adjunk hibabecslést az 1000. részletösszegre.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="is+sum+%28-1%29%5En+%2A+%28n%5E2%2B2%29%2F%285n%5E4-n%5E3%29+absolutely+convergent%3F%3B+is+sum+%28-1%29%5En+%2A+%28n%5E2%2B2%29%2F%285n%5E3-n%29+conditionally+convergent%3F"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="13">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="13">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+    
+</practice-section>
+
+<script>
+    const allTasks = [{"title":"1. feladat (a): Vizsg\u00e1ljuk meg konvergencia szempontj\u00e1b\u00f3l a \\( \\sum_{n \\in \\mathbb{N}^+} \\frac{7^{n-3}}{n!} \\) sort.","wolfram":"sum n=1 to infinity (7^(n-3))\/(n!)","steps":["<b>1. L\u00e9p\u00e9s: A megfelel\u0151 krit\u00e9rium kiv\u00e1laszt\u00e1sa.<\/b><br>\r\n                A sor \u00e1ltal\u00e1nos tagja faktori\u00e1list (\\( n! \\)) \u00e9s hatv\u00e1nyt (\\( 7^n \\)) is tartalmaz. \r\n                Az ilyen t\u00edpus\u00fa sorokn\u00e1l a legc\u00e9lravezet\u0151bb a <b>h\u00e1nyadoskrit\u00e9rium<\/b> alkalmaz\u00e1sa, mivel a faktori\u00e1lisok \u00e9s a hatv\u00e1nyok is j\u00f3l egyszer\u0171s\u00edthet\u0151ek a szomsz\u00e9dos tagok h\u00e1nyados\u00e1ban.","<b>2. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos tag (\\( a_n \\)) \u00e9s a r\u00e1k\u00f6vetkez\u0151 tag (\\( a_{n+1} \\)) fel\u00edr\u00e1sa.<\/b><br>\r\n                A megadott sor alapj\u00e1n:\r\n                \\[ a_n = \\frac{7^{n-3}}{n!} \\]\r\n                A r\u00e1k\u00f6vetkez\u0151 tag az \\( n \\) hely\u00e9re \\( n+1 \\)-et \u00edrva:\r\n                \\[ a_{n+1} = \\frac{7^{(n+1)-3}}{(n+1)!} = \\frac{7^{n-2}}{(n+1)!} \\]","<b>3. L\u00e9p\u00e9s: A tagok h\u00e1nyados\u00e1nak (\\( a_{n+1}\/a_n \\)) kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                V\u00e9gezz\u00fck el az oszt\u00e1st (szorozva a reciprokkel):\r\n                \\[ \\frac{a_{n+1}}{a_n} = \\frac{7^{n-2}}{(n+1)!} \\cdot \\frac{n!}{7^{n-3}} \\]\r\n                Csoportos\u00edtsuk \u00e9s egyszer\u0171s\u00edts\u00fck az azonos t\u00edpus\u00fa tagokat:\r\n                <ul>\r\n                    <li>\\( \\frac{7^{n-2}}{7^{n-3}} = 7^{n-2-(n-3)} = 7^1 = 7 \\)<\/li>\r\n                    <li>\\( \\frac{n!}{(n+1)!} = \\frac{n!}{(n+1) \\cdot n!} = \\frac{1}{n+1} \\)<\/li>\r\n                <\/ul>\r\n                A h\u00e1nyados teh\u00e1t:\r\n                \\[ \\frac{a_{n+1}}{a_n} = \\frac{7}{n+1} \\]","<b>4. L\u00e9p\u00e9s: A hat\u00e1r\u00e9rt\u00e9k kisz\u00e1m\u00edt\u00e1sa (\\( n \\to \\infty \\)).<\/b><br>\r\n                Vizsg\u00e1ljuk meg a h\u00e1nyados viselked\u00e9s\u00e9t, ha \\( n \\) tart a v\u00e9gtelenbe:\r\n                \\[ \\lim_{n \\to \\infty} \\frac{7}{n+1} = 0 \\]\r\n                Mivel a nevez\u0151 tart a v\u00e9gtelenbe, a t\u00f6rt \u00e9rt\u00e9ke tart a null\u00e1hoz.","<b>5. L\u00e9p\u00e9s: Konkl\u00fazi\u00f3 a h\u00e1nyadoskrit\u00e9rium alapj\u00e1n.<\/b><br>\r\n                A h\u00e1nyadoskrit\u00e9rium szerint, ha a hat\u00e1r\u00e9rt\u00e9k (\\( L \\)) kisebb mint 1, akkor a sor konvergens.\r\n                \\[ L = 0 < 1 \\]\r\n                Ebb\u0151l k\u00f6vetkezik, hogy a vizsg\u00e1lt sor <b>konvergens<\/b>.\r\n                V\u00e9geredm\u00e9ny: <b>Konvergens.<\/b>"]},{"title":"1. feladat (b): Vizsg\u00e1ljuk meg konvergencia szempontj\u00e1b\u00f3l a \\( \\sum_{n \\in \\mathbb{N}^+} \\frac{3^{5n}}{n^3} \\) sort.","wolfram":"sum n=1 to infinity (3^(5n))\/(n^3)","steps":["<b>1. L\u00e9p\u00e9s: A krit\u00e9rium kiv\u00e1laszt\u00e1sa.<\/b><br>\r\n                A sor sz\u00e1ml\u00e1l\u00f3j\u00e1ban egy exponenci\u00e1lis kifejez\u00e9s (\\( 3^{5n} \\)), nevez\u0151j\u00e9ben pedig egy hatv\u00e1nyf\u00fcggv\u00e9ny (\\( n^3 \\)) szerepel. \r\n                A h\u00e1nyadoskrit\u00e9rium ide\u00e1lis v\u00e1laszt\u00e1s az exponenci\u00e1lis tagok kezel\u00e9s\u00e9re.","<b>2. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos tag (\\( a_n \\)) \u00e9s a r\u00e1k\u00f6vetkez\u0151 tag (\\( a_{n+1} \\)) fel\u00edr\u00e1sa.<\/b><br>\r\n                \\[ a_n = \\frac{3^{5n}}{n^3} \\]\r\n                A r\u00e1k\u00f6vetkez\u0151 tag:\r\n                \\[ a_{n+1} = \\frac{3^{5(n+1)}}{(n+1)^3} = \\frac{3^{5n+5}}{(n+1)^3} \\]","<b>3. L\u00e9p\u00e9s: A tagok h\u00e1nyados\u00e1nak kisz\u00e1m\u00edt\u00e1sa \u00e9s egyszer\u0171s\u00edt\u00e9se.<\/b><br>\r\n                \\[ \\frac{a_{n+1}}{a_n} = \\frac{3^{5n+5}}{(n+1)^3} \\cdot \\frac{n^3}{3^{5n}} \\]\r\n                V\u00e9gezz\u00fck el az egyszer\u0171s\u00edt\u00e9seket:\r\n                <ul>\r\n                    <li>\\( \\frac{3^{5n+5}}{3^{5n}} = 3^5 = 243 \\)<\/li>\r\n                    <li>A hatv\u00e1nyos tagokat vonjuk \u00f6ssze egyetlen t\u00f6rtbe: \\( \\left(\\frac{n}{n+1}\\right)^3 \\)<\/li>\r\n                <\/ul>\r\n                A h\u00e1nyados teh\u00e1t:\r\n                \\[ \\frac{a_{n+1}}{a_n} = 243 \\cdot \\left(\\frac{n}{n+1}\\right)^3 \\]","<b>4. L\u00e9p\u00e9s: A hat\u00e1r\u00e9rt\u00e9k meghat\u00e1roz\u00e1sa (\\( n \\to \\infty \\)).<\/b><br>\r\n                Vizsg\u00e1ljuk meg a kifejez\u00e9st a v\u00e9gtelenben:\r\n                \\[ \\lim_{n \\to \\infty} 243 \\cdot \\left(\\frac{n}{n+1}\\right)^3 = 243 \\cdot \\lim_{n \\to \\infty} \\left(\\frac{1}{1 + \\frac{1}{n}}\\right)^3 \\]\r\n                Mivel \\( \\frac{1}{n} \\to 0 \\), a hat\u00e1r\u00e9rt\u00e9k:\r\n                \\[ 243 \\cdot 1^3 = \\mathbf{243} \\]","<b>5. L\u00e9p\u00e9s: Konkl\u00fazi\u00f3.<\/b><br>\r\n                A h\u00e1nyadoskrit\u00e9rium szerint, ha a hat\u00e1r\u00e9rt\u00e9k nagyobb, mint 1, a sor divergens.\r\n                \\[ 243 > 1 \\]\r\n                A vizsg\u00e1lt sor teh\u00e1t <b>divergens<\/b>.\r\n                V\u00e9geredm\u00e9ny: <b>Divergens.<\/b>"]},{"title":"1. feladat (c): Vizsg\u00e1ljuk meg konvergencia szempontj\u00e1b\u00f3l a \\( \\sum_{n \\in \\mathbb{N}^+} \\frac{(n+2)!}{n^{n+1}} \\) sort.","wolfram":"sum n=1 to infinity ((n+2)!)\/(n^(n+1))","steps":["<b>1. L\u00e9p\u00e9s: A krit\u00e9rium megv\u00e1laszt\u00e1sa.<\/b><br>\r\n                A sor \u00e1ltal\u00e1nos tagj\u00e1ban (\\( a_n \\)) faktori\u00e1lis \u00e9s hatv\u00e1ny alap\u00fa kifejez\u00e9s is szerepel. \r\n                A faktori\u00e1lis jelenl\u00e9te miatt a <b>h\u00e1nyadoskrit\u00e9rium<\/b> a legalkalmasabb m\u00f3dszer.","<b>2. L\u00e9p\u00e9s: Az \\( a_n \\) \u00e9s \\( a_{n+1} \\) tagok fel\u00edr\u00e1sa.<\/b><br>\r\n                Az \u00e1ltal\u00e1nos tag:\r\n                \\[ a_n = \\frac{(n+2)!}{n^{n+1}} \\]\r\n                A r\u00e1k\u00f6vetkez\u0151 tag (\\( n \\to n+1 \\)):\r\n                \\[ a_{n+1} = \\frac{(n+1+2)!}{(n+1)^{n+1+1}} = \\frac{(n+3)!}{(n+1)^{n+2}} \\]","<b>3. L\u00e9p\u00e9s: A h\u00e1nyados fel\u00edr\u00e1sa \u00e9s egyszer\u0171s\u00edt\u00e9se.<\/b><br>\r\n                \\[ \\frac{a_{n+1}}{a_n} = \\frac{(n+3)!}{(n+1)^{n+2}} \\cdot \\frac{n^{n+1}}{(n+2)!} \\]\r\n                V\u00e9gezz\u00fck el a csoportos\u00edt\u00e1st \u00e9s az egyszer\u0171s\u00edt\u00e9st:\r\n                <ul>\r\n                    <li>\\( \\frac{(n+3)!}{(n+2)!} = n+3 \\)<\/li>\r\n                    <li>\\( \\frac{n^{n+1}}{(n+1)^{n+2}} = \\frac{n^{n+1}}{(n+1)^{n+1} \\cdot (n+1)} = \\left(\\frac{n}{n+1}\\right)^{n+1} \\cdot \\frac{1}{n+1} \\)<\/li>\r\n                <\/ul>\r\n                A h\u00e1nyados alakja \u00edgy:\r\n                \\[ \\frac{a_{n+1}}{a_n} = \\frac{n+3}{n+1} \\cdot \\left(\\frac{n}{n+1}\\right)^{n+1} \\]","<b>4. L\u00e9p\u00e9s: Hat\u00e1r\u00e9rt\u00e9k sz\u00e1m\u00edt\u00e1sa (\\( n \\to \\infty \\)).<\/b><br>\r\n                Alak\u00edtsuk \u00e1t a kifejez\u00e9st a nevezetes hat\u00e1r\u00e9rt\u00e9k felismer\u00e9s\u00e9hez:\r\n                \\[ \\frac{n+3}{n+1} \\cdot \\frac{1}{\\left(\\frac{n+1}{n}\\right)^{n+1}} = \\frac{n+3}{n+1} \\cdot \\frac{1}{\\left(1 + \\frac{1}{n}\\right)^n \\cdot \\left(1 + \\frac{1}{n}\\right)} \\]\r\n                Vizsg\u00e1ljuk meg a t\u00e9nyez\u0151ket k\u00fcl\u00f6n-k\u00fcl\u00f6n:\r\n                <ul>\r\n                    <li>\\( \\frac{n+3}{n+1} \\to 1 \\)<\/li>\r\n                    <li>\\( \\left(1 + \\frac{1}{n}\\right)^n \\to e \\)<\/li>\r\n                    <li>\\( 1 + \\frac{1}{n} \\to 1 \\)<\/li>\r\n                <\/ul>\r\n                A teljes hat\u00e1r\u00e9rt\u00e9k: \\( 1 \\cdot \\frac{1}{e \\cdot 1} = \\mathbf{\\frac{1}{e}} \\)","<b>5. L\u00e9p\u00e9s: Konkl\u00fazi\u00f3.<\/b><br>\r\n                Tudjuk, hogy \\( e \\approx 2,71 \\), teh\u00e1t \\( \\frac{1}{e} < 1 \\).\r\n                A h\u00e1nyadoskrit\u00e9rium alapj\u00e1n, mivel a hat\u00e1r\u00e9rt\u00e9k kisebb 1-n\u00e9l, a sor <b>konvergens<\/b>.\r\n                V\u00e9geredm\u00e9ny: <b>Konvergens.<\/b>"]},{"title":"1. feladat (d): Vizsg\u00e1ljuk meg konvergencia szempontj\u00e1b\u00f3l a \\( \\sum_{n \\in \\mathbb{N}^+} \\frac{(n+4)2^{n-1}}{7^{n+1}} \\) sort.","wolfram":"sum n=1 to infinity ((n+4)*2^(n-1))\/(7^(n+1))","steps":["<b>1. L\u00e9p\u00e9s: A krit\u00e9rium megv\u00e1laszt\u00e1sa.<\/b><br>\r\n                A sor \u00e1ltal\u00e1nos tagj\u00e1ban (\\( a_n \\)) exponenci\u00e1lis kifejez\u00e9sek (\\( 2^n, 7^n \\)) \u00e9s egy polinom (\\( n+4 \\)) szerepel. \r\n                A h\u00e1nyadoskrit\u00e9rium kiv\u00e1l\u00f3an kezeli az ilyen t\u00edpus\u00fa \"vegyes\" tagokat, mivel az exponenci\u00e1lis r\u00e9szek \u00e1lland\u00f3 szorz\u00f3kk\u00e1 egyszer\u0171s\u00f6dnek a hat\u00e1r\u00e9rt\u00e9kben.","<b>2. L\u00e9p\u00e9s: Az \\( a_n \\) \u00e9s \\( a_{n+1} \\) tagok fel\u00edr\u00e1sa.<\/b><br>\r\n                Az \u00e1ltal\u00e1nos tag:\r\n                \\[ a_n = \\frac{(n+4)2^{n-1}}{7^{n+1}} \\]\r\n                A r\u00e1k\u00f6vetkez\u0151 tag (\\( n \\to n+1 \\)):\r\n                \\[ a_{n+1} = \\frac{(n+1+4)2^{n+1-1}}{7^{n+1+1}} = \\frac{(n+5)2^n}{7^{n+2}} \\]","<b>3. L\u00e9p\u00e9s: A h\u00e1nyados fel\u00edr\u00e1sa \u00e9s egyszer\u0171s\u00edt\u00e9se.<\/b><br>\r\n                V\u00e9gezz\u00fck el az oszt\u00e1st a reciprokkel val\u00f3 szorz\u00e1ssal:\r\n                \\[ \\frac{a_{n+1}}{a_n} = \\frac{(n+5)2^n}{7^{n+2}} \\cdot \\frac{7^{n+1}}{(n+4)2^{n-1}} \\]\r\n                Csoportos\u00edtsuk az azonos t\u00edpus\u00fa tagokat az egyszer\u0171s\u00edt\u00e9shez:\r\n                <ul>\r\n                    <li>\\( \\frac{n+5}{n+4} \\): Ez a polinomi\u00e1lis r\u00e9sz.<\/li>\r\n                    <li>\\( \\frac{2^n}{2^{n-1}} = 2^{n-(n-1)} = 2^1 = 2 \\)<\/li>\r\n                    <li>\\( \\frac{7^{n+1}}{7^{n+2}} = 7^{n+1-(n+2)} = 7^{-1} = \\frac{1}{7} \\)<\/li>\r\n                <\/ul>\r\n                A h\u00e1nyados teh\u00e1t:\r\n                \\[ \\frac{a_{n+1}}{a_n} = \\frac{n+5}{n+4} \\cdot \\frac{2}{7} \\]","<b>4. L\u00e9p\u00e9s: Hat\u00e1r\u00e9rt\u00e9k sz\u00e1m\u00edt\u00e1sa (\\( n \\to \\infty \\)).<\/b><br>\r\n                Vizsg\u00e1ljuk meg a kifejez\u00e9s hat\u00e1r\u00e9rt\u00e9k\u00e9t:\r\n                \\[ \\lim_{n \\to \\infty} \\left( \\frac{n+5}{n+4} \\cdot \\frac{2}{7} \\right) = \\frac{2}{7} \\cdot \\lim_{n \\to \\infty} \\frac{1 + \\frac{5}{n}}{1 + \\frac{4}{n}} \\]\r\n                Mivel a polinomok h\u00e1nyados\u00e1nak hat\u00e1r\u00e9rt\u00e9ke 1, a v\u00e9geredm\u00e9ny:\r\n                \\[ 1 \\cdot \\frac{2}{7} = \\mathbf{\\frac{2}{7}} \\]","<b>5. L\u00e9p\u00e9s: Konkl\u00fazi\u00f3.<\/b><br>\r\n                A h\u00e1nyadoskrit\u00e9rium \u00e9rtelm\u00e9ben, ha a hat\u00e1r\u00e9rt\u00e9k (\\( L \\)) kisebb, mint 1, akkor a sor konvergens.\r\n                \\[ L = \\frac{2}{7} < 1 \\]\r\n                A vizsg\u00e1lt sor teh\u00e1t <b>konvergens<\/b>.\r\n                V\u00e9geredm\u00e9ny: <b>Konvergens.<\/b>"]},{"title":"1. feladat (e): Vizsg\u00e1ljuk meg konvergencia szempontj\u00e1b\u00f3l a \\( \\sum_{n \\in \\mathbb{N}^+} \\frac{n^3(2n+5)^{n^2}}{(2n+3)^{n^2}} \\) sort.","wolfram":"sum n=1 to infinity (n^3 * ((2n+5)\/(2n+3))^(n^2))","steps":["<b>1. L\u00e9p\u00e9s: A krit\u00e9rium megv\u00e1laszt\u00e1sa.<\/b><br>\r\n                A sor \u00e1ltal\u00e1nos tagj\u00e1ban (\\( a_n \\)) egy \\( n^2 \\)-edik hatv\u00e1nyon l\u00e9v\u0151 kifejez\u00e9s szerepel. \r\n                A hatv\u00e1nyok miatt a <b>gy\u00f6kkrit\u00e9rium<\/b> haszn\u00e1lata a legc\u00e9lszer\u0171bb, mivel az \\( n \\)-edik gy\u00f6k von\u00e1sa jelent\u0151sen egyszer\u0171s\u00edti a kitev\u0151t.","<b>2. L\u00e9p\u00e9s: Az \\( n \\)-edik gy\u00f6k fel\u00edr\u00e1sa.<\/b><br>\r\n                Alkalmazzuk a gy\u00f6k\u00f6t az \u00e1ltal\u00e1nos tagra:\r\n                \\[ \\sqrt[n]{a_n} = \\sqrt[n]{n^3 \\cdot \\left( \\frac{2n+5}{2n+3} \\right)^{n^2}} = \\sqrt[n]{n^3} \\cdot \\left( \\frac{2n+5}{2n+3} \\right)^{\\frac{n^2}{n}} \\]\r\n                \\[ \\sqrt[n]{a_n} = (\\sqrt[n]{n})^3 \\cdot \\left( \\frac{2n+5}{2n+3} \\right)^n \\]","<b>3. L\u00e9p\u00e9s: A hat\u00e1r\u00e9rt\u00e9k kisz\u00e1m\u00edt\u00e1sa (\\( n \\to \\infty \\)).<\/b><br>\r\n                Vizsg\u00e1ljuk meg a k\u00e9t t\u00e9nyez\u0151t k\u00fcl\u00f6n-k\u00fcl\u00f6n:\r\n                <ul>\r\n                    <li>\\( (\\sqrt[n]{n})^3 \\): Tudjuk, hogy \\( \\sqrt[n]{n} \\to 1 \\), \u00edgy ennek a harmadik hatv\u00e1nya is 1-hez tart.<\/li>\r\n                    <li>\\( \\left( \\frac{2n+5}{2n+3} \\right)^n \\): Alak\u00edtsuk \u00e1t, hogy felismerj\u00fck az \\( e \\) alap\u00fa hat\u00e1r\u00e9rt\u00e9ket:\r\n                        \\[ \\left( \\frac{2n+3+2}{2n+3} \\right)^n = \\left( 1 + \\frac{2}{2n+3} \\right)^n = \\left[ \\left( 1 + \\frac{1}{\\frac{2n+3}{2}} \\right)^{\\frac{2n+3}{2}} \\right]^{\\frac{2n}{2n+3}} \\]\r\n                    <\/li>\r\n                <\/ul>\r\n                A sz\u00f6gletes z\u00e1r\u00f3jelben l\u00e9v\u0151 r\u00e9sz \\( e \\)-hez tart, a k\u00fcls\u0151 kitev\u0151 pedig:\r\n                \\[ \\lim_{n \\to \\infty} \\frac{2n}{2n+3} = 1 \\]\r\n                \u00cdgy a m\u00e1sodik t\u00e9nyez\u0151 hat\u00e1r\u00e9rt\u00e9ke: \\( e^1 = e \\).","<b>4. L\u00e9p\u00e9s: A teljes hat\u00e1r\u00e9rt\u00e9k r\u00f6gz\u00edt\u00e9se.<\/b><br>\r\n                A gy\u00f6kkrit\u00e9rium szerinti hat\u00e1r\u00e9rt\u00e9k (\\( L \\)):\r\n                \\[ L = 1 \\cdot e = \\mathbf{e} \\]","<b>5. L\u00e9p\u00e9s: Konkl\u00fazi\u00f3.<\/b><br>\r\n                A gy\u00f6kkrit\u00e9rium alapj\u00e1n, ha \\( L > 1 \\), akkor a sor divergens.\r\n                Mivel \\( e \\approx 2,71 > 1 \\), a sor <b>divergens<\/b>.\r\n                V\u00e9geredm\u00e9ny: <b>Divergens.<\/b>"]},{"title":"1. feladat (f): Vizsg\u00e1ljuk meg konvergencia szempontj\u00e1b\u00f3l a \\( \\sum_{n \\in \\mathbb{N}^+} \\left(\\frac{5+n^3}{3+n^3}\\right)^{n^4} \\frac{n^4}{3^{2n+1}} \\) sort.","wolfram":"sum n=1 to infinity ((5+n^3)\/(3+n^3))^(n^4) * n^4 \/ 3^(2n+1)","steps":["<b>1. L\u00e9p\u00e9s: A krit\u00e9rium megv\u00e1laszt\u00e1sa.<\/b><br>\r\n                A sor \u00e1ltal\u00e1nos tagj\u00e1ban (\\( a_n \\)) magas foksz\u00e1m\u00fa hatv\u00e1nyok szerepelnek a kitev\u0151ben (\\( n^4 \\) \u00e9s \\( 2n+1 \\)). \r\n                Az ilyen szerkezet\u0171 sorokn\u00e1l a <b>gy\u00f6kkrit\u00e9rium<\/b> alkalmaz\u00e1sa a legc\u00e9lszer\u0171bb, mivel az \\( n \\)-edik gy\u00f6k jelent\u0151sen leegyszer\u0171s\u00edti a kitev\u0151ket.","<b>2. L\u00e9p\u00e9s: Az \\( n \\)-edik gy\u00f6k kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                Alkalmazzuk a gy\u00f6kvon\u00e1st tagonk\u00e9nt:\r\n                \\[ \\sqrt[n]{a_n} = \\sqrt[n]{\\left(\\frac{5+n^3}{3+n^3}\\right)^{n^4}} \\cdot \\sqrt[n]{\\frac{n^4}{3^{2n+1}}} \\]\r\n                A hatv\u00e1nyoz\u00e1s azonoss\u00e1gait haszn\u00e1lva:\r\n                \\[ \\sqrt[n]{a_n} = \\left(\\frac{5+n^3}{3+n^3}\\right)^{\\frac{n^4}{n}} \\cdot \\frac{(\\sqrt[n]{n})^4}{3^{\\frac{2n+1}{n}}} = \\left(\\frac{5+n^3}{3+n^3}\\right)^{n^3} \\cdot \\frac{(\\sqrt[n]{n})^4}{3^{2 + \\frac{1}{n}}} \\]","<b>3. L\u00e9p\u00e9s: A hat\u00e1r\u00e9rt\u00e9k meghat\u00e1roz\u00e1sa (\\( n \\to \\infty \\)).<\/b><br>\r\n                Vizsg\u00e1ljuk meg a h\u00e1rom t\u00e9nyez\u0151t k\u00fcl\u00f6n-k\u00fcl\u00f6n:\r\n                <ul>\r\n                    <li><b>Az exponenci\u00e1lis r\u00e9sz:<\/b> \\( \\left(\\frac{n^3+5}{n^3+3}\\right)^{n^3} = \\left(1 + \\frac{2}{n^3+3}\\right)^{n^3} \\). \r\n                    Ez egy \\( e \\) t\u00edpus\u00fa hat\u00e1r\u00e9rt\u00e9k: \\( \\lim_{k \\to \\infty} (1 + \\frac{2}{k})^k = e^2 \\).<\/li>\r\n                    <li><b>A polinomi\u00e1lis r\u00e9sz:<\/b> Tudjuk, hogy \\( \\sqrt[n]{n} \\to 1 \\), \u00edgy \\( (\\sqrt[n]{n})^4 \\to \\mathbf{1} \\).<\/li>\r\n                    <li><b>A nevez\u0151:<\/b> \\( 3^{2 + \\frac{1}{n}} \\to 3^2 = \\mathbf{9} \\).<\/li>\r\n                <\/ul>","<b>4. L\u00e9p\u00e9s: A hat\u00e1r\u00e9rt\u00e9k (\\( L \\)) \u00f6ssze\u00e1ll\u00edt\u00e1sa.<\/b><br>\r\n                A gy\u00f6kkrit\u00e9rium eredm\u00e9nye:\r\n                \\[ L = \\frac{e^2 \\cdot 1}{9} = \\mathbf{\\frac{e^2}{9}} \\]\r\n                Mivel \\( e \\approx 2,718 \\), \u00edgy \\( e^2 \\approx 7,39 \\).\r\n                \\[ L \\approx \\frac{7,39}{9} \\approx 0,82 \\]","<b>5. L\u00e9p\u00e9s: Konkl\u00fazi\u00f3.<\/b><br>\r\n                A gy\u00f6kkrit\u00e9rium szerint, ha \\( L < 1 \\), a sor konvergens.\r\n                Mivel \\( \\frac{e^2}{9} < 1 \\), a vizsg\u00e1lt sor <b>konvergens<\/b>.\r\n                V\u00e9geredm\u00e9ny: <b>Konvergens.<\/b>"]},{"title":"1. feladat (g): Vizsg\u00e1ljuk meg konvergencia szempontj\u00e1b\u00f3l a \\( \\sum_{n \\in \\mathbb{N}} \\left(\\frac{n^2-1}{n^2+4}\\right)^{n^2} \\) sort.","wolfram":"sum n=0 to infinity ((n^2-1)\/(n^2+4))^(n^2)","steps":["<b>1. L\u00e9p\u00e9s: A konvergencia sz\u00fcks\u00e9ges felt\u00e9tel\u00e9nek ellen\u0151rz\u00e9se.<\/b><br>\r\n                Miel\u0151tt bonyolult krit\u00e9riumokhoz ny\u00faln\u00e1nk, vizsg\u00e1ljuk meg az \u00e1ltal\u00e1nos tag (\\( a_n \\)) hat\u00e1r\u00e9rt\u00e9k\u00e9t. Ha \\( \\lim_{n \\to \\infty} a_n \\neq 0 \\), a sor biztosan divergens.","<b>2. L\u00e9p\u00e9s: Az \\( a_n \\) hat\u00e1r\u00e9rt\u00e9k\u00e9nek kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                \u00cdrjuk \u00e1t az alap kifejez\u00e9st az \\( e \\) alap\u00fa hat\u00e1r\u00e9rt\u00e9k felismer\u00e9s\u00e9hez:\r\n                \\[ a_n = \\left(\\frac{n^2-1}{n^2+4}\\right)^{n^2} = \\left(\\frac{n^2+4-5}{n^2+4}\\right)^{n^2} = \\left(1 - \\frac{5}{n^2+4}\\right)^{n^2} \\]\r\n                V\u00e9gezz\u00fcnk kitev\u0151-m\u00f3dos\u00edt\u00e1st, hogy pontosan megkapjuk a nevezetes alakot:\r\n                \\[ a_n = \\left[ \\left(1 + \\frac{-5}{n^2+4}\\right)^{n^2+4} \\right]^{\\frac{n^2}{n^2+4}} \\]","<b>3. L\u00e9p\u00e9s: A hat\u00e1r\u00e9rt\u00e9k meghat\u00e1roz\u00e1sa (\\( n \\to \\infty \\)).<\/b><br>\r\n                Vizsg\u00e1ljuk meg a r\u00e9szeket:\r\n                <ul>\r\n                    <li>A sz\u00f6gletes z\u00e1r\u00f3jelben l\u00e9v\u0151 r\u00e9sz hat\u00e1r\u00e9rt\u00e9ke: \\( e^{-5} \\).<\/li>\r\n                    <li>A k\u00fcls\u0151 kitev\u0151 hat\u00e1r\u00e9rt\u00e9ke: \\( \\lim_{n \\to \\infty} \\frac{n^2}{n^2+4} = 1 \\).<\/li>\r\n                <\/ul>\r\n                \u00cdgy az \u00e1ltal\u00e1nos tag hat\u00e1r\u00e9rt\u00e9ke:\r\n                \\[ \\lim_{n \\to \\infty} a_n = (e^{-5})^1 = \\mathbf{e^{-5}} \\]","<b>4. L\u00e9p\u00e9s: \u00c9rt\u00e9kel\u00e9s a sz\u00fcks\u00e9ges felt\u00e9tel alapj\u00e1n.<\/b><br>\r\n                Mivel \\( e^{-5} = \\frac{1}{e^5} \\approx 0,0067 \\), ez az \u00e9rt\u00e9k <b>nem egyenl\u0151 null\u00e1val<\/b> (\\( \\neq 0 \\)).\r\n                A konvergencia sz\u00fcks\u00e9ges felt\u00e9tele (\\( \\lim a_n = 0 \\)) teh\u00e1t nem teljes\u00fcl.","<b>5. L\u00e9p\u00e9s: Konkl\u00fazi\u00f3.<\/b><br>\r\n                Mivel a sorozat tagjai nem tartanak null\u00e1hoz, a sor <b>divergens<\/b>.\r\n                V\u00e9geredm\u00e9ny: <b>Divergens.<\/b>"]},{"title":"1. feladat (h): Vizsg\u00e1ljuk meg konvergencia szempontj\u00e1b\u00f3l a \\( \\sum_{n \\in \\mathbb{N}} \\left(\\frac{n^2-1}{n^2+4}\\right)^n \\) sort.","wolfram":"sum n=0 to infinity ((n^2-1)\/(n^2+4))^n","steps":["<b>1. L\u00e9p\u00e9s: A sz\u00fcks\u00e9ges felt\u00e9tel vizsg\u00e1lata.<\/b><br>\r\n                Miel\u0151tt b\u00e1rmilyen konvergenciakrit\u00e9riumot (p\u00e9ld\u00e1ul gy\u00f6kkrit\u00e9riumot) alkalmazn\u00e1nk, ellen\u0151rizz\u00fck, hogy a sor tagjai egy\u00e1ltal\u00e1n null\u00e1hoz tartanak-e. Ha \\( \\lim_{n \\to \\infty} a_n \\neq 0 \\), a sor divergens.","<b>2. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos tag hat\u00e1r\u00e9rt\u00e9k\u00e9nek kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                Alak\u00edtsuk \u00e1t az \\( a_n \\) tagot a m\u00e1r ismert m\u00f3don:\r\n                \\[ a_n = \\left(\\frac{n^2-1}{n^2+4}\\right)^n = \\left(1 - \\frac{5}{n^2+4}\\right)^n \\]\r\n                Haszn\u00e1ljuk az exponenci\u00e1lis alakot a hat\u00e1r\u00e9rt\u00e9k prec\u00edz meghat\u00e1roz\u00e1s\u00e1hoz:\r\n                \\[ a_n = e^{n \\cdot \\ln\\left(1 - \\frac{5}{n^2+4}\\right)} \\]","<b>3. L\u00e9p\u00e9s: A kitev\u0151 vizsg\u00e1lata a v\u00e9gtelenben.<\/b><br>\r\n                Vizsg\u00e1ljuk meg a \\( \\lim_{n \\to \\infty} n \\cdot \\ln\\left(1 - \\frac{5}{n^2+4}\\right) \\) kifejez\u00e9st. \r\n                Mivel \\( \\ln(1+x) \\approx x \\), ha \\( x \\to 0 \\):\r\n                \\[ n \\cdot \\left( -\\frac{5}{n^2+4} \\right) = -\\frac{5n}{n^2+4} \\]\r\n                Ennek a hat\u00e1r\u00e9rt\u00e9ke a v\u00e9gtelenben:\r\n                \\[ \\lim_{n \\to \\infty} -\\frac{5n}{n^2+4} = \\lim_{n \\to \\infty} -\\frac{\\frac{5}{n}}{1 + \\frac{4}{n^2}} = \\mathbf{0} \\]","<b>4. L\u00e9p\u00e9s: Az \\( a_n \\) hat\u00e1r\u00e9rt\u00e9k\u00e9nek r\u00f6gz\u00edt\u00e9se.<\/b><br>\r\n                Visszahelyettes\u00edtve az exponenci\u00e1lis alakba:\r\n                \\[ \\lim_{n \\to \\infty} a_n = e^0 = \\mathbf{1} \\]\r\n                Mivel a hat\u00e1r\u00e9rt\u00e9k 1, \u00e9s <b>1 nem egyenl\u0151 null\u00e1val<\/b> (\\( \\neq 0 \\)), a konvergencia sz\u00fcks\u00e9ges felt\u00e9tele s\u00e9r\u00fcl.","<b>5. L\u00e9p\u00e9s: Konkl\u00fazi\u00f3.<\/b><br>\r\n                Mivel a sor tagjai nem tartanak null\u00e1hoz (hanem 1-hez), a sor <b>divergens<\/b>.\r\n                V\u00e9geredm\u00e9ny: <b>Divergens.<\/b>"]},{"title":"1. feladat (i): Vizsg\u00e1ljuk meg konvergencia szempontj\u00e1b\u00f3l a \\( \\sum_{n \\in \\mathbb{N}} \\left(\\frac{n^2-1}{n^2+4}\\right)^{n^3} \\) sort.","wolfram":"sum n=0 to infinity ((n^2-1)\/(n^2+4))^(n^3)","steps":["<b>1. L\u00e9p\u00e9s: A krit\u00e9rium megv\u00e1laszt\u00e1sa.<\/b><br>\r\n                A sor \u00e1ltal\u00e1nos tagj\u00e1ban (\\( a_n \\)) a kitev\u0151ben \\( n^3 \\) szerepel. \r\n                A magas hatv\u00e1nyfok miatt a <b>gy\u00f6kkrit\u00e9rium<\/b> a legalkalmasabb eszk\u00f6z, mivel az \\( n \\)-edik gy\u00f6k von\u00e1sa lecs\u00f6kkenti a kitev\u0151 rendj\u00e9t.","<b>2. L\u00e9p\u00e9s: Az \\( n \\)-edik gy\u00f6k fel\u00edr\u00e1sa \u00e9s egyszer\u0171s\u00edt\u00e9se.<\/b><br>\r\n                Alkalmazzuk a gy\u00f6k\u00f6t az \u00e1ltal\u00e1nos tagra:\r\n                \\[ \\sqrt[n]{a_n} = \\sqrt[n]{\\left(\\frac{n^2-1}{n^2+4}\\right)^{n^3}} = \\left(\\frac{n^2-1}{n^2+4}\\right)^{\\frac{n^3}{n}} \\]\r\n                \\[ \\sqrt[n]{a_n} = \\left(\\frac{n^2-1}{n^2+4}\\right)^{n^2} \\]","<b>3. L\u00e9p\u00e9s: A hat\u00e1r\u00e9rt\u00e9k kisz\u00e1m\u00edt\u00e1sa (\\( n \\to \\infty \\)).<\/b><br>\r\n                Alak\u00edtsuk \u00e1t az alap kifejez\u00e9st az \\( e \\) alap\u00fa hat\u00e1r\u00e9rt\u00e9k felismer\u00e9s\u00e9hez (hasonl\u00f3an a kor\u00e1bbi p\u00e9ld\u00e1khoz):\r\n                \\[ \\lim_{n \\to \\infty} \\left(\\frac{n^2+4-5}{n^2+4}\\right)^{n^2} = \\lim_{n \\to \\infty} \\left(1 + \\frac{-5}{n^2+4}\\right)^{n^2} \\]\r\n                V\u00e9gezz\u00fck el a kitev\u0151 korrekci\u00f3j\u00e1t:\r\n                \\[ \\lim_{n \\to \\infty} \\left[ \\left(1 + \\frac{-5}{n^2+4}\\right)^{n^2+4} \\right]^{\\frac{n^2}{n^2+4}} \\]\r\n                A sz\u00f6gletes z\u00e1r\u00f3jel hat\u00e1r\u00e9rt\u00e9ke \\( e^{-5} \\), a k\u00fcls\u0151 kitev\u0151\u00e9 pedig \\( 1 \\).\r\n                A gy\u00f6kkrit\u00e9rium eredm\u00e9nye teh\u00e1t:\r\n                \\[ L = (e^{-5})^1 = \\mathbf{e^{-5}} \\]","<b>4. L\u00e9p\u00e9s: A hat\u00e1r\u00e9rt\u00e9k (\\( L \\)) vizsg\u00e1lata.<\/b><br>\r\n                \u00c9rt\u00e9kelj\u00fck ki a kapott \\( L \\) \u00e9rt\u00e9ket:\r\n                \\[ L = \\frac{1}{e^5} \\approx \\frac{1}{148,4} \\approx 0,0067 \\]\r\n                L\u00e1that\u00f3, hogy ez az \u00e9rt\u00e9k <b>szigor\u00faan kisebb, mint 1<\/b>.","<b>5. L\u00e9p\u00e9s: Konkl\u00fazi\u00f3.<\/b><br>\r\n                A gy\u00f6kkrit\u00e9rium alapj\u00e1n, mivel a hat\u00e1r\u00e9rt\u00e9k kisebb mint 1, a sor <b>konvergens<\/b>.\r\n                V\u00e9geredm\u00e9ny: <b>Konvergens.<\/b>"]},{"title":"2. feladat: Bizony\u00edtsuk be, hogy az al\u00e1bbi sorok konvergensek, \u00e9s adjunk becsl\u00e9st a 100. r\u00e9szlet\u00f6sszeg hib\u00e1j\u00e1ra.","wolfram":"is sum (n+3)*5^(n-2)\/((n+4)*n!) convergent?; is sum ((2n+3)\/(8n-2))^(2n) convergent?","steps":["<h3>(a) r\u00e9sz: \\( \\sum_{n \\in \\mathbb{N}} \\frac{(n+3)5^{n-2}}{(n+4)n!} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Konvergencia bizony\u00edt\u00e1sa (H\u00e1nyadoskrit\u00e9rium).<\/b><br>\r\n                Vizsg\u00e1ljuk meg a szomsz\u00e9dos tagok h\u00e1nyados\u00e1t:\r\n                \\[ \\frac{a_{n+1}}{a_n} = \\frac{(n+4)5^{n-1}}{(n+5)(n+1)!} \\cdot \\frac{(n+4)n!}{(n+3)5^{n-2}} = \\frac{(n+4)^2}{(n+5)(n+3)} \\cdot \\frac{5}{n+1} \\]\r\n                A hat\u00e1r\u00e9rt\u00e9k \\( n \\to \\infty \\) eset\u00e9n:\r\n                \\[ \\lim_{n \\to \\infty} \\left( \\frac{n^2+8n+16}{n^2+8n+15} \\cdot \\frac{5}{n+1} \\right) = 1 \\cdot 0 = 0 \\]\r\n                Mivel \\( 0 < 1 \\), a sor a h\u00e1nyadoskrit\u00e9rium alapj\u00e1n <b>konvergens<\/b>.\r\n\r\n                <b>2. L\u00e9p\u00e9s: Hibabecsl\u00e9s (\\( R_{100} \\)).<\/b><br>\r\n                A hiba becsl\u00e9s\u00e9hez major\u00e1ljuk a sor tagjait:\r\n                Mivel minden \\( n \\in \\mathbb{N} \\) eset\u00e9n \\( \\frac{n+3}{n+4} < 1 \\), \u00edgy \\( a_n < \\frac{5^{n-2}}{n!} \\).\r\n                Ennek a major\u00e1ns sornak a h\u00e1nyadosa \\( q_n = \\frac{5}{n+1} \\). \r\n                Ha \\( n \\ge 101 \\), akkor \\( q_n \\le \\frac{5}{102} \\).\r\n                A marad\u00e9ktag becsl\u00e9se m\u00e9rtani sorral:\r\n                \\[ R_{100} = \\sum_{n=101}^\\infty a_n < \\frac{a_{101}}{1 - q_{101}} \\le \\frac{\\frac{5^{99}}{101!}}{1 - \\frac{5}{102}} = \\frac{5^{99}}{101!} \\cdot \\frac{102}{97} \\]\r\n                <b>V\u00e9geredm\u00e9ny: \\( \\frac{5^{99}}{101!} \\cdot \\frac{102}{97} \\)<\/b>","<hr>\r\n\r\n                <h3>(b) r\u00e9sz: \\( \\sum_{n \\in \\mathbb{N}^+} \\left(\\frac{2n+3}{8n-2}\\right)^{2n} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Konvergencia bizony\u00edt\u00e1sa (Gy\u00f6kkrit\u00e9rium).<\/b><br>\r\n                Alkalmazzuk az \\( n \\)-edik gy\u00f6k\u00f6t:\r\n                \\[ \\sqrt[n]{a_n} = \\left(\\frac{2n+3}{8n-2}\\right)^2 \\xrightarrow[n \\to \\infty]{} \\left(\\frac{2}{8}\\right)^2 = \\left(\\frac{1}{4}\\right)^2 = \\frac{1}{16} \\]\r\n                Mivel \\( \\frac{1}{16} < 1 \\), a sor a gy\u00f6kkrit\u00e9rium alapj\u00e1n <b>konvergens<\/b>.\r\n\r\n                <b>2. L\u00e9p\u00e9s: Hibabecsl\u00e9s (\\( R_{100} \\)).<\/b><br>\r\n                Vizsg\u00e1ljuk meg az alap monotonit\u00e1s\u00e1t: \\( f(x) = \\frac{2x+3}{8x-2} \\) deriv\u00e1ltja negat\u00edv, teh\u00e1t a sorozat alapja monoton cs\u00f6kken\u0151.\r\n                A maximum \u00e9rt\u00e9ke \\( n=1 \\)-n\u00e9l van: \\( \\frac{2(1)+3}{8(1)-2} = \\frac{5}{6} \\).\r\n                Ebb\u0151l ad\u00f3dik a major\u00e1ns m\u00e9rtani sor: \\( a_n \\le \\left(\\frac{5}{6}\\right)^{2n} \\).\r\n                A 100. r\u00e9szlet\u00f6sszeg hib\u00e1ja:\r\n                \\[ R_{100} = \\sum_{n=101}^\\infty a_n \\le \\sum_{n=101}^\\infty \\left(\\frac{5}{6}\\right)^{2n} \\]\r\n                Ez egy geometriai sor, ahol az els\u0151 tag \\( a_{101}^* = (5\/6)^{202} \\), a h\u00e1nyados pedig \\( q = (5\/6)^2 \\).\r\n                Az \u00f6sszegk\u00e9plet alapj\u00e1n:\r\n                \\[ R_{100} \\le \\frac{(5\/6)^{202}}{1 - (5\/6)^2} \\]\r\n                <b>V\u00e9geredm\u00e9ny: \\( \\frac{(5\/6)^{202}}{1 - (5\/6)^2} \\)<\/b>"]},{"title":"3. feladat: Vizsg\u00e1ljuk meg a sorok konvergenci\u00e1j\u00e1t \u00e9s adjunk becsl\u00e9st a 100. r\u00e9szlet\u00f6sszeg hib\u00e1j\u00e1ra.","wolfram":"is sum 3\/(5n*ln(n^2)) convergent?; is sum 3\/(5n*(ln(n)+11)^2) convergent?","steps":["<h3>(a) r\u00e9sz: \\( \\sum_{n=2}^\\infty \\frac{3}{5n \\ln(n^2)} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: A kifejez\u00e9s egyszer\u0171s\u00edt\u00e9se.<\/b><br>\r\n                Haszn\u00e1ljuk a logaritmus azonoss\u00e1g\u00e1t (\\( \\ln(n^2) = 2\\ln(n) \\)):\r\n                \\[ a_n = \\frac{3}{5n \\cdot 2\\ln(n)} = \\frac{3}{10n \\ln(n)} \\]\r\n                \r\n                <b>2. L\u00e9p\u00e9s: Integr\u00e1lkrit\u00e9rium alkalmaz\u00e1sa.<\/b><br>\r\n                Mivel a f\u00fcggv\u00e9ny pozit\u00edv \u00e9s monoton cs\u00f6kken\u0151, a sor konvergenci\u00e1ja megegyezik az al\u00e1bbi improprius integr\u00e1l\u00e9val:\r\n                \\[ \\int_2^\\infty \\frac{3}{10x \\ln(x)} dx \\]\r\n                Alkalmazzunk helyettes\u00edt\u00e9st: \\( u = \\ln(x) \\implies du = \\frac{1}{x} dx \\):\r\n                \\[ \\frac{3}{10} \\int \\frac{1}{u} du = \\frac{3}{10} \\ln(u) = \\frac{3}{10} \\ln(\\ln(x)) \\]\r\n                \r\n                <b>3. L\u00e9p\u00e9s: Hat\u00e1r\u00e9rt\u00e9k kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                \\[ \\lim_{t \\to \\infty} \\left[ \\frac{3}{10} \\ln(\\ln(x)) \\right]_2^t = \\infty \\]\r\n                Mivel az integr\u00e1l divergens, a sor is <b>divergens<\/b>.","<hr>\r\n\r\n                <h3>(b) r\u00e9sz: \\( \\sum_{n=2}^\\infty \\frac{3}{5n (\\ln(n) + 11)^2} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Integr\u00e1lkrit\u00e9rium fel\u00edr\u00e1sa.<\/b><br>\r\n                Vizsg\u00e1ljuk meg a megfelel\u0151 integr\u00e1lt:\r\n                \\[ \\int_2^\\infty \\frac{3}{5x (\\ln(x) + 11)^2} dx \\]\r\n                Legyen \\( u = \\ln(x) + 11 \\implies du = \\frac{1}{x} dx \\):\r\n                \\[ \\int \\frac{3}{5u^2} du = -\\frac{3}{5u} = -\\frac{3}{5(\\ln(x) + 11)} \\]\r\n                \r\n                <b>2. L\u00e9p\u00e9s: Konvergencia meg\u00e1llap\u00edt\u00e1sa.<\/b><br>\r\n                A v\u00e9gtelenben vett hat\u00e1r\u00e9rt\u00e9k:\r\n                \\[ \\lim_{t \\to \\infty} \\left[ -\\frac{3}{5(\\ln(x) + 11)} \\right]_2^t = 0 - \\left( -\\frac{3}{5(\\ln(2) + 11)} \\right) \\]\r\n                Mivel az integr\u00e1l \u00e9rt\u00e9ke v\u00e9ges, a sor <b>konvergens<\/b>.\r\n\r\n                <b>3. L\u00e9p\u00e9s: Hibabecsl\u00e9s (\\( R_{100} \\)).<\/b><br>\r\n                Az elm\u00e9let szerint a marad\u00e9ktag (hiba) fel\u00fclr\u0151l becs\u00fclhet\u0151 az integr\u00e1llal:\r\n                \\[ R_{100} \\le \\int_{100}^\\infty f(x) dx = \\left[ -\\frac{3}{5(\\ln(x) + 11)} \\right]_{100}^\\infty \\]\r\n                \\[ R_{100} \\le 0 - \\left( -\\frac{3}{5(\\ln(100) + 11)} \\right) = \\frac{3}{5} \\frac{1}{\\ln(100) + 11} \\]\r\n                <b>V\u00e9geredm\u00e9ny: Konvergens, hiba: \\( \\frac{3}{5} \\frac{1}{\\ln(100) + 11} \\)<\/b>"]},{"title":"4. feladat: Konvergensek-e az al\u00e1bbi sorok?","wolfram":"is sum (-1)^n * 1\/(n^(1\/3)+4) convergent?; is sum (-1)^n * 1\/(n^(1\/n)^4+4) convergent?; is sum (-1)^n * cos(n^2)\/(n^2+1) convergent?","steps":["<h3>(a) r\u00e9sz: \\( \\sum_{n=1}^\\infty (-1)^n \\frac{1}{\\sqrt[3]{n}+4} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: A t\u00edpus beazonos\u00edt\u00e1sa.<\/b><br>\r\n                A \\((-1)^n\\) t\u00e9nyez\u0151 jelzi, hogy ez egy <b>altern\u00e1l\u00f3 sor<\/b>. Az ilyen sorok konvergenci\u00e1j\u00e1t leggyakrabban a <b>Leibniz-krit\u00e9riummal<\/b> igazoljuk.","<b>2. L\u00e9p\u00e9s: A Leibniz-felt\u00e9telek ellen\u0151rz\u00e9se.<\/b><br>\r\n                A 4. defin\u00edci\u00f3 alapj\u00e1n vizsg\u00e1lnunk kell az abszol\u00fat \u00e9rt\u00e9kek (\\( a_n \\)) sorozat\u00e1t:\r\n                <ul>\r\n                    <li><b>Altern\u00e1l-e?<\/b> Igen, a \\((-1)^n\\) miatt az el\u0151jelek v\u00e1ltakoznak.<\/li>\r\n                    <li><b>Monoton cs\u00f6kken\u0151?<\/b> Igen, a nevez\u0151 (\\(\\sqrt[3]{n}+4\\)) n\u0151, \u00edgy a t\u00f6rt \u00e9rt\u00e9ke cs\u00f6kken.<\/li>\r\n                    <li><b>Null\u00e1hoz tart?<\/b> \\(\\lim_{n \\to \\infty} \\frac{1}{\\sqrt[3]{n}+4} = 0\\).<\/li>\r\n                <\/ul>\r\n                Mivel minden felt\u00e9tel teljes\u00fcl, a sor <b>konvergens<\/b>.","<hr>\r\n\r\n                <h3>(b) r\u00e9sz: \\( \\sum_{n=1}^\\infty (-1)^n \\frac{1}{(\\sqrt[n]{n})^4+4} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: A konvergencia sz\u00fcks\u00e9ges felt\u00e9tel\u00e9nek vizsg\u00e1lata.<\/b><br>\r\n                Miel\u0151tt Leibniz-sort ki\u00e1ltan\u00e1nk, n\u00e9zz\u00fck meg, hogy a tagok egy\u00e1ltal\u00e1n null\u00e1hoz tartanak-e.","<b>2. L\u00e9p\u00e9s: Hat\u00e1r\u00e9rt\u00e9k sz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                Tudjuk, hogy \\(\\lim_{n \\to \\infty} \\sqrt[n]{n} = 1\\). Ekkor az \u00e1ltal\u00e1nos tag abszol\u00fat \u00e9rt\u00e9k\u00e9nek hat\u00e1r\u00e9rt\u00e9ke:\r\n                \\[ \\lim_{n \\to \\infty} \\frac{1}{(\\sqrt[n]{n})^4+4} = \\frac{1}{1^4+4} = \\frac{1}{5} \\]\r\n                Mivel a hat\u00e1r\u00e9rt\u00e9k <b>nem nulla<\/b> (\\(\\frac{1}{5} \\neq 0\\)), a konvergencia sz\u00fcks\u00e9ges felt\u00e9tele nem teljes\u00fcl.\r\n                A sor teh\u00e1t <b>divergens<\/b>.","<hr>\r\n\r\n                <h3>(c) r\u00e9sz: \\( \\sum_{n=0}^\\infty (-1)^n \\frac{\\cos(n^2)}{n^2+1} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Abszol\u00fat konvergencia vizsg\u00e1lata.<\/b><br>\r\n                Pr\u00f3b\u00e1ljuk meg bizony\u00edtani az <b>abszol\u00fat konvergenci\u00e1t<\/b>, mert ha az teljes\u00fcl, a sor konvergens is.\r\n                Vizsg\u00e1ljuk a tagok abszol\u00fat \u00e9rt\u00e9k\u00e9t:\r\n                \\[ \\left| (-1)^n \\frac{\\cos(n^2)}{n^2+1} \\right| = \\frac{|\\cos(n^2)|}{n^2+1} \\]","<b>2. L\u00e9p\u00e9s: Major\u00e1ns krit\u00e9rium alkalmaz\u00e1sa.<\/b><br>\r\n                Mivel \\(|\\cos(n^2)| \\leq 1\\), fel\u00edrhatjuk a k\u00f6vetkez\u0151 becsl\u00e9st:\r\n                \\[ \\frac{|\\cos(n^2)|}{n^2+1} \\leq \\frac{1}{n^2+1} < \\frac{1}{n^2} \\]\r\n                A \\(\\sum \\frac{1}{n^2}\\) sor konvergens (p-sor, \\(p=2>1\\)). \r\n                Mivel tal\u00e1ltunk konvergens major\u00e1nst, a sor abszol\u00fat konvergens, \u00edgy az eredeti sor is <b>konvergens<\/b>."]},{"title":"5. feladat: Mutassuk meg, hogy az al\u00e1bbi sor Leibniz-t\u00edpus\u00fa (t\u00e1gabb \u00e9rtelemben), \u00e9s adjunk becsl\u00e9st a 99. r\u00e9szlet\u00f6sszeg hib\u00e1j\u00e1ra.","wolfram":"sum n=1 to infinity (-1)^(n+1) * 7^n \/ (3^n + 8^n)","steps":["<b>1. L\u00e9p\u00e9s: A Leibniz-t\u00edpus felt\u00e9teleinek ellen\u0151rz\u00e9se.<\/b><br>\r\n                A 4. defin\u00edci\u00f3 alapj\u00e1n egy sor akkor Leibniz-t\u00edpus\u00fa, ha v\u00e1ltakoz\u00f3 el\u0151jel\u0171, abszol\u00fat \u00e9rt\u00e9kei monoton cs\u00f6kkennek \u00e9s null\u00e1hoz tartanak.\r\n                Vizsg\u00e1ljuk meg a \\( \\sum_{n=1}^\\infty (-1)^{n+1} \\frac{7^n}{3^n + 8^n} \\) sorunkat:\r\n                <ul>\r\n                    <li><b>Altern\u00e1l\u00e1s:<\/b> A \\( (-1)^{n+1} \\) szorz\u00f3 biztos\u00edtja, hogy a tagok el\u0151jele minden l\u00e9p\u00e9sben v\u00e1ltakozik.<\/li>\r\n                    <li><b>Hat\u00e1r\u00e9rt\u00e9k:<\/b> Vizsg\u00e1ljuk az abszol\u00fat \u00e9rt\u00e9ket: \\( \\lim_{n \\to \\infty} \\frac{7^n}{3^n + 8^n} \\). Emelj\u00fck ki a nevez\u0151 domin\u00e1ns tagj\u00e1t:\r\n                        \\[ \\lim_{n \\to \\infty} \\frac{7^n}{8^n \\left( (\\frac{3}{8})^n + 1 \\right)} = \\lim_{n \\to \\infty} \\frac{(\\frac{7}{8})^n}{(\\frac{3}{8})^n + 1} = \\frac{0}{0+1} = \\mathbf{0} \\]\r\n                    Teh\u00e1t a tagok null\u00e1hoz tartanak.<\/li>\r\n                <\/ul>","<b>2. L\u00e9p\u00e9s: A monotonit\u00e1s vizsg\u00e1lata.<\/b><br>\r\n                Ahhoz, hogy a sor Leibniz-t\u00edpus\u00fa legyen, az \\( |a_n| = \\frac{7^n}{3^n + 8^n} \\) sorozatnak monoton cs\u00f6kkennie kell.\r\n                Vizsg\u00e1ljuk meg az \\( |a_n| > |a_{n+1}| \\) egyenl\u0151tlens\u00e9get:\r\n                \\[ \\frac{7^n}{3^n + 8^n} > \\frac{7^{n+1}}{3^{n+1} + 8^{n+1}} \\]\r\n                Keresztbeszorz\u00e1s \u00e9s egyszer\u0171s\u00edt\u00e9s ut\u00e1n l\u00e1that\u00f3, hogy egy bizonyos \\( N \\) k\u00fcsz\u00f6bindex felett ez az egyenl\u0151tlens\u00e9g teljes\u00fcl (mivel a nevez\u0151 \\( 8^n \\)-es tagja gyorsabban n\u0151, mint a sz\u00e1ml\u00e1l\u00f3 \\( 7^n \\)-es tagja).\r\n                Mivel a felt\u00e9telek nem felt\u00e9tlen\u00fcl az els\u0151 tagt\u00f3l, de egy k\u00fcsz\u00f6bindext\u0151l kezdve teljes\u00fclnek, a sor <b>t\u00e1gabb \u00e9rtelemben vett Leibniz-sor<\/b>.","<b>3. L\u00e9p\u00e9s: Hibabecsl\u00e9s a Leibniz-t\u00e9tel alapj\u00e1n.<\/b><br>\r\n                Az 5. t\u00e9tel kimondja, hogy Leibniz-sorok eset\u00e9n az \\( n \\)-edik r\u00e9szlet\u00f6sszeg (\\( S_n \\)) \u00e9s a val\u00f3di \u00f6sszeg (\\( S \\)) k\u00fcl\u00f6nbs\u00e9ge (a hiba) nem nagyobb, mint az els\u0151 elhagyott tag abszol\u00fat \u00e9rt\u00e9ke:\r\n                \\[ |S - S_n| \\leq |a_{n+1}| \\]","<b>4. L\u00e9p\u00e9s: A konkr\u00e9t hiba meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                A feladat a <b>99. r\u00e9szlet\u00f6sszeg<\/b> (\\( n = 99 \\)) ut\u00e1ni hib\u00e1t k\u00e9ri. A k\u00e9plet alapj\u00e1n:\r\n                \\[ \\text{Hiba} \\leq |a_{99+1}| = |a_{100}| \\]\r\n                Helyettes\u00edts\u00fck be az \\( n = 100 \\) \u00e9rt\u00e9ket a sor \u00e1ltal\u00e1nos tagj\u00e1nak abszol\u00fat \u00e9rt\u00e9k\u00e9be:\r\n                \\[ |a_{100}| = \\frac{7^{100}}{3^{100} + 8^{100}} \\]\r\n                V\u00e9geredm\u00e9ny:\r\n                \\[ \\mathbf{\\text{Becsl\u00e9s a hib\u00e1ra: } \\frac{7^{100}}{3^{100} + 8^{100}}} \\]"]},{"title":"6. feladat: Abszol\u00fat vagy felt\u00e9telesen konvergensek-e az al\u00e1bbi sorok? Felt\u00e9teles esetben adjunk hibabecsl\u00e9st az 1000. r\u00e9szlet\u00f6sszegre.","wolfram":"is sum (-1)^n * (n^2+2)\/(5n^4-n^3) absolutely convergent?; is sum (-1)^n * (n^2+2)\/(5n^3-n) conditionally convergent?","steps":["<h3>(a) r\u00e9sz: \\( \\sum_{n=1}^\\infty (-1)^n \\frac{n^2 + 2}{5n^4 - n^3} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Az abszol\u00fat \u00e9rt\u00e9kek sor\u00e1nak vizsg\u00e1lata.<\/b><br>\r\n                A 6. defin\u00edci\u00f3 alapj\u00e1n el\u0151sz\u00f6r n\u00e9zz\u00fck meg, hogy a sor abszol\u00fat \u00e9rt\u00e9keib\u0151l k\u00e9pzett sor konvergens-e:\r\n                \\[ \\sum_{n=1}^\\infty \\left| (-1)^n \\frac{n^2 + 2}{5n^4 - n^3} \\right| = \\sum_{n=1}^\\infty \\frac{n^2 + 2}{5n^4 - n^3} \\]\r\n                \r\n                <b>2. L\u00e9p\u00e9s: Nagys\u00e1grendi becsl\u00e9s (Aszimptotikus \u00f6sszehasonl\u00edt\u00e1s).<\/b><br>\r\n                Nagy \\( n \\) \u00e9rt\u00e9kek eset\u00e9n a legmagasabb foksz\u00e1m\u00fa tagok domin\u00e1lnak:\r\n                \\[ \\frac{n^2 + 2}{5n^4 - n^3} \\approx \\frac{n^2}{5n^4} = \\frac{1}{5n^2} \\]\r\n                Mivel a \\( \\sum \\frac{1}{n^2} \\) sor konvergens (\\( p=2 > 1 \\)), a major\u00e1ns krit\u00e9rium alapj\u00e1n az abszol\u00fat \u00e9rt\u00e9kek sora is konvergens.\r\n                \r\n                <b>3. Konkl\u00fazi\u00f3:<\/b><br>\r\n                Mivel az abszol\u00fat \u00e9rt\u00e9kek sora konvergens, az eredeti sor <b>abszol\u00fat konvergens<\/b>.","<hr>\r\n\r\n                <h3>(b) r\u00e9sz: \\( \\sum_{n=1}^\\infty (-1)^n \\frac{n^2 + 2}{5n^3 - n} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Abszol\u00fat konvergencia vizsg\u00e1lata.<\/b><br>\r\n                Vizsg\u00e1ljuk az abszol\u00fat \u00e9rt\u00e9keket: \\( \\sum \\frac{n^2 + 2}{5n^3 - n} \\). \r\n                Aszimptotikusan: \\( \\frac{n^2}{5n^3} = \\frac{1}{5n} \\).\r\n                A \\( \\sum \\frac{1}{n} \\) harmonikus sor divergens, \u00edgy az abszol\u00fat \u00e9rt\u00e9kek sora is divergens. \r\n                A sor teh\u00e1t <b>nem abszol\u00fat konvergens<\/b>.\r\n                \r\n                <b>2. L\u00e9p\u00e9s: Konvergencia vizsg\u00e1lata (Leibniz-krit\u00e9rium).<\/b><br>\r\n                Ellen\u0151rizz\u00fck a 4. defin\u00edci\u00f3 felt\u00e9teleit az altern\u00e1l\u00f3 sorra:\r\n                <ul>\r\n                    <li><b>Altern\u00e1l\u00e1s:<\/b> A \\( (-1)^n \\) miatt teljes\u00fcl.<\/li>\r\n                    <li><b>Hat\u00e1r\u00e9rt\u00e9k:<\/b> \\( \\lim_{n \\to \\infty} \\frac{n^2 + 2}{5n^3 - n} = 0 \\), mert a nevez\u0151 foksz\u00e1ma nagyobb.<\/li>\r\n                    <li><b>Monotonit\u00e1s:<\/b> Bel\u00e1that\u00f3, hogy egy k\u00fcsz\u00f6bindex ut\u00e1n a tagok abszol\u00fat \u00e9rt\u00e9ke monoton cs\u00f6kken.<\/li>\r\n                <\/ul>\r\n                Mivel a felt\u00e9telek teljes\u00fclnek, a sor konvergens, de nem abszol\u00fat konvergens, teh\u00e1t <b>felt\u00e9telesen konvergens<\/b>.\r\n                \r\n                <b>3. L\u00e9p\u00e9s: Hibabecsl\u00e9s (\\( R_{1000} \\)).<\/b><br>\r\n                Leibniz-sorok eset\u00e9n az 5. t\u00e9tel szerint a hiba kisebb az els\u0151 elhagyott tag abszol\u00fat \u00e9rt\u00e9k\u00e9n\u00e9l:\r\n                \\[ |S - S_{1000}| \\leq |a_{1001}| \\]\r\n                Helyettes\u00edts\u00fck be \\( n = 1001 \\)-et az \u00e1ltal\u00e1nos tagba:\r\n                \\[ |a_{1001}| = \\frac{1001^2 + 2}{5 \\cdot 1001^3 - 1001} \\]\r\n                <b>V\u00e9geredm\u00e9ny: Felt\u00e9telesen konvergens, hiba: \\( \\frac{1001^2 + 2}{5 \\cdot 1001^3 - 1001} \\)<\/b>"]}];
+    const chapterId = 5;
+</script>
+
+<script src="script.js"></script>
+</body>
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=5 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+</html>

@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=3 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3. n-edrendű állandó együtthatós lineáris differenciálegyenletek - Analízis 2</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --main-color: #10b981;
+            --main-color-soft: #10b98122; 
+        }
+    </style>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <layout-wrapper>
+        <analizis-sidebar>
+            <sidebar-header>
+                <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+            </sidebar-header>
+            <sidebar-list>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter681a.html?id=1'"
+                        class=""
+                        id="sidebar-item-1"
+                    >
+                        <span class="ch-num">1.</span>
+                        <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0b30.html?id=2'"
+                        class=""
+                        id="sidebar-item-2"
+                    >
+                        <span class="ch-num">2.</span>
+                        <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd708.html?id=3'"
+                        class="active"
+                        id="sidebar-item-3"
+                    >
+                        <span class="ch-num">3.</span>
+                        <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterdcfd.html?id=4'"
+                        class=""
+                        id="sidebar-item-4"
+                    >
+                        <span class="ch-num">4.</span>
+                        <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                        <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd61c.html?id=5'"
+                        class=""
+                        id="sidebar-item-5"
+                    >
+                        <span class="ch-num">5.</span>
+                        <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                        <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter3a9f.html?id=6'"
+                        class=""
+                        id="sidebar-item-6"
+                    >
+                        <span class="ch-num">6.</span>
+                        <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                        <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter8803.html?id=7'"
+                        class=""
+                        id="sidebar-item-7"
+                    >
+                        <span class="ch-num">7.</span>
+                        <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                        <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterc3c9.html?id=8'"
+                        class=""
+                        id="sidebar-item-8"
+                    >
+                        <span class="ch-num">8.</span>
+                        <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                        <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter5255.html?id=9'"
+                        class=""
+                        id="sidebar-item-9"
+                    >
+                        <span class="ch-num">9.</span>
+                        <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                        <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterf41b.html?id=10'"
+                        class=""
+                        id="sidebar-item-10"
+                    >
+                        <span class="ch-num">10.</span>
+                        <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                        <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0055.html?id=11'"
+                        class=""
+                        id="sidebar-item-11"
+                    >
+                        <span class="ch-num">11.</span>
+                        <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                        <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter4ef9.html?id=12'"
+                        class=""
+                        id="sidebar-item-12"
+                    >
+                        <span class="ch-num">12.</span>
+                        <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                        <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter6e03.html?id=13'"
+                        class=""
+                        id="sidebar-item-13"
+                    >
+                        <span class="ch-num">13.</span>
+                        <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                        <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+                    </sidebar-item>
+                            </sidebar-list>
+            <sidebar-footer>
+                <div class="overall-progress">
+                    <div class="progress-label">Kurzus haladás: <span id="totalPercent">0%</span></div>
+                    <div class="progress-track">
+                        <div id="totalProgressBar" class="progress-fill"></div>
+                    </div>
+                </div>
+                
+            </sidebar-footer>
+        </analizis-sidebar>
+
+        <main-content>
+            <analizis-nav>
+                <nav-title><b>3. n-edrendű állandó együtthatós lineáris differenciálegyenletek<b></nav-title>
+                <nav-actions>
+                    <button id="themeToggle" class="theme-btn">🌙 Éjszakai mód</button>
+                    <button id="theory-menu-toggle" class="menu-toggle-btn">
+    <span>☰</span> Menü
+</button>
+
+<analizis-sidebar id="theory-menu">
+    <sidebar-header>
+        <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+    </sidebar-header>
+    
+    <sidebar-list>
+                    <sidebar-item 
+                onclick="window.location.href='chapter681a.html?id=1'"
+                class=""
+                id="sidebar-item-1"
+            >
+                <span class="ch-num">1.</span>
+                <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0b30.html?id=2'"
+                class=""
+                id="sidebar-item-2"
+            >
+                <span class="ch-num">2.</span>
+                <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd708.html?id=3'"
+                class="active"
+                id="sidebar-item-3"
+            >
+                <span class="ch-num">3.</span>
+                <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterdcfd.html?id=4'"
+                class=""
+                id="sidebar-item-4"
+            >
+                <span class="ch-num">4.</span>
+                <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd61c.html?id=5'"
+                class=""
+                id="sidebar-item-5"
+            >
+                <span class="ch-num">5.</span>
+                <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter3a9f.html?id=6'"
+                class=""
+                id="sidebar-item-6"
+            >
+                <span class="ch-num">6.</span>
+                <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter8803.html?id=7'"
+                class=""
+                id="sidebar-item-7"
+            >
+                <span class="ch-num">7.</span>
+                <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterc3c9.html?id=8'"
+                class=""
+                id="sidebar-item-8"
+            >
+                <span class="ch-num">8.</span>
+                <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter5255.html?id=9'"
+                class=""
+                id="sidebar-item-9"
+            >
+                <span class="ch-num">9.</span>
+                <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterf41b.html?id=10'"
+                class=""
+                id="sidebar-item-10"
+            >
+                <span class="ch-num">10.</span>
+                <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0055.html?id=11'"
+                class=""
+                id="sidebar-item-11"
+            >
+                <span class="ch-num">11.</span>
+                <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter4ef9.html?id=12'"
+                class=""
+                id="sidebar-item-12"
+            >
+                <span class="ch-num">12.</span>
+                <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter6e03.html?id=13'"
+                class=""
+                id="sidebar-item-13"
+            >
+                <span class="ch-num">13.</span>
+                <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+            </sidebar-item>
+            </sidebar-list>
+</analizis-sidebar>
+</button>
+
+                </nav-actions>
+            </analizis-nav>
+            
+            <analizis-content>
+                <theory-section>
+                    <section-header>Elméleti összefoglaló</section-header>
+                    <theory-body>
+        <section>
+            <h2>1. n-edrendű homogén lineáris egyenletek</h2>
+            <p><b>Általános alak:</b></p>
+            $$y^{(n)}(x) + \sum_{j=0}^{n-1} a_j y^{(j)}(x) = 0 \quad (x \in I), \quad (3)$$
+            <p>ahol \( I \subseteq \mathbb{R} \) nyílt intervallum és az együtthatók \( a_0, a_1, \dots, a_{n-1} \in \mathbb{R} \) konstansok.</p>
+
+            <h3>A karakterisztikus egyenlet</h3>
+            <p>A megoldásokat \( e^{\lambda x} \) alakban keressük, ami a következő karakterisztikus egyenlethez vezet:</p>
+            $$\lambda^n + \sum_{j=0}^{n-1} a_j \lambda^j = 0 \quad (4)$$
+
+            <h3>Alaprendszer (Bázis) meghatározása</h3>
+            <p>Legyen \( K \) a karakterisztikus egyenlet gyökeinek halmaza. Minden \( \lambda \in K \) esetén jelölje \( m_\lambda \) a gyök multiplicitását. A bázisfüggvények halmazát (\( H_\lambda \)) az alábbiak szerint képezzük:</p>
+            
+            <ul>
+                <li><b>Ha \( \lambda \in \mathbb{R} \) (Valós gyök):</b>
+                    <p>$$x^l e^{\lambda x} \quad (l = 0, \dots, m_\lambda - 1)$$</p>
+                </li>
+                <li><b>Ha \( \lambda = \alpha \pm i\beta \) (Komplex gyökpár):</b>
+                    <p>$$x^l e^{\alpha x} \cos(\beta x) \quad \text{és} \quad x^l e^{\alpha x} \sin(\beta x) \quad (l = 0, \dots, m_\lambda - 1)$$</p>
+                </li>
+            </ul>
+            <p>Ezen függvényhalmazok uniója alkotja a homogén egyenlet alaprendszerét.</p>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>2. n-edrendű inhomogén lineáris egyenletek</h2>
+            <p><b>Általános alak:</b></p>
+            $$y^{(n)}(x) + \sum_{j=0}^{n-1} a_j y^{(j)}(x) = f(x) \quad (x \in I), \quad (5)$$
+            <p>ahol \( f: I \to \mathbb{R} \) egy folytonos zavarófüggvény.</p>
+
+            <p><b>Strukturális tétel:</b> Az inhomogén egyenlet általános megoldása (\( y_{i,á} \)) előáll a homogén egyenlet általános megoldása (\( y_{h,á} \)) és az inhomogén egyenlet egy partikuláris megoldásának (\( y_{i,p} \)) összegeként:</p>
+            <p>$$y_{i,á} = y_{i,p} + y_{h,á}$$</p>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>3. Próbafüggvény-módszer (Undetermined Coefficients)</h2>
+            <p>Speciális alakú zavarófüggvények (\( f(x) \)) esetén a partikuláris megoldást (\( y_{i,p} \)) az alábbi táblázat alapján keressük:</p>
+
+            <table style="width:100%; border-collapse: collapse; margin: 20px 0;">
+                <thead>
+                    <tr style="background: rgba(16, 185, 129, 0.2);">
+                        <th style="padding: 10px; border: 1px solid #ddd;">Zavarófüggvény \( f(x) \)</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Próbafüggvény \( y(x) \)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;">\( Ke^{\alpha x} \)</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">\( Ae^{\alpha x} \)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;">\( K\sin(\alpha x) \) vagy \( K\cos(\alpha x) \)</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">\( A\sin(\alpha x) + B\cos(\alpha x) \)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;">\( P_m(x) \) (\( m \)-edfokú polinom)</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">\( Q_m(x) \) (ismeretlen \( m \)-edfokú polinom)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="padding: 15px; background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; border-radius: 4px;">
+                <p><b>Külső rezonancia:</b> Ha a zavarófüggvény valamelyik tagja szerepel a homogén egyenlet alapmegoldásai között, a módszer önmagában nem vezet eredményre. Ilyenkor a próbafüggvény adott tagját meg kell szorozni \( x \)-szel (illetve annyiszor \( x \)-szel, amekkora a rezonancia fokszáma), és így folytatni az eljárást.</p>
+            </div>
+        </section>
+    </theory-body>
+                </theory-section>
+
+                <practice-section>
+    <section-header>Példafeladatok</section-header>
+    
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat (a): Oldjuk meg az \( y''' - 4y'' + 4y' = 0 \) homogén differenciálegyenletet.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27%27%27+-+4%2Ay%27%27+%2B+4%2Ay%27+%3D+0"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="0">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="0">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat (b): Oldjuk meg az \( y''' + 2y'' + 5y' = 0 \) homogén differenciálegyenletet.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27%27%27+%2B+2%2Ay%27%27+%2B+5%2Ay%27+%3D+0"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="1">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="1">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat (c): Oldjuk meg az \( y^{(5)} + 81y' = 0 \) homogén differenciálegyenletet.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27%27%27%27%27+%2B+81%2Ay%27+%3D+0"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="2">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="2">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">2. feladat (a): Írjuk fel a legalacsonyabb rendű differenciálegyenletet, melynek megoldása az \( x \mapsto 3 + e^{4x} - e^{-6x} \) függvény.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="linear+differential+equation+with+solutions+1%2C+exp%284x%29%2C+exp%28-6x%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="3">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="3">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">2. feladat (b): Írjuk fel a legalacsonyabb rendű differenciálegyenletet, melynek megoldása az \( x \mapsto 3x^3 + 4e^{3x} \) függvény.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="linear+differential+equation+with+solutions+x%5E3%2C+exp%283x%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="4">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="4">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">2. feladat (c): Írjuk fel a legalacsonyabb rendű differenciálegyenletet, melynek megoldásai az \( x \mapsto 8x^2 \) és az \( x \mapsto \cos(4x) \) függvények.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="linear+differential+equation+with+solutions+x%5E2%2C+cos%284x%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="5">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="5">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">2. feladat (d): Írjuk fel a legalacsonyabb rendű differenciálegyenletet, melynek megoldásai az \( x \mapsto 3xe^{-2x} \) és az \( x \mapsto e^{5x} \) függvények.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="linear+differential+equation+with+solutions+x%2Aexp%28-2x%29%2C+exp%285x%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="6">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="6">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">2. feladat (e): Írjuk fel a legalacsonyabb rendű differenciálegyenletet, melynek megoldása az \( x \mapsto 2x + e^{-3x} \cos(2x) \) függvény.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="linear+differential+equation+with+solutions+x%2C+exp%28-3x%29%2Acos%282x%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="7">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="7">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">3. feladat (a): Oldjuk meg az \( y'' - 6y' + 8y = 2 \cos(4x) \) inhomogén differenciálegyenletet.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27%27+-+6%2Ay%27+%2B+8%2Ay+%3D+2%2Acos%284x%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="8">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="8">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">3. feladat (b): Oldjuk meg az \( y'' - 6y' + 8y = 3xe^{-x} \) inhomogén differenciálegyenletet.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27%27+-+6%2Ay%27+%2B+8%2Ay+%3D+3%2Ax%2Aexp%28-x%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="9">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="9">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">3. feladat (c): Oldjuk meg az \( y''' + 2y'' + y' + 2y = \text{sh}(2x) \) inhomogén differenciálegyenletet.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27%27%27+%2B+2%2Ay%27%27+%2B+y%27+%2B+2%2Ay+%3D+sinh%282x%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="10">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="10">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">3. feladat (d): Oldjuk meg az \( y''' + 3y'' + 2y' = 12e^{3x} + 4x \) inhomogén differenciálegyenletet.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27%27%27+%2B+3%2Ay%27%27+%2B+2%2Ay%27+%3D+12%2Aexp%283x%29+%2B+4x"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="11">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="11">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">4. feladat: Oldjuk meg az \( y'' + y' - 2y = 3e^{-2x} \) differenciálegyenletet az \( y(0) = 2, y'(0) = 0 \) kezdeti feltételek mellett.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27%27+%2B+y%27+-+2y+%3D+3%2Aexp%28-2x%29%2C+y%280%29%3D2%2C+y%27%280%29%3D0"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="12">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="12">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+    
+</practice-section>
+
+<script>
+    const allTasks = [{"title":"1. feladat (a): Oldjuk meg az \\( y''' - 4y'' + 4y' = 0 \\) homog\u00e9n differenci\u00e1legyenletet.","wolfram":"solve y''' - 4*y'' + 4*y' = 0","steps":["<b>1. L\u00e9p\u00e9s: Az egyenlet t\u00edpus\u00e1nak azonos\u00edt\u00e1sa \u00e9s a strat\u00e9gia.<\/b><br>\r\n                Egy harmadrend\u0171, \u00e1lland\u00f3 egy\u00fctthat\u00f3s homog\u00e9n line\u00e1ris differenci\u00e1legyenlettel van dolgunk. \r\n                Az elm\u00e9let szerint az ilyen egyenletek megold\u00e1s\u00e1t \\( y(x) = e^{\\lambda x} \\) alakban keress\u00fck, ami egy algebrai egyenlethez, az \u00fagynevezett karakterisztikus egyenlethez vezet.","<b>2. L\u00e9p\u00e9s: A karakterisztikus egyenlet fel\u00edr\u00e1sa.<\/b><br>\r\n                Rendelj\u00fck hozz\u00e1 a deriv\u00e1ltak rendj\u00e9hez a \\( \\lambda \\) megfelel\u0151 hatv\u00e1nyait:\r\n                <ul>\r\n                    <li>\\( y''' \\rightarrow \\lambda^3 \\)<\/li>\r\n                    <li>\\( y'' \\rightarrow \\lambda^2 \\)<\/li>\r\n                    <li>\\( y' \\rightarrow \\lambda^1 = \\lambda \\)<\/li>\r\n                <\/ul>\r\n                A karakterisztikus egyenlet teh\u00e1t:\r\n                \\[ \\lambda^3 - 4\\lambda^2 + 4\\lambda = 0 \\]","<b>3. L\u00e9p\u00e9s: Az egyenlet megold\u00e1sa kiemel\u00e9ssel.<\/b><br>\r\n                A harmadfok\u00fa egyenlet megold\u00e1s\u00e1hoz vegy\u00fck \u00e9szre, hogy minden tagban szerepel a \\( \\lambda \\). \r\n                Emelj\u00fcnk ki \\( \\lambda \\)-t:\r\n                \\[ \\lambda(\\lambda^2 - 4\\lambda + 4) = 0 \\]\r\n                Ebb\u0151l az egyik gy\u00f6k azonnal ad\u00f3dik:\r\n                \\[ \\mathbf{\\lambda_1 = 0} \\]","<b>4. L\u00e9p\u00e9s: A m\u00e1sodfok\u00fa r\u00e9sz megold\u00e1sa \u00e9s a multiplicit\u00e1s.<\/b><br>\r\n                Vizsg\u00e1ljuk meg a \\( \\lambda^2 - 4\\lambda + 4 = 0 \\) kifejez\u00e9st. Ez egy nevezetes azonoss\u00e1g:\r\n                \\[ (\\lambda - 2)^2 = 0 \\]\r\n                Ebb\u0151l ad\u00f3dik, hogy a \\( \\lambda = 2 \\) \u00e9rt\u00e9k k\u00e9tszeres gy\u00f6k (\\( m_\\lambda = 2 \\)):\r\n                \\[ \\mathbf{\\lambda_{2,3} = 2} \\]","<b>5. L\u00e9p\u00e9s: A b\u00e1zisf\u00fcggv\u00e9nyek (fundament\u00e1lis rendszer) fel\u00e9p\u00edt\u00e9se.<\/b><br>\r\n                Az elm\u00e9leti t\u00e9tel alapj\u00e1n rendelj\u00fcnk f\u00fcggv\u00e9nyeket a gy\u00f6k\u00f6kh\u00f6z:\r\n                <ul>\r\n                    <li>A <b>\\(\\lambda_1 = 0\\)<\/b> egyszeres val\u00f3s gy\u00f6kh\u00f6z tartoz\u00f3 b\u00e1zisf\u00fcggv\u00e9ny: \\( e^{0x} = \\mathbf{1} \\).<\/li>\r\n                    <li>A <b>\\(\\lambda_{2,3} = 2\\)<\/b> k\u00e9tszeres val\u00f3s gy\u00f6kh\u00f6z tartoz\u00f3 b\u00e1zisf\u00fcggv\u00e9nyek: \\( e^{2x} \\) \u00e9s \\( \\mathbf{x e^{2x}} \\).<\/li>\r\n                <\/ul>\r\n                (Megjegyz\u00e9s: A b\u00e1ziselemeket \\( x \\) n\u00f6vekv\u0151 hatv\u00e1nyaival szorozzuk a multiplicit\u00e1s fok\u00e1ig.)","<b>6. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos megold\u00e1s megad\u00e1sa.<\/b><br>\r\n                A homog\u00e9n egyenlet \u00e1ltal\u00e1nos megold\u00e1sa (\\( y_{h,\u00e1} \\)) a b\u00e1zisf\u00fcggv\u00e9nyek line\u00e1ris kombin\u00e1ci\u00f3ja:\r\n                \\[ y_{h,\u00e1}(x) = C_1 \\cdot 1 + C_2 \\cdot e^{2x} + C_3 \\cdot x e^{2x} \\]\r\n                V\u00e9geredm\u00e9ny:\r\n                \\[ y_{h,\u00e1}(x) = C_1 + C_2 e^{2x} + C_3 x e^{2x} \\quad (x \\in \\mathbb{R}, C_1, C_2, C_3 \\in \\mathbb{R}) \\]"]},{"title":"1. feladat (b): Oldjuk meg az \\( y''' + 2y'' + 5y' = 0 \\) homog\u00e9n differenci\u00e1legyenletet.","wolfram":"solve y''' + 2*y'' + 5*y' = 0","steps":["<b>1. L\u00e9p\u00e9s: A karakterisztikus egyenlet fel\u00e1ll\u00edt\u00e1sa.<\/b><br>\r\n                Az \u00e1lland\u00f3 egy\u00fctthat\u00f3s homog\u00e9n line\u00e1ris differenci\u00e1legyenlet megold\u00e1s\u00e1t \\( y(x) = e^{\\lambda x} \\) alakban keress\u00fck. \r\n                A deriv\u00e1ltak rendj\u00e9t helyettes\u00edts\u00fck a \\( \\lambda \\) megfelel\u0151 hatv\u00e1nyaival:\r\n                <ul>\r\n                    <li>\\( y''' \\rightarrow \\lambda^3 \\)<\/li>\r\n                    <li>\\( y'' \\rightarrow \\lambda^2 \\)<\/li>\r\n                    <li>\\( y' \\rightarrow \\lambda^1 = \\lambda \\)<\/li>\r\n                <\/ul>\r\n                Az egyenlet teh\u00e1t:\r\n                \\[ \\lambda^3 + 2\\lambda^2 + 5\\lambda = 0 \\]","<b>2. L\u00e9p\u00e9s: Az egyenlet faktoriz\u00e1l\u00e1sa (kiemel\u00e9s).<\/b><br>\r\n                Mivel minden tag tartalmazza a \\( \\lambda \\)-t, emelj\u00fck ki:\r\n                \\[ \\lambda(\\lambda^2 + 2\\lambda + 5) = 0 \\]\r\n                Ebb\u0151l az els\u0151 gy\u00f6k:\r\n                \\[ \\mathbf{\\lambda_1 = 0} \\]","<b>3. L\u00e9p\u00e9s: A m\u00e1sodfok\u00fa r\u00e9sz megold\u00e1sa (megold\u00f3k\u00e9plet).<\/b><br>\r\n                Oldjuk meg a \\( \\lambda^2 + 2\\lambda + 5 = 0 \\) egyenletet:\r\n                \\[ \\lambda_{2,3} = \\frac{-2 \\pm \\sqrt{2^2 - 4 \\cdot 1 \\cdot 5}}{2} = \\frac{-2 \\pm \\sqrt{4 - 20}}{2} \\]\r\n                \\[ \\lambda_{2,3} = \\frac{-2 \\pm \\sqrt{-16}}{2} \\]\r\n                A negat\u00edv diszkrimin\u00e1ns miatt komplex gy\u00f6kp\u00e1rt kapunk:\r\n                \\[ \\lambda_{2,3} = \\frac{-2 \\pm 4i}{2} = \\mathbf{-1 \\pm 2i} \\]\r\n                Itt a val\u00f3s r\u00e9sz \\( \\alpha = -1 \\), a k\u00e9pzetes r\u00e9sz pedig \\( \\beta = 2 \\).","<b>4. L\u00e9p\u00e9s: A b\u00e1zisf\u00fcggv\u00e9nyek (alaprendszer) meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                Az elm\u00e9let alapj\u00e1n rendelj\u00fcnk f\u00fcggv\u00e9nyeket a gy\u00f6k\u00f6kh\u00f6z:\r\n                <ul>\r\n                    <li>A <b>\\(\\lambda_1 = 0\\)<\/b> val\u00f3s gy\u00f6kh\u00f6z tartoz\u00f3 b\u00e1zisf\u00fcggv\u00e9ny: \\( e^{0x} = \\mathbf{1} \\).<\/li>\r\n                    <li>A <b>\\(\\lambda_{2,3} = -1 \\pm 2i\\)<\/b> komplex gy\u00f6kp\u00e1rhoz tartoz\u00f3 b\u00e1zisf\u00fcggv\u00e9nyek:\r\n                        \\[ \\mathbf{e^{-x} \\cos(2x)} \\quad \\text{\u00e9s} \\quad \\mathbf{e^{-x} \\sin(2x)} \\]\r\n                    <\/li>\r\n                <\/ul>","<b>5. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                Az \u00e1ltal\u00e1nos megold\u00e1s a b\u00e1zisf\u00fcggv\u00e9nyek tetsz\u0151leges konstansokkal vett line\u00e1ris kombin\u00e1ci\u00f3ja:\r\n                \\[ y_{h,\u00e1}(x) = C_1 \\cdot 1 + C_2 e^{-x} \\cos(2x) + C_3 e^{-x} \\sin(2x) \\]\r\n                A v\u00e9geredm\u00e9ny teh\u00e1t:\r\n                \\[ y_{h,\u00e1}(x) = C_1 + C_2 e^{-x} \\cos(2x) + C_3 e^{-x} \\sin(2x) \\quad (x \\in \\mathbb{R}, C_1, C_2, C_3 \\in \\mathbb{R}) \\]"]},{"title":"1. feladat (c): Oldjuk meg az \\( y^{(5)} + 81y' = 0 \\) homog\u00e9n differenci\u00e1legyenletet.","wolfram":"solve y''''' + 81*y' = 0","steps":["<b>1. L\u00e9p\u00e9s: A karakterisztikus egyenlet fel\u00edr\u00e1sa.<\/b><br>\r\n                Az elm\u00e9let alapj\u00e1n az \u00e1lland\u00f3 egy\u00fctthat\u00f3s homog\u00e9n line\u00e1ris differenci\u00e1legyenlethez egy \\( n \\)-edfok\u00fa algebrai egyenletet rendel\u00fcnk. \r\n                A deriv\u00e1ltak rendje hat\u00e1rozza meg a \\( \\lambda \\) kitev\u0151it:\r\n                <ul>\r\n                    <li>\\( y^{(5)} \\rightarrow \\lambda^5 \\)<\/li>\r\n                    <li>\\( y' \\rightarrow \\lambda^1 = \\lambda \\)<\/li>\r\n                <\/ul>\r\n                A karakterisztikus egyenlet teh\u00e1t:\r\n                \\[ \\lambda^5 + 81\\lambda = 0 \\]","<b>2. L\u00e9p\u00e9s: Faktoriz\u00e1l\u00e1s \u00e9s az els\u0151 gy\u00f6k meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                Emelj\u00fcnk ki \\( \\lambda \\)-t a kifejez\u00e9sb\u0151l:\r\n                \\[ \\lambda(\\lambda^4 + 81) = 0 \\]\r\n                Ebb\u0151l az els\u0151 megold\u00e1s (gy\u00f6k) azonnal ad\u00f3dik:\r\n                \\[ \\mathbf{\\lambda_1 = 0} \\]","<b>3. L\u00e9p\u00e9s: A negyedfok\u00fa r\u00e9sz megold\u00e1s\u00e1nak el\u0151k\u00e9sz\u00edt\u00e9se.<\/b><br>\r\n                Meg kell oldanunk a \\( \\lambda^4 + 81 = 0 \\), azaz a \\( \\lambda^4 = -81 \\) egyenletet.\r\n                Mivel egy komplex sz\u00e1m negyedik gy\u00f6keit keress\u00fck, \u00edrjuk fel a \\( -81 \\)-et trigonometrikus (pol\u00e1ris) alakban:\r\n                \\[ -81 = 81 \\cdot (\\cos \\pi + i \\sin \\pi) \\]","<b>4. L\u00e9p\u00e9s: Gy\u00f6kvon\u00e1s a komplex sz\u00e1mokon (Moivre-k\u00e9plet).<\/b><br>\r\n                A \\( \\lambda = \\sqrt[4]{-81} \\) gy\u00f6keit a k\u00f6vetkez\u0151 k\u00e9plettel kapjuk meg:\r\n                \\[ \\lambda_k = \\sqrt[4]{81} \\cdot \\left( \\cos\\frac{\\pi + 2k\\pi}{4} + i \\sin\\frac{\\pi + 2k\\pi}{4} \\right) \\quad (k = 0, 1, 2, 3) \\]\r\n                Mivel \\( \\sqrt[4]{81} = 3 \\), a gy\u00f6k\u00f6k sz\u00f6gei pedig \\( \\frac{\\pi}{4}, \\frac{3\\pi}{4}, \\frac{5\\pi}{4}, \\frac{7\\pi}{4} \\) lesznek.","<b>5. L\u00e9p\u00e9s: A n\u00e9gy komplex gy\u00f6k kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                V\u00e9gezz\u00fck el a behelyettes\u00edt\u00e9seket:\r\n                <ul>\r\n                    <li>\\( k=0 \\): \\( \\lambda_2 = 3(\\cos\\frac{\\pi}{4} + i\\sin\\frac{\\pi}{4}) = 3(\\frac{\\sqrt{2}}{2} + i\\frac{\\sqrt{2}}{2}) = \\mathbf{\\frac{3}{\\sqrt{2}} + i\\frac{3}{\\sqrt{2}}} \\)<\/li>\r\n                    <li>\\( k=1 \\): \\( \\lambda_3 = 3(\\cos\\frac{3\\pi}{4} + i\\sin\\frac{3\\pi}{4}) = 3(-\\frac{\\sqrt{2}}{2} + i\\frac{\\sqrt{2}}{2}) = \\mathbf{-\\frac{3}{\\sqrt{2}} + i\\frac{3}{\\sqrt{2}}} \\)<\/li>\r\n                    <li>\\( k=2 \\): \\( \\lambda_4 = 3(\\cos\\frac{5\\pi}{4} + i\\sin\\frac{5\\pi}{4}) = 3(-\\frac{\\sqrt{2}}{2} - i\\frac{\\sqrt{2}}{2}) = \\mathbf{-\\frac{3}{\\sqrt{2}} - i\\frac{3}{\\sqrt{2}}} \\)<\/li>\r\n                    <li>\\( k=3 \\): \\( \\lambda_5 = 3(\\cos\\frac{7\\pi}{4} + i\\sin\\frac{7\\pi}{4}) = 3(\\frac{\\sqrt{2}}{2} - i\\frac{\\sqrt{2}}{2}) = \\mathbf{\\frac{3}{\\sqrt{2}} - i\\frac{3}{\\sqrt{2}}} \\)<\/li>\r\n                <\/ul>","<b>6. L\u00e9p\u00e9s: A komplex gy\u00f6kp\u00e1rok azonos\u00edt\u00e1sa.<\/b><br>\r\n                Vegy\u00fck \u00e9szre, hogy k\u00e9t konjug\u00e1lt komplex gy\u00f6kp\u00e1rt kaptunk:\r\n                <ul>\r\n                    <li><b>Els\u0151 p\u00e1r (\\( \\lambda_{2,5} \\)):<\/b> \\( \\frac{3}{\\sqrt{2}} \\pm i\\frac{3}{\\sqrt{2}} \\), ahol \\( \\alpha = \\frac{3}{\\sqrt{2}} \\) \u00e9s \\( \\beta = \\frac{3}{\\sqrt{2}} \\).<\/li>\r\n                    <li><b>M\u00e1sodik p\u00e1r (\\( \\lambda_{3,4} \\)):<\/b> \\( -\\frac{3}{\\sqrt{2}} \\pm i\\frac{3}{\\sqrt{2}} \\), ahol \\( \\alpha = -\\frac{3}{\\sqrt{2}} \\) \u00e9s \\( \\beta = \\frac{3}{\\sqrt{2}} \\).<\/li>\r\n                <\/ul>","<b>7. L\u00e9p\u00e9s: A b\u00e1zisf\u00fcggv\u00e9nyek fel\u00edr\u00e1sa.<\/b><br>\r\n                Az elm\u00e9let alapj\u00e1n:\r\n                <ul>\r\n                    <li>A \\( \\lambda = 0 \\) gy\u00f6kh\u00f6z tartozik: \\( \\mathbf{1} \\).<\/li>\r\n                    <li>Az els\u0151 p\u00e1rhoz (\\( \\alpha = \\frac{3}{\\sqrt{2}} \\)): \\( \\mathbf{e^{\\frac{3}{\\sqrt{2}}x} \\cos(\\frac{3}{\\sqrt{2}}x)} \\) \u00e9s \\( \\mathbf{e^{\\frac{3}{\\sqrt{2}}x} \\sin(\\frac{3}{\\sqrt{2}}x)} \\).<\/li>\r\n                    <li>A m\u00e1sodik p\u00e1rhoz (\\( \\alpha = -\\frac{3}{\\sqrt{2}} \\)): \\( \\mathbf{e^{-\\frac{3}{\\sqrt{2}}x} \\cos(\\frac{3}{\\sqrt{2}}x)} \\) \u00e9s \\( \\mathbf{e^{-\\frac{3}{\\sqrt{2}}x} \\sin(\\frac{3}{\\sqrt{2}}x)} \\).<\/li>\r\n                <\/ul>","<b>8. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos megold\u00e1s megad\u00e1sa.<\/b><br>\r\n                A fundament\u00e1lis rendszer elemeit line\u00e1risan kombin\u00e1ljuk az \u00f6t tetsz\u0151leges konstanssal (\\( C_1 \\dots C_5 \\)):\r\n                \\[ y_{h,\u00e1}(x) = C_1 + C_2 e^{\\frac{3}{\\sqrt{2}}x} \\cos\\left(\\frac{3}{\\sqrt{2}}x\\right) + C_3 e^{\\frac{3}{\\sqrt{2}}x} \\sin\\left(\\frac{3}{\\sqrt{2}}x\\right) \\]\r\n                \\[ + C_4 e^{-\\frac{3}{\\sqrt{2}}x} \\cos\\left(\\frac{3}{\\sqrt{2}}x\\right) + C_5 e^{-\\frac{3}{\\sqrt{2}}x} \\sin\\left(\\frac{3}{\\sqrt{2}}x\\right) \\]\r\n                \\( (x \\in \\mathbb{R}, C_j \\in \\mathbb{R}, j=1 \\dots 5) \\)."]},{"title":"2. feladat (a): \u00cdrjuk fel a legalacsonyabb rend\u0171 differenci\u00e1legyenletet, melynek megold\u00e1sa az \\( x \\mapsto 3 + e^{4x} - e^{-6x} \\) f\u00fcggv\u00e9ny.","wolfram":"linear differential equation with solutions 1, exp(4x), exp(-6x)","steps":["<b>1. L\u00e9p\u00e9s: A b\u00e1zisf\u00fcggv\u00e9nyek sz\u00e9tbont\u00e1sa \u00e9s azonos\u00edt\u00e1sa.<\/b><br>\r\n                A megadott f\u00fcggv\u00e9ny: \\( y(x) = 3 \\cdot 1 + 1 \\cdot e^{4x} - 1 \\cdot e^{-6x} \\).\r\n                L\u00e1that\u00f3, hogy a megold\u00e1s h\u00e1rom alapvet\u0151 b\u00e1zisf\u00fcggv\u00e9ny line\u00e1ris kombin\u00e1ci\u00f3ja:\r\n                <ul>\r\n                    <li>\\( f_1(x) = 1 \\) (konstans tag)<\/li>\r\n                    <li>\\( f_2(x) = e^{4x} \\)<\/li>\r\n                    <li>\\( f_3(x) = e^{-6x} \\)<\/li>\r\n                <\/ul>","<b>2. L\u00e9p\u00e9s: A karakterisztikus gy\u00f6k\u00f6k meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                Rendelj\u00fck hozz\u00e1 az egyes b\u00e1zisf\u00fcggv\u00e9nyekhez a megfelel\u0151 \\( \\lambda \\) gy\u00f6k\u00f6ket az elm\u00e9let alapj\u00e1n:\r\n                <ul>\r\n                    <li>Az \\( 1 = e^{0x} \\) f\u00fcggv\u00e9nyhez a <b>\\(\\lambda_1 = 0\\)<\/b> gy\u00f6k tartozik.<\/li>\r\n                    <li>Az \\( e^{4x} \\) f\u00fcggv\u00e9nyhez a <b>\\(\\lambda_2 = 4\\)<\/b> gy\u00f6k tartozik.<\/li>\r\n                    <li>Az \\( e^{-6x} \\) f\u00fcggv\u00e9nyhez a <b>\\(\\lambda_3 = -6\\)<\/b> gy\u00f6k tartozik.<\/li>\r\n                <\/ul>\r\n                Mivel minden f\u00fcggv\u00e9ny csak egyszer szerepel (nincs \\( x \\)-szel val\u00f3 szorz\u00e1s), minden gy\u00f6k egyszeres (\\( m_\\lambda = 1 \\)).","<b>3. L\u00e9p\u00e9s: A karakterisztikus egyenlet fel\u00edr\u00e1sa.<\/b><br>\r\n                A legalacsonyabb rend\u0171 egyenletet \u00fagy kapjuk, ha a gy\u00f6kt\u00e9nyez\u0151s alakot fel\u00edrjuk:\r\n                \\[ (\\lambda - \\lambda_1)(\\lambda - \\lambda_2)(\\lambda - \\lambda_3) = 0 \\]\r\n                Behelyettes\u00edtve a gy\u00f6k\u00f6ket:\r\n                \\[ (\\lambda - 0)(\\lambda - 4)(\\lambda - (-6)) = 0 \\]\r\n                \\[ \\lambda(\\lambda - 4)(\\lambda + 6) = 0 \\]","<b>4. L\u00e9p\u00e9s: A karakterisztikus egyenlet kifejt\u00e9se (polinom alak).<\/b><br>\r\n                V\u00e9gezz\u00fck el a beszorz\u00e1sokat l\u00e9p\u00e9sr\u0151l l\u00e9p\u00e9sre:\r\n                \\[ \\lambda(\\lambda^2 + 6\\lambda - 4\\lambda - 24) = 0 \\]\r\n                \\[ \\lambda(\\lambda^2 + 2\\lambda - 24) = 0 \\]\r\n                A v\u00e9gleges polinom alak:\r\n                \\[ \\lambda^3 + 2\\lambda^2 - 24\\lambda = 0 \\]","<b>5. L\u00e9p\u00e9s: A differenci\u00e1legyenlet fel\u00edr\u00e1sa.<\/b><br>\r\n                Rendelj\u00fck vissza a \\( \\lambda \\) hatv\u00e1nyaihoz a megfelel\u0151 rend\u0171 deriv\u00e1ltakat:\r\n                - \\( \\lambda^3 \\rightarrow y''' \\)\r\n                - \\( \\lambda^2 \\rightarrow y'' \\)\r\n                - \\( \\lambda^1 \\rightarrow y' \\)\r\n                A keresett differenci\u00e1legyenlet:\r\n                \\[ \\mathbf{y''' + 2y'' - 24y' = 0} \\]","<b>6. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos megold\u00e1s megad\u00e1sa.<\/b><br>\r\n                Mivel m\u00e1r ismerj\u00fck a b\u00e1zisf\u00fcggv\u00e9nyeket, az \u00e1ltal\u00e1nos megold\u00e1s ezek line\u00e1ris kombin\u00e1ci\u00f3ja:\r\n                \\[ \\mathbf{y_{h,\u00e1}(x) = C_1 + C_2 e^{4x} + C_3 e^{-6x}} \\quad (x \\in \\mathbb{R}, C_1, C_2, C_3 \\in \\mathbb{R}) \\]"]},{"title":"2. feladat (b): \u00cdrjuk fel a legalacsonyabb rend\u0171 differenci\u00e1legyenletet, melynek megold\u00e1sa az \\( x \\mapsto 3x^3 + 4e^{3x} \\) f\u00fcggv\u00e9ny.","wolfram":"linear differential equation with solutions x^3, exp(3x)","steps":["<b>1. L\u00e9p\u00e9s: A b\u00e1zisf\u00fcggv\u00e9nyek felismer\u00e9se \u00e9s kieg\u00e9sz\u00edt\u00e9se.<\/b><br>\r\n                A megadott f\u00fcggv\u00e9ny: \\( y(x) = 3x^3 + 4e^{3x} \\). \r\n                Az elm\u00e9let szerint ha a megold\u00e1sban szerepel az \\( x^3 \\), akkor a line\u00e1ris f\u00fcggetlens\u00e9g miatt az alacsonyabb rend\u0171 tagoknak (\\( x^2, x, 1 \\)) is a b\u00e1zis r\u00e9sz\u00e9nek kell lenni\u00fck. \r\n                A teljes b\u00e1zis (fundament\u00e1lis rendszer) teh\u00e1t:\r\n                <ul>\r\n                    <li>\\( f_1(x) = 1, f_2(x) = x, f_3(x) = x^2, f_4(x) = x^3 \\)<\/li>\r\n                    <li>\\( f_5(x) = e^{3x} \\)<\/li>\r\n                <\/ul>","<b>2. L\u00e9p\u00e9s: A karakterisztikus gy\u00f6k\u00f6k \u00e9s multiplicit\u00e1sok azonos\u00edt\u00e1sa.<\/b><br>\r\n                Rendelj\u00fck hozz\u00e1 a b\u00e1ziselemekhez a \\( \\lambda \\) \u00e9rt\u00e9keket:\r\n                <ul>\r\n                    <li>Az \\( 1, x, x^2, x^3 \\) csoport az \\( e^{0x} \\) tagb\u00f3l sz\u00e1rmazik, teh\u00e1t a <b>\\(\\lambda_1 = 0\\)<\/b> gy\u00f6kh\u00f6z tartozik. Mivel 4 darab ilyen f\u00fcggv\u00e9ny\u00fcnk van, a gy\u00f6k multiplicit\u00e1sa: <b>\\( m = 4 \\)<\/b>.<\/li>\r\n                    <li>Az \\( e^{3x} \\) tag a <b>\\(\\lambda_2 = 3\\)<\/b> gy\u00f6kh\u00f6z tartozik. Mivel nem szorz\u00f3dik \\( x \\)-szel, a multiplicit\u00e1sa: <b>\\( m = 1 \\)<\/b>.<\/li>\r\n                <\/ul>","<b>3. L\u00e9p\u00e9s: A karakterisztikus egyenlet fel\u00edr\u00e1sa.<\/b><br>\r\n                A gy\u00f6k\u00f6k \u00e9s multiplicit\u00e1suk alapj\u00e1n a karakterisztikus egyenlet t\u00e9nyez\u0151s alakja:\r\n                \\[ (\\lambda - \\lambda_1)^m \\cdot (\\lambda - \\lambda_2)^1 = 0 \\]\r\n                Behelyettes\u00edtve az \u00e9rt\u00e9keket:\r\n                \\[ (\\lambda - 0)^4 \\cdot (\\lambda - 3) = 0 \\]\r\n                \\[ \\lambda^4 \\cdot (\\lambda - 3) = 0 \\]","<b>4. L\u00e9p\u00e9s: A polinom alak kifejt\u00e9se.<\/b><br>\r\n                V\u00e9gezz\u00fck el a beszorz\u00e1st:\r\n                \\[ \\lambda^5 - 3\\lambda^4 = 0 \\]","<b>5. L\u00e9p\u00e9s: A differenci\u00e1legyenlet meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                A \\( \\lambda \\) hatv\u00e1nyait feleltess\u00fck meg a deriv\u00e1ltak rendj\u00e9nek:\r\n                - \\( \\lambda^5 \\rightarrow y^{(5)} \\)\r\n                - \\( \\lambda^4 \\rightarrow y^{(4)} \\)\r\n                A keresett legalacsonyabb rend\u0171 (\u00f6t\u00f6drend\u0171) differenci\u00e1legyenlet:\r\n                \\[ \\mathbf{y^{(5)} - 3y^{(4)} = 0} \\]","<b>6. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                Az \u00e1ltal\u00e1nos megold\u00e1s a b\u00e1zisf\u00fcggv\u00e9nyek tetsz\u0151leges konstansokkal vett line\u00e1ris kombin\u00e1ci\u00f3ja:\r\n                \\[ \\mathbf{y_{h,\u00e1}(x) = C_1 + C_2x + C_3x^2 + C_4x^3 + C_5e^{3x}} \\]\r\n                \\( (x \\in \\mathbb{R}, C_1, C_2, C_3, C_4, C_5 \\in \\mathbb{R}) \\)."]},{"title":"2. feladat (c): \u00cdrjuk fel a legalacsonyabb rend\u0171 differenci\u00e1legyenletet, melynek megold\u00e1sai az \\( x \\mapsto 8x^2 \\) \u00e9s az \\( x \\mapsto \\cos(4x) \\) f\u00fcggv\u00e9nyek.","wolfram":"linear differential equation with solutions x^2, cos(4x)","steps":["<b>1. L\u00e9p\u00e9s: A b\u00e1zisf\u00fcggv\u00e9nyek halmaz\u00e1nak \u00f6ssze\u00e1ll\u00edt\u00e1sa.<\/b><br>\r\n                A megadott megold\u00e1sok alapj\u00e1n meg kell hat\u00e1roznunk a teljes fundament\u00e1lis rendszert:\r\n                <ul>\r\n                    <li>Az \\( 8x^2 \\) tag jelenl\u00e9te miatt a line\u00e1ris f\u00fcggetlens\u00e9ghez az alacsonyabb foksz\u00e1m\u00fa tagok is kellenek: \\( 1, x, x^2 \\).<\/li>\r\n                    <li>A \\( \\cos(4x) \\) tag mell\u00e9 az elm\u00e9let szerint k\u00f6telez\u0151en t\u00e1rsul a \\( \\sin(4x) \\) tag is.<\/li>\r\n                <\/ul>\r\n                A teljes b\u00e1zis teh\u00e1t: \\( \\{1, x, x^2, \\cos(4x), \\sin(4x)\\} \\).","<b>2. L\u00e9p\u00e9s: A karakterisztikus gy\u00f6k\u00f6k \u00e9s multiplicit\u00e1sok azonos\u00edt\u00e1sa.<\/b><br>\r\n                Rendelj\u00fck hozz\u00e1 a b\u00e1ziselemekhez a \\( \\lambda \\) \u00e9rt\u00e9keket:\r\n                <ul>\r\n                    <li>Az \\( \\{1, x, x^2\\} \\) halmaz a <b>\\(\\lambda_1 = 0\\)<\/b> bels\u0151 gy\u00f6kb\u0151l sz\u00e1rmazik, multiplicit\u00e1sa <b>\\( m = 3 \\)<\/b>.<\/li>\r\n                    <li>A \\( \\{\\cos(4x), \\sin(4x)\\} \\) p\u00e1r a tiszta k\u00e9pzetes <b>\\(\\lambda_{2,3} = \\pm 4i\\)<\/b> gy\u00f6kp\u00e1rb\u00f3l sz\u00e1rmazik (itt \\( \\alpha = 0 \\) \u00e9s \\( \\beta = 4 \\)), multiplicit\u00e1sa <b>\\( m = 1 \\)<\/b>.<\/li>\r\n                <\/ul>","<b>3. L\u00e9p\u00e9s: A karakterisztikus egyenlet fel\u00edr\u00e1sa.<\/b><br>\r\n                A gy\u00f6k\u00f6k alapj\u00e1n a karakterisztikus egyenlet szorzat alakja:\r\n                \\[ \\lambda^m \\cdot (\\lambda - (0 + 4i))(\\lambda - (0 - 4i)) = 0 \\]\r\n                \\[ \\lambda^3 \\cdot (\\lambda - 4i)(\\lambda + 4i) = 0 \\]\r\n                Haszn\u00e1ljuk a n\u00e9gyzetek k\u00fcl\u00f6nbs\u00e9g\u00e9nek azonoss\u00e1g\u00e1t a komplex tagokra:\r\n                \\[ \\lambda^3 \\cdot (\\lambda^2 - (4i)^2) = 0 \\implies \\lambda^3 \\cdot (\\lambda^2 + 16) = 0 \\]","<b>4. L\u00e9p\u00e9s: A polinom alak kifejt\u00e9se.<\/b><br>\r\n                V\u00e9gezz\u00fck el a beszorz\u00e1st a v\u00e9gs\u0151 algebrai alakhoz:\r\n                \\[ \\lambda^5 + 16\\lambda^3 = 0 \\]","<b>5. L\u00e9p\u00e9s: A differenci\u00e1legyenlet meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                A \\( \\lambda \\) hatv\u00e1nyait feleltess\u00fck meg a deriv\u00e1ltak rendj\u00e9nek:\r\n                - \\( \\lambda^5 \\rightarrow y^{(5)} \\)\r\n                - \\( \\lambda^3 \\rightarrow y^{(3)} \\) vagy \\( y''' \\)\r\n                A keresett legalacsonyabb rend\u0171 (\u00f6t\u00f6drend\u0171) differenci\u00e1legyenlet:\r\n                \\[ \\mathbf{y^{(5)} + 16y''' = 0} \\]","<b>6. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                Az \u00e1ltal\u00e1nos megold\u00e1s a m\u00e1r azonos\u00edtott b\u00e1zisf\u00fcggv\u00e9nyek line\u00e1ris kombin\u00e1ci\u00f3ja:\r\n                \\[ \\mathbf{y_{h,\u00e1}(x) = C_1 + C_2x + C_3x^2 + C_4 \\cos(4x) + C_5 \\sin(4x)} \\]\r\n                \\( (x \\in \\mathbb{R}, C_1 \\dots C_5 \\in \\mathbb{R}) \\)."]},{"title":"2. feladat (d): \u00cdrjuk fel a legalacsonyabb rend\u0171 differenci\u00e1legyenletet, melynek megold\u00e1sai az \\( x \\mapsto 3xe^{-2x} \\) \u00e9s az \\( x \\mapsto e^{5x} \\) f\u00fcggv\u00e9nyek.","wolfram":"linear differential equation with solutions x*exp(-2x), exp(5x)","steps":["<b>1. L\u00e9p\u00e9s: A b\u00e1zisf\u00fcggv\u00e9nyek fundament\u00e1lis rendszer\u00e9nek meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                A megadott megold\u00e1sok alapj\u00e1n \u00f6ssze\u00e1ll\u00edtjuk a line\u00e1risan f\u00fcggetlen b\u00e1zisf\u00fcggv\u00e9nyek halmaz\u00e1t:\r\n                <ul>\r\n                    <li>Az \\( xe^{-2x} \\) tag jelenl\u00e9te miatt az elm\u00e9let szerint az alacsonyabb foksz\u00e1m\u00fa \\( e^{-2x} \\) tagnak is a b\u00e1zis r\u00e9sz\u00e9nek kell lennie.<\/li>\r\n                    <li>Az \\( e^{5x} \\) tag egy \u00f6n\u00e1ll\u00f3 b\u00e1zis elem.<\/li>\r\n                <\/ul>\r\n                A teljes b\u00e1zis teh\u00e1t: \\( \\{e^{-2x}, xe^{-2x}, e^{5x}\\} \\).","<b>2. L\u00e9p\u00e9s: A karakterisztikus gy\u00f6k\u00f6k \u00e9s multiplicit\u00e1sok azonos\u00edt\u00e1sa.<\/b><br>\r\n                Rendelj\u00fck hozz\u00e1 a b\u00e1zisf\u00fcggv\u00e9nyekhez a megfelel\u0151 karakterisztikus gy\u00f6k\u00f6ket (\\(\\lambda\\)):\r\n                <ul>\r\n                    <li>Az \\( \\{e^{-2x}, xe^{-2x}\\} \\) p\u00e1ros a <b>\\(\\lambda_1 = -2\\)<\/b> gy\u00f6kb\u0151l sz\u00e1rmazik. Mivel k\u00e9t f\u00fcggv\u00e9ny tartozik hozz\u00e1, a gy\u00f6k multiplicit\u00e1sa <b>\\( m = 2 \\)<\/b>.<\/li>\r\n                    <li>Az \\( e^{5x} \\) tag a <b>\\(\\lambda_2 = 5\\)<\/b> gy\u00f6kb\u0151l sz\u00e1rmazik. Mivel nem szorz\u00f3dik \\( x \\)-szel, ez egy egyszeres gy\u00f6k (<b>\\( m = 1 \\)<\/b>).<\/li>\r\n                <\/ul>","<b>3. L\u00e9p\u00e9s: A karakterisztikus egyenlet fel\u00edr\u00e1sa szorzat alakban.<\/b><br>\r\n                A gy\u00f6k\u00f6k \u00e9s multiplicit\u00e1saik alapj\u00e1n fel\u00edrjuk a karakterisztikus polinom gy\u00f6kt\u00e9nyez\u0151s alakj\u00e1t:\r\n                \\[ (\\lambda - \\lambda_1)^2 \\cdot (\\lambda - \\lambda_2) = 0 \\]\r\n                Behelyettes\u00edtve az \u00e9rt\u00e9keket:\r\n                \\[ (\\lambda - (-2))^2 \\cdot (\\lambda - 5) = 0 \\]\r\n                \\[ (\\lambda + 2)^2 \\cdot (\\lambda - 5) = 0 \\]","<b>4. L\u00e9p\u00e9s: A polinom kifejt\u00e9se.<\/b><br>\r\n                V\u00e9gezz\u00fck el a n\u00e9gyzetre emel\u00e9st, majd a beszorz\u00e1st:\r\n                \\[ (\\lambda^2 + 4\\lambda + 4)(\\lambda - 5) = 0 \\]\r\n                \\[ \\lambda^3 - 5\\lambda^2 + 4\\lambda^2 - 20\\lambda + 4\\lambda - 20 = 0 \\]\r\n                \u00d6sszevon\u00e1s ut\u00e1n a karakterisztikus egyenlet:\r\n                \\[ \\lambda^3 - \\lambda^2 - 16\\lambda - 20 = 0 \\]","<b>5. L\u00e9p\u00e9s: A differenci\u00e1legyenlet meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                A \\(\\lambda\\) hatv\u00e1nyait feleltess\u00fck meg a deriv\u00e1ltak rendj\u00e9nek:\r\n                - \\( \\lambda^3 \\rightarrow y''' \\)\r\n                - \\( \\lambda^2 \\rightarrow y'' \\)\r\n                - \\( \\lambda^1 \\rightarrow y' \\)\r\n                - \\( \\lambda^0 \\rightarrow y \\)\r\n                A keresett harmadrend\u0171 differenci\u00e1legyenlet:\r\n                \\[ \\mathbf{y''' - y'' - 16y' - 20y = 0} \\]","<b>6. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                Az \u00e1ltal\u00e1nos megold\u00e1s a b\u00e1zisf\u00fcggv\u00e9nyek line\u00e1ris kombin\u00e1ci\u00f3ja tetsz\u0151leges konstansokkal:\r\n                \\[ \\mathbf{y_{h,\u00e1}(x) = C_1 e^{-2x} + C_2 x e^{-2x} + C_3 e^{5x}} \\]\r\n                \\( (x \\in \\mathbb{R}, C_1, C_2, C_3 \\in \\mathbb{R}) \\)."]},{"title":"2. feladat (e): \u00cdrjuk fel a legalacsonyabb rend\u0171 differenci\u00e1legyenletet, melynek megold\u00e1sa az \\( x \\mapsto 2x + e^{-3x} \\cos(2x) \\) f\u00fcggv\u00e9ny.","wolfram":"linear differential equation with solutions x, exp(-3x)*cos(2x)","steps":["<b>1. L\u00e9p\u00e9s: A b\u00e1zisf\u00fcggv\u00e9nyek fundament\u00e1lis rendszer\u00e9nek azonos\u00edt\u00e1sa.<\/b><br>\r\n                A megadott f\u00fcggv\u00e9ny k\u00e9t k\u00fcl\u00f6nb\u00f6z\u0151 t\u00edpus\u00fa tagb\u00f3l \u00e1ll:\r\n                <ul>\r\n                    <li>A \\( 2x \\) tag egy els\u0151fok\u00fa polinom. Az elm\u00e9let szerint ha az \\( x \\) megold\u00e1s, akkor az alacsonyabb rend\u0171 tag, az \\( 1 \\) is r\u00e9sze a b\u00e1zisnak: \\( \\{1, x\\} \\).<\/li>\r\n                    <li>Az \\( e^{-3x} \\cos(2x) \\) tag egy komplex-exponenci\u00e1lis forma. Ehhez k\u00f6telez\u0151en hozz\u00e1 kell venn\u00fcnk a szinuszos p\u00e1rj\u00e1t is: \\( \\{e^{-3x} \\cos(2x), e^{-3x} \\sin(2x)\\} \\).<\/li>\r\n                <\/ul>\r\n                A teljes b\u00e1zis teh\u00e1t 4 elem\u0171: \\( \\{1, x, e^{-3x} \\cos(2x), e^{-3x} \\sin(2x)\\} \\).","<b>2. L\u00e9p\u00e9s: A karakterisztikus gy\u00f6k\u00f6k \u00e9s multiplicit\u00e1sok meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                Rendelj\u00fck hozz\u00e1 a b\u00e1ziselemekhez a \\( \\lambda \\) \u00e9rt\u00e9keket:\r\n                <ul>\r\n                    <li>Az \\( \\{1, x\\} \\) csoporthoz a <b>\\(\\lambda_1 = 0\\)<\/b> bels\u0151 gy\u00f6k tartozik. Mivel k\u00e9t elem van, a multiplicit\u00e1s <b>\\( m = 2 \\)<\/b>.<\/li>\r\n                    <li>Az \\( \\{e^{-3x} \\cos(2x), e^{-3x} \\sin(2x)\\} \\) p\u00e1rhoz a <b>\\(\\lambda_{2,3} = -3 \\pm 2i\\)<\/b> komplex gy\u00f6kp\u00e1r tartozik (ahol \\( \\alpha = -3 \\) \u00e9s \\( \\beta = 2 \\)). Multiplicit\u00e1sa <b>\\( m = 1 \\)<\/b>.<\/li>\r\n                <\/ul>","<b>3. L\u00e9p\u00e9s: A karakterisztikus egyenlet fel\u00e1ll\u00edt\u00e1sa.<\/b><br>\r\n                A gy\u00f6k\u00f6k alapj\u00e1n fel\u00edrjuk a karakterisztikus polinom gy\u00f6kt\u00e9nyez\u0151s alakj\u00e1t:\r\n                \\[ \\lambda^2 \\cdot (\\lambda - (-3 + 2i)) \\cdot (\\lambda - (-3 - 2i)) = 0 \\]\r\n                V\u00e9gezz\u00fck el a komplex tagok beszorz\u00e1s\u00e1t:\r\n                \\[ \\lambda^2 \\cdot ((\\lambda + 3) - 2i) \\cdot ((\\lambda + 3) + 2i) = 0 \\]\r\n                \\[ \\lambda^2 \\cdot ((\\lambda + 3)^2 - (2i)^2) = 0 \\implies \\lambda^2 \\cdot (\\lambda^2 + 6\\lambda + 9 + 4) = 0 \\]\r\n                \\[ \\lambda^2 \\cdot (\\lambda^2 + 6\\lambda + 13) = 0 \\]","<b>4. L\u00e9p\u00e9s: A polinom alak kifejt\u00e9se.<\/b><br>\r\n                Szorozzuk be a \\( \\lambda^2 \\)-tel a z\u00e1r\u00f3jelet a v\u00e9gs\u0151 algebrai form\u00e1hoz:\r\n                \\[ \\lambda^4 + 6\\lambda^3 + 13\\lambda^2 = 0 \\]","<b>5. L\u00e9p\u00e9s: A differenci\u00e1legyenlet meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                A \\( \\lambda \\) hatv\u00e1nyait feleltess\u00fck meg a deriv\u00e1ltak rendj\u00e9nek:\r\n                - \\( \\lambda^4 \\rightarrow y^{(4)} \\)\r\n                - \\( \\lambda^3 \\rightarrow y''' \\)\r\n                - \\( \\lambda^2 \\rightarrow y'' \\)\r\n                A keresett negyedrend\u0171 differenci\u00e1legyenlet:\r\n                \\[ \\mathbf{y^{(4)} + 6y''' + 13y'' = 0} \\]","<b>6. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                Az \u00e1ltal\u00e1nos megold\u00e1s a m\u00e1r azonos\u00edtott 4 b\u00e1zisf\u00fcggv\u00e9ny line\u00e1ris kombin\u00e1ci\u00f3ja:\r\n                \\[ \\mathbf{y_{h,\u00e1}(x) = C_1 + C_2x + C_3 e^{-3x} \\cos(2x) + C_4 e^{-3x} \\sin(2x)} \\]\r\n                \\( (x \\in \\mathbb{R}, C_1, C_2, C_3, C_4 \\in \\mathbb{R}) \\)."]},{"title":"3. feladat (a): Oldjuk meg az \\( y'' - 6y' + 8y = 2 \\cos(4x) \\) inhomog\u00e9n differenci\u00e1legyenletet.","wolfram":"solve y'' - 6*y' + 8*y = 2*cos(4x)","steps":["<b>1. L\u00e9p\u00e9s: A homog\u00e9n r\u00e9sz megold\u00e1sa.<\/b><br>\r\n                El\u0151sz\u00f6r tekints\u00fck az \\( y'' - 6y' + 8y = 0 \\) homog\u00e9n egyenletet. \u00cdrjuk fel a karakterisztikus egyenlet\u00e9t:\r\n                \\[ \\lambda^2 - 6\\lambda + 8 = 0 \\]\r\n                Bontsuk t\u00e9nyez\u0151kre (vagy haszn\u00e1ljuk a megold\u00f3k\u00e9pletet):\r\n                \\[ (\\lambda - 2)(\\lambda - 4) = 0 \\]\r\n                A gy\u00f6k\u00f6k: <b>\\( \\lambda_1 = 2 \\)<\/b> \u00e9s <b>\\( \\lambda_2 = 4 \\)<\/b>.\r\n                A homog\u00e9n \u00e1ltal\u00e1nos megold\u00e1s:\r\n                \\[ y_{h,\u00e1}(x) = C_1 e^{2x} + C_2 e^{4x} \\]","<b>2. L\u00e9p\u00e9s: A pr\u00f3baf\u00fcggv\u00e9ny (partikul\u00e1ris megold\u00e1s) megv\u00e1laszt\u00e1sa.<\/b><br>\r\n                A zavar\u00f3f\u00fcggv\u00e9ny \\( f(x) = 2 \\cos(4x) \\). A t\u00e1bl\u00e1zat alapj\u00e1n a pr\u00f3baf\u00fcggv\u00e9ny alakja:\r\n                \\[ y_{i,p}(x) = A \\cos(4x) + B \\sin(4x) \\]\r\n                <b>Rezonanciavizsg\u00e1lat:<\/b> A trigonometrikus tag bels\u0151 frekvenci\u00e1j\u00e1b\u00f3l ad\u00f3d\u00f3 komplex \u00e9rt\u00e9k \\( \\pm 4i \\). Mivel ez nem gy\u00f6ke a karakterisztikus egyenletnek (ami \\( 2 \\) \u00e9s \\( 4 \\)), nincs k\u00fcls\u0151 rezonancia, \u00edgy a pr\u00f3baf\u00fcggv\u00e9nyt nem kell \\( x \\)-szel szorozni.","<b>3. L\u00e9p\u00e9s: A pr\u00f3baf\u00fcggv\u00e9ny deriv\u00e1l\u00e1sa.<\/b><br>\r\n                Sz\u00e1m\u00edtsuk ki a felt\u00e9telezett megold\u00e1s els\u0151 \u00e9s m\u00e1sodik deriv\u00e1ltj\u00e1t a behelyettes\u00edt\u00e9shez:\r\n                \\[ y_{i,p}' = -4A \\sin(4x) + 4B \\cos(4x) \\]\r\n                \\[ y_{i,p}'' = -16A \\cos(4x) - 16B \\sin(4x) \\]","<b>4. L\u00e9p\u00e9s: Behelyettes\u00edt\u00e9s az inhomog\u00e9n egyenletbe.<\/b><br>\r\n                \u00cdrjuk be a deriv\u00e1ltakat az eredeti \\( y'' - 6y' + 8y = 2 \\cos(4x) \\) egyenletbe:\r\n                \\[ (-16A \\cos(4x) - 16B \\sin(4x)) - 6(-4A \\sin(4x) + 4B \\cos(4x)) + 8(A \\cos(4x) + B \\sin(4x)) = 2 \\cos(4x) \\]","<b>5. L\u00e9p\u00e9s: Az egy\u00fctthat\u00f3k meghat\u00e1roz\u00e1sa (\u00d6sszehasonl\u00edt\u00e1s).<\/b><br>\r\n                Csoportos\u00edtsuk a tagokat \\(\\cos(4x)\\) \u00e9s \\(\\sin(4x)\\) szerint:\r\n                <ul>\r\n                    <li><b>\\(\\cos(4x)\\) tagok:<\/b> \\( -16A - 24B + 8A = 2 \\implies -8A - 24B = 2 \\implies -4A - 12B = 1 \\)<\/li>\r\n                    <li><b>\\(\\sin(4x)\\) tagok:<\/b> \\( -16B + 24A + 8B = 0 \\implies 24A - 8B = 0 \\implies B = 3A \\)<\/li>\r\n                <\/ul>\r\n                Helyettes\u00edts\u00fck be \\( B = 3A \\)-t az els\u0151 egyenletbe:\r\n                \\[ -4A - 12(3A) = 1 \\implies -40A = 1 \\implies \\mathbf{A = -1\/40} \\]\r\n                \\[ \\mathbf{B = 3 \\cdot (-1\/40) = -3\/40} \\]","<b>6. L\u00e9p\u00e9s: A teljes \u00e1ltal\u00e1nos megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                Az \u00e1ltal\u00e1nos megold\u00e1s a homog\u00e9n \u00e9s az inhomog\u00e9n partikul\u00e1ris megold\u00e1s \u00f6sszege (\\( y_{i,\u00e1} = y_{h,\u00e1} + y_{i,p} \\)):\r\n                \\[ y_{i,\u00e1}(x) = C_1 e^{2x} + C_2 e^{4x} - \\frac{1}{40} \\cos(4x) - \\frac{3}{40} \\sin(4x) \\]\r\n                \\( (x \\in \\mathbb{R}, C_1, C_2 \\in \\mathbb{R}) \\)."]},{"title":"3. feladat (b): Oldjuk meg az \\( y'' - 6y' + 8y = 3xe^{-x} \\) inhomog\u00e9n differenci\u00e1legyenletet.","wolfram":"solve y'' - 6*y' + 8*y = 3*x*exp(-x)","steps":["<b>1. L\u00e9p\u00e9s: A homog\u00e9n r\u00e9sz megold\u00e1sa.<\/b><br>\r\n                El\u0151sz\u00f6r oldjuk meg az \\( y'' - 6y' + 8y = 0 \\) homog\u00e9n egyenletet. A karakterisztikus egyenlet:\r\n                \\[ \\lambda^2 - 6\\lambda + 8 = 0 \\]\r\n                A gy\u00f6k\u00f6k meghat\u00e1roz\u00e1sa (szorzatt\u00e1 alak\u00edt\u00e1ssal vagy megold\u00f3k\u00e9plettel):\r\n                \\[ (\\lambda - 2)(\\lambda - 4) = 0 \\implies \\lambda_1 = 2, \\quad \\lambda_2 = 4 \\]\r\n                A homog\u00e9n \u00e1ltal\u00e1nos megold\u00e1s:\r\n                \\[ y_{h,\u00e1}(x) = C_1 e^{2x} + C_2 e^{4x} \\]","<b>2. L\u00e9p\u00e9s: A pr\u00f3baf\u00fcggv\u00e9ny megv\u00e1laszt\u00e1sa \u00e9s rezonanciavizsg\u00e1lat.<\/b><br>\r\n                A zavar\u00f3f\u00fcggv\u00e9ny \\( f(x) = 3xe^{-x} \\), ami egy els\u0151fok\u00fa polinom (\\( 3x \\)) \u00e9s egy exponenci\u00e1lis tag (\\( e^{-x} \\)) szorzata. \r\n                A t\u00e1bl\u00e1zat alapj\u00e1n a pr\u00f3baf\u00fcggv\u00e9ny alakja:\r\n                \\[ y_{i,p}(x) = (Ax + B)e^{-x} \\]\r\n                <b>Rezonanciavizsg\u00e1lat:<\/b> Az exponenci\u00e1lis kitev\u0151ben szerepl\u0151 \u00e9rt\u00e9k \\( \\alpha = -1 \\). Mivel ez nem egyezik meg egyik karakterisztikus gy\u00f6kkel sem (\\( -1 \\neq 2 \\) \u00e9s \\( -1 \\neq 4 \\)), nincs k\u00fcls\u0151 rezonancia, teh\u00e1t nem kell \\( x \\)-szel szorozni.","<b>3. L\u00e9p\u00e9s: A pr\u00f3baf\u00fcggv\u00e9ny deriv\u00e1l\u00e1sa.<\/b><br>\r\n                Alkalmazzuk a szorzat-szab\u00e1lyt (\\( (uv)' = u'v + uv' \\)) a deriv\u00e1ltak kisz\u00e1m\u00edt\u00e1s\u00e1hoz:\r\n                \\[ y_{i,p}'(x) = A \\cdot e^{-x} + (Ax + B)(-e^{-x}) = (-Ax + A - B)e^{-x} \\]\r\n                \\[ y_{i,p}''(x) = -A \\cdot e^{-x} + (-Ax + A - B)(-e^{-x}) = (Ax - 2A + B)e^{-x} \\]","<b>4. L\u00e9p\u00e9s: Behelyettes\u00edt\u00e9s az eredeti inhomog\u00e9n egyenletbe.<\/b><br>\r\n                \u00cdrjuk be a deriv\u00e1ltakat az \\( y'' - 6y' + 8y = 3xe^{-x} \\) egyenletbe:\r\n                \\[ (Ax - 2A + B)e^{-x} - 6(-Ax + A - B)e^{-x} + 8(Ax + B)e^{-x} = 3xe^{-x} \\]\r\n                Osszuk le mindk\u00e9t oldalt \\( e^{-x} \\)-szel (\\( e^{-x} \\neq 0 \\)), majd vonjuk \u00f6ssze az egynem\u0171 tagokat:\r\n                \\[ (Ax + 6Ax + 8Ax) + (-2A + B - 6A + 6B + 8B) = 3x \\]\r\n                \\[ 15Ax + (-8A + 15B) = 3x \\]","<b>5. L\u00e9p\u00e9s: Az egy\u00fctthat\u00f3k meghat\u00e1roz\u00e1sa \u00f6sszehasonl\u00edt\u00e1ssal.<\/b><br>\r\n                Az \\( x \\)-es \u00e9s a konstans tagok egy\u00fctthat\u00f3inak meg kell egyezni\u00fck a k\u00e9t oldalon:\r\n                <ul>\r\n                    <li><b>\\( x^1 \\) tagok:<\/b> \\( 15A = 3 \\implies A = \\frac{3}{15} = \\mathbf{\\frac{1}{5}} \\)<\/li>\r\n                    <li><b>\\( x^0 \\) tagok:<\/b> \\( -8A + 15B = 0 \\implies 15B = 8A \\)<\/li>\r\n                <\/ul>\r\n                Helyettes\u00edts\u00fck be \\( A \\)-t:\r\n                \\[ 15B = 8 \\cdot \\frac{1}{5} = \\frac{8}{5} \\implies B = \\frac{8}{5 \\cdot 15} = \\mathbf{\\frac{8}{75}} \\]","<b>6. L\u00e9p\u00e9s: A teljes \u00e1ltal\u00e1nos megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                Az inhomog\u00e9n \u00e1ltal\u00e1nos megold\u00e1s a homog\u00e9n \u00e9s a partikul\u00e1ris megold\u00e1s \u00f6sszege:\r\n                \\[ y_{i,\u00e1}(x) = y_{h,\u00e1}(x) + y_{i,p}(x) \\]\r\n                Behelyettes\u00edtve a kapott \u00e9rt\u00e9keket:\r\n                \\[ y_{i,\u00e1}(x) = C_1 e^{2x} + C_2 e^{4x} + \\left( \\frac{1}{5}x + \\frac{8}{75} \\right)e^{-x} \\]\r\n                A feladatlap szerinti form\u00e1ban kiemelve a m\u00ednusz jelet:\r\n                \\[ y_{i,\u00e1}(x) = C_1 e^{2x} + C_2 e^{4x} - \\left( -\\frac{x}{5} - \\frac{8}{75} \\right)e^{-x} \\text{ (vagy egyszer\u0171en \u00f6sszeadva)} \\]\r\n                A v\u00e9geredm\u00e9ny:\r\n                \\[ y_{i,\u00e1}(x) = C_1 e^{2x} + C_2 e^{4x} - \\left( \\frac{x}{5} + \\frac{8}{75} \\right)e^{-x} \\quad (x \\in \\mathbb{R}, C_1, C_2 \\in \\mathbb{R}) \\]"]},{"title":"3. feladat (c): Oldjuk meg az \\( y''' + 2y'' + y' + 2y = \\text{sh}(2x) \\) inhomog\u00e9n differenci\u00e1legyenletet.","wolfram":"solve y''' + 2*y'' + y' + 2*y = sinh(2x)","steps":["<b>1. L\u00e9p\u00e9s: A homog\u00e9n r\u00e9sz megold\u00e1sa.<\/b><br>\r\n                Tekints\u00fck az \\( y''' + 2y'' + y' + 2y = 0 \\) homog\u00e9n egyenletet. \u00cdrjuk fel a karakterisztikus egyenletet:\r\n                \\[ \\lambda^3 + 2\\lambda^2 + \\lambda + 2 = 0 \\]\r\n                Alkalmazzunk csoportos\u00edt\u00e1st a gy\u00f6k\u00f6k keres\u00e9s\u00e9hez:\r\n                \\[ \\lambda^2(\\lambda + 2) + 1(\\lambda + 2) = 0 \\implies (\\lambda^2 + 1)(\\lambda + 2) = 0 \\]\r\n                A gy\u00f6k\u00f6k:\r\n                <ul>\r\n                    <li>\\( \\lambda_1 = -2 \\) (egyszeres val\u00f3s gy\u00f6k)<\/li>\r\n                    <li>\\( \\lambda_{2,3} = \\pm i \\) (komplex gy\u00f6kp\u00e1r, ahol \\( \\alpha=0, \\beta=1 \\))<\/li>\r\n                <\/ul>\r\n                A homog\u00e9n \u00e1ltal\u00e1nos megold\u00e1s:\r\n                \\[ y_{h,\u00e1}(x) = C_1 e^{-2x} + C_2 \\sin(x) + C_3 \\cos(x) \\]","<b>2. L\u00e9p\u00e9s: A zavar\u00f3f\u00fcggv\u00e9ny \u00e1talak\u00edt\u00e1sa.<\/b><br>\r\n                A pr\u00f3baf\u00fcggv\u00e9ny-m\u00f3dszer alkalmaz\u00e1s\u00e1hoz \u00edrjuk \u00e1t a \\( \\text{sh}(2x) \\) f\u00fcggv\u00e9nyt exponenci\u00e1lis alakba:\r\n                \\[ f(x) = \\text{sh}(2x) = \\frac{e^{2x} - e^{-2x}}{2} = \\frac{1}{2}e^{2x} - \\frac{1}{2}e^{-2x} \\]\r\n                Mivel a jobb oldal k\u00e9t tag \u00f6sszege, a partikul\u00e1ris megold\u00e1st is k\u00e9t r\u00e9szletben keress\u00fck: \\( y_{i,p} = y_{p1} + y_{p2} \\).","<b>3. L\u00e9p\u00e9s: A pr\u00f3baf\u00fcggv\u00e9nyek felv\u00e9tele \u00e9s rezonanciavizsg\u00e1lat.<\/b><br>\r\n                Vizsg\u00e1ljuk meg a tagokat a rezonancia szempontj\u00e1b\u00f3l:\r\n                <ul>\r\n                    <li><b>\\( f_1(x) = \\frac{1}{2}e^{2x} \\):<\/b> A kitev\u0151 \\( \\alpha=2 \\). Mivel \\( 2 \\) nem gy\u00f6ke a karakterisztikus egyenletnek, nincs rezonancia. Pr\u00f3baf\u00fcggv\u00e9ny: \\( y_{p1} = Ae^{2x} \\).<\/li>\r\n                    <li><b>\\( f_2(x) = -\\frac{1}{2}e^{-2x} \\):<\/b> A kitev\u0151 \\( \\alpha=-2 \\). Ez megegyezik a \\( \\lambda_1 = -2 \\) gy\u00f6kkel. <b>K\u00fcls\u0151 rezonancia<\/b> l\u00e9p fel, ez\u00e9rt \\( x \\)-szel szorozni kell. Pr\u00f3baf\u00fcggv\u00e9ny: \\( y_{p2} = Bxe^{-2x} \\).<\/li>\r\n                <\/ul>\r\n                A teljes pr\u00f3baf\u00fcggv\u00e9ny: \\( y_{i,p}(x) = Ae^{2x} + Bxe^{-2x} \\).","<b>4. L\u00e9p\u00e9s: A pr\u00f3baf\u00fcggv\u00e9ny deriv\u00e1l\u00e1sa.<\/b><br>\r\n                Sz\u00e1m\u00edtsuk ki a deriv\u00e1ltakat:\r\n                \\[ y_{p1}' = 2Ae^{2x}, \\quad y_{p1}'' = 4Ae^{2x}, \\quad y_{p1}''' = 8Ae^{2x} \\]\r\n                A rezonanci\u00e1s tag deriv\u00e1ltjai (szorzat-szab\u00e1ly):\r\n                \\[ y_{p2}' = B(1-2x)e^{-2x} \\]\r\n                \\[ y_{p2}'' = B(-2-2(1-2x))e^{-2x} = B(4x-4)e^{-2x} \\]\r\n                \\[ y_{p2}''' = B(4-2(4x-4))e^{-2x} = B(12-8x)e^{-2x} \\]","<b>5. L\u00e9p\u00e9s: Behelyettes\u00edt\u00e9s \u00e9s az egy\u00fctthat\u00f3k meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                Helyettes\u00edts\u00fck be a deriv\u00e1ltakat az eredeti egyenletbe.\r\n                Az \\( e^{2x} \\)-es tagokra:\r\n                \\[ 8A + 2(4A) + 2A + 2A = \\frac{1}{2} \\implies 20A = \\frac{1}{2} \\implies \\mathbf{A = \\frac{1}{40}} \\]\r\n                Az \\( e^{-2x} \\)-es tagokra (az \\( x \\)-et tartalmaz\u00f3 r\u00e9szek kiejtik egym\u00e1st):\r\n                \\[ B(12-8x) + 2B(4x-4) + B(1-2x) + 2Bx = -\\frac{1}{2} \\]\r\n                \\[ 12B - 8B + B = -\\frac{1}{2} \\implies 5B = -\\frac{1}{2} \\implies \\mathbf{B = -\\frac{1}{10}} \\]","<b>6. L\u00e9p\u00e9s: A teljes megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                Az \u00e1ltal\u00e1nos megold\u00e1s \\( y_{i,\u00e1} = y_{h,\u00e1} + y_{p1} + y_{p2} \\):\r\n                \\[ y_{i,\u00e1}(x) = C_1 e^{-2x} + C_2 \\sin(x) + C_3 \\cos(x) + \\frac{1}{40}e^{2x} - \\frac{1}{10}xe^{-2x} \\]\r\n                A v\u00e9geredm\u00e9ny:\r\n                \\[ y_{i,\u00e1}(x) = C_1 e^{-2x} + C_2 \\sin(x) + C_3 \\cos(x) + \\frac{1}{40}e^{2x} - \\frac{1}{10}xe^{-2x} \\quad (x \\in \\mathbb{R}, C_1, C_2, C_3 \\in \\mathbb{R}) \\]"]},{"title":"3. feladat (d): Oldjuk meg az \\( y''' + 3y'' + 2y' = 12e^{3x} + 4x \\) inhomog\u00e9n differenci\u00e1legyenletet.","wolfram":"solve y''' + 3*y'' + 2*y' = 12*exp(3x) + 4x","steps":["<b>1. L\u00e9p\u00e9s: A homog\u00e9n r\u00e9sz megold\u00e1sa.<\/b><br>\r\n                El\u0151sz\u00f6r oldjuk meg az \\( y''' + 3y'' + 2y' = 0 \\) homog\u00e9n egyenletet. \u00cdrjuk fel a karakterisztikus egyenletet:\r\n                \\[ \\lambda^3 + 3\\lambda^2 + 2\\lambda = 0 \\]\r\n                Emelj\u00fcnk ki \\(\\lambda\\)-t:\r\n                \\[ \\lambda(\\lambda^2 + 3\\lambda + 2) = 0 \\implies \\lambda(\\lambda + 1)(\\lambda + 2) = 0 \\]\r\n                A gy\u00f6k\u00f6k: <b>\\(\\lambda_1 = 0\\)<\/b>, <b>\\(\\lambda_2 = -1\\)<\/b>, <b>\\(\\lambda_3 = -2\\)<\/b>.\r\n                A homog\u00e9n \u00e1ltal\u00e1nos megold\u00e1s:\r\n                \\[ y_{h,\u00e1}(x) = C_1 + C_2 e^{-x} + C_3 e^{-2x} \\]","<b>2. L\u00e9p\u00e9s: A pr\u00f3baf\u00fcggv\u00e9nyek felv\u00e9tele \u00e9s rezonanciavizsg\u00e1lat.<\/b><br>\r\n                A zavar\u00f3f\u00fcggv\u00e9ny k\u00e9t tagb\u00f3l \u00e1ll: \\( f(x) = 12e^{3x} + 4x \\). A partikul\u00e1ris megold\u00e1st k\u00e9t r\u00e9szletben keress\u00fck:\r\n                <ul>\r\n                    <li><b>Els\u0151 tag (\\( 12e^{3x} \\)):<\/b> Az exponenci\u00e1lis kitev\u0151 \\(\\alpha = 3\\). Mivel ez nem gy\u00f6ke a karakterisztikus egyenletnek, nincs rezonancia. Pr\u00f3baf\u00fcggv\u00e9ny: \\( y_{p1} = Ae^{3x} \\).<\/li>\r\n                    <li><b>M\u00e1sodik tag (\\( 4x \\)):<\/b> Ez egy els\u0151fok\u00fa polinom, amihez a \\(\\lambda = 0\\) gy\u00f6k tartozna. Mivel a <b>\\(\\lambda_1 = 0\\)<\/b> gy\u00f6ke a karakterisztikus egyenletnek, <b>k\u00fcls\u0151 rezonancia<\/b> l\u00e9p fel. Ez\u00e9rt a pr\u00f3baf\u00fcggv\u00e9nyt (\\( Bx + D \\)) meg kell szorozni \\( x \\)-szel.<\/li>\r\n                <\/ul>\r\n                A teljes pr\u00f3baf\u00fcggv\u00e9ny: \\( y_{i,p}(x) = Ae^{3x} + x(Bx + D) = \\mathbf{Ae^{3x} + Bx^2 + Dx} \\).","<b>3. L\u00e9p\u00e9s: A pr\u00f3baf\u00fcggv\u00e9ny deriv\u00e1l\u00e1sa.<\/b><br>\r\n                Sz\u00e1m\u00edtsuk ki a sz\u00fcks\u00e9ges deriv\u00e1ltakat:\r\n                <ul>\r\n                    <li>\\( y_{i,p}' = 3Ae^{3x} + 2Bx + D \\)<\/li>\r\n                    <li>\\( y_{i,p}'' = 9Ae^{3x} + 2B \\)<\/li>\r\n                    <li>\\( y_{i,p}''' = 27Ae^{3x} \\)<\/li>\r\n                <\/ul>","<b>4. L\u00e9p\u00e9s: Behelyettes\u00edt\u00e9s \u00e9s az egy\u00fctthat\u00f3k meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                \u00cdrjuk vissza a deriv\u00e1ltakat az eredeti egyenletbe:\r\n                \\[ (27Ae^{3x}) + 3(9Ae^{3x} + 2B) + 2(3Ae^{3x} + 2Bx + D) = 12e^{3x} + 4x \\]\r\n                Rendezz\u00fck a tagokat t\u00edpusok szerint:\r\n                <ul>\r\n                    <li><b>Exponenci\u00e1lis tagok (\\( e^{3x} \\)):<\/b> \\( 27A + 27A + 6A = 12 \\implies 60A = 12 \\implies \\mathbf{A = \\frac{1}{5}} \\)<\/li>\r\n                    <li><b>Line\u00e1ris tagok (\\( x \\)):<\/b> \\( 4B = 4 \\implies \\mathbf{B = 1} \\)<\/li>\r\n                    <li><b>Konstans tagok:<\/b> \\( 6B + 2D = 0 \\implies 6(1) + 2D = 0 \\implies \\mathbf{D = -3} \\)<\/li>\r\n                <\/ul>","<b>5. L\u00e9p\u00e9s: A partikul\u00e1ris megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                Helyettes\u00edts\u00fck vissza a kapott \\( A, B, D \\) \u00e9rt\u00e9keket a pr\u00f3baf\u00fcggv\u00e9nybe:\r\n                \\[ y_{i,p}(x) = \\frac{1}{5}e^{3x} + x^2 - 3x \\]","<b>6. L\u00e9p\u00e9s: A teljes \u00e1ltal\u00e1nos megold\u00e1s megad\u00e1sa.<\/b><br>\r\n                Az \u00e1ltal\u00e1nos megold\u00e1s a homog\u00e9n \u00e9s a partikul\u00e1ris r\u00e9szek \u00f6sszege (\\( y_{i,\u00e1} = y_{h,\u00e1} + y_{i,p} \\)):\r\n                \\[ y_{i,\u00e1}(x) = C_1 + C_2 e^{-x} + C_3 e^{-2x} + \\frac{1}{5}e^{3x} + x^2 - 3x \\]\r\n                A v\u00e9geredm\u00e9ny megegyezik a feladatlapon szerepl\u0151vel:\r\n                \\[ y_{i,\u00e1}(x) = \\frac{1}{5}e^{3x} + x^2 - 3x + C_1 + C_2 e^{-x} + C_3 e^{-2x} \\quad (x \\in \\mathbb{R}, C_1, C_2, C_3 \\in \\mathbb{R}) \\]"]},{"title":"4. feladat: Oldjuk meg az \\( y'' + y' - 2y = 3e^{-2x} \\) differenci\u00e1legyenletet az \\( y(0) = 2, y'(0) = 0 \\) kezdeti felt\u00e9telek mellett.","wolfram":"solve y'' + y' - 2y = 3*exp(-2x), y(0)=2, y'(0)=0","steps":["<b>1. L\u00e9p\u00e9s: A homog\u00e9n r\u00e9sz megold\u00e1sa.<\/b><br>\r\n                El\u0151sz\u00f6r oldjuk meg az \\( y'' + y' - 2y = 0 \\) homog\u00e9n egyenletet. \u00cdrjuk fel a karakterisztikus egyenletet:\r\n                \\[ \\lambda^2 + \\lambda - 2 = 0 \\]\r\n                Bontsuk t\u00e9nyez\u0151kre a kifejez\u00e9st:\r\n                \\[ (\\lambda + 2)(\\lambda - 1) = 0 \\]\r\n                A gy\u00f6k\u00f6k: <b>\\( \\lambda_1 = -2 \\)<\/b> \u00e9s <b>\\( \\lambda_2 = 1 \\)<\/b>.\r\n                A homog\u00e9n \u00e1ltal\u00e1nos megold\u00e1s teh\u00e1t:\r\n                \\[ y_{h,\u00e1}(x) = C_1 e^{-2x} + C_2 e^x \\]","<b>2. L\u00e9p\u00e9s: A pr\u00f3baf\u00fcggv\u00e9ny megv\u00e1laszt\u00e1sa \u00e9s rezonanciavizsg\u00e1lat.<\/b><br>\r\n                A zavar\u00f3f\u00fcggv\u00e9ny \\( f(x) = 3e^{-2x} \\). Az exponenci\u00e1lis kitev\u0151ben szerepl\u0151 \u00e9rt\u00e9k \\( \\alpha = -2 \\).\r\n                Hasonl\u00edtsuk \u00f6ssze ezt a homog\u00e9n r\u00e9sz gy\u00f6keivel:\r\n                Mivel \\( \\alpha = \\lambda_1 = -2 \\), ez\u00e9rt <b>k\u00fcls\u0151 rezonancia<\/b> l\u00e9p fel.\r\n                A multiplicit\u00e1s \\( m = 1 \\), \u00edgy a standard \\( Ae^{-2x} \\) pr\u00f3baf\u00fcggv\u00e9nyt meg kell szorozni \\( x \\)-szel:\r\n                \\[ y_{i,p}(x) = Axe^{-2x} \\]","<b>3. L\u00e9p\u00e9s: A pr\u00f3baf\u00fcggv\u00e9ny deriv\u00e1l\u00e1sa.<\/b><br>\r\n                Sz\u00e1m\u00edtsuk ki a partikul\u00e1ris megold\u00e1s deriv\u00e1ltjait a szorzat-szab\u00e1ly seg\u00edts\u00e9g\u00e9vel:\r\n                \\[ y_{i,p}'(x) = A \\cdot e^{-2x} + Ax \\cdot (-2e^{-2x}) = (A - 2Ax)e^{-2x} \\]\r\n                \\[ y_{i,p}''(x) = -2Ae^{-2x} - 2A \\cdot e^{-2x} + (-2Ax) \\cdot (-2e^{-2x}) = (4Ax - 4A)e^{-2x} \\]","<b>4. L\u00e9p\u00e9s: Behelyettes\u00edt\u00e9s \u00e9s az ismeretlen egy\u00fctthat\u00f3 meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                \u00cdrjuk vissza a deriv\u00e1ltakat az eredeti \\( y'' + y' - 2y = 3e^{-2x} \\) egyenletbe:\r\n                \\[ (4Ax - 4A)e^{-2x} + (A - 2Ax)e^{-2x} - 2(Ax)e^{-2x} = 3e^{-2x} \\]\r\n                Osszunk le \\( e^{-2x} \\)-szel, majd vonjuk \u00f6ssze a tagokat:\r\n                \\[ (4Ax - 2Ax - 2Ax) + (-4A + A) = 3 \\]\r\n                \\[ -3A = 3 \\implies \\mathbf{A = -1} \\]\r\n                A partikul\u00e1ris megold\u00e1s teh\u00e1t: \\( y_{i,p}(x) = -xe^{-2x} \\).","<b>5. L\u00e9p\u00e9s: Az inhomog\u00e9n \u00e1ltal\u00e1nos megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                Az \u00e1ltal\u00e1nos megold\u00e1s a homog\u00e9n \u00e9s a partikul\u00e1ris r\u00e9sz \u00f6sszege:\r\n                \\[ y_{i,\u00e1}(x) = C_1 e^{-2x} + C_2 e^x - xe^{-2x} \\]","<b>6. L\u00e9p\u00e9s: A deriv\u00e1lt el\u0151k\u00e9sz\u00edt\u00e9se a kezdeti felt\u00e9telekhez.<\/b><br>\r\n                A konstansok meghat\u00e1roz\u00e1s\u00e1hoz sz\u00fcks\u00e9g\u00fcnk lesz a teljes megold\u00e1s deriv\u00e1ltj\u00e1ra:\r\n                \\[ y_{i,\u00e1}'(x) = -2C_1 e^{-2x} + C_2 e^x - (e^{-2x} - 2xe^{-2x}) \\]\r\n                \\[ y_{i,\u00e1}'(x) = -2C_1 e^{-2x} + C_2 e^x - e^{-2x} + 2xe^{-2x} \\]","<b>7. L\u00e9p\u00e9s: A kezdeti felt\u00e9telek behelyettes\u00edt\u00e9se \u00e9s a konstansok kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                Haszn\u00e1ljuk az \\( y(0) = 2 \\) \u00e9s \\( y'(0) = 0 \\) felt\u00e9teleket:\r\n                <ul>\r\n                    <li>\\( y(0) = C_1 + C_2 - 0 = 2 \\implies C_2 = 2 - C_1 \\)<\/li>\r\n                    <li>\\( y'(0) = -2C_1 + C_2 - 1 + 0 = 0 \\implies -2C_1 + C_2 = 1 \\)<\/li>\r\n                <\/ul>\r\n                Helyettes\u00edts\u00fck be \\( C_2 \\)-t a m\u00e1sodik egyenletbe:\r\n                \\[ -2C_1 + (2 - C_1) = 1 \\implies -3C_1 = -1 \\implies \\mathbf{C_1 = 1\/3} \\]\r\n                Ebb\u0151l: \\( C_2 = 2 - 1\/3 = \\mathbf{5\/3} \\).","<b>8. L\u00e9p\u00e9s: A v\u00e9geredm\u00e9ny r\u00f6gz\u00edt\u00e9se.<\/b><br>\r\n                Helyettes\u00edts\u00fck vissza a konstansokat az \u00e1ltal\u00e1nos megold\u00e1sba:\r\n                \\[ y(x) = \\frac{1}{3}e^{-2x} + \\frac{5}{3}e^x - xe^{-2x} \\]\r\n                A v\u00e9geredm\u00e9ny megegyezik a feladatlapon szerepl\u0151vel:\r\n                \\[ y(x) = \\frac{1}{3}e^{-2x} + \\frac{5}{3}e^x - xe^{-2x} \\quad (x \\in \\mathbb{R}) \\]"]}];
+    const chapterId = 3;
+</script>
+
+<script src="script.js"></script>
+</body>
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=3 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+</html>

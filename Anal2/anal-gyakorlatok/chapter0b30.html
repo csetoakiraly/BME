@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=2 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek - Analízis 2</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --main-color: #06b6d4;
+            --main-color-soft: #06b6d422; 
+        }
+    </style>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <layout-wrapper>
+        <analizis-sidebar>
+            <sidebar-header>
+                <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+            </sidebar-header>
+            <sidebar-list>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter681a.html?id=1'"
+                        class=""
+                        id="sidebar-item-1"
+                    >
+                        <span class="ch-num">1.</span>
+                        <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0b30.html?id=2'"
+                        class="active"
+                        id="sidebar-item-2"
+                    >
+                        <span class="ch-num">2.</span>
+                        <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd708.html?id=3'"
+                        class=""
+                        id="sidebar-item-3"
+                    >
+                        <span class="ch-num">3.</span>
+                        <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterdcfd.html?id=4'"
+                        class=""
+                        id="sidebar-item-4"
+                    >
+                        <span class="ch-num">4.</span>
+                        <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                        <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd61c.html?id=5'"
+                        class=""
+                        id="sidebar-item-5"
+                    >
+                        <span class="ch-num">5.</span>
+                        <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                        <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter3a9f.html?id=6'"
+                        class=""
+                        id="sidebar-item-6"
+                    >
+                        <span class="ch-num">6.</span>
+                        <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                        <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter8803.html?id=7'"
+                        class=""
+                        id="sidebar-item-7"
+                    >
+                        <span class="ch-num">7.</span>
+                        <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                        <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterc3c9.html?id=8'"
+                        class=""
+                        id="sidebar-item-8"
+                    >
+                        <span class="ch-num">8.</span>
+                        <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                        <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter5255.html?id=9'"
+                        class=""
+                        id="sidebar-item-9"
+                    >
+                        <span class="ch-num">9.</span>
+                        <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                        <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterf41b.html?id=10'"
+                        class=""
+                        id="sidebar-item-10"
+                    >
+                        <span class="ch-num">10.</span>
+                        <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                        <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0055.html?id=11'"
+                        class=""
+                        id="sidebar-item-11"
+                    >
+                        <span class="ch-num">11.</span>
+                        <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                        <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter4ef9.html?id=12'"
+                        class=""
+                        id="sidebar-item-12"
+                    >
+                        <span class="ch-num">12.</span>
+                        <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                        <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter6e03.html?id=13'"
+                        class=""
+                        id="sidebar-item-13"
+                    >
+                        <span class="ch-num">13.</span>
+                        <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                        <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+                    </sidebar-item>
+                            </sidebar-list>
+            <sidebar-footer>
+                <div class="overall-progress">
+                    <div class="progress-label">Kurzus haladás: <span id="totalPercent">0%</span></div>
+                    <div class="progress-track">
+                        <div id="totalProgressBar" class="progress-fill"></div>
+                    </div>
+                </div>
+                
+            </sidebar-footer>
+        </analizis-sidebar>
+
+        <main-content>
+            <analizis-nav>
+                <nav-title><b>2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek<b></nav-title>
+                <nav-actions>
+                    <button id="themeToggle" class="theme-btn">🌙 Éjszakai mód</button>
+                    <button id="theory-menu-toggle" class="menu-toggle-btn">
+    <span>☰</span> Menü
+</button>
+
+<analizis-sidebar id="theory-menu">
+    <sidebar-header>
+        <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+    </sidebar-header>
+    
+    <sidebar-list>
+                    <sidebar-item 
+                onclick="window.location.href='chapter681a.html?id=1'"
+                class=""
+                id="sidebar-item-1"
+            >
+                <span class="ch-num">1.</span>
+                <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0b30.html?id=2'"
+                class="active"
+                id="sidebar-item-2"
+            >
+                <span class="ch-num">2.</span>
+                <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd708.html?id=3'"
+                class=""
+                id="sidebar-item-3"
+            >
+                <span class="ch-num">3.</span>
+                <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterdcfd.html?id=4'"
+                class=""
+                id="sidebar-item-4"
+            >
+                <span class="ch-num">4.</span>
+                <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd61c.html?id=5'"
+                class=""
+                id="sidebar-item-5"
+            >
+                <span class="ch-num">5.</span>
+                <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter3a9f.html?id=6'"
+                class=""
+                id="sidebar-item-6"
+            >
+                <span class="ch-num">6.</span>
+                <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter8803.html?id=7'"
+                class=""
+                id="sidebar-item-7"
+            >
+                <span class="ch-num">7.</span>
+                <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterc3c9.html?id=8'"
+                class=""
+                id="sidebar-item-8"
+            >
+                <span class="ch-num">8.</span>
+                <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter5255.html?id=9'"
+                class=""
+                id="sidebar-item-9"
+            >
+                <span class="ch-num">9.</span>
+                <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterf41b.html?id=10'"
+                class=""
+                id="sidebar-item-10"
+            >
+                <span class="ch-num">10.</span>
+                <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0055.html?id=11'"
+                class=""
+                id="sidebar-item-11"
+            >
+                <span class="ch-num">11.</span>
+                <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter4ef9.html?id=12'"
+                class=""
+                id="sidebar-item-12"
+            >
+                <span class="ch-num">12.</span>
+                <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter6e03.html?id=13'"
+                class=""
+                id="sidebar-item-13"
+            >
+                <span class="ch-num">13.</span>
+                <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+            </sidebar-item>
+            </sidebar-list>
+</analizis-sidebar>
+</button>
+
+                </nav-actions>
+            </analizis-nav>
+            
+            <analizis-content>
+                <theory-section>
+                    <section-header>Elméleti összefoglaló</section-header>
+                    <theory-body><section>
+            <h3>1. Elsőrendű homogén lineáris differenciálegyenletek</h3>
+            <p><b>Általános alak:</b></p>
+            $$y'(x) + g(x)y(x) = 0 \quad (x \in I),$$
+            <p>ahol \( I \subseteq \mathbb{R} \) nyílt intervallum és \( g: I \to \mathbb{R} \) folytonos függvény.</p>
+            
+            <p><b>Megoldási módszer:</b></p>
+            <p>Megoldjuk szétválasztható változójúként, vagy használjuk az alábbi összefüggést:</p>
+            $$y_{h,\text{á}}(x) = Ce^{-G(x)} \quad (x \in I, C \in \mathbb{R}),$$
+            <p>ahol \( G' = g \).</p>
+        </section>
+
+        <hr>
+
+        <section>
+            <h3>2. Elsőrendű inhomogén lineáris differenciálegyenletek</h3>
+            <p><b>Általános alak:</b></p>
+            $$y'(x) + g(x)y(x) = f(x) \quad (x \in I),$$
+            <p>ahol \( I \subseteq \mathbb{R} \) nyílt intervallum, \( f, g: I \to \mathbb{R} \) folytonos függvények.</p>
+
+            <p><b>Megoldási módszer:</b></p>
+            <p>Az általános megoldás (jelölje a továbbiakban \( y_{i,\text{á}} \)) előáll a következő alakban:</p>
+            $$y_{i,\text{á}} = y_{i,p} + y_{h,\text{á}},$$
+            <p>ahol \( y_{i,p} \) az inhomogén egyenlet egy tetszőleges megoldása (más néven partikuláris megoldása).</p>
+
+            <p><b>Az állandó variálásának módszere:</b></p>
+            <p>A partikuláris megoldás megkeresésére a konstans variáció módszerét használjuk azaz, ha a homogén egyenlet megoldása valamilyen \( \varphi: I \to \mathbb{R} \) függvényre</p>
+            $$y_{h,\text{á}}(x) = C\varphi(x) \quad (x \in I, C \in \mathbb{R})$$
+            <p>alakú, akkor az inhomogén egyenlet partikuláris megoldását</p>
+            $$y(x) = c(x)\varphi(x) \quad (x \in I)$$
+            <p>alakban keressük, ahol \( c: I \to \mathbb{R} \) (ismeretlen) differenciálható függvény.</p>
+        </section>
+
+        <hr>
+
+        <section>
+            <h3>3. Helyettesítéssel megoldható differenciálegyenletek</h3>
+            
+            <div style="margin-bottom: 20px; padding: 15px; background: var(--main-color-soft); border-radius: 8px;">
+                <h4>A) \( y'(x) = F\left(\frac{y(x)}{x}\right) \) típus</h4>
+                <p>Ha \( F: \mathbb{R} \to \mathbb{R} \) függvény, \( I \subseteq \mathbb{R} \setminus \{0\} \) nyílt intervallum, és a differenciálegyenlet</p>
+                $$y'(x) = F\left(\frac{y(x)}{x}\right) \quad (x \in I)$$
+                <p>alakú, akkor az \( u(x) := \frac{y(x)}{x} \quad (x \in I) \) helyettesítéssel érdemes próbálkozni. Ekkor minden \( x \in I \) esetén</p>
+                $$y'(x) = u'(x)x + u(x),$$
+                <p>tehát az egyenlet ekvivalens az</p>
+                $$u'(x) = (F(u(x)) - u(x))\frac{1}{x} \quad (x \in I)$$
+                <p>egyenlettel, ami egy szeparálható (szétválasztható) differenciálegyenlet.</p>
+            </div>
+
+            <div style="padding: 15px; background: var(--main-color-soft); border-radius: 8px;">
+                <h4>B) \( y'(x) = F(ax + by(x)) \) típus</h4>
+                <p>Ha \( F: \mathbb{R} \to \mathbb{R} \) függvény, \( a \in \mathbb{R} \), \( b \in \mathbb{R} \setminus \{0\} \), \( I \subseteq \mathbb{R} \) nyílt intervallum, és a differenciálegyenlet</p>
+                $$y'(x) = F(ax + by(x)) \quad (x \in I)$$
+                <p>alakú, akkor az \( u(x) := ax + by(x) \quad (x \in I) \) helyettesítéssel érdemes próbálkozni. Ekkor minden \( x \in I \) esetén</p>
+                $$y'(x) = \frac{1}{b}(u'(x) - a),$$
+                <p>tehát az egyenlet ekvivalens az</p>
+                $$u'(x) = bF(u(x)) + a \quad (x \in I)$$
+                <p>szeparálható differenciálegyenlettel.</p>
+            </div>
+        </section>
+    </theory-body>
+                </theory-section>
+
+                <practice-section>
+    <section-header>Példafeladatok</section-header>
+    
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat: Írjuk fel az \( y' + 2x^3y = 8x^3 \) differenciálegyenlet általános megoldását.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27+%2B+2x%5E3%2Ay+%3D+8x%5E3"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="0">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="0">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">2. feladat: Oldjuk meg az \( y' + 2x^3y = 8x^3 \) differenciálegyenletet lineáris elsőrendűként, és hasonlítsuk össze az eredményt.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27+%2B+2x%5E3%2Ay+%3D+8x%5E3"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="1">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="1">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">3. feladat: Írjuk fel az \( y' + 3\cos(x)y = 4e^{-3\sin(x)} \) differenciálegyenlet általános megoldását.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27+%2B+3%2Acos%28x%29%2Ay+%3D+4%2Aexp%28-3%2Asin%28x%29%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="2">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="2">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">4. feladat: Írjuk fel az \( y' = -\frac{3}{x}y + \frac{2}{1+x^2} \quad (x \neq 0) \) differenciálegyenlet általános megoldását.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27+%3D+-3%2Fx+%2A+y+%2B+2%2F%281%2Bx%5E2%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="3">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="3">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">5. feladat: Írjuk fel az \( y' + \frac{4}{x}y = e^{-x}x^{-2} \quad (x \neq 0) \) differenciálegyenlet általános megoldását.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27+%2B+4%2Fx+%2A+y+%3D+exp%28-x%29+%2A+x%5E%28-2%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="4">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="4">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">6. feladat: Írjuk fel az \( y' - \frac{2}{x}y = \frac{x^4}{1+x^2} \quad (x \neq 0) \) differenciálegyenlet általános megoldását.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27+-+2%2Fx+%2A+y+%3D+x%5E4+%2F+%281+%2B+x%5E2%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="5">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="5">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">7. feladat: Oldjuk meg az \( xy' = y(1 - \ln y + \ln x) \quad (x > 0, y > 0) \) differenciálegyenletet.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+x%2Ay%27+%3D+y%2A%281+-+log%28y%29+%2B+log%28x%29%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="6">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="6">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">8. feladat: Oldjuk meg az \( y' = \frac{4}{2x - y} \) differenciálegyenletet.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+y%27+%3D+4+%2F+%282x+-+y%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="7">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="7">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">9. feladat: Az \( u := y^5 \) helyettesítéssel oldjuk meg az \( 5y^4y' - 3y^5 = e^{4x} + 1 \) differenciálegyenletet, majd határozzuk meg az \( y(0) = 1 \) kezdeti feltételhez tartozó megoldást.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="solve+5%2Ay%5E4%2Ay%27+-+3%2Ay%5E5+%3D+exp%284x%29+%2B+1%2C+y%280%29%3D1"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="8">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="8">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+    
+</practice-section>
+
+<script>
+    const allTasks = [{"title":"1. feladat: \u00cdrjuk fel az \\( y' + 2x^3y = 8x^3 \\) differenci\u00e1legyenlet \u00e1ltal\u00e1nos megold\u00e1s\u00e1t.","wolfram":"solve y' + 2x^3*y = 8x^3","steps":["<b>1. L\u00e9p\u00e9s: A homog\u00e9n r\u00e9sz megold\u00e1sa.<\/b><br>\r\n                El\u0151sz\u00f6r tekints\u00fck a hozz\u00e1 tartoz\u00f3 homog\u00e9n egyenletet: \\( y' + 2x^3y = 0 \\). \r\n                Az elm\u00e9let szerint ennek megold\u00e1sa \\( y_{h,\\text{\u00e1}}(x) = Ce^{-G(x)} \\), ahol \\( G'(x) = g(x) = 2x^3 \\).\r\n                Integr\u00e1lva kapjuk: \\( G(x) = \\int 2x^3 dx = \\frac{x^4}{2} \\).\r\n                \u00cdgy a homog\u00e9n \u00e1ltal\u00e1nos megold\u00e1s:\r\n                \\[ y_{h,\\text{\u00e1}}(x) = C \\cdot e^{-\\frac{x^4}{2}} \\]","<b>2. L\u00e9p\u00e9s: Az \u00e1lland\u00f3 vari\u00e1l\u00e1s\u00e1nak m\u00f3dszere.<\/b><br>\r\n                Az inhomog\u00e9n egyenlet partikul\u00e1ris megold\u00e1s\u00e1t \\( y(x) = c(x) \\cdot \\varphi(x) \\) alakban keress\u00fck, ahol \\( \\varphi(x) = e^{-\\frac{x^4}{2}} \\).\r\n                Ehhez sz\u00fcks\u00e9g\u00fcnk van a deriv\u00e1ltra (szorzat-szab\u00e1ly):\r\n                \\[ y'(x) = c'(x) \\cdot e^{-\\frac{x^4}{2}} + c(x) \\cdot e^{-\\frac{x^4}{2}} \\cdot (-2x^3) \\]","<b>3. L\u00e9p\u00e9s: Behelyettes\u00edt\u00e9s \u00e9s \\( c(x) \\) meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                Helyettes\u00edts\u00fck vissza \\( y \\)-t \u00e9s \\( y' \\)-et az eredeti inhomog\u00e9n egyenletbe:\r\n                \\[ \\left[ c'(x)e^{-\\frac{x^4}{2}} - 2x^3c(x)e^{-\\frac{x^4}{2}} \\right] + 2x^3 \\left[ c(x)e^{-\\frac{x^4}{2}} \\right] = 8x^3 \\]\r\n                Az egyszer\u0171s\u00edt\u00e9s ut\u00e1n:\r\n                \\[ c'(x)e^{-\\frac{x^4}{2}} = 8x^3 \\implies c'(x) = 8x^3 \\cdot e^{\\frac{x^4}{2}} \\]\r\n                Integr\u00e1ljunk helyettes\u00edt\u00e9ssel (\\( u = x^4\/2, du = 2x^3 dx \\)):\r\n                \\[ c(x) = \\int 8x^3 e^{\\frac{x^4}{2}} dx = 4 \\int e^u du = 4e^{\\frac{x^4}{2}} + C \\]","<b>4. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                Helyettes\u00edts\u00fck vissza a kapott \\( c(x) \\)-et a 2. l\u00e9p\u00e9sben felvett alakba:\r\n                \\[ y_{i,\\text{\u00e1}}(x) = \\left( 4e^{\\frac{x^4}{2}} + C \\right) \\cdot e^{-\\frac{x^4}{2}} \\]\r\n                A z\u00e1r\u00f3jelet felbontva kapjuk a v\u00e9geredm\u00e9nyt:\r\n                \\[ y_{i,\\text{\u00e1}}(x) = 4 + C \\cdot e^{-\\frac{x^4}{2}} \\quad (x \\in \\mathbb{R}, C \\in \\mathbb{R}) \\]"]},{"title":"2. feladat: Oldjuk meg az \\( y' + 2x^3y = 8x^3 \\) differenci\u00e1legyenletet line\u00e1ris els\u0151rend\u0171k\u00e9nt, \u00e9s hasonl\u00edtsuk \u00f6ssze az eredm\u00e9nyt.","wolfram":"solve y' + 2x^3*y = 8x^3","steps":["<b>1. L\u00e9p\u00e9s: Az egyenlet azonos\u00edt\u00e1sa.<\/b><br>\r\n                Az egyenlet \\( y'(x) + g(x)y(x) = f(x) \\) alak\u00fa, ahol:\r\n                - \\( g(x) = 2x^3 \\)\r\n                - \\( f(x) = 8x^3 \\)\r\n                Ez egy els\u0151rend\u0171 inhomog\u00e9n line\u00e1ris differenci\u00e1legyenlet.","<b>2. L\u00e9p\u00e9s: A homog\u00e9n egyenlet fel\u00edr\u00e1sa.<\/b><br>\r\n                Tekints\u00fck a hozz\u00e1 tartoz\u00f3 homog\u00e9n alakot (ahol a jobb oldal nulla):\r\n                \\[ y' + 2x^3y = 0 \\]","<b>3. L\u00e9p\u00e9s: A homog\u00e9n \u00e1ltal\u00e1nos megold\u00e1s meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                Haszn\u00e1ljuk a \\( y_{h,\\text{\u00e1}}(x) = Ce^{-G(x)} \\) \u00f6sszef\u00fcgg\u00e9st, ahol \\( G \\) a \\( g \\) primit\u00edv f\u00fcggv\u00e9nye:\r\n                \\[ G(x) = \\int 2x^3 \\, dx = \\frac{2x^4}{4} = \\frac{x^4}{2} \\]\r\n                \u00cdgy a homog\u00e9n \u00e1ltal\u00e1nos megold\u00e1s:\r\n                \\[ y_{h,\\text{\u00e1}}(x) = C \\cdot e^{-\\frac{x^4}{2}} \\]","<b>4. L\u00e9p\u00e9s: Az \u00e1lland\u00f3 vari\u00e1l\u00e1sa \u2013 A partikul\u00e1ris megold\u00e1s keres\u00e9se.<\/b><br>\r\n                Az inhomog\u00e9n egyenlet megold\u00e1s\u00e1t \\( y(x) = c(x) \\cdot \\varphi(x) \\) alakban keress\u00fck, ahol \\( \\varphi(x) = e^{-\\frac{x^4}{2}} \\) a homog\u00e9n r\u00e9sz egy megold\u00e1sa:\r\n                \\[ y(x) = c(x) \\cdot e^{-\\frac{x^4}{2}} \\]","<b>5. L\u00e9p\u00e9s: A felt\u00e9telezett megold\u00e1s deriv\u00e1l\u00e1sa.<\/b><br>\r\n                Alkalmazzuk a szorzat-szab\u00e1lyt \u00e9s a l\u00e1ncszab\u00e1lyt:\r\n                \\[ y'(x) = c'(x) \\cdot e^{-\\frac{x^4}{2}} + c(x) \\cdot e^{-\\frac{x^4}{2}} \\cdot \\left(-\\frac{4x^3}{2}\\right) \\]\r\n                Egyszer\u0171s\u00edtve:\r\n                \\[ y'(x) = c'(x) e^{-\\frac{x^4}{2}} - 2x^3 c(x) e^{-\\frac{x^4}{2}} \\]","<b>6. L\u00e9p\u00e9s: Behelyettes\u00edt\u00e9s az eredeti inhomog\u00e9n egyenletbe.<\/b><br>\r\n                \u00cdrjuk be \\( y \\)-t \u00e9s \\( y' \\)-et az \\( y' + 2x^3y = 8x^3 \\) egyenletbe:\r\n                \\[ \\left[ c'(x) e^{-\\frac{x^4}{2}} - 2x^3 c(x) e^{-\\frac{x^4}{2}} \\right] + 2x^3 \\left[ c(x) e^{-\\frac{x^4}{2}} \\right] = 8x^3 \\]","<b>7. L\u00e9p\u00e9s: A \\( c(x) \\)-es tagok kies\u00e9se \u00e9s az egyenlet rendez\u00e9se.<\/b><br>\r\n                Vegy\u00fck \u00e9szre, hogy a \\( -2x^3 c(x) e^{-\\dots} \\) \u00e9s a \\( +2x^3 c(x) e^{-\\dots} \\) tagok \u00f6sszege nulla. Ez igazolja, hogy az \u00e1lland\u00f3 vari\u00e1l\u00e1sa j\u00f3l m\u0171k\u00f6dik:\r\n                \\[ c'(x) e^{-\\frac{x^4}{2}} = 8x^3 \\]\r\n                Szorozzuk meg mindk\u00e9t oldalt \\( e^{\\frac{x^4}{2}} \\)-nel, hogy kifejezz\u00fck \\( c'(x) \\)-et:\r\n                \\[ c'(x) = 8x^3 \\cdot e^{\\frac{x^4}{2}} \\]","<b>8. L\u00e9p\u00e9s: Az ismeretlen \\( c(x) \\) f\u00fcggv\u00e9ny meghat\u00e1roz\u00e1sa integr\u00e1l\u00e1ssal.<\/b><br>\r\n                V\u00e9gezz\u00fck el az integr\u00e1l\u00e1st:\r\n                \\[ c(x) = \\int 8x^3 e^{\\frac{x^4}{2}} \\, dx \\]\r\n                Alkalmazzunk helyettes\u00edt\u00e9st: legyen \\( u = \\frac{x^4}{2} \\), ekkor \\( du = 2x^3 \\, dx \\).\r\n                \\[ c(x) = 4 \\int e^u \\, du = 4e^u + C = 4e^{\\frac{x^4}{2}} + C \\]","<b>9. L\u00e9p\u00e9s: Az inhomog\u00e9n \u00e1ltal\u00e1nos megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                Helyettes\u00edts\u00fck vissza a kapott \\( c(x) \\)-et a 4. l\u00e9p\u00e9sben felvett alakba:\r\n                \\[ y_{i,\\text{\u00e1}}(x) = \\left( 4e^{\\frac{x^4}{2}} + C \\right) \\cdot e^{-\\frac{x^4}{2}} \\]\r\n                Bontsuk fel a z\u00e1r\u00f3jelet:\r\n                \\[ y_{i,\\text{\u00e1}}(x) = 4e^{\\frac{x^4}{2}} \\cdot e^{-\\frac{x^4}{2}} + C \\cdot e^{-\\frac{x^4}{2}} \\]","<b>10. L\u00e9p\u00e9s: V\u00e9geredm\u00e9ny \u00e9s k\u00f6vetkeztet\u00e9s.<\/b><br>\r\n                Mivel \\( e^a \\cdot e^{-a} = 1 \\), a v\u00e9geredm\u00e9ny:\r\n                \\[ y_{i,\\text{\u00e1}}(x) = 4 + C e^{-\\frac{x^4}{2}} \\quad (x \\in \\mathbb{R}, C \\in \\mathbb{R}) \\]\r\n                <b>\u00d6sszehasonl\u00edt\u00e1s:<\/b> Ez az eredm\u00e9ny megegyezik a sz\u00e9tv\u00e1laszthat\u00f3 v\u00e1ltoz\u00f3j\u00fa m\u00f3dszerrel kapott eredm\u00e9nnyel, ami igazolja, hogy mindk\u00e9t m\u00f3dszer konzisztens ugyanazon egyenlet megold\u00e1sa eset\u00e9n."]},{"title":"3. feladat: \u00cdrjuk fel az \\( y' + 3\\cos(x)y = 4e^{-3\\sin(x)} \\) differenci\u00e1legyenlet \u00e1ltal\u00e1nos megold\u00e1s\u00e1t.","wolfram":"solve y' + 3*cos(x)*y = 4*exp(-3*sin(x))","steps":["<b>1. L\u00e9p\u00e9s: Az egyenlet azonos\u00edt\u00e1sa.<\/b><br>\r\n                Az egyenlet \\( y'(x) + g(x)y(x) = f(x) \\) alak\u00fa els\u0151rend\u0171 inhomog\u00e9n line\u00e1ris differenci\u00e1legyenlet, ahol:\r\n                - \\( g(x) = 3\\cos(x) \\)\r\n                - \\( f(x) = 4e^{-3\\sin(x)} \\)","<b>2. L\u00e9p\u00e9s: A homog\u00e9n r\u00e9sz megold\u00e1sa.<\/b><br>\r\n                Tekints\u00fck az \\( y' + 3\\cos(x)y = 0 \\) homog\u00e9n egyenletet.\r\n                Az elm\u00e9let szerint a megold\u00e1s \\( y_{h,\\text{\u00e1}}(x) = Ce^{-G(x)} \\), ahol \\( G \\) a \\( g \\) primit\u00edv f\u00fcggv\u00e9nye:\r\n                \\[ G(x) = \\int 3\\cos(x) \\, dx = 3\\sin(x) \\]\r\n                \u00cdgy a homog\u00e9n \u00e1ltal\u00e1nos megold\u00e1s:\r\n                \\[ y_{h,\\text{\u00e1}}(x) = C \\cdot e^{-3\\sin(x)} \\]","<b>3. L\u00e9p\u00e9s: Az \u00e1lland\u00f3 vari\u00e1l\u00e1sa.<\/b><br>\r\n                Az inhomog\u00e9n egyenlet megold\u00e1s\u00e1t \\( y(x) = c(x) \\cdot \\varphi(x) \\) alakban keress\u00fck, ahol \\( \\varphi(x) = e^{-3\\sin(x)} \\) a homog\u00e9n megold\u00e1s konstans n\u00e9lk\u00fcli r\u00e9sze:\r\n                \\[ y(x) = c(x) \\cdot e^{-3\\sin(x)} \\]","<b>4. L\u00e9p\u00e9s: A felt\u00e9telezett megold\u00e1s deriv\u00e1l\u00e1sa.<\/b><br>\r\n                Alkalmazzuk a szorzat-szab\u00e1lyt \u00e9s a l\u00e1ncszab\u00e1lyt (\\( e^u \\) deriv\u00e1ltja \\( u'e^u \\)):\r\n                \\[ y'(x) = c'(x) \\cdot e^{-3\\sin(x)} + c(x) \\cdot e^{-3\\sin(x)} \\cdot (-3\\cos(x)) \\]\r\n                Rendezve:\r\n                \\[ y'(x) = c'(x)e^{-3\\sin(x)} - 3\\cos(x)c(x)e^{-3\\sin(x)} \\]","<b>5. L\u00e9p\u00e9s: Behelyettes\u00edt\u00e9s az eredeti egyenletbe.<\/b><br>\r\n                \u00cdrjuk vissza \\( y \\)-t \u00e9s \\( y' \\)-et az eredeti \\( y' + 3\\cos(x)y = 4e^{-3\\sin(x)} \\) egyenletbe:\r\n                \\[ [c'e^{-3\\sin(x)} - 3\\cos(x)ce^{-3\\sin(x)}] + 3\\cos(x)[ce^{-3\\sin(x)}] = 4e^{-3\\sin(x)} \\]","<b>6. L\u00e9p\u00e9s: Egyszer\u0171s\u00edt\u00e9s \u00e9s \\( c'(x) \\) kifejez\u00e9se.<\/b><br>\r\n                A \\( c(x) \\)-et tartalmaz\u00f3 tagok (ahogy v\u00e1rhat\u00f3 volt) kiejtik egym\u00e1st:\r\n                \\[ c'(x)e^{-3\\sin(x)} = 4e^{-3\\sin(x)} \\]\r\n                Osszunk le az exponenci\u00e1lis taggal (mivel \\( e^u \\) sosem nulla):\r\n                \\[ c'(x) = 4 \\]","<b>7. L\u00e9p\u00e9s: Az ismeretlen \\( c(x) \\) meghat\u00e1roz\u00e1sa integr\u00e1l\u00e1ssal.<\/b><br>\r\n                \\[ c(x) = \\int 4 \\, dx = 4x + C \\]","<b>8. L\u00e9p\u00e9s: Az inhomog\u00e9n \u00e1ltal\u00e1nos megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                Helyettes\u00edts\u00fck vissza a kapott \\( c(x) \\)-et a 3. l\u00e9p\u00e9sben felvett alakba:\r\n                \\[ y_{i,\\text{\u00e1}}(x) = (4x + C) \\cdot e^{-3\\sin(x)} \\]\r\n                A z\u00e1r\u00f3jelet felbontva kapjuk a keresett alakot:\r\n                \\[ y_{i,\\text{\u00e1}}(x) = 4xe^{-3\\sin(x)} + Ce^{-3\\sin(x)} \\quad (x \\in \\mathbb{R}, C \\in \\mathbb{R}) \\]"]},{"title":"4. feladat: \u00cdrjuk fel az \\( y' = -\\frac{3}{x}y + \\frac{2}{1+x^2} \\quad (x \\neq 0) \\) differenci\u00e1legyenlet \u00e1ltal\u00e1nos megold\u00e1s\u00e1t.","wolfram":"solve y' = -3\/x * y + 2\/(1+x^2)","steps":["<b>1. L\u00e9p\u00e9s: Az egyenlet azonos\u00edt\u00e1sa \u00e9s rendez\u00e9se.<\/b><br>\r\n                Rendezz\u00fck az egyenletet a standard \\( y' + g(x)y = f(x) \\) alakra:\r\n                \\[ y' + \\frac{3}{x}y = \\frac{2}{1+x^2} \\]\r\n                L\u00e1that\u00f3, hogy ez egy els\u0151rend\u0171 inhomog\u00e9n line\u00e1ris differenci\u00e1legyenlet, ahol:\r\n                - \\( g(x) = \\frac{3}{x} \\)\r\n                - \\( f(x) = \\frac{2}{1+x^2} \\)","<b>2. L\u00e9p\u00e9s: A homog\u00e9n r\u00e9sz megold\u00e1sa.<\/b><br>\r\n                Tekints\u00fck az \\( y' + \\frac{3}{x}y = 0 \\) homog\u00e9n egyenletet.\r\n                Haszn\u00e1ljuk az \\( y_{h,\\text{\u00e1}}(x) = Ce^{-G(x)} \\) k\u00e9pletet:\r\n                \\[ G(x) = \\int \\frac{3}{x} \\, dx = 3\\ln|x| = \\ln|x|^3 \\]\r\n                Behelyettes\u00edtve:\r\n                \\[ y_{h,\\text{\u00e1}}(x) = C \\cdot e^{-\\ln|x|^3} = C \\cdot \\frac{1}{|x|^3} \\]\r\n                Mivel \\( C \\) tetsz\u0151leges val\u00f3s sz\u00e1m, az abszol\u00fat\u00e9rt\u00e9k elhagyhat\u00f3:\r\n                \\[ y_{h,\\text{\u00e1}}(x) = \\frac{C}{x^3} \\]","<b>3. L\u00e9p\u00e9s: Az \u00e1lland\u00f3 vari\u00e1l\u00e1sa.<\/b><br>\r\n                Az inhomog\u00e9n egyenlet megold\u00e1s\u00e1t \\( y(x) = \\frac{c(x)}{x^3} \\) alakban keress\u00fck.\r\n                Sz\u00e1m\u00edtsuk ki a deriv\u00e1ltat a h\u00e1nyados-szab\u00e1ly vagy a szorzat-szab\u00e1ly seg\u00edts\u00e9g\u00e9vel:\r\n                \\[ y'(x) = \\frac{c'(x)x^3 - c(x)3x^2}{x^6} = \\frac{c'(x)}{x^3} - \\frac{3c(x)}{x^4} \\]","<b>4. L\u00e9p\u00e9s: Behelyettes\u00edt\u00e9s az inhomog\u00e9n egyenletbe.<\/b><br>\r\n                \u00cdrjuk vissza \\( y \\)-t \u00e9s \\( y' \\)-et az eredeti rendezett egyenletbe:\r\n                \\[ \\left[ \\frac{c'(x)}{x^3} - \\frac{3c(x)}{x^4} \\right] + \\frac{3}{x} \\left[ \\frac{c(x)}{x^3} \\right] = \\frac{2}{1+x^2} \\]\r\n                A \\( c(x) \\)-et tartalmaz\u00f3 tagok (mint mindig) kiejtik egym\u00e1st:\r\n                \\[ \\frac{c'(x)}{x^3} = \\frac{2}{1+x^2} \\implies c'(x) = \\frac{2x^3}{1+x^2} \\]","<b>5. L\u00e9p\u00e9s: Az ismeretlen \\( c(x) \\) meghat\u00e1roz\u00e1sa integr\u00e1l\u00e1ssal.<\/b><br>\r\n                Meg kell oldanunk a \\( c(x) = \\int \\frac{2x^3}{1+x^2} \\, dx \\) integr\u00e1lt.\r\n                Alkalmazzunk egy tr\u00fckk\u00f6t (hozz\u00e1adunk \u00e9s kivonunk \\( 2x \\)-et a sz\u00e1ml\u00e1l\u00f3ban):\r\n                \\[ \\int \\frac{2x^3 + 2x - 2x}{1+x^2} \\, dx = \\int \\frac{2x(x^2 + 1) - 2x}{1+x^2} \\, dx \\]\r\n                \\[ \\int \\left( 2x - \\frac{2x}{1+x^2} \\right) \\, dx = x^2 - \\ln(1+x^2) + C \\]","<b>6. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                Helyettes\u00edts\u00fck vissza a kapott \\( c(x) \\)-et az \\( y(x) = \\frac{c(x)}{x^3} \\) alakba:\r\n                \\[ y_{i,\\text{\u00e1}}(x) = \\frac{x^2 - \\ln(1+x^2) + C}{x^3} \\]\r\n                Tagoljuk a t\u00f6rtet a v\u00e9gs\u0151 alak el\u00e9r\u00e9s\u00e9hez:\r\n                \\[ y_{i,\\text{\u00e1}}(x) = \\frac{x^2}{x^3} - \\frac{\\ln(1+x^2)}{x^3} + \\frac{C}{x^3} \\]\r\n                A v\u00e9geredm\u00e9ny:\r\n                \\[ y_{i,\\text{\u00e1}}(x) = \\frac{1}{x} - \\frac{\\ln(1+x^2)}{x^3} + \\frac{C}{x^3} \\quad (x \\in \\mathbb{R} \\setminus \\{0\\}, C \\in \\mathbb{R}) \\]"]},{"title":"5. feladat: \u00cdrjuk fel az \\( y' + \\frac{4}{x}y = e^{-x}x^{-2} \\quad (x \\neq 0) \\) differenci\u00e1legyenlet \u00e1ltal\u00e1nos megold\u00e1s\u00e1t.","wolfram":"solve y' + 4\/x * y = exp(-x) * x^(-2)","steps":["<b>1. L\u00e9p\u00e9s: Az egyenlet t\u00edpus\u00e1nak azonos\u00edt\u00e1sa.<\/b><br>\r\n                Az egyenlet \\( y'(x) + g(x)y(x) = f(x) \\) alak\u00fa, ahol:\r\n                - \\( g(x) = \\frac{4}{x} \\)\r\n                - \\( f(x) = \\frac{e^{-x}}{x^2} \\)\r\n                Ez egy els\u0151rend\u0171 inhomog\u00e9n line\u00e1ris differenci\u00e1legyenlet.","<b>2. L\u00e9p\u00e9s: A homog\u00e9n r\u00e9sz megold\u00e1sa.<\/b><br>\r\n                Tekints\u00fck az \\( y' + \\frac{4}{x}y = 0 \\) homog\u00e9n egyenletet. \r\n                A megold\u00e1st az \\( y_{h,\\text{\u00e1}}(x) = Ce^{-G(x)} \\) k\u00e9plettel kapjuk meg, ahol \\( G(x) = \\int g(x) dx \\):\r\n                \\[ G(x) = \\int \\frac{4}{x} dx = 4\\ln|x| = \\ln(x^4) \\]\r\n                Ezt visszahelyettes\u00edtve:\r\n                \\[ y_{h,\\text{\u00e1}}(x) = C \\cdot e^{-\\ln(x^4)} = C \\cdot \\frac{1}{x^4} = \\frac{C}{x^4} \\]","<b>3. L\u00e9p\u00e9s: Az \u00e1lland\u00f3 vari\u00e1l\u00e1sa.<\/b><br>\r\n                Az inhomog\u00e9n egyenlet partikul\u00e1ris megold\u00e1s\u00e1t keress\u00fck \\( y(x) = \\frac{c(x)}{x^4} \\) alakban, ahol \\( c(x) \\) egy ismeretlen f\u00fcggv\u00e9ny.","<b>4. L\u00e9p\u00e9s: A felt\u00e9telezett megold\u00e1s deriv\u00e1l\u00e1sa.<\/b><br>\r\n                Haszn\u00e1ljuk a h\u00e1nyados-szab\u00e1lyt (\\( (\\frac{u}{v})' = \\frac{u'v - uv'}{v^2} \\)):\r\n                \\[ y'(x) = \\frac{c'(x) \\cdot x^4 - c(x) \\cdot 4x^3}{(x^4)^2} = \\frac{c'(x)}{x^4} - \\frac{4c(x)}{x^5} \\]","<b>5. L\u00e9p\u00e9s: Behelyettes\u00edt\u00e9s az eredeti egyenletbe.<\/b><br>\r\n                \u00cdrjuk be \\( y \\)-t \u00e9s \\( y' \\)-et az \\( y' + \\frac{4}{x}y = \\frac{e^{-x}}{x^2} \\) egyenletbe:\r\n                \\[ \\left( \\frac{c'(x)}{x^4} - \\frac{4c(x)}{x^5} \\right) + \\frac{4}{x} \\left( \\frac{c(x)}{x^4} \\right) = \\frac{e^{-x}}{x^2} \\]\r\n                A \\( c(x) \\)-es tagok itt is kiejtik egym\u00e1st:\r\n                \\[ \\frac{c'(x)}{x^4} = \\frac{e^{-x}}{x^2} \\implies c'(x) = e^{-x} \\cdot x^2 \\]","<b>6. L\u00e9p\u00e9s: Az ismeretlen \\( c(x) \\) meghat\u00e1roz\u00e1sa (1. parci\u00e1lis integr\u00e1l\u00e1s).<\/b><br>\r\n                A \\( c(x) = \\int x^2 e^{-x} dx \\) integr\u00e1lhoz parci\u00e1lis integr\u00e1l\u00e1st alkalmazunk (\\( \\int u v' = uv - \\int u' v \\)).\r\n                Legyen \\( u = x^2 \\implies u' = 2x \\) \u00e9s \\( v' = e^{-x} \\implies v = -e^{-x} \\):\r\n                \\[ \\int x^2 e^{-x} dx = -x^2 e^{-x} - \\int -2x e^{-x} dx = -x^2 e^{-x} + 2 \\int x e^{-x} dx \\]","<b>7. L\u00e9p\u00e9s: A m\u00e1sodik parci\u00e1lis integr\u00e1l\u00e1s elv\u00e9gz\u00e9se.<\/b><br>\r\n                Most az \\( \\int x e^{-x} dx \\) r\u00e9szt integr\u00e1ljuk \u00fajra parci\u00e1lisan.\r\n                Legyen \\( u = x \\implies u' = 1 \\) \u00e9s \\( v' = e^{-x} \\implies v = -e^{-x} \\):\r\n                \\[ \\int x e^{-x} dx = -xe^{-x} - \\int -e^{-x} dx = -xe^{-x} - e^{-x} \\]\r\n                Ezt visszahelyettes\u00edtve a 6. l\u00e9p\u00e9sbe:\r\n                \\[ c(x) = -x^2 e^{-x} + 2(-xe^{-x} - e^{-x}) + C = -e^{-x}(x^2 + 2x + 2) + C \\]","<b>8. L\u00e9p\u00e9s: Az inhomog\u00e9n \u00e1ltal\u00e1nos megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                Helyettes\u00edts\u00fck vissza a kapott \\( c(x) \\)-et az \\( y(x) = \\frac{c(x)}{x^4} \\) alakba:\r\n                \\[ y_{i,\\text{\u00e1}}(x) = \\frac{-e^{-x}(x^2 + 2x + 2) + C}{x^4} \\]\r\n                A tagokat k\u00fcl\u00f6nv\u00e1lasztva kapjuk a v\u00e9geredm\u00e9nyt:\r\n                \\[ y_{i,\\text{\u00e1}}(x) = \\frac{C}{x^4} - \\frac{x^2+2x+2}{x^4}e^{-x} \\quad (x \\neq 0, C \\in \\mathbb{R}) \\]"]},{"title":"6. feladat: \u00cdrjuk fel az \\( y' - \\frac{2}{x}y = \\frac{x^4}{1+x^2} \\quad (x \\neq 0) \\) differenci\u00e1legyenlet \u00e1ltal\u00e1nos megold\u00e1s\u00e1t.","wolfram":"solve y' - 2\/x * y = x^4 \/ (1 + x^2)","steps":["<b>1. L\u00e9p\u00e9s: Az egyenlet t\u00edpus\u00e1nak meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                Az egyenlet \\( y'(x) + g(x)y(x) = f(x) \\) alak\u00fa, ahol:\r\n                - \\( g(x) = -\\frac{2}{x} \\)\r\n                - \\( f(x) = \\frac{x^4}{1+x^2} \\)\r\n                Ez egy els\u0151rend\u0171 inhomog\u00e9n line\u00e1ris differenci\u00e1legyenlet.","<b>2. L\u00e9p\u00e9s: A homog\u00e9n r\u00e9sz megold\u00e1sa.<\/b><br>\r\n                El\u0151sz\u00f6r oldjuk meg a \\( y' - \\frac{2}{x}y = 0 \\) homog\u00e9n egyenletet. \r\n                Haszn\u00e1ljuk a \\( y_{h,\\text{\u00e1}}(x) = Ce^{-G(x)} \\) \u00f6sszef\u00fcgg\u00e9st, ahol \\( G(x) = \\int g(x) dx \\):\r\n                \\[ G(x) = \\int -\\frac{2}{x} dx = -2\\ln|x| = \\ln(x^{-2}) \\]\r\n                Behelyettes\u00edtve a k\u00e9pletbe:\r\n                \\[ y_{h,\\text{\u00e1}}(x) = C \\cdot e^{-\\ln(x^{-2})} = C \\cdot e^{\\ln(x^2)} = Cx^2 \\]","<b>3. L\u00e9p\u00e9s: Az \u00e1lland\u00f3 vari\u00e1l\u00e1s\u00e1nak m\u00f3dszere.<\/b><br>\r\n                Az inhomog\u00e9n egyenlet partikul\u00e1ris megold\u00e1s\u00e1t \\( y(x) = c(x) \\cdot x^2 \\) alakban keress\u00fck, ahol \\( c(x) \\) az ismeretlen vari\u00e1lt \u00e1lland\u00f3.","<b>4. L\u00e9p\u00e9s: A felt\u00e9telezett megold\u00e1s deriv\u00e1l\u00e1sa.<\/b><br>\r\n                Alkalmazzuk a szorzat-szab\u00e1lyt (\\( (uv)' = u'v + uv' \\)):\r\n                \\[ y'(x) = c'(x) \\cdot x^2 + c(x) \\cdot 2x \\]","<b>5. L\u00e9p\u00e9s: Behelyettes\u00edt\u00e9s az eredeti differenci\u00e1legyenletbe.<\/b><br>\r\n                \u00cdrjuk be \\( y \\)-t \u00e9s \\( y' \\)-et az \\( y' - \\frac{2}{x}y = \\frac{x^4}{1+x^2} \\) egyenletbe:\r\n                \\[ \\left( c'(x)x^2 + 2xc(x) \\right) - \\frac{2}{x} \\left( c(x)x^2 \\right) = \\frac{x^4}{1+x^2} \\]","<b>6. L\u00e9p\u00e9s: Egyszer\u0171s\u00edt\u00e9s \u00e9s \\( c'(x) \\) izol\u00e1l\u00e1sa.<\/b><br>\r\n                A \\( c(x) \\)-et tartalmaz\u00f3 tagok kiejtik egym\u00e1st (\\( 2xc(x) - 2xc(x) = 0 \\)), \u00edgy marad:\r\n                \\[ c'(x)x^2 = \\frac{x^4}{1+x^2} \\]\r\n                Osszunk le \\( x^2 \\)-tel (\\( x \\neq 0 \\) felt\u00e9tel mellett):\r\n                \\[ c'(x) = \\frac{x^2}{1+x^2} \\]","<b>7. L\u00e9p\u00e9s: Az ismeretlen \\( c(x) \\) meghat\u00e1roz\u00e1sa integr\u00e1l\u00e1ssal.<\/b><br>\r\n                Meg kell oldanunk a \\( c(x) = \\int \\frac{x^2}{1+x^2} \\, dx \\) integr\u00e1lt. \r\n                Alkalmazzunk egy algebrai tr\u00fckk\u00f6t a sz\u00e1ml\u00e1l\u00f3ban (adjunk hozz\u00e1 \u00e9s vonjunk ki egyet):\r\n                \\[ \\int \\frac{x^2 + 1 - 1}{x^2 + 1} \\, dx = \\int \\left( \\frac{x^2+1}{x^2+1} - \\frac{1}{x^2+1} \\right) \\, dx \\]\r\n                \\[ \\int \\left( 1 - \\frac{1}{1+x^2} \\right) \\, dx = x - \\text{arctg}(x) + C \\]","<b>8. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                Helyettes\u00edts\u00fck vissza a kapott \\( c(x) \\)-et a 3. l\u00e9p\u00e9sben felvett \\( y(x) = c(x)x^2 \\) alakba:\r\n                \\[ y_{i,\\text{\u00e1}}(x) = (x - \\text{arctg}(x) + C) \\cdot x^2 \\]\r\n                A z\u00e1r\u00f3jelet felbontva megkapjuk a v\u00e9geredm\u00e9nyt:\r\n                \\[ y_{i,\\text{\u00e1}}(x) = Cx^2 + x^3 - x^2\\text{arctg}(x) \\quad (x \\neq 0, C \\in \\mathbb{R}) \\]"]},{"title":"7. feladat: Oldjuk meg az \\( xy' = y(1 - \\ln y + \\ln x) \\quad (x > 0, y > 0) \\) differenci\u00e1legyenletet.","wolfram":"solve x*y' = y*(1 - log(y) + log(x))","steps":["<b>1. L\u00e9p\u00e9s: Az egyenlet el\u0151k\u00e9sz\u00edt\u00e9se \u00e9s a t\u00edpus felismer\u00e9se.<\/b><br>\r\n                Haszn\u00e1ljuk a logaritmus azonoss\u00e1g\u00e1t (\\( \\ln a - \\ln b = \\ln(a\/b) \\)), hogy az egyenletet \u00e1tl\u00e1that\u00f3bb form\u00e1ra hozzuk:\r\n                \\[ xy' = y(1 - (\\ln y - \\ln x)) \\implies xy' = y(1 - \\ln(y\/x)) \\]\r\n                Osszuk el mindk\u00e9t oldalt \\( x \\)-szel:\r\n                \\[ y' = \\frac{y}{x}(1 - \\ln(y\/x)) \\]\r\n                L\u00e1that\u00f3, hogy a jobb oldalon minden kifejez\u00e9s az \\( y\/x \\) ar\u00e1nyt\u00f3l f\u00fcgg, teh\u00e1t ez egy \\( y' = F(y\/x) \\) t\u00edpus\u00fa differenci\u00e1legyenlet.","<b>2. L\u00e9p\u00e9s: Megfelel\u0151 helyettes\u00edt\u00e9s bevezet\u00e9se.<\/b><br>\r\n                Az elm\u00e9let alapj\u00e1n vezess\u00fck be az \\( u(x) := \\frac{y(x)}{x} \\) helyettes\u00edt\u00e9st.\r\n                Ebb\u0151l k\u00f6vetkezik, hogy \\( y = u \\cdot x \\).","<b>3. L\u00e9p\u00e9s: A deriv\u00e1lt transzform\u00e1l\u00e1sa.<\/b><br>\r\n                Deriv\u00e1ljuk az \\( y = u \\cdot x \\) kifejez\u00e9st a szorzat-szab\u00e1ly szerint:\r\n                \\[ y' = u'x + u \\]\r\n                Helyettes\u00edts\u00fck vissza ezt \u00e9s az \\( u = y\/x \\) kifejez\u00e9st az 1. l\u00e9p\u00e9sben kapott egyenletbe:\r\n                \\[ u'x + u = u(1 - \\ln u) \\]","<b>4. L\u00e9p\u00e9s: Az \u00faj egyenlet rendez\u00e9se sz\u00e9tv\u00e1laszthat\u00f3 form\u00e1ra.<\/b><br>\r\n                Bontsuk fel a z\u00e1r\u00f3jelet a jobb oldalon:\r\n                \\[ u'x + u = u - u \\ln u \\]\r\n                Vonjunk ki \\( u \\)-t mindk\u00e9t oldalb\u00f3l:\r\n                \\[ u'x = -u \\ln u \\]\r\n                Ez m\u00e1r egy tiszta sz\u00e9tv\u00e1laszthat\u00f3 v\u00e1ltoz\u00f3j\u00fa differenci\u00e1legyenlet \\( u \\)-ra \u00e9s \\( x \\)-re.","<b>5. L\u00e9p\u00e9s: A v\u00e1ltoz\u00f3k sz\u00e9tv\u00e1laszt\u00e1sa.<\/b><br>\r\n                Rendezz\u00fck az \\( u \\) tagokat a bal oldalra, az \\( x \\) tagokat a jobb oldalra:\r\n                \\[ \\frac{1}{u \\ln u} du = -\\frac{1}{x} dx \\]","<b>6. L\u00e9p\u00e9s: Integr\u00e1l\u00e1s mindk\u00e9t oldalon.<\/b><br>\r\n                \\[ \\int \\frac{1}{u \\ln u} du = \\int -\\frac{1}{x} dx \\]\r\n                A bal oldali integr\u00e1lhoz vegy\u00fck \u00e9szre, hogy a sz\u00e1ml\u00e1l\u00f3 (\\( 1\/u \\)) a nevez\u0151ben l\u00e9v\u0151 \\( \\ln u \\) deriv\u00e1ltja (\\( \\int \\frac{f'}{f} = \\ln|f| \\)):\r\n                \\[ \\ln|\\ln u| = -\\ln|x| + C \\]","<b>7. L\u00e9p\u00e9s: Az \\( u \\) v\u00e1ltoz\u00f3 kifejez\u00e9se (Exponenci\u00e1l\u00e1s).<\/b><br>\r\n                Alkalmazzuk az exponenci\u00e1lis f\u00fcggv\u00e9nyt:\r\n                \\[ |\\ln u| = e^{-\\ln|x| + C} = e^{\\ln(1\/|x|)} \\cdot e^C = \\frac{k}{x} \\]\r\n                Mivel \\( k \\) tetsz\u0151leges konstans, elhagyhatjuk az abszol\u00fat\u00e9rt\u00e9ket:\r\n                \\[ \\ln u = \\frac{C}{x} \\]","<b>8. L\u00e9p\u00e9s: Visszahelyettes\u00edt\u00e9s \u00e9s a v\u00e9geredm\u00e9ny meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                Fejezz\u00fck ki \\( u \\)-t:\r\n                \\[ u = e^{\\frac{C}{x}} \\]\r\n                Mivel eredetileg \\( u = y\/x \\), \u00edgy:\r\n                \\[ \\frac{y}{x} = e^{\\frac{C}{x}} \\]\r\n                Szorozzunk \\( x \\)-szel a v\u00e9gs\u0151 explicit alak\u00e9rt:\r\n                \\[ y_{\\text{\u00e1}}(x) = x \\cdot e^{\\frac{C}{x}} \\quad (x \\in \\mathbb{R}^+, C \\in \\mathbb{R}) \\]\r\n                Ez pontosan megegyezik a feladatlapon szerepl\u0151 v\u00e9geredm\u00e9nnyel."]},{"title":"8. feladat: Oldjuk meg az \\( y' = \\frac{4}{2x - y} \\) differenci\u00e1legyenletet.","wolfram":"solve y' = 4 \/ (2x - y)","steps":["<b>1. L\u00e9p\u00e9s: A t\u00edpus azonos\u00edt\u00e1sa \u00e9s a strat\u00e9gia meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                Az egyenlet jobb oldala egy line\u00e1ris kifejez\u00e9st\u0151l, a \\( 2x - y \\)-t\u00f3l f\u00fcgg. Ez az elm\u00e9letben szerepl\u0151 \\( y' = F(ax + by + c) \\) t\u00edpus, ahol:\r\n                - \\( F(u) = \\frac{4}{u} \\)\r\n                - \\( a = 2, b = -1, c = 0 \\).","<b>2. L\u00e9p\u00e9s: A helyettes\u00edt\u00e9s bevezet\u00e9se.<\/b><br>\r\n                Vezess\u00fck be az \\( u(x) := 2x - y(x) \\) \u00faj v\u00e1ltoz\u00f3t.\r\n                Deriv\u00e1ljuk le mindk\u00e9t oldalt \\( x \\) szerint:\r\n                \\[ u' = 2 - y' \\]\r\n                Ebb\u0151l fejezz\u00fck ki \\( y' \\)-et az \u00faj v\u00e1ltoz\u00f3val:\r\n                \\[ y' = 2 - u' \\]","<b>3. L\u00e9p\u00e9s: Az egyenlet transzform\u00e1l\u00e1sa.<\/b><br>\r\n                Helyettes\u00edts\u00fck vissza \\( y' \\)-et \u00e9s a line\u00e1ris tagot az eredeti egyenletbe:\r\n                \\[ 2 - u' = \\frac{4}{u} \\]\r\n                Rendezz\u00fck az egyenletet \\( u' \\)-re:\r\n                \\[ u' = 2 - \\frac{4}{u} \\implies u' = \\frac{2u - 4}{u} \\]\r\n                Ez egy sz\u00e9tv\u00e1laszthat\u00f3 v\u00e1ltoz\u00f3j\u00fa differenci\u00e1legyenlet \\( u \\)-ra.","<b>4. L\u00e9p\u00e9s: Konstans megold\u00e1s keres\u00e9se.<\/b><br>\r\n                Vizsg\u00e1ljuk meg, mikor nulla a deriv\u00e1lt (\\( u' = 0 \\)):\r\n                \\[ 2u - 4 = 0 \\implies u = 2 \\]\r\n                Visszahelyettes\u00edtve \\( u = 2x - y \\):\r\n                \\[ 2x - y = 2 \\implies \\mathbf{y(x) = 2x - 2} \\]\r\n                Ellen\u0151rizz\u00fck: \\( y' = 2 \\), \u00e9s \\( \\frac{4}{2x - (2x - 2)} = \\frac{4}{2} = 2 \\). Ez teh\u00e1t egy \u00e9rv\u00e9nyes megold\u00e1s.","<b>5. L\u00e9p\u00e9s: A v\u00e1ltoz\u00f3k sz\u00e9tv\u00e1laszt\u00e1sa (\u00e1ltal\u00e1nos eset).<\/b><br>\r\n                Tegy\u00fck fel, hogy \\( u \\neq 2 \\), \u00e9s v\u00e1lasszuk sz\u00e9t a v\u00e1ltoz\u00f3kat:\r\n                \\[ \\frac{u}{2u - 4} \\, du = dx \\]\r\n                Emelj\u00fcnk ki 2-t a nevez\u0151b\u0151l:\r\n                \\[ \\frac{1}{2} \\cdot \\frac{u}{u - 2} \\, du = dx \\]","<b>6. L\u00e9p\u00e9s: Az integr\u00e1l el\u0151k\u00e9sz\u00edt\u00e9se \u00e9s elv\u00e9gz\u00e9se.<\/b><br>\r\n                Alkalmazzunk tr\u00fckk\u00f6t a bal oldalon: \\( u = (u - 2) + 2 \\).\r\n                \\[ \\frac{1}{2} \\int \\frac{(u - 2) + 2}{u - 2} \\, du = \\int dx \\]\r\n                \\[ \\frac{1}{2} \\int \\left( 1 + \\frac{2}{u - 2} \\right) du = \\int dx \\]\r\n                \\[ \\frac{1}{2} (u + 2 \\ln|u - 2|) = x + C \\]\r\n                A z\u00e1r\u00f3jelet felbontva:\r\n                \\[ \\frac{u}{2} + \\ln|u - 2| = x + C \\]","<b>7. L\u00e9p\u00e9s: Visszahelyettes\u00edt\u00e9s \u00e9s a v\u00e9gs\u0151 alak.<\/b><br>\r\n                \u00cdrjuk vissza az \\( u = 2x - y \\) kifejez\u00e9st:\r\n                \\[ \\frac{2x - y}{2} + \\ln|2x - y - 2| = x + C \\]\r\n                Ez a differenci\u00e1legyenlet \u00e1ltal\u00e1nos implicit megold\u00e1sa. A 4. l\u00e9p\u00e9sben tal\u00e1lt \\( y(x) = 2x - 2 \\) konstans megold\u00e1ssal egy\u00fctt kapjuk meg a teljes megold\u00e1shalmazt."]},{"title":"9. feladat: Az \\( u := y^5 \\) helyettes\u00edt\u00e9ssel oldjuk meg az \\( 5y^4y' - 3y^5 = e^{4x} + 1 \\) differenci\u00e1legyenletet, majd hat\u00e1rozzuk meg az \\( y(0) = 1 \\) kezdeti felt\u00e9telhez tartoz\u00f3 megold\u00e1st.","wolfram":"solve 5*y^4*y' - 3*y^5 = exp(4x) + 1, y(0)=1","steps":["<b>1. L\u00e9p\u00e9s: A helyettes\u00edt\u00e9s alkalmaz\u00e1sa \u00e9s a deriv\u00e1lt meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                A feladat r\u00f6gz\u00edti az \\( u(x) := y^5(x) \\) helyettes\u00edt\u00e9st. Deriv\u00e1ljuk le mindk\u00e9t oldalt \\( x \\) szerint a l\u00e1ncszab\u00e1ly alkalmaz\u00e1s\u00e1val:\r\n                \\[ u' = 5y^4 \\cdot y' \\]\r\n                Vegy\u00fck \u00e9szre, hogy az eredeti egyenlet els\u0151 tagja pontosan ez a kifejez\u00e9s.","<b>2. L\u00e9p\u00e9s: Az \u00faj line\u00e1ris egyenlet fel\u00edr\u00e1sa.<\/b><br>\r\n                Helyettes\u00edts\u00fck be \\( u \\)-t \u00e9s \\( u' \\)-et az eredeti egyenletbe:\r\n                \\[ u' - 3u = e^{4x} + 1 \\]\r\n                L\u00e1that\u00f3, hogy ez egy \\( u \\)-ra n\u00e9zve els\u0151rend\u0171 inhomog\u00e9n line\u00e1ris differenci\u00e1legyenlet, ahol \\( g(x) = -3 \\) \u00e9s \\( f(x) = e^{4x} + 1 \\).","<b>3. L\u00e9p\u00e9s: A homog\u00e9n r\u00e9sz megold\u00e1sa.<\/b><br>\r\n                Oldjuk meg az \\( u' - 3u = 0 \\) homog\u00e9n egyenletet.\r\n                \\[ \\frac{du}{u} = 3 dx \\implies \\ln|u| = 3x + C \\implies u_{h,\\text{\u00e1}}(x) = C \\cdot e^{3x} \\]","<b>4. L\u00e9p\u00e9s: Az \u00e1lland\u00f3 vari\u00e1l\u00e1sa.<\/b><br>\r\n                Keress\u00fck a partikul\u00e1ris megold\u00e1st \\( u(x) = c(x) \\cdot e^{3x} \\) alakban.\r\n                Deriv\u00e1lva: \\( u'(x) = c'(x)e^{3x} + 3c(x)e^{3x} \\).\r\n                Behelyettes\u00edtve az inhomog\u00e9n egyenletbe:\r\n                \\[ (c'e^{3x} + 3ce^{3x}) - 3(ce^{3x}) = e^{4x} + 1 \\]\r\n                Az egyszer\u0171s\u00edt\u00e9s ut\u00e1n:\r\n                \\[ c'(x)e^{3x} = e^{4x} + 1 \\implies c'(x) = \\frac{e^{4x} + 1}{e^{3x}} = e^x + e^{-3x} \\]","<b>5. L\u00e9p\u00e9s: Az ismeretlen \\( c(x) \\) meghat\u00e1roz\u00e1sa integr\u00e1l\u00e1ssal.<\/b><br>\r\n                \\[ c(x) = \\int (e^x + e^{-3x}) \\, dx = e^x - \\frac{1}{3}e^{-3x} + C \\]\r\n                \u00cdgy az \\( u \\) v\u00e1ltoz\u00f3ra vonatkoz\u00f3 \u00e1ltal\u00e1nos megold\u00e1s:\r\n                \\[ u(x) = \\left( e^x - \\frac{1}{3}e^{-3x} + C \\right)e^{3x} = e^{4x} - \\frac{1}{3} + Ce^{3x} \\]","<b>6. L\u00e9p\u00e9s: Visszahelyettes\u00edt\u00e9s \\( y \\)-ra.<\/b><br>\r\n                Mivel \\( u = y^5 \\), ez\u00e9rt:\r\n                \\[ y^5(x) = Ce^{3x} + e^{4x} - \\frac{1}{3} \\implies y_{\\text{\u00e1}}(x) = \\sqrt[5]{Ce^{3x} + e^{4x} - \\frac{1}{3}} \\]","<b>7. L\u00e9p\u00e9s: A kezdeti felt\u00e9tel (\\( y(0) = 1 \\)) alkalmaz\u00e1sa.<\/b><br>\r\n                Helyettes\u00edts\u00fck be az \\( x = 0, y = 1 \\) \u00e9rt\u00e9keket:\r\n                \\[ 1^5 = C \\cdot e^0 + e^0 - \\frac{1}{3} \\implies 1 = C + 1 - \\frac{1}{3} \\]\r\n                Ebb\u0151l kifejezve a konstanst: \\( C = \\frac{1}{3} \\).\r\n                A partikul\u00e1ris megold\u00e1s teh\u00e1t:\r\n                \\[ y_p(x) = \\sqrt[5]{\\frac{1}{3}e^{3x} + e^{4x} - \\frac{1}{3}} \\quad (x \\in \\mathbb{R}) \\]"]}];
+    const chapterId = 2;
+</script>
+
+<script src="script.js"></script>
+</body>
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=2 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+</html>

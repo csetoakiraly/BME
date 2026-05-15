@@ -1,0 +1,3623 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<!-- Mirrored from bsz2jegyzet.hu/bsz2/2.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:49:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <style>
+/* ============================================================
+   1. ALAPOK ÉS GLOBÁLIS BEÁLLÍTÁSOK
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&amp;display=swap');
+
+* { box-sizing: border-box; } /* Padding/Border fix */
+
+body { 
+    font-family: 'Inter', sans-serif; 
+    transition: background-color 0.3s, color 0.3s; 
+    line-height: 1.6;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Szövegtörés fix (ne lógjanak ki a képletek) */
+p, h1, h2, h3, h4, span {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Egyedi görgetősáv */
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+/* ============================================================
+   2. KOMPONENSEK (Navigáció, Gombok, Modálok)
+   ============================================================ */
+.nav-item { display: flex; flex-direction: column; width: 100%; text-align: left; padding: 1rem; border-radius: 0.75rem; border: 2px solid transparent; transition: all 0.2s; }
+.nav-item.active { border-color: #6366f1; background-color: #f5f3ff; color: #4338ca; } .dark .nav-item.active{background-color:#1e293b!important;border-color:#818cf8!important;color:#c7d2fe!important}html.dark .nav-item.active span{color:#c7d2fe!important}
+
+.fixed-btn-container { position: fixed !important; z-index: 1500 !important; }
+#beadoModal { z-index: 3000 !important; }
+#assistant-window { z-index: 2000 !important; }
+
+/* ============================================================
+   3. FOGALOMTÁR ÉS TOOLTIP
+   ============================================================ */
+.glossary-term {
+    color: inherit !important;
+    background-color: rgba(79, 70, 229, 0.1);
+    border-bottom: 2px dotted #818cf8;
+    border-radius: 4px;
+    padding: 0 4px;
+    cursor: help;
+    font-weight: 600;
+    display: inline;
+}
+
+#global-glossary-tooltip {
+    position: fixed !important;
+    display: none;
+    z-index: 100000;
+    background: #0f172a !important;
+    color: #ffffff !important;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255,255,255,0.2);
+    width: 280px; 
+    max-width: 90vw;
+}
+
+/* ============================================================
+   4. CUSTOM ELEMENTS (A tiszta HTML-hez)
+   ============================================================ */
+
+/* SZEKCIÓ FEJLÉC KOMPONENS */
+math-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+math-header .num-badge {
+    flex: none;
+    background-color: #10b981;
+    color: white;
+    font-weight: 900;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.5rem;
+}
+
+/* DINAMIKUS SZEKCIÓ FEJLÉC */
+math-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b; /* Slate-800 */
+    text-decoration: underline;
+    /* Itt a trükk: a PHP változót használjuk az aláhúzás színéhez is */
+    text-decoration-color: rgba(16, 185, 129, 0.3);
+    text-decoration-thickness: 4px;
+    text-underline-offset: 8px;
+}
+
+math-def, math-theorem, math-proof, math-example, math-lab, math-quiz {
+    display: block;
+    margin-bottom: 2.5rem;
+    border-radius: 1.25rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+/* DEFINÍCIÓ */
+math-def {
+    padding: 1.5rem;
+    background: #f0fdf4; /* Emerald-50 */
+    border: 1px solid #dcfce7; /* Emerald-100 */
+    border-left: 6px solid #10b981; /* Emerald-500 */
+    color: #334155;
+}
+
+math-def::before {
+    content: "DEFINÍCIÓ";
+    display: inline-block;
+    background: #dcfce7;
+    color: #065f46; /* Emerald-800 */
+    font-size: 0.6rem;
+    font-weight: 900;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.4rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+math-trivia {
+    display: block;
+    margin: 4rem 0;
+    padding: 2rem;
+    background: linear-gradient(to bottom right, rgba(248, 250, 252, 0.8), rgba(241, 245, 249, 0.8));
+    border-radius: 3rem;
+    border: 2px dashed #e2e8f0;
+}
+
+/* TÉTEL */
+math-theorem {
+    padding: 1.5rem;
+    background: #fffbeb;
+    border: 1px solid #fef3c7;
+    border-left: 6px solid #f59e0b;
+}
+math-theorem::before {
+    content: "TÉTEL";
+    display: inline-block;
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 0.6rem;
+    font-weight: 900;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.4rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+/* BIZONYÍTÁS (Visszafogottabb stílus) */
+math-proof {
+    padding: 1.5rem;
+    background: #fef2f2; /* Red-50 */
+    border: 1px solid #fee2e2; /* Red-100 */
+    border-left: 6px solid #ef4444; /* Red-500 */
+    color: #475569;
+}
+
+math-proof::before {
+    content: "BIZONYÍTÁS";
+    display: inline-block;
+    background: #fee2e2;
+    color: #991b1b; /* Red-800 */
+    font-size: 0.6rem;
+    font-weight: 900;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.4rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+/* PÉLDAFELADAT */
+math-example {
+    padding: 1.5rem;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+}
+math-example::before {
+    content: "PÉLDAFELADAT";
+    display: inline-block;
+    background: #e2e8f0;
+    color: #475569;
+    font-size: 0.6rem;
+    font-weight: 900;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.4rem;
+    margin-bottom: 1rem;
+}
+/* INTERAKTÍV LABOR STÍLUSA */
+math-lab {
+    display: block;
+    margin: 3rem 0;
+    padding: 2rem;
+    background-color: #0f172a; /* Slate-900: mélysötét kék */
+    color: #f1f5f9; /* Slate-100: majdnem fehér */
+    border-radius: 1.5rem;
+    border: 1px solid #1e293b;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.trivia-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.trivia-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.trivia-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================================
+   5. ÉJSZAKAI MÓD OVERRIDES
+   ============================================================ */
+html.dark body, html.dark aside, html.dark main { background-color: #0f172a !important; color: #f1f5f9 !important; }
+html.dark p, html.dark span, html.dark li, html.dark h1, html.dark h2, html.dark h3 { color: #f1f5f9 !important; }
+html.dark .mjx-chtml { filter: invert(1) hue-rotate(180deg) brightness(1.5) !important; }
+
+/* Dark mode az egyedi elemekhez */
+html.dark math-def { background: rgba(16, 185, 129, 0.05); border-color: #065f46; color: #f1f5f9; }
+html.dark math-header h2 { color: white; }
+html.dark .trivia-card { background: rgba(30, 41, 59, 0.6); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2); }
+html.dark math-trivia { background: linear-gradient(to bottom right, rgba(30, 41, 59, 0.4), rgba(15, 23, 42, 0.4)); border-color: rgba(71, 85, 105, 0.3); }
+html.dark math-theorem { background: rgba(245, 158, 11, 0.05); border-color: #78350f; }
+html.dark math-proof { background: rgba(239, 68, 68, 0.05); border-color: #991b1b; color: #f1f5f9; }
+html.dark math-example { background: rgba(255,255,255,0.02); border-color: #334155; }
+
+/* ============================================================
+   6. MOBIL ÉS RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+    #sidebar { transition: transform 0.3s; }
+    #sidebar.closed { transform: translateX(-100%); }
+    #sidebar.open { transform: translateX(0); }
+    main { padding-top: 80px !important; }
+}
+</style>    
+
+<script>
+    const themeColor = 'emerald';
+// TUDÁSBÁZIS (Már az eddigi 5.1-5.3 tartalommal is kiegészítve)
+const graphKB = [
+    // --- 1.1 ALAPFOGALMAK ---
+    { 
+        title: "Egyszerű gráf definíciója", 
+        keys: ["egyszerű gráf", "egyszeru graf", "gráf", "graf", "definíció", "v halmaz", "e halmaz"], 
+        ans: "Egy $G = (V, E)$ pár, ahol $V$ egy véges halmaz (csúcsok), $E$ pedig a $V$ kételemű részhalmazaiból álló halmaz (élek). Nem tartalmaz hurokélt vagy többszörös élet.", 
+        ref: "1.1", target: "section-1-1", color: "indigo" 
+    },
+
+    // --- 1.2 FOKSZÁMÖSSZEG ---
+    { 
+        title: "Fokszámösszeg-tétel (Handshaking Lemma)", 
+        keys: ["fokszámösszeg", "fokszam", "összeg", "élek száma", "Σ d(v)", "sum d(v)", "tétel"], 
+        ans: "Bármely gráfban a csúcsok fokszámainak összege megegyezik az élszám kétszeresével: $\\sum_{v \\in V(G)} d(v) = 2 \\cdot |E(G)|$. Ennek oka, hogy minden él két fokot ad az összeghez.", 
+        ref: "1.2", target: "section-1-2", color: "indigo" 
+    },
+    { 
+        title: "Hurokél és fokszám", 
+        keys: ["hurokél", "hurokel", "fokszám növelés"], 
+        ans: "A hurokél (ami egy csúcsot önmagával köt össze) kettővel növeli az adott csúcs fokszámát, és kettővel járul hozzá a fokszámösszeghez is.", 
+        ref: "1.2", target: "section-1-2", color: "indigo" 
+    },
+    { 
+        title: "Sakk-klub feladat (Holmes példa)", 
+        keys: ["sakk", "holmes", "hazudott", "páratlan összeg", "példa"], 
+        ans: "A feladatban a fokszámok összege 43 volt. Mivel a fokszámösszegnek mindig párosnak kell lennie ($2|E|$), Holmes tudta, hogy valaki tévedett.", 
+        ref: "1.2", target: "section-1-2-ex", color: "indigo" 
+    },
+
+    // --- 1.3-1.4 RÉSZGRÁFOK ---
+    { 
+        title: "Csúcstörlés és éltörlés", 
+        keys: ["csúcstörlés", "eltörlés", "törlés", "v-re illeszkedő élek"], 
+        ans: "Csúcstörlésnél a csúcs mellett az összes rá illeszkedő élet is elhagyjuk. Éltörlésnél csak az élet vesszük el, a végpontjai megmaradnak.", 
+        ref: "1.3", target: "section-1-3", color: "indigo" 
+    },
+    { 
+        title: "Részgráf és feszített részgráf", 
+        keys: ["részgráf", "feszített részgráf", " induced subgraph", "különbség"], 
+        ans: "A részgráf törlésekkel kapható meg. A feszített részgráf speciális: csak csúcsokat törlünk, és minden megmaradt csúcs közötti eredeti élet meg kell tartanunk.", 
+        ref: "1.4", target: "section-1-4", color: "indigo" 
+    },
+
+    // --- 1.5 KOMPLEMENTER ---
+    { 
+        title: "Komplementer gráf (Ḡ)", 
+        keys: ["komplementer", "vonal felett", "nem szomszédos", "ḡ"], 
+        ans: "A $G$ komplementere az a gráf, amelyben pontosan azok a csúcsok szomszédosak, amelyek $G$-ben nem voltak azok. Jelölése: $\\bar{G}$.", 
+        ref: "1.5", target: "section-1-5", color: "indigo" 
+    },
+    { 
+        title: "Fokszámok komplementerben", 
+        keys: ["d(v) + d̄(v)", "fokszám számítás", "n-1"], 
+        ans: "Egy $n$ csúcsú egyszerű gráfban egy csúcs foka az eredeti és a komplementer gráfban összesen $n-1$. Képlet: $d_G(v) + d_{\\bar{G}}(v) = n - 1$.", 
+        ref: "1.5", target: "section-1-5", color: "indigo" 
+    },
+
+    // --- 1.6 IZOMORFIA ---
+    { 
+        title: "Izomorfia definíciója", 
+        keys: ["izomorfia", "izomorf", "bijekció", "átrajzolható", "szerkezetileg azonos"], 
+        ans: "Két gráf izomorf ($G \\cong H$), ha létezik köztük egy olyan csúcs-hozzárendelés, amely megőrzi az élek számát a csúcspárok között. Lényegében ugyanaz a gráf, csak másképp rajzolva.", 
+        ref: "1.6", target: "section-1-6", color: "indigo" 
+    },
+    { 
+        title: "Izomorfia cáfolata (négyszög módszer)", 
+        keys: ["nem izomorf", "cáfolat", "négyszög", "körök hossza"], 
+        ans: "Két gráf nem izomorf, ha találsz bennük olyan szerkezeti különbséget, amit az átrajzolás nem változtat meg (pl. az egyikben van 4-es kör/négyszög, a másikban nincs).", 
+        ref: "1.6", target: "section-1-6-ex", color: "indigo" 
+    },
+
+    // --- 1.7-1.9 UTAL, SÉTÁK ---
+    { 
+        title: "Élsorozat, Séta és Út", 
+        keys: ["élsorozat", "séta", "út", "hierarchia", "különbség"], 
+        ans: "Élsorozat: csúcsok és élek váltakozó listája. Séta: olyan élsorozat, ahol minden él különböző. Út: olyan séta, ahol minden csúcs is különböző.", 
+        ref: "1.7", target: "section-1-7", color: "indigo" 
+    },
+    { 
+        title: "Páratlan fokszámú csúcsok tétele", 
+        keys: ["páratlan fokú", "út végpont", "elakadás"], 
+        ans: "Minden páratlan fokszámú csúcsból indul egy út, amely egy másik páratlan fokszámú csúcsban ér véget. Ez az 'elakadási' elvvel bizonyítható.", 
+        ref: "1.8", target: "section-1-8", color: "indigo" 
+    },
+    { 
+        title: "Utak tranzitivitása", 
+        keys: ["tranzitivitás", "összekapcsolás", "u-ból v-be", "v-ből w-be"], 
+        ans: "Ha létezik út $u$ és $v$ között, valamint $v$ és $w$ között, akkor létezik út $u$ és $w$ között is (az élsorozat rövidítésével).", 
+        ref: "1.9", target: "section-1-9", color: "indigo" 
+    },
+
+    // --- 1.10-1.12 ÖSSZEFÜGGŐSÉG ÉS KOMPONENSEK ---
+    { 
+        title: "Összefüggő gráf", 
+        keys: ["összefüggő", "elérhető", "út létezik"], 
+        ans: "A gráf összefüggő, ha bármely két különböző csúcsa között létezik út.", 
+        ref: "1.10", target: "section-1-10", color: "indigo" 
+    },
+    { 
+        title: "Összefüggőség és fokszám (Példa)", 
+        keys: ["100 csúcs", "d(v)=66", "legalább 33", "skatulyaelv"], 
+        ans: "Ha $d(v) + d(w) \geq n-1$, akkor a skatulya-elv miatt kell lennie közös szomszédjuknak, így a gráf összefüggő lesz.", 
+        ref: "1.11", target: "section-1-11", color: "indigo" 
+    },
+    { 
+        title: "Összefüggő komponens", 
+        keys: ["komponens", "elérhető csúcsok", "sziget"], 
+        ans: "Egy maximális összefüggő részgráf. Minden csúcs pontosan egy komponensbe tartozik, és a komponensek maguk is összefüggőek.", 
+        ref: "1.12", target: "section-1-12", color: "indigo" 
+    },
+
+    // --- 1.13 KÖRÖK ---
+    { 
+        title: "Körséta és Kör", 
+        keys: ["körséta", "kör", "zárt élsorozat", "visszatér"], 
+        ans: "Körséta: olyan séta, ami visszatér a kezdőpontba ($v_0 = v_k$). Kör: olyan pozitív hosszúságú körséta, ahol a közbülső csúcsok mind különbözők.", 
+        ref: "1.13", target: "section-1-13", color: "indigo" 
+    },
+    { 
+    title: "Szélességi bejárás (BFS)", 
+    keys: ["bfs", "szélességi bejárás", "szélességi keresés", "lépésszám", "algoritmus"], 
+    ans: "A BFS egy gráfbejárási algoritmus, amely egy adott csúcsból indulva szintekre osztja a gráfot. Segítségével meghatározható a legrövidebb út hossza. Lépésszáma arányos a csúcsok és élek számának összegével: $O(V+E)$. [ref: 1.1]", 
+    ref: "1.1", target: "section-1-1", color: "indigo" 
+},
+{ 
+    title: "Élsorozat rövidítése úttá", 
+    keys: ["rövidítés", "élsorozatból út", "ciklus kivágása", "bizonyítás"], 
+    ans: "Ha egy élsorozat nem út (vagyis van benne ismétlődő csúcs), akkor az ismétlődő csúcsok közötti köröket 'kivágva' az élsorozat hossza csökken. Ezt ismételve végül egy utat kapunk. [ref: 1.8]", 
+    ref: "1.8", target: "section-1-8", color: "indigo" 
+},
+{ 
+    title: "Élek száma G-ben és komplementerében", 
+    keys: ["élszám összege", "komplementer élek", "n alatt a 2"], 
+    ans: "Mivel $G$ és $\\bar{G}$ élei együtt kiadják az $n$ csúcsú teljes gráf összes élét, ezért $|E(G)| + |E(\\bar{G})| = \\binom{n}{2}$. [ref: 1.5]", 
+    ref: "1.5", target: "section-1-5", color: "indigo" 
+},
+{ 
+    title: "Összefüggőség bizonyítása komponensmérettel", 
+    keys: ["ellentmondás", "túl nagy komponens", "méret alapú bizonyítás"], 
+    ans: "Ha két feltételezett komponens csúcsszámainak összege meghaladja a gráf összes csúcsának számát ($|V(K_1)| + |V(K_2)| > n$), akkor a két komponensnek nem lehetnek különálló halmazai, tehát a gráf csak összefüggő lehet. [ref: 1.12]", 
+    ref: "1.12", target: "section-1-12-ex-2", color: "indigo" 
+},
+{ 
+    title: "Összefoglaló Kvíz (1. fejezet)", 
+    keys: ["kvíz", "teszt", "ismétlés", "ellenőrzés"], 
+    ans: "A fejezet végén található interaktív kvíz segítségével ellenőrizheted, mennyire sajátítottad el a fokszámösszeg, a komplementerek és az összefüggőség alapjait. [ref: 1.14]", 
+    ref: "1.14", target: "section-1-14", color: "indigo" 
+},
+    // --- 2.1 A FA DEFINÍCIÓJA ---
+    { 
+        title: "Fa definíciója", 
+        keys: ["fa", "fának", "fák", "körmentes", "összefüggő", "definíció"], 
+        ans: "Az $F$ gráfot fának nevezzük, ha összefüggő és nem tartalmaz kört. Ez a két szigorú feltétel határozza meg a fa szerkezetét.", 
+        ref: "2.1", target: "section-2-1", color: "emerald" 
+    },
+
+    // --- 2.2 LEVELEK ---
+    { 
+        title: "Levelek fákban (foka egy)", 
+        keys: ["levél", "levelek", "foka egy", "elsőfokú csúcs", "végpont"], 
+        ans: "Ha $F$ egy legalább két csúcsú fa, akkor tartalmaz legalább két olyan csúcsot, amiknek a foka egy. Ezeket hívjuk leveleknek.", 
+        ref: "2.2", target: "section-2-2", color: "emerald" 
+    },
+    { 
+        title: "Levelek létezésének bizonyítása", 
+        keys: ["leghosszabb út", "bizonyítás", "miért van levél"], 
+        ans: "Vegyünk egy leghosszabb utat a fában. Ennek végpontjai csak levelek lehetnek, mert ha lenne más szomszédjuk, akkor vagy az út lenne hosszabb, vagy kört zárnának be.", 
+        ref: "2.2", target: "section-2-2", color: "emerald" 
+    },
+
+    // --- 2.3 ÉLSZÁM ÉS CSÚCSSZÁM ---
+    { 
+        title: "A fa élszáma ($m = n - 1$)", 
+        keys: ["élek száma", "élszám", "hány éle van", "n-1", "m=n-1"], 
+        ans: "Minden $n$ csúcsú fának pontosan $m = n - 1$ éle van. Ez egy alapvető összefüggés a fákra vonatkozóan.", 
+        ref: "2.3", target: "section-2-3", color: "emerald" 
+    },
+    { 
+        title: "Összefüggőség és élszám", 
+        keys: ["összefüggő", "legalább n-1", "m >= n-1"], 
+        ans: "Ha egy $n$ csúcsú gráf összefüggő, akkor legalább $n-1$ éle van ($m \\geq n-1$). Ha pontosan $n-1$, akkor az egy fa.", 
+        ref: "2.3", target: "section-2-3", color: "emerald" 
+    },
+    { 
+        title: "Körmentesség és élszám", 
+        keys: ["körmentes", "legfeljebb n-1", "m <= n-1"], 
+        ans: "Ha egy $n$ csúcsú gráf körmentes, akkor legfeljebb $n-1$ éle lehet ($m \\leq n-1$).", 
+        ref: "2.3", target: "section-2-3", color: "emerald" 
+    },
+    { 
+        title: "Példa: P4 út keresése", 
+        keys: ["kétféle fokszám", "ugyanannyiszor", "példa", "k=2"], 
+        ans: "Ha egy fa csúcsainak fokszámai között csak az 1 és 2 fordul elő ugyanannyiszor, akkor az egy 4 csúcsú fa (három hosszúságú út, $P_4$).", 
+        ref: "2.3", target: "section-2-3-ex", color: "emerald" 
+    },
+
+    // --- 2.4-2.5 FESZÍTŐFA ---
+    { 
+        title: "Feszítőfa fogalma", 
+        keys: ["feszítőfa", "feszitofa", "tartalmazza az összes csúcsot"], 
+        ans: "A $G$ gráfnak az $F$ részgráfja feszítőfa, ha $F$ fa és tartalmazza $G$ összes csúcsát ($V(G) = V(F)$).", 
+        ref: "2.4", target: "section-2-4", color: "emerald" 
+    },
+    { 
+        title: "Feszítőfa létezésének feltétele", 
+        keys: ["mikor van feszítőfa", "feltétel", "létezés"], 
+        ans: "A $G$ gráfnak akkor és csak akkor létezik feszítőfája, ha $G$ összefüggő.", 
+        ref: "2.5", target: "section-2-5", color: "emerald" 
+    },
+    { 
+        title: "Csúcstörlés és összefüggőség", 
+        keys: ["melyik csúcs törölhető", "egyben marad", "kritikus csúcs"], 
+        ans: "Minden összefüggő gráfból törölhető legalább egy csúcs úgy, hogy összefüggő maradjon. Ez a csúcs egy feszítőfa bármelyik levele.", 
+        ref: "2.5", target: "section-2-5-ex", color: "emerald" 
+    },
+
+    // --- 2.6-2.7 MINIMÁLIS FESZÍTŐFA ÉS KRUSKAL ---
+    { 
+        title: "Minimális összsúlyú feszítőfa (MST)", 
+        keys: ["minimális", "legkisebb súlyú", "mst"], 
+        ans: "Súlyozott gráfban az a feszítőfa, amelynek az élsúly-összege a lehető legkisebb.", 
+        ref: "2.6", target: "section-2-6", color: "emerald" 
+    },
+    { 
+        title: "Kruskal-algoritmus (Mohó módszer)", 
+        keys: ["kruskal", "mohó algoritmus", "moho", "algoritmus leírása"], 
+        ans: "Építsük a fát a legkisebb súlyú élekkel: 1. Rendezés súly szerint, 2. Beválogatás, ha az él nem zár be kört az eddigiekkel.", 
+        ref: "2.7", target: "section-2-7", color: "emerald" 
+    },
+    { 
+        title: "Kruskal algoritmus leállása", 
+        keys: ["mikor áll meg", "leállás"], 
+        ans: "Az algoritmus akkor áll meg, amikor pontosan $n-1$ élet válogattunk be, hiszen ekkor jön létre a feszítőfa.", 
+        ref: "2.7", target: "section-2-7", color: "emerald" 
+    },
+    // --- 2.5 BIZONYÍTÁS ÉS KONSTRUKCIÓ ---
+    { 
+        title: "Feszítőfa építése (Bizonyítási eljárás)", 
+        keys: ["hogyan épül a feszítőfa", "komponensek egyesítése", "különböző komponens"], 
+        ans: "Egy összefüggő gráfban mindig választható olyan él, amely két korábban nem összekötött komponenst egyesít. Ezt ismételve a komponensek száma $n$-ről 1-re csökken, és végül egy feszítőfát kapunk. [ref: 2.5]", 
+        ref: "2.5", target: "section-2-5", color: "emerald" 
+    },
+
+    // --- 2.6 A MOHÓ STRATÉGIA BIZONYÍTÁSA ---
+    { 
+        title: "Miért működik a mohó algoritmus? (Bizonyítás)", 
+        keys: ["indirekt bizonyítás", "élcsere", "miért minimális"], 
+        ans: "A bizonyítás indirekt: ha lenne jobb megoldás a mohónál, egy élcserével (az első eltérő élnél) mutatható egy olyan fa, amely nem nehezebb, de közelebb áll a mohó választáshoz. Ez ellentmondáshoz vezet. [ref: 2.6]", 
+        ref: "2.6", target: "section-2-6", color: "emerald" 
+    },
+
+    // --- 2.8 ÖSSZEFOGLALÓ KVÍZ ---
+    { 
+        title: "Fák elmélete kvíz", 
+        keys: ["kvíz", "teszt", "ismétlés", "ellenőrzés"], 
+        ans: "A 2. fejezet végén található összefoglaló kvíz segítségével letesztelheted a tudásodat a fák definíciójáról, a levelekről és a Kruskal-algoritmusról. [ref: 2.8]", 
+        ref: "2.8", target: "section-2-8", color: "emerald" 
+    },
+    // --- 3.1-3.2 EULER-VONALAK ---
+    { 
+        title: "Euler-séta és Euler-körséta", 
+        keys: ["euler-séta", "euler-séta", "euler-kör", "minden él", "összes él", "definíció"], 
+        ans: "Az Euler-séta a gráf minden élét pontosan egyszer tartalmazza. Ha a séta zárt (visszatér a kezdőpontba), akkor Euler-körsétának nevezzük.", 
+        ref: "3.1", target: "section-3-1", color: "blue" 
+    },
+    { 
+        title: "Az Euler-tétel (Létezés feltétele)", 
+        keys: ["euler-tétel", "mikor van euler-kör", "páros fokszám", "feltétel"], 
+        ans: "Összefüggő gráfban: 1. Euler-körséta akkor és csak akkor van, ha minden csúcs foka páros. 2. Euler-séta akkor és csak akkor van, ha legföljebb két páratlan fokú csúcs van.", 
+        ref: "3.2", target: "section-3-2", color: "blue" 
+    },
+    { 
+        title: "Salsa találkozó feladat", 
+        keys: ["salsa", "tánc", "fiúk", "lányok", "6 ismerős", "példa"], 
+        ans: "A 10 fiú és 10 lány alkotta gráf összefüggő és mindenki foka 6 (páros), így az Euler-tétel miatt mindenki táncolhat minden ismerősével pontosan egyszer.", 
+        ref: "3.4", target: "section-3-4-ex", color: "blue" 
+    },
+
+    // --- 3.3-3.4 ALGORITMUSOK ---
+    { 
+        title: "Vaktában sétálás lemmája", 
+        keys: ["vaktában", "elakadás", "lemma", "v-ből v-be"], 
+        ans: "Ha minden csúcs foka páros, akkor egy tetszőleges v csúcsból induló, éleket nem ismétlő séta csak v-ben akadhat el, mert minden belépéshez (1 él) marad egy kilépő él is.", 
+        ref: "3.3", target: "section-3-3", color: "blue" 
+    },
+    { 
+        title: "Hierholzer-algoritmus", 
+        keys: ["hierholzer", "algoritmus", "hogyan keresünk euler-kört", "beszúrás"], 
+        ans: "Euler-kör keresésére szolgál: vaktában köröket keresünk, majd ezeket a közös csúcsaiknál fogva 'bevarrjuk' a fő sétába, amíg az összes élet el nem használjuk.", 
+        ref: "3.4", target: "section-3-4", color: "blue" 
+    },
+
+    // --- 3.5-3.6 HAMILTON-VONALAK ---
+    { 
+        title: "Hamilton-út és Hamilton-kör", 
+        keys: ["hamilton", "minden csúcs", "összes csúcs", "pontosan egyszer", "definíció"], 
+        ans: "Hamilton-út: a gráf minden csúcsát pontosan egyszer érintő út. Hamilton-kör: a gráf minden csúcsát pontosan egyszer érintő kör.", 
+        ref: "3.5", target: "section-3-5", color: "blue" 
+    },
+    { 
+        title: "Hamilton-vonalak szükséges feltétele", 
+        keys: ["szükséges feltétel", "komponensek száma", "k csúcs törlése"], 
+        ans: "Ha a gráfban van Hamilton-kör, akkor $k$ csúcs törlése után a gráf legföljebb $k$ komponensre eshet szét. Hamilton-út esetén legföljebb $k+1$ komponens maradhat.", 
+        ref: "3.6", target: "section-3-6", color: "blue" 
+    },
+    { 
+        title: "Lólépés / Sakktábla feladat", 
+        keys: ["sakktábla", "3x5", "ló", "lólépés", "bejárható-e", "példa"], 
+        ans: "A 3x5-ös tábla nem járható be lóval minden mezőt érintve, mert $k=5$ csúcs törlésével 7 komponens keletkezik, ami több, mint a Hamilton-úthoz megengedett $k+1=6$.", 
+        ref: "3.6", target: "section-3-6-ex", color: "blue" 
+    },
+
+    // --- 3.7-3.9 ELÉGSÉGES FELTÉTELEK ---
+    { 
+        title: "Dirac-tétel", 
+        keys: ["dirac", "n/2", "elégséges", "fokszám feltétel"], 
+        ans: "Ha egy $n \\geq 3$ csúcsú egyszerű gráfban minden csúcs foka legalább $n/2$, akkor a gráfban biztosan van Hamilton-kör.", 
+        ref: "3.7", target: "section-3-7", color: "blue" 
+    },
+    { 
+        title: "Ore-tétele", 
+        keys: ["ore", "nemszomszédos", "fokszámösszeg", "elégséges"], 
+        ans: "Ha egy $n \\geq 3$ csúcsú egyszerű gráfban bármely két nemszomszédos csúcs fokszámösszege legalább $n$ ($d(u)+d(v) \\geq n$), akkor van Hamilton-kör.", 
+        ref: "3.8", target: "section-3-8", color: "blue" 
+    },
+    { 
+        title: "Ötöslottó példa", 
+        keys: ["lottó", "ötöslottó", "szelvény", "nincs közös szám", "példa"], 
+        ans: "Az összes szelvény elrendezhető sorba közös szám nélkül, mert a gráfban (ahol az élek a közös szám hiányát jelzik) a fokszám ($d \\approx 32M$) nagyobb, mint $n/2$ ($22M$), így van Hamilton-út.", 
+        ref: "3.9", target: "section-3-9", color: "blue" 
+    },
+    { 
+    title: "A Hierholzer-algoritmus működése", 
+    keys: ["hierholzer lépései", "increasing step", "bevarrás", "kör beszúrás"], 
+    ans: "Az algoritmus során vaktában keresünk egy körsétát ($Q$), majd ezt 'bevarrjuk' (beszúrjuk) a már meglévő $P$ sétába egy közös csúcsnál. Ezt addig ismételjük, amíg minden élet fel nem használunk. [ref: 3.4]", 
+    ref: "3.4", target: "section-3-4", color: "blue" 
+},
+{ 
+    title: "Ore-tétel bizonyítási elve", 
+    keys: ["ore bizonyítás", "skatulya-elv ore", "permutáció javítása", "pi sorrend"], 
+    ans: "A bizonyítás a csúcsok egy $\\pi$ sorrendjét tartja karban. Ha ez nem Hamilton-kör, a skatulya-elv és a fokszámfeltétel ($d(u)+d(v) \\geq n$) garantálja, hogy létezik olyan csomópont, ahol a sorrend megfordításával növelhető a szomszédos élek száma a körben. [ref: 3.8]", 
+    ref: "3.8", target: "section-3-8", color: "blue" 
+},
+{ 
+    title: "Összefüggőség és Euler-vonalak", 
+    keys: ["nem összefüggő euler", "mikor nincs euler hiába páros", "izolált él"], 
+    ans: "Az Euler-tétel egyik alapfeltétele az összefüggőség. Ha a gráf komponensekre esik szét (melyek között van legalább egy él), akkor hiába páros minden fokszám, nem járható be a gráf egyetlen Euler-vonallal. [ref: 3.4-ex-2]", 
+    ref: "3.2", target: "section-3-2", color: "blue" 
+},
+    // --- 4.1-4.2 PÁROS GRÁFOK ---
+    { 
+        title: "Páros gráf definíciója", 
+        keys: ["páros gráf", "paros graf", "diszjunkt halmaz", "partíció", "nincs halmazon belüli él"], 
+        ans: "A $G$ gráf páros, ha csúcshalmaza felbontható két diszjunkt halmazra ($A$ és $B$) úgy, hogy minden él egy $A$-beli és egy $B$-beli csúcsot köt össze. Jelölése: $G = (A,B;E)$.", 
+        ref: "4.1", target: "section-4-1", color: "yellow" 
+    },
+    { 
+        title: "Párosság és páratlan körök tétele", 
+        keys: ["páratlan kör", "mikor páros a gráf", "feltétel", "tétel"], 
+        ans: "Egy gráf akkor és csak akkor páros, ha nem tartalmaz páratlan hosszú kört. Ez BFS algoritmussal is bizonyítható a távolságok paritása alapján.", 
+        ref: "4.2", target: "section-4-2", color: "yellow" 
+    },
+
+    // --- 4.3-4.5 SZÍNEZÉS ÉS MOHÓ ALGORITMUS ---
+    { 
+        title: "Kromatikus szám (\\chi)", 
+        keys: ["kromatikus szám", "chi", "k színnel színezhető", "legkevesebb szín", "definíció"], 
+        ans: "A legkisebb $k$ szám, amivel a gráf csúcsai kiszínezhetők úgy, hogy bármely két szomszédos csúcs színe különböző legyen. Jele: $\\chi(G)$.", 
+        ref: "4.3", target: "section-4-3", color: "yellow" 
+    },
+    { 
+        title: "Mohó színezés korlátai", 
+        keys: ["mohó színezés", "moho", "rossz sorrend", "k szín", "ellenpélda"], 
+        ans: "Bár a mohó színezés gyors, nem mindig optimális. Létezik olyan sorrend, ahol egy 2-színezhető (páros) gráfra is $k$ színt használ az eljárás.", 
+        ref: "4.4", target: "section-4-4", color: "yellow" 
+    },
+    { 
+        title: "Színezés és maximális fokszám korlát", 
+        keys: ["maximális fokszám", "delta", "\\Delta", "felső korlát", "tétel"], 
+        ans: "Minden hurokélmentes gráfra igaz, hogy $\\chi(G) \\leq \\Delta(G) + 1$, ahol $\\Delta(G)$ a gráf maximális fokszáma.", 
+        ref: "4.5", target: "section-4-5", color: "yellow" 
+    },
+
+    // --- 4.6-4.7 KLIKKSZÁM ---
+    { 
+        title: "Klikkszám (\\omega)", 
+        keys: ["klikkszám", "klikk", "omega", "\\omega", "teljes részgráf"], 
+        ans: "A gráfban található legnagyobb olyan csúcshalmaz mérete, amelyben mindenki mindenkivel szomszédos (teljes részgráf). Jele: $\\omega(G)$.", 
+        ref: "4.6", target: "section-4-6", color: "yellow" 
+    },
+    { 
+        title: "Klikkszám és Kromatikus szám kapcsolata", 
+        keys: ["reláció", "összefüggés", "omega és chi", "\\omega \\leq \\chi"], 
+        ans: "Minden gráfra igaz, hogy $\\omega(G) \\leq \\chi(G)$, hiszen egy klikk minden csúcsának különböző színt kell kapnia a szomszédság miatt.", 
+        ref: "4.7", target: "section-4-7", color: "yellow" 
+    },
+    { 
+        title: "Számhalmazok kromatikus száma (Feladat)", 
+        keys: ["1-1000", "különbség legfeljebb 9", "lottóhoz hasonló", "példa"], 
+        ans: "Az 1-1000 közötti számoknál, ahol az él a $\\leq 9$ különbség, a klikkszám 10 (pl. {1..10}), a színezés is 10 (maradékok szerint), így $\\chi(G) = 10$.", 
+        ref: "4.7", target: "section-4-7-ex", color: "yellow" 
+    },
+
+    // --- 4.8-4.10 INTERVALLUMGRÁFOK ---
+    { 
+        title: "Intervallumgráf definíciója", 
+        keys: ["intervallumgráf", "számegyenes", "metsző intervallumok", "reprezentáció"], 
+        ans: "Olyan gráf, amelynek csúcsai a számegyenes intervallumainak felelnek meg, és két csúcs pontosan akkor szomszédos, ha a megfelelő intervallumok metszik egymást.", 
+        ref: "4.8", target: "section-4-8", color: "yellow" 
+    },
+    { 
+        title: "Intervallumgráf optimális színezése", 
+        keys: ["bal oldali végpont", "optimális stratégia", "mohó színezés intervallumra"], 
+        ans: "Ha az intervallumokat a bal oldali végpontjuk szerinti növekvő sorrendben színezzük mohó módon, akkor az eljárás garantáltan optimális ($\\chi$) színszámot ad.", 
+        ref: "4.9", target: "section-4-9", color: "yellow" 
+    },
+    { 
+        title: "Intervallumgráfok tökéletessége", 
+        keys: ["tökéletes gráf", "omega egyenlő chi", "\\omega = \\chi"], 
+        ans: "Intervallumgráfok esetén a klikkszám és a kromatikus szám mindig megegyezik: $\\omega(G) = \\chi(G)$.", 
+        ref: "4.10", target: "section-4-10", color: "yellow" 
+    },
+    { 
+        title: "C4 nem intervallumgráf (Cáfolat)", 
+        keys: ["négypontú kör", "c4", "miért nem intervallumgráf", "példa"], 
+        ans: "A $C_4$ (négypontú kör) nem intervallumgráf, mert az intervallumok metszési kényszerei miatt olyan éleknek is be kellene jönniük, amik nincsenek a körben.", 
+        ref: "4.8", target: "section-4-8-ex", color: "yellow" 
+    },
+    // --- 4.2 BIZONYÍTÁS RÉSZLETEK ---
+    { 
+        title: "BFS és a páros gráfok kapcsolata", 
+        keys: ["bfs", "szélességi keresés", "paritás", "távolság", "bizonyítás"], 
+        ans: "A párosság bizonyítható BFS-sel: ha a kezdőponttól mért távolságok alapján két csoportba osztjuk a csúcsokat (páros és páratlan távolságúak), és nincs köztük ellentmondásos él, a gráf páros. Ha van azonos szinten él, akkor páratlan kör keletkezik. [ref: 4.2]", 
+        ref: "4.2", target: "section-4-2", color: "yellow" 
+    },
+
+    // --- 4.4 MOHÓ ALGORITMUS EXTRA ---
+    { 
+        title: "Mohó színezés rossz sorrendje", 
+        keys: ["rossz sorrend", "mohó hiba", "színezés pazarol", "ellenpélda"], 
+        ans: "Létezik olyan páros gráf ($2k$ csúccsal), ahol egy speciális sorrend miatt a mohó algoritmus $k$ színt használ a szükséges 2 helyett. Ez bizonyítja, hogy az algoritmus nem optimális tetszőleges sorrendre. [ref: 4.4]", 
+        ref: "4.4", target: "section-4-4", color: "yellow" 
+    },
+
+    // --- 4.7 EXAMPLES (HIÁNYZÓ PÉLDÁK) ---
+    { 
+        title: "6.12. feladat megoldása", 
+        keys: ["6.12", "példa gráf", "omega chi kiszámítása"], 
+        ans: "A 6.12 feladat bal oldali gráfjánál $\\omega(G)=4$ (klikk: {a,b,e,f}) és $\\chi(G)=4$ (színezhető 4 színnel). A jobb oldali gráfnál $\\omega(G)=2$ (nincs háromszög), de $\\chi(G)=3$ (van benne páratlan kör). [ref: 4.7]", 
+        ref: "4.7", target: "section-4-7-ex", color: "yellow" 
+    },
+
+    // --- 4.9 INTERVALLUMGRÁF STRATÉGIA ---
+    { 
+        title: "Miért a bal oldali végpont szerint rendezünk?", 
+        keys: ["bal oldali végpont", "miért kell rendezni", "intervallum optimális"], 
+        ans: "Ha bal oldali végpont szerint haladunk, a mohó algoritmus garantálja az optimalitást. Ez azért van, mert ha egy csúcsnál új színt kell bevezetni, az összes korábbi színű intervallum metszi egymást egy pontban, így klikket alkotnak. [ref: 4.9]", 
+        ref: "4.9", target: "section-4-9", color: "yellow" 
+    },
+
+    // --- 4.11 KVÍZ ---
+    { 
+        title: "Kromatikus kihívás (Kvíz)", 
+        keys: ["kvíz", "teszt", "összefoglalás", "színezés kvíz"], 
+        ans: "A 4. fejezet végén található interaktív kártyás kvíz segít ellenőrizni a tudásodat a színezés, klikkek és intervallumgráfok témakörében. [ref: 4.11]", 
+        ref: "4.11", target: "section-4-11", color: "yellow" 
+    },
+    // --- 5. FEJEZET: PÁROSÍTÁSOK ---
+
+// 5.1 ALAPFOGALOM
+{ 
+    title: "Párosítás (Matching) definíciója", 
+    keys: ["párosítás", "parositas", "matching", "független élek"], 
+    ans: "Egy gráf éleinek egy részhalmaza párosítás, ha a halmazban semelyik két élnek nincs közös végpontja. Azaz a párosítás élei csúcsdiszjunktak.", 
+    ref: "5.1", target: "section-5-1", color: "rose" 
+},
+
+// 5.2 MAXIMÁLIS VS MAXIMUM
+{ 
+    title: "Maximális vs. Maximum párosítás", 
+    keys: ["maximális", "maximum", "legnagyobb", "bővíthető"], 
+    ans: "Maximális párosítás: aminek nem részhalmaza egy másik párosítás (tovább nem bővíthető). Maximum párosítás: a gráfban lehetséges legtöbb élet tartalmazó párosítás.", 
+    ref: "5.2", target: "section-5-2", color: "rose" 
+},
+{ 
+    title: "Párosítási szám (ν)", 
+    keys: ["párosítási szám", "nu", "ν", "maximális párosítás mérete"], 
+    ans: "A gráfban található legnagyobb párosítás éleinek száma. Jelölése: $\\nu(G)$.", 
+    ref: "5.2", target: "section-5-2", color: "rose" 
+},
+
+// 5.3 PÁROSÍTÁS ÉS LEFOGÓ PONTHALMAZ
+{ 
+    title: "Lefogó ponthalmaz definíciója", 
+    keys: ["lefogó ponthalmaz", "vertex cover", "tau", "τ", "minden élet lefed"], 
+    ans: "Csúcsok egy halmaza lefogó ponthalmaz, ha a gráf minden éle illeszkedik a halmaz legalább egy csúcsára. A legkisebb ilyen halmaz mérete a lefogó pontszám: $\\tau(G)$.", 
+    ref: "5.3", target: "section-5-3", color: "rose" 
+},
+{ 
+    title: "ν(G) ≤ τ(G) tétel", 
+    keys: ["reláció", "összefüggés", "nu és tau", "nu <= tau"], 
+    ans: "Bármely gráfra igaz, hogy a maximális párosítás éleinek száma nem lehet nagyobb a minimális lefogó ponthalmaz csúcsainak számánál: $\\nu(G) \\leq \\tau(G)$.", 
+    ref: "5.3", target: "section-5-3", color: "rose" 
+},
+{ 
+    title: "Miért igaz a ν(G) ≤ τ(G)?", 
+    keys: ["bizonyítás", "levezetés", "elmélet"], 
+    ans: "Mivel a lefogó ponthalmaznak minden élet le kell fognia, a párosítás független éleit is. De mivel a párosítás élei nem érintkeznek, minden él lefogásához külön csúcs kell a lefogó halmazból.", 
+    ref: "5.3", target: "section-5-3-proof", color: "rose" 
+},
+// --- 5.3 PÁROSÍTÁS ÉS LEFOGÓ PONTHALMAZ ---
+{ 
+    title: "Párosítási szám és lefogó pontszám kapcsolata", 
+    keys: ["reláció", "összefüggés", "v(g)", "t(g)", "nu", "tau", "lefogó pontszám", "párosítási szám"], 
+    ans: "Minden $G$ gráfra teljesül, hogy a maximális párosítás mérete ($\nu(G)$) nem haladhatja meg a minimális lefogó ponthalmaz méretét ($\tau(G)$). Képletben: $\nu(G) \leq \tau(G)$.", 
+    ref: "5.3", target: "section-5-3", color: "rose" 
+},
+{ 
+    title: "$\nu(G) \leq \tau(G)$ bizonyítása", 
+    keys: ["bizonyítás", "levezetés", "miért kisebb", "lefogó", "matching"], 
+    ans: "Legyen $M$ egy maximális párosítás és $X$ egy minimális lefogó ponthalmaz. Mivel $X$ minden élet lefog, a párosítás éleit is le kell fognia. Mivel a párosítás élei nem érintkeznek, minden egyes $M$-beli élhez külön $X$-beli csúcsnak kell tartoznia, így $|M| \leq |X|$.", 
+    ref: "5.3", target: "section-5-3-proof", color: "rose" 
+},
+// --- 5.3 PÉLDAFELADAT ---
+{ 
+    title: "Példa ν(G) és τ(G) kiszámítására", 
+    keys: ["példa", "feladat", "kiszámítás", "meghatározás", "szendvics elv", "nu=tau példa"], 
+    ans: "A példa szerint ha találunk egy $k$ méretű párosítást ($\nu \geq k$) és egy $k$ méretű lefogó halmazt ($\tau \leq k$), akkor a $\nu \leq \tau$ összefüggés miatt biztosak lehetünk benne, hogy $\nu(G) = \tau(G) = k$.", 
+    ref: "5.3", target: "section-5-3-ex", color: "rose" 
+},
+// --- 5.4 FÜGGETLEN PONTHALMAZ ---
+{ 
+    title: "Független ponthalmaz definíciója", 
+    keys: ["független ponthalmaz", "független", "ponthalmaz", "nem szomszédos", "y halmaz"], 
+    ans: "A $G$ gráf csúcsainak egy $Y$ halmaza független ponthalmaz, ha semelyik két eleme nem szomszédos (és nincs rajta hurokél).", 
+    ref: "5.4", target: "section-5-4", color: "rose" 
+},
+{ 
+    title: "Függetlenségi szám (α)", 
+    keys: ["függetlenségi szám", "alpha", "α", "maximális független halmaz"], 
+    ans: "A legnagyobb független ponthalmaz méretét a gráfban $\\alpha(G)$-vel jelöljük.", 
+    ref: "5.4", target: "section-5-4", color: "rose" 
+},
+// --- 5.5 LEFOGÓ ÉLHALMAZ ---
+{ 
+    title: "Lefogó élhalmaz definíciója", 
+    keys: ["lefogó élhalmaz", "élhalmaz", "lefedés", "z halmaz", "izolált pont nélkül"], 
+    ans: "Olyan élhalmaz, ahol a gráf minden csúcsára illeszkedik legalább egy halmazbeli él. Csak izolált pont nélküli gráfokra értelmezzük.", 
+    ref: "5.5", target: "section-5-5", color: "rose" 
+},
+{ 
+    title: "Lefogó élszám (ρ)", 
+    keys: ["lefogó élszám", "rho", "ρ", "minimális lefogó élhalmaz"], 
+    ans: "A legkisebb méretű lefogó élhalmaz éleinek száma, jele: $\\rho(G)$.", 
+    ref: "5.5", target: "section-5-5", color: "rose" 
+},
+// --- 5.6 FÜGGETLEN PONTOK ÉS LEFOGÓ ÉLEK KAPCSOLATA ---
+{ 
+    title: "α(G) ≤ ρ(G) összefüggés", 
+    keys: ["alpha", "rho", "kapcsolat", "független pont", "lefogó él", "reláció"], 
+    ans: "Bármely izolált pont nélküli gráfban a függetlenségi szám nem lehet nagyobb a lefogó élszámnál: $\\alpha(G) \\leq \\rho(G)$.", 
+    ref: "5.6", target: "section-5-6", color: "rose" 
+},
+{ 
+    title: "Miért igaz az α(G) ≤ ρ(G)?", 
+    keys: ["bizonyítás", "levezetés", "alpha rho bizonyítás"], 
+    ans: "Mivel minden független ponthoz kell egy lefogó él, és egy él nem foghat le két független pontot egyszerre (mert nincsenek szomszédságban), ezért legalább annyi él kell, ahány független pont van.", 
+    ref: "5.6", target: "section-5-6-proof", color: "rose" 
+},
+// --- 5.6 PÉLDAFELADAT: ALPHA ÉS RHO ---
+{ 
+    title: "Példa α(G) és ρ(G) kiszámítására", 
+    keys: ["példa", "feladat", "alpha", "rho", "kiszámítás", "meghatározás"], 
+    ans: "A példában ha mutatunk egy 6 elemű független ponthalmazt ($\\alpha \\geq 6$) és egy 6 elemű lefogó élhalmazt ($\\rho \\leq 6$), akkor az $\\alpha \\leq \\rho$ reláció miatt kijön, hogy mindkettő értéke pontosan 6.", 
+    ref: "5.6", target: "section-5-6-ex", color: "rose" 
+},
+// --- 5.7 LEFOGÓ ÉS FÜGGETLEN PONTOK KAPCSOLATA ---
+{ 
+    title: "Lefogó és független halmaz komplementaritása", 
+    keys: ["komplementer", "összefüggés", "kapcsolat", "minimális lefogó", "maximális független"], 
+    ans: "Egy $X$ halmaz pontosan akkor lefogó ponthalmaz, ha a komplementere ($V \\setminus X$) független ponthalmaz. Ebből következik, hogy $X$ akkor minimális, ha a párja maximális.", 
+    ref: "5.7", target: "section-5-7", color: "rose" 
+},
+{ 
+    title: "Gallai-tétel (pontokra)", 
+    keys: ["gallai", "tétel", "képlet", "alpha + tau", "n"], 
+    ans: "A Gallai-tétel kimondja, hogy minden $n$ csúcsú hurokélmentes gráfban a függetlenségi szám ($\alpha$) és a lefogó pontszám ($\tau$) összege pontosan $n$. Képlet: $\\alpha(G) + \\tau(G) = n$.", 
+    ref: "5.7", target: "section-5-7", color: "rose" 
+},
+// --- 5.8 PÁROSÍTÁSOK ÉS LEFOGÓ ÉLEK KAPCSOLATA ---
+{ 
+    title: "Lemma: k-élű párosítás és n-k élű lefedés", 
+    keys: ["lemma", "konstrukció", "n-k", "k élű", "matching lefedés", "építés"], 
+    ans: "A lemma szerint egy $n$ csúcsú gráfban a $k$ élű párosításból készíthető egy legfeljebb $n-k$ élű lefogó élhalmaz, és fordítva is: a $k$ élű lefedésből választható egy legalább $n-k$ élű párosítás.", 
+    ref: "5.8", target: "section-5-8", color: "rose" 
+},
+{ 
+    title: "Gallai-tétel (élekre)", 
+    keys: ["gallai", "élekre", "nu + rho", "n", "összefüggés"], 
+    ans: "A Gallai-tétel kimondja, hogy minden $n$ csúcsú, izolált pontot nem tartalmazó gráfban a párosítási szám ($\\nu$) és a lefogó élszám ($\\rho$) összege pontosan $n$. Képlet: $\\nu(G) + \\rho(G) = n$.", 
+    ref: "5.8", target: "section-5-8", color: "rose" 
+},
+// --- 5.9 GALLAI-TÉTELEK ---
+{ 
+    title: "Gallai-tételek összefoglalása", 
+    keys: ["gallai", "tétel", "képlet", "n", "összeg", "alpha", "tau", "nu", "rho"], 
+    ans: "Gallai tételei szerint n csúcsú gráfban: (i) $\\alpha(G) + \\tau(G) = n$, valamint (ii) $\\nu(G) + \\rho(G) = n$ (utóbbi izolált pont nélküli gráfokra).", 
+    ref: "5.9", target: "section-5-9", color: "rose" 
+},
+{ 
+    title: "Mikor érvényes a ν + ρ = n?", 
+    keys: ["feltétel", "izolált pont", "nu+rho feltétel"], 
+    ans: "A párosítási szám és a lefogó élszám összege ($\\nu + \\rho = n$) csak akkor érvényes, ha a gráfnak nincs izolált pontja, mivel izolált pont esetén nem létezik lefogó élhalmaz.", 
+    ref: "5.9", target: "section-5-9", color: "rose" 
+},
+// --- 5. FEJEZET EXTRA KIEGÉSZÍTÉSEK ---
+
+{ 
+    title: "Teljes párosítás (Perfect Matching)", 
+    keys: ["teljes párosítás", "perfect matching", "minden csúcs lefedett"], 
+    ans: "Egy párosítás akkor teljes, ha a gráf minden egyes csúcsára illeszkedik a párosítás valamelyik éle.", 
+    ref: "5.1", target: "section-5-1", color: "rose" 
+},
+{ 
+    title: "Izolált pont és lefogó élek", 
+    keys: ["izolált pont", "mikor nincs lefedés", "rho feltétele"], 
+    ans: "A lefogó élhalmaz ($\rho$) és a párosítás-alapú Gallai-tétel ($\nu + \rho = n$) csak akkor értelmezhető, ha a gráfban nincs izolált pont, mert egy izolált pontot nem lehet éllel lefedni.", 
+    ref: "5.5", target: "section-5-5", color: "rose" 
+},
+{ 
+    title: "Mi a különbség τ és ρ között?", 
+    keys: ["különbség", "tau vs rho", "lefogó pont vs lefogó él"], 
+    ans: "A $\\tau(G)$ a minimális lefogó PONTszám (hány pont fogja le az éleket), míg a $\\rho(G)$ a minimális lefogó ÉLszám (hány él fedi le a pontokat).", 
+    ref: "5.9", target: "section-5-9", color: "rose" 
+},
+// --- 5.8 BIZONYÍTÁSI KONSTRUKCIÓ ---
+    { 
+        title: "Párosításból lefogó élhalmaz készítése", 
+        keys: ["hogyan lesz párosításból lefedés", "n-k él", "konstrukció"], 
+        ans: "Ha van egy $k$ élű párosításunk, az $2k$ csúcsot fed le. A maradék $n-2k$ csúcshoz választunk egy-egy rájuk illeszkedő élet. Így összesen $k + (n-2k) = n-k$ éllel lefedjük a gráf összes csúcsát. [ref: 5.8]", 
+        ref: "5.8", target: "section-5-8", color: "rose" 
+    },
+    { 
+        title: "Lefogó élhalmazból párosítás készítése", 
+        keys: ["lefedésből matching", "komponensek száma", "c >= n-k"], 
+        ans: "A $k$ élű lefogó élhalmaz által alkotott részgráf komponensekre bomlik ($c$ darab). Mivel minden komponensből választható egy él a párosításhoz, és $c \geq n-k$, így legalább $n-k$ méretű párosítást kapunk. [ref: 5.8]", 
+        ref: "5.8", target: "section-5-8", color: "rose" 
+    },
+
+    // --- 5.1-EX SKATULYA-ELV ---
+    { 
+        title: "Miért nem lehet a párosítás nagyobb a lefogó ponthalmaznál?", 
+        keys: ["skatulyaelv matching", "nu vs tau magyarázat"], 
+        ans: "Mivel minden párosításbeli élhez legalább egy lefogó pont kell, és a párosítás élei nem érintkeznek, minden él 'lefoglal' egy saját pontot. Ha több él lenne, mint pont, akkor egy pontra két él is jutna, ami tilos. [ref: 5.1-ex, 5.3-proof]", 
+        ref: "5.3", target: "section-5-3-proof", color: "rose" 
+    },
+    { 
+    title: "6.1 Javítóutak páros gráfban", 
+    keys: ["javítóút", "javítóútra", "M-re nézve javítóút", "szabad csúcs"], 
+    ans: "Egy út javítóút $M$-re nézve, ha szabad $A$-béli csúcsból indul, szabad $B$-béli csúcsban végződik, és az élei felváltva $M$-en kívüliek és $M$-beliek.", 
+    ref: "6.1", 
+    target: "section-6-1", 
+    color: "stone" 
+    },
+    { 
+        title: "6.2 Javítóutas algoritmus", 
+        keys: ["javítóutas algoritmus", "maximális párosítás keresése", "élcsere", "augmentálás"], 
+        ans: "Algoritmus maximális párosítás keresésére: kezdeti párosításból indulva ciklikusan javítóutakat keresünk, és azok mentén növeljük a párosítás méretét (élcsere), amíg létezik javítóút.", 
+        ref: "6.2", 
+        target: "section-6-2", 
+        color: "stone" 
+    },
+    { 
+        title: "6.3 Alternáló utak", 
+        keys: ["alternáló út", "alternáló útnak", "A-ból indul"], 
+        ans: "Alternáló útnak az olyan utakat nevezzük, amik párosítás által nem fedett $A$-béli csúcsból indulnak és minden második élük $M$-béli.", 
+        ref: "6.3", 
+        target: "section-6-3", 
+        color: "stone" 
+    },
+    { 
+    title: "6.4 Lemma a javítóutak hiányáról", 
+    keys: ["lemma", "nincs javítóút", "A1 A2 A3", "B1 B2 B3", "szétválogatás"], 
+    ans: "Ha egy páros gráfban nincs javítóút az M párosításra nézve, akkor a csúcsok feloszthatók 3-3 részhalmazra ($A_i, B_i$) úgy, hogy $A_1 \cup A_2$ és $B_1 \cup B_3$ között nem vezet él.", 
+    ref: "6.4", 
+    target: "section-6-4", 
+    color: "stone" 
+},
+{ 
+    title: "6.5 Kőnig tétele", 
+    keys: ["Kőnig tétele", "maximális párosítás", "lefogó ponthalmaz", "X = A3 U B2", "nu = tau"], 
+    ans: "Kőnig tétele kimondja, hogy ha egy páros gráfban nincs javítóút, akkor a párosítás maximális. A bizonyítás során megmutatjuk, hogy létezik k méretű lefogó ponthalmaz, így $\\nu(G) = \\tau(G)$.", 
+    ref: "6.5", 
+    target: "section-6-5", 
+    color: "stone" 
+},
+{ 
+    title: "Példa: Gráfparaméterek kiszámítása", 
+    keys: ["példa feladat", "tau kiszámítása", "alpha meghatározása", "rho levezetése", "lefogó ponthalmaz példa"], 
+    ans: "Egy konkrét példán keresztül szemléltetjük a $\\nu, \\tau, \\alpha, \\rho$ paraméterek kiszámítását Kőnig és Gallai tételei alapján, a csúcsok $A_i, B_i$ szerinti szétválogatásával.", 
+    ref: "6.5-ex", 
+    target: "section-6-5-ex", 
+    color: "stone" 
+},
+{ 
+    title: "6.6 Hall-tétel (Házasítási tétel)", 
+    keys: ["Hall-tétel", "Házasítási tétel", "szükséges és elégséges feltétel", "A-t lefedő párosítás", "N(X) >= X"], 
+    ans: "A $G = (A,B;E)$ páros gráfban akkor és csak akkor létezik $A$-t lefedő párosítás, ha minden $X \subseteq A$ részhalmazra teljesül a $|N(X)| \geq |X|$ feltétel.", 
+    ref: "6.6", 
+    target: "section-6-6", 
+    color: "stone" 
+},
+{ 
+    title: "Példa: Hall-tétel alkalmazása (7.23. feladat)", 
+    keys: ["Hall-tétel alkalmazása", "7.23. feladat", "csoki-osztás", "házaspárok", "Frobenius"], 
+    ans: "Egy példa a Hall-tétel gyakorlati használatára: belátjuk, hogy $2n$ embernek szétosztható $2n$ csoki, ha mindenki legalább $n$-et szeret és a házaspárok kiegészítik egymás ízlését ($|N(X)| \geq |X|$ teljesül).", 
+    ref: "6.6-ex", 
+    target: "section-6-6-ex", 
+    color: "stone" 
+},
+{ 
+    title: "6.7 Frobenius-tétel (Következmény)", 
+    keys: ["Frobenius-tétel", "teljes párosítás feltétele", "A=B feltétel", "perfect matching existence"], 
+    ans: "Páros gráfban akkor és csak akkor létezik teljes párosítás, ha $|A| = |B|$ és minden $X \subseteq A$ részhalmazra $|N(X)| \geq |X|$ (Hall-feltétel) teljesül.", 
+    ref: "6.7", 
+    target: "section-6-7", 
+    color: "stone" 
+},
+{ 
+    title: "Interaktív: Hall-feltétel szimulátor", 
+    keys: ["szimulátor", "hall-feltétel teszt", "interaktív gráf", "szűk keresztmetszet keresése"], 
+    ans: "Egy interaktív eszköz, amivel ellenőrizhető a Hall-feltétel ($|N(X)| \geq |X|$) teljesülése tetszőlegesen választott részhalmazokra.", 
+    ref: "6.6-int", 
+    target: "section-6-6-interactive", 
+    color: "stone" 
+},
+{ 
+    title: "Interaktív: Augmentálás (Élcsere) szimulátor", 
+    keys: ["szimuláció", "augmentálás", "élcsere folyamata", "párosítás növelése", "javítóutas algoritmus lépése"], 
+    ans: "Interaktív eszköz, amely bemutatja, hogyan változik meg a párosítás egy javítóút mentén végzett élcsere (augmentálás) hatására.", 
+    ref: "6.2-int", 
+    target: "section-6-2-interactive", 
+    color: "stone" 
+},
+{ 
+    title: "Interaktív: Lefogó pontok vadászata", 
+    keys: ["játék", "konig tétel gyakorlat", "lefogó pontok keresése", "tau meghatározása interaktív", "A3 U B2 szemléltetés"], 
+    ans: "Interaktív feladat, amelyben a felhasználónak minimális számú csúccsal kell lefednie egy gráf összes élét, szemléltetve a Kőnig-tételt és az $X = A_3 \cup B_2$ konstrukciót.", 
+    ref: "6.5-int", 
+    target: "section-6-5-interactive", 
+    color: "stone" 
+},
+{ 
+    title: "Összefoglaló Kvíz (6. fejezet)", 
+    keys: ["kvíz", "összefoglaló", "teszteld a tudásod", "javítóút kérdés", "konig tétel kérdés"], 
+    ans: "Interaktív kvíz a 6. fejezet kulcsfogalmaiból: javítóutak, Kőnig-tétel, Hall-feltétel és Frobenius-tétel.", 
+    ref: "6.8", 
+    target: "section-6-8", 
+    color: "stone" 
+},
+{ 
+    title: "7.1 Reguláris páros gráfok teljes párosítása", 
+    keys: ["reguláris gráf", "d-reguláris", "teljes párosítás létezése", "páros gráf párosítás"], 
+    ans: "Minden $d$-reguláris ($d \geq 1$) páros gráfban létezik teljes párosítás, mivel a fokszámok azonossága miatt $|A|=|B|$ és a szomszédsági feltétel ($|N(X)| \geq |X|$) is teljesül.", 
+    ref: "7.1", 
+    target: "section-7-1", 
+    color: "violet" 
+},
+{ 
+    title: "7.2 Élszínezés és élkromatikus szám", 
+    keys: ["élszínezés", "élkromatikus szám", "szomszédos élek", "chi'"], 
+    ans: "Egy gráf $k$ színnel él színezhető, ha szomszédos élei különböző színűek. Az élkromatikus szám a legkisebb ilyen $k$.", 
+    ref: "7.2", 
+    target: "section-7-2", 
+    color: "violet" 
+},
+{ 
+    title: "7.3 Kidolgozott példa: Él-színezés meghatározása", 
+    keys: ["példa", "élkromatikus szám kiszámítása", "8.2 feladat", "chi_e meghatározása", "alsó becslés fokszámmal"], 
+    ans: "Gyakorlati példa, amelyben belátjuk, hogy a gráf élkromatikus száma $\chi_e(G) = 4$, mivel a maximális fokszám ($\Delta=4$) miatt legalább 4 szín kell, és ennyi elegendő is.", 
+    ref: "7.3", 
+    target: "section-7-3", 
+    color: "violet" 
+},
+{ 
+    title: "7.4 Az élkromatikus szám alsó becslése", 
+    keys: ["alsó becslés", "maximális fokszám", "delta", "élszínezés korlát", "chi_e korlát"], 
+    ans: "Minden hurokélmentes gráf élkromatikus száma legalább akkora, mint a gráf maximális fokszáma: $\Delta(G) \leq \chi_e(G)$, mivel a Δ fokú csúcs élei mind különböző színt igényelnek.", 
+    ref: "7.4", 
+    target: "section-7-4", 
+    color: "violet" 
+},
+{ 
+    title: "7.5 Vizing tétele", 
+    keys: ["Vizing-tétel", "felső becslés", "élszínezés korlát", "egyszerű gráf élkromatikus száma", "delta plusz egy"], 
+    ans: "Vizing tétele szerint minden egyszerű gráf élkromatikus száma legfeljebb eggyel haladhatja meg a maximális fokszámot: $\chi_e(G) \leq \Delta(G) + 1$.", 
+    ref: "7.5", 
+    target: "section-7-5", 
+    color: "violet" 
+},
+{ 
+    title: "7.6 Példa: K11 élkromatikus száma", 
+    keys: ["példa", "teljes gráf", "K11", "páratlan csúcsszám", "chi_e meghatározása", "indirekt bizonyítás"], 
+    ans: "A 11 csúcsú teljes gráf élkromatikus száma $\chi_e(K_{11}) = 11$, mivel a páratlan csúcsszám miatt egyetlen szín sem alkothat teljes párosítást, így a maximális fokszám ($\Delta=10$) nem elegendő.", 
+    ref: "7.6", 
+    target: "section-7-6", 
+    color: "violet" 
+},
+{ 
+    title: "7.7 Kőnig élszínezési tétele", 
+    keys: ["Kőnig élszínezési tétele", "páros gráf élszínezése", "maximális fokszám", "chi_e = delta", "reguláris kiegészítés"], 
+    ans: "Páros gráfokban az élkromatikus szám megegyezik a maximális fokszámmal ($\chi_e(G) = \Delta(G)$). A bizonyítás alapja a reguláris gráfokra való felbontás teljes párosítások mentén.", 
+    ref: "7.7", 
+    target: "section-7-7", 
+    color: "violet" 
+},
+{ 
+    title: "7.8 Interaktív Élszínező Labor", 
+    keys: ["játék", "interaktív színezés", "él-színezés gyakorlás", "chi_e próba"], 
+    ans: "Próbáld ki az élszínezést interaktív módon! A cél a gráf éleinek kiszínezése a minimális számú színnel, a szabályok betartása mellett.", 
+    ref: "7.8", 
+    target: "section-7-8-interactive", 
+    color: "violet" 
+},
+{ 
+    title: "7.9 Összefoglaló Kvíz (Élszínezések)", 
+    keys: ["kvíz", "összefoglaló", "élszínezés kérdések", "vizing tétel gyakorlás", "kőnig élszínezés"], 
+    ans: "Interaktív összefoglaló kvíz a 7. fejezethez: Vizing-tétel, Kőnig élszínezési tétele, alsó becslések és reguláris páros gráfok tulajdonságai.", 
+    ref: "7.9", 
+    target: "section-7-9", 
+    color: "violet" 
+},
+{ 
+    title: "7.10 Gráf-mozaikok: Érdekességek (Élszínezés)", 
+    keys: ["érdekességek", "órarendkészítés", "Vizing jelentősége", "körmérkőzések", "páros gráfok előnye"], 
+    ans: "Érdekességek az élszínezés világából: az órarendkészítés matematikai háttere, a páros gráfok optimális színezhetősége és a páratlan létszámú bajnokságok fordulóinak száma.", 
+    ref: "7.10", 
+    target: "section-7-10", 
+    color: "violet" 
+},
+{ 
+    title: "8.1 A hálózat fogalma", 
+    keys: ["hálózat definíciója", "kapacitás függvény", "forrás", "nyelő", "kapacitás"], 
+    ans: "A hálózat egy olyan $(G,s,t,c)$ négyes, ahol G irányított gráf, s a forrás, t a nyelő, c pedig az élekhez nemnegatív kapacitásokat rendelő függvény.", 
+    ref: "8.1", 
+    target: "section-8-1", 
+    color: "orange" 
+},
+{ 
+    title: "8.2 A folyam fogalma és feltételei", 
+    keys: ["folyam definíció", "kapacitáskorlát", "konzervációs szabály", "Kirchhoff-törvény", "belső csúcsok"], 
+    ans: "A folyam egy nemnegatív függvény az éleken, amely minden élen tiszteletben tartja a kapacitást, a forráson és nyelőn kívüli csúcsokban pedig a befolyó és kifolyó mennyiség egyenlő.", 
+    ref: "8.2", 
+    target: "section-8-2", 
+    color: "orange" 
+},
+{ 
+    title: "8.3 A folyam értéke (m_f)", 
+    keys: ["folyam értéke", "m_f kiszámítása", "nettó folyam", "forrás kiáramlás"], 
+    ans: "A folyam értéke ($m_f$) a forrásból kilépő és a forrásba belépő folyamok különbsége, ami a hálózaton ténylegesen áthaladó mennyiséget jelenti.", 
+    ref: "8.3", 
+    target: "section-8-3", 
+    color: "orange" 
+},
+{ 
+    title: "8.4 A segédgráf fogalma (Hf)", 
+    keys: ["segédgráf", "H_f", "előre él", "visszaél", "folyam javítás"], 
+    ans: "A segédgráf ($H_f$) az eredeti gráf csúcsain értelmezett irányított gráf, amelyben előre élek jelzik a szabad kapacitást, a visszaélek pedig a folyam csökkentésének lehetőségét.", 
+    ref: "8.4", 
+    target: "section-8-4", 
+    color: "orange" 
+},
+{ 
+    title: "8.5 A javítóút fogalma", 
+    keys: ["javítóút", "s-t út", "segédgráf út", "folyam javítás", "H_f út"], 
+    ans: "A javítóút a $H_f$ segédgráfban létező, a forrásból ($s$) a nyelőbe ($t$) vezető irányított út, amely mentén a folyam értéke növelhető.", 
+    ref: "8.5", 
+    target: "section-8-5", 
+    color: "orange" 
+},
+{ 
+    title: "8.6 A javítóutas algoritmus (Ford-Fulkerson)", 
+    keys: ["javítóutas algoritmus", "maximális folyam keresése", "folyam módosítás", "delta kiszámítása", "BFS javítóút"], 
+    ans: "A maximális folyamot kereső algoritmus lényege a segédgráfban talált javítóutak mentén történő folyamnövelés. A ciklus addig fut, amíg létezik $s \to t$ út a segédgráfban.", 
+    ref: "8.6", 
+    target: "section-8-6", 
+    color: "orange" 
+},
+{ 
+    title: "8.7 Az algoritmus helyessége", 
+    keys: ["algoritmus helyessége", "folyam tulajdonságok megmaradása", "m_f növekedése", "delta növekmény"], 
+    ans: "A javítóutas algoritmus lépései után a módosított függvény továbbra is folyam marad (teljesíti a kapacitás- és konzervációs feltételeket), az értéke pedig pontosan $\delta$-val nő.", 
+    ref: "8.7", 
+    target: "section-8-7", 
+    color: "orange" 
+},
+{ 
+    title: "8.8 Az st-vágás fogalma", 
+    keys: ["st-vágás", "vágás definíció", "csúcshalmaz felosztás", "forrás-nyelő szétválasztás"], 
+    ans: "Az st-vágás a hálózat csúcsainak egy olyan $X$ részhalmaza, amely tartalmazza a forrást ($s \in X$), de nem tartalmazza a nyelőt ($t \notin X$).", 
+    ref: "8.8", 
+    target: "section-8-8", 
+    color: "orange" 
+},
+{ 
+    title: "8.9 A folyamérték és a vágások kapcsolata", 
+    keys: ["folyamérték vágáson", "nettó folyam", "X-ből kilépő folyam", "X-be belépő folyam", "bizonyítás összegezéssel"], 
+    ans: "Bármely vágás esetén a folyam értéke ($m_f$) megegyezik a vágásból kilépő és a vágásba belépő folyamértékek különbségével. A bizonyítás az $X$ halmaz csúcsaira felírt egyenletek összegezésén alapul, ahol a belső élek folyamai kiejtik egymást.", 
+    ref: "8.9", 
+    target: "section-8-9-detailed", 
+    color: "orange" 
+},
+{ 
+    title: "8.10 A maximális folyam létezésének feltétele", 
+    keys: ["maximális folyam tétel", "nincs javítóút", "vágás konstrukció", "H_f elérhetőség", "telített élek"], 
+    ans: "A tétel kimondja, hogy ha egy folyamra nézve nincs javítóút a segédgráfban, akkor a folyam maximális. A bizonyítás egy olyan st-vágást konstruál, amelynek kapacitása megegyezik a folyam értékével.", 
+    ref: "8.10", 
+    target: "section-8-10-detailed", 
+    color: "orange" 
+},
+{ 
+    title: "8.11 Az Edmonds-Karp tétel", 
+    keys: ["Edmonds-Karp tétel", "legrövidebb javítóút", "n*m lépéskorlát", "algoritmus hatékonyság"], 
+    ans: "Az Edmonds-Karp tétel kimondja, hogy ha a javítóutas algoritmus futása során a segédgráfban ($H_f$) mindig a legkevesebb élből álló $s \to t$ utat választjuk, akkor az eljárás legfeljebb $n \cdot m$ javító lépés után megáll.", 
+    ref: "8.11", 
+    target: "section-8-11-detailed", 
+    color: "orange" 
+},
+{ 
+    title: "8.12 A Ford-Fulkerson tétel", 
+    keys: ["Ford-Fulkerson tétel", "max-flow min-cut", "maximális folyam", "minimális vágás", "dualitás"], 
+    ans: "A hálózati folyamok alapvető tétele, mely szerint a maximális folyam értéke megegyezik a minimális vágás kapacitásával. A bizonyítás a javítóutas algoritmus terminálási állapotából indul ki.", 
+    ref: "8.12", 
+    target: "section-8-12", 
+    color: "orange" 
+},
+{ 
+    title: "8.14 Összefoglaló Kvíz", 
+    keys: ["kvíz", "teszt", "folyam összefoglalás", "interaktív kártyák"], 
+    ans: "Záró ellenőrző kérdések a hálózatok és folyamok témaköréből: konzerváció, segédgráf élek, Ford-Fulkerson tétel és egészértékűségi lemma.", 
+    ref: "8.14", 
+    target: "section-8-14", 
+    color: "blue" 
+},
+{ 
+    title: "9.1 Folyamok felbontása utakra", 
+    keys: ["folyam felbontás", "éldiszjunkt utak", "0-1 folyam", "út-folyam lemma"], 
+    ans: "A lemma szerint minden egész értékű, 0-1 élsúlyokkal rendelkező $d$ értékű folyam felbontható $d$ darab éldiszjunkt $s \to t$ irányított útra. A bizonyítás az utak egymás utáni kiválasztásán és a folyamérték csökkentésén alapul.", 
+    ref: "9.1", 
+    target: "section-9-1", 
+    color: "teal" 
+},
+{ 
+    title: "9.2 Utak lefogása élhalmazzal", 
+    keys: ["lefogó élhalmaz", "st-út lefogása", "irányított út", "irányítatlan út"], 
+    ans: "Egy élhalmaz lefogja az s-ből t-be vezető utakat, ha minden ilyen út legalább egy élt tartalmaz ebből a halmazból. Ez a tulajdonság alapozza meg a vágások és az utak közötti dualitást.", 
+    ref: "9.2", 
+    target: "section-9-2", 
+    color: "teal" 
+},
+{ 
+    title: "9.3 Menger tétele (élváltozat)", 
+    keys: ["Menger tétele", "éldiszjunkt utak", "lefogó élhalmaz", "Ford-Fulkerson tétel", "egységkapacitás"], 
+    ans: "Menger tétele (élváltozat) kimondja, hogy egy gráfban s-ből t-be vezető éldiszjunkt irányított utak maximális száma megegyezik az s-t utakat lefogó minimális élhalmaz méretével. A bizonyítás a Ford-Fulkerson tételre és a folyamok felbonthatóságára épül.", 
+    ref: "9.3", 
+    target: "section-9-3", 
+    color: "teal" 
+},
+{ 
+    title: "9.4 Menger tétele éldiszjunkt utakra (Összefoglalás)", 
+    keys: ["Menger következmény", "lambda", "éldiszjunkt utak", "él-vágás egyenlőség"], 
+    ans: "A következmény rögzíti, hogy egy gráfban az s és t közötti maximális éldiszjunkt utak száma megegyezik a minimális lefogó élhalmaz méretével.", 
+    ref: "9.4", 
+    target: "section-9-4", 
+    color: "teal" 
+},
+{ 
+    title: "9.5 Összefoglaló Kvíz", 
+    keys: ["Menger kvíz", "folyam felbontás teszt", "éldiszjunkt utak", "pontdiszjunkt utak"], 
+    ans: "Interaktív kártyák a 9. fejezet legfontosabb tételeinek (Menger-tételek, csúcsszéthúzás, folyamfelbontás) gyors ellenőrzéséhez.", 
+    ref: "9.5", 
+    target: "section-9-5", 
+    color: "teal" 
+},
+{ 
+    title: "10.1 k-szoros összefüggőség", 
+    keys: ["él-összefüggőség", "pont-összefüggőség", "k-szorosan összefüggő", "hiba tolerancia"], 
+    ans: "A gráf k-szorosan él-összefüggő, ha k-1 él törlése után is összefüggő marad. Pont-összefüggő (vagy k-összefüggő), ha legalább k+1 csúcsa van és k-1 csúcs törlése után is megőrzi az összefüggőségét.", 
+    ref: "10.1", 
+    target: "section-10-1", 
+    color: "slate" 
+},
+{ 
+    title: "10.2 Él- és pont-összefüggőségi szám", 
+    keys: ["lambda(G)", "kappa(G)", "él-összefüggőségi szám", "pont-összefüggőségi szám", "összefüggőségi fok"], 
+    ans: "A lambda(G) a legnagyobb k, amire a gráf k-szorosan él-összefüggő, míg a kappa(G) a legnagyobb k, amire k-szorosan pont-összefüggő. Ezek a mutatók a gráf kritikus sebezhetőségét jelzik.", 
+    ref: "10.2", 
+    target: "section-10-2", 
+    color: "slate" 
+},
+{ 
+    title: "10.3 Menger tétele többszörös összefüggőségre", 
+    keys: ["éldiszjunkt utak", "pontdiszjunkt utak", "k-szoros él-összefüggőség", "k-szoros pont-összefüggőség"], 
+    ans: "A tétel kimondja, hogy egy gráf pontosan akkor k-szorosan él-összefüggő, ha bármely két csúcsa között van k éldiszjunkt út. Hasonlóan, k-szoros pont-összefüggőséghez k pontdiszjunkt út szükséges.", 
+    ref: "10.3", 
+    target: "section-10-3", 
+    color: "slate" 
+},
+{ 
+    title: "10.4 Kidolgozott feladat: Összefüggőségi számok", 
+    keys: ["kappa(G) feladat", "lambda(G) példa", "teljes 3-partit gráf", "számjegy szomszédság"], 
+    ans: "A feladat egy speciális 30 csúcsú gráf (teljes 3-partit gráf) él- és pont-összefüggőségi számát határozza meg. Az eredmény mindkét esetben 20, amit a csúcsfokszámok és a partit osztályok mérete határoz meg.", 
+    ref: "10.4", 
+    target: "section-10-4", 
+    color: "slate" 
+},
+{ 
+    title: "10.5 Az összefüggőségi számok kapcsolata", 
+    keys: ["pont-összefüggőség vs él-összefüggőség", "kappa(G) <= lambda(G)", "hierarchia", "Menger következmény"], 
+    ans: "A tétel kimondja, hogy a k-szoros pont-összefüggőségből következik a k-szoros él-összefüggőség. Ennek oka, hogy a pontdiszjunkt utak mindig éldiszjunktak is.", 
+    ref: "10.5", 
+    target: "section-10-5", 
+    color: "slate" 
+},
+{ 
+    title: "10.6 Hamilton-kör és összefüggőség", 
+    keys: ["Hamilton-kör összefüggőség", "lambda(H)=3", "kappa(H)=2", "feszítőfa dekompozíció"], 
+    ans: "A feladat megmutatja, hogy ha egy gráfban létezik egy éldiszjunkt Hamilton-kör és egy feszítőfa, akkor a gráf legalább 3-szorosan él-összefüggő lesz.", 
+    ref: "10.6", 
+    target: "section-10-6", 
+    color: "slate" 
+},
+{ 
+    title: "10.7 Konzervatív súlyfüggvények", 
+    keys: ["konzervatív súly", "irányított kör", "negatív körmentes", "Bellman-Ford alapfeltétel"], 
+    ans: "A definíció szerint egy súlyfüggvény akkor konzervatív, ha a gráf minden irányított körében a súlyok összege nemnegatív. Ez biztosítja, hogy a hálózatban ne legyenek negatív összsúlyú ciklusok.", 
+    ref: "10.7", 
+    target: "section-10-7", 
+    color: "slate" 
+},
+{ 
+    title: "10.8 Utak és élsorozatok konzervatív súlyozásnál", 
+    keys: ["élsorozatból út", "ciklus eltávolítás", "legrövidebb út állítás", "konzervatív súlyú séta"], 
+    ans: "Konzervatív súlyozás mellett bármely s-v élsorozathoz található egy olyan s-v út, amelynek összsúlya és élszáma sem nagyobb az eredetinél. Ez a ciklusok (nemnegatív körök) szisztematikus elhagyásával bizonyítható.", 
+    ref: "10.8", 
+    target: "section-10-8", 
+    color: "slate" 
+},
+{ 
+    title: "10.9 Legrövidebb utak optimalitási részfeltétele", 
+    keys: ["legrövidebb út részlete", "Bellman optimalitás", "konzervatív súlyozás következmény", "indirekt bizonyítás"], 
+    ans: "A következmény kimondja, hogy egy legrövidebb út bármely kezdőszelete is legrövidebb út a forrástól az adott közbülső pontig. Ez az elv alapvető a hálózati optimalizálási algoritmusok működéséhez.", 
+    ref: "10.9", 
+    target: "section-10-9", 
+    color: "slate" 
+},
+{ 
+    title: "10.10 Rekurzió legrövidebb utakra", 
+    keys: ["Bellman-egyenlet", "dinamikus programozás", "t_k(v) rekurzió", "legrövidebb élsorozat"], 
+    ans: "Az állítás megadja a legrövidebb utak kiszámításához szükséges rekurzív formulát: t_k(v) a szomszédos u csúcsok t_{k-1}(u) értékeinek és a köztük lévő élsúlyok összegének minimuma.", 
+    ref: "10.10", 
+    target: "section-10-10", 
+    color: "slate" 
+},
+{ 
+    title: "10.11 A Bellman-Ford algoritmus", 
+    keys: ["Bellman-Ford", "legrövidebb út", "relaxáció", "távolság vektor"], 
+    ans: "A Bellman-Ford algoritmus n-1 iterációban határozza meg egy forrásból az összes csúcsba vezető legrövidebb út hosszát. Minden lépésben az élek relaxációjával frissíti a távolságokat.", 
+    ref: "10.11", 
+    target: "section-10-11", 
+    color: "slate" 
+},
+{ 
+    title: "10.12 Kidolgozott feladat: Bellman-Ford lépésről lépésre", 
+    keys: ["Bellman-Ford példa", "távolság táblázat", "út visszakeresés", "előző csúcs mutató"], 
+    ans: "A feladat bemutatja a Bellman-Ford algoritmus futását egy 5 csúcsú gráfon. A 4. iteráció végére megkapjuk a legrövidebb utak hosszát (s->d hossza 2) és a szülő-mutatók segítségével a konkrét útvonalat is.", 
+    ref: "10.12", 
+    target: "section-10-12", 
+    color: "slate" 
+},
+{ 
+    title: "10.13 Negatív körök detektálása", 
+    keys: ["negatív kör", "konzervatív súlyozás ellenőrzése", "t_n(v) stabilitás", "Bellman-Ford módosítás"], 
+    ans: "A Bellman-Ford algoritmus n-edik iterációja alkalmas a negatív körök felismerésére. Ha a t(v) értékek az n-edik lépésben is csökkennek, a gráfban van negatív összsúlyú irányított kör.", 
+    ref: "10.13", 
+    target: "section-10-13", 
+    color: "slate" 
+}
+];
+</script>
+<script>
+/**
+ * SZESZLÉR-BOT INTEGRÁLT MOTOR v5.1
+ * Keresés + Chat + Vakvizsga + Navigáció
+ */
+
+// 1. SZÖVEGELŐKÉSZÍTÉS (Szótövezés és tisztítás)
+const getStem = word => (word && word.length >= 4) 
+    ? word.replace(/(nak|nek|ban|ben|ból|ből|ra|re|on|en|ön|at|et|ot|ok|ek|ak|as|es|t)$/, "") 
+    : word;
+
+const cleanText = text => {
+    const stopWords = ["mi", "az", "a", "jelenti", "definíciója", "tudsz", "mit", "mikor", "mondd", "el", "kérlek", "hogyan"];
+    let q = text.toLowerCase().replace(/[?.,!]/g, "").trim();
+    stopWords.forEach(word => q = q.replace(new RegExp(`\\b${word}\\b`, 'g'), ""));
+    return q.trim().replace(/\s+/g, ' ');
+};
+
+// 2. KERESŐ ÉS PONTOZÓ LOGIKA
+function findMatch(query) {
+    const rawQuery = cleanText(query);
+    if (rawQuery.length < 2) return [];
+    const queryWords = rawQuery.split(" ").map(w => getStem(w));
+
+    return graphKB.map(item => {
+        let score = 0;
+        const titleClean = cleanText(item.title);
+        const titleStems = titleClean.split(" ").map(w => getStem(w));
+        const keyStems = (item.keys || []).map(k => getStem(cleanText(k)));
+
+        if (titleClean.includes(rawQuery)) score += 500;
+        queryWords.forEach(qWord => {
+            if (titleStems.some(tWord => tWord.includes(qWord) || qWord.includes(tWord))) score += 150;
+            if (keyStems.some(kWord => kWord.includes(qWord) || qWord.includes(kWord))) score += 80;
+        });
+        return { ...item, score };
+    }).filter(m => m.score > 0).sort((a, b) => b.score - a.score);
+}
+
+// 3. CHAT FUNKCIÓK (handleAsk)
+window.handleAsk = function() {
+    const input = document.getElementById('ask-input');
+    const res = document.getElementById('ask-results');
+    if (!input || !res || !input.value.trim()) return;
+
+    const query = input.value.toLowerCase().trim();
+    const userTextColor = themeColor === 'yellow' ? 'text-slate-900' : 'text-white';
+    
+    // Felhasználó buborékja
+    res.innerHTML += `
+        <div class="flex justify-end gap-3 mb-6 animate-fade-in text-right">
+            <div class="user-bubble bg-${themeColor}-600 ${userTextColor} p-4 text-xs shadow-md max-w-[80%] rounded-2xl text-left">
+                ${input.value}
+            </div>
+        </div>`;
+    
+    const matches = findMatch(query);
+    input.value = '';
+    res.scrollTop = res.scrollHeight;
+
+    setTimeout(() => {
+        const funnyIntros = [
+            "Szerintem add be a 032-t 😫", "Ez triviális 🧠", "Ezt nem tudni... 🙄", 
+            "Ez elég Óbudai gyanús 🏢", "git gud 🐒", "Gauss most forog a sírjában ⚰️", 
+            "Elég béta kérdés β", "Egy konzi nem ártana 📚"
+        ];
+        const randomIntro = funnyIntros[Math.floor(Math.random() * funnyIntros.length)];
+
+        let botHtml = "";
+        if (matches.length > 0) {
+            const m = matches[0];
+            botHtml = `
+                <div class="flex gap-3 mb-4 animate-fade-in text-left">
+                    <div class="w-8 h-8 rounded-xl bg-${themeColor}-600 flex items-center justify-center text-[10px] flex-none text-white font-bold">🤖</div>
+                    <div class="bot-bubble p-5 shadow-sm max-w-[85%] border border-${themeColor}-100 dark:border-${themeColor}-900/30 bg-white dark:bg-slate-800 rounded-2xl">
+                        <p class="text-[11px] font-bold text-slate-500 mb-2 italic border-b border-slate-100 dark:border-slate-700 pb-2">${randomIntro}</p>
+                        <div class="flex justify-between items-center my-3 gap-2">
+                            <span class="font-black text-${themeColor}-600 dark:text-${themeColor}-400 text-[10px] uppercase">${m.title}</span>
+                            <span class="px-2 py-0.5 rounded bg-${themeColor}-50 dark:bg-${themeColor}-900/50 text-${themeColor}-600 dark:text-${themeColor}-300 text-[8px] font-black uppercase">Ref: ${m.ref}</span>
+                        </div>
+                        <p class="text-xs text-slate-700 dark:text-slate-200 leading-relaxed">${m.ans}</p>
+                        <button onclick="scrollToSection('${m.target}', '${m.ref}')" class="mt-4 flex items-center gap-2 text-[9px] font-black text-${themeColor}-600 dark:text-${themeColor}-400 uppercase tracking-tighter hover:translate-x-1 transition-transform group">
+                            Megtekintés a tananyagban →
+                        </button>
+                    </div>
+                </div>`;
+        } else {
+            botHtml = `<div class="flex gap-3 mb-4 animate-fade-in text-left">... (nincs találat üzenet) ...</div>`;
+        }
+
+        res.innerHTML += botHtml;
+        res.scrollTop = res.scrollHeight;
+        if(window.MathJax) MathJax.typesetPromise([res]);
+    }, 450);
+};
+
+// 4. NAVIGÁCIÓ ÉS UI VEZÉRLÉS
+window.scrollToSection = function(id, ref) {
+    if (!id || id === 'undefined') return;
+    const el = document.getElementById(id);
+    if (typeof toggleAssistant === 'function') toggleAssistant();
+
+    if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.classList.add('ring-4', 'ring-indigo-500/40', 'transition-all', 'rounded-lg');
+        setTimeout(() => el.classList.remove('ring-4', 'ring-indigo-500/40'), 3000);
+    } else if (ref) {
+        const chapter = ref.split('.')[0];
+        window.location.href = (chapter === "1" ? "index.php" : chapter + ".php") + "#" + id;
+    }
+};
+
+window.switchTab = function(tab) {
+    ['panel-search', 'panel-ask', 'panel-exam'].forEach(p => document.getElementById(p)?.classList.add('hidden'));
+    ['tab-search', 'tab-ask', 'tab-exam'].forEach(t => document.getElementById(t)?.classList.remove('bg-white', `text-${themeColor}-600`));
+
+    document.getElementById(`panel-${tab}`)?.classList.remove('hidden');
+    document.getElementById(`tab-${tab}`)?.classList.add('bg-white', `text-${themeColor}-600`);
+};
+
+window.toggleAssistant = function() {
+    const win = document.getElementById('assistant-window');
+    if (!win) return;
+    const isHidden = win.classList.contains('hidden');
+    if (isHidden) {
+        win.classList.remove('hidden');
+        setTimeout(() => win.classList.add('opacity-100', 'scale-100'), 10);
+    } else {
+        win.classList.remove('opacity-100', 'scale-100');
+        setTimeout(() => win.classList.add('hidden'), 300);
+    }
+};
+
+// 5. INDÍTÁS (Eseménykezelők konszolidálva)
+document.addEventListener('DOMContentLoaded', () => {
+    const askInput = document.getElementById('ask-input');
+    if (askInput) askInput.addEventListener('keydown', e => e.key === 'Enter' && handleAsk());
+
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', e => {
+            const res = document.getElementById('search-results');
+            const matches = findMatch(e.target.value);
+            if (matches.length > 0) {
+                res.innerHTML = matches.slice(0, 5).map(m => `
+                    <div class="p-5 mb-4 bg-white dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm animate-fade-in">
+                        <h4 class="font-black text-indigo-600 dark:text-indigo-400 uppercase text-[11px] mb-2">${m.title}</h4>
+                        <p class="text-[11px] text-slate-600 dark:text-slate-300 italic mb-4">${m.ans}</p>
+                        <button onclick="scrollToSection('${m.target}', '${m.ref}')" class="text-[9px] font-black text-indigo-500 uppercase flex items-center gap-1 group">
+                            Megtekintés →
+                        </button>
+                    </div>`).join('');
+                if(window.MathJax) MathJax.typesetPromise([res]);
+            }
+        });
+    }
+});
+</script>    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2. Fák tulajdonságai - Bsz2 Jegyzet</title>
+
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
+            options: { enableMenu: false }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+    /**
+     * MATEMATIKAI KOMPONENSEK REGISZTRÁLÁSA
+     * Létrehozunk egy közös osztályt, hogy később könnyen bővíthessük őket.
+     */
+    class MathComponent extends HTMLElement {
+        constructor() {
+            super();
+        }
+    }
+
+    const mathElements = [
+        'math-def',      // Definíció
+        'math-theorem',  // Tétel
+        'math-proof',    // Bizonyítás
+        'math-example',  // Kidolgozott példa
+        'math-lab',      // Interaktív labor
+        'math-quiz'      // Kvíz blokk
+    ];
+
+    mathElements.forEach(el => {
+        if (!customElements.get(el)) {
+            // Minden elem a közös MathComponent osztályt kapja meg
+            customElements.define(el, class extends MathComponent {});
+        }
+    });
+</script>
+</head>
+<body class="flex flex-col md:flex-row min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
+
+    <div class="md:hidden fixed top-0 left-0 right-0 bg-white border-b border-slate-200 p-4 z-[60] flex justify-between items-center shadow-sm dark:bg-slate-900 dark:border-slate-800">
+        <h1 class="text-xl font-black text-indigo-600 italic">Bsz2 Jegyzet</h1>
+        <div class="flex items-center space-x-2">
+            <button onclick="toggleNightMode()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 border dark:border-slate-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
+            <button onclick="toggleMenu()" class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-bold text-xs uppercase shadow-md active:scale-95 transition-transform">Tételek</button>
+        </div>
+    </div>
+
+    <aside id="sidebar" class="fixed md:sticky top-0 left-0 w-[85%] md:w-80 bg-white border-r border-slate-200 flex flex-col h-screen z-50 overflow-y-auto closed md:translate-x-0 shadow-2xl md:shadow-none dark:bg-slate-900 dark:border-slate-800 transition-transform duration-300">
+        <div class="p-6 border-b border-slate-100 hidden md:block dark:border-slate-800">
+            <h1 class="text-2xl font-extrabold text-indigo-600 italic">Bsz2 Jegyzet</h1>
+            <p class="text-slate-400 text-[10px] uppercase tracking-widest mt-1 font-bold">Vizsgafelkészítő</p>
+        </div>
+
+        <div class="px-8 py-4 border-b border-slate-100 flex items-center justify-between dark:border-slate-800">
+            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Éjszakai mód</span>
+            <button onclick="toggleNightMode()" class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 border dark:border-slate-700 transition-all active:scale-90 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
+        </div>
+
+        <nav id="main-nav" class="flex flex-col p-4 space-y-2 pb-24 md:pb-4">
+            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2">Gráfelmélet</div>
+            
+                                            <a href="index.html" class="nav-item ">
+                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        1. Tétel
+                    </span>
+                    <span class="font-bold text-sm">Gráfelméleti alapfogalmak</span>
+                    </a>
+                                            <a href="2.html" class="nav-item active">
+                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        2. Tétel
+                    </span>
+                    <span class="font-bold text-sm">Fák tulajdonságai</span>
+                    </a>
+                                            <a href="3.html" class="nav-item ">
+                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        3. Tétel
+                    </span>
+                    <span class="font-bold text-sm">Hamilton-körök és -utak</span>
+                    </a>
+                                            <a href="4.html" class="nav-item ">
+                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        4. Tétel
+                    </span>
+                    <span class="font-bold text-sm">Gráfok színezése (χ, ω)</span>
+                    </a>
+                                            <a href="5.html" class="nav-item ">
+                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        5. Tétel
+                    </span>
+                    <span class="font-bold text-sm">Párosítás fogalma</span>
+                    </a>
+                                            <a href="6.html" class="nav-item ">
+                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        6. Tétel
+                    </span>
+                    <span class="font-bold text-sm">Párosítás páros gráfban</span>
+                    </a>
+                                            <a href="7.html" class="nav-item ">
+                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        7. Tétel
+                    </span>
+                    <span class="font-bold text-sm">Teljes párosítás (Reguláris)</span>
+                    </a>
+                                            <a href="8.html" class="nav-item ">
+                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        8. Tétel
+                    </span>
+                    <span class="font-bold text-sm">Hálózat, folyam, vágás</span>
+                    </a>
+                                            <a href="9.html" class="nav-item ">
+                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        9. Tétel
+                    </span>
+                    <span class="font-bold text-sm">Folyam általánosításai</span>
+                    </a>
+                                            <a href="10.html" class="nav-item ">
+                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        10. Tétel
+                    </span>
+                    <span class="font-bold text-sm">Összefüggőség</span>
+                    </a>
+                    </nav>
+    </aside>
+
+    <div id="overlay" onclick="toggleMenu()" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"></div>
+
+    <main class="flex-grow p-4 md:p-12 pt-24 md:pt-12">
+        <div class="max-w-4xl mx-auto">
+<style>
+    :root { --theme-color: #10b981; }
+    .text-theme { color: var(--theme-color); }
+    .bg-theme { background-color: var(--theme-color); }
+    .border-theme { border-color: var(--theme-color); }
+</style>
+
+<article class="space-y-8 animate-fade-in">
+    <header class="mb-12">
+        <h1 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
+            <span class="text-emerald-600">2. Fák tulajdonságai</span>
+        </h1>
+    </header>
+
+    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-6 rounded-r-2xl">
+        <h3 class="text-emerald-700 dark:text-emerald-400 mb-2"><b>Fa fogalma,</b> fák egyszerű tulajdonságai. <b>Feszítőfa fogalma,</b> annak létezése. Minimális
+összsúlyú feszítőfa, <b>Kruskal algoritmusa.</b></h3>
+    </div>
+
+<math-header>
+        <div class="num-badge">2.1</div>
+        <h2>A fa definíciója</h2>
+    </math-header>
+
+<math-def id="section-2-1">
+    
+    <div class="text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic">
+        Az $F$ gráf <strong class="text-slate-900 dark:text-white not-italic border-b-2 border-emerald-200 dark:border-emerald-800">fa</strong>, ha $F$ összefüggő és nem tartalmaz kört.
+    </div>
+</math-def>
+
+<math-lab>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-slate-800/50 p-6 rounded-2xl border border-emerald-500/30 flex flex-col items-center shadow-inner">
+            <span class="text-[10px] font-black text-emerald-400 uppercase mb-6 tracking-widest">Példa: Fa</span>
+            <svg width="140" height="100" viewBox="0 0 140 100" class="drop-shadow-lg overflow-visible">
+                <line x1="70" y1="20" x2="30" y2="50" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
+                <line x1="70" y1="20" x2="110" y2="50" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
+                <line x1="30" y1="50" x2="30" y2="85" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
+                <circle cx="70" cy="20" r="6" fill="white" />
+                <circle cx="30" cy="50" r="6" fill="white" />
+                <circle cx="110" cy="50" r="6" fill="white" />
+                <circle cx="30" cy="85" r="6" fill="white" />
+            </svg>
+            <div class="mt-8 flex gap-2">
+                <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-[9px] font-black rounded-lg uppercase tracking-tighter">Összefüggő</span>
+                <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-[9px] font-black rounded-lg uppercase tracking-tighter">Nincs kör</span>
+            </div>
+        </div>
+
+        <div class="bg-slate-800/50 p-6 rounded-2xl border border-rose-500/30 flex flex-col items-center shadow-inner">
+            <span class="text-[10px] font-black text-rose-400 uppercase mb-6 tracking-widest">Példa: Nem fa (Kör)</span>
+            <svg width="140" height="100" viewBox="0 0 140 100" class="drop-shadow-lg opacity-80 overflow-visible">
+                <path d="M 70 20 L 110 60 L 30 60 Z" fill="none" stroke="#f43f5e" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" />
+                <circle cx="70" cy="20" r="6" fill="white" />
+                <circle cx="110" cy="60" r="6" fill="white" />
+                <circle cx="30" cy="60" r="6" fill="white" />
+            </svg>
+            <div class="mt-8 flex gap-2">
+                <span class="px-3 py-1 bg-emerald-500/10 text-emerald-500/60 text-[9px] font-black rounded-lg uppercase tracking-tighter">Összefüggő</span>
+                <span class="px-3 py-1 bg-rose-500/20 text-rose-400 text-[9px] font-black rounded-lg uppercase tracking-tighter">Tartalmaz kört</span>
+            </div>
+        </div>
+    </div>
+</math-lab>
+<math-header>
+    <div class="num-badge">2.2</div>
+    <h2>Levelek létezése fákban</h2>
+</math-header>
+
+<section id="section-2-2" class="mb-16 space-y-8">
+    <math-theorem id="section-2-2">
+        <p class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
+            Ha $F$ legalább két csúcsú fa, akkor $F$ tartalmaz legalább két olyan csúcsot, amiknek a foka egy.
+        </p>
+    </math-theorem>
+
+    
+
+    <math-proof>
+        <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
+            <p>
+                Válasszunk $F$-ben egy $P$ **leghosszabb utat** – vagyis egy olyat, aminél hosszabb út már nincs $F$-ben. Mivel $F$ legalább két csúcsú és így tartalmaz élt, ezért $P$ pozitív hosszúságú, így két különböző végpontja van. Azt állítjuk, hogy ezeknek a foka egy.
+            </p>
+
+            <div class="bg-white/50 dark:bg-slate-900/40 p-5 rounded-xl border border-red-100 dark:border-red-900/20 shadow-sm">
+                <p>
+                    Legyen $v$ a $P$ egyik végpontja, szomszédja a $P$ mentén $u$. Tegyük fel **indirekt**, hogy $v$-nek van egy $u$-tól különböző $x$ szomszédja is. Ekkor két eset lehetséges:
+                </p>
+            </div>
+
+            <ul class="space-y-4">
+                <li class="flex items-start gap-4 p-4 bg-red-500/5 border border-red-500/20 rounded-xl">
+                    <div class="flex-none bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shadow-lg shadow-red-500/20">1</div>
+                    <p>
+                        <strong>Ha $x$ nincs rajta $P$-n:</strong> akkor $P$-t megtoldhatjuk a $\{v,x\}$ éllel és az $x$ csúccsal; mivel így egy $P$-nél hosszabb utat kapunk, ez $P$ választása miatt **ellentmondás**.
+                    </p>
+                </li>
+                <li class="flex items-start gap-4 p-4 bg-red-500/5 border border-red-500/20 rounded-xl">
+                    <div class="flex-none bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shadow-lg shadow-red-500/20">2</div>
+                    <p>
+                        <strong>Ha viszont $x$ rajta van $P$-n:</strong> akkor $P$-nek a $v$-től $x$-ig tartó szakasza a $\{v,x\}$ éllel együtt **kört alkotna** $F$-ben, ami szintén ellentmondás (mivel $F$ fa).
+                    </p>
+                </li>
+            </ul>
+
+            <p class="font-bold border-t border-red-100 dark:border-red-900/30 pt-4 italic">
+                Mivel $P$ két végpontjának csak egy-egy szomszédja van, ezért ezzel a tételt beláttuk.
+            </p>
+        </div>
+    </math-proof>
+
+    
+
+    <math-lab>
+        <h3 class="text-xl font-bold mb-4 italic text-white">Vizuális ellentmondás-detektor</h3>
+        <p class="text-slate-400 text-sm mb-8 leading-relaxed">Próbálj meg egy új szomszédot ($x$) adni a végponthoz!</p>
+        
+        <div class="flex flex-col items-center">
+            <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700 w-full max-w-lg aspect-video flex justify-center items-center relative shadow-inner">
+                <svg width="340" height="120" viewBox="0 0 340 120" class="overflow-visible">
+                    <path d="M 40 60 L 100 60 L 160 60 L 220 60 L 280 60" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
+                    
+                    <circle cx="40" cy="60" r="5" fill="white" />
+                    <circle cx="100" cy="60" r="5" fill="white" />
+                    <circle cx="160" cy="60" r="5" fill="white" />
+                    <circle cx="220" cy="60" r="5" fill="white" />
+                    <circle cx="280" cy="60" r="8" fill="#fbbf24" id="v-node" /> 
+                    <text x="280" y="90" fill="#fbbf24" font-size="12" font-weight="black" text-anchor="middle">v</text>
+                    <text x="220" y="85" fill="#94a3b8" font-size="10" text-anchor="middle" font-weight="bold">u</text>
+                    <text x="40" y="45" fill="#10b981" font-size="12" font-weight="black" italic>P (Leghosszabb út)</text>
+
+                    <g id="case-1-visual" class="opacity-0 transition-opacity duration-500">
+                        <line x1="280" y1="60" x2="320" y2="30" stroke="#f43f5e" stroke-width="3" stroke-dasharray="4" />
+                        <circle cx="320" cy="30" r="6" fill="#f43f5e" />
+                        <text x="325" y="25" fill="#f43f5e" font-size="10" font-weight="bold">x (Hosszabb lenne!)</text>
+                    </g>
+
+                    <g id="case-2-visual" class="opacity-0 transition-opacity duration-500">
+                        <path d="M 280 60 Q 190 10 100 60" fill="none" stroke="#f43f5e" stroke-width="3" stroke-dasharray="4" />
+                        <circle cx="100" cy="60" r="6" stroke="#f43f5e" stroke-width="3" fill="none" />
+                        <text x="100" y="85" fill="#f43f5e" font-size="10" text-anchor="middle" font-weight="bold">x (Kör keletkezik!)</text>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="mt-8 flex flex-wrap justify-center gap-4">
+                <button onmouseover="showCase(1)" onmouseout="hideCases()" class="bg-slate-700 hover:bg-rose-600 text-white text-[10px] font-black py-3 px-6 rounded-xl uppercase tracking-widest transition-all shadow-lg active:scale-95">
+                    1. Eset: Túl hosszú út
+                </button>
+                <button onmouseover="showCase(2)" onmouseout="hideCases()" class="bg-slate-700 hover:bg-rose-600 text-white text-[10px] font-black py-3 px-6 rounded-xl uppercase tracking-widest transition-all shadow-lg active:scale-95">
+                    2. Eset: Kör keletkezik
+                </button>
+            </div>
+            <p id="case-desc" class="mt-6 text-xs text-slate-500 italic h-4 font-medium uppercase tracking-tighter">Húzd az egeret a gombok fölé a szemléltetéshez!</p>
+        </div>
+    </math-lab>
+</section>
+
+<math-header>
+    <div class="num-badge">2.3</div>
+    <h2>Csúcsok és élek kapcsolata</h2>
+</math-header>
+
+<section id="section-2-3" class="mb-16 space-y-8">
+    <math-theorem id="section-2-3-theorem">
+        <div class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
+            <p class="mb-4 not-italic font-medium">Legyen $G$ egy $n$ csúcsú és $m$ élű gráf. Ekkor:</p>
+            <ol class="list-[lower-roman] list-inside space-y-3 ml-4">
+                <li>ha $G$ <span class="text-emerald-600">összefüggő</span>, akkor $m \geq n - 1$;</li>
+                <li>ha $G$ <span class="text-emerald-600">körmentes</span>, akkor $m \leq n - 1$;</li>
+                <li>ha $G$ <span class="text-emerald-600 font-black">fa</span>, akkor $m = n - 1$.</li>
+            </ol>
+        </div>
+    </math-theorem>
+
+    
+
+    <math-proof>
+        <h4 class="text-red-600 dark:text-red-400 font-black mb-6 uppercase tracking-widest text-[10px] flex items-center">
+            <span class="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+            Bizonyítás (Építési eljárás)
+        </h4>
+        
+        <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
+            <p>
+                Képzeljük el, hogy $G$-t az $n$ csúcsú üres (él nélküli) gráfból építjük fel úgy, hogy egymás után adjuk hozzá az éleket, és figyeljük a **komponensek** számát. Kezdetben $n$ komponensünk van (minden csúcs külön).
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
+                <div class="p-5 bg-white/50 dark:bg-slate-900/40 rounded-xl border border-red-100 dark:border-red-900/20 shadow-sm">
+                    <span class="text-[10px] font-black text-indigo-500 uppercase block mb-2 tracking-widest">1. Eset: u és v közös komponensben</span>
+                    <p class="italic text-xs leading-relaxed">
+                        Az él hozzáadása nem változtat az elérhetőségen, így a komponensek száma nem változik. Viszont egy <strong>kör</strong> keletkezik.
+                    </p>
+                </div>
+                <div class="p-5 bg-emerald-50/50 dark:bg-emerald-900/10 rounded-xl border border-emerald-100 dark:border-emerald-900/30 shadow-sm">
+                    <span class="text-[10px] font-black text-emerald-600 uppercase block mb-2 tracking-widest">2. Eset: u és v különböző komponensben</span>
+                    <p class="italic text-xs leading-relaxed">
+                        A két komponens egyesül egyetlen új komponenssé, így a komponensek száma <strong class="text-emerald-600">pontosan eggyel csökken</strong>.
+                    </p>
+                </div>
+            </div>
+
+            
+
+            <div class="space-y-4">
+                <p>
+                    <strong class="text-slate-800 dark:text-slate-200">(i) Ha $G$ összefüggő:</strong> Kezdetben $n$ komponens volt, a végén pedig csak 1. Mivel egy él legfeljebb eggyel tudja csökkenteni a komponensek számát, legalább $n-1$ élre volt szükség.
+                </p>
+                <p>
+                    <strong class="text-slate-800 dark:text-slate-200">(ii) Ha $G$ körmentes:</strong> Az 1. eset (kör bezárása) sosem fordulhat elő. Tehát minden él pontosan eggyel csökkenti a komponensek számát. Mivel a számuk nem mehet 1 alá, legfeljebb $n-1$ élt húzhattunk be.
+                </p>
+            </div>
+        </div>
+    </math-proof>
+
+    <math-lab>
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            <div>
+                <h3 class="text-xl font-bold italic text-white">Komponens-építő Labor</h3>
+                <p class="text-slate-400 text-sm">Adj hozzá éleket és figyeld, hogyan csökken a komponensek száma!</p>
+            </div>
+            <div class="flex gap-4">
+                <div class="bg-slate-800 px-5 py-3 rounded-2xl border border-slate-700 shadow-xl">
+                    <div class="text-[9px] uppercase text-slate-500 font-black tracking-widest mb-1">Komponensek</div>
+                    <div id="comp-val" class="text-2xl font-black text-emerald-400">6</div>
+                </div>
+                <div class="bg-slate-800 px-5 py-3 rounded-2xl border border-slate-700 shadow-xl">
+                    <div class="text-[9px] uppercase text-slate-500 font-black tracking-widest mb-1">Élek (m)</div>
+                    <div id="edge-val" class="text-2xl font-black text-indigo-400">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col items-center">
+            <div class="bg-slate-800/50 rounded-3xl p-6 border border-slate-700 w-full max-w-lg aspect-square flex justify-center items-center shadow-inner relative overflow-hidden">
+                <svg id="build-svg" width="300" height="300" viewBox="0 0 300 300" class="cursor-pointer overflow-visible z-10"></svg>
+                <div class="absolute inset-0 opacity-5 pointer-events-none">
+                    <svg width="100%" height="100%" fill="currentColor"><rect width="100%" height="100%" fill="url(#grid)" /></svg>
+                </div>
+            </div>
+            <button onclick="resetBuilder()" class="mt-10 text-[10px] bg-slate-700 hover:bg-rose-600 text-white font-black py-3 px-10 rounded-xl transition-all uppercase tracking-widest shadow-lg active:scale-95">
+                Visszaállítás (n=6) 🔄
+            </button>
+        </div>
+    </math-lab>
+</section>
+
+<math-header>
+    <h2 class="text-balance">Kidolgozott feladat: Fa keresése fokszámok alapján</h2>
+</math-header>
+
+<section id="section-2-3-ex" class="mb-16 space-y-6">
+    <math-example>
+        <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 md:p-8 rounded-2xl shadow-sm relative overflow-hidden mb-6">
+            <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none text-emerald-600">
+                <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7 15h-2v-2h2v2m0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
+            </div>
+            <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-3 uppercase tracking-widest text-xs">Feladat</h4>
+            <p class="text-slate-700 dark:text-slate-300 leading-relaxed italic text-lg">
+                Egy $F$ fa csúcsainak fokszámai között pontosan kétféle érték fordul elő és mindkettő pontosan ugyanannyiszor. Adjuk meg $F$-et.
+            </p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-md mb-8">
+            <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
+                <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
+                Megoldás levezetése
+            </h4>
+            <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
+                <p>
+                    Mivel a kétféle fokszám ugyanannyiszor fordul elő, ezért $F$ csúcsainak száma páros. Legyen a csúcsok száma <strong class="text-slate-900 dark:text-white">$n = 2k$</strong>. Mivel minden fának van levele, az egyik fokszám biztosan az <strong class="text-emerald-600 font-bold">1</strong>, a másikat jelölje $d$.
+                </p>
+
+                
+
+                <div class="bg-slate-900 rounded-xl p-8 text-center shadow-inner space-y-4">
+                    <p class="text-emerald-400 font-black text-[10px] uppercase tracking-widest">Egyenletek felírása</p>
+                    <div class="space-y-2">
+                        <p class="text-indigo-300 font-mono text-xl">
+                            $\sum d(v) = k \cdot d + k \cdot 1 = k(d + 1)$
+                        </p>
+                        <p class="text-slate-500 text-xs italic">A csúcsok fokszámösszege</p>
+                    </div>
+                    <div class="h-px bg-slate-800 w-1/4 mx-auto my-4"></div>
+                    <div class="space-y-2">
+                        <p class="text-indigo-300 font-mono text-xl">
+                            $2m = 2(n - 1) = 2(2k - 1) = 4k - 2$
+                        </p>
+                        <p class="text-slate-500 text-xs italic">Az élszám kétszerese a fa tulajdonsága ($m = n - 1$) alapján</p>
+                    </div>
+                </div>
+
+                <p>
+                    Ezeket egyenlővé téve: <strong class="text-slate-900 dark:text-white">$k(d + 1) = 4k - 2$</strong>. Ezt $d$-re rendezve:
+                </p>
+                
+                <div class="flex justify-center py-2">
+                    <div class="bg-slate-50 dark:bg-slate-900/50 px-8 py-4 rounded-xl border border-slate-100 dark:border-slate-800 font-mono text-2xl text-emerald-600 shadow-sm">
+                        $d = 3 - \frac{2}{k}$
+                    </div>
+                </div>
+
+                <p>
+                    Mivel $d$ és $k$ is pozitív egész, ezért csak a <strong class="text-slate-900 dark:text-white">$k = 1$</strong> vagy <strong class="text-slate-900 dark:text-white">$k = 2$</strong> eset lehetséges:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-4 rounded-xl bg-rose-500/5 border border-rose-500/20">
+                        <span class="text-rose-500 font-black text-xs block mb-1 uppercase tracking-tighter">k = 1</span>
+                        <p class="text-xs italic text-slate-500">$d = 3 - 2 = 1$ adódna, de ekkor nem volna kétféle fokszám.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
+                        <span class="text-emerald-500 font-black text-xs block mb-1 uppercase tracking-tighter">k = 2</span>
+                        <p class="text-xs italic text-slate-500">Ekkor $d = 3 - 1 = 2$, ami egy érvényes megoldás.</p>
+                    </div>
+                </div>
+
+                <div class="bg-emerald-600 text-white p-6 rounded-2xl shadow-xl shadow-emerald-500/20 transform hover:scale-[1.01] transition-transform">
+                    <p class="font-black mb-2 uppercase tracking-widest text-[10px] opacity-80">Konklúzió</p>
+                    <p class="italic text-lg leading-relaxed">
+                        A keresett $F$ fa tehát $n = 4$ csúcsú, két darab elsőfokú és két darab másodfokú csúccsal rendelkezik. Ez egyedül a **három hosszúságú út** ($P_4$).
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <math-lab>
+            <h3 class="text-xl font-bold mb-4 italic text-white text-center">A végeredmény: $P_4$</h3>
+            
+            <div class="flex flex-col items-center">
+                <div class="bg-slate-800/50 rounded-2xl p-10 border border-slate-700 w-full max-w-md flex justify-center items-center shadow-inner">
+                    <svg width="280" height="60" viewBox="0 0 280 60" class="overflow-visible">
+                        <line x1="20" y1="30" x2="100" y2="30" stroke="#10b981" stroke-width="5" stroke-linecap="round" />
+                        <line x1="100" y1="30" x2="180" y2="30" stroke="#10b981" stroke-width="5" stroke-linecap="round" />
+                        <line x1="180" y1="30" x2="260" y2="30" stroke="#10b981" stroke-width="5" stroke-linecap="round" />
+                        
+                        <circle cx="20" cy="30" r="8" fill="white" class="shadow-sm" />
+                        <text x="20" y="55" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">d=1</text>
+                        
+                        <circle cx="100" cy="30" r="8" fill="white" class="shadow-sm" />
+                        <text x="100" y="55" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">d=2</text>
+                        
+                        <circle cx="180" cy="30" r="8" fill="white" class="shadow-sm" />
+                        <text x="180" y="55" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">d=2</text>
+                        
+                        <circle cx="260" cy="30" r="8" fill="white" class="shadow-sm" />
+                        <text x="260" y="55" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">d=1</text>
+                    </svg>
+                </div>
+                <p class="mt-6 text-[10px] text-slate-500 uppercase font-black tracking-widest text-center">
+                    A fokszámok listája: (1, 2, 2, 1) — mindkét érték pontosan kétszer szerepel.
+                </p>
+            </div>
+        </math-lab>
+    </math-example>
+</section>
+
+<math-header>
+    <div class="num-badge">2.4</div>
+    <h2 class="text-balance">Feszítőfa</h2>
+</math-header>
+
+<section id="section-2-4" class="mb-16 space-y-8">
+    <math-def id="section-2-4-def">
+        
+        <div class="text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic border-l-4 border-emerald-500/20 pl-6">
+            A $G$ gráfnak az $F$ részgráfja <strong class="text-slate-900 dark:text-white not-italic">feszítőfa</strong>, ha $F$ fa és $V(G) = V(F)$ (vagyis $F$ a $G$ összes csúcsát tartalmazza).
+        </div>
+    </math-def>
+
+    <math-lab>
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            <div>
+                <h3 class="text-xl font-bold italic text-emerald-400">Feszítőfa-építő labor</h3>
+                <p class="text-slate-400 text-sm">Kattints az élekre, hogy kiválaszd őket az $F$ részgráfba!</p>
+            </div>
+            <div id="spanning-status" class="px-6 py-2 rounded-full font-black uppercase tracking-widest text-xs border-2 bg-slate-800 border-slate-700 text-slate-500 transition-all duration-500">
+                Építés alatt...
+            </div>
+        </div>
+
+        <div class="flex flex-col items-center">
+            <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700 w-full max-w-lg aspect-square flex justify-center items-center shadow-inner">
+                <svg id="spanning-svg" width="300" height="300" viewBox="0 0 300 300" class="cursor-pointer overflow-visible"></svg>
+            </div>
+            
+            <div class="mt-8 grid grid-cols-2 md:grid-cols-3 gap-4 w-full max-w-lg">
+                <div class="p-4 bg-slate-800/80 rounded-xl border border-slate-700 text-center shadow-lg">
+                    <div class="text-[8px] uppercase text-slate-500 font-black tracking-widest mb-1">Kiválasztott élek</div>
+                    <div id="span-edge-count" class="text-xl font-black text-white">0</div>
+                </div>
+                <div class="p-4 bg-slate-800/80 rounded-xl border border-slate-700 text-center shadow-lg">
+                    <div class="text-[8px] uppercase text-slate-500 font-black tracking-widest mb-1">Ciklus-mentes</div>
+                    <div id="span-cycle-check" class="text-xl font-black text-emerald-500 uppercase">Igen</div>
+                </div>
+                <div class="p-4 bg-slate-800/80 rounded-xl border border-slate-700 text-center col-span-2 md:col-span-1 shadow-lg group">
+                    <button onclick="resetSpanning()" class="w-full h-full text-[10px] font-black uppercase tracking-widest text-rose-400 group-hover:text-rose-300 transition-colors active:scale-95">
+                        Visszaállítás 🔄
+                    </button>
+                </div>
+            </div>
+        </div>
+    </math-lab>
+</section>
+
+<math-header>
+    <div class="num-badge">2.5</div>
+    <h2>Feszítőfa létezése</h2>
+</math-header>
+
+<section id="section-2-5" class="mb-16 space-y-8">
+    <math-theorem id="section-2-5-theorem">
+        <p class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
+            A $G$ gráfnak akkor és csak akkor létezik feszítőfája, ha $G$ összefüggő.
+        </p>
+    </math-theorem>
+
+    
+
+    <math-proof>
+        <div class="space-y-8 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
+            
+            <div class="pl-6 border-l-4 border-red-500/20">
+                <p>
+                    <strong class="text-slate-900 dark:text-white uppercase tracking-widest text-xs block mb-2">($\Rightarrow$) irány</strong>
+                    Ha $G$-nek létezik egy $F$ feszítőfája, akkor (mivel $F$ fa és így összefüggő) bármely $x,y \in V(G) = V(F)$ csúcsok között létezik $F$-béli út, ami egyben $G$-béli út is. Így $G$ definíció szerint összefüggő.
+                </p>
+            </div>
+
+            <div class="pl-6 border-l-4 border-red-500/20">
+                <p>
+                    <strong class="text-slate-900 dark:text-white uppercase tracking-widest text-xs block mb-2">($\Leftarrow$) irány</strong>
+                    Legyen $G$ egy összefüggő gráf. Az üres élhalmaztól indulva fokozatosan építjük fel a feszítőfa éleit. Mindig egy olyan élt választunk, amely az aktuális részgráf **különböző komponenseit** köti össze.
+                </p>
+                <p class="mt-4">
+                    Ezzel az eljárással sosem hozunk létre kört (mivel csak komponensek közé húzunk élt), és a komponensek száma minden lépésben pontosan eggyel csökken. Amint eléri az 1-et, feszítőfát kaptunk.
+                </p>
+            </div>
+
+            [Image illustrating the process of connecting two different components with an edge in a graph]
+
+            <div class="bg-white/50 dark:bg-slate-900/40 p-6 rounded-2xl border border-red-100 dark:border-red-900/30 shadow-sm italic">
+                <p class="mb-4">
+                    Be kell látnunk, hogy ha a részgráfnak még legalább két komponense van, mindig van "híd" közöttük $G$-ben.
+                </p>
+                <p>
+                    Mivel $G$ összefüggő, létezik út egy $x \in K_x$ és $y \in K_y$ csúcs között. Az úton haladva az első olyan $\{u,v\}$ él, ahol $u \in K_x$ de $v \notin K_x$, éppen egy ilyen, két különböző komponenst összekötő él lesz.
+                </p>
+            </div>
+        </div>
+    </math-proof>
+
+    <math-lab>
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            <div>
+                <h3 class="text-xl font-bold italic text-emerald-400">Algoritmus-szemléltető</h3>
+                <p class="text-slate-400 text-sm">
+                    Építs feszítőfát: adj hozzá olyan éleket, amelyek különböző komponenseket kötnek össze!
+                </p>
+            </div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-12 items-center justify-center">
+            <div class="bg-slate-800/50 rounded-3xl p-6 border border-slate-700 w-full max-w-sm aspect-square flex justify-center items-center relative shadow-inner">
+                <svg id="algo-svg" width="280" height="280" viewBox="0 0 280 280" class="cursor-pointer overflow-visible z-10"></svg>
+            </div>
+
+            <div class="flex flex-col gap-4 w-full max-w-xs">
+                <div id="algo-step-card" class="bg-slate-800 p-5 rounded-2xl border border-slate-700 shadow-xl">
+                    <div class="text-[10px] uppercase font-black text-emerald-500 mb-2 tracking-[0.1em]">Aktuális állapot</div>
+                    <div id="algo-message" class="text-sm italic text-slate-300 leading-relaxed">Kattints egy szürke élre a kezdéshez!</div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-slate-800 p-4 rounded-2xl border border-slate-700 text-center shadow-lg">
+                        <div class="text-[8px] uppercase text-slate-500 font-black mb-1">Komponensek</div>
+                        <div id="algo-comp-count" class="text-xl font-black text-white">5</div>
+                    </div>
+                    <div class="bg-slate-800 p-4 rounded-2xl border border-slate-700 text-center shadow-lg">
+                        <div class="text-[8px] uppercase text-slate-500 font-black mb-1">Élek száma</div>
+                        <div id="algo-edge-count" class="text-xl font-black text-white">0</div>
+                    </div>
+                </div>
+                
+                <button onclick="resetAlgo()" class="w-full py-4 bg-slate-700 hover:bg-rose-600 transition-all rounded-xl font-black text-[10px] uppercase tracking-widest shadow-lg active:scale-95">
+                    Visszaállítás 🔄
+                </button>
+            </div>
+        </div>
+    </math-lab>
+</section>
+
+<div class="flex items-center gap-4 mb-6 mt-12">
+    <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-emerald-500/30 decoration-4 underline-offset-8 text-balance">
+        Kidolgozott feladat: Kritikus csúcsok vizsgálata
+    </h2>
+</div>
+
+<math-example id="section-2-5-ex">
+    <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 md:p-8 rounded-2xl shadow-sm relative overflow-hidden mb-6">
+        <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none text-emerald-600">
+            <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7 15h-2v-2h2v2m0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
+        </div>
+        <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-3 uppercase tracking-widest text-xs">Feladat</h4>
+        <p class="text-slate-700 dark:text-slate-300 leading-relaxed italic text-lg">
+            Létezik-e olyan (legalább két csúcsú) összefüggő gráf, aminek bármelyik csúcsát törölve (az éleivel együtt) a kapott gráf már nem összefüggő?
+        </p>
+    </div>
+
+    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md mb-8">
+        <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
+            <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
+            Megoldás levezetése
+        </h4>
+        
+        <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
+            <p>
+                Megmutatjuk, hogy <strong class="text-rose-500 font-black">ilyen gráf nem létezik</strong>: minden összefüggő $G$ gráfból törölhető egy alkalmasan választott $v$ csúcs úgy, hogy az összefüggőség megmaradjon.
+            </p>
+
+            
+
+            <div class="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-4">
+                <p>
+                    Vegyünk ugyanis egy $F$ feszítőfát $G$-ben. A korábbiakban bizonyítottuk, hogy egy legalább két csúcsú fának van legalább két **levele** (1 fokú csúcsa). Legyen $v$ egy ilyen <strong class="text-emerald-600 font-bold">levél</strong>.
+                </p>
+                <p>
+                    Ekkor a $v$ törlése után maradó $G'$ gráf összefüggő marad, mert bármely $x$ és $y$ csúcs között még az $F$-ből megmaradó (szintén összefüggő) részgráfban is létezik út.
+                </p>
+                
+                <div class="flex items-start gap-3 italic text-xs border-t border-slate-200 dark:border-slate-700 pt-4">
+                    <span class="text-indigo-500 font-black shrink-0">MAGYARÁZAT:</span>
+                    <span>Mivel $v$ egy levél a feszítőfában, az $x$ és $y$ közötti egyetlen $F$-beli út nem haladhatott át rajta (hiszen a levélen átmenő út esetén a csúcs foka legalább 2 lenne). Így a $v$ törlése ezt az utat érintetlenül hagyja.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <math-lab>
+        <h3 class="text-xl font-bold mb-4 italic text-emerald-400 text-center md:text-left">Vizuális bizonyítás segédlet</h3>
+        <p class="text-slate-400 text-sm mb-10 leading-relaxed text-balance">
+            Ha egy „levelet” törölsz, a gráf egyben marad. Ha egy belső csúcsot, a gráf széteshet. A feszítőfa létezése garantálja, hogy bármely összefüggő gráfban van legalább két „biztonságos” pont.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-slate-800/50 p-6 rounded-2xl border border-emerald-500/20 flex flex-col items-center shadow-inner">
+                <span class="text-[10px] font-black text-emerald-400 uppercase mb-6 tracking-widest">Levél törlése (Biztonságos)</span>
+                
+                
+                
+                <svg width="140" height="100" viewBox="0 0 140 100" class="overflow-visible">
+                    <line x1="70" y1="20" x2="30" y2="60" stroke="#475569" stroke-width="2" />
+                    <line x1="70" y1="20" x2="110" y2="60" stroke="#475569" stroke-width="2" />
+                    <circle cx="70" cy="20" r="5" fill="#475569" />
+                    <circle cx="30" cy="60" r="5" fill="#475569" />
+                    <circle cx="110" cy="60" r="6" fill="#f43f5e" class="animate-pulse" />
+                    <line x1="105" y1="55" x2="115" y2="65" stroke="white" stroke-width="2" />
+                    <line x1="115" y1="55" x2="105" y2="65" stroke="white" stroke-width="2" />
+                </svg>
+                <p class="mt-6 text-[10px] text-slate-500 italic text-center">A levél nem „tart össze” más pontokat.</p>
+            </div>
+
+            <div class="bg-slate-800/50 p-6 rounded-2xl border border-rose-500/20 flex flex-col items-center shadow-inner">
+                <span class="text-[10px] font-black text-rose-400 uppercase mb-6 tracking-widest">Belső csúcs törlése (Veszélyes)</span>
+                
+                
+                
+                <svg width="140" height="100" viewBox="0 0 140 100" class="overflow-visible">
+                    <line x1="70" y1="50" x2="30" y2="20" stroke="#475569" stroke-width="2" />
+                    <line x1="70" y1="50" x2="110" y2="20" stroke="#475569" stroke-width="2" />
+                    <line x1="70" y1="50" x2="70" y2="85" stroke="#475569" stroke-width="2" />
+                    <circle cx="70" cy="50" r="7" fill="#f43f5e" class="animate-pulse" />
+                    <circle cx="30" cy="20" r="5" fill="#475569" />
+                    <circle cx="110" cy="20" r="5" fill="#475569" />
+                    <circle cx="70" cy="85" r="5" fill="#475569" />
+                </svg>
+                <p class="mt-6 text-[10px] text-slate-500 italic text-center">A központi „csuklópont” törlése szétválasztja a gráfot.</p>
+            </div>
+        </div>
+    </math-lab>
+</math-example>
+
+<math-header>
+    <div class="num-badge">2.6</div>
+    <h2 class="text-balance">Minimális feszítőfa és a mohó algoritmus</h2>
+</math-header>
+
+<section id="section-2-6" class="mb-16 space-y-8">
+    <math-theorem id="section-2-6-theorem">
+        <div class="flex items-center mb-4 text-amber-600 dark:text-amber-400">
+            <span class="bg-amber-100 dark:bg-amber-900/40 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md mr-3">Tétel</span>
+        </div>
+        <p class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
+            Ha a $G$ összefüggő gráf $F_{mohó}$ feszítőfáját úgy készítjük el, hogy az üres halmaztól indulva mindig az aktuális részgráf különböző komponenseit összekötő, **legkisebb súlyú** élek egyikével bővítjük az élhalmazt, akkor $F_{mohó}$ **minimális összsúlyú** feszítőfa $G$-ben.
+        </p>
+    </math-theorem>
+
+    
+
+    <math-proof>
+        <h4 class="text-red-600 dark:text-red-400 font-black mb-6 uppercase tracking-widest text-[10px] flex items-center">
+            <span class="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+            Bizonyítás (Indirekt módon)
+        </h4>
+        
+        <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
+            <p>
+                Számozzuk meg $G$ éleit $e_1, e_2, \dots, e_m$ sorrendben a súlyuk szerint: $w(e_1) \leq w(e_2) \leq \dots \leq w(e_m)$. 
+            </p>
+
+            <div class="bg-white/50 dark:bg-slate-900/40 p-5 rounded-xl border border-red-100 dark:border-red-900/20 shadow-sm italic">
+                Tegyük fel indirekt, hogy $F_{mohó}$ nem minimális. Válasszunk egy optimális $F_{opt}$ feszítőfát, amely a **lehető legtovább azonos** a mohó megoldással (vagyis az első eltérés indexe, $k$, a lehető legnagyobb).
+            </div>
+
+            
+
+            <p>Vizsgáljuk meg az első eltérést az $e_k = \{u,v\}$ élnél:</p>
+
+            <ul class="space-y-4">
+                <li class="flex items-start gap-4 p-4 bg-red-500/5 border border-red-500/20 rounded-xl">
+                    <div class="flex-none bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shadow-lg">1</div>
+                    <p>
+                        <strong>$e_k \notin F_{mohó}$ de $e_k \in F_{opt}$:</strong> Ez csak akkor történhetett, ha a mohó algoritmus azért utasította el $e_k$-t, mert az a korábban beválasztott (és $F_{opt}$-tal közös) élekkel **kört alkotott** volna. Ez ellentmond $F_{opt}$ körmentességének.
+                    </p>
+                </li>
+                <li class="flex items-start gap-4 p-4 bg-red-500/5 border border-red-500/20 rounded-xl">
+                    <div class="flex-none bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shadow-lg">2</div>
+                    <p>
+                        <strong>$e_k \in F_{mohó}$ de $e_k \notin F_{opt}$:</strong> Mivel $F_{opt}$ feszítőfa, létezik benne egy $u-v$ út. Ebben kell lennie egy $e_\ell$ élnek, ami nincs benne $F_{mohó}$-ban. $e_k$ bevétele és $e_\ell$ kivétele egy új, optimális feszítőfát ad, ami több élben egyezik a mohóval — ez ellentmondás.
+                    </p>
+                </li>
+            </ul>
+
+            <div class="flex justify-center gap-8 py-4 opacity-75">
+                <div class="text-center">
+                    <svg width="50" height="50" class="mx-auto mb-2 text-slate-400"><circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="4"/></svg>
+                    <span class="text-[8px] uppercase font-black">Rendezés</span>
+                </div>
+                <div class="text-center text-emerald-500 animate-pulse">
+                    <svg width="50" height="50" class="mx-auto mb-2" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                    <span class="text-[8px] uppercase font-black">Optimális</span>
+                </div>
+            </div>
+        </div>
+    </math-proof>
+
+    <math-lab>
+        <h3 class="text-xl font-bold mb-4 italic text-emerald-400">A Mohó Stratégia Működése</h3>
+        <p class="text-slate-400 text-sm mb-8 leading-relaxed">
+            Az algoritmus "vak" bizalma a legolcsóbb élben kifizetődő: a lokális döntések sorozata garantáltan a globális minimumhoz vezet.
+        </p>
+
+        
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+            <div class="p-5 rounded-2xl bg-slate-800/80 border border-slate-700 text-center shadow-lg group hover:border-emerald-500/50 transition-colors">
+                <div class="text-emerald-500 text-3xl font-black mb-2 opacity-50 group-hover:opacity-100">1.</div>
+                <div class="text-[10px] uppercase font-black text-slate-400 tracking-widest mb-2">Rendezés</div>
+                <div class="text-xs italic text-slate-500 leading-relaxed text-balance">Élek sorba állítása súly szerint növekvő rendbe.</div>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-800/80 border border-slate-700 text-center shadow-lg group hover:border-emerald-500/50 transition-colors">
+                <div class="text-emerald-500 text-3xl font-black mb-2 opacity-50 group-hover:opacity-100">2.</div>
+                <div class="text-[10px] uppercase font-black text-slate-400 tracking-widest mb-2">Szűrés</div>
+                <div class="text-xs italic text-slate-500 leading-relaxed text-balance">Az él elvetése, ha a végpontjai már egy komponensben vannak.</div>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-800/80 border border-slate-700 text-center shadow-lg group hover:border-emerald-500/50 transition-colors">
+                <div class="text-emerald-500 text-3xl font-black mb-2 opacity-50 group-hover:opacity-100">3.</div>
+                <div class="text-[10px] uppercase font-black text-slate-400 tracking-widest mb-2">Bővítés</div>
+                <div class="text-xs italic text-slate-500 leading-relaxed text-balance">Az él hozzáadása a fához és a komponensek egyesítése.</div>
+            </div>
+        </div>
+    </math-lab>
+</section>
+
+<math-header>
+    <div class="num-badge">2.7</div>
+    <h2 class="text-balance">Kruskal algoritmusa</h2>
+</math-header>
+
+<section id="section-2-7" class="mb-16 space-y-8">
+    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
+        <div class="absolute top-0 right-0 p-6 opacity-5 pointer-events-none">
+            <svg class="w-24 h-24 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>
+        </div>
+
+        <div class="flex items-center mb-6">
+            <span class="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md mr-3 text-xs">Pszeudokód</span>
+        </div>
+
+        <div class="space-y-6">
+            <div class="bg-slate-50 dark:bg-slate-900/50 p-5 rounded-xl border border-slate-100 dark:border-slate-800">
+                <p class="text-sm font-bold text-slate-700 dark:text-slate-300">
+                    <span class="text-emerald-600 dark:text-emerald-400 uppercase mr-2 tracking-tighter">Bemenet:</span> 
+                    Egy $n$ csúcsú és $m$ élű $G = (V,E)$ összefüggő gráf és egy $w: E \to \mathbb{R}$ súlyfüggvény.
+                </p>
+            </div>
+
+            <div class="font-mono text-sm md:text-base space-y-2 bg-slate-900 text-slate-300 p-6 md:p-8 rounded-2xl shadow-2xl border border-slate-800">
+                <div class="flex gap-4">
+                    <span class="text-slate-600 shrink-0">1</span>
+                    <p><span class="text-emerald-400 font-bold">RENDEZZÜK AZ ÉLEKET</span> a $w(e)$ súlyok szerinti növekvő sorrendbe: $w(e_1) \leq w(e_2) \leq \dots \leq w(e_m)$</p>
+                </div>
+                <div class="flex gap-4">
+                    <span class="text-slate-600 shrink-0">2</span>
+                    <p>$k \leftarrow 0$; $j \leftarrow 1$; $E(F) \leftarrow \emptyset$</p>
+                </div>
+                <div class="flex gap-4">
+                    <span class="text-slate-600 shrink-0">3</span>
+                    <p><span class="text-indigo-400 font-bold uppercase text-xs">ciklus:</span> amíg $k < n - 1$</p>
+                </div>
+                <div class="flex gap-4 ml-6">
+                    <span class="text-slate-600 shrink-0">4</span>
+                    <p class="text-slate-400 font-medium">VIZSGÁLJUK MEG, HOGY $e_j$ VÉGPONTJAI KÜLÖNBÖZŐ KOMPONENSBEN VANNAK-E</p>
+                </div>
+                <div class="flex gap-4 ml-6">
+                    <span class="text-slate-600 shrink-0">5</span>
+                    <p><span class="text-indigo-400 font-bold uppercase text-xs">ha</span> igen, <span class="text-indigo-400 font-bold uppercase text-xs">akkor:</span></p>
+                </div>
+                <div class="flex gap-4 ml-12 border-l border-slate-700 pl-4">
+                    <span class="text-slate-600 shrink-0">6</span>
+                    <p>$E(F) \leftarrow E(F) \cup \{e_j\}$ <span class="text-slate-600 ml-2 italic">// Él beválogatása</span></p>
+                </div>
+                <div class="flex gap-4 ml-12 border-l border-slate-700 pl-4">
+                    <span class="text-slate-600 shrink-0">7</span>
+                    <p>$k \leftarrow k + 1$</p>
+                </div>
+                <div class="flex gap-4 ml-6">
+                    <span class="text-slate-600 shrink-0">8</span>
+                    <p>$j \leftarrow j + 1$</p>
+                </div>
+                <div class="flex gap-4">
+                    <span class="text-slate-600 shrink-0">9</span>
+                    <p><span class="text-indigo-400 font-bold uppercase text-xs">ciklus vége</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-emerald-50 dark:bg-emerald-900/10 p-6 rounded-2xl border border-emerald-100 dark:border-emerald-900/30 shadow-sm">
+            <h4 class="text-emerald-700 dark:text-emerald-400 font-black mb-3 text-[10px] uppercase tracking-widest">Leállási feltétel</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed italic">
+                Az algoritmus pontosan $n-1$ él beválogatása után áll meg. Mivel egy $n$ csúcsú fa élszáma mindig ennyi (lásd a korábbi **2.3-as tételt**), ekkorra garantáltan egy összefüggő feszítőfát kapunk.
+            </p>
+        </div>
+        <div class="bg-indigo-50 dark:bg-indigo-900/10 p-6 rounded-2xl border border-indigo-100 dark:border-indigo-900/30 shadow-sm">
+            <h4 class="text-indigo-700 dark:text-indigo-400 font-black mb-3 text-[10px] uppercase tracking-widest">Komponens vizsgálat</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed italic">
+                A 4. lépés a „lelke” a körmentességnek: ha két pont már azonos komponensben van, egy új él kört zárna be közöttük. Ezt elkerülve az algoritmus végig erdő struktúrát tart fenn.
+            </p>
+        </div>
+    </div>
+</section>
+
+<math-header>
+    <h2 class="text-balance">Kruskal-algoritmus: Interaktív szimuláció</h2>
+</math-header>
+
+<math-lab id="section-2-7-ex">
+    <div class="relative z-10">
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <div class="flex-grow space-y-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 class="text-emerald-400 font-black italic uppercase text-xs tracking-widest">Gráfépítő vászon</h3>
+                        <p class="text-slate-400 text-[10px] mt-1">Kattints a vászonra csúcsokhoz, kösd össze őket az élekért!</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="clearKruskal()" class="p-2.5 bg-slate-800 hover:bg-rose-600 rounded-xl transition-all shadow-lg active:scale-95" title="Minden törlése">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="relative bg-slate-800/80 rounded-3xl border border-slate-700 aspect-video lg:aspect-square overflow-hidden group shadow-inner">
+                    <svg id="kruskal-svg" width="100%" height="100%" class="cursor-crosshair overflow-visible"></svg>
+                    
+                    <div id="weight-popup" class="absolute hidden bg-slate-900/95 p-4 rounded-2xl border-2 border-emerald-500 shadow-2xl scale-90 transition-transform backdrop-blur-sm z-50">
+                        <label class="block text-[8px] font-black uppercase text-slate-500 mb-2 tracking-widest">Él súlya</label>
+                        <div class="flex items-center gap-2">
+                            <input type="number" id="edge-weight-input" class="w-20 bg-slate-800 text-white p-2 rounded-lg border border-slate-600 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 font-mono" value="1">
+                            <button onclick="confirmEdge()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest transition-colors shadow-lg">OK</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                    <button id="run-kruskal-btn" onclick="runKruskal()" class="flex-grow py-4 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-30 disabled:cursor-not-allowed text-white font-black uppercase tracking-widest text-[10px] rounded-2xl transition-all shadow-xl shadow-emerald-900/40 active:scale-[0.98]">
+                        Algoritmus futtatása ⚡
+                    </button>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-80 flex flex-col gap-6">
+                <div class="bg-slate-800/50 rounded-3xl p-6 border border-slate-700 shadow-xl">
+                    <h4 class="text-[10px] font-black uppercase text-emerald-500 mb-4 tracking-widest flex items-center">
+                        <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2 animate-pulse"></span>
+                        Algoritmus lépései
+                    </h4>
+                    <div id="kruskal-log" class="text-[11px] space-y-3 h-72 overflow-y-auto font-mono text-slate-400 pr-3 custom-scrollbar leading-relaxed">
+                        <p class="text-slate-500 italic">> Rendszer készenlétben.</p>
+                        <p class="text-slate-500 italic">> Adj hozzá legalább 3 csúcsot és néhány élt!</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 text-center">
+                    <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700 shadow-lg">
+                        <div class="text-[9px] uppercase text-slate-500 font-black tracking-widest mb-1">Összsúly</div>
+                        <div id="total-weight" class="text-2xl font-black text-emerald-400">0</div>
+                    </div>
+                    <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700 shadow-lg">
+                        <div class="text-[9px] uppercase text-slate-500 font-black tracking-widest mb-1">MST Élek</div>
+                        <div id="mst-edge-count" class="text-2xl font-black text-indigo-400">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</math-lab>
+
+<math-header>
+    <div class="num-badge">2.8</div>
+    <h2>Összefoglaló Kvíz</h2>
+</math-header>
+
+<section id="section-2-8" class="mb-16 animate-fade-in">
+    <math-lab>
+        <div class="relative z-10 p-4 md:p-8">
+            <div class="flex items-center gap-4 mb-10">
+                <div class="p-3 bg-emerald-500 rounded-2xl shadow-lg shadow-emerald-500/40">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-black text-white italic tracking-tight text-balance">Mennyire vágod a fák elméletét?</h3>
+                    <p class="text-emerald-300 text-sm italic">Vidd fölé az egeret vagy kattints a válasz felfedéséhez!</p>
+                </div>
+            </div>
+
+            
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div class="bg-slate-800/50 p-6 rounded-2xl border border-white/10 hover:bg-slate-800/80 transition-all cursor-help group/q shadow-sm">
+                    <p class="text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#01 Fa definíciója</p>
+                    <p class="text-white font-bold italic leading-relaxed text-balance">Melyik az a két kritérium, aminek egy gráfnak meg kell felelnie, hogy fa legyen?</p>
+                    <div class="mt-4 pt-4 border-t border-white/10 text-emerald-400 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+                        Válasz: Legyen **összefüggő** és **körmentes**.
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/50 p-6 rounded-2xl border border-white/10 hover:bg-slate-800/80 transition-all cursor-help group/q shadow-sm">
+                    <p class="text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#02 Élszám számítás</p>
+                    <p class="text-white font-bold italic leading-relaxed">Ha egy fa 20 csúccsal rendelkezik, pontosan hány éle van?</p>
+                    <div class="mt-4 pt-4 border-t border-white/10 text-emerald-400 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+                        Válasz: **19 él**. A tétel szerint minden $n$ csúcsú fa élszáma $m = n - 1$.
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/50 p-6 rounded-2xl border border-white/10 hover:bg-slate-800/80 transition-all cursor-help group/q shadow-sm">
+                    <p class="text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#03 Levelek</p>
+                    <p class="text-white font-bold italic leading-relaxed">Minimum hány levél (elsőfokú csúcs) található egy legalább két csúcsú fában?</p>
+                    <div class="mt-4 pt-4 border-t border-white/10 text-emerald-400 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+                        Válasz: **Legalább kettő**. (A leghosszabb út végpontjai mindig ilyenek).
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/50 p-6 rounded-2xl border border-white/10 hover:bg-slate-800/80 transition-all cursor-help group/q shadow-sm">
+                    <p class="text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#04 Kruskal-elv</p>
+                    <p class="text-white font-bold italic leading-relaxed">Melyik élt utasítja el a Kruskal-algoritmus a válogatás során?</p>
+                    <div class="mt-4 pt-4 border-t border-white/10 text-emerald-400 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity text-balance">
+                        Válasz: Azt az élt, aminek a végpontjai **már azonos komponensben** vannak, mivel az kör bezárását okozná.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </math-lab>
+</section>
+
+
+<math-trivia id="section-2-9">
+    <div class="flex items-center gap-4 mb-8">
+        <div class="p-3 bg-amber-400 rounded-2xl shadow-lg shadow-amber-400/20">
+            <span class="text-2xl">💡</span>
+        </div>
+        <div>
+            <h3 class="text-xl font-black text-slate-800 dark:text-white italic">Tudtad-e?</h3>
+        </div>
+    </div>
+
+    <div class="trivia-grid">
+        
+        <div class="trivia-card border-t-4 border-amber-400">
+            <h4 class="text-amber-600 dark:text-amber-400 font-black uppercase text-[10px] tracking-widest mb-3 flex items-center">
+                Cayley bűvös száma
+            </h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                Tudtad, hogy pontosan $n^{n-2}$ különböző, címkézett fát lehet rajzolni $n$ darab csúccsal? Ez a <strong>Cayley-formula</strong>. Ha csak 10 csúcsunk van, már **100 000 000** különböző fát alkothatunk!
+            </p>
+            
+        </div>
+
+        <div class="trivia-card border-t-4 border-emerald-400">
+            <h4 class="text-emerald-600 dark:text-emerald-400 font-black uppercase text-[10px] tracking-widest mb-3 flex items-center">
+                Algoritmus a sötétség ellen
+            </h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                A minimális feszítőfát először <strong>Otakar Borůvka</strong> kereste 1926-ban. Célja nem matematikai bravúr volt: Morvaország elektromos hálózatát akarta a lehető legolcsóbban kiépíteni.
+            </p>
+        </div>
+
+        <div class="trivia-card border-t-4 border-indigo-400">
+            <h4 class="text-indigo-600 dark:text-indigo-400 font-black uppercase text-[10px] tracking-widest mb-3 flex items-center">
+                Miért fér el a zenéd a mobilodon?
+            </h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                Az adatömörítés (mint a .zip vagy az .mp3) lelke gyakran egy fa. A <strong>Huffman-kódolás</strong> során a leggyakoribb karakterek a fa „tetején” rövid utat kapnak, így spórolva a tárhellyel.
+            </p>
+            
+        </div>
+
+        <div class="trivia-card border-t-4 border-rose-400">
+            <h4 class="text-rose-600 dark:text-rose-400 font-black uppercase text-[10px] tracking-widest mb-3 flex items-center">
+                Az élet fája
+            </h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                A biológusok a fajok evolúcióját <strong>filogenetikai fákkal</strong> modellezik. A levelek a mai fajok, az elágazások pedig a közös ősök, ahol az evolúció útja kettévált.
+            </p>
+            
+        </div>
+
+    </div>
+</math-trivia>
+
+<div id="complete-section-2" 
+     class="mt-12 p-8 bg-emerald-500/10 border-2 border-dashed border-emerald-500/30 rounded-[2.5rem] text-center transition-all">
+    
+    <h3 id="complete-text-2" class="text-xl font-black text-emerald-600 dark:text-emerald-400 mb-4 uppercase">
+        Mindent megtanultál?
+    </h3>
+    
+    <button onclick="toggleChapterComplete(2)" 
+            id="complete-btn-2" 
+            data-theme-color="emerald"
+            class="px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-lg transition-all active:scale-95">
+        Igen! ✅
+    </button>
+</div>
+<style>
+    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+    .node-label { pointer-events: none; user-select: none; font-size: 10px; font-weight: bold; }
+    .edge-label { font-size: 10px; font-weight: black; fill: #10b981; }
+</style>
+
+<script>
+    const kSvg = document.getElementById('kruskal-svg');
+    const kLog = document.getElementById('kruskal-log');
+    const weightPopup = document.getElementById('weight-popup');
+    const weightInput = document.getElementById('edge-weight-input');
+    
+    let kNodes = [];
+    let kEdges = [];
+    let tempNode = null;
+    let isRunning = false;
+
+    // Eseménykezelők
+    kSvg.addEventListener('click', (e) => {
+        if(isRunning) return;
+        const rect = kSvg.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Csúcsra kattintottunk?
+        const targetNode = kNodes.find(n => Math.hypot(n.x - x, n.y - y) < 15);
+
+        if (targetNode) {
+            if (tempNode === null) {
+                tempNode = targetNode;
+                renderKruskal();
+            } else {
+                if (tempNode !== targetNode) {
+                    // Élkészítés kezdete
+                    weightPopup.style.left = `${x}px`;
+                    weightPopup.style.top = `${y}px`;
+                    weightPopup.classList.remove('hidden');
+                    weightInput.focus();
+                    window.pendingEdge = { u: tempNode.id, v: targetNode.id };
+                }
+                tempNode = null;
+                renderKruskal();
+            }
+        } else {
+            // Új csúcs
+            kNodes.push({ id: kNodes.length, x, y });
+            tempNode = null;
+            renderKruskal();
+        }
+    });
+
+    function confirmEdge() {
+        const weight = parseInt(weightInput.value) || 1;
+        // Ellenőrizzük, van-e már ilyen él
+        const exists = kEdges.some(e => 
+            (e.u === window.pendingEdge.u && e.v === window.pendingEdge.v) ||
+            (e.u === window.pendingEdge.v && e.v === window.pendingEdge.u)
+        );
+        
+        if(!exists) {
+            kEdges.push({ ...window.pendingEdge, weight, inMST: false, active: true });
+        }
+        weightPopup.classList.add('hidden');
+        renderKruskal();
+    }
+
+    function runKruskal() {
+        if (kNodes.length < 2 || kEdges.length < 1) return;
+        isRunning = true;
+        document.getElementById('run-kruskal-btn').disabled = true;
+        
+        // 1. RENDEZZÜK AZ ÉLEKET
+        let sortedEdges = [...kEdges].sort((a, b) => a.weight - b.weight);
+        kEdges.forEach(e => e.inMST = false);
+        
+        kLog.innerHTML = `<p class="text-emerald-400">> Élek sorbarendezése súly szerint...</p>`;
+        
+        // Union-Find (DSU) struktúra a komponensekhez
+        let parent = kNodes.map((_, i) => i);
+        function find(i) {
+            while(parent[i] !== i) i = parent[i];
+            return i;
+        }
+        function union(i, j) {
+            let rootI = find(i);
+            let rootJ = find(j);
+            if(rootI !== rootJ) {
+                parent[rootI] = rootJ;
+                return true;
+            }
+            return false;
+        }
+
+        let mstWeight = 0;
+        let mstCount = 0;
+        let step = 0;
+
+        function nextStep() {
+            if (step >= sortedEdges.length || mstCount === kNodes.length - 1) {
+                kLog.innerHTML += `<p class="text-emerald-400 font-bold">> KÉSZ! Minimális feszítőfa előállítva.</p>`;
+                isRunning = false;
+                document.getElementById('run-kruskal-btn').disabled = false;
+                return;
+            }
+
+            let edge = sortedEdges[step];
+            // 4. VIZSGÁLJUK MEG A KOMPONENSEKET
+            if (union(edge.u, edge.v)) {
+                edge.inMST = true;
+                mstWeight += edge.weight;
+                mstCount++;
+                kLog.innerHTML += `<p class="text-emerald-500">> [OK] ${edge.u}-${edge.v} (Súly: ${edge.weight}) hozzáadva.</p>`;
+            } else {
+                kLog.innerHTML += `<p class="text-rose-500">> [KIHAGYVA] ${edge.u}-${edge.v} kört alkotna.</p>`;
+            }
+
+            document.getElementById('total-weight').innerText = mstWeight;
+            document.getElementById('mst-edge-count').innerText = mstCount;
+            renderKruskal();
+            kLog.scrollTop = kLog.scrollHeight;
+            
+            step++;
+            setTimeout(nextStep, 800);
+        }
+
+        nextStep();
+    }
+
+    function renderKruskal() {
+        kSvg.innerHTML = '';
+        
+        // Élek
+        kEdges.forEach(edge => {
+            const u = kNodes[edge.u];
+            const v = kNodes[edge.v];
+            const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.setAttribute("x1", u.x); line.setAttribute("y1", u.y);
+            line.setAttribute("x2", v.x); line.setAttribute("y2", v.y);
+            
+            if (edge.inMST) {
+                line.setAttribute("stroke", "#10b981");
+                line.setAttribute("stroke-width", "5");
+            } else {
+                line.setAttribute("stroke", isRunning ? "#1e293b" : "#334155");
+                line.setAttribute("stroke-width", "2");
+            }
+            line.setAttribute("class", "transition-all duration-500");
+            kSvg.appendChild(line);
+
+            // Súly jelzése
+            const midX = (u.x + v.x) / 2;
+            const midY = (u.y + v.y) / 2;
+            const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            text.setAttribute("x", midX); text.setAttribute("y", midY - 5);
+            text.setAttribute("class", "edge-label");
+            text.setAttribute("text-anchor", "middle");
+            text.textContent = edge.weight;
+            kSvg.appendChild(text);
+        });
+
+        // Csúcsok
+        kNodes.forEach(node => {
+            const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            const circ = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            circ.setAttribute("cx", node.x); circ.setAttribute("cy", node.y);
+            circ.setAttribute("r", tempNode && tempNode.id === node.id ? "14" : "10");
+            circ.setAttribute("fill", tempNode && tempNode.id === node.id ? "#fbbf24" : "#1e293b");
+            circ.setAttribute("stroke", "#10b981");
+            circ.setAttribute("stroke-width", "2");
+            
+            const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            label.setAttribute("x", node.x); label.setAttribute("y", node.y + 4);
+            label.setAttribute("text-anchor", "middle");
+            label.setAttribute("class", "node-label fill-white");
+            label.textContent = node.id;
+
+            g.appendChild(circ);
+            g.appendChild(label);
+            kSvg.appendChild(g);
+        });
+    }
+
+    function clearKruskal() {
+        kNodes = []; kEdges = []; tempNode = null; isRunning = false;
+        kLog.innerHTML = `<p class="text-slate-500">> Gráf törölve. Kezdj újat!</p>`;
+        document.getElementById('total-weight').innerText = "0";
+        document.getElementById('mst-edge-count').innerText = "0";
+        document.getElementById('run-kruskal-btn').disabled = false;
+        renderKruskal();
+    }
+
+    renderKruskal();
+</script>
+
+<script>
+    const aSvg = document.getElementById('algo-svg');
+    const aNodes = [
+        { id: 0, x: 140, y: 40, comp: 0 },
+        { id: 1, x: 240, y: 110, comp: 1 },
+        { id: 2, x: 200, y: 230, comp: 2 },
+        { id: 3, x: 80, y: 230, comp: 3 },
+        { id: 4, x: 40, y: 110, comp: 4 }
+    ];
+    let aEdges = [
+        { u: 0, v: 1, active: false }, { u: 1, v: 2, active: false },
+        { u: 2, v: 3, active: false }, { u: 3, v: 4, active: false },
+        { u: 4, v: 0, active: false }, { u: 0, v: 2, active: false },
+        { u: 1, v: 3, active: false }
+    ];
+    
+    const compColors = ["#ef4444", "#3b82f6", "#10b981", "#f59e0b", "#8b5cf6"];
+
+    function updateAlgo() {
+        aSvg.innerHTML = '';
+        const msg = document.getElementById('algo-message');
+        
+        // Find components using DSU logic
+        let parent = aNodes.map((_, i) => i);
+        function find(i) { while(parent[i] !== i) i = parent[i]; return i; }
+        function union(i, j) { let rootI = find(i); let rootJ = find(j); if(rootI !== rootJ) { parent[rootI] = rootJ; return true; } return false; }
+        
+        aEdges.forEach(e => { if(e.active) union(e.u, e.v); });
+        
+        const finalComps = aNodes.map((_, i) => find(i));
+        const uniqueComps = new Set(finalComps);
+        
+        aEdges.forEach(edge => {
+            const u = aNodes[edge.u];
+            const v = aNodes[edge.v];
+            const isBridge = find(edge.u) !== find(edge.v);
+            
+            const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.setAttribute("x1", u.x); line.setAttribute("y1", u.y);
+            line.setAttribute("x2", v.x); line.setAttribute("y2", v.y);
+            line.setAttribute("stroke", edge.active ? "#10b981" : "#334155");
+            line.setAttribute("stroke-width", edge.active ? "5" : "3");
+            line.setAttribute("class", "transition-all duration-300");
+            
+            line.onclick = () => {
+                if(!edge.active) {
+                    if(isBridge) {
+                        edge.active = true;
+                        msg.innerText = "Szuper! Két komponenst egyesítettél.";
+                    } else {
+                        msg.innerText = "Vigyázz! Ez az él kört hozna létre.";
+                    }
+                    updateAlgo();
+                }
+            };
+            aSvg.appendChild(line);
+        });
+
+        aNodes.forEach((node, i) => {
+            const circ = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            circ.setAttribute("cx", node.x); circ.setAttribute("cy", node.y);
+            circ.setAttribute("r", "12");
+            circ.setAttribute("fill", compColors[finalComps[i]]);
+            circ.setAttribute("stroke", "white");
+            circ.setAttribute("stroke-width", "2");
+            aSvg.appendChild(circ);
+        });
+
+        document.getElementById('algo-comp-count').innerText = uniqueComps.size;
+        document.getElementById('algo-edge-count').innerText = aEdges.filter(e => e.active).length;
+        
+        if(uniqueComps.size === 1) {
+            msg.innerText = "Kész! A gráf összefüggő lett, megkaptuk a feszítőfát.";
+            msg.className = "text-sm italic text-emerald-400 font-bold";
+        }
+    }
+
+    function resetAlgo() {
+        aEdges.forEach(e => e.active = false);
+        document.getElementById('algo-message').innerText = "Kattints egy szürke élre a kezdéshez!";
+        document.getElementById('algo-message').className = "text-sm italic text-slate-300";
+        updateAlgo();
+    }
+
+    updateAlgo();
+</script>
+
+<script>
+    // A script rész változatlan marad, csak a sorszámozott címet adtuk hozzá a HTML-ben.
+    const sSvg = document.getElementById('spanning-svg');
+    const sNodes = [
+        { id: 0, x: 150, y: 50 }, { id: 1, x: 250, y: 120 },
+        { id: 2, x: 220, y: 240 }, { id: 3, x: 80, y: 240 },
+        { id: 4, x: 50, y: 120 }, { id: 5, x: 150, y: 150 }
+    ];
+    let sEdges = [
+        { u: 0, v: 1, selected: false }, { u: 1, v: 2, selected: false },
+        { u: 2, v: 3, selected: false }, { u: 3, v: 4, selected: false },
+        { u: 4, v: 0, selected: false }, { u: 0, v: 5, selected: false },
+        { u: 1, v: 5, selected: false }, { u: 2, v: 5, selected: false },
+        { u: 3, v: 5, selected: false }, { u: 4, v: 5, selected: false }
+    ];
+
+    function checkSpanningTree() {
+        const selected = sEdges.filter(e => e.selected);
+        const adj = Array.from({ length: sNodes.length }, () => []);
+        selected.forEach(e => {
+            adj[e.u].push(e.v);
+            adj[e.v].push(e.u);
+        });
+
+        let hasCycle = false;
+        const visited = new Set();
+        function dfs(v, p) {
+            visited.add(v);
+            for (let neighbor of adj[v]) {
+                if (!visited.has(neighbor)) {
+                    if (dfs(neighbor, v)) return true;
+                } else if (neighbor !== p) return true;
+            }
+            return false;
+        }
+        for (let i = 0; i < sNodes.length; i++) {
+            if (!visited.has(i) && adj[i].length > 0) {
+                if (dfs(i, -1)) { hasCycle = true; break; }
+            }
+        }
+
+        const isConn = visited.size === sNodes.length;
+        const isTree = isConn && !hasCycle && selected.length === sNodes.length - 1;
+
+        return { isTree, hasCycle, count: selected.length, isConn };
+    }
+
+    function renderSpanning() {
+        sSvg.innerHTML = '';
+        const stats = checkSpanningTree();
+
+        sEdges.forEach(edge => {
+            const u = sNodes[edge.u];
+            const v = sNodes[edge.v];
+            const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.setAttribute("x1", u.x); line.setAttribute("y1", u.y);
+            line.setAttribute("x2", v.x); line.setAttribute("y2", v.y);
+            line.setAttribute("stroke", edge.selected ? "#10b981" : "#334155");
+            line.setAttribute("stroke-width", edge.selected ? "5" : "2");
+            line.setAttribute("class", "transition-all duration-300");
+            line.onclick = () => { edge.selected = !edge.selected; renderSpanning(); };
+            sSvg.appendChild(line);
+        });
+
+        sNodes.forEach(node => {
+            const circ = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            circ.setAttribute("cx", node.x); circ.setAttribute("cy", node.y);
+            circ.setAttribute("r", "10");
+            circ.setAttribute("fill", "#1e293b");
+            circ.setAttribute("stroke", stats.isTree ? "#10b981" : "#475569");
+            circ.setAttribute("stroke-width", "2");
+            sSvg.appendChild(circ);
+        });
+
+        const status = document.getElementById('spanning-status');
+        if (stats.isTree) {
+            status.innerText = "KÉSZ: Ez egy feszítőfa!";
+            status.className = "px-6 py-2 rounded-full font-black uppercase tracking-widest text-xs border-2 bg-emerald-500/10 border-emerald-500 text-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.3)]";
+        } else if (stats.hasCycle) {
+            status.innerText = "HIBA: Kört tartalmaz!";
+            status.className = "px-6 py-2 rounded-full font-black uppercase tracking-widest text-xs border-2 bg-rose-500/10 border-rose-500 text-rose-500 shadow-[0_0_15px_rgba(244,63,94,0.3)]";
+        } else {
+            status.innerText = "Építés alatt...";
+            status.className = "px-6 py-2 rounded-full font-black uppercase tracking-widest text-xs border-2 bg-slate-800 border-slate-700 text-slate-500";
+        }
+
+        document.getElementById('span-edge-count').innerText = stats.count;
+        document.getElementById('span-cycle-check').innerText = stats.hasCycle ? "Van" : "Nincs";
+        document.getElementById('span-cycle-check').className = "text-xl font-black " + (stats.hasCycle ? "text-rose-500" : "text-emerald-500");
+    }
+
+    function resetSpanning() { sEdges.forEach(e => e.selected = false); renderSpanning(); }
+    renderSpanning();
+</script>
+
+<script>
+    const bSvg = document.getElementById('build-svg');
+    const bNodes = [
+        { id: 0, x: 150, y: 50, comp: 0 },
+        { id: 1, x: 250, y: 120, comp: 1 },
+        { id: 2, x: 220, y: 240, comp: 2 },
+        { id: 3, x: 80, y: 240, comp: 3 },
+        { id: 4, x: 50, y: 120, comp: 4 },
+        { id: 5, x: 150, y: 160, comp: 5 }
+    ];
+    let bEdges = [];
+    let bSelected = null;
+
+    function getComponents() {
+        let parent = bNodes.map(n => n.comp);
+        function find(i) {
+            while(parent[i] !== i) i = parent[i];
+            return i;
+        }
+        function union(i, j) {
+            let rootI = find(i);
+            let rootJ = find(j);
+            if(rootI !== rootJ) { parent[rootI] = rootJ; return true; }
+            return false;
+        }
+        
+        let count = bNodes.length;
+        parent = bNodes.map((_, i) => i);
+        bEdges.forEach(e => {
+            if(union(e.u, e.v)) count--;
+        });
+        return count;
+    }
+
+    function renderBuilder() {
+        bSvg.innerHTML = '';
+        bEdges.forEach(edge => {
+            const u = bNodes[edge.u];
+            const v = bNodes[edge.v];
+            const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.setAttribute("x1", u.x); line.setAttribute("y1", u.y);
+            line.setAttribute("x2", v.x); line.setAttribute("y2", v.y);
+            line.setAttribute("stroke", "#6366f1"); line.setAttribute("stroke-width", "4");
+            bSvg.appendChild(line);
+        });
+
+        bNodes.forEach(node => {
+            const circ = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            circ.setAttribute("cx", node.x); circ.setAttribute("cy", node.y);
+            circ.setAttribute("r", "12");
+            circ.setAttribute("fill", bSelected === node.id ? "#10b981" : "white");
+            circ.onclick = () => {
+                if(bSelected === null) bSelected = node.id;
+                else {
+                    if(bSelected !== node.id) bEdges.push({u: bSelected, v: node.id});
+                    bSelected = null;
+                }
+                renderBuilder();
+            };
+            bSvg.appendChild(circ);
+        });
+
+        document.getElementById('comp-val').innerText = getComponents();
+        document.getElementById('edge-val').innerText = bEdges.length;
+    }
+
+    function resetBuilder() { bEdges = []; bSelected = null; renderBuilder(); }
+    renderBuilder();
+</script>
+
+<script>
+    function showCase(n) {
+        document.getElementById('case-1-visual').classList.add('opacity-0');
+        document.getElementById('case-2-visual').classList.add('opacity-0');
+        
+        const desc = document.getElementById('case-desc');
+        if(n === 1) {
+            document.getElementById('case-1-visual').classList.remove('opacity-0');
+            desc.innerText = "Ellentmondás: P nem volt a leghosszabb út, mert x-szel meghosszabbítható.";
+            desc.className = "mt-4 text-xs text-rose-400 font-bold italic h-4";
+        } else {
+            document.getElementById('case-2-visual').classList.remove('opacity-0');
+            desc.innerText = "Ellentmondás: Kör keletkezett v és x között, pedig a fa körmentes.";
+            desc.className = "mt-4 text-xs text-rose-400 font-bold italic h-4";
+        }
+    }
+
+    function hideCases() {
+        document.getElementById('case-1-visual').classList.add('opacity-0');
+        document.getElementById('case-2-visual').classList.add('opacity-0');
+        const desc = document.getElementById('case-desc');
+        desc.innerText = "Húzd az egeret a gombok fölé a szemléltetéshez!";
+        desc.className = "mt-4 text-xs text-slate-500 italic h-4";
+    }
+</script>
+</article>
+
+
+
+
+<script>
+    function toggleBeadoModal() {
+        const modal = document.getElementById('beadoModal');
+        const panel = document.getElementById('beadoPanel');
+        if (modal.classList.contains('opacity-0')) {
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => { panel.classList.remove('scale-90'); panel.classList.add('scale-100'); }, 10);
+        } else {
+            panel.classList.remove('scale-100'); panel.classList.add('scale-90');
+            setTimeout(() => { modal.classList.add('opacity-0', 'pointer-events-none'); }, 300);
+        }
+    }
+</script>
+
+
+
+</footer>
+</main>
+
+    <script>
+        // --- GLOBÁLIS FUNKCIÓK ---
+
+        // 1. Menükezelés mobilra
+        function toggleMenu() {
+            const sb = document.getElementById('sidebar');
+            const ov = document.getElementById('overlay');
+            if (sb.classList.contains('closed')) {
+                sb.classList.replace('closed', 'open');
+                ov.classList.remove('hidden');
+            } else {
+                sb.classList.replace('open', 'closed');
+                ov.classList.add('hidden');
+            }
+        }
+
+        // 2. Éjszakai mód váltó LocalStorage mentéssel
+        function toggleNightMode() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('nightMode', isDark);
+        }
+
+        // 3. Téma betöltése azonnal villanás nélkül
+        (function() {
+            if (localStorage.getItem('nightMode') === 'true') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+
+        // 4. Aktuális oldal kijelölése a menüben
+        document.addEventListener("DOMContentLoaded", function() {
+            const currentPath = window.location.pathname.split("https://bsz2jegyzet.hu/").pop() || "index.php";
+            document.querySelectorAll(".nav-item").forEach(link => {
+                if (link.getAttribute("href") === currentPath) {
+                    link.classList.add("active");
+                }
+            });
+        });
+
+        // 5. MathJax frissítése dinamikus tartalomnál
+        window.addEventListener('load', () => {
+            if (window.MathJax) MathJax.typesetPromise();
+        });
+    </script>
+
+
+<div id="beadoModal" class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="beadoPanel" class="bg-white dark:bg-slate-800 w-full max-w-md rounded-[2.5rem] shadow-2xl transform scale-90 transition-transform duration-500 ease-out overflow-hidden border border-slate-100 dark:border-slate-700">
+        <div class="p-10 text-center space-y-8">
+            <div class="space-y-4">
+                <div class="w-20 h-20 bg-rose-500 rounded-3xl rotate-12 mx-auto flex items-center justify-center shadow-lg shadow-rose-500/30">
+                    <svg class="w-10 h-10 text-white -rotate-12" fill="currentColor" viewBox="0 0 24 24"><path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" /></svg>
+                </div>
+                <h3 class="text-3xl font-black text-slate-800 dark:text-white leading-tight">Ne add fel bro,<br>van remény!</h3>
+            </div>
+            <button onclick="toggleBeadoModal()" class="w-full py-5 bg-emerald-500 hover:bg-emerald-400 text-white font-black uppercase tracking-widest text-sm rounded-2xl transition-all shadow-xl shadow-emerald-500/20">Nyomom! 💪</button>
+        </div>
+    </div>
+</div>
+
+<div id="assistant-window" class="fixed inset-0 md:inset-auto md:bottom-24 md:right-6 z-50 w-full h-full md:w-[450px] md:h-[80vh] bg-emerald-600 glass-effect rounded-none md:rounded-[2.5rem] shadow-2xl border-none md:border md:border-white/20 overflow-hidden hidden transform transition-all duration-300 origin-bottom-right opacity-0 scale-95 flex flex-col">    <div class="p-6 pb-4 bg-emerald-600 text-white flex-none">
+        <div class="flex justify-between items-start">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center text-2xl shadow-inner text-left">🤖</div>
+                <div class="text-left">
+                    <h3 class="font-black text-lg uppercase tracking-tight leading-none">Szeszlér-Bot</h3>
+                    <p class="text-[11px] text-emerald-100 font-medium mt-1.5 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span> Online segítő
+                    </p>
+                </div>
+            </div>
+            <button onclick="toggleAssistant()" class="p-2 hover:bg-white/10 rounded-full transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2.5" stroke-linecap="round"/></svg>
+            </button>
+        </div>
+        
+        <div class="flex mt-6 bg-black/10 p-1 rounded-2xl border border-white/10 text-white">
+    <button onclick="switchTab('search')" id="tab-search" class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl bg-white text-emerald-600 shadow-sm transition-all">Fogalomtár</button>
+    
+    <button onclick="switchTab('ask')" id="tab-ask" class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl hover:text-white transition-all opacity-70">Kérdezz</button>
+
+    <button onclick="switchTab('exam')" id="tab-exam" class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl hover:text-white transition-all opacity-70">Vakvizsga</button>
+</div>
+
+<div id="panel-exam" class="hidden flex flex-col flex-grow overflow-hidden p-6 bg-transparent">
+        <div class="flex-grow flex flex-col items-center justify-center p-6 space-y-6 text-center overflow-y-auto">
+        
+        <div id="exam-card" class="w-full p-8 rounded-[2.5rem] bg-white dark:bg-slate-800 border-none flex flex-col items-center justify-center min-h-[250px] transition-all shadow-2xl">
+            <div id="exam-prompt" class="text-slate-400 italic text-sm">
+                Jöhetnek a kérdések?
+            </div>
+            <div id="exam-content" class="hidden w-full space-y-4 text-left">
+                <span id="exam-ref" class="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-600 text-[8px] font-black uppercase tracking-widest"></span>
+                <h4 id="exam-title" class="font-black text-slate-900 dark:text-white uppercase text-sm tracking-tight leading-tight"></h4>
+                <div id="exam-answer" class="hidden p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-emerald-100 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-300 italic leading-relaxed shadow-inner"></div>
+            </div>
+        </div>
+
+        <div class="w-full space-y-4 pb-4">
+            <button id="exam-main-btn" onclick="drawExamCard()" class="w-full py-4 bg-white text-emerald-600 hover:bg-slate-50 font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl active:scale-95 transition-all">
+                Új tétel húzása 🃏
+            </button>
+
+            <button id="exam-reveal-btn" onclick="revealExamAnswer()" class="hidden w-full py-4 bg-white text-emerald-600 hover:bg-slate-50 font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl active:scale-95 transition-all">
+                Válasz mutatása ✨
+            </button>
+        </div>
+    </div>
+</div>
+</div>
+
+<div id="panel-search" class="flex flex-col flex-grow overflow-hidden bg-white dark:bg-slate-900">
+            <div class="p-5 border-b dark:border-slate-800 text-left flex-none">
+            <input type="text" id="search-input" placeholder="Mit keresel?..." class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 text-sm focus:ring-2 focus:ring-emerald-500 transition-all dark:text-white shadow-inner">
+        </div>
+        <div id="search-results" class="p-6 flex-grow overflow-y-auto bg-white/50 dark:bg-transparent text-left custom-scrollbar">
+            <div class="text-center py-12 opacity-30">
+                <svg class="w-12 h-12 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-width="2"/></svg>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-center">Kezdj el gépelni...</p>
+            </div>
+        </div>
+    </div>
+
+<div id="panel-ask" class="hidden flex flex-col flex-grow overflow-hidden bg-white dark:bg-slate-900">
+            <div id="ask-results" class="p-6 flex-grow overflow-y-auto space-y-4 bg-slate-50/50 dark:bg-transparent text-left custom-scrollbar">
+            <div class="flex gap-3 animate-fade-in text-left">
+        <div class="w-8 h-8 rounded-xl bg-emerald-600 flex items-center justify-center text-xs shadow-md flex-none text-white">🤖</div>
+        
+        <div class="bot-bubble p-4 text-xs italic text-slate-600 dark:text-slate-300 shadow-sm leading-relaxed max-w-[85%] border border-emerald-100 dark:border-emerald-900/30"">
+            Szia! Szeszlér-Bot vagyok. Kérdezz bármit az anyaggal kapcsolatban!
+        </div>
+    </div>
+        </div>
+        
+        <div class="p-5 border-t dark:border-slate-800 bg-white dark:bg-slate-900 flex-none text-left">
+            <div class="relative flex items-center gap-2">
+                <input type="text" id="ask-input" placeholder="Írd ide a kérdésed..." class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 text-sm focus:ring-2 focus:ring-emerald-500 transition-all dark:text-white shadow-inner">
+                <button onclick="handleAsk()" class="p-4 bg-emerald-600 text-white rounded-2xl shadow-lg hover:bg-emerald-500 transition-all active:scale-90 flex-none">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="fixed-btn-container left-4 bottom-[84px] md:left-auto md:right-6 md:bottom-[100px]">
+    <button onclick="toggleAssistant()" class="flex items-center justify-center w-11 h-11 md:w-16 md:h-16 bg-emerald-600 text-white rounded-full shadow-2xl transition-transform active:scale-95">
+        <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+    </button>
+</div>
+
+<div class="fixed-btn-container left-4 bottom-6 md:left-auto md:right-6 md:bottom-6">
+    <button onclick="toggleBeadoModal()" class="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white px-3 py-2.5 md:px-6 md:py-4 rounded-xl md:rounded-2xl shadow-2xl border border-white/20">
+        <span class="font-black text-[10px] md:text-sm tracking-widest uppercase">
+            <span class="md:hidden">032</span>
+            <span class="hidden md:inline">032 beadó</span>
+        </span>
+        <div class="bg-white/20 p-1 rounded-md text-white">
+            <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10h.01M15 10h.01M9.5 15.5a5 5 0 015 0M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        </div>
+    </button>
+</div>
+<script>
+    window.addEventListener('load', () => {
+    if (window.location.hash) {
+        const id = window.location.hash.substring(1); // Kivesszük a '#' jelet
+        const el = document.getElementById(id);
+        
+        if (el) {
+            // Egy kis késleltetés kell, hogy a böngésző befejezze az alapértelmezett ugrást
+            setTimeout(() => {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                el.classList.add('ring-4', 'ring-indigo-500/40', 'rounded-lg');
+                setTimeout(() => el.classList.remove('ring-4', 'ring-indigo-500/40'), 3000);
+            }, 300);
+        }
+    }
+});
+</script>
+<script>
+    let currentExamItem = null;
+
+window.drawExamCard = function() {
+    // 1. Szűrés: Csak elméleti tételek
+    const theoryPool = graphKB.filter(item => !item.target.includes('-ex'));
+    if (theoryPool.length === 0) return;
+
+    // 2. Véletlenszerű választás
+    currentExamItem = theoryPool[Math.floor(Math.random() * theoryPool.length)];
+
+    // 3. UI alaphelyzetbe állítása (kérdés mutatása, válasz elrejtése)
+    document.getElementById('exam-prompt').style.display = 'none';
+    document.getElementById('exam-content').classList.remove('hidden');
+    document.getElementById('exam-content').style.display = 'block';
+    
+    document.getElementById('exam-ref').innerText = `Szakasz: ${currentExamItem.ref}`;
+    document.getElementById('exam-title').innerText = currentExamItem.title;
+    
+    const ansBox = document.getElementById('exam-answer');
+    ansBox.classList.add('hidden');
+    ansBox.style.display = 'none';
+    // Fontos: Itt csak a szöveget írjuk be, a gombot majd a reveal-nél adjuk hozzá
+    ansBox.innerHTML = currentExamItem.ans; 
+    
+    // 4. Gombok váltása
+    document.getElementById('exam-main-btn').style.display = 'none';
+    document.getElementById('exam-reveal-btn').style.display = 'block';
+
+    if(window.MathJax) MathJax.typesetPromise([document.getElementById('exam-content')]);
+};
+
+window.revealExamAnswer = function() {
+    // 1. Válasz mutatása
+    const ansBox = document.getElementById('exam-answer');
+    ansBox.classList.remove('hidden');
+    ansBox.style.display = 'block';
+    
+    // 2. Gombok visszaváltása
+    document.getElementById('exam-reveal-btn').style.display = 'none';    // Válasz gomb elrejtése
+    document.getElementById('exam-main-btn').style.display = 'block';     // Húzás gomb vissza
+    document.getElementById('exam-main-btn').innerText = "Új tétel húzása 🃏";
+
+    if(window.MathJax) MathJax.typesetPromise([ansBox]);
+};
+
+// Ne felejtsd el frissíteni a switchTab függvényt is az új füllel!
+function switchTab(tab) {
+    const panels = ['panel-search', 'panel-ask', 'panel-exam'];
+    const tabs = ['tab-search', 'tab-ask', 'tab-exam'];
+    
+    panels.forEach(p => document.getElementById(p).classList.add('hidden'));
+    tabs.forEach(t => {
+        const el = document.getElementById(t);
+        el.className = `flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl text-white/70 hover:text-white transition-all`;
+    });
+
+    const activePanel = document.getElementById(`panel-${tab}`);
+    const activeTab = document.getElementById(`tab-${tab}`);
+    
+    activePanel.classList.remove('hidden');
+    activeTab.className = `flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl bg-white text-${themeColor}-600 shadow-sm transition-all`;
+}
+</script>
+
+
+<script>
+    function markChapterComplete(num) {
+    let progress = JSON.parse(localStorage.getItem('graphProgress') || '{}');
+    progress[num] = true;
+    localStorage.setItem('graphProgress', JSON.stringify(progress));
+    updateProgressUI();
+}
+
+function updateProgressUI() {
+    const progress = JSON.parse(localStorage.getItem('graphProgress') || '{}');
+    
+    // 1. A menü (sidebar) frissítése - automatikusan az összes .nav-item-re
+    document.querySelectorAll(".nav-item").forEach(navLink => {
+        const href = navLink.getAttribute("href");
+        // Kinyerjük a fejezet számát a href-ből (pl. "2.php" -> 2, "index.php" -> 1)
+        let cpNum;
+        if (href === 'index-2.html') cpNum = 1;
+        else cpNum = parseInt(href); 
+
+        if (cpNum && progress[cpNum]) {
+            // Ha kész van, tegyünk pipát
+            if (!navLink.querySelector('.menu-checkmark')) {
+                const span = document.createElement('span');
+                span.className = 'menu-checkmark ml-auto text-emerald-500 font-bold animate-fade-in';
+                span.innerText = '✓';
+                navLink.appendChild(span);
+            }
+        } else {
+            // Ha nincs kész, vegyük le a pipát
+            const checkmark = navLink.querySelector('.menu-checkmark');
+            if (checkmark) checkmark.remove();
+        }
+    });
+
+    // 2. Az aktuális oldalon lévő gomb frissítése
+    // Megkeressük a gombot az oldalon (mivel minden oldalon csak egy ilyen van)
+    const btn = document.querySelector('[id^="complete-btn-"]');
+    if (btn) {
+        const cpNum = btn.id.split('-').pop(); // Kinyerjük a számot az ID végéről
+        const isDone = progress[cpNum];
+        const themeColor = btn.getAttribute('data-theme-color');
+        const text = document.getElementById('complete-text-' + cpNum);
+        const section = document.getElementById('complete-section-' + cpNum);
+
+        if (isDone) {
+            btn.innerText = "Mégsem tudok mindent ↩️";
+            btn.classList.add('bg-slate-500');
+            btn.classList.remove(`bg-${themeColor}-600`);
+            if (text) text.innerText = "Szép munka! 🏆";
+        } else {
+            btn.innerText = "Igen! ✅";
+            btn.classList.remove('bg-slate-500');
+            btn.classList.add(`bg-${themeColor}-600`);
+            if (text) text.innerText = "Mindent megtanultál?";
+        }
+    }
+}
+// Betöltéskor is fusson le
+document.addEventListener('DOMContentLoaded', updateProgressUI);
+</script>
+<script>
+    // --- TANULÁSI HALADÁS KEZELÉSE ---
+
+function toggleChapterComplete(num) {
+    let progress = JSON.parse(localStorage.getItem('graphProgress') || '{}');
+    
+    // Állapot váltása (Toggle)
+    progress[num] = !progress[num];
+    
+    localStorage.setItem('graphProgress', JSON.stringify(progress));
+    updateProgressUI();
+}
+
+function updateProgressUI() {
+    const progress = JSON.parse(localStorage.getItem('graphProgress') || '{}');
+    const totalChapters = 10; 
+
+    for (let i = 1; i <= totalChapters; i++) {
+        const isDone = progress[i];
+        
+        // 1. A fejezetvégi gomb frissítése (ha az adott oldalon vagyunk)
+        const btn = document.getElementById('complete-btn-' + i);
+        const text = document.getElementById('complete-text-' + i);
+        const section = document.getElementById('complete-section-' + i);
+        
+        if (btn) {
+            const themeColor = btn.getAttribute('data-theme-color');
+            if (isDone) {
+                btn.innerText = "Mégsem tudok mindent ↩️";
+                btn.classList.replace(`bg-${themeColor}-600`, 'bg-slate-500');
+                btn.classList.replace(`hover:bg-${themeColor}-500`, 'hover:bg-slate-400');
+                text.innerText = "Szép munka! 🏆";
+                section.classList.replace(`border-${themeColor}-500/30`, 'border-slate-500/30');
+            } else {
+                btn.innerText = "Igen! ✅";
+                btn.classList.replace('bg-slate-500', `bg-${themeColor}-600`);
+                btn.classList.replace('hover:bg-slate-400', `hover:bg-${themeColor}-500`);
+                text.innerText = "Mindent megtanultál?";
+                section.classList.replace('border-slate-500/30', `border-${themeColor}-500/30`);
+            }
+        }
+
+        // 2. A menü (sidebar) frissítése
+        // Feltételezzük, hogy a menülinkekben benne van a fájlnév (index.php vagy 2.php stb.)
+        const fileName = (i === 1) ? 'index.php' : i + '.php';
+        const navLink = document.querySelector(`.nav-item[href="${fileName}"]`);
+        
+        if (navLink) {
+            // Megkeressük, van-e már benne pipa
+            let checkmark = navLink.querySelector('.menu-checkmark');
+            
+            if (isDone) {
+                if (!checkmark) {
+                    const span = document.createElement('span');
+                    span.className = 'menu-checkmark ml-auto text-emerald-500 font-bold animate-fade-in';
+                    span.innerText = '✓';
+                    navLink.appendChild(span);
+                }
+                navLink.classList.add('opacity-100');
+            } else {
+                if (checkmark) checkmark.remove();
+            }
+        }
+    }
+}
+
+// Oldalbetöltéskor inicializáljuk
+document.addEventListener('DOMContentLoaded', updateProgressUI);
+</script>
+
+<script>
+function initGlossaryTooltips() {
+    const article = document.querySelector('article');
+    const tooltip = document.getElementById('global-glossary-tooltip');
+    if (!article || !tooltip) return;
+
+    const textNodes = article.querySelectorAll('p, li:not(.nav-item)');
+    
+    // 1. Kulcsszavak előkészítése és rendezése hossz szerint csökkenőbe
+    keywordsMap = [];
+graphKB.forEach(item => {
+    keywordsMap.push({ term: item.title, data: item });
+    // Ha nincs keys, egy üres tömböt használunk, így nem dob hibát
+    (item.keys || []).forEach(k => { 
+        if (k.length > 3) keywordsMap.push({ term: k, data: item }); 
+    });
+});
+    keywordsMap.sort((a, b) => b.term.length - a.term.length);
+
+    // 2. Szövegek feldolgozása ütközésmentes helyőrzőkkel
+    textNodes.forEach(node => {
+        if (node.dataset.glossaryDone === "true") return;
+
+        let html = node.innerHTML;
+        let highlightedTitles = new Set();
+        let placeholders = [];
+
+        keywordsMap.forEach(entry => {
+            const term = entry.term;
+            if (highlightedTitles.size >= 3 || highlightedTitles.has(entry.data.title)) return;
+
+            // Ragozástűrő regex magyar karakterekkel
+            const regex = new RegExp(`(?<=^|[^a-záéíóöőúüű])(${term})([a-záéíóöőúüű]*)(?=[^a-záéíóöőúüű]|$)`, 'gi');
+
+            html = html.replace(regex, (match) => {
+                if (highlightedTitles.has(entry.data.title)) return match;
+                
+                highlightedTitles.add(entry.data.title);
+                const placeholder = `##GLOSMARKER${placeholders.length}##`;
+                
+                // Adat-attribútumokba mentjük az információkat a későbbi megjelenítéshez
+                placeholders.push(`<span class="glossary-term" 
+                    data-title="${entry.data.title}" 
+                    data-color="${entry.data.color}"
+                    data-ans='%24%7bentry.data.ans.replace(/index.html'/g, "&#39;")}'>${match}</span>`);
+                
+                return placeholder;
+            });
+        });
+
+        // Helyőrzők visszaírása valódi HTML-re
+        placeholders.forEach((ph, i) => { 
+            html = html.replace(`##GLOSMARKER${i}##`, ph); 
+        });
+
+        node.innerHTML = html;
+        node.dataset.glossaryDone = "true";
+    });
+
+    // 3. Globális eseménykezelők a dinamikus megjelenítéshez és MathJax-hez
+    document.querySelectorAll('.glossary-term').forEach(termEl => {
+        termEl.onmouseenter = () => {
+            const rect = termEl.getBoundingClientRect();
+            
+            // Tartalom összeállítása
+            tooltip.innerHTML = `
+                <strong class="block mb-2 text-${termEl.dataset.color}-400 uppercase text-[9px] tracking-widest border-b border-white/10 pb-1">
+                    ${termEl.dataset.title}
+                </strong>
+                <div class="tooltip-math-wrapper">${termEl.dataset.ans}</div>`;
+            
+            tooltip.style.display = 'block';
+            tooltip.style.opacity = '0'; // Renderelésig elrejtjük a villanás elkerülésére
+
+            // Kényszerített MathJax renderelés a buborékon belül
+            if (window.MathJax) {
+                MathJax.typesetPromise([tooltip]).then(() => {
+        const tooltipRect = tooltip.getBoundingClientRect();
+        const screenWidth = window.innerWidth;
+        const padding = 12; // Minimum távolság a szélétől
+
+        // 1. Ideális vízszintes pozíció (középre igazítás a szóhoz)
+        let leftPos = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+
+        // 2. Vízszintes korrekció (ne lógjon ki se balra, se jobbra)
+        if (leftPos < padding) {
+            leftPos = padding;
+        } else if (leftPos + tooltipRect.width > screenWidth - padding) {
+            leftPos = screenWidth - tooltipRect.width - padding;
+        }
+
+        // 3. Függőleges pozíció (ha felül nincs hely, tegyük alá)
+        let topPos = rect.top - tooltipRect.height - 15;
+        if (rect.top < tooltipRect.height + 20) {
+            topPos = rect.bottom + 15;
+        }
+
+        tooltip.style.left = leftPos + 'px';
+        tooltip.style.top = topPos + 'px';
+        tooltip.style.opacity = '1';
+    });
+            } else {
+                const tooltipRect = tooltip.getBoundingClientRect();
+                tooltip.style.left = (rect.left + rect.width / 2 - tooltipRect.width / 2) + 'px';
+                tooltip.style.top = (rect.top - tooltipRect.height - 15) + 'px';
+                tooltip.style.opacity = '1';
+            }
+        };
+
+        termEl.onmouseleave = () => {
+            tooltip.style.opacity = '0';
+            tooltip.style.display = 'none';
+        };
+    });
+}
+
+// EZ A RÉSZ HIÁNYZOTT: Itt hívjuk meg ténylegesen a funkciót!
+document.addEventListener('DOMContentLoaded', () => {
+    // 1 másodpercet várunk, hogy a MathJax és a tartalom betöltsön
+    setTimeout(initGlossaryTooltips, 1000);
+});
+</script>
+<div id="global-glossary-tooltip"></div>
+</body>
+
+<!-- Mirrored from bsz2jegyzet.hu/bsz2/2.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:49:12 GMT -->
+</html>

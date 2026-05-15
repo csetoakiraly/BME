@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=4 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4. Lineáris rekurziók és sorok konvergenciája - Analízis 2</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --main-color: #84cc16;
+            --main-color-soft: #84cc1622; 
+        }
+    </style>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <layout-wrapper>
+        <analizis-sidebar>
+            <sidebar-header>
+                <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+            </sidebar-header>
+            <sidebar-list>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter681a.html?id=1'"
+                        class=""
+                        id="sidebar-item-1"
+                    >
+                        <span class="ch-num">1.</span>
+                        <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0b30.html?id=2'"
+                        class=""
+                        id="sidebar-item-2"
+                    >
+                        <span class="ch-num">2.</span>
+                        <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd708.html?id=3'"
+                        class=""
+                        id="sidebar-item-3"
+                    >
+                        <span class="ch-num">3.</span>
+                        <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterdcfd.html?id=4'"
+                        class="active"
+                        id="sidebar-item-4"
+                    >
+                        <span class="ch-num">4.</span>
+                        <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                        <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd61c.html?id=5'"
+                        class=""
+                        id="sidebar-item-5"
+                    >
+                        <span class="ch-num">5.</span>
+                        <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                        <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter3a9f.html?id=6'"
+                        class=""
+                        id="sidebar-item-6"
+                    >
+                        <span class="ch-num">6.</span>
+                        <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                        <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter8803.html?id=7'"
+                        class=""
+                        id="sidebar-item-7"
+                    >
+                        <span class="ch-num">7.</span>
+                        <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                        <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterc3c9.html?id=8'"
+                        class=""
+                        id="sidebar-item-8"
+                    >
+                        <span class="ch-num">8.</span>
+                        <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                        <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter5255.html?id=9'"
+                        class=""
+                        id="sidebar-item-9"
+                    >
+                        <span class="ch-num">9.</span>
+                        <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                        <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterf41b.html?id=10'"
+                        class=""
+                        id="sidebar-item-10"
+                    >
+                        <span class="ch-num">10.</span>
+                        <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                        <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0055.html?id=11'"
+                        class=""
+                        id="sidebar-item-11"
+                    >
+                        <span class="ch-num">11.</span>
+                        <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                        <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter4ef9.html?id=12'"
+                        class=""
+                        id="sidebar-item-12"
+                    >
+                        <span class="ch-num">12.</span>
+                        <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                        <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter6e03.html?id=13'"
+                        class=""
+                        id="sidebar-item-13"
+                    >
+                        <span class="ch-num">13.</span>
+                        <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                        <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+                    </sidebar-item>
+                            </sidebar-list>
+            <sidebar-footer>
+                <div class="overall-progress">
+                    <div class="progress-label">Kurzus haladás: <span id="totalPercent">0%</span></div>
+                    <div class="progress-track">
+                        <div id="totalProgressBar" class="progress-fill"></div>
+                    </div>
+                </div>
+                
+            </sidebar-footer>
+        </analizis-sidebar>
+
+        <main-content>
+            <analizis-nav>
+                <nav-title><b>4. Lineáris rekurziók és sorok konvergenciája<b></nav-title>
+                <nav-actions>
+                    <button id="themeToggle" class="theme-btn">🌙 Éjszakai mód</button>
+                    <button id="theory-menu-toggle" class="menu-toggle-btn">
+    <span>☰</span> Menü
+</button>
+
+<analizis-sidebar id="theory-menu">
+    <sidebar-header>
+        <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+    </sidebar-header>
+    
+    <sidebar-list>
+                    <sidebar-item 
+                onclick="window.location.href='chapter681a.html?id=1'"
+                class=""
+                id="sidebar-item-1"
+            >
+                <span class="ch-num">1.</span>
+                <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0b30.html?id=2'"
+                class=""
+                id="sidebar-item-2"
+            >
+                <span class="ch-num">2.</span>
+                <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd708.html?id=3'"
+                class=""
+                id="sidebar-item-3"
+            >
+                <span class="ch-num">3.</span>
+                <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterdcfd.html?id=4'"
+                class="active"
+                id="sidebar-item-4"
+            >
+                <span class="ch-num">4.</span>
+                <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd61c.html?id=5'"
+                class=""
+                id="sidebar-item-5"
+            >
+                <span class="ch-num">5.</span>
+                <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter3a9f.html?id=6'"
+                class=""
+                id="sidebar-item-6"
+            >
+                <span class="ch-num">6.</span>
+                <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter8803.html?id=7'"
+                class=""
+                id="sidebar-item-7"
+            >
+                <span class="ch-num">7.</span>
+                <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterc3c9.html?id=8'"
+                class=""
+                id="sidebar-item-8"
+            >
+                <span class="ch-num">8.</span>
+                <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter5255.html?id=9'"
+                class=""
+                id="sidebar-item-9"
+            >
+                <span class="ch-num">9.</span>
+                <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterf41b.html?id=10'"
+                class=""
+                id="sidebar-item-10"
+            >
+                <span class="ch-num">10.</span>
+                <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0055.html?id=11'"
+                class=""
+                id="sidebar-item-11"
+            >
+                <span class="ch-num">11.</span>
+                <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter4ef9.html?id=12'"
+                class=""
+                id="sidebar-item-12"
+            >
+                <span class="ch-num">12.</span>
+                <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter6e03.html?id=13'"
+                class=""
+                id="sidebar-item-13"
+            >
+                <span class="ch-num">13.</span>
+                <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+            </sidebar-item>
+            </sidebar-list>
+</analizis-sidebar>
+</button>
+
+                </nav-actions>
+            </analizis-nav>
+            
+            <analizis-content>
+                <theory-section>
+                    <section-header>Elméleti összefoglaló</section-header>
+                    <theory-body>
+        <section>
+            <h2>1. Lineáris rekurziók állandó együtthatókkal</h2>
+            <p>A $k$-adrendű homogén lineáris rekurzió karakterisztikus egyenlete:</p>
+            $$K := \left\{ \lambda \in \mathbb{C} \mid \lambda^k - \sum_{j=1}^k a_j \lambda^{k-j} = 0 \right\}$$
+            <p>Minden $\lambda \in K$ esetén jelölje $m_\lambda$ a gyök multiplicitását. Az alaprendszert ($H_\lambda$) alkotó sorozatok:</p>
+            <ul>
+                <li><b>Valós gyök ($\lambda \in \mathbb{R}$) esetén:</b>
+                    $$n \mapsto n^l \lambda^n \quad (l = 0, \dots, m_\lambda - 1)$$
+                </li>
+                <li><b>Komplex gyökpár ($\lambda \in \mathbb{C} \setminus \mathbb{R}$) esetén:</b>
+                    $$n \mapsto n^l (\lambda^n + (\bar{\lambda})^n) \quad \text{és} \quad n \mapsto n^l i (\lambda^n - (\bar{\lambda})^n) \quad (l = 0, \dots, m_\lambda - 1)$$
+                </li>
+            </ul>
+            <p>Ezen sorozatok uniója alkotja a $k$-adrendű lineáris rekurzió alaprendszerét.</p>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>2. Numerikus sorok alapfogalmai</h2>
+            <div style="padding: 15px; background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; border-radius: 4px;">
+                <p><b>A konvergencia szükséges feltétele:</b> Ha a $\sum_{n \in \mathbb{N}} a_n$ numerikus sor konvergens, akkor $\lim_{n \to \infty} a_n = 0$.</p>
+            </div>
+
+            <h3>Geometriai sor összege</h3>
+            <p>A $\sum_{n=0}^\infty q^n$ geometriai sor viselkedése a $q$ hányadostól függ:</p>
+            $$ \sum_{n=0}^\infty q^n = \begin{cases} \frac{1}{1-q} & \text{ha } |q| < 1 \ +\infty & \text{ha } q \geq 1 \end{cases} $$
+            <p>Továbbá $q \leq -1$ esetén a sornak nem létezik összege (divergens).</p>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>3. Konvergenciakritériumok és tulajdonságok</h2>
+            <p><b>Linearitás:</b> Ha $\sum a_n$ és $\sum b_n$ konvergens sorok, akkor:</p>
+            <ul>
+                <li>$\sum (a_n + b_n) = \sum a_n + \sum b_n$</li>
+                <li>$\sum \lambda a_n = \lambda \sum a_n \quad (\lambda \in \mathbb{R})$</li>
+            </ul>
+
+            <div style="margin-top: 20px;">
+                <h4 style="color: #8b5cf6;">Összehasonlító kritériumok (Pozitív tagú sorokra)</h4>
+                <p>Legyenek $(a_n)_{n \in \mathbb{N}}$ és $(b_n)_{n \in \mathbb{N}}$ olyan sorozatok, amelyekre $0 \leq a_n \leq b_n$ teljesül minden $n \geq N$ esetén:</p>
+                <ul>
+                    <li><b>Majoráns kritérium:</b> Ha $\sum b_n$ konvergens, akkor $\sum a_n$ is konvergens.</li>
+                    <li><b>Minoráns kritérium:</b> Ha $\sum a_n$ divergens (összege $+\infty$), akkor $\sum b_n$ is divergens.</li>
+                </ul>
+            </div>
+        </section>
+    </theory-body>
+                </theory-section>
+
+                <practice-section>
+    <section-header>Példafeladatok</section-header>
+    
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat (a): Adjuk meg az összes olyan \( f \) sorozatot, melyre \( f(n) = 3f(n-1) - 2f(n-2) \) teljesül minden \( n \geq 2 \) esetén.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="f%28n%29+%3D+3%2Af%28n-1%29+-+2%2Af%28n-2%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="0">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="0">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat (b): Adjuk meg az \( f(0) = 1, f(1) = 5 \) kezdeti feltételt kielégítő megoldást.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="f%28n%29+%3D+3%2Af%28n-1%29+-+2%2Af%28n-2%29%2C+f%280%29%3D1%2C+f%281%29%3D5"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="1">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="1">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat (c): Írjuk fel az összes \( O(1) \) típusú megoldást.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="f%28n%29+%3D+3%2Af%28n-1%29+-+2%2Af%28n-2%29+where+f%28n%29+is+O%281%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="2">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="2">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">2. feladat (a): Adjuk meg az összes olyan \( f \) sorozatot, melyre \( f(n+1) = \frac{10}{3}f(n) - f(n-1) \) teljesül minden \( n \in \mathbb{N}^+ \) esetén.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="f%28n%2B1%29+%3D+%2810%2F3%29%2Af%28n%29+-+f%28n-1%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="3">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="3">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">2. feladat (b): Van-e \( O(1) \) típusú megoldás?</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="f%28n%29+%3D+C1%2A3%5En+%2B+C2%2A%281%2F3%29%5En+where+f%28n%29+is+O%281%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="4">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="4">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">2. feladat (c): Adjuk meg az \( f(0) = -2, f(1) = 2 \) kezdeti feltételt kielégítő megoldást.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="f%28n%2B1%29+%3D+%2810%2F3%29%2Af%28n%29+-+f%28n-1%29%2C+f%280%29%3D-2%2C+f%281%29%3D2"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="5">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="5">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">3. feladat: Határozzuk meg az alábbi összeget (amennyiben létezik): \[ \sum_{n=1}^\infty \frac{3^{2n}}{(-11)^{n+3}} \]</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="sum+n%3D1+to+infinity+%283%5E%282n%29%29%2F%28%28-11%29%5E%28n%2B3%29%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="6">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="6">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">4. feladat: Határozzuk meg az alábbi összeget (amennyiben létezik): \[ \sum_{n=1}^\infty \frac{2^{3n+4} + (-7)^{n+2}}{3^{2n-1}} \]</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="sum+n%3D1+to+infinity+%282%5E%283n%2B4%29+%2B+%28-7%29%5E%28n%2B2%29%29%2F%283%5E%282n-1%29%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="7">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="7">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">5. feladat: Konvergensek-e az alábbi sorok?</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="is+sum+%283n%5E3-2n%5E2%2Bn%29%2F%282n%5E4%2B5n%5E2%2B6%29+convergent%3F%3B+is+sum+%28n%5E3%2B3n-5%29%2F%282n%5E7%2B4n%5E3%2B5n%29+convergent%3F%3B+is+sum+%28sin%282n%5E2%29%5E2%29%2Fn%5E3+convergent%3F"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="8">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="8">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">6. feladat: Konvergensek-e a sorok? Ha igen, adjunk becslést a 100. részletösszeg hibájára.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="is+sum+%283%5E%28n%2B1%29%2B5%5En%29%2F%282%2B7%5E%28n-2%29%29+convergent%3F%3B+is+sum+1%2F%285%5En%2B7%5E%28n%2B2%29%2B7%5E%281%2F3%29%29+convergent%3F%3B+is+sum+%28n%5E2%2B3%2B7%5En%29%2F%282%2B2%5E%282n%29%29+convergent%3F"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="9">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="9">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+    
+</practice-section>
+
+<script>
+    const allTasks = [{"title":"1. feladat (a): Adjuk meg az \u00f6sszes olyan \\( f \\) sorozatot, melyre \\( f(n) = 3f(n-1) - 2f(n-2) \\) teljes\u00fcl minden \\( n \\geq 2 \\) eset\u00e9n.","wolfram":"f(n) = 3*f(n-1) - 2*f(n-2)","steps":["<b>1. L\u00e9p\u00e9s: A rekurzi\u00f3 t\u00edpus\u00e1nak azonos\u00edt\u00e1sa.<\/b><br>\r\n                A megadott \u00f6sszef\u00fcgg\u00e9s egy m\u00e1sodrend\u0171, \u00e1lland\u00f3 egy\u00fctthat\u00f3s homog\u00e9n line\u00e1ris rekurzi\u00f3. \r\n                Rendezz\u00fck az egyenletet \u00fagy, hogy minden \\( f \\) tag a bal oldalon szerepeljen:\r\n                \\[ f(n) - 3f(n-1) + 2f(n-2) = 0 \\]","<b>2. L\u00e9p\u00e9s: A karakterisztikus egyenlet fel\u00edr\u00e1sa.<\/b><br>\r\n                Az elm\u00e9let alapj\u00e1n a megold\u00e1st \\( f(n) = \\lambda^n \\) alakban keress\u00fck. \r\n                Rendelj\u00fcnk a rekurzi\u00f3 rendj\u00e9hez megfelel\u0151 hatv\u00e1nyokat:\r\n                <ul>\r\n                    <li>\\( f(n) \\rightarrow \\lambda^2 \\)<\/li>\r\n                    <li>\\( f(n-1) \\rightarrow \\lambda^1 \\)<\/li>\r\n                    <li>\\( f(n-2) \\rightarrow \\lambda^0 = 1 \\)<\/li>\r\n                <\/ul>\r\n                A karakterisztikus egyenlet teh\u00e1t:\r\n                \\[ \\lambda^2 - 3\\lambda + 2 = 0 \\]","<b>3. L\u00e9p\u00e9s: A m\u00e1sodfok\u00fa egyenlet megold\u00e1sa (Gy\u00f6kkeres\u00e9s).<\/b><br>\r\n                Bontsuk t\u00e9nyez\u0151kre a polinomot (vagy haszn\u00e1ljuk a megold\u00f3k\u00e9pletet):\r\n                \\[ (\\lambda - 1)(\\lambda - 2) = 0 \\]\r\n                A kapott gy\u00f6k\u00f6k:\r\n                \\[ \\mathbf{\\lambda_1 = 1} \\quad \\text{\u00e9s} \\quad \\mathbf{\\lambda_2 = 2} \\]","<b>4. L\u00e9p\u00e9s: Az alaprendszer (b\u00e1zis) meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                Mivel k\u00e9t k\u00fcl\u00f6nb\u00f6z\u0151, egyszeres val\u00f3s gy\u00f6k\u00f6t kaptunk, az elm\u00e9let szerint a b\u00e1zist alkot\u00f3 sorozatok:\r\n                <ul>\r\n                    <li>\\( n \\mapsto \\lambda_1^n = 1^n = \\mathbf{1} \\) (konstans sorozat)<\/li>\r\n                    <li>\\( n \\mapsto \\lambda_2^n = \\mathbf{2^n} \\)<\/li>\r\n                <\/ul>","<b>5. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                A rekurzi\u00f3t kiel\u00e9g\u00edt\u0151 \u00f6sszes sorozat ezen b\u00e1ziselemek line\u00e1ris kombin\u00e1ci\u00f3jak\u00e9nt \u00e1ll el\u0151:\r\n                \\[ f(n) = C_1 \\cdot 1^n + C_2 \\cdot 2^n \\]\r\n                Mivel \\( 1^n = 1 \\), a v\u00e9geredm\u00e9ny:\r\n                \\[ \\mathbf{f(n) = C_1 + C_2 \\cdot 2^n} \\quad (n \\in \\mathbb{N}, C_1, C_2 \\in \\mathbb{R}) \\]"]},{"title":"1. feladat (b): Adjuk meg az \\( f(0) = 1, f(1) = 5 \\) kezdeti felt\u00e9telt kiel\u00e9g\u00edt\u0151 megold\u00e1st.","wolfram":"f(n) = 3*f(n-1) - 2*f(n-2), f(0)=1, f(1)=5","steps":["<b>1. L\u00e9p\u00e9s: Kiindul\u00e1s az \u00e1ltal\u00e1nos megold\u00e1sb\u00f3l.<\/b><br>\r\n                Az (a) r\u00e9szben meghat\u00e1roztuk az \u00f6sszes olyan sorozatot, amely teljes\u00edti a rekurzi\u00f3s szab\u00e1lyt:\r\n                \\[ f(n) = C_1 + C_2 \\cdot 2^n \\]\r\n                A feladatunk most a \\( C_1 \\) \u00e9s \\( C_2 \\) konstansok pontos \u00e9rt\u00e9k\u00e9nek meghat\u00e1roz\u00e1sa a megadott peremfelt\u00e9telek alapj\u00e1n.","<b>2. L\u00e9p\u00e9s: Az els\u0151 kezdeti felt\u00e9tel behelyettes\u00edt\u00e9se (\\( n = 0 \\)).<\/b><br>\r\n                A megadott \\( f(0) = 1 \\) felt\u00e9telt \u00edrjuk be az \u00e1ltal\u00e1nos k\u00e9pletbe:\r\n                \\[ f(0) = C_1 + C_2 \\cdot 2^0 = 1 \\]\r\n                Mivel \\( 2^0 = 1 \\), az els\u0151 egyenlet\u00fcnk:\r\n                \\[ \\mathbf{C_1 + C_2 = 1} \\]","<b>3. L\u00e9p\u00e9s: A m\u00e1sodik kezdeti felt\u00e9tel behelyettes\u00edt\u00e9se (\\( n = 1 \\)).<\/b><br>\r\n                A megadott \\( f(1) = 5 \\) felt\u00e9telt \u00edrjuk be az \u00e1ltal\u00e1nos k\u00e9pletbe:\r\n                \\[ f(1) = C_1 + C_2 \\cdot 2^1 = 5 \\]\r\n                A m\u00e1sodik egyenlet\u00fcnk teh\u00e1t:\r\n                \\[ \\mathbf{C_1 + 2C_2 = 5} \\]","<b>4. L\u00e9p\u00e9s: Az egyenletrendszer megold\u00e1sa.<\/b><br>\r\n                Oldjuk meg a kapott k\u00e9tismeretlenes line\u00e1ris egyenletrendszert:\r\n                <ol>\r\n                    <li>\\( C_1 + C_2 = 1 \\)<\/li>\r\n                    <li>\\( C_1 + 2C_2 = 5 \\)<\/li>\r\n                <\/ol>\r\n                Vonjuk ki a m\u00e1sodik egyenletb\u0151l az els\u0151t:\r\n                \\[ (C_1 + 2C_2) - (C_1 + C_2) = 5 - 1 \\]\r\n                \\[ \\mathbf{C_2 = 4} \\]\r\n                Helyettes\u00edts\u00fck vissza \\( C_2 \\)-t az els\u0151 egyenletbe:\r\n                \\[ C_1 + 4 = 1 \\implies \\mathbf{C_1 = -3} \\]","<b>5. L\u00e9p\u00e9s: A konkr\u00e9t megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                \u00cdrjuk be a kisz\u00e1m\u00edtott konstansokat az \u00e1ltal\u00e1nos alakba:\r\n                \\[ f(n) = -3 + 4 \\cdot 2^n \\]\r\n                Ez a sorozat minden \\( n \\in \\mathbb{N} \\) eset\u00e9n teljes\u00edti a rekurzi\u00f3t \u00e9s a kezdeti felt\u00e9teleket is.\r\n                V\u00e9geredm\u00e9ny:\r\n                \\[ \\mathbf{f(n) = -3 + 4 \\cdot 2^n} \\quad (n \\in \\mathbb{N}) \\]"]},{"title":"1. feladat (c): \u00cdrjuk fel az \u00f6sszes \\( O(1) \\) t\u00edpus\u00fa megold\u00e1st.","wolfram":"f(n) = 3*f(n-1) - 2*f(n-2) where f(n) is O(1)","steps":["<b>1. L\u00e9p\u00e9s: Az \\( O(1) \\) jelent\u00e9se.<\/b><br>\r\n                A matematikai jel\u00f6l\u00e9srendszerben az \\( f(n) = O(1) \\) azt jelenti, hogy a sorozat <b>korl\u00e1tos<\/b>. \r\n                Vagyis l\u00e9tezik egy olyan \\( M \\) val\u00f3s sz\u00e1m, amelyn\u00e9l a sorozat egyetlen elem\u00e9nek abszol\u00fat \u00e9rt\u00e9ke sem lesz nagyobb, b\u00e1rmennyire is n\u00f6velj\u00fck \\( n \\)-et.","<b>2. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos megold\u00e1s tagjainak vizsg\u00e1lata.<\/b><br>\r\n                Induljunk ki az (a) r\u00e9szben kapott \u00e1ltal\u00e1nos alakb\u00f3l:\r\n                \\[ f(n) = C_1 \\cdot 1^n + C_2 \\cdot 2^n = C_1 + C_2 \\cdot 2^n \\]\r\n                Vizsg\u00e1ljuk meg a k\u00e9t tag viselked\u00e9s\u00e9t, ha \\( n \\to \\infty \\):\r\n                <ul>\r\n                    <li>\\( C_1 \\): Ez egy konstans tag, \u00e9rt\u00e9ke nem f\u00fcgg \\( n \\)-t\u0151l, teh\u00e1t \u00f6nmag\u00e1ban korl\u00e1tos.<\/li>\r\n                    <li>\\( C_2 \\cdot 2^n \\): Ez egy m\u00e9rtani sorozat. Mivel a h\u00e1nyados \\( q = 2 \\), \u00e9s \\( |2| > 1 \\), a sorozat tart a v\u00e9gtelenbe (\\( \\infty \\)), ha \\( C_2 \\neq 0 \\).<\/li>\r\n                <\/ul>","<b>3. L\u00e9p\u00e9s: A korl\u00e1toss\u00e1g felt\u00e9tel\u00e9nek meg\u00e1llap\u00edt\u00e1sa.<\/b><br>\r\n                Ahhoz, hogy a teljes \\( f(n) \\) sorozat korl\u00e1tos maradjon, az exponenci\u00e1lisan n\u00f6vekv\u0151 tagnak el kell t\u0171nnie. \r\n                Ez csak akkor lehets\u00e9ges, ha az egy\u00fctthat\u00f3ja nulla:\r\n                \\[ \\mathbf{C_2 = 0} \\]","<b>4. L\u00e9p\u00e9s: A megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                Ha \\( C_2 = 0 \\), akkor a sorozat alakja:\r\n                \\[ f(n) = C_1 + 0 \\cdot 2^n = C_1 \\]\r\n                Vagyis az \u00f6sszes korl\u00e1tos megold\u00e1s a <b>konstans sorozatok<\/b> halmaza.\r\n                V\u00e9geredm\u00e9ny:\r\n                \\[ \\mathbf{f(n) = C} \\quad (n \\in \\mathbb{N}, C \\in \\mathbb{R}) \\]"]},{"title":"2. feladat (a): Adjuk meg az \u00f6sszes olyan \\( f \\) sorozatot, melyre \\( f(n+1) = \\frac{10}{3}f(n) - f(n-1) \\) teljes\u00fcl minden \\( n \\in \\mathbb{N}^+ \\) eset\u00e9n.","wolfram":"f(n+1) = (10\/3)*f(n) - f(n-1)","steps":["<b>1. L\u00e9p\u00e9s: A rekurzi\u00f3s egyenlet rendez\u00e9se.<\/b><br>\r\n                A megadott \u00f6sszef\u00fcgg\u00e9s egy m\u00e1sodrend\u0171, \u00e1lland\u00f3 egy\u00fctthat\u00f3s homog\u00e9n line\u00e1ris rekurzi\u00f3. \r\n                Rendezz\u00fck egy oldalra a tagokat:\r\n                \\[ f(n+1) - \\frac{10}{3}f(n) + f(n-1) = 0 \\]","<b>2. L\u00e9p\u00e9s: A karakterisztikus egyenlet fel\u00edr\u00e1sa.<\/b><br>\r\n                Az elm\u00e9let szerint a megold\u00e1st m\u00e9rtani sorozatk\u00e9nt (\\( \\lambda^n \\)) keress\u00fck. \r\n                Rendelj\u00fck hozz\u00e1 a megfelel\u0151 hatv\u00e1nyokat (mivel a legnagyobb index az \\( n+1 \\), ez felel meg a m\u00e1sodfoknak):\r\n                <ul>\r\n                    <li>\\( f(n+1) \\rightarrow \\lambda^2 \\)<\/li>\r\n                    <li>\\( f(n) \\rightarrow \\lambda^1 \\)<\/li>\r\n                    <li>\\( f(n-1) \\rightarrow \\lambda^0 = 1 \\)<\/li>\r\n                <\/ul>\r\n                A karakterisztikus egyenlet:\r\n                \\[ \\lambda^2 - \\frac{10}{3}\\lambda + 1 = 0 \\]","<b>3. L\u00e9p\u00e9s: A m\u00e1sodfok\u00fa egyenlet megold\u00e1sa.<\/b><br>\r\n                Szorozzuk be az egyenletet 3-mal a k\u00e9nyelmesebb sz\u00e1mol\u00e1shoz:\r\n                \\[ 3\\lambda^2 - 10\\lambda + 3 = 0 \\]\r\n                Alkalmazzuk a megold\u00f3k\u00e9pletet:\r\n                \\[ \\lambda_{1,2} = \\frac{10 \\pm \\sqrt{(-10)^2 - 4 \\cdot 3 \\cdot 3}}{2 \\cdot 3} = \\frac{10 \\pm \\sqrt{100 - 36}}{6} \\]\r\n                \\[ \\lambda_{1,2} = \\frac{10 \\pm \\sqrt{64}}{6} = \\frac{10 \\pm 8}{6} \\]\r\n                A k\u00e9t gy\u00f6k:\r\n                \\[ \\mathbf{\\lambda_1 = \\frac{18}{6} = 3} \\quad \\text{\u00e9s} \\quad \\mathbf{\\lambda_2 = \\frac{2}{6} = \\frac{1}{3}} \\]","<b>4. L\u00e9p\u00e9s: Az alaprendszer meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                A k\u00e9t k\u00fcl\u00f6nb\u00f6z\u0151 val\u00f3s gy\u00f6k alapj\u00e1n az alaprendszer (b\u00e1zis) a k\u00f6vetkez\u0151 sorozatokb\u00f3l \u00e1ll:\r\n                <ul>\r\n                    <li>\\( n \\mapsto \\mathbf{3^n} \\)<\/li>\r\n                    <li>\\( n \\mapsto \\mathbf{\\left(\\frac{1}{3}\\right)^n} \\)<\/li>\r\n                <\/ul>","<b>5. L\u00e9p\u00e9s: Az \u00e1ltal\u00e1nos megold\u00e1s fel\u00edr\u00e1sa.<\/b><br>\r\n                Az \u00f6sszes megold\u00e1st ezen b\u00e1ziselemek line\u00e1ris kombin\u00e1ci\u00f3jak\u00e9nt kapjuk meg:\r\n                \\[ f(n) = C_1 \\cdot 3^n + C_2 \\cdot \\left(\\frac{1}{3}\\right)^n \\]\r\n                V\u00e9geredm\u00e9ny:\r\n                \\[ \\mathbf{f(n) = C_1 \\cdot 3^n + C_2 \\cdot \\left(\\frac{1}{3}\\right)^n} \\quad (n \\in \\mathbb{N}, C_1, C_2 \\in \\mathbb{R}) \\]"]},{"title":"2. feladat (b): Van-e \\( O(1) \\) t\u00edpus\u00fa megold\u00e1s?","wolfram":"f(n) = C1*3^n + C2*(1\/3)^n where f(n) is O(1)","steps":["<b>1. L\u00e9p\u00e9s: Az \\( O(1) \\) felt\u00e9tel \u00e9rtelmez\u00e9se.<\/b><br>\r\n                Egy sorozat akkor \\( O(1) \\) t\u00edpus\u00fa, ha <b>korl\u00e1tos<\/b>, azaz l\u00e9tezik olyan \\( M \\) val\u00f3s sz\u00e1m, hogy \\( |f(n)| \\leq M \\) minden \\( n \\in \\mathbb{N} \\) eset\u00e9n.","<b>2. L\u00e9p\u00e9s: A tagok viselked\u00e9s\u00e9nek elemz\u00e9se.<\/b><br>\r\n                Az (a) r\u00e9szben kapott \u00e1ltal\u00e1nos megold\u00e1s:\r\n                \\[ f(n) = C_1 \\cdot 3^n + C_2 \\cdot \\left(\\frac{1}{3}\\right)^n \\]\r\n                Vizsg\u00e1ljuk meg a k\u00e9t komponenst k\u00fcl\u00f6n-k\u00fcl\u00f6n, ha \\( n \\to \\infty \\):\r\n                <ul>\r\n                    <li>\\( 3^n \\): Mivel a h\u00e1nyados \\( |3| > 1 \\), ez a m\u00e9rtani sorozat <b>divergens<\/b> \u00e9s korl\u00e1tlanul n\u0151.<\/li>\r\n                    <li>\\( \\left(\\frac{1}{3}\\right)^n \\): Mivel a h\u00e1nyados \\( |\\frac{1}{3}| < 1 \\), ez a sorozat <b>konvergens<\/b> (null\u00e1hoz tart), teh\u00e1t korl\u00e1tos.<\/li>\r\n                <\/ul>","<b>3. L\u00e9p\u00e9s: A korl\u00e1toss\u00e1g felt\u00e9tel\u00e9nek fel\u00e1ll\u00edt\u00e1sa.<\/b><br>\r\n                Ahhoz, hogy a teljes \\( f(n) \\) sorozat korl\u00e1tos maradjon, a v\u00e9gtelenbe tart\u00f3 tagot el kell t\u00fcntetni az \u00e1ltal\u00e1nos megold\u00e1sb\u00f3l. \r\n                Ez csak \u00fagy lehets\u00e9ges, ha az egy\u00fctthat\u00f3ja nulla:\r\n                \\[ \\mathbf{C_1 = 0} \\]","<b>4. L\u00e9p\u00e9s: Konkl\u00fazi\u00f3 \u00e9s a megold\u00e1sok alakja.<\/b><br>\r\n                Igen, l\u00e9tezik \\( O(1) \\) t\u00edpus\u00fa megold\u00e1s. \r\n                Ezek azok a sorozatok, amelyekben csak a lecseng\u0151 (null\u00e1hoz tart\u00f3) tag szerepel:\r\n                \\[ \\mathbf{f(n) = C \\cdot \\left(\\frac{1}{3}\\right)^n} \\quad (n \\in \\mathbb{N}, C \\in \\mathbb{R}) \\]"]},{"title":"2. feladat (c): Adjuk meg az \\( f(0) = -2, f(1) = 2 \\) kezdeti felt\u00e9telt kiel\u00e9g\u00edt\u0151 megold\u00e1st.","wolfram":"f(n+1) = (10\/3)*f(n) - f(n-1), f(0)=-2, f(1)=2","steps":["<b>1. L\u00e9p\u00e9s: Kiindul\u00e1s az \u00e1ltal\u00e1nos megold\u00e1sb\u00f3l.<\/b><br>\r\n                Az (a) r\u00e9szben meghat\u00e1roztuk a rekurzi\u00f3t teljes\u00edt\u0151 \u00f6sszes sorozat alakj\u00e1t:\r\n                \\[ f(n) = C_1 \\cdot 3^n + C_2 \\cdot \\left(\\frac{1}{3}\\right)^n \\]\r\n                A feladatunk most a \\( C_1 \\) \u00e9s \\( C_2 \\) param\u00e9terek r\u00f6gz\u00edt\u00e9se a megadott \u00e9rt\u00e9kek seg\u00edts\u00e9g\u00e9vel.","<b>2. L\u00e9p\u00e9s: Az els\u0151 felt\u00e9tel behelyettes\u00edt\u00e9se (\\( n = 0 \\)).<\/b><br>\r\n                A megadott \\( f(0) = -2 \\) \u00e9rt\u00e9ket \u00edrjuk be a k\u00e9pletbe:\r\n                \\[ f(0) = C_1 \\cdot 3^0 + C_2 \\cdot \\left(\\frac{1}{3}\\right)^0 = -2 \\]\r\n                Mivel b\u00e1rmely sz\u00e1m nulladik hatv\u00e1nya 1, az els\u0151 egyenlet\u00fcnk:\r\n                \\[ \\mathbf{C_1 + C_2 = -2} \\]","<b>3. L\u00e9p\u00e9s: A m\u00e1sodik felt\u00e9tel behelyettes\u00edt\u00e9se (\\( n = 1 \\)).<\/b><br>\r\n                A megadott \\( f(1) = 2 \\) \u00e9rt\u00e9ket \u00edrjuk be a k\u00e9pletbe:\r\n                \\[ f(1) = C_1 \\cdot 3^1 + C_2 \\cdot \\left(\\frac{1}{3}\\right)^1 = 2 \\]\r\n                A m\u00e1sodik egyenlet\u00fcnk teh\u00e1t:\r\n                \\[ \\mathbf{3C_1 + \\frac{1}{3}C_2 = 2} \\]","<b>4. L\u00e9p\u00e9s: Az egyenletrendszer megold\u00e1sa.<\/b><br>\r\n                Oldjuk meg a line\u00e1ris egyenletrendszert:\r\n                <ol>\r\n                    <li>\\( C_1 + C_2 = -2 \\implies C_2 = -2 - C_1 \\)<\/li>\r\n                    <li>\\( 3C_1 + \\frac{1}{3}C_2 = 2 \\)<\/li>\r\n                <\/ol>\r\n                Helyettes\u00edts\u00fck be \\( C_2 \\)-t a m\u00e1sodik egyenletbe:\r\n                \\[ 3C_1 + \\frac{1}{3}(-2 - C_1) = 2 \\]\r\n                Szorozzunk be 3-mal az egyszer\u0171s\u00edt\u00e9shez:\r\n                \\[ 9C_1 - 2 - C_1 = 6 \\]\r\n                \\[ 8C_1 = 8 \\implies \\mathbf{C_1 = 1} \\]\r\n                Sz\u00e1m\u00edtsuk ki \\( C_2 \\) \u00e9rt\u00e9k\u00e9t:\r\n                \\[ C_2 = -2 - 1 \\implies \\mathbf{C_2 = -3} \\]","<b>5. L\u00e9p\u00e9s: A v\u00e9gs\u0151 sorozatk\u00e9plet fel\u00edr\u00e1sa.<\/b><br>\r\n                \u00cdrjuk vissza a konstansokat az \u00e1ltal\u00e1nos alakba:\r\n                \\[ f(n) = 1 \\cdot 3^n + (-3) \\cdot \\left(\\frac{1}{3}\\right)^n \\]\r\n                Alkalmazzuk a hatv\u00e1nyoz\u00e1s azonoss\u00e1gait (\\( 3 \\cdot (\\frac{1}{3})^n = (\\frac{1}{3})^{-1} \\cdot (\\frac{1}{3})^n = (\\frac{1}{3})^{n-1} \\)):\r\n                \\[ f(n) = 3^n - 3\\left(\\frac{1}{3}\\right)^n \\]\r\n                V\u00e9geredm\u00e9ny:\r\n                \\[ \\mathbf{f(n) = 3^n - 3\\left(\\frac{1}{3}\\right)^n} \\quad (n \\in \\mathbb{N}) \\]"]},{"title":"3. feladat: Hat\u00e1rozzuk meg az al\u00e1bbi \u00f6sszeget (amennyiben l\u00e9tezik): \\[ \\sum_{n=1}^\\infty \\frac{3^{2n}}{(-11)^{n+3}} \\]","wolfram":"sum n=1 to infinity (3^(2n))\/((-11)^(n+3))","steps":["<b>1. L\u00e9p\u00e9s: A sor \u00e1ltal\u00e1nos tagj\u00e1nak \u00e1talak\u00edt\u00e1sa.<\/b><br>\r\n                A feladatunk egy numerikus sor \u00f6sszeg\u00e9nek kisz\u00e1m\u00edt\u00e1sa. El\u0151sz\u00f6r \u00edrjuk \u00e1t az \u00e1ltal\u00e1nos tagot (\\( a_n \\)) \u00fagy, hogy felismerhet\u0151 legyen a geometriai sor alakja:\r\n                \\[ a_n = \\frac{3^{2n}}{(-11)^{n+3}} = \\frac{(3^2)^n}{(-11)^n \\cdot (-11)^3} \\]\r\n                Mivel \\( 3^2 = 9 \\), a kifejez\u00e9s tov\u00e1bb egyszer\u0171s\u00edthet\u0151:\r\n                \\[ a_n = \\frac{1}{(-11)^3} \\cdot \\left(\\frac{9}{-11}\\right)^n \\]","<b>2. L\u00e9p\u00e9s: A sor t\u00edpus\u00e1nak \u00e9s a h\u00e1nyadosnak (q) az azonos\u00edt\u00e1sa.<\/b><br>\r\n                L\u00e1that\u00f3, hogy ez egy geometriai sor, melynek h\u00e1nyadosa:\r\n                \\[ \\mathbf{q = -\\frac{9}{11}} \\]\r\n                Az elm\u00e9let szerint egy geometriai sor akkor konvergens, ha \\( |q| < 1 \\).\r\n                Mivel \\( |-\\frac{9}{11}| = \\frac{9}{11} < 1 \\), a sor <b>konvergens<\/b>, teh\u00e1t l\u00e9tezik v\u00e9ges \u00f6sszege.","<b>3. L\u00e9p\u00e9s: Az els\u0151 tag (\\( a_1 \\)) kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                A sor \\( n=1 \\)-t\u0151l indul, \u00edgy az els\u0151 tagot az \\( n=1 \\) behelyettes\u00edt\u00e9s\u00e9vel kapjuk:\r\n                \\[ a_1 = \\frac{3^{2 \\cdot 1}}{(-11)^{1+3}} = \\frac{9}{(-11)^4} \\]\r\n                Mivel a kitev\u0151 p\u00e1ros, a negat\u00edv el\u0151jel elt\u0171nik:\r\n                \\[ \\mathbf{a_1 = \\frac{9}{11^4}} \\]","<b>4. L\u00e9p\u00e9s: Az \u00f6sszegk\u00e9plet alkalmaz\u00e1sa.<\/b><br>\r\n                A konvergens geometriai sor \u00f6sszeg\u00e9t a k\u00f6vetkez\u0151 k\u00e9plettel sz\u00e1moljuk:\r\n                \\[ S = \\frac{a_1}{1 - q} \\]\r\n                Behelyettes\u00edtve a kapott \u00e9rt\u00e9keket:\r\n                \\[ S = \\frac{\\frac{9}{11^4}}{1 - (-\\frac{9}{11})} = \\frac{\\frac{9}{11^4}}{1 + \\frac{9}{11}} \\]\r\n                V\u00e9gezz\u00fck el az \u00f6sszead\u00e1st a nevez\u0151ben:\r\n                \\[ S = \\frac{\\frac{9}{11^4}}{\\frac{11+9}{11}} = \\frac{\\frac{9}{11^4}}{\\frac{20}{11}} \\]","<b>5. L\u00e9p\u00e9s: Emeletes t\u00f6rt egyszer\u0171s\u00edt\u00e9se \u00e9s a v\u00e9geredm\u00e9ny.<\/b><br>\r\n                A t\u00f6rttel val\u00f3 oszt\u00e1st helyettes\u00edts\u00fck a reciprokkal val\u00f3 szorz\u00e1ssal:\r\n                \\[ S = \\frac{9}{11^4} \\cdot \\frac{11}{20} \\]\r\n                Egyszer\u0171s\u00edts\u00fcnk 11-gyel:\r\n                \\[ S = \\frac{9}{11^3 \\cdot 20} \\]\r\n                A v\u00e9geredm\u00e9ny megegyezik a feladatlapon szerepl\u0151vel:\r\n                \\[ \\mathbf{S = \\frac{9}{11^3 \\cdot 20}} \\]"]},{"title":"4. feladat: Hat\u00e1rozzuk meg az al\u00e1bbi \u00f6sszeget (amennyiben l\u00e9tezik): \\[ \\sum_{n=1}^\\infty \\frac{2^{3n+4} + (-7)^{n+2}}{3^{2n-1}} \\]","wolfram":"sum n=1 to infinity (2^(3n+4) + (-7)^(n+2))\/(3^(2n-1))","steps":["<b>1. L\u00e9p\u00e9s: A sor sz\u00e9tbont\u00e1sa k\u00e9t r\u00e9szre a linearit\u00e1s elve alapj\u00e1n.<\/b><br>\r\n                Az elm\u00e9leti r\u00e9szben l\u00e1ttuk, hogy ha k\u00e9t sor konvergens, akkor az \u00f6sszeg\u00fck sora is konvergens, \u00e9s az \u00f6sszeg tagonk\u00e9nt sz\u00e1m\u00edthat\u00f3. Bontsuk kett\u00e9 a t\u00f6rtet:\r\n                \\[ \\sum_{n=1}^\\infty \\frac{2^{3n+4}}{3^{2n-1}} + \\sum_{n=1}^\\infty \\frac{(-7)^{n+2}}{3^{2n-1}} \\]\r\n                Vizsg\u00e1ljuk meg ezeket k\u00fcl\u00f6n\u00e1ll\u00f3 geometriai sorokk\u00e9nt!","<b>2. L\u00e9p\u00e9s: Az els\u0151 r\u00e9szsor (\\( \\sum a_n \\)) kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                Alak\u00edtsuk \u00e1t az \u00e1ltal\u00e1nos tagot hatv\u00e1nyoz\u00e1si azonoss\u00e1gokkal, hogy megkapjuk a \\( q \\) h\u00e1nyadost:\r\n                \\[ a_n = \\frac{2^{3n+4}}{3^{2n-1}} = \\frac{2^4 \\cdot (2^3)^n}{3^{-1} \\cdot (3^2)^n} = 16 \\cdot 3 \\cdot \\frac{8^n}{9^n} = 48 \\cdot \\left(\\frac{8}{9}\\right)^n \\]\r\n                - <b>H\u00e1nyados (\\( q_1 \\)):<\/b> \\( \\frac{8}{9} \\). Mivel \\( |8\/9| < 1 \\), a sor konvergens.\r\n                - <b>Els\u0151 tag (\\( a_1 \\)):<\/b> \\( 48 \\cdot \\frac{8}{9} \\).\r\n                - <b>\u00d6sszeg (\\( S_1 \\)):<\/b> \\[ S_1 = \\frac{a_1}{1 - q_1} = \\frac{48 \\cdot \\frac{8}{9}}{1 - \\frac{8}{9}} = \\frac{48 \\cdot \\frac{8}{9}}{\\frac{1}{9}} = \\mathbf{48 \\cdot 8} \\]","<b>3. L\u00e9p\u00e9s: A m\u00e1sodik r\u00e9szsor (\\( \\sum b_n \\)) kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                V\u00e9gezz\u00fck el az \u00e1talak\u00edt\u00e1st a m\u00e1sodik tagon is:\r\n                \\[ b_n = \\frac{(-7)^{n+2}}{3^{2n-1}} = \\frac{(-7)^2 \\cdot (-7)^n}{3^{-1} \\cdot (3^2)^n} = 49 \\cdot 3 \\cdot \\frac{(-7)^n}{9^n} = 147 \\cdot \\left(-\\frac{7}{9}\\right)^n \\]\r\n                - <b>H\u00e1nyados (\\( q_2 \\)):<\/b> \\( -\\frac{7}{9} \\). Mivel \\( |-7\/9| < 1 \\), ez is konvergens.\r\n                - <b>Els\u0151 tag (\\( b_1 \\)):<\/b> \\( 147 \\cdot (-\\frac{7}{9}) \\).\r\n                - <b>\u00d6sszeg (\\( S_2 \\)):<\/b> \\[ S_2 = \\frac{b_1}{1 - q_2} = \\frac{147 \\cdot (-\\frac{7}{9})}{1 - (-\\frac{7}{9})} = \\frac{147 \\cdot (-\\frac{7}{9})}{\\frac{16}{9}} = \\frac{147 \\cdot (-7)}{16} \\]","<b>4. L\u00e9p\u00e9s: Az eredm\u00e9nyek kombin\u00e1l\u00e1sa a v\u00e9gs\u0151 alakhoz.<\/b><br>\r\n                A teljes \u00f6sszeg \\( S = S_1 + S_2 \\). Alak\u00edtsuk \u00e1t a m\u00e1sodik tagot a feladatlap eredm\u00e9nyform\u00e1tum\u00e1nak megfelel\u0151en:\r\n                \\[ S = 48 \\cdot 8 + \\frac{147 \\cdot (-7)}{16} \\]\r\n                Mivel \\( 147 = 3 \\cdot 49 \\), ez\u00e9rt \\( 147 \\cdot 7 = 3 \\cdot 7 \\cdot 49 = 21 \\cdot 49 \\).\r\n                V\u00e9geredm\u00e9ny:\r\n                \\[ \\mathbf{S = 48 \\cdot 8 - 21 \\cdot \\frac{49}{16}} \\]\r\n                (Tizedes t\u00f6rt alakban ez kb. \\( 384 - 64,31 = 319,69 \\).)"]},{"title":"5. feladat: Konvergensek-e az al\u00e1bbi sorok?","wolfram":"is sum (3n^3-2n^2+n)\/(2n^4+5n^2+6) convergent?; is sum (n^3+3n-5)\/(2n^7+4n^3+5n) convergent?; is sum (sin(2n^2)^2)\/n^3 convergent?","steps":["<h3>(a) r\u00e9sz: \\( \\sum_{n \\in \\mathbb{N}} \\frac{3n^3 - 2n^2 + n}{2n^4 + 5n^2 + 6} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: A nagys\u00e1grend meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                Vizsg\u00e1ljuk meg az \u00e1ltal\u00e1nos tag viselked\u00e9s\u00e9t nagy \\( n \\) \u00e9rt\u00e9kek eset\u00e9n. A sz\u00e1ml\u00e1l\u00f3ban a legmagasabb hatv\u00e1ny \\( n^3 \\), a nevez\u0151ben pedig \\( n^4 \\). \r\n                A sorozat aszimptotikusan \u00fagy viselkedik, mint:\r\n                \\[ \\frac{3n^3}{2n^4} = \\frac{3}{2} \\cdot \\frac{1}{n} \\]\r\n                \r\n                <b>2. L\u00e9p\u00e9s: Minor\u00e1ns krit\u00e9rium alkalmaz\u00e1sa.<\/b><br>\r\n                Tudjuk, hogy a harmonikus sor (\\( \\sum \\frac{1}{n} \\)) divergens. \r\n                Mivel a vizsg\u00e1lt sor tagjai egy k\u00fcsz\u00f6bindex ut\u00e1n nagyobbak, mint egy divergens sor konstansszorosai (\\( a_n \\geq \\frac{K}{n} \\)), a <b>Minor\u00e1ns krit\u00e9rium<\/b> alapj\u00e1n ez a sor is divergens.\r\n                <b>V\u00e9geredm\u00e9ny: Nem konvergens.<\/b>","<hr>\r\n\r\n                <h3>(b) r\u00e9sz: \\( \\sum_{n \\in \\mathbb{N}^+} \\frac{n^3 + 3n - 5}{2n^7 + 4n^3 + 5n} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: A nagys\u00e1grend meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                Itt a legmagasabb hatv\u00e1nyok ar\u00e1nya:\r\n                \\[ \\frac{n^3}{2n^7} = \\frac{1}{2} \\cdot \\frac{1}{n^4} \\]\r\n                \r\n                <b>2. L\u00e9p\u00e9s: Major\u00e1ns krit\u00e9rium alkalmaz\u00e1sa.<\/b><br>\r\n                Hasonl\u00edtsuk \u00f6ssze a sort a \\( \\sum \\frac{1}{n^4} \\) sorral. Az elm\u00e9let szerint a \\( \\sum \\frac{1}{n^p} \\) t\u00edpus\u00fa sorok konvergensek, ha \\( p > 1 \\).\r\n                Mivel \\( 4 > 1 \\), a \\( \\sum \\frac{1}{n^4} \\) sor konvergens. \r\n                A <b>Major\u00e1ns krit\u00e9rium<\/b> \u00e9rtelm\u00e9ben, mivel a mi sorunk tagjai gyorsabban tartanak null\u00e1hoz, mint egy konvergens sor tagjai, a sor konvergens.\r\n                <b>V\u00e9geredm\u00e9ny: Igen, konvergens.<\/b>","<hr>\r\n\r\n                <h3>(c) r\u00e9sz: \\( \\sum_{n \\in \\mathbb{N}^+} \\frac{\\sin^2(2n^2)}{n^3} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Becsl\u00e9s k\u00e9sz\u00edt\u00e9se.<\/b><br>\r\n                A szinusz f\u00fcggv\u00e9ny tulajdons\u00e1ga, hogy \u00e9rt\u00e9ke mindig a \\([-1, 1]\\) intervallumban van, \u00edgy n\u00e9gyzete:\r\n                \\[ 0 \\leq \\sin^2(2n^2) \\leq 1 \\]\r\n                Ebb\u0151l ad\u00f3dik a sor \u00e1ltal\u00e1nos tagj\u00e1ra vonatkoz\u00f3 egyenl\u0151tlens\u00e9g:\r\n                \\[ 0 \\leq \\frac{\\sin^2(2n^2)}{n^3} \\leq \\frac{1}{n^3} \\]\r\n                \r\n                <b>2. L\u00e9p\u00e9s: Konvergencia meg\u00e1llap\u00edt\u00e1sa.<\/b><br>\r\n                A \\( \\sum \\frac{1}{n^3} \\) sor egy konvergens p-sor (\\( 3 > 1 \\)).\r\n                Mivel tal\u00e1ltunk egy olyan konvergens sort (\\( \\sum \\frac{1}{n^3} \\)), amely minden \\( n \\)-re fel\u00fclr\u0151l korl\u00e1tozza a mi sorunkat (<b>Major\u00e1ns krit\u00e9rium<\/b>), \u00edgy a vizsg\u00e1lt sor is konvergens.\r\n                <b>V\u00e9geredm\u00e9ny: Igen, konvergens.<\/b>"]},{"title":"6. feladat: Konvergensek-e a sorok? Ha igen, adjunk becsl\u00e9st a 100. r\u00e9szlet\u00f6sszeg hib\u00e1j\u00e1ra.","wolfram":"is sum (3^(n+1)+5^n)\/(2+7^(n-2)) convergent?; is sum 1\/(5^n+7^(n+2)+7^(1\/3)) convergent?; is sum (n^2+3+7^n)\/(2+2^(2n)) convergent?","steps":["<h3>(a) r\u00e9sz: \\( \\sum_{n \\in \\mathbb{N}^+} \\frac{3^{n+1} + 5^n}{2 + 7^{n-2}} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Konvergencia vizsg\u00e1lata \u00e9s major\u00e1l\u00e1s.<\/b><br>\r\n                A sor \u00e1ltal\u00e1nos tagj\u00e1t (\\( a_n \\)) fel\u00fclr\u0151l becs\u00fclj\u00fck egy m\u00e9rtani sorral:\r\n                - Sz\u00e1ml\u00e1l\u00f3: \\( 3^{n+1} + 5^n = 3 \\cdot 3^n + 5^n < 3 \\cdot 5^n + 5^n = 4 \\cdot 5^n \\) (mivel \\( 3 < 5 \\)).\r\n                - Nevez\u0151: \\( 2 + 7^{n-2} > 7^{n-2} = \\frac{1}{49} \\cdot 7^n \\).\r\n                \u00cdgy a tagra vonatkoz\u00f3 becsl\u00e9s:\r\n                \\[ a_n < \\frac{4 \\cdot 5^n}{\\frac{1}{49} \\cdot 7^n} = 196 \\cdot \\left(\\frac{5}{7}\\right)^n \\]\r\n                Mivel \\( |5\/7| < 1 \\), a major\u00e1ns m\u00e9rtani sor konvergens, teh\u00e1t az eredeti sor is <b>konvergens<\/b>.\r\n\r\n                <b>2. L\u00e9p\u00e9s: Hibabecsl\u00e9s (\\( R_{100} \\)).<\/b><br>\r\n                A hiba a 101. tagt\u00f3l a v\u00e9gtelenig tart\u00f3 \u00f6sszeg. A m\u00e9rtani sor \u00f6sszegk\u00e9plet\u00e9t alkalmazva:\r\n                \\[ R_{100} = \\sum_{n=101}^\\infty a_n < \\sum_{n=101}^\\infty 196 \\cdot \\left(\\frac{5}{7}\\right)^n = 196 \\cdot \\frac{(\\frac{5}{7})^{101}}{1 - \\frac{5}{7}} \\]\r\n                <b>V\u00e9geredm\u00e9ny: Igen, hibabecsl\u00e9s: \\( 196 \\cdot \\frac{(\\frac{5}{7})^{101}}{1 - \\frac{5}{7}} \\)<\/b>","<hr>\r\n\r\n                <h3>(b) r\u00e9sz: \\( \\sum_{n \\in \\mathbb{N}^+} \\frac{1}{5^n + 7^{n+2} + \\sqrt[3]{7}} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Major\u00e1l\u00e1s.<\/b><br>\r\n                A nevez\u0151t elhagyva (cs\u00f6kkentve) a t\u00f6rt \u00e9rt\u00e9ke n\u0151:\r\n                \\[ a_n < \\frac{1}{7^{n+2}} = \\frac{1}{49} \\cdot \\left(\\frac{1}{7}\\right)^n \\]\r\n                Mivel \\( |1\/7| < 1 \\), a sor <b>konvergens<\/b>.\r\n\r\n                <b>2. L\u00e9p\u00e9s: Hibabecsl\u00e9s.<\/b><br>\r\n                A hiba becsl\u00e9se a major\u00e1ns m\u00e9rtani sor 101. tagj\u00e1t\u00f3l:\r\n                \\[ R_{100} < \\sum_{n=101}^\\infty \\frac{1}{49} \\cdot \\left(\\frac{1}{7}\\right)^n = \\frac{1}{49} \\cdot \\frac{(\\frac{1}{7})^{101}}{1 - \\frac{1}{7}} \\]\r\n                <b>V\u00e9geredm\u00e9ny: Igen, hibabecsl\u00e9s: \\( \\frac{1}{49} \\cdot \\frac{(\\frac{1}{7})^{101}}{1 - \\frac{1}{7}} \\)<\/b>","<hr>\r\n\r\n                <h3>(c) r\u00e9sz: \\( \\sum_{n \\in \\mathbb{N}} \\frac{n^2 + 3 + 7^n}{2 + 2^{2n}} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: A konvergencia sz\u00fcks\u00e9ges felt\u00e9tel\u00e9nek vizsg\u00e1lata.<\/b><br>\r\n                Vizsg\u00e1ljuk meg a tagok hat\u00e1r\u00e9rt\u00e9k\u00e9t, ha \\( n \\to \\infty \\):\r\n                \\[ \\lim_{n \\to \\infty} \\frac{n^2 + 3 + 7^n}{2 + 4^n} \\approx \\lim_{n \\to \\infty} \\frac{7^n}{4^n} = \\lim_{n \\to \\infty} \\left(\\frac{7}{4}\\right)^n = \\infty \\]\r\n                Mivel \\( \\lim_{n \\to \\infty} a_n \\neq 0 \\), a konvergencia sz\u00fcks\u00e9ges felt\u00e9tele nem teljes\u00fcl.\r\n                <b>V\u00e9geredm\u00e9ny: Nem konvergens (divergens).<\/b>"]}];
+    const chapterId = 4;
+</script>
+
+<script src="script.js"></script>
+</body>
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=4 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+</html>

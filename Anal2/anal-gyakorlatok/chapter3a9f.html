@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=6 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6. Hatványsorok és konvergenciasugár - Analízis 2</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --main-color: #f97316;
+            --main-color-soft: #f9731622; 
+        }
+    </style>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <layout-wrapper>
+        <analizis-sidebar>
+            <sidebar-header>
+                <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+            </sidebar-header>
+            <sidebar-list>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter681a.html?id=1'"
+                        class=""
+                        id="sidebar-item-1"
+                    >
+                        <span class="ch-num">1.</span>
+                        <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0b30.html?id=2'"
+                        class=""
+                        id="sidebar-item-2"
+                    >
+                        <span class="ch-num">2.</span>
+                        <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd708.html?id=3'"
+                        class=""
+                        id="sidebar-item-3"
+                    >
+                        <span class="ch-num">3.</span>
+                        <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterdcfd.html?id=4'"
+                        class=""
+                        id="sidebar-item-4"
+                    >
+                        <span class="ch-num">4.</span>
+                        <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                        <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd61c.html?id=5'"
+                        class=""
+                        id="sidebar-item-5"
+                    >
+                        <span class="ch-num">5.</span>
+                        <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                        <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter3a9f.html?id=6'"
+                        class="active"
+                        id="sidebar-item-6"
+                    >
+                        <span class="ch-num">6.</span>
+                        <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                        <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter8803.html?id=7'"
+                        class=""
+                        id="sidebar-item-7"
+                    >
+                        <span class="ch-num">7.</span>
+                        <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                        <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterc3c9.html?id=8'"
+                        class=""
+                        id="sidebar-item-8"
+                    >
+                        <span class="ch-num">8.</span>
+                        <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                        <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter5255.html?id=9'"
+                        class=""
+                        id="sidebar-item-9"
+                    >
+                        <span class="ch-num">9.</span>
+                        <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                        <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterf41b.html?id=10'"
+                        class=""
+                        id="sidebar-item-10"
+                    >
+                        <span class="ch-num">10.</span>
+                        <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                        <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0055.html?id=11'"
+                        class=""
+                        id="sidebar-item-11"
+                    >
+                        <span class="ch-num">11.</span>
+                        <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                        <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter4ef9.html?id=12'"
+                        class=""
+                        id="sidebar-item-12"
+                    >
+                        <span class="ch-num">12.</span>
+                        <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                        <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter6e03.html?id=13'"
+                        class=""
+                        id="sidebar-item-13"
+                    >
+                        <span class="ch-num">13.</span>
+                        <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                        <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+                    </sidebar-item>
+                            </sidebar-list>
+            <sidebar-footer>
+                <div class="overall-progress">
+                    <div class="progress-label">Kurzus haladás: <span id="totalPercent">0%</span></div>
+                    <div class="progress-track">
+                        <div id="totalProgressBar" class="progress-fill"></div>
+                    </div>
+                </div>
+                
+            </sidebar-footer>
+        </analizis-sidebar>
+
+        <main-content>
+            <analizis-nav>
+                <nav-title><b>6. Hatványsorok és konvergenciasugár<b></nav-title>
+                <nav-actions>
+                    <button id="themeToggle" class="theme-btn">🌙 Éjszakai mód</button>
+                    <button id="theory-menu-toggle" class="menu-toggle-btn">
+    <span>☰</span> Menü
+</button>
+
+<analizis-sidebar id="theory-menu">
+    <sidebar-header>
+        <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+    </sidebar-header>
+    
+    <sidebar-list>
+                    <sidebar-item 
+                onclick="window.location.href='chapter681a.html?id=1'"
+                class=""
+                id="sidebar-item-1"
+            >
+                <span class="ch-num">1.</span>
+                <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0b30.html?id=2'"
+                class=""
+                id="sidebar-item-2"
+            >
+                <span class="ch-num">2.</span>
+                <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd708.html?id=3'"
+                class=""
+                id="sidebar-item-3"
+            >
+                <span class="ch-num">3.</span>
+                <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterdcfd.html?id=4'"
+                class=""
+                id="sidebar-item-4"
+            >
+                <span class="ch-num">4.</span>
+                <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd61c.html?id=5'"
+                class=""
+                id="sidebar-item-5"
+            >
+                <span class="ch-num">5.</span>
+                <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter3a9f.html?id=6'"
+                class="active"
+                id="sidebar-item-6"
+            >
+                <span class="ch-num">6.</span>
+                <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter8803.html?id=7'"
+                class=""
+                id="sidebar-item-7"
+            >
+                <span class="ch-num">7.</span>
+                <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterc3c9.html?id=8'"
+                class=""
+                id="sidebar-item-8"
+            >
+                <span class="ch-num">8.</span>
+                <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter5255.html?id=9'"
+                class=""
+                id="sidebar-item-9"
+            >
+                <span class="ch-num">9.</span>
+                <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterf41b.html?id=10'"
+                class=""
+                id="sidebar-item-10"
+            >
+                <span class="ch-num">10.</span>
+                <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0055.html?id=11'"
+                class=""
+                id="sidebar-item-11"
+            >
+                <span class="ch-num">11.</span>
+                <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter4ef9.html?id=12'"
+                class=""
+                id="sidebar-item-12"
+            >
+                <span class="ch-num">12.</span>
+                <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter6e03.html?id=13'"
+                class=""
+                id="sidebar-item-13"
+            >
+                <span class="ch-num">13.</span>
+                <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+            </sidebar-item>
+            </sidebar-list>
+</analizis-sidebar>
+</button>
+
+                </nav-actions>
+            </analizis-nav>
+            
+            <analizis-content>
+                <theory-section>
+                    <section-header>Elméleti összefoglaló</section-header>
+                    <theory-body>
+        <section>
+            <h2>1. A konvergenciasugár (\( R_a \)) fogalma</h2>
+            <p>A hatványsoroknál a legfontosabb kérdés: mely \( x \) értékekre kapunk konvergens numerikus sort? Ezt a tartományt a konvergenciasugár határozza meg.</p>
+            
+            <div style="background: #5d7dbd; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                <b>1. Definíció: Cauchy-féle konvergenciasugár</b><br>
+                Legyen \( (a_n)_{n \in \mathbb{N}} \) egy számsorozat. A hatványsor konvergenciasugara:
+                \[ R_a := \begin{cases} 
+                    \frac{1}{\limsup_{n \to \infty} \sqrt[n]{|a_n|}}, & \text{ha } 0 < \limsup \sqrt[n]{|a_n|} < +\infty \
+                    0, & \text{ha } \limsup \sqrt[n]{|a_n|} = +\infty \
+                    +\infty, & \text{ha } \limsup \sqrt[n]{|a_n|} = 0
+                \end{cases} \]
+            </div>
+
+            <p><b>2. Tétel: Kiszámítás a hányadoskritériummal</b><br>
+            Sokszor egyszerűbb a tagok hányadosát vizsgálni. Ha létezik a \( \lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| \) határérték, akkor ez megegyezik a gyökkritérium határértékével, így:
+            \[ R_a = \lim_{n \to \infty} \left| \frac{a_n}{a_{n+1}} \right| \]</p>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>2. Cauchy–Hadamard-tétel</h2>
+            <p>Ez a tétel mondja meg pontosan, hol konvergens a \( \sum a_n(x - x_0)^n \) hatványsor:</p>
+            <ul>
+                <li>Ha \( |x - x_0| < R_a \), akkor a hatványsor <b>abszolút konvergens</b>.</li>
+                <li>Ha \( |x - x_0| > R_a \), akkor a hatványsor <b>divergens</b>.</li>
+                <li>Ha \( |x - x_0| = R_a \), a hatványsor viselkedése egyedi vizsgálatot igényel (a "peremeken").</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>3. Elemi analitikus függvények tulajdonságai</h2>
+            <p>Ha egy \( f(x) \) függvényt hatványsorral definiálunk a konvergencia-intervallumon belül, akkor rendkívül barátságos tulajdonságokkal rendelkezik:</p>
+            
+            <ul>
+                <li><b>Folytonosság:</b> Az \( f \) függvény az értelmezési tartományának minden pontjában folytonos.</li>
+                <li><b>Tagonkénti differenciálhatóság:</b> A konvergenciasugáron belül a függvény tetszőlegesen sokszor differenciálható, és a deriváltat a sor tagonkénti deriválásával kapjuk:
+                    \[ f'(x) = \sum_{n=1}^\infty n a_n(x - x_0)^{n-1} \]
+                    A derivált sor konvergenciasugara megegyezik az eredeti soréval (\( R_b = R_a \)).
+                </li>
+                <li><b>Tagonkénti integrálhatóság:</b> A függvény bármely zárt részintervallumon Riemann-integrálható, és az integrál megegyezik a tagonkénti integrálok összegével:
+                    \[ \int_\alpha^\beta \left( \sum_{n=0}^\infty a_n(x - x_0)^n \right) dx = \sum_{n=0}^\infty a_n \int_\alpha^\beta (x - x_0)^n dx \]
+                </li>
+            </ul>
+        </section>
+    </theory-body>
+                </theory-section>
+
+                <practice-section>
+    <section-header>Példafeladatok</section-header>
+    
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat: Milyen \( x \in \mathbb{R} \) esetén konvergensek az alábbi hatványsorok? Adjuk meg a konvergenciasugarat is.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="convergence+of+sum+%28-1%29%5En%2F%28n%2A3%5En%29%2A%28x%2B2%29%5En%3B+sum+%28-1%29%5En%2A%283n-2%29%2F%283n%29%21%2A%28x-5%29%5En%3B+sum+%28-1%29%5En%2A%283x-6%29%5En%2F%28n%5E3%2A4%5En%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="0">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="0">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">2. feladat: Milyen \( x \in \mathbb{R} \) esetén konvergensek az alábbi hatványsorok? Adjuk meg a konvergenciasugarat is.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="convergence+of+sum+%28n%5E2%2F5%5En%29%2Ax%5E%284n%29%3B+sum+%28%28n-2%29%2F16%5En%29%2A%28x%2B3%29%5E%284n%29%3B+sum+%28k%2F4%5Ek%29%2A%28x-1%29%5E%282k%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="1">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="1">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">3. feladat: Milyen \( x \in \mathbb{R} \) esetén konvergensek az alábbi hatványsorok? Adjuk meg az összegfüggvényt zárt alakban.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="sum+x%5E%28n%2B1%29%2Fn+from+n%3D1+to+infinity%3B+sum+%28n-1%29%2Fn%2Ax%5E%28n%2B1%29+from+n%3D1+to+infinity%3B+sum+n%2Ax%5E%28n%2B3%29+from+n%3D1+to+infinity"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="2">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="2">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+    
+</practice-section>
+
+<script>
+    const allTasks = [{"title":"1. feladat: Milyen \\( x \\in \\mathbb{R} \\) eset\u00e9n konvergensek az al\u00e1bbi hatv\u00e1nysorok? Adjuk meg a konvergenciasugarat is.","wolfram":"convergence of sum (-1)^n\/(n*3^n)*(x+2)^n; sum (-1)^n*(3n-2)\/(3n)!*(x-5)^n; sum (-1)^n*(3x-6)^n\/(n^3*4^n)","steps":["<h3>(a) r\u00e9sz: \\( \\sum_{n=1}^\\infty \\frac{(-1)^n}{n \\cdot 3^n} (x+2)^n \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Az adatok kigy\u0171jt\u00e9se.<\/b><br>\r\n                A hatv\u00e1nysor k\u00f6z\u00e9ppontja \\( x_0 = -2 \\). Az egy\u00fctthat\u00f3-sorozat: \\( a_n = \\frac{(-1)^n}{n \\cdot 3^n} \\).","<b>2. L\u00e9p\u00e9s: A konvergenciasug\u00e1r (\\( R \\)) kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                Haszn\u00e1ljuk a h\u00e1nyadoskrit\u00e9riumon alapul\u00f3 k\u00e9pletet: \\( R = \\lim_{n \\to \\infty} \\left| \\frac{a_n}{a_{n+1}} \\right| \\).\r\n                \\[ R = \\lim_{n \\to \\infty} \\left| \\frac{\\frac{(-1)^n}{n \\cdot 3^n}}{\\frac{(-1)^{n+1}}{(n+1) \\cdot 3^{n+1}}} \\right| = \\lim_{n \\to \\infty} \\frac{n+1}{n} \\cdot \\frac{3^{n+1}}{3^n} = \\lim_{n \\to \\infty} \\left(1 + \\frac{1}{n}\\right) \\cdot 3 = \\mathbf{3} \\]\r\n                A sor abszol\u00fat konvergens a \\( |x + 2| < 3 \\) tartom\u00e1nyon, azaz a \\( (-5, 1) \\) intervallumon.","<b>3. L\u00e9p\u00e9s: A perempontok vizsg\u00e1lata.<\/b><br>\r\n                <ul>\r\n                    <li><b>Ha \\( x = -5 \\):<\/b> \\( \\sum \\frac{(-1)^n}{n \\cdot 3^n} (-3)^n = \\sum \\frac{(-1)^n (-1)^n 3^n}{n \\cdot 3^n} = \\sum \\frac{1}{n} \\). Ez a harmonikus sor, ami <b>divergens<\/b>.<\/li>\r\n                    <li><b>Ha \\( x = 1 \\):<\/b> \\( \\sum \\frac{(-1)^n}{n \\cdot 3^n} 3^n = \\sum \\frac{(-1)^n}{n} \\). Ez az altern\u00e1l\u00f3 harmonikus sor, ami a Leibniz-krit\u00e9rium alapj\u00e1n <b>konvergens<\/b>.<\/li>\r\n                <\/ul>\r\n                <b>V\u00e9geredm\u00e9ny: \\( R = 3 \\), konvergenciatartom\u00e1ny: \\( x \\in (-5, 1] \\).<\/b>","<hr>\r\n\r\n                <h3>(b) r\u00e9sz: \\( \\sum_{n=1}^\\infty (-1)^n \\frac{3n-2}{(3n)!} (x-5)^n \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: A konvergenciasug\u00e1r meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                K\u00f6z\u00e9ppont: \\( x_0 = 5 \\). Egy\u00fctthat\u00f3: \\( a_n = (-1)^n \\frac{3n-2}{(3n)!} \\).\r\n                \\[ R = \\lim_{n \\to \\infty} \\left| \\frac{3n-2}{(3n)!} \\cdot \\frac{(3n+3)!}{3n+1} \\right| = \\lim_{n \\to \\infty} \\frac{(3n-2)(3n+3)(3n+2)(3n+1)}{3n+1} \\]\r\n                \\[ R = \\lim_{n \\to \\infty} (3n-2)(3n+3)(3n+2) = \\mathbf{+\\infty} \\]\r\n                Mivel a sug\u00e1r v\u00e9gtelen, a sor minden val\u00f3s \\( x \\)-re konvergens.","<b>V\u00e9geredm\u00e9ny: \\( R = +\\infty \\), konvergenciatartom\u00e1ny: \\( x \\in \\mathbb{R} \\).<\/b>","<hr>\r\n\r\n                <h3>(c) r\u00e9sz: \\( \\sum_{n=1}^\\infty (-1)^n \\frac{(3x-6)^n}{n^3 4^n} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: \u00c1talak\u00edt\u00e1s alapalakra.<\/b><br>\r\n                Emelj\u00fck ki a 3-ast a hatv\u00e1ny al\u00f3l: \\( (3x-6)^n = (3(x-2))^n = 3^n(x-2)^n \\).\r\n                A sor alakja: \\( \\sum_{n=1}^\\infty \\frac{(-1)^n 3^n}{n^3 4^n} (x-2)^n \\). K\u00f6z\u00e9ppont: \\( x_0 = 2 \\).","<b>2. L\u00e9p\u00e9s: Konvergenciasug\u00e1r sz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                Haszn\u00e1ljuk a gy\u00f6kkrit\u00e9riumot: \\( \\frac{1}{R} = \\lim_{n \\to \\infty} \\sqrt[n]{|a_n|} \\).\r\n                \\[ \\frac{1}{R} = \\lim_{n \\to \\infty} \\sqrt[n]{\\frac{3^n}{n^3 4^n}} = \\lim_{n \\to \\infty} \\frac{3}{\\sqrt[n]{n^3} \\cdot 4} = \\frac{3}{1 \\cdot 4} = \\frac{3}{4} \\implies \\mathbf{R = \\frac{4}{3}} \\]\r\n                Az intervallum: \\( |x-2| < 4\/3 \\implies 2\/3 < x < 10\/3 \\).","<b>3. L\u00e9p\u00e9s: Perempontok vizsg\u00e1lata.<\/b><br>\r\n                Mindk\u00e9t v\u00e9gponton (\\( x = 2\/3 \\) \u00e9s \\( x = 10\/3 \\)) a tagok abszol\u00fat \u00e9rt\u00e9ke \\( \\frac{1}{n^3} \\).\r\n                Mivel a \\( \\sum \\frac{1}{n^3} \\) sor konvergens (\\( p=3 > 1 \\)), a sor mindk\u00e9t v\u00e9gponton <b>konvergens<\/b>.","<b>V\u00e9geredm\u00e9ny: \\( R = \\frac{4}{3} \\), konvergenciatartom\u00e1ny: \\( x \\in [2\/3, 10\/3] \\).<\/b>"]},{"title":"2. feladat: Milyen \\( x \\in \\mathbb{R} \\) eset\u00e9n konvergensek az al\u00e1bbi hatv\u00e1nysorok? Adjuk meg a konvergenciasugarat is.","wolfram":"convergence of sum (n^2\/5^n)*x^(4n); sum ((n-2)\/16^n)*(x+3)^(4n); sum (k\/4^k)*(x-1)^(2k)","steps":["<b>1. L\u00e9p\u00e9s: (a) r\u00e9sz - \\( \\sum_{n=1}^\\infty \\frac{n^2}{5^n} x^{4n} \\) vizsg\u00e1lata.<\/b><br>\r\n                A hatv\u00e1nysor k\u00f6z\u00e9ppontja \\( x_0 = 0 \\). Vegy\u00fck \u00e9szre, hogy az \\( x \\) kitev\u0151je \\( 4n \\), ami fel\u00edrhat\u00f3 \\( (x^4)^n \\) alakban.\r\n                Vezess\u00fcnk be egy \u00faj v\u00e1ltoz\u00f3t: \\( u = x^4 \\). Ekkor a sor: \\( \\sum_{n=1}^\\infty \\frac{n^2}{5^n} u^n \\).\r\n                Sz\u00e1m\u00edtsuk ki \\( u \\)-ra a konvergenciasugarat (\\( R_u \\)) a gy\u00f6kkrit\u00e9riummal:\r\n                \\[ \\frac{1}{R_u} = \\lim_{n \\to \\infty} \\sqrt[n]{\\frac{n^2}{5^n}} = \\frac{1}{5} \\implies R_u = 5 \\]\r\n                A konvergencia felt\u00e9tele \\( |u| < 5 \\), azaz \\( |x^4| < 5 \\implies |x| < \\sqrt[4]{5} \\).\r\n                A peremeken (\\( x^4=5 \\)) a sor \\( \\sum n^2 \\) alak\u00fa, ami divergens.\r\n                <b>V\u00e9geredm\u00e9ny: \\( R = \\sqrt[4]{5} \\), konvergenciatartom\u00e1ny: \\( x \\in (-\\sqrt[4]{5}, \\sqrt[4]{5}) \\).<\/b>","<b>2. L\u00e9p\u00e9s: (b) r\u00e9sz - \\( \\sum_{n=1}^\\infty \\frac{n-2}{16^n} (x+3)^{4n} \\) vizsg\u00e1lata.<\/b><br>\r\n                A k\u00f6z\u00e9ppont \\( x_0 = -3 \\). Legyen \\( u = (x+3)^4 \\).\r\n                Hat\u00e1rozzuk meg \\( R_u \\) \u00e9rt\u00e9k\u00e9t:\r\n                \\[ \\frac{1}{R_u} = \\lim_{n \\to \\infty} \\sqrt[n]{\\left| \\frac{n-2}{16^n} \\right|} = \\frac{1}{16} \\implies R_u = 16 \\]\r\n                A konvergenci\u00e1hoz \\( |x+3|^4 < 16 \\) sz\u00fcks\u00e9ges, amib\u0151l \\( |x+3| < \\sqrt[4]{16} = 2 \\).\r\n                A peremeken a sor \\( \\sum (n-2) \\) alak\u00fa, teh\u00e1t divergens.\r\n                Az intervallum: \\( -2 < x+3 < 2 \\implies -5 < x < -1 \\).\r\n                <b>V\u00e9geredm\u00e9ny: \\( R = 2 \\), konvergenciatartom\u00e1ny: \\( x \\in (-5, -1) \\).<\/b>","<b>3. L\u00e9p\u00e9s: (c) r\u00e9sz - \\( \\sum_{k=0}^\\infty \\frac{k}{4^k} (x-1)^{2k} \\) vizsg\u00e1lata.<\/b><br>\r\n                A k\u00f6z\u00e9ppont \\( x_0 = 1 \\). Legyen \\( u = (x-1)^2 \\).\r\n                A gy\u00f6kkrit\u00e9riummal a sug\u00e1r \\( u \\)-ra:\r\n                \\[ \\frac{1}{R_u} = \\lim_{k \\to \\infty} \\sqrt[k]{\\frac{k}{4^k}} = \\frac{1}{4} \\implies R_u = 4 \\]\r\n                A felt\u00e9tel \\( |x-1|^2 < 4 \\), azaz \\( |x-1| < 2 \\).\r\n                A peremeken a sor \\( \\sum k \\) alak\u00fa, ami divergens.\r\n                Az intervallum: \\( -2 < x-1 < 2 \\implies -1 < x < 3 \\).\r\n                <b>V\u00e9geredm\u00e9ny: \\( R = 2 \\), konvergenciatartom\u00e1ny: \\( x \\in (-1, 3) \\).<\/b>"]},{"title":"3. feladat: Milyen \\( x \\in \\mathbb{R} \\) eset\u00e9n konvergensek az al\u00e1bbi hatv\u00e1nysorok? Adjuk meg az \u00f6sszegf\u00fcggv\u00e9nyt z\u00e1rt alakban.","wolfram":"sum x^(n+1)\/n from n=1 to infinity; sum (n-1)\/n*x^(n+1) from n=1 to infinity; sum n*x^(n+3) from n=1 to infinity","steps":["<h3>(a) r\u00e9sz: \\( \\sum_{n=1}^\\infty \\frac{x^{n+1}}{n} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Konvergenciatartom\u00e1ny.<\/b><br>\r\n                A k\u00f6z\u00e9ppont \\( x_0 = 0 \\), a konvergenciasug\u00e1r \\( R = 1 \\). \r\n                A peremeken: \\( x=1 \\)-n\u00e9l a harmonikus sor divergens, \\( x=-1 \\)-n\u00e9l az altern\u00e1l\u00f3 harmonikus sor konvergens. \r\n                Tartom\u00e1ny: \\( \\mathbf{x \\in [-1, 1[} \\).","<b>2. L\u00e9p\u00e9s: Az \u00f6sszegf\u00fcggv\u00e9ny meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                Emelj\u00fck ki az \\( x \\)-et: \\( f(x) = x \\cdot \\sum_{n=1}^\\infty \\frac{x^n}{n} \\). \r\n                Tudjuk, hogy \\( \\sum_{n=1}^\\infty \\frac{x^n}{n} \\) a \\( -\\ln(1-x) \\) Taylor-sora. \r\n                \u00cdgy a z\u00e1rt alak: \r\n                \\[ \\mathbf{f(x) = -x \\ln(1-x)} \\quad (x \\in [-1, 1[) \\]","<hr>\r\n\r\n                <h3>(b) r\u00e9sz: \\( \\sum_{n=1}^\\infty \\frac{n-1}{n} x^{n+1} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: \u00c1talak\u00edt\u00e1s ismert sorokra.<\/b><br>\r\n                Bontsuk kett\u00e9 az egy\u00fctthat\u00f3t: \\( \\frac{n-1}{n} = 1 - \\frac{1}{n} \\). \r\n                \u00cdgy a sor:\r\n                \\[ \\sum_{n=1}^\\infty (1 \\cdot x^{n+1}) - \\sum_{n=1}^\\infty \\frac{x^{n+1}}{n} \\]\r\n                A tartom\u00e1ny itt is \\( \\mathbf{x \\in ]-1, 1[} \\) (a peremeken a tagok nem tartanak null\u00e1hoz).","<b>2. L\u00e9p\u00e9s: \u00d6sszegz\u00e9s.<\/b><br>\r\n                <ul>\r\n                    <li>Az els\u0151 r\u00e9sz egy m\u00e9rtani sor: \\( x^2 + x^3 + \\dots = \\frac{x^2}{1-x} \\).<\/li>\r\n                    <li>A m\u00e1sodik r\u00e9sz megegyezik az (a) feladattal: \\( -x \\ln(1-x) \\).<\/li>\r\n                <\/ul>\r\n                A kett\u0151t \u00f6sszevonva:\r\n                \\[ \\mathbf{f(x) = \\frac{x^2}{1-x} + x \\ln(1-x)} \\quad (x \\in ]-1, 1[) \\]","<hr>\r\n\r\n                <h3>(c) r\u00e9sz: \\( \\sum_{n=1}^\\infty n x^{n+3} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Deriv\u00e1l\u00e1sra val\u00f3 visszavezet\u00e9s.<\/b><br>\r\n                Emelj\u00fcnk ki \\( x^4 \\)-et, hogy a kitev\u0151t \u00f6sszhangba hozzuk az egy\u00fctthat\u00f3val:\r\n                \\[ f(x) = x^4 \\sum_{n=1}^\\infty n x^{n-1} \\]\r\n                Vegy\u00fck \u00e9szre, hogy \\( n x^{n-1} \\) az \\( x^n \\) deriv\u00e1ltja.","<b>2. L\u00e9p\u00e9s: Tagonk\u00e9nti deriv\u00e1l\u00e1s alkalmaz\u00e1sa.<\/b><br>\r\n                A konvergenciasug\u00e1ron bel\u00fcl (\\( R=1 \\)) a szumma \u00e9s a deriv\u00e1l\u00e1s felcser\u00e9lhet\u0151:\r\n                \\[ \\sum_{n=1}^\\infty n x^{n-1} = \\frac{d}{dx} \\left( \\sum_{n=0}^\\infty x^n \\right) = \\frac{d}{dx} \\left( \\frac{1}{1-x} \\right) = \\frac{1}{(1-x)^2} \\]\r\n                Szorozzuk vissza a kiemelt \\( x^4 \\)-et:\r\n                \\[ \\mathbf{f(x) = \\frac{x^4}{(1-x)^2}} \\quad (x \\in ]-1, 1[) \\]"]}];
+    const chapterId = 6;
+</script>
+
+<script src="script.js"></script>
+</body>
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=6 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+</html>

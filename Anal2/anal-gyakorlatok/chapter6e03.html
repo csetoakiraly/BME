@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=13 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13. Fourier-sor és Fourier-transzformált - Analízis 2</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --main-color: #cf3b3b;
+            --main-color-soft: #cf3b3b22; 
+        }
+    </style>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <layout-wrapper>
+        <analizis-sidebar>
+            <sidebar-header>
+                <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+            </sidebar-header>
+            <sidebar-list>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter681a.html?id=1'"
+                        class=""
+                        id="sidebar-item-1"
+                    >
+                        <span class="ch-num">1.</span>
+                        <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0b30.html?id=2'"
+                        class=""
+                        id="sidebar-item-2"
+                    >
+                        <span class="ch-num">2.</span>
+                        <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd708.html?id=3'"
+                        class=""
+                        id="sidebar-item-3"
+                    >
+                        <span class="ch-num">3.</span>
+                        <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterdcfd.html?id=4'"
+                        class=""
+                        id="sidebar-item-4"
+                    >
+                        <span class="ch-num">4.</span>
+                        <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                        <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd61c.html?id=5'"
+                        class=""
+                        id="sidebar-item-5"
+                    >
+                        <span class="ch-num">5.</span>
+                        <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                        <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter3a9f.html?id=6'"
+                        class=""
+                        id="sidebar-item-6"
+                    >
+                        <span class="ch-num">6.</span>
+                        <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                        <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter8803.html?id=7'"
+                        class=""
+                        id="sidebar-item-7"
+                    >
+                        <span class="ch-num">7.</span>
+                        <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                        <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterc3c9.html?id=8'"
+                        class=""
+                        id="sidebar-item-8"
+                    >
+                        <span class="ch-num">8.</span>
+                        <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                        <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter5255.html?id=9'"
+                        class=""
+                        id="sidebar-item-9"
+                    >
+                        <span class="ch-num">9.</span>
+                        <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                        <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterf41b.html?id=10'"
+                        class=""
+                        id="sidebar-item-10"
+                    >
+                        <span class="ch-num">10.</span>
+                        <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                        <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0055.html?id=11'"
+                        class=""
+                        id="sidebar-item-11"
+                    >
+                        <span class="ch-num">11.</span>
+                        <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                        <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter4ef9.html?id=12'"
+                        class=""
+                        id="sidebar-item-12"
+                    >
+                        <span class="ch-num">12.</span>
+                        <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                        <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter6e03.html?id=13'"
+                        class="active"
+                        id="sidebar-item-13"
+                    >
+                        <span class="ch-num">13.</span>
+                        <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                        <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+                    </sidebar-item>
+                            </sidebar-list>
+            <sidebar-footer>
+                <div class="overall-progress">
+                    <div class="progress-label">Kurzus haladás: <span id="totalPercent">0%</span></div>
+                    <div class="progress-track">
+                        <div id="totalProgressBar" class="progress-fill"></div>
+                    </div>
+                </div>
+                
+            </sidebar-footer>
+        </analizis-sidebar>
+
+        <main-content>
+            <analizis-nav>
+                <nav-title><b>13. Fourier-sor és Fourier-transzformált<b></nav-title>
+                <nav-actions>
+                    <button id="themeToggle" class="theme-btn">🌙 Éjszakai mód</button>
+                    <button id="theory-menu-toggle" class="menu-toggle-btn">
+    <span>☰</span> Menü
+</button>
+
+<analizis-sidebar id="theory-menu">
+    <sidebar-header>
+        <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+    </sidebar-header>
+    
+    <sidebar-list>
+                    <sidebar-item 
+                onclick="window.location.href='chapter681a.html?id=1'"
+                class=""
+                id="sidebar-item-1"
+            >
+                <span class="ch-num">1.</span>
+                <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0b30.html?id=2'"
+                class=""
+                id="sidebar-item-2"
+            >
+                <span class="ch-num">2.</span>
+                <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd708.html?id=3'"
+                class=""
+                id="sidebar-item-3"
+            >
+                <span class="ch-num">3.</span>
+                <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterdcfd.html?id=4'"
+                class=""
+                id="sidebar-item-4"
+            >
+                <span class="ch-num">4.</span>
+                <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd61c.html?id=5'"
+                class=""
+                id="sidebar-item-5"
+            >
+                <span class="ch-num">5.</span>
+                <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter3a9f.html?id=6'"
+                class=""
+                id="sidebar-item-6"
+            >
+                <span class="ch-num">6.</span>
+                <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter8803.html?id=7'"
+                class=""
+                id="sidebar-item-7"
+            >
+                <span class="ch-num">7.</span>
+                <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterc3c9.html?id=8'"
+                class=""
+                id="sidebar-item-8"
+            >
+                <span class="ch-num">8.</span>
+                <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter5255.html?id=9'"
+                class=""
+                id="sidebar-item-9"
+            >
+                <span class="ch-num">9.</span>
+                <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterf41b.html?id=10'"
+                class=""
+                id="sidebar-item-10"
+            >
+                <span class="ch-num">10.</span>
+                <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0055.html?id=11'"
+                class=""
+                id="sidebar-item-11"
+            >
+                <span class="ch-num">11.</span>
+                <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter4ef9.html?id=12'"
+                class=""
+                id="sidebar-item-12"
+            >
+                <span class="ch-num">12.</span>
+                <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter6e03.html?id=13'"
+                class="active"
+                id="sidebar-item-13"
+            >
+                <span class="ch-num">13.</span>
+                <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+            </sidebar-item>
+            </sidebar-list>
+</analizis-sidebar>
+</button>
+
+                </nav-actions>
+            </analizis-nav>
+            
+            <analizis-content>
+                <theory-section>
+                    <section-header>Elméleti összefoglaló</section-header>
+                    <theory-body>
+        <section>
+            <h2>1. Fourier-sorok</h2>
+            <p>A Fourier-analízis célja, hogy periodikus függvényeket egyszerűbb trigonometrikus függvények (szinuszok és koszinuszok) összegeként írjunk le.</p>
+            
+            <div style="background: #4e0316; padding: 15px; border-radius: 8px; border-left: 5px solid #8b5cf6; margin: 10px 0;">
+                <b>1. Definíció: Fourier-együtthatók és Fourier-sor</b><br>
+                Legyen \( f: \mathbb{R} \to \mathbb{R} \) egy \( 2\pi \) szerint periodikus, integrálható függvény. Ekkor a Fourier-együtthatók:
+                \[ a_k(f) = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos(kx) \, dx \quad \text{és} \quad b_k(f) = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin(kx) \, dx \]
+                A függvény <b>Fourier-sora</b>:
+                \[ \Phi(f)(x) = \frac{a_0(f)}{2} + \sum_{k=1}^{\infty} (a_k(f) \cos(kx) + b_k(f) \sin(kx)) \]
+            </div>
+
+            <h3>Speciális esetek (Paritás)</h3>
+            <ul>
+                <li>Ha \( f \) <b>páros</b> függvény, akkor minden \( k \in \mathbb{N}^+ \) esetén \( b_k(f) = 0 \).</li>
+                <li>Ha \( f \) <b>páratlan</b> függvény, akkor minden \( k \in \mathbb{N} \) esetén \( a_k(f) = 0 \).</li>
+            </ul>
+
+            <p><b>3. Tétel: Dirichlet-tétel (Konvergencia).</b><br>
+            Ha \( f \) szakaszonként monoton és korlátos, akkor a Fourier-sora minden pontban konvergál a függvény bal- és jobboldali határértékének átlagához:
+            \[ (\Phi(f))(x) = \frac{f(x-0) + f(x+0)}{2} \]
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>2. Fourier-transzformáció</h2>
+            <p>A Fourier-transzformáció a Fourier-sor általánosítása nem periodikus függvényekre.</p>
+            
+            <p><b>4. Definíció:</b> Legyen \( f: \mathbb{R} \to \mathbb{R} \) abszolút integrálható függvény. Ekkor a <b>Fourier-transzformáltja</b>:</p>
+            \[ \mathscr{F}(f)(\omega) = \int_{-\infty}^{+\infty} e^{-i\omega x} f(x) \, dx \]
+
+            <h3>A transzformáció tulajdonságai</h3>
+            <p>A Fourier-transzformáció számos operációs tulajdonsággal rendelkezik, amelyek megkönnyítik a differenciálegyenletek megoldását:</p>
+            <ul>
+                <li><b>Linearitás:</b> \( \mathscr{F}(\alpha f + \beta g) = \alpha\mathscr{F}(f) + \beta\mathscr{F}(g) \).</li>
+                <li><b>Hasonlóság (Scaling):</b> \( \mathscr{F}(f(x/a))(\omega) = |a| \cdot \mathscr{F}(f)(a\omega) \).</li>
+                <li><b>Eltolás:</b> \( \mathscr{F}(f(x-x_0))(\omega) = e^{-i\omega x_0} \mathscr{F}(f)(\omega) \).</li>
+                <li><b>Deriválási szabály:</b> Ha \( f \) differenciálható, akkor \( \mathscr{F}(f')( \omega) = i\omega \mathscr{F}(f)(\omega) \).</li>
+            </ul>
+        </section>
+    </theory-body>
+                </theory-section>
+
+                <practice-section>
+    <section-header>Példafeladatok</section-header>
+    
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat: Szakaszosan konstans függvény Fourier-sorba fejtése</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="fourier+series+of+f%28x%29+%3D+piecewise%5B%7B%7B-3%2C+-pi%2F2+%3C%3D+x+%3C+0%7D%2C+%7B3%2C+0+%3C%3D+x+%3C+pi%2F2%7D%2C+%7B0%2C+-pi+%3C%3D+x+%3C+-pi%2F2+or+pi%2F2+%3C%3D+x+%3C+pi%7D%7D%5D"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="0">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="0">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">2. feladat: Fűrészfog-szerű hullám Fourier-sora és numerikus sor összege</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="fourier+series+of+f%28x%29+%3D+abs%28x-pi%29+on+%5B0%2C+2%2Api%5D"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="1">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="1">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">3. feladat: Összetett szakaszos függvény Fourier-együtthatóinak meghatározása</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="fourier+coefficients+of+piecewise%5B%7B%7Bpi%2Bx%2C+-pi%2F2+%3C%3D+x+%3C+0%7D%2C+%7Bx%2C+0+%3C%3D+x+%3C+pi%2F2%7D%2C+%7Bpi%2F2%2C+-pi+%3C%3D+x+%3C+-pi%2F2+or+pi%2F2+%3C%3D+x+%3C+pi%7D%7D%5D"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="2">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="2">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">4. feladat: Vizsgafeladat (2024. június 4.) — Fourier-sor konvergenciája és együtthatók</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="fourier+series+of+f%28x%29+%3D+piecewise%5B%7B%7Bx%2Bpi%2C+-pi+%3C%3D+x+%3C+0%7D%2C+%7Bx%2C+0+%3C%3D+x+%3C+pi%7D%7D%5D"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="3">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="3">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">5. feladat: Fourier-transzformáció operációs tulajdonságainak alkalmazása</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="fourier+transform+properties+linearity+scaling+shifting+derivative"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="4">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="4">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">6. feladat: Szakaszosan konstans függvény Fourier-transzformáltja</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="fourier+transform+of+piecewise%5B%7B%7B-1%2C+-1+%3C+x+%3C+0%7D%2C+%7B1%2C+0+%3C+x+%3C+1%7D%2C+%7B0%2C+otherwise%7D%7D%5D"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="5">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="5">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">7. feladat: Összetett exponenciális függvény Fourier-transzformáltja</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="fourier+transform+of+exp%28-abs%283x-6%29%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="6">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="6">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">8. feladat: Vizsgafeladat (2024. június 11.) — Összetett derivált Fourier-transzformáltja</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="fourier+transform+of+f%27%282x%2B1%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="7">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="7">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+    
+</practice-section>
+
+<script>
+    const allTasks = [{"title":"1. feladat: Szakaszosan konstans f\u00fcggv\u00e9ny Fourier-sorba fejt\u00e9se","wolfram":"fourier series of f(x) = piecewise[{{-3, -pi\/2 <= x < 0}, {3, 0 <= x < pi\/2}, {0, -pi <= x < -pi\/2 or pi\/2 <= x < pi}}]","steps":["<h3>1. A f\u00fcggv\u00e9ny parit\u00e1s\u00e1nak \u00e9s az egy\u00fctthat\u00f3knak a meghat\u00e1roz\u00e1sa<\/h3>\r\n                <b>L\u00e9p\u00e9s 1.1: Parit\u00e1svizsg\u00e1lat.<\/b><br>\r\n                A megadott f\u00fcggv\u00e9ny:\r\n                \\[ f(x) = \\begin{cases} -3 & \\text{ha } x \\in [-\\pi\/2, 0[ \\ 3 & \\text{ha } x \\in [0, \\pi\/2[ \\ 0 & \\text{egy\u00e9bk\u00e9nt a } [-\\pi, \\pi[ \\text{ intervallumon} \\end{cases} \\]\r\n                Mivel \\( f(-x) = -f(x) \\), a f\u00fcggv\u00e9ny <b>p\u00e1ratlan<\/b>.\r\n                A 13. fejezet 2. megjegyz\u00e9se alapj\u00e1n p\u00e1ratlan f\u00fcggv\u00e9ny eset\u00e9n minden \\( a_k = 0 \\).","<b>L\u00e9p\u00e9s 1.2: A \\( b_k \\) egy\u00fctthat\u00f3k kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                A \\( b_k \\) egy\u00fctthat\u00f3 k\u00e9plete:\r\n                \\[ b_k = \\frac{1}{\\pi} \\int_{-\\pi}^{\\pi} f(x) \\sin(kx) \\, dx \\]\r\n                Mivel a f\u00fcggv\u00e9ny p\u00e1ratlan \u00e9s a szinusz is p\u00e1ratlan, a szorzatuk p\u00e1ros, \u00edgy elegend\u0151 a f\u00e9lszakaszon integr\u00e1lni \u00e9s dupl\u00e1zni:\r\n                \\[ b_k = \\frac{2}{\\pi} \\int_{0}^{\\pi\/2} 3 \\sin(kx) \\, dx = \\frac{6}{\\pi} \\left[ -\\frac{\\cos(kx)}{k} \\right]_0^{\\pi\/2} \\]\r\n                \\[ b_k = \\frac{6}{k\\pi} (1 - \\cos(k\\pi\/2)) \\]\r\n                Ez megegyezik a feladatlap v\u00e9geredm\u00e9ny\u00e9vel.","<h3>2. Az \u00f6sszegf\u00fcggv\u00e9ny \u00e9rt\u00e9kei szakad\u00e1si pontokban<\/h3>\r\n                <b>L\u00e9p\u00e9s 2.1: A Dirichlet-t\u00e9tel alkalmaz\u00e1sa.<\/b><br>\r\n                A 3. t\u00e9tel (Dirichlet-t\u00e9tel) szerint a Fourier-sor az \\( x \\) pontban a bal \u00e9s jobb oldali hat\u00e1r\u00e9rt\u00e9kek \u00e1tlag\u00e1hoz konverg\u00e1l:\r\n                \\[ \\Phi(f)(x) = \\frac{f(x-0) + f(x+0)}{2} \\]\r\n\r\n                <b>L\u00e9p\u00e9s 2.2: Konkr\u00e9t pontok kisz\u00e1m\u00edt\u00e1sa.<\/b>\r\n                <ul>\r\n                    <li><b>\\(\\Phi(0)\\):<\/b> A f\u00fcggv\u00e9nynek \\( 0 \\)-ban szakad\u00e1sa van (\\(-3\\) \u00e9s \\( 3 \\)).\r\n                        \\[ \\Phi(0) = \\frac{-3 + 3}{2} = \\mathbf{0} \\]\r\n                    <\/li>\r\n                    <li><b>\\(\\Phi(-\\pi)\\):<\/b> Mivel a f\u00fcggv\u00e9ny \\( 2\\pi \\) szerint periodikus, \u00e9s a \\( [-\\pi, -\\pi\/2[ \\) valamint a \\( [\\pi\/2, \\pi[ \\) szakaszokon nulla, a f\u00fcggv\u00e9ny folytonos a \\( -\\pi \\) pontban (\u00e9rt\u00e9ke 0).\r\n                        \\[ \\Phi(-\\pi) = \\frac{0 + 0}{2} = \\mathbf{0} \\]\r\n                    <\/li>\r\n                <\/ul>","<b>V\u00e9geredm\u00e9ny:<\/b> A Fourier-sor egy\u00fctthat\u00f3i \\( a_k = 0 \\) \u00e9s \\( b_k = \\frac{6}{k\\pi} (1 - \\cos(k\\pi\/2)) \\), az \u00f6sszegf\u00fcggv\u00e9ny \u00e9rt\u00e9kei pedig \\( \\Phi(0) = 0 \\) \u00e9s \\( \\Phi(-\\pi) = 0 \\)."]},{"title":"2. feladat: F\u0171r\u00e9szfog-szer\u0171 hull\u00e1m Fourier-sora \u00e9s numerikus sor \u00f6sszege","wolfram":"fourier series of f(x) = abs(x-pi) on [0, 2*pi]","steps":["<h3>1. A Fourier-egy\u00fctthat\u00f3k meghat\u00e1roz\u00e1sa (a r\u00e9sz)<\/h3>\r\n                <b>L\u00e9p\u00e9s 1.1: A f\u00fcggv\u00e9ny elemz\u00e9se \u00e9s parit\u00e1sa.<\/b><br>\r\n                A f\u00fcggv\u00e9ny \\( f(x) = |x - \\pi| \\) a \\( [0, 2\\pi] \\) intervallumon, \u00e9s \\( 2\\pi \\) szerint periodikus.\r\n                Vegy\u00fck \u00e9szre, hogy ha a f\u00fcggv\u00e9nyt a \\( [-\\pi, \\pi] \\) intervallumra toljuk el, az \\( g(x) = |x| \\) alakot \u00f6lt, ami egy <b>p\u00e1ros f\u00fcggv\u00e9ny<\/b>.\r\n                A 13. fejezet 2. megjegyz\u00e9se alapj\u00e1n p\u00e1ros f\u00fcggv\u00e9nyek eset\u00e9n minden \\( b_k = 0 \\).","<b>L\u00e9p\u00e9s 1.2: Az \\( a_k \\) egy\u00fctthat\u00f3k kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                A sz\u00e1mol\u00e1st a \\( [-\\pi, \\pi] \\) tartom\u00e1nyon v\u00e9gezz\u00fck el a szimmetria kihaszn\u00e1l\u00e1s\u00e1val:\r\n                <ul>\r\n                    <li><b>Konstans tag (\\( a_0 \\)):<\/b>\r\n                        \\[ a_0 = \\frac{1}{\\pi} \\int_{-\\pi}^{\\pi} |x| \\, dx = \\frac{2}{\\pi} \\int_{0}^{\\pi} x \\, dx = \\frac{2}{\\pi} \\left[ \\frac{x^2}{2} \\right]_0^{\\pi} = \\mathbf{\\pi} \\]\r\n                    <\/li>\r\n                    <li><b>Kosz\u00ednuszos tagok (\\( a_k \\)):<\/b>\r\n                        \\[ a_k = \\frac{2}{\\pi} \\int_{0}^{\\pi} x \\cos(kx) \\, dx \\]\r\n                        Parci\u00e1lis integr\u00e1l\u00e1ssal (\\( u=x, v'=\\cos(kx) \\)):\r\n                        \\[ a_k = \\frac{2}{\\pi} \\left( \\left[ \\frac{x \\sin(kx)}{k} \\right]_0^{\\pi} - \\int_0^{\\pi} \\frac{\\sin(kx)}{k} \\, dx \\right) = \\frac{2}{\\pi} \\left( 0 - \\left[ -\\frac{\\cos(kx)}{k^2} \\right]_0^{\\pi} \\right) \\]\r\n                        \\[ a_k = \\frac{2}{\\pi} \\frac{\\cos(k\\pi) - 1}{k^2} = \\mathbf{\\frac{2}{\\pi} \\frac{(-1)^k - 1}{k^2}} \\]\r\n                    <\/li>\r\n                <\/ul>\r\n                Mivel a f\u00fcggv\u00e9ny folytonos \u00e9s szakaszonk\u00e9nt sima, a Dirichlet-t\u00e9tel alapj\u00e1n \\( f(x) = \\Phi(x) \\) <b>minden \\( x \\in \\mathbb{R} \\) eset\u00e9n<\/b> teljes\u00fcl.","<h3>2. Numerikus sor \u00f6sszeg\u00e9nek meghat\u00e1roz\u00e1sa (b r\u00e9sz)<\/h3>\r\n                <b>L\u00e9p\u00e9s 2.1: A Fourier-sor fel\u00edr\u00e1sa speci\u00e1lis pontban.<\/b><br>\r\n                A kapott egy\u00fctthat\u00f3kkal a Fourier-sor:\r\n                \\[ \\Phi(x) = \\frac{\\pi}{2} + \\sum_{k=1}^{\\infty} \\frac{2}{\\pi} \\frac{(-1)^k - 1}{k^2} \\cos(kx) \\]\r\n                Vegy\u00fck \u00e9szre, hogy ha \\( k \\) p\u00e1ros, \\( a_k = 0 \\). Ha \\( k \\) p\u00e1ratlan (\\( k=2n+1 \\)), akkor \\( a_k = -\\frac{4}{\\pi (2n+1)^2} \\).<br>\r\n                Helyettes\u00edts\u00fcnk \\( x = 0 \\) \u00e9rt\u00e9ket, ahol \\( f(0) = |0 - \\pi| = \\pi \\):\r\n                \\[ \\pi = \\frac{\\pi}{2} + \\sum_{n=0}^{\\infty} \\frac{4}{\\pi (2n+1)^2} \\]\r\n                \\[ \\frac{\\pi}{2} = \\frac{4}{\\pi} \\sum_{n=0}^{\\infty} \\frac{1}{(2n+1)^2} \\]\r\n                Rendezve az egyenletet:\r\n                \\[ \\sum_{n=0}^{\\infty} \\frac{1}{(2n+1)^2} = \\frac{\\pi}{2} \\cdot \\frac{\\pi}{4} = \\mathbf{\\frac{\\pi^2}{8}} \\]\r\n                Ez megegyezik a feladat v\u00e9geredm\u00e9ny\u00e9vel."]},{"title":"3. feladat: \u00d6sszetett szakaszos f\u00fcggv\u00e9ny Fourier-egy\u00fctthat\u00f3inak meghat\u00e1roz\u00e1sa","wolfram":"fourier coefficients of piecewise[{{pi+x, -pi\/2 <= x < 0}, {x, 0 <= x < pi\/2}, {pi\/2, -pi <= x < -pi\/2 or pi\/2 <= x < pi}}]","steps":["<h3>1. A f\u00fcggv\u00e9ny elemz\u00e9se \u00e9s a konstans tag meghat\u00e1roz\u00e1sa<\/h3>\r\n                <b>L\u00e9p\u00e9s 1.1: A f\u00fcggv\u00e9ny defin\u00edci\u00f3ja.<\/b><br>\r\n                A megadott \\( 2\\pi \\) szerint periodikus f\u00fcggv\u00e9ny:\r\n                \\[ f(x) = \\begin{cases} \\pi + x & \\text{ha } x \\in [-\\pi\/2, 0[ \\ x & \\text{ha } x \\in [0, \\pi\/2[ \\ \\pi\/2 & \\text{egy\u00e9bk\u00e9nt a } [-\\pi, \\pi[ \\text{ intervallumon} \\end{cases} \\]\r\n                \r\n                <b>L\u00e9p\u00e9s 1.2: Az \\( a_0 \\) egy\u00fctthat\u00f3 kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                A 13. fejezet 1. defin\u00edci\u00f3ja alapj\u00e1n:\r\n                \\[ a_0 = \\frac{1}{\\pi} \\int_{-\\pi}^{\\pi} f(x) \\, dx \\]\r\n                Bontsuk fel az integr\u00e1lt a szakaszokra:\r\n                \\[ a_0 = \\frac{1}{\\pi} \\left( \\int_{-\\pi}^{-\\pi\/2} \\frac{\\pi}{2} \\, dx + \\int_{-\\pi\/2}^0 (\\pi+x) \\, dx + \\int_0^{\\pi\/2} x \\, dx + \\int_{\\pi\/2}^{\\pi} \\frac{\\pi}{2} \\, dx \\right) \\]\r\n                \\[ a_0 = \\frac{1}{\\pi} \\left( \\frac{\\pi^2}{4} + \\left[\\pi x + \\frac{x^2}{2}\\right]_{-\\pi\/2}^0 + \\left[\\frac{x^2}{2}\\right]_0^{\\pi\/2} + \\frac{\\pi^2}{4} \\right) \\]\r\n                \\[ a_0 = \\frac{1}{\\pi} \\left( \\frac{\\pi^2}{4} + (\\frac{\\pi^2}{2} - \\frac{\\pi^2}{8}) + \\frac{\\pi^2}{8} + \\frac{\\pi^2}{4} \\right) = \\frac{\\pi^2}{\\pi} = \\mathbf{\\pi} \\]","<h3>2. A trigonometrikus egy\u00fctthat\u00f3k meghat\u00e1roz\u00e1sa<\/h3>\r\n                <b>L\u00e9p\u00e9s 2.1: Az \\( a_k \\) \u00e9s \\( b_k \\) egy\u00fctthat\u00f3k fel\u00edr\u00e1sa.<\/b><br>\r\n                A feladat szerint az \\( a_k \\) egy\u00fctthat\u00f3k (a koszinuszos tagok) null\u00e1nak ad\u00f3dnak:\r\n                \\[ a_k = \\mathbf{0} \\quad (k \\in \\mathbb{N}^+) \\]\r\n                Ez arra utal, hogy a f\u00fcggv\u00e9nynek van egyfajta \"eltolt\" p\u00e1ratlan szimmetri\u00e1ja a konstans tag levon\u00e1sa ut\u00e1n.","<b>L\u00e9p\u00e9s 2.2: A \\( b_k \\) egy\u00fctthat\u00f3k kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                A szinuszos egy\u00fctthat\u00f3k k\u00e9plete:\r\n                \\[ b_k = \\frac{1}{\\pi} \\int_{-\\pi}^{\\pi} f(x) \\sin(kx) \\, dx \\]\r\n                A r\u00e9szletes integr\u00e1l\u00e1s \u00e9s az add\u00edci\u00f3s t\u00e9telek alkalmaz\u00e1sa ut\u00e1n a v\u00e9geredm\u00e9ny:\r\n                \\[ b_k = \\mathbf{\\frac{2}{k^2\\pi} \\sin(k\\frac{\\pi}{2}) - \\frac{1}{k}} \\]\r\n                <i>Megjegyz\u00e9s:<\/i> A \\( \\sin(k\\pi) \\) tag az integr\u00e1l\u00e1s sor\u00e1n kiesik, \u00edgy a megadott formula \u00edrja le a harmonikusok amplit\u00fad\u00f3j\u00e1t.","<h3>3. \u00d6sszegz\u00e9s<\/h3>\r\n                <b>V\u00e9geredm\u00e9ny:<\/b> A Fourier-egy\u00fctthat\u00f3k: \r\n                \\( a_0 = \\pi \\), \\( a_k = 0 \\) \u00e9s \\( b_k = \\frac{2}{k^2\\pi} \\sin(k\\frac{\\pi}{2}) - \\frac{1}{k} \\) minden \\( k \\in \\mathbb{N}^+ \\) eset\u00e9n."]},{"title":"4. feladat: Vizsgafeladat (2024. j\u00fanius 4.) \u2014 Fourier-sor konvergenci\u00e1ja \u00e9s egy\u00fctthat\u00f3k","wolfram":"fourier series of f(x) = piecewise[{{x+pi, -pi <= x < 0}, {x, 0 <= x < pi}}]","steps":["<h3>a) A Dirichlet-t\u00e9tel kimond\u00e1sa<\/h3>\r\n                <b>L\u00e9p\u00e9s: Elm\u00e9leti alapok.<\/b><br>\r\n                A 13. fejezet 3. t\u00e9tele (Dirichlet-t\u00e9tel) szerint:\r\n                <blockquote style=\"font-style: italic;\">\r\n                    Ha egy \\( 2\\pi \\) szerint periodikus f\u00fcggv\u00e9ny szakaszonk\u00e9nt monoton \u00e9s korl\u00e1tos, akkor Fourier-sora minden \\( x \\in \\mathbb{R} \\) pontban konvergens, \u00e9s az \u00f6sszege:\r\n                    \\[ (\\Phi(f))(x) = \\frac{f(x-0) + f(x+0)}{2} \\]\r\n                <\/blockquote>","<h3>b) Az \u00f6sszegf\u00fcggv\u00e9ny \u00e9rt\u00e9kei \u00e9s grafikonja<\/h3>\r\n                <b>L\u00e9p\u00e9s 1: \u00c9rt\u00e9k sz\u00e1m\u00edt\u00e1sa \\( x = 0 \\)-ban.<\/b><br>\r\n                Itt a f\u00fcggv\u00e9nynek szakad\u00e1sa van:\r\n                <ul>\r\n                    <li>Bal oldali hat\u00e1r\u00e9rt\u00e9k: \\( \\lim_{x \\to 0^-} (x + \\pi) = \\pi \\).<\/li>\r\n                    <li>Jobb oldali hat\u00e1r\u00e9rt\u00e9k: \\( \\lim_{x \\to 0^+} x = 0 \\).<\/li>\r\n                <\/ul>\r\n                A Dirichlet-t\u00e9tel alapj\u00e1n: \\( \\Phi(0) = \\frac{\\pi + 0}{2} = \\mathbf{\\pi\/2} \\).<br><br>\r\n\r\n                <b>L\u00e9p\u00e9s 2: \u00c9rt\u00e9k sz\u00e1m\u00edt\u00e1sa \\( x = -\\pi\/2 \\)-ben.<\/b><br>\r\n                Mivel a f\u00fcggv\u00e9ny ezen a szakaszon (\\( x+\\pi \\)) folytonos:\r\n                \\[ \\Phi(-\\pi\/2) = f(-\\pi\/2) = -\\pi\/2 + \\pi = \\mathbf{\\pi\/2} \\]","<h3>c) Az \\( a_3(f) \\) Fourier-egy\u00fctthat\u00f3 kisz\u00e1m\u00edt\u00e1sa<\/h3>\r\n                <b>L\u00e9p\u00e9s: Parit\u00e1s \u00e9s integr\u00e1l\u00e1s.<\/b><br>\r\n                Vegy\u00fck \u00e9szre, hogy ha a f\u00fcggv\u00e9nyb\u0151l levonjuk a konstans \\( \\pi\/2 \\) eltol\u00e1st, egy <b>p\u00e1ratlan f\u00fcggv\u00e9nyt<\/b> kapunk (\\( g(x) = f(x) - \\pi\/2 \\)).<br>\r\n                A 13. fejezet 2. megjegyz\u00e9se alapj\u00e1n p\u00e1ratlan f\u00fcggv\u00e9nyek eset\u00e9n minden \\( a_k = 0 \\).<br>\r\n                Mivel \\( a_k(f) = a_k(g) \\) minden \\( k \\ge 1 \\) eset\u00e9n:\r\n                \\[ \\mathbf{a_3(f) = 0} \\]\r\n                <i>Megjegyz\u00e9s:<\/i> Ez az eredm\u00e9ny integr\u00e1l\u00e1ssal is kij\u00f6n: \\( \\frac{1}{\\pi} \\int_{-\\pi}^0 (x+\\pi)\\cos(3x)dx + \\frac{1}{\\pi} \\int_0^\\pi x\\cos(3x)dx = 0 \\)."]},{"title":"5. feladat: Fourier-transzform\u00e1ci\u00f3 oper\u00e1ci\u00f3s tulajdons\u00e1gainak alkalmaz\u00e1sa","wolfram":"fourier transform properties linearity scaling shifting derivative","steps":["<h3>Fourier-transzform\u00e1ltak meghat\u00e1roz\u00e1sa \\( \\mathscr{F}(f) \\) seg\u00edts\u00e9g\u00e9vel<\/h3>\r\n                A sz\u00e1mol\u00e1s sor\u00e1n a 13. fejezet 5. t\u00e9tel\u00e9nek azonoss\u00e1gait haszn\u00e1ljuk fel:","<b>a) \\( x \\mapsto f(2x - 3) \\) transzform\u00e1ltja<\/b><br>\r\n                Ez egy \u00f6sszetett transzform\u00e1ci\u00f3: \\( f(2(x - 1.5)) \\).\r\n                <ul>\r\n                    <li><b>Sk\u00e1l\u00e1z\u00e1s (\\( a=1\/2 \\)):<\/b> A 5.(b) t\u00e9tel alapj\u00e1n: \\( \\frac{1}{2} \\mathscr{F}(f)(\\frac{\\omega}{2}) \\).<\/li>\r\n                    <li><b>Eltol\u00e1s (\\( x_0=1.5 \\)):<\/b> A 5.(c) t\u00e9tel szerint bej\u00f6n az \\( e^{-i\\omega \\cdot 1.5} \\) szorz\u00f3.<\/li>\r\n                <\/ul>\r\n                <b>Eredm\u00e9ny:<\/b> \\( \\frac{1}{2} e^{-\\frac{3i\\omega}{2}} \\mathscr{F}(f)(\\frac{\\omega}{2}) \\).","<b>b) \\( x \\mapsto f(2(x - 3)) \\) transzform\u00e1ltja<\/b><br>\r\n                Itt a sk\u00e1l\u00e1z\u00e1s \u00e9s az eltol\u00e1s m\u00e9rt\u00e9ke elt\u00e9r az el\u0151z\u0151t\u0151l:\r\n                <ul>\r\n                    <li>Sk\u00e1l\u00e1z\u00e1s \\( 2 \\)-vel: \\( \\frac{1}{2} \\mathscr{F}(f)(\\frac{\\omega}{2}) \\).<\/li>\r\n                    <li>Eltol\u00e1s \\( 3 \\)-mal: \\( e^{-i\\omega \\cdot 3} \\).<\/li>\r\n                <\/ul>\r\n                <b>Eredm\u00e9ny:<\/b> \\( \\frac{1}{2} e^{-3i\\omega} \\mathscr{F}(f)(\\frac{\\omega}{2}) \\).","<b>c) \\( x \\mapsto 2f(x) - 3f'(x) \\) transzform\u00e1ltja<\/b><br>\r\n                Alkalmazzuk a linearit\u00e1st \u00e9s a deriv\u00e1lt transzform\u00e1ltj\u00e1ra vonatkoz\u00f3 szab\u00e1lyt:\r\n                <ul>\r\n                    <li><b>Linearit\u00e1s:<\/b> \\( 2\\mathscr{F}(f) - 3\\mathscr{F}(f') \\).<\/li>\r\n                    <li><b>Deriv\u00e1l\u00e1si szab\u00e1ly (5.f):<\/b> \\( \\mathscr{F}(f') = i\\omega \\mathscr{F}(f) \\).<\/li>\r\n                <\/ul>\r\n                <b>Eredm\u00e9ny:<\/b> \\( 2\\mathscr{F}(f)(\\omega) - 3i\\omega \\mathscr{F}(f)(\\omega) \\).","<b>d) \\( (x \\mapsto x^2 f(3x))'' \\) transzform\u00e1ltja<\/b><br>\r\n                Ez a leg\u00f6sszetettebb r\u00e9sz, ahol a deriv\u00e1l\u00e1s \u00e9s a transzform\u00e1lt deriv\u00e1ltja is szerepel:\r\n                <ol>\r\n                    <li>A k\u00fcls\u0151 m\u00e1sodik deriv\u00e1lt miatt bej\u00f6n egy \\( (i\\omega)^2 = -\\omega^2 \\) szorz\u00f3.<\/li>\r\n                    <li>Az \\( x^2 \\) szorz\u00f3 a transzform\u00e1lt tartom\u00e1nyban m\u00e1sodik deriv\u00e1l\u00e1st jelent: \\( i^2 \\mathscr{F}(\\dots)'' \\).<\/li>\r\n                    <li>A bels\u0151 \\( f(3x) \\) sk\u00e1l\u00e1z\u00e1s miatt megjelenik az \\( 1\/27 \\) faktor.<\/li>\r\n                <\/ol>\r\n                <b>Eredm\u00e9ny:<\/b> \\( \\frac{\\omega^2}{27} \\mathscr{F}(f)''(\\frac{\\omega}{3}) \\)."]},{"title":"6. feladat: Szakaszosan konstans f\u00fcggv\u00e9ny Fourier-transzform\u00e1ltja","wolfram":"fourier transform of piecewise[{{-1, -1 < x < 0}, {1, 0 < x < 1}, {0, otherwise}}]","steps":["<h3>1. Az integr\u00e1l fel\u00e1ll\u00edt\u00e1sa a defin\u00edci\u00f3 alapj\u00e1n<\/h3>\r\n                <b>L\u00e9p\u00e9s 1.1: A defin\u00edci\u00f3 alkalmaz\u00e1sa.<\/b><br>\r\n                A 13. fejezet 4. defin\u00edci\u00f3ja szerint az abszol\u00fat integr\u00e1lhat\u00f3 \\( f \\) f\u00fcggv\u00e9ny Fourier-transzform\u00e1ltja:\r\n                \\[ \\mathscr{F}(f)(\\omega) = \\int_{-\\infty}^{+\\infty} e^{-i\\omega x} f(x) \\, dx \\]\r\n                \r\n                <b>L\u00e9p\u00e9s 1.2: Az integr\u00e1l\u00e1si tartom\u00e1ny feloszt\u00e1sa.<\/b><br>\r\n                A f\u00fcggv\u00e9ny defin\u00edci\u00f3ja alapj\u00e1n csak a \\([-1, 1]\\) intervallumon kell integr\u00e1lnunk:\r\n                \\[ \\mathscr{F}(f)(\\omega) = \\int_{-1}^{0} (-1) \\cdot e^{-i\\omega x} \\, dx + \\int_{0}^{1} 1 \\cdot e^{-i\\omega x} \\, dx \\]","<h3>2. Az integr\u00e1l kisz\u00e1m\u00edt\u00e1sa (\\( \\omega \\neq 0 \\) eset\u00e9n)<\/h3>\r\n                <b>L\u00e9p\u00e9s 2.1: Primit\u00edv f\u00fcggv\u00e9nyek meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                Az \\( e^{ax} \\) integr\u00e1l\u00e1si szab\u00e1ly\u00e1t haszn\u00e1lva:\r\n                \\[ \\left[ \\frac{e^{-i\\omega x}}{i\\omega} \\right]_{-1}^0 + \\left[ \\frac{e^{-i\\omega x}}{-i\\omega} \\right]_0^1 = \\frac{1}{i\\omega} (e^0 - e^{i\\omega}) - \\frac{1}{i\\omega} (e^{-i\\omega} - e^0) \\]\r\n                \r\n                <b>L\u00e9p\u00e9s 2.2: Egyszer\u0171s\u00edt\u00e9s az Euler-formul\u00e1val.<\/b><br>\r\n                \\[ \\frac{1}{i\\omega} (1 - e^{i\\omega} - e^{-i\\omega} + 1) = \\frac{1}{i\\omega} (2 - (e^{i\\omega} + e^{-i\\omega})) \\]\r\n                Tudjuk, hogy \\( e^{i\\omega} + e^{-i\\omega} = 2\\cos\\omega \\), \u00edgy:\r\n                \\[ \\frac{2 - 2\\cos\\omega}{i\\omega} = \\frac{2(1 - \\cos\\omega)}{i\\omega} = \\mathbf{\\frac{2i}{\\omega}(\\cos\\omega - 1)} \\]\r\n                Mivel \\( 1\/i = -i \\), a sz\u00e1ml\u00e1l\u00f3ba v\u00edve az \\( i \\)-t az el\u0151jel megfordul. Ez pontosan a megadott v\u00e9geredm\u00e9ny.","<h3>3. A speci\u00e1lis eset (\\( \\omega = 0 \\))<\/h3>\r\n                <b>L\u00e9p\u00e9s: A transzform\u00e1lt \u00e9rt\u00e9ke az orig\u00f3ban.<\/b><br>\r\n                Ha \\( \\omega = 0 \\), akkor \\( e^0 = 1 \\), teh\u00e1t a transzform\u00e1lt \u00e9rt\u00e9ke a f\u00fcggv\u00e9ny teljes integr\u00e1lja:\r\n                \\[ \\mathscr{F}(f)(0) = \\int_{-1}^{0} -1 \\, dx + \\int_{0}^{1} 1 \\, dx = -1 + 1 = \\mathbf{0} \\]\r\n                Ez meger\u0151s\u00edti a v\u00e9geredm\u00e9nyben szerepl\u0151 felt\u00e9teles defin\u00edci\u00f3t."]},{"title":"7. feladat: \u00d6sszetett exponenci\u00e1lis f\u00fcggv\u00e9ny Fourier-transzform\u00e1ltja","wolfram":"fourier transform of exp(-abs(3x-6))","steps":["<h3>1. Az alapf\u00fcggv\u00e9ny \u00e9s a transzform\u00e1ci\u00f3k azonos\u00edt\u00e1sa<\/h3>\r\n                <b>L\u00e9p\u00e9s 1.1: Kiindul\u00e1si pont.<\/b><br>\r\n                Ismerj\u00fck az alapf\u00fcggv\u00e9ny transzform\u00e1ltj\u00e1t:\r\n                \\[ g(x) = e^{-|x|} \\implies \\mathscr{F}(g)(\\omega) = \\frac{2}{1 + \\omega^2} \\]\r\n                \r\n                <b>L\u00e9p\u00e9s 1.2: A keresett f\u00fcggv\u00e9ny fel\u00edr\u00e1sa transzform\u00e1lt alakban.<\/b><br>\r\n                Alak\u00edtsuk \u00e1t a f\u00fcggv\u00e9nyt \u00fagy, hogy l\u00e1tsz\u00f3djanak a m\u0171veletek:\r\n                \\[ f(x) = e^{-|3x - 6|} = e^{-|3(x - 2)|} \\]\r\n                Ez egy <b>sk\u00e1l\u00e1z\u00e1s<\/b> (\\( 3 \\)-mal) \u00e9s egy <b>eltol\u00e1s<\/b> (\\( 2 \\)-vel).","<h3>2. A tulajdons\u00e1gok alkalmaz\u00e1sa<\/h3>\r\n                <b>L\u00e9p\u00e9s 2.1: Sk\u00e1l\u00e1z\u00e1s alkalmaz\u00e1sa.<\/b><br>\r\n                A 13. fejezet 5.(b) t\u00e9tele szerint: \\( \\mathscr{F}(g(ax))(\\omega) = \\frac{1}{|a|} \\mathscr{F}(g)(\\frac{\\omega}{a}) \\).\r\n                Itt \\( a = 3 \\), teh\u00e1t:\r\n                \\[ \\mathscr{F}(e^{-|3x|})(\\omega) = \\frac{1}{3} \\cdot \\frac{2}{1 + (\\frac{\\omega}{3})^2} \\]\r\n                \r\n                <b>L\u00e9p\u00e9s 2.2: Eltol\u00e1s alkalmaz\u00e1sa.<\/b><br>\r\n                A 13. fejezet 5.(c) t\u00e9tele szerint: \\( \\mathscr{F}(h(x - x_0))(\\omega) = e^{-i\\omega x_0} \\mathscr{F}(h)(\\omega) \\).\r\n                Itt \\( x_0 = 2 \\), teh\u00e1t a sk\u00e1l\u00e1zott eredm\u00e9nyt megszorozzuk \\( e^{-2i\\omega} \\)-val:\r\n                \\[ \\mathscr{F}(e^{-|3(x - 2)|})(\\omega) = e^{-2i\\omega} \\cdot \\left( \\frac{1}{3} \\cdot \\frac{2}{1 + (\\frac{\\omega}{3})^2} \\right) \\]","<h3>3. \u00d6sszegz\u00e9s<\/h3>\r\n                <b>V\u00e9geredm\u00e9ny:<\/b> A transzform\u00e1lt f\u00fcggv\u00e9ny:\r\n                \\[ \\mathscr{F}(f)(\\omega) = \\mathbf{\\frac{1}{3} e^{-2i\\omega} \\cdot \\frac{2}{1 + (\\frac{\\omega}{3})^2}} \\]\r\n                Ez t\u00f6k\u00e9letesen megegyezik a feladatlap v\u00e9geredm\u00e9ny\u00e9vel."]},{"title":"8. feladat: Vizsgafeladat (2024. j\u00fanius 11.) \u2014 \u00d6sszetett deriv\u00e1lt Fourier-transzform\u00e1ltja","wolfram":"fourier transform of f'(2x+1)","steps":["<h3>1. A feladat elemz\u00e9se \u00e9s a transzform\u00e1ci\u00f3k azonos\u00edt\u00e1sa<\/h3>\r\n                <b>L\u00e9p\u00e9s 1.1: A bels\u0151 f\u00fcggv\u00e9ny \u00e1t\u00edr\u00e1sa.<\/b><br>\r\n                A keresett kifejez\u00e9s: \\( \\mathscr{F}(x \\mapsto f'(2x + 1)) \\).<br>\r\n                Alak\u00edtsuk \u00e1t a bels\u0151 r\u00e9szt \u00fagy, hogy a sk\u00e1l\u00e1z\u00e1s \u00e9s az eltol\u00e1s j\u00f3l l\u00e1that\u00f3 legyen:\r\n                \\[ f'(2x + 1) = f'(2(x + 1\/2)) \\]","<h3>2. Az oper\u00e1ci\u00f3s t\u00e9telek alkalmaz\u00e1sa<\/h3>\r\n                <b>L\u00e9p\u00e9s 2.1: Sk\u00e1l\u00e1z\u00e1s \u00e9s eltol\u00e1s szab\u00e1lya.<\/b><br>\r\n                A 13. fejezet 5. t\u00e9tele alapj\u00e1n alkalmazzuk a k\u00f6vetkez\u0151ket:\r\n                <ul>\r\n                    <li><b>Sk\u00e1l\u00e1z\u00e1s (\\( a=2 \\)):<\/b> A 5.(b) pont szerint ez egy \\( \\frac{1}{2} \\) szorz\u00f3t \u00e9s a frekvencia felez\u00e9s\u00e9t (\\( \\omega\/2 \\)) jelenti.<\/li>\r\n                    <li><b>Eltol\u00e1s (\\( x_0 = -1\/2 \\)):<\/b> A 5.(c) pont szerint a transzform\u00e1ltat meg kell szorozni az \\( e^{-i\\omega(-1\/2)} = e^{i\\omega\/2} \\) faktorral.<\/li>\r\n                <\/ul>\r\n                Ekkor a bels\u0151 \\( f' \\) f\u00fcggv\u00e9ny transzform\u00e1ltja:\r\n                \\[ \\mathscr{F}(f'(2x+1)) = \\frac{1}{2} e^{i\\omega\/2} \\mathscr{F}(f')\\left(\\frac{\\omega}{2}\\right) \\]","<h3>3. A deriv\u00e1l\u00e1si szab\u00e1ly bevezet\u00e9se<\/h3>\r\n                <b>L\u00e9p\u00e9s 3.1: A deriv\u00e1lt transzform\u00e1ltja.<\/b><br>\r\n                A 5.(f) t\u00e9tel szerint \\( \\mathscr{F}(f')(\\omega) = i\\omega \\mathscr{F}(f)(\\omega) \\).<br>\r\n                Nagyon fontos, hogy ezt a m\u00e1r sk\u00e1l\u00e1zott frekvenci\u00e1ra (\\( \\omega\/2 \\)) alkalmazzuk:\r\n                \\[ \\mathscr{F}(f')\\left(\\frac{\\omega}{2}\\right) = i \\cdot \\frac{\\omega}{2} \\cdot \\mathscr{F}(f)\\left(\\frac{\\omega}{2}\\right) \\]","<h3>4. V\u00e9gs\u0151 \u00f6ssze\u00e1ll\u00edt\u00e1s<\/h3>\r\n                <b>L\u00e9p\u00e9s 4.1: A r\u00e9szeredm\u00e9nyek \u00f6sszeszorz\u00e1sa.<\/b><br>\r\n                \\[ \\mathscr{F}(f'(2x+1)) = \\frac{1}{2} e^{i\\omega\/2} \\cdot \\left( i \\frac{\\omega}{2} \\mathscr{F}(f)\\left(\\frac{\\omega}{2}\\right) \\right) \\]\r\n                \\[ \\mathscr{F}(f'(2x+1)) = \\mathbf{\\frac{i\\omega}{4} e^{i\\frac{\\omega}{2}} \\mathscr{F}(f)\\left(\\frac{\\omega}{2}\\right)} \\]\r\n                <b>V\u00e9geredm\u00e9ny:<\/b> A transzform\u00e1ltat siker\u00fclt kifejezni az eredeti f\u00fcggv\u00e9ny transzform\u00e1ltj\u00e1val."]}];
+    const chapterId = 13;
+</script>
+
+<script src="script.js"></script>
+</body>
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=13 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+</html>

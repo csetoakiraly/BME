@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=7 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7. Taylor-polinom és Taylor-sor - Analízis 2</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --main-color: #ef4444;
+            --main-color-soft: #ef444422; 
+        }
+    </style>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <layout-wrapper>
+        <analizis-sidebar>
+            <sidebar-header>
+                <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+            </sidebar-header>
+            <sidebar-list>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter681a.html?id=1'"
+                        class=""
+                        id="sidebar-item-1"
+                    >
+                        <span class="ch-num">1.</span>
+                        <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0b30.html?id=2'"
+                        class=""
+                        id="sidebar-item-2"
+                    >
+                        <span class="ch-num">2.</span>
+                        <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd708.html?id=3'"
+                        class=""
+                        id="sidebar-item-3"
+                    >
+                        <span class="ch-num">3.</span>
+                        <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterdcfd.html?id=4'"
+                        class=""
+                        id="sidebar-item-4"
+                    >
+                        <span class="ch-num">4.</span>
+                        <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                        <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd61c.html?id=5'"
+                        class=""
+                        id="sidebar-item-5"
+                    >
+                        <span class="ch-num">5.</span>
+                        <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                        <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter3a9f.html?id=6'"
+                        class=""
+                        id="sidebar-item-6"
+                    >
+                        <span class="ch-num">6.</span>
+                        <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                        <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter8803.html?id=7'"
+                        class="active"
+                        id="sidebar-item-7"
+                    >
+                        <span class="ch-num">7.</span>
+                        <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                        <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterc3c9.html?id=8'"
+                        class=""
+                        id="sidebar-item-8"
+                    >
+                        <span class="ch-num">8.</span>
+                        <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                        <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter5255.html?id=9'"
+                        class=""
+                        id="sidebar-item-9"
+                    >
+                        <span class="ch-num">9.</span>
+                        <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                        <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterf41b.html?id=10'"
+                        class=""
+                        id="sidebar-item-10"
+                    >
+                        <span class="ch-num">10.</span>
+                        <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                        <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0055.html?id=11'"
+                        class=""
+                        id="sidebar-item-11"
+                    >
+                        <span class="ch-num">11.</span>
+                        <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                        <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter4ef9.html?id=12'"
+                        class=""
+                        id="sidebar-item-12"
+                    >
+                        <span class="ch-num">12.</span>
+                        <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                        <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter6e03.html?id=13'"
+                        class=""
+                        id="sidebar-item-13"
+                    >
+                        <span class="ch-num">13.</span>
+                        <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                        <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+                    </sidebar-item>
+                            </sidebar-list>
+            <sidebar-footer>
+                <div class="overall-progress">
+                    <div class="progress-label">Kurzus haladás: <span id="totalPercent">0%</span></div>
+                    <div class="progress-track">
+                        <div id="totalProgressBar" class="progress-fill"></div>
+                    </div>
+                </div>
+                
+            </sidebar-footer>
+        </analizis-sidebar>
+
+        <main-content>
+            <analizis-nav>
+                <nav-title><b>7. Taylor-polinom és Taylor-sor<b></nav-title>
+                <nav-actions>
+                    <button id="themeToggle" class="theme-btn">🌙 Éjszakai mód</button>
+                    <button id="theory-menu-toggle" class="menu-toggle-btn">
+    <span>☰</span> Menü
+</button>
+
+<analizis-sidebar id="theory-menu">
+    <sidebar-header>
+        <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+    </sidebar-header>
+    
+    <sidebar-list>
+                    <sidebar-item 
+                onclick="window.location.href='chapter681a.html?id=1'"
+                class=""
+                id="sidebar-item-1"
+            >
+                <span class="ch-num">1.</span>
+                <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0b30.html?id=2'"
+                class=""
+                id="sidebar-item-2"
+            >
+                <span class="ch-num">2.</span>
+                <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd708.html?id=3'"
+                class=""
+                id="sidebar-item-3"
+            >
+                <span class="ch-num">3.</span>
+                <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterdcfd.html?id=4'"
+                class=""
+                id="sidebar-item-4"
+            >
+                <span class="ch-num">4.</span>
+                <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd61c.html?id=5'"
+                class=""
+                id="sidebar-item-5"
+            >
+                <span class="ch-num">5.</span>
+                <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter3a9f.html?id=6'"
+                class=""
+                id="sidebar-item-6"
+            >
+                <span class="ch-num">6.</span>
+                <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter8803.html?id=7'"
+                class="active"
+                id="sidebar-item-7"
+            >
+                <span class="ch-num">7.</span>
+                <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterc3c9.html?id=8'"
+                class=""
+                id="sidebar-item-8"
+            >
+                <span class="ch-num">8.</span>
+                <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter5255.html?id=9'"
+                class=""
+                id="sidebar-item-9"
+            >
+                <span class="ch-num">9.</span>
+                <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterf41b.html?id=10'"
+                class=""
+                id="sidebar-item-10"
+            >
+                <span class="ch-num">10.</span>
+                <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0055.html?id=11'"
+                class=""
+                id="sidebar-item-11"
+            >
+                <span class="ch-num">11.</span>
+                <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter4ef9.html?id=12'"
+                class=""
+                id="sidebar-item-12"
+            >
+                <span class="ch-num">12.</span>
+                <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter6e03.html?id=13'"
+                class=""
+                id="sidebar-item-13"
+            >
+                <span class="ch-num">13.</span>
+                <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+            </sidebar-item>
+            </sidebar-list>
+</analizis-sidebar>
+</button>
+
+                </nav-actions>
+            </analizis-nav>
+            
+            <analizis-content>
+                <theory-section>
+                    <section-header>Elméleti összefoglaló</section-header>
+                    <theory-body>
+        <section>
+            <h2>1. A Taylor-polinom fogalma</h2>
+            <p>Ha egy függvény egy pontban többször differenciálható, akkor ott egy jól meghatározott polinommal közelíthető.</p>
+            
+            <div style="background: #9c8b94; padding: 15px; border-radius: 8px; border-left: 5px solid #ec4899; margin: 10px 0;">
+                <b>1. Definíció: Taylor-polinom</b><br>
+                Legyen \( f \) egy \( x_0 \) pontban legalább \( n \)-szer differenciálható függvény. Ekkor az \( f \) függvény \( x_0 \) középpontú, \( n \)-edrendű Taylor-polinomja:
+                \[ T_{n, x_0}^f(x) = \sum_{k=0}^n \frac{f^{(k)}(x_0)}{k!}(x - x_0)^k \]
+            </div>
+            <p>Ez a polinom az a legegyedibb \( n \)-edfokú függvény, amelynek az értéke és az első \( n \) darab deriváltja az \( x_0 \) pontban megegyezik az eredeti függvényével.</p>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>2. A Taylor-formula és a hiba becslése</h2>
+            <p>A közelítés pontosságát a maradéktag határozza meg, amely megmutatja a függvény és a Taylor-polinom közötti különbséget.</p>
+            
+            <p><b>2. Tétel: Lagrange-maradéktagos Taylor-formula</b><br>
+            Ha \( f \) az \( [x_0, x] \) intervallumon \( n+1 \)-szer differenciálható, akkor létezik olyan \( \xi \) szám \( x_0 \) és \( x \) között, amelyre:
+            \[ f(x) = \sum_{k=0}^n \frac{f^{(k)}(x_0)}{k!}(x - x_0)^k + \frac{f^{(n+1)}(\xi)}{(n+1)!}(x - x_0)^{n+1} \]
+            A kifejezés utolsó tagja a <b>Lagrange-féle maradéktag</b>, amely a hiba becslésére szolgál.</p>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>3. A Taylor-sor és az analitikusság</h2>
+            <p>Végtelenszer differenciálható függvények esetén a polinomot "végtelen hosszúra" nyújthatjuk.</p>
+            
+            <ul>
+                <li><b>3. Definíció (Taylor-sor):</b> Az \( f \) függvény \( x_0 \)-beli Taylor-sora a \( T_{x_0}^f(x) = \sum_{n=0}^\infty \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n \) függvénysor.</li>
+                <li><b>5. Definíció (Analitikus függvény):</b> Egy függvény analitikus egy pontban, ha egy ottani környezetben előállítható hatványsor (a Taylor-sora) összegeként.</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>4. Nevezetes Maclaurin-sorok (\( x_0 = 0 \))</h2>
+            <p>Az alábbi függvények Taylor-sora a teljes valós számegyenesen (\( \mathbb{R} \)) előállítja a függvényt:</p>
+            
+            <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+                <tr style="background: #8b7682;">
+                    <th style="border: 1px solid #ec4899; padding: 8px;">Függvény</th>
+                    <th style="border: 1px solid #ec4899; padding: 8px;">Hatványsor alak (\( \sum \))</th>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ec4899; padding: 8px;">\( e^x \)</td>
+                    <td style="border: 1px solid #ec4899; padding: 8px;">\( \sum_{k=0}^\infty \frac{x^k}{k!} \)</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ec4899; padding: 8px;">\( \sin(x) \)</td>
+                    <td style="border: 1px solid #ec4899; padding: 8px;">\( \sum_{k=0}^\infty (-1)^k \frac{x^{2k+1}}{(2k+1)!} \)</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ec4899; padding: 8px;">\( \cos(x) \)</td>
+                    <td style="border: 1px solid #ec4899; padding: 8px;">\( \sum_{k=0}^\infty (-1)^k \frac{x^{2k}}{(2k)!} \)</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ec4899; padding: 8px;">\( \text{sh}(x) \)</td>
+                    <td style="border: 1px solid #ec4899; padding: 8px;">\( \sum_{k=0}^\infty \frac{x^{2k+1}}{(2k+1)!} \)</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ec4899; padding: 8px;">\( \text{ch}(x) \)</td>
+                    <td style="border: 1px solid #ec4899; padding: 8px;">\( \sum_{k=0}^\infty \frac{x^{2k}}{(2k)!} \)</td>
+                </tr>
+            </table>
+        </section>
+    </theory-body>
+                </theory-section>
+
+                <practice-section>
+    <section-header>Példafeladatok</section-header>
+    
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat: Taylor-polinom felírása és hibabecslés</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="fourth+degree+taylor+polynomial+of+x%5E4+-+4x+%2B+sin%283x%29+at+x%3D0"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="0">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="0">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">2. feladat: Taylor-sorfejtés és magasabb rendű deriváltak meghatározása</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="taylor+series+of+x%5E4%2F%28x%5E2-5%29+at+x%3D0"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="1">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="1">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">3. feladat: Összetett Taylor-sorfejtések deriválással és integrálással</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="taylor+series+of+1%2F%28x%2B5%29+at+x%3D-3%3B+taylor+series+of+ln%28x%2B5%29+at+x%3D-3%3B+taylor+series+of+1%2F%28x%2B5%29%5E4+at+x%3D-3"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="2">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="2">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">4. feladat: Integrál közelítése Taylor-sorral és hibabecslés</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="taylor+series+of+ln%282+%2B+x%5E3%2F4%29+at+x%3D0%3B+integral+from+0+to+1+ln%282+%2B+x%5E3%2F4%29+dx+approximation"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="3">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="3">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">5. feladat: Nevezetes függvények Taylor-sorfejtése és konvergenciatartománya</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="taylor+series+of+cos%284x%5E3%29+at+x%3D0%3B+taylor+series+of+e%5E%28-2x%29+at+x%3D5%3B+taylor+series+of+ch%285x%5E2%29+at+x%3D0%3B+taylor+series+of+e%5E%283x%29%2Ash%284x%29+at+x%3D0"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="4">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="4">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">6. feladat: Határozzuk meg a megadott végtelen sorok pontos összegét.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="sum+%28-3%29%5Ek%2Fk%21+from+k%3D0+to+infinity%3B+sum+%28-1%29%5Ek%2F%284%5Ek+%2A+k%21%29+from+k%3D0+to+infinity%3B+sum+%28-1%29%5Ek+%2A+2%5E%282k%29%2F%282k%29%21+from+k%3D0+to+infinity%3B+sum+%28-1%29%5E%282k%2B1%29%2F%282k%2B1%29%21+from+k%3D1+to+infinity"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="5">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="5">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+    
+</practice-section>
+
+<script>
+    const allTasks = [{"title":"1. feladat: Taylor-polinom fel\u00edr\u00e1sa \u00e9s hibabecsl\u00e9s","wolfram":"fourth degree taylor polynomial of x^4 - 4x + sin(3x) at x=0","steps":["<h3>(a) r\u00e9sz: A negyedfok\u00fa Taylor-polinom (\\( T_{4,0}^f \\)) \u00e9s a Lagrange-f\u00e9le hibatag<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Az elm\u00e9leti k\u00e9plet r\u00f6gz\u00edt\u00e9se.<\/b><br>\r\n                Az \\( x_0 = 0 \\) k\u00f6z\u00e9ppont\u00fa, \\( n=4 \\)-edrend\u0171 Taylor-polinom defin\u00edci\u00f3ja szerint:\r\n                \\[ T_{4,0}^f(x) = f(0) + \\frac{f'(0)}{1!}x + \\frac{f''(0)}{2!}x^2 + \\frac{f'''(0)}{3!}x^3 + \\frac{f^{(4)}(0)}{4!}x^4 \\]","<b>2. L\u00e9p\u00e9s: A deriv\u00e1ltak kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                Hat\u00e1rozzuk meg a f\u00fcggv\u00e9ny (\\( f(x) = x^4 - 4x + \\sin(3x) \\)) deriv\u00e1ltjait az \u00f6t\u00f6dik rendig:\r\n                <ul>\r\n                    <li>\\( f(x) = x^4 - 4x + \\sin(3x) \\)<\/li>\r\n                    <li>\\( f'(x) = 4x^3 - 4 + 3\\cos(3x) \\)<\/li>\r\n                    <li>\\( f''(x) = 12x^2 - 9\\sin(3x) \\)<\/li>\r\n                    <li>\\( f'''(x) = 24x - 27\\cos(3x) \\)<\/li>\r\n                    <li>\\( f^{(4)}(x) = 24 + 81\\sin(3x) \\)<\/li>\r\n                    <li>\\( f^{(5)}(x) = 243\\cos(3x) \\) (Ez a hibataghoz sz\u00fcks\u00e9ges)<\/li>\r\n                <\/ul>","<b>3. L\u00e9p\u00e9s: A helyettes\u00edt\u00e9si \u00e9rt\u00e9kek \\( x_0 = 0 \\) pontban.<\/b><br>\r\n                <ul>\r\n                    <li>\\( f(0) = 0 - 0 + \\sin(0) = 0 \\)<\/li>\r\n                    <li>\\( f'(0) = 0 - 4 + 3\\cos(0) = -4 + 3 = -1 \\)<\/li>\r\n                    <li>\\( f''(0) = 0 - 9\\sin(0) = 0 \\)<\/li>\r\n                    <li>\\( f'''(0) = 0 - 27\\cos(0) = -27 \\)<\/li>\r\n                    <li>\\( f^{(4)}(0) = 24 + 81\\sin(0) = 24 \\)<\/li>\r\n                <\/ul>","<b>4. L\u00e9p\u00e9s: A Taylor-polinom \u00f6ssze\u00e1ll\u00edt\u00e1sa.<\/b><br>\r\n                Helyettes\u00edts\u00fck vissza az \u00e9rt\u00e9keket a defin\u00edci\u00f3ba:\r\n                \\[ T_{4,0}^f(x) = 0 + \\frac{-1}{1}x + \\frac{0}{2}x^2 + \\frac{-27}{6}x^3 + \\frac{24}{24}x^4 \\]\r\n                Egyszer\u0171s\u00edt\u00e9s ut\u00e1n:\r\n                \\[ \\mathbf{T_{4,0}^f(x) = -x - \\frac{9}{2}x^3 + x^4} \\]","<b>5. L\u00e9p\u00e9s: A Lagrange-f\u00e9le hibatag fel\u00edr\u00e1sa.<\/b><br>\r\n                A 2. t\u00e9tel alapj\u00e1n a marad\u00e9ktag \\( n=4 \\) eset\u00e9n:\r\n                \\[ R_4(x) = \\frac{f^{(5)}(\\xi)}{5!}x^5 = \\frac{243\\cos(3\\xi)}{120}x^5 \\]\r\n                Ahol \\( \\xi \\) az \\( 0 \\) \u00e9s \\( x \\) k\u00f6z\u00e9 es\u0151 \u00e9rt\u00e9k.","<hr>\r\n\r\n                <h3>(b) r\u00e9sz: Hibabecsl\u00e9s \\( f(0,1) \\) k\u00f6zel\u00edt\u00e9sekor<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: A hiba maximum\u00e1nak meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                A k\u00f6zel\u00edt\u00e9s hib\u00e1j\u00e1t a marad\u00e9ktag abszol\u00fat \u00e9rt\u00e9ke adja meg \\( x = 0,1 \\) eset\u00e9n:\r\n                \\[ |R_4(0,1)| = \\left| \\frac{243\\cos(3\\xi)}{120} \\cdot (0,1)^5 \\right| \\]\r\n                Mivel a \\( |\\cos(3\\xi)| \\) maxim\u00e1lis \u00e9rt\u00e9ke 1, a hiba fels\u0151 becsl\u00e9se:\r\n                \\[ \\text{Hiba} \\leq \\frac{243}{120} \\cdot 10^{-5} \\approx 2,025 \\cdot 10^{-5} \\]\r\n                <b>V\u00e9geredm\u00e9ny: A hiba legfeljebb \\( 2 \\cdot 10^{-5} \\).<\/b>"]},{"title":"2. feladat: Taylor-sorfejt\u00e9s \u00e9s magasabb rend\u0171 deriv\u00e1ltak meghat\u00e1roz\u00e1sa","wolfram":"taylor series of x^4\/(x^2-5) at x=0","steps":["<h3>1. Az elm\u00e9leti alapok r\u00f6gz\u00edt\u00e9se<\/h3>\r\n                A feladat megold\u00e1s\u00e1hoz k\u00e9t kulcsfontoss\u00e1g\u00fa elm\u00e9leti t\u00e9telt haszn\u00e1lunk a 7. fejezetb\u0151l:\r\n                <ul>\r\n                    <li><b>A m\u00e9rtani sorfejt\u00e9s:<\/b> \\(\\frac{1}{1-q} = \\sum_{n=0}^\\infty q^n\\), ha \\(|q| < 1\\).<\/li>\r\n                    <li><b>Az egy\u00fctthat\u00f3k egy\u00e9rtelm\u0171s\u00e9ge (4. T\u00e9tel):<\/b> Ha egy f\u00fcggv\u00e9ny \\(f(x) = \\sum a_k (x-x_0)^k\\) alakban \u00edrhat\u00f3 fel, akkor a \\(k\\)-adik deriv\u00e1lt a k\u00f6z\u00e9ppontban: \\(f^{(k)}(x_0) = k! \\cdot a_k\\).<\/li>\r\n                <\/ul>","<h3>2. Az \\(f(x) = \\frac{1}{x^2 - 5}\\) f\u00fcggv\u00e9ny sorfejt\u00e9se<\/h3>\r\n                <b>L\u00e9p\u00e9s 2.1: \u00c1talak\u00edt\u00e1s alapalakra.<\/b><br>\r\n                Ahhoz, hogy a m\u00e9rtani sort haszn\u00e1lhassuk, a nevez\u0151ben \\(1-q\\) alakot kell kapnunk. Emelj\u00fcnk ki \\(-5\\)-\u00f6t:\r\n                \\[ f(x) = \\frac{1}{-5 \\left( 1 - \\frac{x^2}{5} \\right)} = -\\frac{1}{5} \\cdot \\frac{1}{1 - \\frac{x^2}{5}} \\]\r\n                \r\n                <b>L\u00e9p\u00e9s 2.2: A szumma alak fel\u00edr\u00e1sa.<\/b><br>\r\n                Alkalmazzuk a m\u00e9rtani sor k\u00e9plet\u00e9t \\(q = \\frac{x^2}{5}\\) helyettes\u00edt\u00e9ssel:\r\n                \\[ f(x) = -\\frac{1}{5} \\sum_{n=0}^\\infty \\left( \\frac{x^2}{5} \\right)^n = \\sum_{n=0}^\\infty -\\frac{1}{5} \\cdot \\frac{x^{2n}}{5^n} = \\mathbf{\\sum_{n=0}^\\infty -\\frac{1}{5^{n+1}} x^{2n}} \\]\r\n                \r\n                <b>L\u00e9p\u00e9s 2.3: Konvergenciatartom\u00e1ny meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                A sor akkor konvergens, ha \\(|q| < 1\\):\r\n                \\[ \\left| \\frac{x^2}{5} \\right| < 1 \\implies x^2 < 5 \\implies |x| < \\sqrt{5} \\]\r\n                Teh\u00e1t \\( \\text{Dom}(T_0^f) = \\mathbf{]-\\sqrt{5}, \\sqrt{5}[} \\).","<h3>3. A \\(g(x) = \\frac{x^4}{x^2 - 5}\\) f\u00fcggv\u00e9ny sorfejt\u00e9se<\/h3>\r\n                Vegy\u00fck \u00e9szre, hogy \\(g(x) = x^4 \\cdot f(x)\\). \u00cdgy elegend\u0151 az \\(f(x)\\)-re kapott sort megszorozni \\(x^4\\)-gyel:\r\n                \\[ g(x) = x^4 \\sum_{n=0}^\\infty -\\frac{1}{5^{n+1}} x^{2n} = \\mathbf{\\sum_{n=0}^\\infty -\\frac{1}{5^{n+1}} x^{2n+4}} \\]\r\n                Mivel a polinomal val\u00f3 szorz\u00e1s nem v\u00e1ltoztatja meg a konvergenciasugarat, a tartom\u00e1ny marad: \\( \\mathbf{]-\\sqrt{5}, \\sqrt{5}[} \\).","<h3>4. A \\(g^{(99)}(0)\\) deriv\u00e1lt kisz\u00e1m\u00edt\u00e1sa<\/h3>\r\n                Haszn\u00e1ljuk a 4. t\u00e9telt: \\(g^{(99)}(0) = 99! \\cdot a_{99}\\), ahol \\(a_{99}\\) az \\(x^{99}\\) egy\u00fctthat\u00f3ja a sorban.\r\n                Vizsg\u00e1ljuk meg a \\(g(x)\\) sor\u00e1t: a kitev\u0151k alakja \\(2n+4\\). Mivel \\(n\\) eg\u00e9sz sz\u00e1m, a kitev\u0151 mindig <b>p\u00e1ros<\/b> (\\(4, 6, 8, \\dots\\)).\r\n                Mivel nincs \\(x^{99}\\)-es tag a sorban (a 99 p\u00e1ratlan), az egy\u00fctthat\u00f3ja \\(a_{99} = 0\\).\r\n                \\[ \\mathbf{g^{(99)}(0) = 0} \\]","<h3>5. A \\(g^{(100)}(0)\\) deriv\u00e1lt kisz\u00e1m\u00edt\u00e1sa<\/h3>\r\n                Keress\u00fck meg azt az \\(n\\) \u00e9rt\u00e9ket, amelyre a kitev\u0151 \u00e9ppen 100:\r\n                \\[ 2n + 4 = 100 \\implies 2n = 96 \\implies n = 48 \\]\r\n                A sorunkban az \\(x^{100}\\) tag egy\u00fctthat\u00f3ja (\\(a_{100}\\)) az \\(n=48\\) indexhez tartozik:\r\n                \\[ a_{100} = -\\frac{1}{5^{48+1}} = -\\frac{1}{5^{49}} \\]\r\n                A deriv\u00e1lt \u00e9rt\u00e9ke a 4. t\u00e9tel alapj\u00e1n:\r\n                \\[ g^{(100)}(0) = 100! \\cdot a_{100} = 100! \\cdot \\left( -\\frac{1}{5^{49}} \\right) = \\mathbf{-\\frac{100!}{5^{49}}} \\]"]},{"title":"3. feladat: \u00d6sszetett Taylor-sorfejt\u00e9sek deriv\u00e1l\u00e1ssal \u00e9s integr\u00e1l\u00e1ssal","wolfram":"taylor series of 1\/(x+5) at x=-3; taylor series of ln(x+5) at x=-3; taylor series of 1\/(x+5)^4 at x=-3","steps":["<h3>(a) r\u00e9sz: Az \\(f_1(x) = \\frac{1}{x+5}\\) f\u00fcggv\u00e9ny Taylor-sora \\(x_0 = -3\\) k\u00f6r\u00fcl<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: \u00c1talak\u00edt\u00e1s a m\u00e9rtani sor alakj\u00e1ra.<\/b><br>\r\n                A k\u00f6z\u00e9ppont \\(x_0 = -3\\), ez\u00e9rt a kifejez\u00e9st \\((x+3)\\) f\u00fcggv\u00e9nyek\u00e9nt kell fel\u00edrnunk:\r\n                \\[ f_1(x) = \\frac{1}{x+5} = \\frac{1}{(x+3)+2} \\]\r\n                Emelj\u00fcnk ki 2-t a nevez\u0151b\u0151l, hogy megkapjuk az \\(\\frac{1}{1-q}\\) alapalakot:\r\n                \\[ f_1(x) = \\frac{1}{2 \\left( 1 - \\left[ -\\frac{x+3}{2} \\right] \\right)} \\]\r\n                \r\n                <b>2. L\u00e9p\u00e9s: Sorfejt\u00e9s \u00e9s konvergenciasug\u00e1r.<\/b><br>\r\n                Alkalmazzuk a \\(\\sum_{n=0}^\\infty q^n\\) k\u00e9pletet \\(q = -\\frac{x+3}{2}\\) helyettes\u00edt\u00e9ssel:\r\n                \\[ f_1(x) = \\frac{1}{2} \\sum_{n=0}^\\infty \\left( -\\frac{x+3}{2} \\right)^n = \\mathbf{\\sum_{n=0}^\\infty \\frac{(-1)^n}{2^{n+1}}(x+3)^n} \\]\r\n                A konvergencia felt\u00e9tele \\(|q| < 1\\):\r\n                \\[ \\left| -\\frac{x+3}{2} \\right| < 1 \\implies |x+3| < 2 \\implies \\mathbf{R = 2} \\]","<hr>\r\n\r\n                <h3>(b) r\u00e9sz: Az \\(f_2(x) = \\ln(x+5)\\) \u00e9s \\(f_3(x) = \\frac{1}{(x+5)^4}\\) sorfejt\u00e9se<\/h3>\r\n                \r\n                <b>1. L\u00e9p\u00e9s: \\(f_2(x)\\) meghat\u00e1roz\u00e1sa tagonk\u00e9nti integr\u00e1l\u00e1ssal.<\/b><br>\r\n                Vegy\u00fck \u00e9szre, hogy \\(f_1(x)\\) az \\(f_2(x)\\) deriv\u00e1ltja: \\(\\frac{d}{dx}\\ln(x+5) = \\frac{1}{x+5}\\).\r\n                Az elm\u00e9let szerint a Taylor-sor tagonk\u00e9nt integr\u00e1lhat\u00f3 a konvergenciasug\u00e1ron bel\u00fcl:\r\n                \\[ f_2(x) = \\int f_1(x) dx = \\sum_{n=0}^\\infty \\frac{(-1)^n}{2^{n+1}} \\int (x+3)^n dx = C + \\sum_{n=0}^\\infty \\frac{(-1)^n}{2^{n+1}(n+1)}(x+3)^{n+1} \\]\r\n                Hat\u00e1rozzuk meg a \\(C\\) konstanst \\(x = -3\\) behelyettes\u00edt\u00e9s\u00e9vel:\r\n                \\[ f_2(-3) = \\ln(-3+5) = \\ln(2) \\implies C = \\ln(2) \\]\r\n                <b>V\u00e9geredm\u00e9ny: \\( f_2(x) = \\ln(2) + \\sum_{n=0}^\\infty \\frac{(-1)^n}{2^{n+1}(n+1)}(x+3)^{n+1} \\), \\( R=2 \\).<\/b>\r\n                \r\n                <br><b>2. L\u00e9p\u00e9s: \\(f_3(x)\\) meghat\u00e1roz\u00e1sa tagonk\u00e9nti deriv\u00e1l\u00e1ssal.<\/b><br>\r\n                Vizsg\u00e1ljuk meg \\(f_1(x) = (x+5)^{-1}\\) magasabb rend\u0171 deriv\u00e1ltjait:\r\n                <ul>\r\n                    <li>\\(f_1'(x) = -(x+5)^{-2}\\)<\/li>\r\n                    <li>\\(f_1''(x) = 2(x+5)^{-3}\\)<\/li>\r\n                    <li>\\(f_1'''(x) = -6(x+5)^{-4}\\)<\/li>\r\n                <\/ul>\r\n                L\u00e1that\u00f3, hogy \\(f_3(x) = -\\frac{1}{6} f_1'''(x)\\).\r\n                Deriv\u00e1ljuk tagonk\u00e9nt \\(f_1(x)\\) sor\u00e1t h\u00e1romszor:\r\n                \\[ f_1'''(x) = \\sum_{n=0}^\\infty \\frac{(-1)^n}{2^{n+1}} \\cdot n(n-1)(n-2)(x+3)^{n-3} \\]\r\n                Szorozzuk meg \\(-\\frac{1}{6}\\)-dal:\r\n                \\[ \\mathbf{f_3(x) = -\\frac{1}{6} \\sum_{n=0}^\\infty \\frac{(-1)^n n(n-1)(n-2)}{2^{n+1}}(x+3)^{n-3}} \\]\r\n                Mivel a tagonk\u00e9nti deriv\u00e1l\u00e1s nem v\u00e1ltoztatja meg a sugarat, itt is <b>\\(R=2\\)<\/b>."]},{"title":"4. feladat: Integr\u00e1l k\u00f6zel\u00edt\u00e9se Taylor-sorral \u00e9s hibabecsl\u00e9s","wolfram":"taylor series of ln(2 + x^3\/4) at x=0; integral from 0 to 1 ln(2 + x^3\/4) dx approximation","steps":["<h3>(a) r\u00e9sz: Az \\( f(x) = \\ln(2 + \\frac{x^3}{4}) \\) Taylor-sora \u00e9s konvergenciasugara<\/h3>\r\n                \r\n                <b>1. L\u00e9p\u00e9s: \u00c1talak\u00edt\u00e1s a j\u00f3l ismert alap-sorfejt\u00e9sre.<\/b><br>\r\n                Tudjuk, hogy \\(\\ln(1+u) = \\sum_{n=1}^\\infty \\frac{(-1)^{n+1}}{n}u^n\\), ha \\(|u| < 1\\).\r\n                Ahhoz, hogy ezt alkalmazhassuk, emelj\u00fcnk ki 2-t a logaritmuson bel\u00fcl:\r\n                \\[ f(x) = \\ln\\left(2\\left(1 + \\frac{x^3}{8}\\right)\\right) = \\ln(2) + \\ln\\left(1 + \\frac{x^3}{8}\\right) \\]\r\n                \r\n                <b>2. L\u00e9p\u00e9s: A Taylor-sor fel\u00edr\u00e1sa.<\/b><br>\r\n                Helyettes\u00edts\u00fck be \\(u = \\frac{x^3}{8}\\) \u00e9rt\u00e9ket az alap-sorfejt\u00e9sbe:\r\n                \\[ f(x) = \\ln(2) + \\sum_{n=1}^\\infty \\frac{(-1)^{n+1}}{n} \\left(\\frac{x^3}{8}\\right)^n = \\mathbf{\\ln(2) + \\sum_{n=1}^\\infty \\frac{(-1)^{n+1}}{n \\cdot 8^n} x^{3n}} \\]\r\n                \r\n                <b>3. L\u00e9p\u00e9s: A konvergenciasug\u00e1r (\\(R\\)) meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                A sor akkor konvergens, ha a helyettes\u00edtett kifejez\u00e9s abszol\u00fat \u00e9rt\u00e9ke kisebb 1-n\u00e9l:\r\n                \\[ \\left| \\frac{x^3}{8} \\right| < 1 \\implies |x^3| < 8 \\implies |x| < 2 \\]\r\n                Teh\u00e1t a konvergenciasug\u00e1r: <b>\\(R = 2\\)<\/b>.","<hr>\r\n\r\n                <h3>(b) r\u00e9sz: Az integr\u00e1l k\u00f6zel\u00edt\u0151 \u00e9rt\u00e9ke \u00e9s a hiba becsl\u00e9se<\/h3>\r\n                \r\n                <b>1. L\u00e9p\u00e9s: A hatodfok\u00fa Taylor-polinom (\\(T_6\\)) meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                \u00cdrjuk fel a sor els\u0151 n\u00e9h\u00e1ny tagj\u00e1t (\\(n=1\\) \u00e9s \\(n=2\\)), am\u00edg a kitev\u0151 el nem \u00e9ri a 6-ot:\r\n                <ul>\r\n                    <li>\\(n=1 \\implies \\frac{1}{1 \\cdot 8^1} x^3 = \\frac{x^3}{8}\\)<\/li>\r\n                    <li>\\(n=2 \\implies \\frac{-1}{2 \\cdot 8^2} x^6 = -\\frac{x^6}{128}\\)<\/li>\r\n                <\/ul>\r\n                \u00cdgy \\(T_6(x) = \\ln(2) + \\frac{1}{8}x^3 - \\frac{1}{128}x^6\\).\r\n                \r\n                <b>2. L\u00e9p\u00e9s: K\u00f6zel\u00edt\u0151 integr\u00e1l\u00e1s.<\/b><br>\r\n                Integr\u00e1ljuk tagonk\u00e9nt a polinomot a \\([0, 1]\\) intervallumon:\r\n                \\[ \\int_0^1 \\left(\\ln(2) + \\frac{x^3}{8} - \\frac{x^6}{128}\\right) dx = \\left[ \\ln(2)x + \\frac{x^4}{32} - \\frac{x^7}{7 \\cdot 128} \\right]_0^1 \\]\r\n                Behelyettes\u00edt\u00e9s ut\u00e1n: \\(\\mathbf{\\ln(2) + \\frac{1}{32} - \\frac{1}{7 \\cdot 128}}\\).\r\n                \r\n                <b>3. L\u00e9p\u00e9s: Hibabecsl\u00e9s.<\/b><br>\r\n                Mivel az integr\u00e1lt sor is v\u00e1ltakoz\u00f3 el\u0151jel\u0171 (altern\u00e1l\u00f3) a megadott szakaszon, a hiba nem nagyobb, mint az els\u0151 elhagyott tag abszol\u00fat \u00e9rt\u00e9ke.\r\n                Az els\u0151 elhagyott tag (\\(n=3\\)) integr\u00e1lja:\r\n                \\[ \\int_0^1 \\frac{x^9}{3 \\cdot 8^3} dx = \\left[ \\frac{x^{10}}{10 \\cdot 3 \\cdot 8^3} \\right]_0^1 = \\frac{1}{10 \\cdot 3 \\cdot 512} = \\frac{1}{8^3 \\cdot 3 \\cdot 10} \\]\r\n                <b>V\u00e9geredm\u00e9ny: A hiba \\(\\leq \\frac{1}{8^3 \\cdot 3 \\cdot 10}\\).<\/b>"]},{"title":"5. feladat: Nevezetes f\u00fcggv\u00e9nyek Taylor-sorfejt\u00e9se \u00e9s konvergenciatartom\u00e1nya","wolfram":"taylor series of cos(4x^3) at x=0; taylor series of e^(-2x) at x=5; taylor series of ch(5x^2) at x=0; taylor series of e^(3x)*sh(4x) at x=0","steps":["<h3>(a) r\u00e9sz: \\( f_1(x) = \\cos(4x^3) \\), \\( x_0 = 0 \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Alap-sorfejt\u00e9s kiv\u00e1laszt\u00e1sa.<\/b><br>\r\n                A 7. t\u00e9tel alapj\u00e1n a koszinusz f\u00fcggv\u00e9ny Maclaurin-sora (\\( x_0=0 \\)):\r\n                \\[ \\cos(u) = \\sum_{n=0}^\\infty (-1)^n \\frac{u^{2n}}{(2n)!} \\]\r\n                \r\n                <b>2. L\u00e9p\u00e9s: Helyettes\u00edt\u00e9s \u00e9s rendez\u00e9s.<\/b><br>\r\n                Helyettes\u00edts\u00fck be \\( u = 4x^3 \\) kifejez\u00e9st:\r\n                \\[ f_1(x) = \\sum_{n=0}^\\infty (-1)^n \\frac{(4x^3)^{2n}}{(2n)!} = \\mathbf{\\sum_{n=0}^\\infty \\frac{(-1)^n 4^{2n}}{(2n)!} x^{6n}} \\]\r\n                Mivel a koszinusz sora minden val\u00f3s sz\u00e1mra konvergens, a tartom\u00e1ny: <b>\\( x \\in \\mathbb{R} \\)<\/b>.","<hr>\r\n\r\n                <h3>(b) r\u00e9sz: \\( f_2(x) = e^{-2x} \\), \\( x_0 = 0 \\) \u00e9s \\( x_0 = 5 \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Sorfejt\u00e9s \\( x_0 = 0 \\) k\u00f6r\u00fcl.<\/b><br>\r\n                Az \\( e^u = \\sum \\frac{u^n}{n!} \\) k\u00e9pletbe \\( u = -2x \\)-et \u00edrva:\r\n                \\[ f_2(x) = \\mathbf{\\sum_{n=0}^\\infty \\frac{(-2)^n}{n!} x^n} \\]\r\n                \r\n                <b>2. L\u00e9p\u00e9s: Sorfejt\u00e9s \\( x_0 = 5 \\) k\u00f6r\u00fcl.<\/b><br>\r\n                Alak\u00edtsuk \u00e1t a f\u00fcggv\u00e9nyt, hogy megjelenjen az \\( (x-5) \\) tag:\r\n                \\[ e^{-2x} = e^{-2(x-5+5)} = e^{-10} \\cdot e^{-2(x-5)} \\]\r\n                Alkalmazzuk az exponenci\u00e1lis sorfejt\u00e9st \\( u = -2(x-5) \\) helyettes\u00edt\u00e9ssel:\r\n                \\[ f_2(x) = \\mathbf{e^{-10} \\sum_{n=0}^\\infty \\frac{(-2)^n}{n!} (x-5)^n} \\]\r\n                Konvergenciatartom\u00e1ny minden esetben: <b>\\( x \\in \\mathbb{R} \\)<\/b>.","<hr>\r\n\r\n                <h3>(c) r\u00e9sz: \\( f_3(x) = \\text{ch}(5x^2) \\), \\( x_0 = 0 \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Alap-sorfejt\u00e9s.<\/b><br>\r\n                A 7. t\u00e9tel szerint a \\(\\text{ch}(u)\\) sora:\r\n                \\[ \\text{ch}(u) = \\sum_{n=0}^\\infty \\frac{u^{2n}}{(2n)!} \\]\r\n                \r\n                <b>2. L\u00e9p\u00e9s: Helyettes\u00edt\u00e9s.<\/b><br>\r\n                Helyettes\u00edts\u00fck be \\( u = 5x^2 \\) \u00e9rt\u00e9ket:\r\n                \\[ f_3(x) = \\sum_{n=0}^\\infty \\frac{(5x^2)^{2n}}{(2n)!} = \\mathbf{\\sum_{n=0}^\\infty \\frac{25^n}{(2n)!} x^{4n}} \\]\r\n                Konvergenciatartom\u00e1ny: <b>\\( x \\in \\mathbb{R} \\)<\/b>.","<hr>\r\n\r\n                <h3>(d) r\u00e9sz: \\( f_4(x) = e^{3x} \\text{sh}(4x) \\), \\( x_0 = 0 \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Hiperbolikus f\u00fcggv\u00e9ny \u00e1t\u00edr\u00e1sa exponenci\u00e1liss\u00e1.<\/b><br>\r\n                Haszn\u00e1ljuk a \\(\\text{sh}(4x) = \\frac{e^{4x} - e^{-4x}}{2}\\) azonoss\u00e1got:\r\n                \\[ f_4(x) = e^{3x} \\cdot \\frac{e^{4x} - e^{-4x}}{2} = \\frac{1}{2} (e^{7x} - e^{-x}) \\]\r\n                \r\n                <b>2. L\u00e9p\u00e9s: Az exponenci\u00e1lis sorok kombin\u00e1l\u00e1sa.<\/b><br>\r\n                \u00cdrjuk fel a k\u00e9t tag sor\u00e1t \u00e9s vonjuk \u00f6ssze \u0151ket:\r\n                \\[ f_4(x) = \\frac{1}{2} \\left[ \\sum_{n=0}^\\infty \\frac{(7x)^n}{n!} - \\sum_{n=0}^\\infty \\frac{(-x)^n}{n!} \\right] = \\mathbf{\\frac{1}{2} \\sum_{n=0}^\\infty \\left( \\frac{7^n - (-1)^n}{n!} \\right) x^n} \\]\r\n                Konvergenciatartom\u00e1ny: <b>\\( x \\in \\mathbb{R} \\)<\/b>."]},{"title":"6. feladat: Hat\u00e1rozzuk meg a megadott v\u00e9gtelen sorok pontos \u00f6sszeg\u00e9t.","wolfram":"sum (-3)^k\/k! from k=0 to infinity; sum (-1)^k\/(4^k * k!) from k=0 to infinity; sum (-1)^k * 2^(2k)\/(2k)! from k=0 to infinity; sum (-1)^(2k+1)\/(2k+1)! from k=1 to infinity","steps":["<h3>(a) r\u00e9sz: \\( \\sum_{k=0}^{\\infty} \\frac{(-3)^k}{k!} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: A megfelel\u0151 sorfejt\u00e9s felismer\u00e9se.<\/b><br>\r\n                A sor szerkezete (\\( \\frac{x^k}{k!} \\)) egy\u00e9rtelm\u0171en az exponenci\u00e1lis f\u00fcggv\u00e9ny Taylor-sor\u00e1ra utal.\r\n                A 7. t\u00e9tel szerint:\r\n                \\[ e^x = \\sum_{k=0}^{\\infty} \\frac{x^k}{k!} \\]\r\n                \r\n                <b>2. L\u00e9p\u00e9s: Helyettes\u00edt\u00e9s \u00e9s eredm\u00e9ny.<\/b><br>\r\n                Helyettes\u00edts\u00fcnk \\( x = -3 \\)-at a k\u00e9pletbe:\r\n                \\[ \\sum_{k=0}^{\\infty} \\frac{(-3)^k}{k!} = \\mathbf{e^{-3}} \\]","<hr>\r\n\r\n                <h3>(b) r\u00e9sz: \\( \\sum_{k=0}^{\\infty} \\frac{(-1)^k}{4^k k!} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: \u00c1talak\u00edt\u00e1s alapalakra.<\/b><br>\r\n                \u00cdrjuk \u00e1t a kifejez\u00e9st, hogy egyetlen hatv\u00e1ny alapjak\u00e9nt szerepeljen az index:\r\n                \\[ \\frac{(-1)^k}{4^k k!} = \\frac{\\left( -\\frac{1}{4} \\right)^k}{k!} \\]\r\n                \r\n                <b>2. L\u00e9p\u00e9s: Az \u00f6sszeg meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                Ism\u00e9t az \\( e^x \\) sor\u00e1t haszn\u00e1ljuk, ez\u00fattal \\( x = -\\frac{1}{4} \\) helyettes\u00edt\u00e9ssel:\r\n                \\[ \\sum_{k=0}^{\\infty} \\frac{\\left( -\\frac{1}{4} \\right)^k}{k!} = \\mathbf{e^{-\\frac{1}{4}}} \\]","<hr>\r\n\r\n                <h3>(c) r\u00e9sz: \\( \\sum_{k=0}^{\\infty} \\frac{(-1)^k 2^{2k}}{(2k)!} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: A trigonometrikus szerkezet felismer\u00e9se.<\/b><br>\r\n                A sorban v\u00e1ltakoz\u00f3 el\u0151jelek (\\( (-1)^k \\)) \u00e9s a nevez\u0151ben csak p\u00e1ros faktori\u00e1lisok (\\( (2k)! \\)) szerepelnek.\r\n                A 7. t\u00e9tel alapj\u00e1n ez a koszinusz f\u00fcggv\u00e9ny Maclaurin-sora:\r\n                \\[ \\cos(x) = \\sum_{k=0}^{\\infty} (-1)^k \\frac{x^{2k}}{(2k)!} \\]\r\n                \r\n                <b>2. L\u00e9p\u00e9s: Helyettes\u00edt\u00e9s.<\/b><br>\r\n                L\u00e1that\u00f3, hogy \\( x = 2 \\):\r\n                \\[ \\sum_{k=0}^{\\infty} (-1)^k \\frac{2^{2k}}{(2k)!} = \\mathbf{\\cos(2)} \\]","<hr>\r\n\r\n                <h3>(d) r\u00e9sz: \\( \\sum_{k=1}^{\\infty} \\frac{(-1)^{2k+1}}{(2k+1)!} \\)<\/h3>\r\n                <b>1. L\u00e9p\u00e9s: Az el\u0151jel \u00e9s a szerkezet elemz\u00e9se.<\/b><br>\r\n                Vegy\u00fck \u00e9szre, hogy \\( (-1)^{2k+1} \\) minden eg\u00e9sz \\( k \\) eset\u00e9n \\( -1 \\), mivel a kitev\u0151 p\u00e1ratlan.\r\n                A sor teh\u00e1t: \\( \\sum_{k=1}^{\\infty} \\frac{-1}{(2k+1)!} \\).\r\n                Ez a szerkezet a szinusz hiperbolikusz (\\( \\text{sh} \\)) sor\u00e1ra eml\u00e9keztet:\r\n                \\[ \\text{sh}(x) = \\sum_{k=0}^{\\infty} \\frac{x^{2k+1}}{(2k+1)!} \\]\r\n                \r\n                <b>2. L\u00e9p\u00e9s: Korrekci\u00f3 az indexel\u00e9s \u00e9s az el\u0151jel miatt.<\/b><br>\r\n                Helyettes\u00edts\u00fcnk \\( x = 1 \\)-et: \\( \\text{sh}(1) = \\frac{1}{1!} + \\frac{1}{3!} + \\frac{1}{5!} + \\dots \\)\r\n                A mi sorunkban minden tag negat\u00edv, \u00e9s hi\u00e1nyzik a \\( k=0 \\) indexhez tartoz\u00f3 els\u0151 tag (\\( \\frac{1}{1!} = 1 \\)):\r\n                \\[ \\sum_{k=1}^{\\infty} \\frac{-1}{(2k+1)!} = - \\left( \\sum_{k=0}^{\\infty} \\frac{1}{(2k+1)!} - 1 \\right) = -(\\text{sh}(1) - 1) = 1 - \\text{sh}(1) \\]\r\n                Mivel \\( \\text{sh}(-x) = -\\text{sh}(x) \\), az eredm\u00e9ny fel\u00edrhat\u00f3 \u00edgy is:\r\n                \\[ \\mathbf{\\text{sh}(-1) + 1} \\]"]}];
+    const chapterId = 7;
+</script>
+
+<script src="script.js"></script>
+</body>
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=7 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+</html>

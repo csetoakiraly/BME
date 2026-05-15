@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=9 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9. Parciális és iránymenti derivált, totális differenciálhatóság - Analízis 2</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --main-color: #d946ef;
+            --main-color-soft: #d946ef22; 
+        }
+    </style>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <layout-wrapper>
+        <analizis-sidebar>
+            <sidebar-header>
+                <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+            </sidebar-header>
+            <sidebar-list>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter681a.html?id=1'"
+                        class=""
+                        id="sidebar-item-1"
+                    >
+                        <span class="ch-num">1.</span>
+                        <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0b30.html?id=2'"
+                        class=""
+                        id="sidebar-item-2"
+                    >
+                        <span class="ch-num">2.</span>
+                        <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd708.html?id=3'"
+                        class=""
+                        id="sidebar-item-3"
+                    >
+                        <span class="ch-num">3.</span>
+                        <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterdcfd.html?id=4'"
+                        class=""
+                        id="sidebar-item-4"
+                    >
+                        <span class="ch-num">4.</span>
+                        <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                        <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd61c.html?id=5'"
+                        class=""
+                        id="sidebar-item-5"
+                    >
+                        <span class="ch-num">5.</span>
+                        <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                        <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter3a9f.html?id=6'"
+                        class=""
+                        id="sidebar-item-6"
+                    >
+                        <span class="ch-num">6.</span>
+                        <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                        <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter8803.html?id=7'"
+                        class=""
+                        id="sidebar-item-7"
+                    >
+                        <span class="ch-num">7.</span>
+                        <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                        <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterc3c9.html?id=8'"
+                        class=""
+                        id="sidebar-item-8"
+                    >
+                        <span class="ch-num">8.</span>
+                        <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                        <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter5255.html?id=9'"
+                        class="active"
+                        id="sidebar-item-9"
+                    >
+                        <span class="ch-num">9.</span>
+                        <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                        <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterf41b.html?id=10'"
+                        class=""
+                        id="sidebar-item-10"
+                    >
+                        <span class="ch-num">10.</span>
+                        <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                        <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0055.html?id=11'"
+                        class=""
+                        id="sidebar-item-11"
+                    >
+                        <span class="ch-num">11.</span>
+                        <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                        <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter4ef9.html?id=12'"
+                        class=""
+                        id="sidebar-item-12"
+                    >
+                        <span class="ch-num">12.</span>
+                        <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                        <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter6e03.html?id=13'"
+                        class=""
+                        id="sidebar-item-13"
+                    >
+                        <span class="ch-num">13.</span>
+                        <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                        <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+                    </sidebar-item>
+                            </sidebar-list>
+            <sidebar-footer>
+                <div class="overall-progress">
+                    <div class="progress-label">Kurzus haladás: <span id="totalPercent">0%</span></div>
+                    <div class="progress-track">
+                        <div id="totalProgressBar" class="progress-fill"></div>
+                    </div>
+                </div>
+                
+            </sidebar-footer>
+        </analizis-sidebar>
+
+        <main-content>
+            <analizis-nav>
+                <nav-title><b>9. Parciális és iránymenti derivált, totális differenciálhatóság<b></nav-title>
+                <nav-actions>
+                    <button id="themeToggle" class="theme-btn">🌙 Éjszakai mód</button>
+                    <button id="theory-menu-toggle" class="menu-toggle-btn">
+    <span>☰</span> Menü
+</button>
+
+<analizis-sidebar id="theory-menu">
+    <sidebar-header>
+        <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+    </sidebar-header>
+    
+    <sidebar-list>
+                    <sidebar-item 
+                onclick="window.location.href='chapter681a.html?id=1'"
+                class=""
+                id="sidebar-item-1"
+            >
+                <span class="ch-num">1.</span>
+                <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0b30.html?id=2'"
+                class=""
+                id="sidebar-item-2"
+            >
+                <span class="ch-num">2.</span>
+                <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd708.html?id=3'"
+                class=""
+                id="sidebar-item-3"
+            >
+                <span class="ch-num">3.</span>
+                <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterdcfd.html?id=4'"
+                class=""
+                id="sidebar-item-4"
+            >
+                <span class="ch-num">4.</span>
+                <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd61c.html?id=5'"
+                class=""
+                id="sidebar-item-5"
+            >
+                <span class="ch-num">5.</span>
+                <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter3a9f.html?id=6'"
+                class=""
+                id="sidebar-item-6"
+            >
+                <span class="ch-num">6.</span>
+                <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter8803.html?id=7'"
+                class=""
+                id="sidebar-item-7"
+            >
+                <span class="ch-num">7.</span>
+                <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterc3c9.html?id=8'"
+                class=""
+                id="sidebar-item-8"
+            >
+                <span class="ch-num">8.</span>
+                <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter5255.html?id=9'"
+                class="active"
+                id="sidebar-item-9"
+            >
+                <span class="ch-num">9.</span>
+                <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterf41b.html?id=10'"
+                class=""
+                id="sidebar-item-10"
+            >
+                <span class="ch-num">10.</span>
+                <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0055.html?id=11'"
+                class=""
+                id="sidebar-item-11"
+            >
+                <span class="ch-num">11.</span>
+                <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter4ef9.html?id=12'"
+                class=""
+                id="sidebar-item-12"
+            >
+                <span class="ch-num">12.</span>
+                <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter6e03.html?id=13'"
+                class=""
+                id="sidebar-item-13"
+            >
+                <span class="ch-num">13.</span>
+                <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+            </sidebar-item>
+            </sidebar-list>
+</analizis-sidebar>
+</button>
+
+                </nav-actions>
+            </analizis-nav>
+            
+            <analizis-content>
+                <theory-section>
+                    <section-header>Elméleti összefoglaló</section-header>
+                    <theory-body>
+        <section>
+            <h2>1. Parciális derivált</h2>
+            <p>A többváltozós függvényeket változónként külön-külön is deriválhatjuk, ilyenkor a többi változót konstansnak tekintjük.</p>
+            
+            <div style="background: #a79655; padding: 15px; border-radius: 8px; border-left: 5px solid #f59e0b; margin: 10px 0;">
+                <b>1. Definíció: Parciális derivált</b><br>
+                Az \( f: \mathbb{R}^n \to \mathbb{R} \) függvény \( i \)-edik változó szerinti parciális deriváltja az \( \underline{a} \) pontban:
+                \[ \partial_i f(\underline{a}) = f'_{x_i}(\underline{a}) = \lim_{t \to 0} \frac{f(a_1, \dots, a_i+t, \dots, a_n) - f(\underline{a})}{t} \]
+            </div>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>2. Totális differenciálhatóság és Érintősík</h2>
+            <p>A totális differenciálhatóság erősebb feltétel, mint a parciális deriváltak létezése; ez garantálja a függvény "jó" közelíthetőségét egy síkkal.</p>
+            
+            <ul>
+                <li><b>2. Definíció (Totális derivált):</b> \( f \) differenciálható \( \underline{a} \)-ban, ha közelíthető egy \( A \) lineáris leképezéssel, ahol \( \text{grad} f(\underline{a}) \) a gradiens vektor.</li>
+                <li><b>3. Definíció (Érintősík):</b> Kétváltozós esetben a függvény érintősíkjának egyenlete az \( (x_0, y_0) \) pontban:
+                    \[ \partial_1 f(x_0, y_0)(x - x_0) + \partial_2 f(x_0, y_0)(y - y_0) - (z - f(x_0, y_0)) = 0 \]
+                </li>
+            </ul>
+
+            <p><b>4-5. Állítások: A differenciálhatóság feltételei</b><br>
+            A totális differenciálhatóságnak <b>szükséges</b> feltétele a folytonosság és a parciális deriváltak létezése. <b>Elégséges</b> feltétele viszont, ha a parciális deriváltak léteznek egy környezetben és ott folytonosak.</p>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>3. Irány menti derivált és Gradiens</h2>
+            <p>Megmérhetjük a függvény meredekségét egy tetszőleges \( \underline{e} \) egységvektor irányában is.</p>
+            
+            <div style="background: #9e9058; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                <b>6. Definíció: Irány menti derivált</b><br>
+                \[ D_{\underline{e}} f(\underline{a}) = \lim_{t \to 0^+} \frac{f(\underline{a} + t\underline{e}) - f(\underline{a})}{t} \]
+            </div>
+
+            <p><b>7-9. Állítások: Kapcsolat a gradienssel</b><br>
+            Ha a függvény differenciálható, az irány menti derivált a gradiens és az irányvektor skaláris szorzata:
+            \[ D_{\underline{e}} f(\underline{a}) = \langle \text{grad} f(\underline{a}), \underline{e} \rangle = \|\text{grad} f(\underline{a})\| \cos(\alpha) \]
+            Ebből következik, hogy:
+            <ul>
+                <li>A függvény a <b>gradiens irányában</b> nő a leggyorsabban (\( \alpha = 0 \)).</li>
+                <li>A növekedés mértéke ekkor pontosan a gradiens hossza: \( \|\text{grad} f(\underline{a})\| \).</li>
+                <li>A gradiensre <b>merőleges irányban</b> a változás nulla (\( \alpha = \pi/2 \)).</li>
+            </ul>
+        </section>
+    </theory-body>
+                </theory-section>
+
+                <practice-section>
+    <section-header>Példafeladatok</section-header>
+    
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat: Határozzuk meg a parciális derivált függvényeket.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="derivative+of+%28y%5E3+%2A+e%5E%28x%5E3%2By%29%29%2F%284y%5E3%2B2%29+%2B+ln%28y%5E6%2B4%29+-+%283x-1%29%5E4+with+respect+to+x%3B+derivative+with+respect+to+y"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="0">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="0">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">2. feladat: Parciális deriváltak meghatározása és a totális differenciálhatóság vizsgálata.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="partial+derivative+of+sqrt%283x%5E2+%2B+7%28y%2B1%29%5E4%29+with+respect+to+x%3B+with+respect+to+y"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="1">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="1">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">3. feladat: Parciális deriváltak meghatározása és a differenciálhatóság vizsgálata.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="partial+derivative+of+%28x%5E2%2A%28y%2B3%29%29%2F%28x%5E2%2By%5E2%29-5x%2B4y+with+respect+to+x%3B+with+respect+to+y"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="2">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="2">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">4. feladat: Határérték, parciális derivált és differenciálhatóság vizsgálata az origóban.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="limit+sin%283x%5E2-4xy%2B5y%5E2%29%2Fsqrt%283x%5E2-4xy%2B5y%5E2%29+as+%28x%2Cy%29-%3E%280%2C0%29%3B+partial+derivative+of+f%28x%2Cy%29+with+respect+to+y+at+%280%2C0%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="3">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="3">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">5. feladat: Összetett többváltozós analízis feladat (deriváltak, érintősík, iránymenti derivált).</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="partial+derivative+of+4%28x-3y%29%5E3-6x%2B4y%5E2%3B+tangent+plane+of+4%28x-3y%29%5E3-6x%2B4y%5E2+at+%283%2C1%29%3B+directional+derivative+of+4%28x-3y%29%5E3-6x%2B4y%5E2+at+%283%2C1%29+in+direction+%284%2C3%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="4">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="4">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">6. feladat: Gradiens és iránymenti derivált számítása háromváltozós függvényre.</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="gradient+of+x%2Az%5E3+%2B+7%2Ay%5E4+-+y%5E2%2Az%3B+directional+derivative+of+x%2Az%5E3+%2B+7%2Ay%5E4+-+y%5E2%2Az+at+%2810%2C0%2C-1%29+in+direction+%280%2C4%2C-3%29%3B+directional+derivative+in+direction+%28-2%2C4%2C3%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="5">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="5">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+    
+</practice-section>
+
+<script>
+    const allTasks = [{"title":"1. feladat: Hat\u00e1rozzuk meg a parci\u00e1lis deriv\u00e1lt f\u00fcggv\u00e9nyeket.","wolfram":"derivative of (y^3 * e^(x^3+y))\/(4y^3+2) + ln(y^6+4) - (3x-1)^4 with respect to x; derivative with respect to y","steps":["<h3>A vizsg\u00e1lt f\u00fcggv\u00e9ny: \\( f(x, y) = \\frac{y^3 e^{x^3+y}}{4y^3+2} + \\ln(y^6+4) - (3x-1)^4 \\)<\/h3>\r\n                \r\n                <b>1. L\u00e9p\u00e9s: Els\u0151 v\u00e1ltoz\u00f3 szerinti parci\u00e1lis deriv\u00e1lt (\\( \\partial_1 f \\)).<\/b><br>\r\n                Ebben a l\u00e9p\u00e9sben az \\( y \\)-t konstansnak tekintj\u00fck.\r\n                <ul>\r\n                    <li>Az els\u0151 tagban a \\( \\frac{y^3}{4y^3+2} \\) r\u00e9sz konstans szorz\u00f3. Csak az \\( e^{x^3+y} \\) r\u00e9szt deriv\u00e1ljuk \\( x \\) szerint (l\u00e1ncszab\u00e1ly): \\( e^{x^3+y} \\cdot 3x^2 \\).<\/li>\r\n                    <li>A m\u00e1sodik tag (\\( \\ln(y^6+4) \\)) nem tartalmaz \\( x \\)-et, \u00edgy konstans, deriv\u00e1ltja 0.<\/li>\r\n                    <li>A harmadik tag (\\( -(3x-1)^4 \\)) deriv\u00e1ltja: \\( -4(3x-1)^3 \\cdot 3 = -12(3x-1)^3 \\).<\/li>\r\n                <\/ul>\r\n                \\[ \\partial_1 f(x, y) = \\frac{3x^2 y^3 e^{x^3+y}}{4y^3+2} - 12(3x-1)^3 \\]\r\n                A deriv\u00e1lt \u00e9rtelmez\u00e9si tartom\u00e1nya: \\( x \\in \\mathbb{R}, y \\neq -\\frac{1}{\\sqrt[3]{2}} \\).","<b>2. L\u00e9p\u00e9s: M\u00e1sodik v\u00e1ltoz\u00f3 szerinti parci\u00e1lis deriv\u00e1lt (\\( \\partial_2 f \\)).<\/b><br>\r\n                Most az \\( x \\)-et tekintj\u00fck konstansnak.\r\n                <ul>\r\n                    <li>Az els\u0151 tagban (\\( \\frac{y^3 e^{x^3+y}}{4y^3+2} \\)) a sz\u00e1ml\u00e1l\u00f3 \u00e9s a nevez\u0151 is f\u00fcgg \\( y \\)-t\u00f3l, \u00edgy a <b>h\u00e1nyados-szab\u00e1lyt<\/b> alkalmazzuk. Emelj\u00fck ki az \\( e^{x^3} \\) konstans szorz\u00f3t:\r\n                        \\[ \\left[ \\frac{y^3 e^y}{4y^3+2} \\right]' = \\frac{(3y^2 e^y + y^3 e^y)(4y^3+2) - (y^3 e^y)(12y^2)}{(4y^3+2)^2} \\]\r\n                    <\/li>\r\n                    <li>A m\u00e1sodik tag (\\( \\ln(y^6+4) \\)) deriv\u00e1ltja a l\u00e1ncszab\u00e1llyal: \\( \\frac{1}{y^6+4} \\cdot 6y^5 \\).<\/li>\r\n                    <li>A harmadik tag (\\( -(3x-1)^4 \\)) konstans \\( y \\) szerint, deriv\u00e1ltja 0.<\/li>\r\n                <\/ul>\r\n                \\[ \\partial_2 f(x, y) = e^{x^3} \\frac{(3y^2 e^y + y^3 e^y)(4y^3+2) - 12y^5 e^y}{(4y^3+2)^2} + \\frac{6y^5}{y^6+4} \\]\r\n                A deriv\u00e1lt \u00e9rtelmez\u00e9si tartom\u00e1nya megegyezik az el\u0151z\u0151vel."]},{"title":"2. feladat: Parci\u00e1lis deriv\u00e1ltak meghat\u00e1roz\u00e1sa \u00e9s a tot\u00e1lis differenci\u00e1lhat\u00f3s\u00e1g vizsg\u00e1lata.","wolfram":"partial derivative of sqrt(3x^2 + 7(y+1)^4) with respect to x; with respect to y","steps":["<h3>A f\u00fcggv\u00e9ny elemz\u00e9se: \\( f(x, y) = \\sqrt{3x^2 + 7(y+1)^4} \\)<\/h3>\r\n                A f\u00fcggv\u00e9ny mindenhol \u00e9rtelmezett (\\( \\mathbb{R}^2 \\)), mivel a gy\u00f6k alatti kifejez\u00e9s sosem negat\u00edv. Az egyetlen \"kritikus\" pont, ahol a bels\u0151 f\u00fcggv\u00e9ny nulla, a \\( (0, -1) \\) pont.","<b>1. L\u00e9p\u00e9s: Az \\( x \\) szerinti parci\u00e1lis deriv\u00e1lt (\\( \\partial_1 f \\)) kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                Ha \\( (x, y) \\neq (0, -1) \\), a l\u00e1ncszab\u00e1lyt alkalmazva:\r\n                \\[ \\partial_1 f(x, y) = \\frac{1}{2\\sqrt{3x^2 + 7(y+1)^4}} \\cdot 6x = \\frac{3x}{\\sqrt{3x^2 + 7(y+1)^4}} \\]\r\n                Vizsg\u00e1ljuk meg a parci\u00e1lis deriv\u00e1ltat a <b>\\( (0, -1) \\) pontban<\/b> az 1. defin\u00edci\u00f3 (hat\u00e1r\u00e9rt\u00e9k) alapj\u00e1n:\r\n                \\[ \\lim_{t \\to 0} \\frac{f(0+t, -1) - f(0, -1)}{t} = \\lim_{t \\to 0} \\frac{\\sqrt{3t^2 + 7(-1+1)^4} - 0}{t} = \\lim_{t \\to 0} \\frac{\\sqrt{3}|t|}{t} \\]\r\n                Mivel a jobb oldali (\\( \\sqrt{3} \\)) \u00e9s bal oldali (\\( -\\sqrt{3} \\)) hat\u00e1r\u00e9rt\u00e9k nem egyezik meg, a hat\u00e1r\u00e9rt\u00e9k nem l\u00e9tezik.\r\n                <b>Eredm\u00e9ny:<\/b> \\( \\partial_1 f \\) nem l\u00e9tezik a \\( (0, -1) \\) pontban. \\( \\text{Dom}(\\partial_1 f) = \\mathbb{R}^2 \\setminus \\{(0, -1)\\} \\).","<b>2. L\u00e9p\u00e9s: Az \\( y \\) szerinti parci\u00e1lis deriv\u00e1lt (\\( \\partial_2 f \\)) kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                Ha \\( (x, y) \\neq (0, -1) \\), a l\u00e1ncszab\u00e1lyt alkalmazva:\r\n                \\[ \\partial_2 f(x, y) = \\frac{1}{2\\sqrt{3x^2 + 7(y+1)^4}} \\cdot 28(y+1)^3 = \\frac{14(y+1)^3}{\\sqrt{3x^2 + 7(y+1)^4}} \\]\r\n                Vizsg\u00e1ljuk meg a parci\u00e1lis deriv\u00e1ltat a <b>\\( (0, -1) \\) pontban<\/b> az 1. defin\u00edci\u00f3 alapj\u00e1n:\r\n                \\[ \\lim_{t \\to 0} \\frac{f(0, -1+t) - f(0, -1)}{t} = \\lim_{t \\to 0} \\frac{\\sqrt{0 + 7t^4} - 0}{t} = \\lim_{t \\to 0} \\frac{\\sqrt{7}t^2}{t} = \\lim_{t \\to 0} \\sqrt{7}t = 0 \\]\r\n                <b>Eredm\u00e9ny:<\/b> A parci\u00e1lis deriv\u00e1lt itt l\u00e9tezik \u00e9s \u00e9rt\u00e9ke 0. \\( \\text{Dom}(\\partial_2 f) = \\mathbb{R}^2 \\).","<b>3. L\u00e9p\u00e9s: A tot\u00e1lis differenci\u00e1lhat\u00f3s\u00e1g vizsg\u00e1lata.<\/b><br>\r\n                <ul>\r\n                    <li><b>A \\( (0, -1) \\) pontban:<\/b> A 4. \u00e1ll\u00edt\u00e1s (sz\u00fcks\u00e9ges felt\u00e9tel) szerint, ha a f\u00fcggv\u00e9ny differenci\u00e1lhat\u00f3, akkor minden parci\u00e1lis deriv\u00e1ltj\u00e1nak l\u00e9teznie kell. Mivel \\( \\partial_1 f \\) nem l\u00e9tezik ebben a pontban, a f\u00fcggv\u00e9ny itt <b>nem differenci\u00e1lhat\u00f3<\/b>.<\/li>\r\n                    <li><b>Az \\( \\mathbb{R}^2 \\setminus \\{(0, -1)\\} \\) halmazon:<\/b> A parci\u00e1lis deriv\u00e1ltak l\u00e9teznek \u00e9s (mint elemi f\u00fcggv\u00e9nyek kompoz\u00edci\u00f3i, ahol a nevez\u0151 nem nulla) folytonosak. Az 5. t\u00e9tel (el\u00e9gs\u00e9ges felt\u00e9tel) alapj\u00e1n a f\u00fcggv\u00e9ny ezen a ny\u00edlt halmazon <b>tot\u00e1lisan differenci\u00e1lhat\u00f3<\/b>.<\/li>\r\n                <\/ul>\r\n                <b>V\u00e9geredm\u00e9ny: A f\u00fcggv\u00e9ny az \\( \\mathbb{R}^2 \\setminus \\{(0, -1)\\} \\) halmazon differenci\u00e1lhat\u00f3.<\/b>"]},{"title":"3. feladat: Parci\u00e1lis deriv\u00e1ltak meghat\u00e1roz\u00e1sa \u00e9s a differenci\u00e1lhat\u00f3s\u00e1g vizsg\u00e1lata.","wolfram":"partial derivative of (x^2*(y+3))\/(x^2+y^2)-5x+4y with respect to x; with respect to y","steps":["<h3>A f\u00fcggv\u00e9ny elemz\u00e9se: \\( f(x, y) = \\begin{cases} \\frac{x^2(y+3)}{x^2+y^2} - 5x + 4y & \\text{ha } (x, y) \\neq (0,0) \\ 0 & \\text{ha } (x, y) = (0,0) \\end{cases} \\)<\/h3>\r\n                Mivel az orig\u00f3ban (\\( 0,0 \\)) a f\u00fcggv\u00e9nyt k\u00fcl\u00f6n k\u00e9plettel adt\u00e1k meg, a parci\u00e1lis deriv\u00e1ltak l\u00e9tez\u00e9s\u00e9t ott a hat\u00e1r\u00e9rt\u00e9kes defin\u00edci\u00f3val kell ellen\u0151rizn\u00fcnk.","<b>1. L\u00e9p\u00e9s: Az \\( x \\) szerinti parci\u00e1lis deriv\u00e1lt (\\( \\partial_1 f \\)) meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                <ul>\r\n                    <li><b>Ha \\( (x, y) \\neq (0, 0) \\):<\/b> Alkalmazzuk a h\u00e1nyados-szab\u00e1lyt:\r\n                        \\[ \\partial_1 f(x, y) = \\frac{2x(y+3)(x^2+y^2) - x^2(y+3)(2x)}{(x^2+y^2)^2} - 5 \\]\r\n                        Ez egyszer\u0171s\u00edthet\u0151 a k\u00f6vetkez\u0151 alakra: \\( \\frac{2xy^2(y+3)}{(x^2+y^2)^2} - 5 \\).\r\n                    <\/li>\r\n                    <li><b>Az orig\u00f3ban (\\( 0, 0 \\)):<\/b> Az 1. defin\u00edci\u00f3 alapj\u00e1n:\r\n                        \\[ \\lim_{t \\to 0} \\frac{f(t, 0) - f(0, 0)}{t} = \\lim_{t \\to 0} \\frac{\\frac{t^2(0+3)}{t^2+0} - 5t + 0 - 0}{t} = \\lim_{t \\to 0} \\frac{3 - 5t}{t} \\]\r\n                        Mivel a sz\u00e1ml\u00e1l\u00f3 3-hoz tart, a nevez\u0151 pedig 0-hoz, a hat\u00e1r\u00e9rt\u00e9k nem l\u00e9tezik.\r\n                    <\/li>\r\n                <\/ul>\r\n                <b>Eredm\u00e9ny:<\/b> \\( \\text{Dom}(\\partial_1 f) = \\mathbb{R}^2 \\setminus \\{(0, 0)\\} \\).","<b>2. L\u00e9p\u00e9s: Az \\( y \\) szerinti parci\u00e1lis deriv\u00e1lt (\\( \\partial_2 f \\)) meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                <ul>\r\n                    <li><b>Ha \\( (x, y) \\neq (0, 0) \\):<\/b> A h\u00e1nyados-szab\u00e1llyal:\r\n                        \\[ \\partial_2 f(x, y) = \\frac{x^2(1)(x^2+y^2) - x^2(y+3)(2y)}{(x^2+y^2)^2} + 4 \\]\r\n                    <\/li>\r\n                    <li><b>Az orig\u00f3ban (\\( 0, 0 \\)):<\/b> Haszn\u00e1ljuk ism\u00e9t a defin\u00edci\u00f3t:\r\n                        \\[ \\lim_{t \\to 0} \\frac{f(0, t) - f(0, 0)}{t} = \\lim_{t \\to 0} \\frac{\\frac{0(t+3)}{0+t^2} - 0 + 4t - 0}{t} = \\lim_{t \\to 0} \\frac{4t}{t} = 4 \\]\r\n                    <\/li>\r\n                <\/ul>\r\n                <b>Eredm\u00e9ny:<\/b> \\( \\text{Dom}(\\partial_2 f) = \\mathbb{R}^2 \\), ahol \\( \\partial_2 f(0, 0) = 4 \\).","<b>3. L\u00e9p\u00e9s: A differenci\u00e1lhat\u00f3s\u00e1g vizsg\u00e1lata.<\/b><br>\r\n                A 4. \u00e1ll\u00edt\u00e1s (sz\u00fcks\u00e9ges felt\u00e9tel) kimondja, hogy ha egy f\u00fcggv\u00e9ny differenci\u00e1lhat\u00f3 egy pontban, akkor ott minden parci\u00e1lis deriv\u00e1ltj\u00e1nak l\u00e9teznie kell.\r\n                <ul>\r\n                    <li><b>Az orig\u00f3ban:<\/b> Mivel \\( \\partial_1 f(0, 0) \\) nem l\u00e9tezik, a f\u00fcggv\u00e9ny itt <b>nem differenci\u00e1lhat\u00f3<\/b>.<\/li>\r\n                    <li><b>Az orig\u00f3n k\u00edv\u00fcl:<\/b> Mivel a parci\u00e1lis deriv\u00e1ltak l\u00e9teznek \u00e9s folytonosak (racion\u00e1lis kifejez\u00e9sek nulla nevez\u0151 n\u00e9lk\u00fcl), az 5. t\u00e9tel alapj\u00e1n a f\u00fcggv\u00e9ny itt <b>differenci\u00e1lhat\u00f3<\/b>.<\/li>\r\n                <\/ul>\r\n                <b>V\u00e9geredm\u00e9ny: A f\u00fcggv\u00e9ny az \\( \\mathbb{R}^2 \\setminus \\{(0, 0)\\} \\) halmazon differenci\u00e1lhat\u00f3.<\/b>"]},{"title":"4. feladat: Hat\u00e1r\u00e9rt\u00e9k, parci\u00e1lis deriv\u00e1lt \u00e9s differenci\u00e1lhat\u00f3s\u00e1g vizsg\u00e1lata az orig\u00f3ban.","wolfram":"limit sin(3x^2-4xy+5y^2)\/sqrt(3x^2-4xy+5y^2) as (x,y)->(0,0); partial derivative of f(x,y) with respect to y at (0,0)","steps":["<h3>A f\u00fcggv\u00e9ny: \\( f(x, y) = \\begin{cases} \\frac{\\sin(3x^2 - 4xy + 5y^2)}{\\sqrt{3x^2 - 4xy + 5y^2}} & \\text{ha } (x, y) \\neq (0,0) \\ 0 & \\text{ha } (x, y) = (0,0) \\end{cases} \\)<\/h3>","<b>(a) r\u00e9sz: Hat\u00e1r\u00e9rt\u00e9k sz\u00e1m\u00edt\u00e1sa az orig\u00f3ban (\\( \\lim_{(x,y) \\to (0,0)} f(x,y) \\))<\/b><br>\r\n                Vezess\u00fck be az \\( u = 3x^2 - 4xy + 5y^2 \\) helyettes\u00edt\u00e9st. Vegy\u00fck \u00e9szre, hogy ez egy pozit\u00edv definit kvadratikus alak (diszkrimin\u00e1nsa \\( D = 16 - 60 < 0 \\)), \u00edgy \\( u \\to 0^+ \\), ha \\( (x,y) \\to (0,0) \\).\r\n                \\[ \\lim_{u \\to 0^+} \\frac{\\sin u}{\\sqrt{u}} = \\lim_{u \\to 0^+} \\sqrt{u} \\cdot \\frac{\\sin u}{u} \\]\r\n                Mivel \\( \\lim_{u \\to 0} \\frac{\\sin u}{u} = 1 \\), a hat\u00e1r\u00e9rt\u00e9k: \\( 0 \\cdot 1 = \\mathbf{0} \\).\r\n                Mivel a hat\u00e1r\u00e9rt\u00e9k megegyezik \\( f(0,0) \\) \u00e9rt\u00e9k\u00e9vel, a f\u00fcggv\u00e9ny <b>folytonos<\/b> az orig\u00f3ban.","<b>(b) r\u00e9sz: Az \\( y \\) szerinti parci\u00e1lis deriv\u00e1lt (\\( \\partial_2 f(0,0) \\)) meghat\u00e1roz\u00e1sa<\/b><br>\r\n                Haszn\u00e1ljuk az 1. defin\u00edci\u00f3t (hat\u00e1r\u00e9rt\u00e9kes alak):\r\n                \\[ \\partial_2 f(0, 0) = \\lim_{t \\to 0} \\frac{f(0, t) - f(0, 0)}{t} \\]\r\n                Helyettes\u00edts\u00fcnk be: \\( f(0, t) = \\frac{\\sin(5t^2)}{\\sqrt{5t^2}} = \\frac{\\sin(5t^2)}{\\sqrt{5}|t|} \\). Ekkor a hat\u00e1r\u00e9rt\u00e9k:\r\n                \\[ \\lim_{t \\to 0} \\frac{\\sin(5t^2)}{\\sqrt{5} \\cdot t \\cdot |t|} \\]\r\n                Vizsg\u00e1ljuk a f\u00e9loldali hat\u00e1r\u00e9rt\u00e9keket:\r\n                <ul>\r\n                    <li><b>Jobbr\u00f3l (\\( t \\to 0^+ \\)):<\/b> \\( \\lim_{t \\to 0^+} \\frac{\\sin(5t^2)}{\\sqrt{5}t^2} = \\frac{5}{\\sqrt{5}} = \\sqrt{5} \\)<\/li>\r\n                    <li><b>Balr\u00f3l (\\( t \\to 0^- \\)):<\/b> \\( \\lim_{t \\to 0^-} \\frac{\\sin(5t^2)}{-\\sqrt{5}t^2} = -\\sqrt{5} \\)<\/li>\r\n                <\/ul>\r\n                Mivel a f\u00e9loldali hat\u00e1r\u00e9rt\u00e9kek k\u00fcl\u00f6nb\u00f6znek, a <b>parci\u00e1lis deriv\u00e1lt nem l\u00e9tezik<\/b>.","<b>(c) r\u00e9sz: Differenci\u00e1lhat\u00f3s\u00e1g (tot\u00e1lis) vizsg\u00e1lata az orig\u00f3ban<\/b><br>\r\n                A 4. \u00e1ll\u00edt\u00e1s (sz\u00fcks\u00e9ges felt\u00e9telek) szerint a tot\u00e1lis differenci\u00e1lhat\u00f3s\u00e1ghoz elengedhetetlen, hogy a f\u00fcggv\u00e9ny minden parci\u00e1lis deriv\u00e1ltja l\u00e9tezzen az adott pontban.\r\n                Mivel a (b) r\u00e9szben bebizony\u00edtottuk, hogy \\( \\partial_2 f(0,0) \\) nem l\u00e9tezik, a f\u00fcggv\u00e9ny az orig\u00f3ban <b>nem differenci\u00e1lhat\u00f3<\/b>."]},{"title":"5. feladat: \u00d6sszetett t\u00f6bbv\u00e1ltoz\u00f3s anal\u00edzis feladat (deriv\u00e1ltak, \u00e9rint\u0151s\u00edk, ir\u00e1nymenti deriv\u00e1lt).","wolfram":"partial derivative of 4(x-3y)^3-6x+4y^2; tangent plane of 4(x-3y)^3-6x+4y^2 at (3,1); directional derivative of 4(x-3y)^3-6x+4y^2 at (3,1) in direction (4,3)","steps":["<h3>A f\u00fcggv\u00e9ny: \\( f(x, y) = 4(x - 3y)^3 - 6x + 4y^2 \\)<\/h3>","<b>(a) r\u00e9sz: Parci\u00e1lis deriv\u00e1lt f\u00fcggv\u00e9nyek meghat\u00e1roz\u00e1sa<\/b><br>\r\n                A parci\u00e1lis deriv\u00e1l\u00e1s sor\u00e1n az egyik v\u00e1ltoz\u00f3t konstansnak tekintj\u00fck.\r\n                <ul>\r\n                    <li><b>\\( x \\) szerinti parci\u00e1lis deriv\u00e1lt (\\( \\partial_1 f \\)):<\/b>\r\n                        \\[ \\partial_1 f(x, y) = 4 \\cdot 3(x - 3y)^2 \\cdot 1 - 6 + 0 = \\mathbf{12(x - 3y)^2 - 6} \\]\r\n                    <\/li>\r\n                    <li><b>\\( y \\) szerinti parci\u00e1lis deriv\u00e1lt (\\( \\partial_2 f \\)):<\/b>\r\n                        \\[ \\partial_2 f(x, y) = 4 \\cdot 3(x - 3y)^2 \\cdot (-3) + 0 + 8y = \\mathbf{-36(x - 3y)^2 + 8y} \\]\r\n                    <\/li>\r\n                <\/ul>","<b>(b) r\u00e9sz: Hol differenci\u00e1lhat\u00f3 a f\u00fcggv\u00e9ny?<\/b><br>\r\n                A parci\u00e1lis deriv\u00e1lt f\u00fcggv\u00e9nyek (\\( \\partial_1 f \\) \u00e9s \\( \\partial_2 f \\)) mindenhol \u00e9rtelmezett polinomok, \u00edgy a teljes \\( \\mathbb{R}^2 \\) s\u00edkon folytonosak.\r\n                Az 5. t\u00e9tel (el\u00e9gs\u00e9ges felt\u00e9tel) alapj\u00e1n, ha a parci\u00e1lis deriv\u00e1ltak folytonosak egy k\u00f6rnyezetben, akkor a f\u00fcggv\u00e9ny ott tot\u00e1lisan differenci\u00e1lhat\u00f3.\r\n                <b>Eredm\u00e9ny: A f\u00fcggv\u00e9ny az eg\u00e9sz \\( \\mathbb{R}^2 \\) halmazon differenci\u00e1lhat\u00f3.<\/b>","<b>(c) r\u00e9sz: \u00c9rint\u0151s\u00edkok egyenlete (\\( P_0 = (3, 1) \\) \u00e9s \\( Q_0 = (1, 1) \\))<\/b><br>\r\n                A 3. defin\u00edci\u00f3 szerint az \u00e9rint\u0151s\u00edk egyenlete: \\( \\partial_1 f(x_0, y_0)(x - x_0) + \\partial_2 f(x_0, y_0)(y - y_0) - (z - f(x_0, y_0)) = 0 \\).\r\n                <ul>\r\n                    <li><b>\\( P_0 = (3, 1) \\) eset\u00e9n:<\/b>\r\n                        \\( f(3, 1) = 4(0)^3 - 18 + 4 = -14 \\);\r\n                        \\( \\partial_1 f(3, 1) = 12(0)^2 - 6 = -6 \\);\r\n                        \\( \\partial_2 f(3, 1) = -36(0)^2 + 8 = 8 \\).\r\n                        Egyenlet: \\( -6(x - 3) + 8(y - 1) - (z + 14) = 0 \\implies \\mathbf{-6x + 8y - z = 4} \\).\r\n                    <\/li>\r\n                    <li><b>\\( Q_0 = (1, 1) \\) eset\u00e9n:<\/b>\r\n                        \\( f(1, 1) = 4(-2)^3 - 6 + 4 = -34 \\);\r\n                        \\( \\partial_1 f(1, 1) = 12(4) - 6 = 42 \\);\r\n                        \\( \\partial_2 f(1, 1) = -36(4) + 8 = -136 \\).\r\n                        Egyenlet: \\( \\mathbf{42(x - 1) - 136(y - 1) - (z + 34) = 0} \\).\r\n                    <\/li>\r\n                <\/ul>","<b>(d) r\u00e9sz: Ir\u00e1nymenti deriv\u00e1lt a \\( P_0 \\) pontban a \\( \\underline{v} = (4, 3) \\) vektor ir\u00e1ny\u00e1ban<\/b><br>\r\n                1. Sz\u00e1m\u00edtsuk ki az ir\u00e1ny egys\u00e9gvektor\u00e1t (\\( \\underline{e} \\)): \\( \\|\\underline{v}\\| = \\sqrt{4^2 + 3^2} = 5 \\), \u00edgy \\( \\underline{e} = (4\/5, 3\/5) \\).\r\n                2. A 7. \u00e1ll\u00edt\u00e1s szerint differenci\u00e1lhat\u00f3 f\u00fcggv\u00e9nyre: \\( D_{\\underline{e}}f(P_0) = \\langle \\text{grad} f(P_0), \\underline{e} \\rangle \\).\r\n                \\[ D_{\\underline{e}}f(3, 1) = \\langle (-6, 8), (4\/5, 3\/5) \\rangle = -6 \\cdot 0,8 + 8 \\cdot 0,6 = -4,8 + 4,8 = \\mathbf{0} \\]","<b>(e) r\u00e9sz: Az ir\u00e1nymenti deriv\u00e1lt sz\u00e9ls\u0151\u00e9rt\u00e9kei \\( P_0 \\)-ban<\/b><br>\r\n                A 8. \u00e1ll\u00edt\u00e1s \u00e9s a 9. megjegyz\u00e9s alapj\u00e1n az ir\u00e1nymenti deriv\u00e1lt maximuma a gradiens hossza, minimuma pedig annak ellentettje:\r\n                <ul>\r\n                    <li><b>Maximum:<\/b> \\( \\|\\text{grad} f(3, 1)\\| = \\sqrt{(-6)^2 + 8^2} = \\sqrt{100} = \\mathbf{10} \\).<\/li>\r\n                    <li><b>Minimum:<\/b> \\( -\\|\\text{grad} f(3, 1)\\| = \\mathbf{-10} \\).<\/li>\r\n                <\/ul>"]},{"title":"6. feladat: Gradiens \u00e9s ir\u00e1nymenti deriv\u00e1lt sz\u00e1m\u00edt\u00e1sa h\u00e1romv\u00e1ltoz\u00f3s f\u00fcggv\u00e9nyre.","wolfram":"gradient of x*z^3 + 7*y^4 - y^2*z; directional derivative of x*z^3 + 7*y^4 - y^2*z at (10,0,-1) in direction (0,4,-3); directional derivative in direction (-2,4,3)","steps":["<h3>A f\u00fcggv\u00e9ny \u00e9s a vizsg\u00e1lt pont: \\( f(x, y, z) = xz^3 + 7y^4 - y^2z \\), \\( P_0 = (10, 0, -1) \\)<\/h3>","<b>(a) r\u00e9sz: A gradiens vektor meghat\u00e1roz\u00e1sa \u00e9s l\u00e9tez\u00e9s\u00e9nek indokl\u00e1sa<\/b><br>\r\n                1. Sz\u00e1m\u00edtsuk ki a parci\u00e1lis deriv\u00e1lt f\u00fcggv\u00e9nyeket az 1. defin\u00edci\u00f3 alapj\u00e1n:\r\n                <ul>\r\n                    <li>\\( \\partial_1 f(x, y, z) = z^3 \\)<\/li>\r\n                    <li>\\( \\partial_2 f(x, y, z) = 28y^3 - 2yz \\)<\/li>\r\n                    <li>\\( \\partial_3 f(x, y, z) = 3xz^2 - y^2 \\)<\/li>\r\n                <\/ul>\r\n                \u00cdgy a gradiens vektor: \\( \\mathbf{\\text{grad} f(x, y, z) = (z^3, 28y^3 - 2yz, 3xz^2 - y^2)} \\).<br>\r\n                2. <b>Mi\u00e9rt l\u00e9tezik?<\/b> A parci\u00e1lis deriv\u00e1lt f\u00fcggv\u00e9nyek polinomok, amelyek a teljes \\( \\mathbb{R}^3 \\) t\u00e9rben folytonosak. Az 5. t\u00e9tel (el\u00e9gs\u00e9ges felt\u00e9tel) alapj\u00e1n, ha a parci\u00e1lis deriv\u00e1ltak egy k\u00f6rnyezetben l\u00e9teznek \u00e9s folytonosak, akkor a f\u00fcggv\u00e9ny tot\u00e1lisan differenci\u00e1lhat\u00f3, aminek k\u00f6vetkezm\u00e9nye a gradiens l\u00e9tez\u00e9se.","<b>(b) r\u00e9sz: Ir\u00e1nymenti deriv\u00e1lt a \\( \\underline{v} = (0, 4, -3) \\) vektor ir\u00e1ny\u00e1ban<\/b><br>\r\n                1. Hat\u00e1rozzuk meg a gradiens \u00e9rt\u00e9k\u00e9t a \\( P_0 = (10, 0, -1) \\) pontban:\r\n                \\[ \\text{grad} f(10, 0, -1) = ((-1)^3, 28(0)^3 - 2(0)(-1), 3(10)(-1)^2 - 0^2) = \\mathbf{(-1, 0, 30)} \\]\r\n                2. Norm\u00e1ljuk az ir\u00e1nyvektort az egys\u00e9gnyi hosszhoz (\\( \\|\\underline{e}\\| = 1 \\)):\r\n                \\[ \\|\\underline{v}\\| = \\sqrt{0^2 + 4^2 + (-3)^2} = \\sqrt{25} = 5 \\implies \\underline{e} = (0, 4\/5, -3\/5) \\]\r\n                3. A 7. \u00e1ll\u00edt\u00e1s alapj\u00e1n az ir\u00e1nymenti deriv\u00e1lt a skal\u00e1ris szorzat:\r\n                \\[ D_{\\underline{e}} f(P_0) = \\langle (-1, 0, 30), (0, 0.8, -0.6) \\rangle = -1 \\cdot 0 + 0 \\cdot 0.8 + 30 \\cdot (-0.6) = \\mathbf{-18} \\]","<b>(c) r\u00e9sz: Ir\u00e1nymenti deriv\u00e1lt a \\( \\underline{w} = (-2, 4, 3) \\) vektor ir\u00e1ny\u00e1ban<\/b><br>\r\n                1. Norm\u00e1ljuk az ir\u00e1nyvektort:\r\n                \\[ \\|\\underline{w}\\| = \\sqrt{(-2)^2 + 4^2 + 3^2} = \\sqrt{4 + 16 + 9} = \\sqrt{29} \\implies \\underline{e}' = \\frac{1}{\\sqrt{29}}(-2, 4, 3) \\]\r\n                2. Sz\u00e1m\u00edtsuk ki a skal\u00e1ris szorzatot:\r\n                \\[ D_{\\underline{e}'} f(P_0) = \\langle (-1, 0, 30), \\frac{1}{\\sqrt{29}}(-2, 4, 3) \\rangle = \\frac{1}{\\sqrt{29}} [(-1)(-2) + 0 \\cdot 4 + 30 \\cdot 3] \\]\r\n                \\[ D_{\\underline{e}'} f(P_0) = \\frac{2 + 90}{\\sqrt{29}} = \\mathbf{\\frac{92}{\\sqrt{29}}} \\]","<b>(d) r\u00e9sz: Az ir\u00e1nymenti deriv\u00e1lt sz\u00e9ls\u0151\u00e9rt\u00e9kei \\( P_0 \\)-ban<\/b><br>\r\n                A 8. \u00e1ll\u00edt\u00e1s szerint az ir\u00e1nymenti deriv\u00e1lt \u00e9rt\u00e9ke a gradiens vektor hossza \u00e9s annak ellentettje k\u00f6z\u00e9 esik:\r\n                \\[ \\text{grad} f(P_0) = (-1, 0, 30) \\implies \\|\\text{grad} f(P_0)\\| = \\sqrt{(-1)^2 + 0^2 + 30^2} = \\mathbf{\\sqrt{901}} \\]\r\n                <ul>\r\n                    <li><b>Maximum:<\/b> \\( \\|\\text{grad} f(P_0)\\| = \\mathbf{\\sqrt{901}} \\) (a gradienssel megegyez\u0151 ir\u00e1nyban).<\/li>\r\n                    <li><b>Minimum:<\/b> \\( -\\|\\text{grad} f(P_0)\\| = \\mathbf{-\\sqrt{901}} \\) (a gradienssel ellent\u00e9tes ir\u00e1nyban).<\/li>\r\n                <\/ul>"]}];
+    const chapterId = 9;
+</script>
+
+<script src="script.js"></script>
+</body>
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=9 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+</html>

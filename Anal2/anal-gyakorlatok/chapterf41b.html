@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=10 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték - Analízis 2</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --main-color: #8b5cf6;
+            --main-color-soft: #8b5cf622; 
+        }
+    </style>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <layout-wrapper>
+        <analizis-sidebar>
+            <sidebar-header>
+                <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+            </sidebar-header>
+            <sidebar-list>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter681a.html?id=1'"
+                        class=""
+                        id="sidebar-item-1"
+                    >
+                        <span class="ch-num">1.</span>
+                        <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0b30.html?id=2'"
+                        class=""
+                        id="sidebar-item-2"
+                    >
+                        <span class="ch-num">2.</span>
+                        <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd708.html?id=3'"
+                        class=""
+                        id="sidebar-item-3"
+                    >
+                        <span class="ch-num">3.</span>
+                        <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterdcfd.html?id=4'"
+                        class=""
+                        id="sidebar-item-4"
+                    >
+                        <span class="ch-num">4.</span>
+                        <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                        <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd61c.html?id=5'"
+                        class=""
+                        id="sidebar-item-5"
+                    >
+                        <span class="ch-num">5.</span>
+                        <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                        <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter3a9f.html?id=6'"
+                        class=""
+                        id="sidebar-item-6"
+                    >
+                        <span class="ch-num">6.</span>
+                        <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                        <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter8803.html?id=7'"
+                        class=""
+                        id="sidebar-item-7"
+                    >
+                        <span class="ch-num">7.</span>
+                        <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                        <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterc3c9.html?id=8'"
+                        class=""
+                        id="sidebar-item-8"
+                    >
+                        <span class="ch-num">8.</span>
+                        <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                        <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter5255.html?id=9'"
+                        class=""
+                        id="sidebar-item-9"
+                    >
+                        <span class="ch-num">9.</span>
+                        <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                        <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterf41b.html?id=10'"
+                        class="active"
+                        id="sidebar-item-10"
+                    >
+                        <span class="ch-num">10.</span>
+                        <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                        <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0055.html?id=11'"
+                        class=""
+                        id="sidebar-item-11"
+                    >
+                        <span class="ch-num">11.</span>
+                        <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                        <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter4ef9.html?id=12'"
+                        class=""
+                        id="sidebar-item-12"
+                    >
+                        <span class="ch-num">12.</span>
+                        <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                        <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter6e03.html?id=13'"
+                        class=""
+                        id="sidebar-item-13"
+                    >
+                        <span class="ch-num">13.</span>
+                        <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                        <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+                    </sidebar-item>
+                            </sidebar-list>
+            <sidebar-footer>
+                <div class="overall-progress">
+                    <div class="progress-label">Kurzus haladás: <span id="totalPercent">0%</span></div>
+                    <div class="progress-track">
+                        <div id="totalProgressBar" class="progress-fill"></div>
+                    </div>
+                </div>
+                
+            </sidebar-footer>
+        </analizis-sidebar>
+
+        <main-content>
+            <analizis-nav>
+                <nav-title><b>10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték<b></nav-title>
+                <nav-actions>
+                    <button id="themeToggle" class="theme-btn">🌙 Éjszakai mód</button>
+                    <button id="theory-menu-toggle" class="menu-toggle-btn">
+    <span>☰</span> Menü
+</button>
+
+<analizis-sidebar id="theory-menu">
+    <sidebar-header>
+        <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+    </sidebar-header>
+    
+    <sidebar-list>
+                    <sidebar-item 
+                onclick="window.location.href='chapter681a.html?id=1'"
+                class=""
+                id="sidebar-item-1"
+            >
+                <span class="ch-num">1.</span>
+                <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0b30.html?id=2'"
+                class=""
+                id="sidebar-item-2"
+            >
+                <span class="ch-num">2.</span>
+                <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd708.html?id=3'"
+                class=""
+                id="sidebar-item-3"
+            >
+                <span class="ch-num">3.</span>
+                <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterdcfd.html?id=4'"
+                class=""
+                id="sidebar-item-4"
+            >
+                <span class="ch-num">4.</span>
+                <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd61c.html?id=5'"
+                class=""
+                id="sidebar-item-5"
+            >
+                <span class="ch-num">5.</span>
+                <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter3a9f.html?id=6'"
+                class=""
+                id="sidebar-item-6"
+            >
+                <span class="ch-num">6.</span>
+                <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter8803.html?id=7'"
+                class=""
+                id="sidebar-item-7"
+            >
+                <span class="ch-num">7.</span>
+                <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterc3c9.html?id=8'"
+                class=""
+                id="sidebar-item-8"
+            >
+                <span class="ch-num">8.</span>
+                <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter5255.html?id=9'"
+                class=""
+                id="sidebar-item-9"
+            >
+                <span class="ch-num">9.</span>
+                <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterf41b.html?id=10'"
+                class="active"
+                id="sidebar-item-10"
+            >
+                <span class="ch-num">10.</span>
+                <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0055.html?id=11'"
+                class=""
+                id="sidebar-item-11"
+            >
+                <span class="ch-num">11.</span>
+                <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter4ef9.html?id=12'"
+                class=""
+                id="sidebar-item-12"
+            >
+                <span class="ch-num">12.</span>
+                <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter6e03.html?id=13'"
+                class=""
+                id="sidebar-item-13"
+            >
+                <span class="ch-num">13.</span>
+                <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+            </sidebar-item>
+            </sidebar-list>
+</analizis-sidebar>
+</button>
+
+                </nav-actions>
+            </analizis-nav>
+            
+            <analizis-content>
+                <theory-section>
+                    <section-header>Elméleti összefoglaló</section-header>
+                    <theory-body>
+        <section>
+            <h2>1. Magasabb rendű parciális deriváltak és a Young-tétel</h2>
+            <p>A többváltozós függvények parciális deriváltjai maguk is többváltozós függvények, így tovább deriválhatóak.</p>
+            
+            <div style="background: #815151; padding: 15px; border-radius: 8px; border-left: 5px solid #ef4444; margin: 10px 0;">
+                <b>1. Tétel: Young-tétel</b><br>
+                Legyen \( f: \mathbb{R}^n \to \mathbb{R} \) függvény. Ha a másodrendű parciális deriváltak léteznek és folytonosak egy \( \underline{a} \) pont környezetében, akkor a vegyes parciális deriváltak értéke független a deriválás sorrendjétől:
+                \[ \partial_{i,j}f(\underline{a}) = \partial_{j,i}f(\underline{a}) \]
+            </div>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>2. A Hesse-mátrix és a kvadratikus alakok definitsége</h2>
+            <p>A második deriváltakból felépített mátrix hordozza az információt a felület görbületéről.</p>
+            
+            <ul>
+                <li><b>4. Definíció: Hesse-mátrix.</b> A Young-tétel feltételeinek teljesülése esetén az \( (\partial_{j,i}f(\underline{a}))_{i,j=1}^n \) szimmetrikus mátrixot \( f \) <b>Hesse-mátrixának</b> nevezzük és \( H_f(\underline{a}) \)-val jelöljük.</li>
+            </ul>
+
+            <p><b>A mátrix definitségének meghatározása (2-3. Tétel):</b></p>
+            <table class="table" style="width: 100%; border-collapse: collapse;">
+                <tr style="background: #9e5959;">
+                    <th style="padding: 8px; border: 1px solid #ef4444;">Típus</th>
+                    <th style="padding: 8px; border: 1px solid #ef4444;">Sajátértékek (\( \lambda \))</th>
+                    <th style="padding: 8px; border: 1px solid #ef4444;">Sylvester-kritérium (Alminorok)</th>
+                </tr>
+                <tr>
+                    <td><b>Pozitív definit</b></td>
+                    <td>Minden \( \lambda_i > 0 \)</td>
+                    <td>Minden \( D_k > 0 \)</td>
+                </tr>
+                <tr>
+                    <td><b>Negatív definit</b></td>
+                    <td>Minden \( \lambda_i < 0 \)</td>
+                    <td>\( (-1)^k D_k > 0 \) (váltakozó előjel: \( -, +, -, \dots \))</td>
+                </tr>
+                <tr>
+                    <td><b>Indefinit</b></td>
+                    <td>Van pozitív és negatív is</td>
+                    <td>Nem teljesül a többi feltétel (pl. \( D_2 < 0 \))</td>
+                </tr>
+            </table>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>3. Lokális szélsőérték létezésének feltételei</h2>
+            <p>A szélsőérték-keresés két lépésből áll: stacionárius pontok keresése, majd azok osztályozása.</p>
+            
+            <div style="background: #a16262; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                <b>5. Tétel: Elégséges feltétel szélsőérték létezéséhez</b><br>
+                Tegyük fel, hogy \( \text{grad} f(\underline{a}) = \underline{0} \) (stacionárius pont). Ekkor:
+                <ul>
+                    <li>Ha \( H_f(\underline{a}) \) <b>negatív definit</b> \(\implies\) \( f \)-nek lokális <b>maximuma</b> van \( \underline{a} \)-ban.</li>
+                    <li>Ha \( H_f(\underline{a}) \) <b>pozitív definit</b> \(\implies\) \( f \)-nek lokális <b>minimuma</b> van \( \underline{a} \)-ban.</li>
+                    <li>Ha \( H_f(\underline{a}) \) <b>indefinit</b> \(\implies\) nincs szélsőérték (nyeregpont).</li>
+                </ul>
+            </div>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>4. Jacobi-mátrix és összetett függvények deriválása</h2>
+            <p>Ha a függvény értéke is vektor (\( \underline{f}: \mathbb{R}^n \to \mathbb{R}^m \)), a deriváltat egy mátrix reprezentálja.</p>
+            
+            <ul>
+                <li><b>6. Tétel: Jacobi-mátrix.</b> Az \( \underline{f} \) deriváltja az \( m \times n \)-es mátrix, amelynek sorai az egyes komponensfüggvények gradiensei.</li>
+                <li><b>7. Tétel: Láncszabály.</b> Összetett függvény deriváltja a belső és külső függvény Jacobi-mátrixainak szorzata:
+                    \[ (\underline{f} \circ \underline{g})'(\underline{a}) = \underline{f}'(\underline{g}(\underline{a})) \cdot \underline{g}'(\underline{a}) \]
+                </li>
+            </ul>
+        </section>
+    </theory-body>
+                </theory-section>
+
+                <practice-section>
+    <section-header>Példafeladatok</section-header>
+    
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat: Másodrendű parciális deriváltak és a Young-tétel igazolása</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="second+partial+derivatives+of+sin%28x%5E2+%2A+ln%28y%29%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="0">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="0">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">2. feladat: Kétváltozós függvény lokális szélsőértékeinek meghatározása</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="local+extrema+of+x%2Ay%2A%282x+%2B+4y+%2B+1%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="1">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="1">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">3. feladat: Kétváltozós függvény lokális szélsőértékeinek meghatározása</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="local+extrema+of+%28x%2By%2B1%29%5E2+-+%28x%5E2-4%29%5E2"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="2">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="2">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">4. feladat: Szélsőértékek keresése nem-izolált stacionárius pontok esetén</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="local+extrema+of+x%5E2+%2A+y%5E2"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="3">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="3">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">5. feladat: Háromváltozós függvény lokális szélsőértékeinek meghatározása</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="local+extrema+of+x%5E2+%2B+y%5E2+%2B+z%5E3+%2B+y+-+3z+-+xy"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="4">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="4">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">6. feladat: Abszolút szélsőértékek keresése zárt tartományon</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="absolute+extrema+of+e%5E%28-x%5E2-y%5E2%29%2A%282x%5E2%2B3y%5E2%29+on+x%5E2%2By%5E2%3C%3D1"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="5">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="5">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">7. feladat: Abszolút szélsőértékek keresése az egységnégyzeten</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="absolute+extrema+of+4%2Ax%5E2+%2B+2%2Ax%2Ay+-+3%2Ay%5E2+on+%5B0%2C1%5Dx%5B0%2C1%5D"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="6">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="6">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+    
+</practice-section>
+
+<script>
+    const allTasks = [{"title":"1. feladat: M\u00e1sodrend\u0171 parci\u00e1lis deriv\u00e1ltak \u00e9s a Young-t\u00e9tel igazol\u00e1sa","wolfram":"second partial derivatives of sin(x^2 * ln(y))","steps":["<h3>A vizsg\u00e1lt f\u00fcggv\u00e9ny: \\( f(x, y) = \\sin(x^2 \\ln(y)) \\), ahol \\( y > 0 \\)<\/h3>","<b>1. L\u00e9p\u00e9s: Az els\u0151rend\u0171 parci\u00e1lis deriv\u00e1ltak meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                A bels\u0151 f\u00fcggv\u00e9ny deriv\u00e1ltj\u00e1t a l\u00e1ncszab\u00e1llyal sz\u00e1moljuk:\r\n                <ul>\r\n                    <li><b>\\( x \\) szerint (\\( \\partial_1 f \\)):<\/b> \\( \\partial_1 f(x, y) = \\cos(x^2 \\ln(y)) \\cdot 2x \\ln(y) \\)<\/li>\r\n                    <li><b>\\( y \\) szerint (\\( \\partial_2 f \\)):<\/b> \\( \\partial_2 f(x, y) = \\cos(x^2 \\ln(y)) \\cdot \\frac{x^2}{y} \\)<\/li>\r\n                <\/ul>","<b>2. L\u00e9p\u00e9s: A tiszta m\u00e1sodrend\u0171 parci\u00e1lis deriv\u00e1ltak (\\( \\partial_{1,1} \\) \u00e9s \\( \\partial_{2,2} \\)).<\/b><br>\r\n                Alkalmazzuk a szorzat- \u00e9s l\u00e1ncszab\u00e1lyt:\r\n                <ul>\r\n                    <li><b>\\( \\partial_{1,1} f \\):<\/b> Deriv\u00e1ljuk \\( \\partial_1 f \\)-et \u00fajra \\( x \\) szerint:\r\n                        \\[ \\partial_{1} (2x \\ln(y) \\cos(x^2 \\ln(y))) = 2 \\ln(y) \\cos(x^2 \\ln(y)) + 2x \\ln(y) [-\\sin(x^2 \\ln(y)) \\cdot 2x \\ln(y)] \\]\r\n                        \\[ = \\mathbf{-4x^2 \\sin(x^2 \\ln(y)) \\ln^2(y) + 2 \\cos(x^2 \\ln(y)) \\ln(y)} \\]\r\n                    <\/li>\r\n                    <li><b>\\( \\partial_{2,2} f \\):<\/b> Deriv\u00e1ljuk \\( \\partial_2 f \\)-et \u00fajra \\( y \\) szerint:\r\n                        \\[ \\partial_{2} \\left( \\frac{x^2}{y} \\cos(x^2 \\ln(y)) \\right) = -\\frac{x^2}{y^2} \\cos(x^2 \\ln(y)) + \\frac{x^2}{y} \\left[ -\\sin(x^2 \\ln(y)) \\cdot \\frac{x^2}{y} \\right] \\]\r\n                        \\[ = \\mathbf{-\\frac{x^4}{y^2} \\sin(x^2 \\ln(y)) - \\frac{x^2}{y^2} \\cos(x^2 \\ln(y))} \\]\r\n                    <\/li>\r\n                <\/ul>","<b>3. L\u00e9p\u00e9s: A vegyes m\u00e1sodrend\u0171 parci\u00e1lis deriv\u00e1ltak (\\( \\partial_{1,2} \\) \u00e9s \\( \\partial_{2,1} \\)).<\/b><br>\r\n                Ellen\u0151rizz\u00fck a Young-t\u00e9telt a k\u00e9tf\u00e9le sorrend\u0171 deriv\u00e1l\u00e1ssal:\r\n                <ul>\r\n                    <li><b>\\( \\partial_{1,2} f \\) (el\u0151sz\u00f6r \\( x \\), majd \\( y \\)):<\/b>\r\n                        \\[ \\partial_{2} (2x \\ln(y) \\cos(x^2 \\ln(y))) = 2x \\cdot \\frac{1}{y} \\cdot \\cos(x^2 \\ln(y)) + 2x \\ln(y) \\left[ -\\sin(x^2 \\ln(y)) \\cdot \\frac{x^2}{y} \\right] \\]\r\n                        \\[ = \\mathbf{-\\frac{2x^3}{y} \\sin(x^2 \\ln(y)) \\ln(y) + \\frac{2x}{y} \\cos(x^2 \\ln(y))} \\]\r\n                    <\/li>\r\n                    <li><b>\\( \\partial_{2,1} f \\) (el\u0151sz\u00f6r \\( y \\), majd \\( x \\)):<\/b>\r\n                        \\[ \\partial_{1} \\left( \\frac{x^2}{y} \\cos(x^2 \\ln(y)) \\right) = \\frac{2x}{y} \\cos(x^2 \\ln(y)) + \\frac{x^2}{y} [-\\sin(x^2 \\ln(y)) \\cdot 2x \\ln(y)] \\]\r\n                        \\[ = \\mathbf{-\\frac{2x^3}{y} \\sin(x^2 \\ln(y)) \\ln(y) + \\frac{2x}{y} \\cos(x^2 \\ln(y))} \\]\r\n                    <\/li>\r\n                <\/ul>","<b>4. Konkl\u00fazi\u00f3: A Young-t\u00e9tel teljes\u00fcl\u00e9se.<\/b><br>\r\n                L\u00e1that\u00f3, hogy a k\u00e9t vegyes parci\u00e1lis deriv\u00e1lt megegyezik: \\( \\partial_{1,2} f = \\partial_{2,1} f \\).\r\n                Ez \u00f6sszhangban van a <b>Young-t\u00e9tellel<\/b>, mivel a kapott deriv\u00e1ltf\u00fcggv\u00e9nyek folytonosak az \\( y > 0 \\) tartom\u00e1nyon (elemi f\u00fcggv\u00e9nyek kompoz\u00edci\u00f3i \u00e9s szorzatai, ahol a nevez\u0151 nem nulla)."]},{"title":"2. feladat: K\u00e9tv\u00e1ltoz\u00f3s f\u00fcggv\u00e9ny lok\u00e1lis sz\u00e9ls\u0151\u00e9rt\u00e9keinek meghat\u00e1roz\u00e1sa","wolfram":"local extrema of x*y*(2x + 4y + 1)","steps":["<h3>A vizsg\u00e1lt f\u00fcggv\u00e9ny: \\( f(x, y) = xy(2x + 4y + 1) = 2x^2y + 4xy^2 + xy \\)<\/h3>","<b>1. L\u00e9p\u00e9s: A stacion\u00e1rius pontok megkeres\u00e9se (Sz\u00fcks\u00e9ges felt\u00e9tel).<\/b><br>\r\n                Az 5. t\u00e9tel alapj\u00e1n sz\u00e9ls\u0151\u00e9rt\u00e9k csak ott lehet, ahol a gradiens vektor nulla: \\( \\text{grad} f(x, y) = \\underline{0} \\).\r\n                Sz\u00e1m\u00edtsuk ki az els\u0151rend\u0171 parci\u00e1lis deriv\u00e1ltakat:\r\n                <ul>\r\n                    <li>\\( \\partial_1 f(x, y) = 4xy + 4y^2 + y = y(4x + 4y + 1) \\)<\/li>\r\n                    <li>\\( \\partial_2 f(x, y) = 2x^2 + 8xy + x = x(2x + 8y + 1) \\)<\/li>\r\n                <\/ul>\r\n                Meg kell oldanunk az al\u00e1bbi egyenletrendszert:\r\n                1) \\( y(4x + 4y + 1) = 0 \\)\r\n                2) \\( x(2x + 8y + 1) = 0 \\)","<b>2. L\u00e9p\u00e9s: Az egyenletrendszer megold\u00e1sa.<\/b><br>\r\n                <ul>\r\n                    <li>Ha \\( y = 0 \\), akkor a 2) egyenletb\u0151l \\( x(2x + 1) = 0 \\), amib\u0151l \\( x_1 = 0 \\) vagy \\( x_2 = -1\/2 \\). Pontok: <b>\\( (0, 0) \\)<\/b> \u00e9s <b>\\( (-1\/2, 0) \\)<\/b>.<\/li>\r\n                    <li>Ha \\( x = 0 \\), akkor az 1) egyenletb\u0151l \\( y(4y + 1) = 0 \\), amib\u0151l \\( y_1 = 0 \\) vagy \\( y_2 = -1\/4 \\). \u00daj pont: <b>\\( (0, -1\/4) \\)<\/b>.<\/li>\r\n                    <li>Ha egyik sem nulla, akkor a z\u00e1r\u00f3jeleknek kell null\u00e1nak lenni\u00fck:\r\n                        \\[ 4x + 4y = -1 \\]\r\n                        \\[ 2x + 8y = -1 \\]\r\n                        A m\u00e1sodik egyenletet kett\u0151vel szorozva \u00e9s kivonva az els\u0151b\u0151l: \\( 12y = -1 \\implies \\mathbf{y = -1\/12} \\).\r\n                        Ezt visszahelyettes\u00edtve: \\( 4x + 4(-1\/12) = -1 \\implies 4x - 1\/3 = -1 \\implies 4x = -2\/3 \\implies \\mathbf{x = -1\/6} \\).\r\n                        \u00daj pont: <b>\\( (-1\/6, -1\/12) \\)<\/b>.\r\n                    <\/li>\r\n                <\/ul>","<b>3. L\u00e9p\u00e9s: M\u00e1sodrend\u0171 parci\u00e1lis deriv\u00e1ltak \u00e9s a Hesse-m\u00e1trix.<\/b><br>\r\n                Az oszt\u00e1lyoz\u00e1shoz sz\u00fcks\u00e9g\u00fcnk van a 4. defin\u00edci\u00f3 szerinti Hesse-m\u00e1trixra:\r\n                <ul>\r\n                    <li>\\( \\partial_{1,1} f = 4y \\)<\/li>\r\n                    <li>\\( \\partial_{2,2} f = 8x \\)<\/li>\r\n                    <li>\\( \\partial_{1,2} f = \\partial_{2,1} f = 4x + 8y + 1 \\) (Young-t\u00e9tel alapj\u00e1n)<\/li>\r\n                <\/ul>\r\n                A Hesse-m\u00e1trix \u00e1ltal\u00e1nos alakja:\r\n                \\[ H_f(x, y) = \\begin{pmatrix} 4y & 4x + 8y + 1 \\ 4x + 8y + 1 & 8x \\end{pmatrix} \\]","<b>4. L\u00e9p\u00e9s: A stacion\u00e1rius pontok oszt\u00e1lyoz\u00e1sa.<\/b><br>\r\n                Vizsg\u00e1ljuk meg a kritikus pontot: <b>\\( P(-1\/6, -1\/12) \\)<\/b>.<br>\r\n                Helyettes\u00edts\u00fck be a koordin\u00e1t\u00e1kat a m\u00e1trixba:\r\n                \\[ \\partial_{1,1} f = 4(-1\/12) = -1\/3 \\]\r\n                \\[ \\partial_{2,2} f = 8(-1\/6) = -4\/3 \\]\r\n                \\[ \\partial_{1,2} f = 4(-1\/6) + 8(-1\/12) + 1 = -2\/3 - 2\/3 + 1 = -1\/3 \\]\r\n                \\[ H_f(-1\/6, -1\/12) = \\begin{pmatrix} -1\/3 & -1\/3 \\ -1\/3 & -4\/3 \\end{pmatrix} \\]\r\n                Sz\u00e1m\u00edtsuk ki az alminorokat (Sylvester-krit\u00e9rium, 3. t\u00e9tel):\r\n                <ul>\r\n                    <li>\\( D_1 = -1\/3 < 0 \\)<\/li>\r\n                    <li>\\( D_2 = (-1\/3)(-4\/3) - (-1\/3)^2 = 4\/9 - 1\/9 = 3\/9 = 1\/3 > 0 \\)<\/li>\r\n                <\/ul>\r\n                Mivel \\( D_1 < 0 \\) \u00e9s \\( D_2 > 0 \\), a m\u00e1trix <b>negat\u00edv definit<\/b>.","<b>5. Konkl\u00fazi\u00f3.<\/b><br>\r\n                Az 5. t\u00e9tel alapj\u00e1n, mivel a gradiens nulla \u00e9s a Hesse-m\u00e1trix negat\u00edv definit a \\( (-1\/6, -1\/12) \\) pontban, ott a f\u00fcggv\u00e9nynek <b>lok\u00e1lis maximuma<\/b> van.<br>\r\n                <i>Megjegyz\u00e9s:<\/i> A t\u00f6bbi pontban (\\( (0,0), (-1\/2,0), (0,-1\/4) \\)) a determin\u00e1ns \\( D_2 = -1 < 0 \\), teh\u00e1t a m\u00e1trix indefinit, \u00edgy ott <b>nyeregpontok<\/b> tal\u00e1lhat\u00f3k."]},{"title":"3. feladat: K\u00e9tv\u00e1ltoz\u00f3s f\u00fcggv\u00e9ny lok\u00e1lis sz\u00e9ls\u0151\u00e9rt\u00e9keinek meghat\u00e1roz\u00e1sa","wolfram":"local extrema of (x+y+1)^2 - (x^2-4)^2","steps":["<h3>A vizsg\u00e1lt f\u00fcggv\u00e9ny: \\( f(x, y) = (x + y + 1)^2 - (x^2 - 4)^2 \\)<\/h3>","<b>1. L\u00e9p\u00e9s: A stacion\u00e1rius pontok megkeres\u00e9se (Sz\u00fcks\u00e9ges felt\u00e9tel).<\/b><br>\r\n                A sz\u00e9ls\u0151\u00e9rt\u00e9k l\u00e9tez\u00e9s\u00e9nek sz\u00fcks\u00e9ges felt\u00e9tele, hogy a gradiens vektor nulla legyen: \\( \\text{grad} f(x, y) = \\underline{0} \\).\r\n                Hat\u00e1rozzuk meg az els\u0151rend\u0171 parci\u00e1lis deriv\u00e1ltakat a l\u00e1ncszab\u00e1ly seg\u00edts\u00e9g\u00e9vel:\r\n                <ul>\r\n                    <li>\\( \\partial_1 f(x, y) = 2(x + y + 1) \\cdot 1 - 2(x^2 - 4) \\cdot 2x = 2(x + y + 1) - 4x(x^2 - 4) \\)<\/li>\r\n                    <li>\\( \\partial_2 f(x, y) = 2(x + y + 1) \\cdot 1 = 2(x + y + 1) \\)<\/li>\r\n                <\/ul>\r\n                Megoldand\u00f3 egyenletrendszer:\r\n                1) \\( 2(x + y + 1) - 4x(x^2 - 4) = 0 \\)\r\n                2) \\( 2(x + y + 1) = 0 \\)","<b>2. L\u00e9p\u00e9s: Az egyenletrendszer megold\u00e1sa.<\/b><br>\r\n                A 2) egyenletb\u0151l k\u00f6vetkezik:\r\n                \\[ x + y + 1 = 0 \\implies y = -x - 1 \\]\r\n                Ezt helyettes\u00edts\u00fck be az 1) egyenletbe:\r\n                \\[ 2(0) - 4x(x^2 - 4) = 0 \\implies -4x(x - 2)(x + 2) = 0 \\]\r\n                A lehets\u00e9ges \\( x \\) \u00e9rt\u00e9kek: \\( x_1 = 0, x_2 = 2, x_3 = -2 \\).\r\n                A megfelel\u0151 \\( y \\) \u00e9rt\u00e9kek meghat\u00e1roz\u00e1sa (\\( y = -x - 1 \\)):\r\n                <ul>\r\n                    <li>Ha \\( x_1 = 0 \\), akkor \\( y_1 = -1 \\). Pont: <b>\\( P_1(0, -1) \\)<\/b>.<\/li>\r\n                    <li>Ha \\( x_2 = 2 \\), akkor \\( y_2 = -3 \\). Pont: <b>\\( P_2(2, -3) \\)<\/b>.<\/li>\r\n                    <li>Ha \\( x_3 = -2 \\), akkor \\( y_3 = 1 \\). Pont: <b>\\( P_3(-2, 1) \\)<\/b>.<\/li>\r\n                <\/ul>","<b>3. L\u00e9p\u00e9s: M\u00e1sodrend\u0171 parci\u00e1lis deriv\u00e1ltak \u00e9s a Hesse-m\u00e1trix fel\u00edr\u00e1sa.<\/b><br>\r\n                Sz\u00e1m\u00edtsuk ki a m\u00e1sodrend\u0171 parci\u00e1lis deriv\u00e1ltakat:\r\n                <ul>\r\n                    <li>\\( \\partial_{1,1} f = \\partial_x (2x + 2y + 2 - 4x^3 + 16x) = 2 - 12x^2 + 16 = 18 - 12x^2 \\)<\/li>\r\n                    <li>\\( \\partial_{2,2} f = \\partial_y (2x + 2y + 2) = 2 \\)<\/li>\r\n                    <li>\\( \\partial_{1,2} f = \\partial_{2,1} f = \\partial_y (2x + 2y + 2 - 4x^3 + 16x) = 2 \\)<\/li>\r\n                <\/ul>\r\n                A Hesse-m\u00e1trix:\r\n                \\[ H_f(x, y) = \\begin{pmatrix} 18 - 12x^2 & 2 \\ 2 & 2 \\end{pmatrix} \\]","<b>4. L\u00e9p\u00e9s: A stacion\u00e1rius pontok oszt\u00e1lyoz\u00e1sa.<\/b><br>\r\n                Alkalmazzuk a Sylvester-krit\u00e9riumot (3. t\u00e9tel):\r\n                <ul>\r\n                    <li><b>\\( P_1(0, -1) \\) pontban:<\/b>\r\n                        \\[ H_f(0, -1) = \\begin{pmatrix} 18 & 2 \\ 2 & 2 \\end{pmatrix} \\]\r\n                        \\( D_1 = 18 > 0 \\), \\( D_2 = 18 \\cdot 2 - 2^2 = 36 - 4 = 32 > 0 \\).\r\n                        Pozit\u00edv definit \\(\\implies\\) <b>Lok\u00e1lis minimum<\/b>.\r\n                    <\/li>\r\n                    <li><b>\\( P_2(2, -3) \\) \u00e9s \\( P_3(-2, 1) \\) pontokban:<\/b>\r\n                        Mivel a m\u00e1trixban csak \\( x^2 \\) szerepel, mindk\u00e9t pontban ugyanazt kapjuk:\r\n                        \\[ H_f(\\pm 2, y) = \\begin{pmatrix} 18 - 12(4) & 2 \\ 2 & 2 \\end{pmatrix} = \\begin{pmatrix} -30 & 2 \\ 2 & 2 \\end{pmatrix} \\]\r\n                        \\( D_1 = -30 < 0 \\), \\( D_2 = -30 \\cdot 2 - 2^2 = -60 - 4 = -64 < 0 \\).\r\n                        Indefinit \\(\\implies\\) <b>Nyeregpontok<\/b>.\r\n                    <\/li>\r\n                <\/ul>","<b>5. Konkl\u00fazi\u00f3.<\/b><br>\r\n                A f\u00fcggv\u00e9nynek egyetlen lok\u00e1lis sz\u00e9ls\u0151\u00e9rt\u00e9k-helye van: a <b>\\( (0, -1) \\) pontban lok\u00e1lis minimuma<\/b> van."]},{"title":"4. feladat: Sz\u00e9ls\u0151\u00e9rt\u00e9kek keres\u00e9se nem-izol\u00e1lt stacion\u00e1rius pontok eset\u00e9n","wolfram":"local extrema of x^2 * y^2","steps":["<h3>A vizsg\u00e1lt f\u00fcggv\u00e9ny: \\( f(x, y) = x^2 y^2 \\)<\/h3>","<b>1. L\u00e9p\u00e9s: Els\u0151rend\u0171 parci\u00e1lis deriv\u00e1ltak \u00e9s stacion\u00e1rius pontok.<\/b><br>\r\n                A 10. fejezet 5. t\u00e9tele alapj\u00e1n a sz\u00e9ls\u0151\u00e9rt\u00e9k sz\u00fcks\u00e9ges felt\u00e9tele a gradiens elt\u0171n\u00e9se:\r\n                <ul>\r\n                    <li>\\( \\partial_1 f(x, y) = 2x y^2 \\)<\/li>\r\n                    <li>\\( \\partial_2 f(x, y) = 2x^2 y \\)<\/li>\r\n                <\/ul>\r\n                A \\( \\text{grad} f(x, y) = \\underline{0} \\) felt\u00e9tel akkor teljes\u00fcl, ha:\r\n                \\[ 2x y^2 = 0 \\quad \\text{\u00e9s} \\quad 2x^2 y = 0 \\]\r\n                L\u00e1that\u00f3, hogy ez minden olyan pontban igaz, ahol legal\u00e1bb az egyik koordin\u00e1ta nulla.\r\n                <b>Stacion\u00e1rius pontok halmaza:<\/b> A koordin\u00e1tatengelyek \u00f6sszes pontja: \\( \\{(x, 0) : x \\in \\mathbb{R}\\} \\cup \\{(0, y) : y \\in \\mathbb{R}\\} \\).","<b>2. L\u00e9p\u00e9s: M\u00e1sodrend\u0171 parci\u00e1lis deriv\u00e1ltak \u00e9s a Hesse-m\u00e1trix.<\/b><br>\r\n                Sz\u00e1m\u00edtsuk ki a m\u00e1sodrend\u0171 deriv\u00e1ltakat az oszt\u00e1lyoz\u00e1shoz:\r\n                <ul>\r\n                    <li>\\( \\partial_{1,1} f = 2y^2 \\)<\/li>\r\n                    <li>\\( \\partial_{2,2} f = 2x^2 \\)<\/li>\r\n                    <li>\\( \\partial_{1,2} f = \\partial_{2,1} f = 4xy \\)<\/li>\r\n                <\/ul>\r\n                A Hesse-m\u00e1trix:\r\n                \\[ H_f(x, y) = \\begin{pmatrix} 2y^2 & 4xy \\ 4xy & 2x^2 \\end{pmatrix} \\]","<b>3. L\u00e9p\u00e9s: A definits\u00e9g vizsg\u00e1lata a tengelyeken.<\/b><br>\r\n                Vizsg\u00e1ljuk meg a m\u00e1trix determin\u00e1ns\u00e1t (\\( D_2 \\)) a stacion\u00e1rius pontokban:\r\n                <ul>\r\n                    <li>Az \\( x \\)-tengelyen (\\( y=0 \\)): \\( H_f(x, 0) = \\begin{pmatrix} 0 & 0 \\ 0 & 2x^2 \\end{pmatrix} \\implies D_2 = 0 \\).<\/li>\r\n                    <li>Az \\( y \\)-tengelyen (\\( x=0 \\)): \\( H_f(0, y) = \\begin{pmatrix} 2y^2 & 0 \\ 0 & 0 \\end{pmatrix} \\implies D_2 = 0 \\).<\/li>\r\n                <\/ul>\r\n                Mivel a determin\u00e1ns nulla, a m\u00e1trix <b>pozit\u00edv szemidefinit<\/b>. Az 5. t\u00e9tel (el\u00e9gs\u00e9ges felt\u00e9tel) ebben az esetben nem d\u00f6nt a sz\u00e9ls\u0151\u00e9rt\u00e9k l\u00e9tez\u00e9s\u00e9r\u0151l, \u00edgy kvalitat\u00edv vizsg\u00e1latra van sz\u00fcks\u00e9g.","<b>4. L\u00e9p\u00e9s: Glob\u00e1lis \u00e9s lok\u00e1lis sz\u00e9ls\u0151\u00e9rt\u00e9kek elemz\u00e9se.<\/b><br>\r\n                Vegy\u00fck \u00e9szre a f\u00fcggv\u00e9ny alakj\u00e1t: \\( f(x, y) = x^2 y^2 = (xy)^2 \\).\r\n                <ul>\r\n                    <li>Mivel a n\u00e9gyzetsz\u00e1mok nem-negat\u00edvak, \\( f(x, y) \\geq 0 \\) minden \\( (x, y) \\in \\mathbb{R}^2 \\) eset\u00e9n.<\/li>\r\n                    <li>A koordin\u00e1tatengelyek pontjaiban a f\u00fcggv\u00e9ny \u00e9rt\u00e9ke pontosan nulla: \\( f(x, 0) = 0 \\) \u00e9s \\( f(0, y) = 0 \\).<\/li>\r\n                    <li>Mivel a f\u00fcggv\u00e9ny mindenhol m\u00e1shol pozit\u00edv vagy nulla, a nulla a f\u00fcggv\u00e9ny <b>abszol\u00fat (glob\u00e1lis) minimuma<\/b>.<\/li>\r\n                <\/ul>\r\n                Mivel minden abszol\u00fat minimum egyben lok\u00e1lis minimum is, a tengelyek minden pontja lok\u00e1lis minimumhely.","<b>5. Konkl\u00fazi\u00f3.<\/b><br>\r\n                A f\u00fcggv\u00e9nynek a <b>koordin\u00e1tatengelyek minden pontj\u00e1ban lok\u00e1lis \u00e9s abszol\u00fat minimuma van<\/b>. Abszol\u00fat maximuma nincs, mert a f\u00fcggv\u00e9ny minden hat\u00e1ron t\u00fal n\u0151het."]},{"title":"5. feladat: H\u00e1romv\u00e1ltoz\u00f3s f\u00fcggv\u00e9ny lok\u00e1lis sz\u00e9ls\u0151\u00e9rt\u00e9keinek meghat\u00e1roz\u00e1sa","wolfram":"local extrema of x^2 + y^2 + z^3 + y - 3z - xy","steps":["<h3>A vizsg\u00e1lt f\u00fcggv\u00e9ny: \\( f(x, y, z) = x^2 + y^2 + z^3 + y - 3z - xy \\)<\/h3>","<b>1. L\u00e9p\u00e9s: A stacion\u00e1rius pontok megkeres\u00e9se (Sz\u00fcks\u00e9ges felt\u00e9tel).<\/b><br>\r\n                Sz\u00e9ls\u0151\u00e9rt\u00e9k ott l\u00e9tezhet, ahol a gradiens vektor nulla: \\( \\text{grad} f(x, y, z) = \\underline{0} \\).\r\n                Sz\u00e1m\u00edtsuk ki az els\u0151rend\u0171 parci\u00e1lis deriv\u00e1ltakat:\r\n                <ul>\r\n                    <li>\\( f'_x = 2x - y \\)<\/li>\r\n                    <li>\\( f'_y = 2y + 1 - x \\)<\/li>\r\n                    <li>\\( f'_z = 3z^2 - 3 \\)<\/li>\r\n                <\/ul>\r\n                Az egyenletrendszer megold\u00e1sa:\r\n                1) \\( 2x - y = 0 \\implies y = 2x \\)\r\n                2) \\( 2y + 1 - x = 0 \\implies 2(2x) + 1 - x = 0 \\implies 3x = -1 \\implies \\mathbf{x = -1\/3} \\)\r\n                3) \\( y = 2(-1\/3) = \\mathbf{-2\/3} \\)\r\n                4) \\( 3z^2 - 3 = 0 \\implies z^2 = 1 \\implies \\mathbf{z = \\pm 1} \\)\r\n                K\u00e9t stacion\u00e1rius pontot kaptunk: <b>\\( P_1(-1\/3, -2\/3, 1) \\)<\/b> \u00e9s <b>\\( P_2(-1\/3, -2\/3, -1) \\)<\/b>.","<b>2. L\u00e9p\u00e9s: M\u00e1sodrend\u0171 parci\u00e1lis deriv\u00e1ltak \u00e9s a Hesse-m\u00e1trix.<\/b><br>\r\n                A Young-t\u00e9tel felt\u00e9teleinek teljes\u00fcl\u00e9se mellett \u00e1ll\u00edtsuk fel az \\( f \\) m\u00e1sodrend\u0171 deriv\u00e1ltjaib\u00f3l \u00e1ll\u00f3 m\u00e1trixot:\r\n                <ul>\r\n                    <li>\\( f''_{xx} = 2 \\), \\( f''_{yy} = 2 \\), \\( f''_{zz} = 6z \\)<\/li>\r\n                    <li>\\( f''_{xy} = -1 \\), \\( f''_{xz} = 0 \\), \\( f''_{yz} = 0 \\)<\/li>\r\n                <\/ul>\r\n                A Hesse-m\u00e1trix \u00e1ltal\u00e1nos alakja:\r\n                \\[ H_f(x, y, z) = \\begin{pmatrix} 2 & -1 & 0 \\ -1 & 2 & 0 \\ 0 & 0 & 6z \\end{pmatrix} \\]","<b>3. L\u00e9p\u00e9s: Oszt\u00e1lyoz\u00e1s a Sylvester-krit\u00e9riummal a \\( P_1(-1\/3, -2\/3, 1) \\) pontban.<\/b><br>\r\n                Behelyettes\u00edtve \\( z = 1 \\)-et:\r\n                \\[ H_f(P_1) = \\begin{pmatrix} 2 & -1 & 0 \\ -1 & 2 & 0 \\ 0 & 0 & 6 \\end{pmatrix} \\]\r\n                Sz\u00e1m\u00edtsuk ki a f\u0151minorokat (\\( D_k \\)):\r\n                <ul>\r\n                    <li>\\( D_1 = 2 > 0 \\)<\/li>\r\n                    <li>\\( D_2 = 2 \\cdot 2 - (-1)^2 = 3 > 0 \\)<\/li>\r\n                    <li>\\( D_3 = 6 \\cdot D_2 = 18 > 0 \\)<\/li>\r\n                <\/ul>\r\n                Mivel minden f\u0151minor pozit\u00edv, a m\u00e1trix <b>pozit\u00edv definit<\/b>. Az 5. t\u00e9tel alapj\u00e1n itt lok\u00e1lis <b>minimum<\/b> van.","<b>4. L\u00e9p\u00e9s: Oszt\u00e1lyoz\u00e1s a \\( P_2(-1\/3, -2\/3, -1) \\) pontban.<\/b><br>\r\n                Behelyettes\u00edtve \\( z = -1 \\)-et:\r\n                \\[ H_f(P_2) = \\begin{pmatrix} 2 & -1 & 0 \\ -1 & 2 & 0 \\ 0 & 0 & -6 \\end{pmatrix} \\]\r\n                Minorok: \\( D_1 = 2 \\), \\( D_2 = 3 \\), \\( D_3 = -18 \\).\r\n                Mivel a minorok sorozata (\\( +, +, - \\)) nem felel meg sem a pozit\u00edv (\\( +, +, + \\)), sem a negat\u00edv (\\( -, +, - \\)) definits\u00e9gnek, a m\u00e1trix <b>indefinit<\/b> (van pozit\u00edv \u00e9s negat\u00edv saj\u00e1t\u00e9rt\u00e9ke).\r\n                <b>Eredm\u00e9ny:<\/b> \\( P_2 \\) egy <b>nyeregpont<\/b> (nincs sz\u00e9ls\u0151\u00e9rt\u00e9k).","<b>5. Konkl\u00fazi\u00f3.<\/b><br>\r\n                A f\u00fcggv\u00e9nynek egyetlen lok\u00e1lis sz\u00e9ls\u0151\u00e9rt\u00e9k-helye van: a <b>\\( (-1\/3, -2\/3, 1) \\) pontban lok\u00e1lis minimuma<\/b> van."]},{"title":"6. feladat: Abszol\u00fat sz\u00e9ls\u0151\u00e9rt\u00e9kek keres\u00e9se z\u00e1rt tartom\u00e1nyon","wolfram":"absolute extrema of e^(-x^2-y^2)*(2x^2+3y^2) on x^2+y^2<=1","steps":["<h3>A vizsg\u00e1lt f\u00fcggv\u00e9ny: \\( f(x, y) = e^{-x^2-y^2}(2x^2 + 3y^2) \\) a z\u00e1rt egys\u00e9gk\u00f6rlapon (\\( D = \\{(x, y) : x^2 + y^2 \\le 1\\} \\))<\/h3>","<b>1. L\u00e9p\u00e9s: Stacion\u00e1rius pontok keres\u00e9se a tartom\u00e1ny belsej\u00e9ben.<\/b><br>\r\n                A sz\u00e9ls\u0151\u00e9rt\u00e9k sz\u00fcks\u00e9ges felt\u00e9tele a tartom\u00e1ny bels\u0151 pontjaiban, hogy a gradiens vektor nulla legyen: \\( \\text{grad} f(x, y) = \\underline{0} \\).\r\n                Sz\u00e1m\u00edtsuk ki a parci\u00e1lis deriv\u00e1ltakat a l\u00e1ncszab\u00e1ly \u00e9s a szorzatszab\u00e1ly alkalmaz\u00e1s\u00e1val:\r\n                <ul>\r\n                    <li>\\( \\partial_1 f(x, y) = e^{-(x^2+y^2)}(-2x)(2x^2 + 3y^2) + e^{-(x^2+y^2)}(4x) = 2x e^{-(x^2+y^2)}(2 - 2x^2 - 3y^2) \\)<\/li>\r\n                    <li>\\( \\partial_2 f(x, y) = e^{-(x^2+y^2)}(-2y)(2x^2 + 3y^2) + e^{-(x^2+y^2)}(6y) = 2y e^{-(x^2+y^2)}(3 - 2x^2 - 3y^2) \\)<\/li>\r\n                <\/ul>\r\n                Az egyenletrendszer megold\u00e1sai:\r\n                <ul>\r\n                    <li>Ha \\( x = 0 \\) \u00e9s \\( y = 0 \\), akkor a gradiens nulla. Pont: <b>\\( (0, 0) \\)<\/b>. \u00c9rt\u00e9k: \\( f(0,0) = \\mathbf{0} \\).<\/li>\r\n                    <li>Ha \\( x = 0 \\) \u00e9s \\( y \\neq 0 \\), akkor a m\u00e1sodik egyenletb\u0151l \\( 3 - 3y^2 = 0 \\implies y = \\pm 1 \\). Ezek a hat\u00e1rra esnek.<\/li>\r\n                    <li>Ha \\( x \\neq 0 \\) \u00e9s \\( y = 0 \\), akkor az els\u0151b\u0151l \\( 2 - 2x^2 = 0 \\implies x = \\pm 1 \\). Ezek is a hat\u00e1rra esnek.<\/li>\r\n                    <li>Ha egyik sem nulla, ellentmond\u00e1shoz jutunk (\\( 2x^2+3y^2=2 \\) \u00e9s \\( 2x^2+3y^2=3 \\)).<\/li>\r\n                <\/ul>\r\n                Egyetlen bels\u0151 stacion\u00e1rius pont: <b>\\( (0, 0) \\)<\/b>.","<b>2. L\u00e9p\u00e9s: Vizsg\u00e1lat a tartom\u00e1ny hat\u00e1r\u00e1n (\\( x^2 + y^2 = 1 \\)).<\/b><br>\r\n                A hat\u00e1rvonalon a kitev\u0151 \u00e1lland\u00f3: \\( x^2 + y^2 = 1 \\implies y^2 = 1 - x^2 \\).\r\n                Helyettes\u00edts\u00fck ezt a f\u00fcggv\u00e9nybe, \u00edgy egyv\u00e1ltoz\u00f3s sz\u00e9ls\u0151\u00e9rt\u00e9k-feladatot kapunk \\( x \\in [-1, 1] \\) mellett:\r\n                \\[ g(x) = f(x, \\sqrt{1-x^2}) = e^{-1}(2x^2 + 3(1-x^2)) = \\frac{3 - x^2}{e} \\]\r\n                Keress\u00fck meg \\( g(x) \\) maximum\u00e1t \u00e9s minimum\u00e1t a megadott szakaszon:\r\n                <ul>\r\n                    <li>\\( g(x) \\) maxim\u00e1lis, ha a levont \\( x^2 \\) nulla, azaz \\( x = 0 \\). Ekkor \\( y = \\pm 1 \\). Pontok: <b>\\( (0, \\pm 1) \\)<\/b>. \u00c9rt\u00e9k: \\( g(0) = \\mathbf{3\/e} \\).<\/li>\r\n                    <li>\\( g(x) \\) minim\u00e1lis a szakasz v\u00e9gpontjaiban, ha \\( x = \\pm 1 \\). Ekkor \\( y = 0 \\). Pontok: <b>\\( (\\pm 1, 0) \\)<\/b>. \u00c9rt\u00e9k: \\( g(\\pm 1) = \\mathbf{2\/e} \\).<\/li>\r\n                <\/ul>","<b>3. L\u00e9p\u00e9s: Az abszol\u00fat sz\u00e9ls\u0151\u00e9rt\u00e9kek kiv\u00e1laszt\u00e1sa.<\/b><br>\r\n                Hasonl\u00edtsuk \u00f6ssze az \u00f6sszes kritikus helyen felvett f\u00fcggv\u00e9ny\u00e9rt\u00e9ket:\r\n                <ul>\r\n                    <li>\\( f(0, 0) = 0 \\)<\/li>\r\n                    <li>\\( f(0, \\pm 1) = 3\/e \\approx 1,104 \\)<\/li>\r\n                    <li>\\( f(\\pm 1, 0) = 2\/e \\approx 0,736 \\)<\/li>\r\n                <\/ul>\r\n                <b>Konkl\u00fazi\u00f3:<\/b>\r\n                <ul>\r\n                    <li>Az <b>abszol\u00fat minimum<\/b> helye a <b>\\( (0, 0) \\)<\/b> pont, \u00e9rt\u00e9ke <b>0<\/b>.<\/li>\r\n                    <li>Az <b>abszol\u00fat maximum<\/b> helyei a <b>\\( (0, \\pm 1) \\)<\/b> pontok, \u00e9rt\u00e9ke <b>\\( 3\/e \\)<\/b>.<\/li>\r\n                <\/ul>"]},{"title":"7. feladat: Abszol\u00fat sz\u00e9ls\u0151\u00e9rt\u00e9kek keres\u00e9se az egys\u00e9gn\u00e9gyzeten","wolfram":"absolute extrema of 4*x^2 + 2*x*y - 3*y^2 on [0,1]x[0,1]","steps":["<h3>A vizsg\u00e1lt f\u00fcggv\u00e9ny: \\( f(x, y) = 4x^2 + 2xy - 3y^2 \\) az egys\u00e9gn\u00e9gyzeten (\\( D = [0, 1] \\times [0, 1] \\))<\/h3>","<b>1. L\u00e9p\u00e9s: Stacion\u00e1rius pontok keres\u00e9se a tartom\u00e1ny belsej\u00e9ben.<\/b><br>\r\n                A lok\u00e1lis sz\u00e9ls\u0151\u00e9rt\u00e9kek l\u00e9tez\u00e9s\u00e9nek sz\u00fcks\u00e9ges felt\u00e9tele, hogy a gradiens vektor nulla legyen: \\( \\text{grad} f(x, y) = \\underline{0} \\).\r\n                Sz\u00e1m\u00edtsuk ki a parci\u00e1lis deriv\u00e1ltakat:\r\n                <ul>\r\n                    <li>\\( \\partial_1 f(x, y) = 8x + 2y \\)<\/li>\r\n                    <li>\\( \\partial_2 f(x, y) = 2x - 6y \\)<\/li>\r\n                <\/ul>\r\n                Az egyenletrendszer megold\u00e1sa:\r\n                1) \\( 8x + 2y = 0 \\implies y = -4x \\)\r\n                2) \\( 2x - 6(-4x) = 0 \\implies 26x = 0 \\implies x = 0, y = 0 \\).\r\n                A \\( (0, 0) \\) pont a tartom\u00e1ny hat\u00e1r\u00e1n (egyik cs\u00facs\u00e1ban) van, \u00edgy a <b>tartom\u00e1ny belsej\u00e9ben nincs stacion\u00e1rius pont<\/b>.","<b>2. L\u00e9p\u00e9s: Vizsg\u00e1lat a tartom\u00e1ny hat\u00e1r\u00e1n.<\/b><br>\r\n                Az egys\u00e9gn\u00e9gyzet hat\u00e1ra n\u00e9gy szakaszb\u00f3l \u00e1ll. Vizsg\u00e1ljuk meg a f\u00fcggv\u00e9nyt ezeken a szakaszokon:\r\n                <ul>\r\n                    <li><b>S1 szakasz (\\( y=0, x \\in [0, 1] \\)):<\/b> \\( g_1(x) = f(x, 0) = 4x^2 \\). Ez a f\u00fcggv\u00e9ny szigor\u00faan monoton n\u0151 a szakaszon. Sz\u00e9ls\u0151\u00e9rt\u00e9kek a v\u00e9gpontokban: \\( g_1(0) = \\mathbf{0} \\), \\( g_1(1) = \\mathbf{4} \\).<\/li>\r\n                    <li><b>S2 szakasz (\\( x=1, y \\in [0, 1] \\)):<\/b> \\( g_2(y) = f(1, y) = 4 + 2y - 3y^2 \\).\r\n                        A deriv\u00e1lt: \\( g_2'(y) = 2 - 6y = 0 \\implies y = 1\/3 \\). Ez a pont a szakaszon bel\u00fcl van.\r\n                        \u00c9rt\u00e9k: \\( g_2(1\/3) = 4 + 2\/3 - 3(1\/9) = 4 + 1\/3 = \\mathbf{13\/3} \\).\r\n                        V\u00e9gpontok \u00e9rt\u00e9kei: \\( g_2(0) = 4 \\), \\( g_2(1) = 4 + 2 - 3 = 3 \\).<\/li>\r\n                    <li><b>S3 szakasz (\\( y=1, x \\in [0, 1] \\)):<\/b> \\( g_3(x) = f(x, 1) = 4x^2 + 2x - 3 \\).\r\n                        A deriv\u00e1lt: \\( g_3'(x) = 8x + 2 = 0 \\implies x = -1\/4 \\), ami k\u00edv\u00fcl esik a szakaszon.\r\n                        A f\u00fcggv\u00e9ny monoton n\u0151. V\u00e9gpontok: \\( g_3(0) = \\mathbf{-3} \\), \\( g_3(1) = \\mathbf{3} \\).<\/li>\r\n                    <li><b>S4 szakasz (\\( x=0, y \\in [0, 1] \\)):<\/b> \\( g_4(y) = f(0, y) = -3y^2 \\).\r\n                        Ez szigor\u00faan monoton cs\u00f6kken. V\u00e9gpontok: \\( g_4(0) = \\mathbf{0} \\), \\( g_4(1) = \\mathbf{-3} \\).<\/li>\r\n                <\/ul>","<b>3. L\u00e9p\u00e9s: Az abszol\u00fat sz\u00e9ls\u0151\u00e9rt\u00e9kek meghat\u00e1roz\u00e1sa.<\/b><br>\r\n                Gy\u0171jts\u00fck \u00f6ssze \u00e9s hasonl\u00edtsuk \u00f6ssze az \u00f6sszes tal\u00e1lt \u00e9rt\u00e9ket:\r\n                <ul>\r\n                    <li>V\u00e9gpontok\/Cs\u00facsok: \\( f(0,0)=0, f(1,0)=4, f(1,1)=3, f(0,1)=-3 \\).<\/li>\r\n                    <li>Hat\u00e1ron bel\u00fcli kritikus pont: \\( f(1, 1\/3) = 13\/3 \\approx 4,33 \\).<\/li>\r\n                <\/ul>\r\n                <b>Konkl\u00fazi\u00f3:<\/b>\r\n                <ul>\r\n                    <li>Az <b>abszol\u00fat maximum<\/b> helye az <b>\\( (1, 1\/3) \\)<\/b> pont, \u00e9rt\u00e9ke <b>\\( 13\/3 \\)<\/b>.<\/li>\r\n                    <li>Az <b>abszol\u00fat minimum<\/b> helye a <b>\\( (0, 1) \\)<\/b> pont, \u00e9rt\u00e9ke <b>\\( -3 \\)<\/b>.<\/li>\r\n                <\/ul>"]}];
+    const chapterId = 10;
+</script>
+
+<script src="script.js"></script>
+</body>
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=10 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+</html>

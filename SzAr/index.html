@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<!-- Mirrored from bsz2jegyzet.hu/szar/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:56:06 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Számítógép Architektúrák Zárthelyire Készítő</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Témakörök</h2>
+        <ul id="category-list">
+            <!-- Kategorik JavaScriptből generálva -->
+        </ul>
+        <div class="stats">
+            <p>Jelenlegi kártyák száma: <span id="total-cards">0</span></p>
+        </div>
+        <div class="filter-controls" style="margin-top: 1rem;">
+            <label style="color: var(--text-secondary); font-size: 0.9em; display: flex; align-items: center; cursor: pointer;">
+                <input type="checkbox" id="hide-known-checkbox" style="margin-right: 0.5rem; cursor: pointer;">
+                Tudott kérdések elrejtése
+            </label>
+        </div>
+        
+        <div style="margin-top: 2rem;">
+            <button id="nav-flashcards" class="nav-btn active">Tanulókártyák</button>
+            <button id="nav-mock-exam" class="nav-btn">Gyakorló ZH (30 perc)</button>
+        </div>
+    </div>
+    <div class="main-content">
+        <header>
+            <h1>ZH Felkészítő: Számítógép Architektúrák</h1>
+            <p>Tanulókártyák - Kérdés, Válasz és Részletes Indoklás a jegyzetből</p>
+        </header>
+        <div class="cards-container" id="cards-container">
+            <!-- Tanulókártyák itt jelennek meg -->
+        </div>
+
+        <div id="mock-exam-container" style="display: none;">
+            <div class="mock-exam-header">
+                <h2>Próba ZH</h2>
+                <div class="timer" id="mock-timer">30:00</div>
+            </div>
+            
+            <div id="mock-questions-container">
+                <!-- ZH kérdések ide renderelődnek -->
+            </div>
+            
+            <button id="submit-mock-exam" class="submit-btn" style="display: none;">Kiértékelés</button>
+            
+            <div id="mock-exam-result" style="display: none;">
+                <h3>Eredmény</h3>
+                <div class="result-stats">
+                    <p>Időtartam: <span id="res-time"></span></p>
+                    <p>Elért pontok: <span id="res-points"></span> / <span id="res-maxpoints"></span></p>
+                    <p>Százalék: <span id="res-percent"></span>%</p>
+                    <p>Érdemjegy: <strong id="res-grade"></strong></p>
+                </div>
+                <div class="grade-boundaries">
+                    <small>0-39%: 1 | 40-54%: 2 | 55-69%: 3 | 70-84%: 4 | 85-100%: 5</small>
+                </div>
+                <button id="restart-mock-exam" class="submit-btn" style="margin-top:20px;">Új Próba ZH Indítása</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="data.js"></script>
+    <script src="mockExamData.js"></script>
+    <script src="mockExam.js"></script>
+    <script src="app.js"></script>
+</body>
+
+<!-- Mirrored from bsz2jegyzet.hu/szar/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:56:11 GMT -->
+</html>

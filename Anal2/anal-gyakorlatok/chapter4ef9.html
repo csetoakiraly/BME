@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=12 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás - Analízis 2</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --main-color: #f3b712;
+            --main-color-soft: #f3b71222; 
+        }
+    </style>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                enableMenu: false
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <layout-wrapper>
+        <analizis-sidebar>
+            <sidebar-header>
+                <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+            </sidebar-header>
+            <sidebar-list>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter681a.html?id=1'"
+                        class=""
+                        id="sidebar-item-1"
+                    >
+                        <span class="ch-num">1.</span>
+                        <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0b30.html?id=2'"
+                        class=""
+                        id="sidebar-item-2"
+                    >
+                        <span class="ch-num">2.</span>
+                        <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd708.html?id=3'"
+                        class=""
+                        id="sidebar-item-3"
+                    >
+                        <span class="ch-num">3.</span>
+                        <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                        <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterdcfd.html?id=4'"
+                        class=""
+                        id="sidebar-item-4"
+                    >
+                        <span class="ch-num">4.</span>
+                        <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                        <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterd61c.html?id=5'"
+                        class=""
+                        id="sidebar-item-5"
+                    >
+                        <span class="ch-num">5.</span>
+                        <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                        <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter3a9f.html?id=6'"
+                        class=""
+                        id="sidebar-item-6"
+                    >
+                        <span class="ch-num">6.</span>
+                        <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                        <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter8803.html?id=7'"
+                        class=""
+                        id="sidebar-item-7"
+                    >
+                        <span class="ch-num">7.</span>
+                        <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                        <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterc3c9.html?id=8'"
+                        class=""
+                        id="sidebar-item-8"
+                    >
+                        <span class="ch-num">8.</span>
+                        <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                        <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter5255.html?id=9'"
+                        class=""
+                        id="sidebar-item-9"
+                    >
+                        <span class="ch-num">9.</span>
+                        <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                        <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapterf41b.html?id=10'"
+                        class=""
+                        id="sidebar-item-10"
+                    >
+                        <span class="ch-num">10.</span>
+                        <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                        <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter0055.html?id=11'"
+                        class=""
+                        id="sidebar-item-11"
+                    >
+                        <span class="ch-num">11.</span>
+                        <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                        <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter4ef9.html?id=12'"
+                        class="active"
+                        id="sidebar-item-12"
+                    >
+                        <span class="ch-num">12.</span>
+                        <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                        <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+                    </sidebar-item>
+                                    <sidebar-item 
+                        onclick="window.location.href='chapter6e03.html?id=13'"
+                        class=""
+                        id="sidebar-item-13"
+                    >
+                        <span class="ch-num">13.</span>
+                        <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                        <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+                    </sidebar-item>
+                            </sidebar-list>
+            <sidebar-footer>
+                <div class="overall-progress">
+                    <div class="progress-label">Kurzus haladás: <span id="totalPercent">0%</span></div>
+                    <div class="progress-track">
+                        <div id="totalProgressBar" class="progress-fill"></div>
+                    </div>
+                </div>
+                
+            </sidebar-footer>
+        </analizis-sidebar>
+
+        <main-content>
+            <analizis-nav>
+                <nav-title><b>12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás<b></nav-title>
+                <nav-actions>
+                    <button id="themeToggle" class="theme-btn">🌙 Éjszakai mód</button>
+                    <button id="theory-menu-toggle" class="menu-toggle-btn">
+    <span>☰</span> Menü
+</button>
+
+<analizis-sidebar id="theory-menu">
+    <sidebar-header>
+        <a href="index-2.html" class="back-home" style="text-decoration: none; color: inherit; display: block; padding-top: 10px;">Főoldal</a>
+    </sidebar-header>
+    
+    <sidebar-list>
+                    <sidebar-item 
+                onclick="window.location.href='chapter681a.html?id=1'"
+                class=""
+                id="sidebar-item-1"
+            >
+                <span class="ch-num">1.</span>
+                <span class="ch-title">1. Szétválasztható változójú differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-1" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0b30.html?id=2'"
+                class=""
+                id="sidebar-item-2"
+            >
+                <span class="ch-num">2.</span>
+                <span class="ch-title">2. Elsőrendű lineáris és helyettesítéssel megoldható differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-2" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd708.html?id=3'"
+                class=""
+                id="sidebar-item-3"
+            >
+                <span class="ch-num">3.</span>
+                <span class="ch-title">3. n-edrendű állandó együtthatós lineáris differenciálegyenletek</span>
+                <span class="sidebar-check" id="sidebar-check-3" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterdcfd.html?id=4'"
+                class=""
+                id="sidebar-item-4"
+            >
+                <span class="ch-num">4.</span>
+                <span class="ch-title">4. Lineáris rekurziók és sorok konvergenciája</span>
+                <span class="sidebar-check" id="sidebar-check-4" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterd61c.html?id=5'"
+                class=""
+                id="sidebar-item-5"
+            >
+                <span class="ch-num">5.</span>
+                <span class="ch-title">5. Sorok konvergenciakritériumai</span>
+                <span class="sidebar-check" id="sidebar-check-5" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter3a9f.html?id=6'"
+                class=""
+                id="sidebar-item-6"
+            >
+                <span class="ch-num">6.</span>
+                <span class="ch-title">6. Hatványsorok és konvergenciasugár</span>
+                <span class="sidebar-check" id="sidebar-check-6" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter8803.html?id=7'"
+                class=""
+                id="sidebar-item-7"
+            >
+                <span class="ch-num">7.</span>
+                <span class="ch-title">7. Taylor-polinom és Taylor-sor</span>
+                <span class="sidebar-check" id="sidebar-check-7" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterc3c9.html?id=8'"
+                class=""
+                id="sidebar-item-8"
+            >
+                <span class="ch-num">8.</span>
+                <span class="ch-title">8. Binomiális sor és többváltozós függvények határértéke</span>
+                <span class="sidebar-check" id="sidebar-check-8" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter5255.html?id=9'"
+                class=""
+                id="sidebar-item-9"
+            >
+                <span class="ch-num">9.</span>
+                <span class="ch-title">9. Parciális és iránymenti derivált, totális differenciálhatóság</span>
+                <span class="sidebar-check" id="sidebar-check-9" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapterf41b.html?id=10'"
+                class=""
+                id="sidebar-item-10"
+            >
+                <span class="ch-num">10.</span>
+                <span class="ch-title">10. Másodrendű parciális deriváltak, Hesse-mátrix, lokális szélsőérték</span>
+                <span class="sidebar-check" id="sidebar-check-10" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter0055.html?id=11'"
+                class=""
+                id="sidebar-item-11"
+            >
+                <span class="ch-num">11.</span>
+                <span class="ch-title">11. Kétváltozós integrál, Fubini-tétel, normáltartományok, polártranszformáció</span>
+                <span class="sidebar-check" id="sidebar-check-11" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter4ef9.html?id=12'"
+                class="active"
+                id="sidebar-item-12"
+            >
+                <span class="ch-num">12.</span>
+                <span class="ch-title">12. Többváltozós integrál, normáltartományok, henger- és gömbi koordinátázás</span>
+                <span class="sidebar-check" id="sidebar-check-12" style="display:none;">✓</span>
+            </sidebar-item>
+                    <sidebar-item 
+                onclick="window.location.href='chapter6e03.html?id=13'"
+                class=""
+                id="sidebar-item-13"
+            >
+                <span class="ch-num">13.</span>
+                <span class="ch-title">13. Fourier-sor és Fourier-transzformált</span>
+                <span class="sidebar-check" id="sidebar-check-13" style="display:none;">✓</span>
+            </sidebar-item>
+            </sidebar-list>
+</analizis-sidebar>
+</button>
+
+                </nav-actions>
+            </analizis-nav>
+            
+            <analizis-content>
+                <theory-section>
+                    <section-header>Elméleti összefoglaló</section-header>
+                    <theory-body>
+        <section>
+            <h2>1. Magasabb dimenziós normáltartományok</h2>
+            <p>A hármas integrálok értelmezéséhez definiálnunk kell a térbeli tartományokat, ahol az integrálás határai maguk is függvények lehetnek.</p>
+            
+            <ul>
+                <li><b>1. Definíció:</b> Egy \( H \subseteq \mathbb{R}^n \) halmaz <b>1-dimenziós normáltartomány</b>, ha kompakt intervallum.</li>
+                <li><b>Rekurzív definíció:</b> Egy \( H \subseteq \mathbb{R}^{n+1} \) halmaz \( n+1 \)-dimenziós normáltartomány, ha létezik egy \( H' \subseteq \mathbb{R}^n \) n-dimenziós normáltartomány és két folytonos függvény (\( g, h \)), melyekre:
+                    \[ H = \{ (x, y) \in H' \times \mathbb{R} \mid g(x) \le y \le h(x) \} \]
+                </li>
+            </ul>
+
+            <div style="background: #d6b810; padding: 15px; border-radius: 8px; border-left: 5px solid #3b82f6; margin: 10px 0;">
+                <b>2. Tétel: Integrálás normáltartományon</b><br>
+                Ha \( f: \mathbb{R}^n \to \mathbb{R} \) folytonos a \( H \) normáltartományon, akkor az integrál visszavezethető egymás utáni integrálásokra:
+                \[ \int_H f = \int_{H'} \left( \int_{g(x)}^{h(x)} f(x, y) \, dy \right) dx \]
+            </div>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>2. Hengerkoordináta-rendszer</h2>
+            <p>Olyan testek esetén (pl. hengerek, forgástestek), ahol az \( xy \)-síkbeli vetület körszimmetrikus, a hengerkoordináták használata célszerű.</p>
+            
+            <p><b>3. Tétel: Henger koordinátázás.</b> A transzformáció definíciója:</p>
+            \[ C(r, \varphi, z) = (r \cos \phi, r \sin \phi, z) \]
+            <p>A hármas integrál kiszámítása hengerkoordinátákkal:</p>
+            \[ \int_{C(A)} f(x, y, z) \, d(x, y, z) = \int_A f(r \cos \phi, r \sin \phi, z) \cdot \mathbf{r} \, d(r, \phi, z) \]
+            <p><i>Megjegyzés:</i> A Jacobi-determináns értéke itt is \( r \), hasonlóan a síkbeli polárkoordinátákhoz.</p>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>3. Gömbi koordináta-rendszer</h2>
+            <p>Gömbök vagy kúpok esetén a gömbi koordináták (sugár és két szög) adják a legegyszerűbb integrálási határokat.</p>
+            
+            <p><b>4. Tétel: Gömbi koordinátázás.</b> A transzformáció definíciója:</p>
+            \[ S(r, \theta, \varphi) = (r \sin \theta \cos \phi, r \sin \theta \sin \phi, r \cos \theta) \]
+            <p>A hármas integrál kiszámítása gömbi koordinátákkal:</p>
+            \[ \int_{S(A)} f(x, y, z) \, d(x, y, z) = \int_A f(S(r, \theta, \phi)) \cdot \mathbf{r^2 \sin \theta} \, d(r, \theta, \phi) \]
+            <div style="background: #c2b418; padding: 10px; border-radius: 5px; border: 1px solid #facc15; margin-top: 10px;">
+                <b>Fontos:</b> Gömbi koordináták esetén a Jacobi-szorzó \( \mathbf{r^2 \sin \theta} \)!
+            </div>
+        </section>
+    </theory-body>
+                </theory-section>
+
+                <practice-section>
+    <section-header>Példafeladatok</section-header>
+    
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">1. feladat: Hármas integrál kiszámítása téglatest és tetraéder tartományon</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="integrate+z+dz+dy+dx+where+0%3C%3Dx%3C%3D2%2C+0%3C%3Dy%3C%3D3%2C+0%3C%3Dz%3C%3D4%3B+integrate+z+dz+dy+dx+where+x%2B2y%2Bz%3C%3D4%2C+x%3E%3D0%2C+y%3E%3D0%2C+z%3E%3D0"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="0">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="0">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">2. feladat: Térfogatszámítás hármas integrállal hengerkoordináták segítségével</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="volume+of+region+bounded+by+x%5E2%2By%5E2%3D9%2C+z%3D0%2C+x%2Bz%3D4"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="1">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="1">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">3. feladat: Hármas integrál kiszámítása forgásparaboloid tartományon</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="integrate+1%2Fsqrt%28x%5E2%2By%5E2%29+dz+dr+dphi+where+z+from+r%5E2+to+4%2C+r+from+0+to+2%2C+phi+from+0+to+2%2Api"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="2">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="2">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">4. feladat: Henger és síkok által határolt térrész térfogata</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="volume+of+region+x%5E2%2By%5E2%3C%3D4%2C+0%3C%3Dz%3C%3D8-2%2Ax-y"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="3">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="3">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">5. feladat: Térfogatszámítás gömb és kúp között gömbi koordinátákkal</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="integrate+r%5E2+%2A+sin%28theta%29+dr+dtheta+dphi%2C+r+from+0+to+sqrt%288%29%2C+theta+from+0+to+pi%2F4%2C+phi+from+0+to+2%2Api"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="4">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="4">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">6. feladat: Hármas integrál számítása gömbnyolcadon gömbi koordinátákkal</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="integrate+x%2Ay%5E2%2Az%5E3+where+x%5E2%2By%5E2%2Bz%5E2%3C%3D9%2C+x%3C%3D0%2C+y%3E%3D0%2C+z%3C%3D0"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="5">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="5">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+            <div class="task-container" style="margin-bottom: 50px;">
+            <div class="task-header">
+                <h4 style="color: var(--main-color); margin: 0; flex-grow: 1;">7. feladat: Gömbhéjak és kúpok közé zárt térrész térfogata</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                                        <button class="js-wolfram-btn" 
+                        data-query="volume+of+region+1%3C%3Dx%5E2%2By%5E2%2Bz%5E2%3C%3D4%2C+sqrt%28x%5E2%2By%5E2%29%2Fsqrt%283%29%3C%3Dz%3C%3Dsqrt%28x%5E2%2By%5E2%29"
+                        title="Ellenőrzés WolframAlphával"
+                        style="background: #da0a15; color: white; border: none; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <span style="font-size: 1.1rem;">=</span> WolframAlpha
+                    </button>
+                        
+                            <label class="task-done-wrapper">
+                                <input type="checkbox" class="js-task-done-check" data-task-index="6">
+                                <span class="custom-checkbox"></span>
+                                <span class="done-text">Kész</span>
+                            </label>
+                </div>
+        </div>
+            
+            <interactive-stepper class="multi-stepper" data-task-id="6">
+                <div class="step-progress-bar">
+                    <div class="step-progress-fill js-progress-fill"></div>
+                </div>
+
+                <step-display class="js-step-content"></step-display>
+                
+                <stepper-controls>
+                    <div class="nav-buttons">
+                        <button class="step-btn js-prev-btn">← Vissza</button>
+                        <button class="step-btn js-next-btn">Következő →</button>
+                    </div>
+                    <div class="js-step-indicator" style="font-weight: 600; color: var(--text-muted); margin-top: 10px;"></div>
+                </stepper-controls>
+            </interactive-stepper>
+        </div>
+    
+</practice-section>
+
+<script>
+    const allTasks = [{"title":"1. feladat: H\u00e1rmas integr\u00e1l kisz\u00e1m\u00edt\u00e1sa t\u00e9glatest \u00e9s tetra\u00e9der tartom\u00e1nyon","wolfram":"integrate z dz dy dx where 0<=x<=2, 0<=y<=3, 0<=z<=4; integrate z dz dy dx where x+2y+z<=4, x>=0, y>=0, z>=0","steps":["<h3>A feladat c\u00e9lja: a \\( \\iiint_V z \\, d(x, y, z) \\) integr\u00e1l kisz\u00e1m\u00edt\u00e1sa k\u00e9t k\u00fcl\u00f6nb\u00f6z\u0151 tartom\u00e1nyon.<\/h3>","<b>(a) r\u00e9sz: T\u00e9glatest tartom\u00e1ny<\/b><br>\r\n                1. <b>A tartom\u00e1ny le\u00edr\u00e1sa:<\/b> A \\( V \\) tartom\u00e1nyt az \\( x=2, y=3, z=4 \\) s\u00edkok \u00e9s a koordin\u00e1tas\u00edkok hat\u00e1rolj\u00e1k az els\u0151 t\u00e9rnyolcadban.<br>\r\n                Matematikailag: \\( V = \\{ (x, y, z) \\in \\mathbb{R}^3 : 0 \\le x \\le 2, 0 \\le y \\le 3, 0 \\le z \\le 4 \\} \\).<br>\r\n                2. <b>Az integr\u00e1l fel\u00e1ll\u00edt\u00e1sa \u00e9s sz\u00e1m\u00edt\u00e1sa:<\/b>\r\n                \\[ I_a = \\int_0^2 \\int_0^3 \\int_0^4 z \\, dz \\, dy \\, dx \\]\r\n                <ul>\r\n                    <li>Bels\u0151 integr\u00e1l (\\( z \\) szerint): \\( \\int_0^4 z \\, dz = [\\frac{z^2}{2}]_0^4 = 8 \\).<\/li>\r\n                    <li>K\u00f6z\u00e9ps\u0151 integr\u00e1l (\\( y \\) szerint): \\( \\int_0^3 8 \\, dy = [8y]_0^3 = 24 \\).<\/li>\r\n                    <li>K\u00fcls\u0151 integr\u00e1l (\\( x \\) szerint): \\( \\int_0^2 24 \\, dx = [24x]_0^2 = \\mathbf{48} \\).<\/li>\r\n                <\/ul>\r\n                Az eredm\u00e9ny \u00f6sszhangban van a feladatlap v\u00e9geredm\u00e9ny\u00e9vel.","<b>(b) r\u00e9sz: Tetra\u00e9der tartom\u00e1ny<\/b><br>\r\n                1. <b>A tartom\u00e1ny le\u00edr\u00e1sa:<\/b> A hat\u00e1rok \\( x + 2y + z = 4 \\), valamint \\( x, y, z \\ge 0 \\).<br>\r\n                A \\( z \\) v\u00e1ltoz\u00f3 hat\u00e1ra: \\( 0 \\le z \\le 4 - x - 2y \\).<br>\r\n                A vet\u00fclet az \\( xy \\)-s\u00edkon (\\( z=0 \\)): \\( x + 2y \\le 4 \\), amib\u0151l \\( 0 \\le y \\le \\frac{4-x}{2} \\) \u00e9s \\( 0 \\le x \\le 4 \\).<br>\r\n                2. <b>Az integr\u00e1l sz\u00e1m\u00edt\u00e1sa:<\/b>\r\n                \\[ I_b = \\int_0^4 \\int_0^{\\frac{4-x}{2}} \\int_0^{4-x-2y} z \\, dz \\, dy \\, dx \\]\r\n                <ul>\r\n                    <li>Bels\u0151 integr\u00e1l: \\( [\\frac{z^2}{2}]_0^{4-x-2y} = \\frac{1}{2}(4-x-2y)^2 \\).<\/li>\r\n                    <li>K\u00f6z\u00e9ps\u0151 integr\u00e1l (\\( y \\) szerint): \\( \\int_0^{\\frac{4-x}{2}} \\frac{1}{2}(4-x-2y)^2 \\, dy = \\left[ -\\frac{(4-x-2y)^3}{12} \\right]_0^{\\frac{4-x}{2}} = 0 - (-\\frac{(4-x)^3}{12}) = \\frac{(4-x)^3}{12} \\).<\/li>\r\n                    <li>K\u00fcls\u0151 integr\u00e1l (\\( x \\) szerint): \\( \\int_0^4 \\frac{(4-x)^3}{12} \\, dx = \\left[ -\\frac{(4-x)^4}{48} \\right]_0^4 = 0 - (-\\frac{4^4}{48}) = \\frac{256}{48} = \\mathbf{\\frac{16}{3}} \\).<\/li>\r\n                <\/ul>\r\n                A v\u00e9geredm\u00e9ny itt is megegyezik a megadottal."]},{"title":"2. feladat: T\u00e9rfogatsz\u00e1m\u00edt\u00e1s h\u00e1rmas integr\u00e1llal hengerkoordin\u00e1t\u00e1k seg\u00edts\u00e9g\u00e9vel","wolfram":"volume of region bounded by x^2+y^2=9, z=0, x+z=4","steps":["<h3>1. A tartom\u00e1ny (\\( V \\)) elemz\u00e9se \u00e9s koordin\u00e1tarendszer v\u00e1laszt\u00e1sa<\/h3>","<b>L\u00e9p\u00e9s 1.1: A hat\u00e1rol\u00f3 fel\u00fcletek azonos\u00edt\u00e1sa.<\/b><br>\r\n                A testet a k\u00f6vetkez\u0151 fel\u00fcletek hat\u00e1rolj\u00e1k:\r\n                <ul>\r\n                    <li>Oldalr\u00f3l: \\( x^2 + y^2 = 9 \\) (orig\u00f3 k\u00f6z\u00e9ppont\u00fa, 3 sugar\u00fa hengerfel\u00fclet).<\/li>\r\n                    <li>Alulr\u00f3l: \\( z = 0 \\) (az \\( xy \\)-s\u00edk).<\/li>\r\n                    <li>Fel\u00fclr\u0151l: \\( x + z = 4 \\implies z = 4 - x \\) (egy ferde s\u00edk).<\/li>\r\n                <\/ul>","<b>L\u00e9p\u00e9s 1.2: \u00c1tt\u00e9r\u00e9s hengerkoordin\u00e1t\u00e1kra.<\/b><br>\r\n                A hengerfel\u00fclet miatt a 3. t\u00e9tel szerinti transzform\u00e1ci\u00f3t alkalmazzuk:\r\n                \\[ x = r \\cos \\phi, \\quad y = r \\sin \\phi, \\quad z = z, \\quad dV = r \\, dz dr d\\phi \\]\r\n                A hat\u00e1rok meghat\u00e1roz\u00e1sa:\r\n                <ul>\r\n                    <li>Sug\u00e1r: A henger miatt \\( 0 \\le r \\le 3 \\).<\/li>\r\n                    <li>Sz\u00f6g: A teljes henger \u00e9rintett, \u00edgy \\( 0 \\le \\phi \\le 2\\pi \\).<\/li>\r\n                    <li>Magass\u00e1g: \\( z \\) a s\u00edkt\u00f3l a ferde s\u00edkig tart: \\( 0 \\le z \\le 4 - r \\cos \\phi \\).<\/li>\r\n                <\/ul>","<h3>2. A h\u00e1rmas integr\u00e1l kisz\u00e1m\u00edt\u00e1sa<\/h3>","<b>L\u00e9p\u00e9s 2.1: Az integr\u00e1l fel\u00e1ll\u00edt\u00e1sa.<\/b><br>\r\n                A t\u00e9rfogat a konstans 1 f\u00fcggv\u00e9ny integr\u00e1lja a \\( V \\) tartom\u00e1nyon:\r\n                \\[ V = \\iiint_V 1 \\, dV = \\int_0^{2\\pi} \\int_0^3 \\int_0^{4 - r \\cos \\phi} r \\, dz dr d\\phi \\]","<b>L\u00e9p\u00e9s 2.2: Bels\u0151 integr\u00e1l (\\( z \\) szerint).<\/b><br>\r\n                \\[ \\int_0^{4 - r \\cos \\phi} r \\, dz = [r \\cdot z]_0^{4 - r \\cos \\phi} = \\mathbf{4r - r^2 \\cos \\phi} \\]","<b>L\u00e9p\u00e9s 2.3: K\u00f6z\u00e9ps\u0151 integr\u00e1l (\\( r \\) szerint).<\/b><br>\r\n                \\[ \\int_0^3 (4r - r^2 \\cos \\phi) \\, dr = \\left[ 2r^2 - \\frac{r^3}{3} \\cos \\phi \\right]_0^3 = (18 - 9 \\cos \\phi) - 0 = \\mathbf{18 - 9 \\cos \\phi} \\]","<b>L\u00e9p\u00e9s 2.4: K\u00fcls\u0151 integr\u00e1l (\\( \\phi \\) szerint).<\/b><br>\r\n                \\[ \\int_0^{2\\pi} (18 - 9 \\cos \\phi) \\, d\\phi = [18\\phi - 9 \\sin \\phi]_0^{2\\pi} = (36\\pi - 0) - (0 - 0) = \\mathbf{36\\pi} \\]\r\n                \r\n                <b>V\u00e9geredm\u00e9ny:<\/b> A test t\u00e9rfogata <b>\\( 36\\pi \\)<\/b> ter\u00fcletegys\u00e9g, ami megegyezik a megadott eredm\u00e9nnyel."]},{"title":"3. feladat: H\u00e1rmas integr\u00e1l kisz\u00e1m\u00edt\u00e1sa forg\u00e1sparaboloid tartom\u00e1nyon","wolfram":"integrate 1\/sqrt(x^2+y^2) dz dr dphi where z from r^2 to 4, r from 0 to 2, phi from 0 to 2*pi","steps":["<h3>1. A tartom\u00e1ny (\\( V \\)) elemz\u00e9se \u00e9s koordin\u00e1tarendszer v\u00e1laszt\u00e1sa<\/h3>","<b>L\u00e9p\u00e9s 1.1: A hat\u00e1rol\u00f3 fel\u00fcletek \u00e9s a vet\u00fclet azonos\u00edt\u00e1sa.<\/b><br>\r\n                A testet az al\u00e1bbi fel\u00fcletek hat\u00e1rolj\u00e1k:\r\n                <ul>\r\n                    <li>Alulr\u00f3l: \\( z = x^2 + y^2 \\) (forg\u00e1sparaboloid).<\/li>\r\n                    <li>Fel\u00fclr\u0151l: \\( z = 4 \\) (v\u00edzszintes s\u00edk).<\/li>\r\n                <\/ul>\r\n                A k\u00e9t fel\u00fclet metsz\u00e9svonala: \\( x^2 + y^2 = 4 \\), ami egy 2 sugar\u00fa k\u00f6r az \\( xy \\)-s\u00edkon. Ennek megfelel\u0151en a tartom\u00e1ny vet\u00fclete egy \\( R=2 \\) sugar\u00fa k\u00f6rlap.","<b>L\u00e9p\u00e9s 1.2: \u00c1tt\u00e9r\u00e9s hengerkoordin\u00e1t\u00e1kra.<\/b><br>\r\n                Alkalmazzuk a 3. t\u00e9tel szerinti transzform\u00e1ci\u00f3t:\r\n                \\[ x = r \\cos \\phi, \\quad y = r \\sin \\phi, \\quad z = z, \\quad dV = \\mathbf{r} \\, dz dr d\\phi \\]\r\n                A hat\u00e1rok meghat\u00e1roz\u00e1sa:\r\n                <ul>\r\n                    <li>Sug\u00e1r: \\( 0 \\le r \\le 2 \\).<\/li>\r\n                    <li>Sz\u00f6g: A teljes k\u00f6rbeforg\u00e1s miatt \\( 0 \\le \\phi \\le 2\\pi \\).<\/li>\r\n                    <li>Magass\u00e1g: A paraboloidt\u00f3l a s\u00edkig tart: \\( r^2 \\le z \\le 4 \\).<\/li>\r\n                <\/ul>","<h3>2. Az integr\u00e1l fel\u00e1ll\u00edt\u00e1sa \u00e9s kisz\u00e1m\u00edt\u00e1sa<\/h3>","<b>L\u00e9p\u00e9s 2.1: Az integrandus \u00e1t\u00edr\u00e1sa \u00e9s a Jacobi-szorz\u00f3 alkalmaz\u00e1sa.<\/b><br>\r\n                A f\u00fcggv\u00e9ny: \\( \\frac{1}{\\sqrt{x^2+y^2}} = \\frac{1}{\\sqrt{r^2}} = \\frac{1}{r} \\).<br>\r\n                A 3. t\u00e9tel alapj\u00e1n az integr\u00e1l:\r\n                \\[ I = \\int_0^{2\\pi} \\int_0^2 \\int_{r^2}^4 \\frac{1}{r} \\cdot \\mathbf{r} \\, dz dr d\\phi = \\int_0^{2\\pi} \\int_0^2 \\int_{r^2}^4 1 \\, dz dr d\\phi \\]","<b>L\u00e9p\u00e9s 2.2: Az integr\u00e1lok kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                1. Bels\u0151 integr\u00e1l (\\( z \\) szerint):\r\n                \\[ \\int_{r^2}^4 1 \\, dz = [z]_{r^2}^4 = \\mathbf{4 - r^2} \\]\r\n                2. K\u00f6z\u00e9ps\u0151 integr\u00e1l (\\( r \\) szerint):\r\n                \\[ \\int_0^2 (4 - r^2) \\, dr = \\left[ 4r - \\frac{r^3}{3} \\right]_0^2 = 8 - \\frac{8}{3} = \\mathbf{\\frac{16}{3}} \\]\r\n                3. K\u00fcls\u0151 integr\u00e1l (\\( \\phi \\) szerint):\r\n                \\[ \\int_0^{2\\pi} \\frac{16}{3} \\, d\\phi = \\left[ \\frac{16}{3}\\phi \\right]_0^{2\\pi} = \\mathbf{\\frac{32\\pi}{3}} \\]","<b>V\u00e9geredm\u00e9ny:<\/b> Az integr\u00e1l \u00e9rt\u00e9ke <b>\\( \\frac{32\\pi}{3} \\)<\/b>."]},{"title":"4. feladat: Henger \u00e9s s\u00edkok \u00e1ltal hat\u00e1rolt t\u00e9rr\u00e9sz t\u00e9rfogata","wolfram":"volume of region x^2+y^2<=4, 0<=z<=8-2*x-y","steps":["<h3>1. A tartom\u00e1ny (\\( V \\)) elemz\u00e9se \u00e9s koordin\u00e1tarendszer v\u00e1laszt\u00e1sa<\/h3>","<b>L\u00e9p\u00e9s 1.1: A hat\u00e1rol\u00f3 fel\u00fcletek azonos\u00edt\u00e1sa.<\/b><br>\r\n                A keresett testet az al\u00e1bbi fel\u00fcletek hat\u00e1rolj\u00e1k:\r\n                <ul>\r\n                    <li>Oldalr\u00f3l: \\( x^2 + y^2 = 4 \\) (orig\u00f3 k\u00f6z\u00e9ppont\u00fa, 2 sugar\u00fa hengerfel\u00fclet).<\/li>\r\n                    <li>Alulr\u00f3l: \\( z = 0 \\) (az \\( xy \\)-s\u00edk).<\/li>\r\n                    <li>Fel\u00fclr\u0151l: \\( z = 8 - 2x - y \\) (egy ferde s\u00edk).<\/li>\r\n                <\/ul>","<b>L\u00e9p\u00e9s 1.2: \u00c1tt\u00e9r\u00e9s hengerkoordin\u00e1t\u00e1kra.<\/b><br>\r\n                A henger-szimmetria miatt a 12. fejezet 3. t\u00e9tele szerinti transzform\u00e1ci\u00f3t haszn\u00e1ljuk:\r\n                \\[ x = r \\cos \\phi, \\quad y = r \\sin \\phi, \\quad z = z, \\quad dV = r \\, dz dr d\\phi \\]\r\n                A hat\u00e1rok meghat\u00e1roz\u00e1sa a tartom\u00e1ny alapj\u00e1n:\r\n                <ul>\r\n                    <li>Sug\u00e1r (\\( r \\)): A henger miatt \\( 0 \\le r \\le 2 \\).<\/li>\r\n                    <li>Sz\u00f6g (\\( \\phi \\)): A teljes k\u00f6rbeforg\u00e1s miatt \\( 0 \\le \\phi \\le 2\\pi \\).<\/li>\r\n                    <li>Magass\u00e1g (\\( z \\)): Az aluls\u00f3 s\u00edkt\u00f3l a fels\u0151 ferde s\u00edkig tart: \\( 0 \\le z \\le 8 - 2r \\cos \\phi - r \\sin \\phi \\).<\/li>\r\n                <\/ul>","<h3>2. A t\u00e9rfogat kisz\u00e1m\u00edt\u00e1sa h\u00e1rmas integr\u00e1llal<\/h3>","<b>L\u00e9p\u00e9s 2.1: Az integr\u00e1l fel\u00e1ll\u00edt\u00e1sa.<\/b><br>\r\n                A test t\u00e9rfogata a konstans 1 f\u00fcggv\u00e9ny integr\u00e1lja a \\( V \\) tartom\u00e1nyon, figyelembe v\u00e9ve a Jacobi-szorz\u00f3t (\\( r \\)):\r\n                \\[ V = \\iiint_V 1 \\, dV = \\int_0^{2\\pi} \\int_0^2 \\int_0^{8 - 2r \\cos \\phi - r \\sin \\phi} r \\, dz dr d\\phi \\]","<b>L\u00e9p\u00e9s 2.2: Bels\u0151 integr\u00e1l (\\( z \\) szerint).<\/b><br>\r\n                \\[ \\int_0^{8 - 2r \\cos \\phi - r \\sin \\phi} r \\, dz = [r \\cdot z]_0^{8 - 2r \\cos \\phi - r \\sin \\phi} = \\mathbf{8r - 2r^2 \\cos \\phi - r^2 \\sin \\phi} \\]","<b>L\u00e9p\u00e9s 2.3: K\u00f6z\u00e9ps\u0151 integr\u00e1l (\\( r \\) szerint).<\/b><br>\r\n                \\[ \\int_0^2 (8r - 2r^2 \\cos \\phi - r^2 \\sin \\phi) \\, dr = \\left[ 4r^2 - \\frac{2}{3}r^3 \\cos \\phi - \\frac{1}{3}r^3 \\sin \\phi \\right]_0^2 \\]\r\n                \\[ = (16 - \\frac{16}{3} \\cos \\phi - \\frac{8}{3} \\sin \\phi) - 0 = \\mathbf{16 - \\frac{16}{3} \\cos \\phi - \\frac{8}{3} \\sin \\phi} \\]","<b>L\u00e9p\u00e9s 2.4: K\u00fcls\u0151 integr\u00e1l (\\( \\phi \\) szerint).<\/b><br>\r\n                \\[ \\int_0^{2\\pi} (16 - \\frac{16}{3} \\cos \\phi - \\frac{8}{3} \\sin \\phi) \\, d\\phi = \\left[ 16\\phi - \\frac{16}{3} \\sin \\phi + \\frac{8}{3} \\cos \\phi \\right]_0^{2\\pi} \\]\r\n                \\[ = (32\\pi - 0 + \\frac{8}{3}) - (0 - 0 + \\frac{8}{3}) = \\mathbf{32\\pi} \\]\r\n                \r\n                <b>V\u00e9geredm\u00e9ny:<\/b> A test t\u00e9rfogata <b>\\( 32\\pi \\)<\/b> t\u00e9rfogategys\u00e9g, ami megegyezik a feladatban megadott eredm\u00e9nnyel."]},{"title":"5. feladat: T\u00e9rfogatsz\u00e1m\u00edt\u00e1s g\u00f6mb \u00e9s k\u00fap k\u00f6z\u00f6tt g\u00f6mbi koordin\u00e1t\u00e1kkal","wolfram":"integrate r^2 * sin(theta) dr dtheta dphi, r from 0 to sqrt(8), theta from 0 to pi\/4, phi from 0 to 2*pi","steps":["<h3>1. A tartom\u00e1ny (\\( V \\)) elemz\u00e9se \u00e9s koordin\u00e1tarendszer v\u00e1laszt\u00e1sa<\/h3>\r\n                <b>L\u00e9p\u00e9s 1.1: A hat\u00e1rol\u00f3 fel\u00fcletek azonos\u00edt\u00e1sa.<\/b><br>\r\n                A testet k\u00e9t fel\u00fclet hat\u00e1rolja:\r\n                <ul>\r\n                    <li>Fel\u00fclr\u0151l: \\( z = \\sqrt{8 - x^2 - y^2} \\implies x^2 + y^2 + z^2 = 8 \\). Ez egy orig\u00f3 k\u00f6z\u00e9ppont\u00fa, \\( R = \\sqrt{8} \\) sugar\u00fa g\u00f6mb.<\/li>\r\n                    <li>Alulr\u00f3l: \\( z = \\sqrt{x^2 + y^2} \\). Ez egy orig\u00f3 cs\u00facspont\u00fa k\u00f6rk\u00fap.<\/li>\r\n                <\/ul>","<b>L\u00e9p\u00e9s 1.2: \u00c1tt\u00e9r\u00e9s g\u00f6mbi koordin\u00e1t\u00e1kra.<\/b><br>\r\n                A tartom\u00e1ny \"fagylaltkehely\" alakja miatt a 12. fejezet 4. t\u00e9tele szerinti g\u00f6mbi transzform\u00e1ci\u00f3t haszn\u00e1ljuk:\r\n                \\[ x = r \\sin \\theta \\cos \\phi, \\quad y = r \\sin \\theta \\sin \\phi, \\quad z = r \\cos \\theta \\]\r\n                A hat\u00e1rok meghat\u00e1roz\u00e1sa:\r\n                <ul>\r\n                    <li><b>Sug\u00e1r (\\( r \\)):<\/b> Az orig\u00f3t\u00f3l a g\u00f6mb felsz\u00edn\u00e9ig tart: \\( 0 \\le r \\le \\sqrt{8} \\).<\/li>\r\n                    <li><b>Sz\u00f6g (\\( \\phi \\)):<\/b> A teljes k\u00f6rbeforg\u00e1s miatt \\( 0 \\le \\phi \\le 2\\pi \\).<\/li>\r\n                    <li><b>Pol\u00e1r sz\u00f6g (\\( \\theta \\)):<\/b> A \\( z \\)-tengelyt\u0151l a k\u00fapig tart. A k\u00fapn\u00e1l \\( z = \\sqrt{x^2+y^2} \\implies \\theta = \\pi\/4 \\), \u00edgy \\( 0 \\le \\theta \\le \\pi\/4 \\).<\/li>\r\n                <\/ul>","<h3>2. A t\u00e9rfogat kisz\u00e1m\u00edt\u00e1sa h\u00e1rmas integr\u00e1llal<\/h3>\r\n                <b>L\u00e9p\u00e9s 2.1: Az integr\u00e1l fel\u00e1ll\u00edt\u00e1sa a Jacobi-szorz\u00f3val.<\/b><br>\r\n                A g\u00f6mbi koordin\u00e1t\u00e1k Jacobi-determin\u00e1nsa \\( r^2 \\sin \\theta \\).\r\n                A t\u00e9rfogat:\r\n                \\[ V = \\int_0^{2\\pi} \\int_0^{\\pi\/4} \\int_0^{\\sqrt{8}} r^2 \\sin \\theta \\, dr d\\theta d\\phi \\]","<b>L\u00e9p\u00e9s 2.2: Az integr\u00e1lok kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                1. Sug\u00e1r szerinti r\u00e9sz: \\( \\int_0^{\\sqrt{8}} r^2 \\, dr = \\left[ \\frac{r^3}{3} \\right]_0^{\\sqrt{8}} = \\frac{8\\sqrt{8}}{3} = \\frac{16\\sqrt{2}}{3} \\).<br>\r\n                2. Sz\u00f6g (\\( \\theta \\)) szerinti r\u00e9sz: \\( \\int_0^{\\pi\/4} \\sin \\theta \\, d\\theta = [-\\cos \\theta]_0^{\\pi\/4} = 1 - \\frac{\\sqrt{2}}{2} \\).<br>\r\n                3. Sz\u00f6g (\\( \\phi \\)) szerinti r\u00e9sz: \\( \\int_0^{2\\pi} 1 \\, d\\phi = 2\\pi \\).<br>\r\n                \r\n                <b>V\u00e9geredm\u00e9ny:<\/b> Az \u00e9rt\u00e9keket \u00f6sszeszorozva: \r\n                \\[ V = 2\\pi \\cdot \\frac{16\\sqrt{2}}{3} \\cdot \\left(1 - \\frac{\\sqrt{2}}{2}\\right) = \\mathbf{2\\pi \\frac{16\\sqrt{2} - 16}{3}} \\]\r\n                Ez pontosan megegyezik a feladatlapon jelzett eredm\u00e9nnyel."]},{"title":"6. feladat: H\u00e1rmas integr\u00e1l sz\u00e1m\u00edt\u00e1sa g\u00f6mbnyolcadon g\u00f6mbi koordin\u00e1t\u00e1kkal","wolfram":"integrate x*y^2*z^3 where x^2+y^2+z^2<=9, x<=0, y>=0, z<=0","steps":["<h3>1. A tartom\u00e1ny (\\( V \\)) \u00e9s a koordin\u00e1tarendszer megv\u00e1laszt\u00e1sa<\/h3>","<b>L\u00e9p\u00e9s 1.1: A tartom\u00e1ny azonos\u00edt\u00e1sa.<\/b><br>\r\n                A \\( V \\) tartom\u00e1ny egy orig\u00f3 k\u00f6z\u00e9ppont\u00fa, 3 sugar\u00fa g\u00f6mbnek az a r\u00e9sze, ahol \\( x \\le 0, y \\ge 0, z \\le 0 \\).<br>\r\n                Ez a t\u00e9rbeli koordin\u00e1ta-rendszer egyik meghat\u00e1rozott <b>okt\u00e1nsa<\/b> (t\u00e9rnyolcada).","<b>L\u00e9p\u00e9s 1.2: \u00c1tt\u00e9r\u00e9s g\u00f6mbi koordin\u00e1t\u00e1kra.<\/b><br>\r\n                A 12. fejezet 4. t\u00e9tele alapj\u00e1n a g\u00f6mbi transzform\u00e1ci\u00f3t \u00e9s a hozz\u00e1 tartoz\u00f3 \\( r^2 \\sin \\theta \\) Jacobi-szorz\u00f3t haszn\u00e1ljuk:\r\n                \\[ x = r \\sin \\theta \\cos \\phi, \\quad y = r \\sin \\theta \\sin \\phi, \\quad z = r \\cos \\theta \\]\r\n                A hat\u00e1rok meghat\u00e1roz\u00e1sa a nyolcad alapj\u00e1n:\r\n                <ul>\r\n                    <li>Sug\u00e1r: \\( 0 \\le r \\le 3 \\).<\/li>\r\n                    <li>Azimut sz\u00f6g (\\( xy \\)-s\u00edkon): \\( x \\le 0 \\) \u00e9s \\( y \\ge 0 \\) miatt \\( \\frac{\\pi}{2} \\le \\phi \\le \\pi \\).<\/li>\r\n                    <li>Pol\u00e1r sz\u00f6g (\\( z \\)-tengelyt\u0151l): \\( z \\le 0 \\) miatt \\( \\frac{\\pi}{2} \\le \\theta \\le \\pi \\).<\/li>\r\n                <\/ul>","<h3>2. Az integr\u00e1l fel\u00e1ll\u00edt\u00e1sa \u00e9s sz\u00e9tbont\u00e1sa<\/h3>","<b>L\u00e9p\u00e9s 2.1: Az integrandus behelyettes\u00edt\u00e9se.<\/b><br>\r\n                Az \\( xy^2z^3 \\) f\u00fcggv\u00e9ny g\u00f6mbi alakja szorozva a Jacobi-szorz\u00f3val:\r\n                \\[ f \\cdot J = (r \\sin \\theta \\cos \\phi) \\cdot (r \\sin \\theta \\sin \\phi)^2 \\cdot (r \\cos \\theta)^3 \\cdot \\mathbf{r^2 \\sin \\theta} \\]\r\n                Egyszer\u0171s\u00edtve a v\u00e1ltoz\u00f3k szerint:\r\n                \\[ I = \\int_0^3 r^8 \\, dr \\cdot \\int_{\\pi\/2}^\\pi \\sin^4 \\theta \\cos^3 \\theta \\, d\\theta \\cdot \\int_{\\pi\/2}^\\pi \\sin^2 \\phi \\cos \\phi \\, d\\phi \\]","<h3>3. A r\u00e9szintegr\u00e1lok kisz\u00e1m\u00edt\u00e1sa<\/h3>","<b>L\u00e9p\u00e9s 3.1: A sug\u00e1r szerinti integr\u00e1l.<\/b><br>\r\n                \\[ \\int_0^3 r^8 \\, dr = \\left[ \\frac{r^9}{9} \\right]_0^3 = \\frac{3^9}{9} = \\mathbf{3^7} \\]","<b>L\u00e9p\u00e9s 3.2: A sz\u00f6g szerinti integr\u00e1lok (helyettes\u00edt\u00e9ssel).<\/b><br>\r\n                1. A \\( \\phi \\) szerinti r\u00e9sz: \\( \\int_{\\pi\/2}^\\pi \\sin^2 \\phi \\cos \\phi \\, d\\phi = \\left[ \\frac{\\sin^3 \\phi}{3} \\right]_{\\pi\/2}^\\pi = 0 - \\frac{1}{3} = \\mathbf{-\\frac{1}{3}} \\)<br>\r\n                2. A \\( \\theta \\) szerinti r\u00e9sz (\\( u = \\sin \\theta \\)): \\( \\int (\\sin^4 \\theta - \\sin^6 \\theta) \\cos \\theta \\, d\\theta = \\left[ \\frac{\\sin^5 \\theta}{5} - \\frac{\\sin^7 \\theta}{7} \\right]_{\\pi\/2}^\\pi = -\\left(\\frac{1}{5} - \\frac{1}{7}\\right) = \\mathbf{-\\frac{2}{35}} \\)","<b>L\u00e9p\u00e9s 3.3: \u00d6sszegz\u00e9s.<\/b><br>\r\n                A h\u00e1rom r\u00e9szeredm\u00e9ny szorzata:\r\n                \\[ 3^7 \\cdot \\left( -\\frac{1}{3} \\right) \\cdot \\left( -\\frac{2}{35} \\right) = \\mathbf{3^7 \\cdot \\frac{1}{3} \\cdot \\frac{2}{35}} \\]\r\n                Ez megegyezik a feladatv\u00e9gi eredm\u00e9nnyel."]},{"title":"7. feladat: G\u00f6mbh\u00e9jak \u00e9s k\u00fapok k\u00f6z\u00e9 z\u00e1rt t\u00e9rr\u00e9sz t\u00e9rfogata","wolfram":"volume of region 1<=x^2+y^2+z^2<=4, sqrt(x^2+y^2)\/sqrt(3)<=z<=sqrt(x^2+y^2)","steps":["<h3>1. A tartom\u00e1ny (\\( V \\)) elemz\u00e9se \u00e9s koordin\u00e1tarendszer v\u00e1laszt\u00e1sa<\/h3>\r\n                <b>L\u00e9p\u00e9s 1.1: A hat\u00e1rol\u00f3 fel\u00fcletek azonos\u00edt\u00e1sa.<\/b><br>\r\n                A \\( V \\) tartom\u00e1nyt k\u00e9t g\u00f6mb \u00e9s k\u00e9t k\u00fap hat\u00e1rolja:\r\n                <ul>\r\n                    <li>Bels\u0151 g\u00f6mb: \\( x^2+y^2+z^2 = 1 \\implies \\mathbf{r = 1} \\).<\/li>\r\n                    <li>K\u00fcls\u0151 g\u00f6mb: \\( x^2+y^2+z^2 = 4 \\implies \\mathbf{r = 2} \\).<\/li>\r\n                    <li>Fels\u0151 k\u00fap: \\( z = \\sqrt{x^2+y^2} \\).<\/li>\r\n                    <li>Als\u00f3 k\u00fap: \\( z = \\frac{\\sqrt{x^2+y^2}}{\\sqrt{3}} \\).<\/li>\r\n                <\/ul>","<b>L\u00e9p\u00e9s 1.2: \u00c1tt\u00e9r\u00e9s g\u00f6mbi koordin\u00e1t\u00e1kra.<\/b><br>\r\n                A k\u00fapok \u00e9s g\u00f6mb\u00f6k miatt a 12. fejezet 4. t\u00e9tele szerinti transzform\u00e1ci\u00f3t haszn\u00e1ljuk:\r\n                \\[ x = r \\sin \\theta \\cos \\phi, \\quad y = r \\sin \\theta \\sin \\phi, \\quad z = r \\cos \\theta \\]\r\n                A hat\u00e1rok meghat\u00e1roz\u00e1sa:\r\n                <ul>\r\n                    <li><b>Sug\u00e1r (\\( r \\)):<\/b> A k\u00e9t g\u00f6mbh\u00e9j k\u00f6z\u00f6tt \\( 1 \\le r \\le 2 \\).<\/li>\r\n                    <li><b>Sz\u00f6g (\\( \\phi \\)):<\/b> Teljes k\u00f6rbeforg\u00e1s az \\( z \\)-tengely k\u00f6r\u00fcl: \\( 0 \\le \\phi \\le 2\\pi \\).<\/li>\r\n                    <li><b>Pol\u00e1r sz\u00f6g (\\( \\theta \\)):<\/b>\r\n                        <ul>\r\n                            <li>Fels\u0151 k\u00fap (\\( z = \\sqrt{x^2+y^2} \\)): \\( r \\cos \\theta = r \\sin \\theta \\implies \\tan \\theta = 1 \\implies \\mathbf{\\theta = \\pi\/4} \\).<\/li>\r\n                            <li>Als\u00f3 k\u00fap (\\( z = \\frac{\\sqrt{x^2+y^2}}{\\sqrt{3}} \\)): \\( r \\cos \\theta = \\frac{r \\sin \\theta}{\\sqrt{3}} \\implies \\tan \\theta = \\sqrt{3} \\implies \\mathbf{\\theta = \\pi\/3} \\).<\/li>\r\n                        <\/ul>\r\n                    <\/li>\r\n                <\/ul>","<h3>2. A t\u00e9rfogat kisz\u00e1m\u00edt\u00e1sa h\u00e1rmas integr\u00e1llal<\/h3>\r\n                <b>L\u00e9p\u00e9s 2.1: Az integr\u00e1l fel\u00e1ll\u00edt\u00e1sa.<\/b><br>\r\n                A Jacobi-szorz\u00f3 g\u00f6mbi koordin\u00e1t\u00e1kban \\( r^2 \\sin \\theta \\).\r\n                A t\u00e9rfogat:\r\n                \\[ V = \\int_0^{2\\pi} \\int_{\\pi\/4}^{\\pi\/3} \\int_1^2 r^2 \\sin \\theta \\, dr d\\theta d\\phi \\]","<b>L\u00e9p\u00e9s 2.2: A r\u00e9szintegr\u00e1lok kisz\u00e1m\u00edt\u00e1sa.<\/b><br>\r\n                1. Sug\u00e1r szerinti r\u00e9sz: \\( \\int_1^2 r^2 \\, dr = \\left[ \\frac{r^3}{3} \\right]_1^2 = \\frac{8-1}{3} = \\frac{7}{3} \\).<br>\r\n                2. Sz\u00f6g (\\( \\theta \\)) szerinti r\u00e9sz: \\( \\int_{\\pi\/4}^{\\pi\/3} \\sin \\theta \\, d\\theta = [-\\cos \\theta]_{\\pi\/4}^{\\pi\/3} = \\cos(\\pi\/4) - \\cos(\\pi\/3) = \\frac{\\sqrt{2}-1}{2} \\).<br>\r\n                3. Sz\u00f6g (\\( \\phi \\)) szerinti r\u00e9sz: \\( \\int_0^{2\\pi} 1 \\, d\\phi = 2\\pi \\).<br>\r\n                \r\n                <b>L\u00e9p\u00e9s 2.3: \u00d6sszes\u00edt\u00e9s.<\/b><br>\r\n                \\[ V = 2\\pi \\cdot \\frac{7}{3} \\cdot \\frac{\\sqrt{2}-1}{2} = \\mathbf{\\frac{14\\pi}{3} \\cdot \\frac{\\sqrt{2}-1}{2}} \\]\r\n                Ez megegyezik a feladatv\u00e9gi eredm\u00e9nnyel."]}];
+    const chapterId = 12;
+</script>
+
+<script src="script.js"></script>
+</body>
+
+<!-- Mirrored from bsz2jegyzet.hu/anal-gyakorlatok/chapter.php?id=12 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:20:35 GMT -->
+</html>
