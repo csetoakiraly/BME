@@ -300,10 +300,10 @@
                     <ul class="list-disc pl-5 text-slate-700 dark:text-slate-300">
                         <li>$S$-ből indítjuk a maximumot: $S \to A$ élen $1$, $S \to B$ élen $7$, $S \to D$ élen $7$. (Összesen $S$-ből kimegy: $1+7+7 = 15$ egység).</li>
                         <li>$A$-ba érkezik $1$, amit továbbküldünk: $A \to D$ élen $1$.</li>
-                        <li>$B$-be érkezik $7$ (S-ből). Ezt szétosztjuk a kimenő éleken: $B \to C$-n $5$, $B \to D$-n $1$, és $B \to E$-n $1$.</li>
-                        <li>$D$-be érkezik $7$ (S-ből) + $1$ (A-ból) + $1$ (B-ből) = $9$. Ezt továbbküldjük: $D \to E$-n $6$, $D \to T$-n $3$.</li>
-                        <li>$C$-be érkezik $5$ (B-ből). Ez mind kimegy a célba: $C \to T$-n $5$.</li>
-                        <li>$E$-be érkezik $1$ (B-ből) + $6$ (D-ből) = $7$. Ez mind kimegy a célba: $E \to T$-n $7$.</li>
+                        <li>$B$-be érkezik $7$ (S-ből). Ezt szétosztjuk a kimenő éleken: $B \to C$-n $6$, és $B \to E$-n $1$.</li>
+                        <li>$D$-be érkezik $7$ (S-ből) + $1$ (A-ból) = $8$. Ezt továbbküldjük: $D \to E$-n $5$, $D \to T$-n $3$.</li>
+                        <li>$C$-be érkezik $6$ (B-ből). Ezt szétosztjuk: $C \to E$-n $1$, $C \to T$-n $5$.</li>
+                        <li>$E$-be érkezik $1$ (B-ből) + $5$ (D-ből) + $1$ (C-ből) = $7$. Ez mind kimegy a célba: $E \to T$-n $7$.</li>
                     </ul>
                     <p class="text-slate-700 dark:text-slate-300 mt-2">Így $T$-be összesen $5$ (C-ből) + $3$ (D-ből) + $7$ (E-ből) = <strong>$15$</strong> egység érkezik, és minden csomópontban teljesül a folytonosság, tehát ez egy érvényes $15$ értékű folyam.</p>
                     
@@ -311,8 +311,8 @@
                     <ul class="list-disc pl-5 text-slate-700 dark:text-slate-300">
                         <li>Az $S \to A$ él kilép, kapacitása: $1$</li>
                         <li>Az $S \to D$ él kilép, kapacitása: $7$</li>
-                        <li>A $B \to D$ él kilép, kapacitása: $1$</li>
                         <li>A $B \to E$ él kilép, kapacitása: $1$</li>
+                        <li>A $C \to E$ él kilép, kapacitása: $1$</li>
                         <li>A $C \to T$ él kilép, kapacitása: $5$</li>
                     </ul>
                     A vágásba befelé menő éleket a kapacitás számításakor ignoráljuk. A kilépő élek kapacitásának összege: $$ c(X) = 1 + 7 + 1 + 1 + 5 = 15 $$</p>
