@@ -30,6 +30,10 @@
         .dark .solution-box { background: #0f172a; border-left-color: #818cf8; }
         .explanation-box { background: #fefce8; border: 1px dashed #f59e0b; padding: 1.5rem; margin-top: 1.5rem; border-radius: 1rem; }
         .dark .explanation-box { background: rgba(245, 158, 11, 0.05); border-color: #78350f; }
+        .theorem-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem; margin-top: 1rem; border-radius: 0 0.5rem 0.5rem 0; }
+        .dark .theorem-box { background: #1e3a8a; border-left-color: #60a5fa; color: #e0e7ff; }
+        .definition-box { background: #ecfdf5; border-left: 4px solid #10b981; padding: 1rem; margin-top: 1rem; border-radius: 0 0.5rem 0.5rem 0; }
+        .dark .definition-box { background: #064e3b; border-left-color: #34d399; color: #d1fae5; }
     </style>
 </head>
 <body class="flex flex-col md:flex-row min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
@@ -78,7 +82,7 @@
                 <h1 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight mb-4">
                     2025. május 5. <span class="text-indigo-600">Zárthelyi</span>
                 </h1>
-                <p class="text-slate-500 text-lg">Feladatok, magyarázatok és hivatalos megoldások lépésről lépésre.</p>
+                <p class="text-slate-500 text-lg">Feladatok részletes elméleti magyarázattal, képletekkel és hivatalos megoldásokkal.</p>
             </header>
 
             <!-- FELADAT 1 -->
@@ -90,25 +94,40 @@
                 
                 <div class="mb-6 text-slate-700 dark:text-slate-300">
                     <p>Valaki rajzolt egy 8 csúcsú fát, majd felsorolta a csúcsainak a fokszámát, de egyet kifelejtett. Előfordulhat-e, hogy az alábbi számsorozatokat kapta?</p>
-                    <p class="mt-2">a) 1, 1, 1, 1, 2, 2, 4</p>
-                    <p>b) 1, 1, 1, 2, 2, 3, 4</p>
+                    <p class="mt-2 font-mono bg-slate-100 dark:bg-slate-800 p-2 rounded">a) 1, 1, 1, 1, 2, 2, 4</p>
+                    <p class="font-mono bg-slate-100 dark:bg-slate-800 p-2 rounded mt-1">b) 1, 1, 1, 2, 2, 3, 4</p>
                 </div>
 
                 <div class="explanation-box">
-                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (1. és 2. fejezet)</h3>
-                    <p class="text-sm text-slate-700 dark:text-slate-300 mb-2">Két dologra van szükség a megoldáshoz:</p>
-                    <ul class="list-disc pl-5 text-sm space-y-1 text-slate-700 dark:text-slate-300">
-                        <li><strong>Fa élszáma:</strong> Egy $n$ csúcsú fának mindig $n - 1$ éle van. Itt $n=8$, tehát $m=7$ él van.</li>
-                        <li><strong>Fokszámösszeg-tétel:</strong> Bármely gráfban a fokszámok összege az élek számának kétszerese: $\sum d(v) = 2m$.</li>
-                    </ul>
-                    <p class="text-sm mt-2 text-slate-700 dark:text-slate-300">Tehát a 8 csúcs fokszámainak összege pontosan $2 \cdot 7 = 14$ kell, hogy legyen. Ezt kell ellenőriznünk a megadott listáknál.</p>
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér: Fák és Fokszámok</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mb-2">Ahhoz, hogy egy fokszámsorozatról eldöntsük, tartozhat-e fához, két alapvető állítást kell ismernünk és kombinálnunk:</p>
+                    
+                    <div class="definition-box text-sm">
+                        <strong class="text-emerald-700 dark:text-emerald-400">Definíció (Fa):</strong> A fa egy összefüggő, körmentes gráf. Fő tulajdonsága, hogy ha $n$ csúcsa van, akkor éleinek száma pontosan $m = n - 1$.
+                    </div>
+                    
+                    <div class="theorem-box text-sm mt-2">
+                        <strong class="text-blue-700 dark:text-blue-400">Tétel (Fokszámösszeg-tétel):</strong> Bármely gráfban a csúcsok fokszámainak összege egyenlő az élek számának kétszeresével. Képlettel:
+                        $$ \sum_{v \in V} d(v) = 2m $$
+                    </div>
+                    
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mt-2">A mi esetünkben tudjuk, hogy a fa $n = 8$ csúcsú. Így az élek száma $m = 8 - 1 = 7$.
+                    A fokszámösszeg-tételt alkalmazva a 8 csúcs fokszámainak összegére:
+                    $$ \sum_{v=1}^{8} d(v) = 2 \cdot 7 = 14 $$
+                    Tehát bármely 8 csúcsú fa fokszámainak összege hajszálpontosan 14 kell, hogy legyen. Ezt az egyszerű tényt használjuk a két részfeladat ellenőrzésére. Fontos még tudni, hogy egy fában (ami legalább 2 csúcsú) nem lehet izolált pont (0 fokú csúcs), mert összefüggő.</p>
                 </div>
 
                 <div class="solution-box">
-                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás Lépésről Lépésre</h3>
                     <p class="text-slate-700 dark:text-slate-300">Egy 8 csúcsú fában a csúcsok fokszámának összege $2 \cdot 7 = 14$ kell legyen, mert egyrészt a tanult tétel szerint egy ilyen fának 7 éle van, másrészt a tanultak szerint a csúcsok fokszámösszege minden gráfban az élszám kétszerese.</p>
-                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>b) rész:</strong> Ebből azonnal látszik, hogy a válasz <strong>nemleges</strong>: a hiányzó fokszám a fa összefüggősége miatt nem lehet 0, és a megadott fokszámok összege már eleve $1+1+1+2+2+3+4 = 14$, így a kifelejtettel együtt 14-nél nagyobb összeget kapnánk.</p>
-                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>a) rész:</strong> Ugyanez a számolás azt mutatja, hogy a megadott fokszámok összege $1+1+1+1+2+2+4 = 12$, így a kifelejtett fokszám <strong>2 kell legyen</strong> (hogy az összeg 14 legyen). Könnyű mutatni olyan fát, amiben a csúcsok fokszámai megfelelőek: például egy 6 csúcsú út egyik 2 fokú csúcsáról "lelógatunk" két további élt, amiknek a másik végpontja 1 fokú lesz. Így a válasz: <strong>igen</strong>.</p>
+                    
+                    <h4 class="font-bold text-slate-800 dark:text-slate-200 mt-4 border-b border-slate-200 dark:border-slate-700 pb-1">b) rész vizsgálata</h4>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Adott részlet: 1, 1, 1, 2, 2, 3, 4. Adjuk össze ezeket: $$1 + 1 + 1 + 2 + 2 + 3 + 4 = 14$$</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Mivel 7 csúcs foka már önmagában kiadja a 14-et, a 8. (kifelejtett) csúcs foka csak $0$ lehetne, hogy az összeg megmaradjon 14. Azonban egy 8 csúcsú fában nem lehet 0 fokú csúcs (izolált pont), hiszen a fa összefüggő. Így ebből azonnal látszik, hogy a válasz <strong>nemleges</strong>.</p>
+                    
+                    <h4 class="font-bold text-slate-800 dark:text-slate-200 mt-4 border-b border-slate-200 dark:border-slate-700 pb-1">a) rész vizsgálata</h4>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Adott részlet: 1, 1, 1, 1, 2, 2, 4. Adjuk össze: $$1 + 1 + 1 + 1 + 2 + 2 + 4 = 12$$</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Ahhoz, hogy az összeg 14 legyen, a kifelejtett fokszám $14 - 12 = 2$ kell legyen. Létezik ilyen fa? Igen, könnyű mutatni olyan fát, amiben a csúcsok fokszámai pontosan (4, 2, 2, 2, 1, 1, 1, 1). Például: vegyünk egy 4 fokú csúcsot csillagként középre, ebből indul 4 ág. Két ágat meghosszabbítunk még 1-1 csúccsal. Ekkor a középső csúcs foka 4, a két "meghosszabbított" belső csúcs foka 2, az újonnan bekerült "2" pedig betehető egy soros láncba. Így a válasz: <strong>igen</strong>.</p>
                 </div>
             </div>
 
@@ -116,7 +135,7 @@
             <div class="task-card">
                 <div class="flex items-center gap-3 mb-6">
                     <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">2. Feladat</span>
-                    <h2 class="text-xl font-bold">Euler és Hamilton vonalak</h2>
+                    <h2 class="text-xl font-bold">Euler és Hamilton vonalak alkalmazása</h2>
                 </div>
                 
                 <div class="mb-6 text-slate-700 dark:text-slate-300">
@@ -124,23 +143,33 @@
                 </div>
 
                 <div class="explanation-box">
-                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (3. fejezet)</h3>
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér: Euler-séta és Dirac-tétel</h3>
                     <p class="text-sm text-slate-700 dark:text-slate-300 mb-2">
-                        A feladat két sétát kér, amik felosztják az éleket. Gondoljunk bele: ha összekötnénk ezt a két sétát egy éllel, akkor egyetlen hosszú sétát kapnánk, ami minden élet tartalmaz (Euler-séta).
+                        A feladat két sétát kér, amik együtt kiadják az összes élet ismétlés nélkül. Ez kísértetiesen hasonlít az Euler-séta problémájára. Ha egy összefüggő gráf minden élét be akarjuk járni két sétával, az technikailag azt jelenti, hogy ha a gráfhoz adnánk még egy "képzeletbeli" élt, az egyesítené a két sétát egyetlen Euler-sétává.
                     </p>
-                    <p class="text-sm text-slate-700 dark:text-slate-300 mb-2">
-                        <strong>Euler-tétel:</strong> Összefüggő gráfban Euler-séta pontosan akkor létezik, ha 0 vagy 2 páratlan fokú csúcs van. Jelenleg 4 darab páratlan (11 fokú) csúcsunk van.
+                    
+                    <div class="theorem-box text-sm">
+                        <strong class="text-blue-700 dark:text-blue-400">Tétel (Euler-séta létezése):</strong> Egy összefüggő gráfban pontosan akkor létezik Euler-séta, ha a páratlan fokszámú csúcsok száma 0 vagy 2. Ha 0, akkor a séta zárt (Euler-körséta), ha 2, akkor a séta nyitott, és a két páratlan fokú csúcs között halad.
+                    </div>
+                    
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mt-2">
+                        Jelenleg 4 darab páratlan (11 fokú) csúcsunk van, tehát nincs benne egyetlen Euler séta. Viszont ha behúzunk <em>képzeletben</em> egy élt két 11-es csúcs közé, akkor azok foka $11+1=12$ lesz (páros), és csak 2 páratlan csúcs marad! Ahhoz viszont, hogy alkalmazzuk az Euler-tételt, tudnunk kell, hogy a gráf <strong>összefüggő</strong>. Ehhez hívjuk segítségül a Hamilton-köröknél tanultakat:
                     </p>
-                    <p class="text-sm text-slate-700 dark:text-slate-300">
-                        A trükk: Ha behúzunk egy "képzeletbeli" élt két 11-es csúcs közé, azok foka 12 lesz (páros). Így már csak két páratlan csúcs marad, tehát lesz Euler-séta. Ezt az Euler-sétát aztán a képzeletbeli élnél kettévágva megkapjuk a keresett $P$ és $Q$ sétákat. Ehhez még be kell látnunk, hogy a gráf összefüggő: itt jön képbe a <strong>Dirac-tétel</strong> (minden fokszám $\ge n/2$).
-                    </p>
+                    
+                    <div class="theorem-box text-sm mt-2">
+                        <strong class="text-blue-700 dark:text-blue-400">Tétel (Dirac-tétel):</strong> Ha egy $n \ge 3$ csúcsú egyszerű gráfban minden csúcs foka $d(v) \ge \frac{n}{2}$, akkor a gráfban van Hamilton-kör (tehát a gráf garantáltan összefüggő).
+                    </div>
                 </div>
 
                 <div class="solution-box">
-                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
-                    <p class="text-slate-700 dark:text-slate-300">Kössünk össze a 11 fokú csúcsok közül kettőt egy új $e$ éllel (akkor is, ha azok esetleg már szomszédosak voltak), a kapott gráfot jelölje $G'$. $G'$-ben $e$ végpontjai 12 fokúak lettek, így $G'$-ben kettő kivételével minden csúcs foka páros.</p>
-                    <p class="text-slate-700 dark:text-slate-300 mt-2">Mivel az eredeti $G$ egyszerű gráf és benne minden pont foka legalább $10 = 20/2$, ezért Dirac tétele miatt van benne Hamilton-kör. Így $G$ összefüggő és emiatt persze $G'$ is az.</p>
-                    <p class="text-slate-700 dark:text-slate-300 mt-2">A fentiek miatt $G'$-ben van Euler-séta, mert teljesülnek rá a tanult tétel feltételei. Ha most a $G'$-beli Euler-sétából töröljük az $e$ élt, akkor éppen a feladat által kívánt $P$ és $Q$ séták maradnak meg belőle. (Egyrészt $P$ és $Q$ nyilván séta; másrészt mivel az Euler-séta $G'$ minden élét tartalmazta, ezért $G$ minden éle $P$ és $Q$ közül pontosan az egyikbe kerül bele.)</p>
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás Lépésről Lépésre</h3>
+                    <p class="text-slate-700 dark:text-slate-300"><strong>1. Összefüggőség bizonyítása:</strong> Először is meg kell vizsgálnunk a gráf összefüggőségét. A $G$ egyszerű gráfban $n = 20$ csúcs van. A legkisebb fokszám 10. Mivel minden $v$ csúcsra $d(v) \ge 10$, ami pontosan $\frac{20}{2}$, ezért Dirac tétele értelmében a gráfban van Hamilton-kör. Ha van benne egy minden csúcsot érintő kör, akkor a gráf egyetlen komponensből áll, azaz <strong>összefüggő</strong>.</p>
+                    
+                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>2. Gráf módosítása az Euler-tételhez:</strong> A gráfban jelenleg négy darab 11-fokú (páratlan) csúcs van, a többi 10 (páros). Válasszunk ki kettőt a 11-fokú csúcsok közül, és kössük össze őket egy új $e$ éllel. A kapott gráfot jelölje $G'$. (Még ha korábban volt is él a két csúcs között, a többes él hozzáadása nem akadályozza az Euler-vonalak keresését).</p>
+                    
+                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>3. Euler-séta a $G'$-ben:</strong> A módosított $G'$ gráfban a kiválasztott két csúcs foka 12-re nőtt (ami páros). Így $G'$-ben már csak <strong>kettő</strong> páratlan fokú csúcs maradt. Mivel $G$ összefüggő volt, $G'$ is összefüggő. Az Euler-tétel feltételei ($G'$ összefüggő és pontosan 2 páratlan csúcsa van) teljesülnek, tehát $G'$-ben <strong>létezik Euler-séta</strong>. Ez a séta $G'$ minden élén pontosan egyszer halad végig.</p>
+                    
+                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>4. A séták szétvágása:</strong> Vegyük ezt a $G'$-beli Euler-sétát, és távolítsuk el belőle a gondolatban hozzáadott $e$ élt. Mivel egy hosszú sétából kivágtunk egy közbülső (vagy szélső) élt, a séta <strong>két darab kisebb sétára</strong> esik szét (ezek a keresett $P$ és $Q$ séták). Mivel az eredeti Euler-séta $G'$ minden élét pontosan egyszer tartalmazta, a kivágás után maradó $P$ és $Q$ séták együtt $G'$ maradék éleit, azaz pontosan az <strong>eredeti $G$ gráf összes élét</strong> tartalmazzák úgy, hogy minden él pontosan $P$-ben vagy $Q$-ban szerepel.</p>
                 </div>
             </div>
 
@@ -148,7 +177,7 @@
             <div class="task-card">
                 <div class="flex items-center gap-3 mb-6">
                     <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">3. Feladat</span>
-                    <h2 class="text-xl font-bold">Kruskal-algoritmus</h2>
+                    <h2 class="text-xl font-bold">Kruskal-algoritmus (Minimális feszítőfa)</h2>
                 </div>
                 
                 <div class="mb-6 text-slate-700 dark:text-slate-300">
@@ -156,18 +185,44 @@
                 </div>
 
                 <div class="explanation-box">
-                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (2. fejezet)</h3>
-                    <p class="text-sm text-slate-700 dark:text-slate-300">
-                        A feladat arra kíváncsi, létezik-e $\le 14$ súlyú feszítőfa. A <strong>Kruskal-algoritmus</strong> mindig a <em>minimális</em> összsúlyú feszítőfát (MST) találja meg. Tehát ha lefuttatjuk a Kruskalt, és a kapott fa súlya mondjuk 15, akkor biztosan tudjuk, hogy ennél kisebb (pl. 14) nem is létezhet. A lépések: élek sorbarendezése növekvően, és mohó beválogatás körmentesen.
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér: Feszítőfák és Kruskal</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mb-2">
+                        Egy $n$ csúcsú összefüggő gráf feszítőfája egy olyan részgráf, ami fát alkot és a gráf minden csúcsát tartalmazza. (Pontosan $n-1$ éle van). A feladat arra kíváncsi, létezik-e olyan feszítőfa, aminek a súlya $\le 14$. Ezt direktbe keresni nehéz, de tudjuk, hogyan keressük meg a <strong>legkisebb súlyú</strong> (minimális) feszítőfát!
+                    </p>
+                    
+                    <div class="definition-box text-sm">
+                        <strong class="text-emerald-700 dark:text-emerald-400">Kruskal-algoritmus (Mohó stratégia):</strong> 
+                        <ol class="list-decimal pl-5 mt-1">
+                            <li>Sorba rendezzük az összes élt a súlyuk szerint növekvő sorrendben.</li>
+                            <li>Kezdetben van $n$ darab 1 csúcsú "fánk" (komponens).</li>
+                            <li>Megyünk végig a rendezett éllistán: ha egy él két <em>különböző</em> komponenst köt össze (azaz nem zár be kört az eddig kiválasztott élekkel), akkor felvesszük a feszítőfába. Ha kört zárna, elvetjük.</li>
+                            <li>Akkor állunk meg, ha már $n-1$ élt kiválasztottunk.</li>
+                        </ol>
+                    </div>
+                    
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mt-2">
+                        Ha lefuttatjuk a Kruskalt, és a kapott minimális feszítőfa súlya mondjuk 15, akkor logikus, hogy 15-nél kisebb súlyú (pl. 14) nem is létezhet, hiszen a Kruskal garantáltan a legkisebbet találja meg.
                     </p>
                 </div>
 
                 <div class="solution-box">
-                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
-                    <p class="text-slate-700 dark:text-slate-300">A tanult Kruskal-algoritmust futtatjuk. Ez először a három darab 1 súlyú élt veszi be: $\{f,a\}, \{b,c\}, \{d,h\}$, mert ezek felvételekor sosem jön létre kör.</p>
-                    <p class="text-slate-700 dark:text-slate-300 mt-2">A soron következő 2 súlyú éleket vizsgáljuk. Kettőt beveszünk: $\{f,g\}$ és $\{e,h\}$, mert nem zárnak kört. A másik kettőt ($\{a,g\}, \{d,e\}$) eldobjuk, mert végpontjaik már azonos komponensben vannak.</p>
-                    <p class="text-slate-700 dark:text-slate-300 mt-2">Jön a 3 súlyú $\{b,e\}$ él, ezt bevesszük. A 4 súlyú $\{c,e\}$ élt elutasítjuk (kört zárna be). Végül az 5 súlyú $\{e,g\}$ élt bevesszük (összeköti a két megmaradt nagy komponenst).</p>
-                    <p class="text-slate-700 dark:text-slate-300 mt-2">Az algoritmus megállt, mert beválogattunk 7 élt (ami a 8 csúcsnál egyel kevesebb). A kapott feszítőfa összsúlya: $1+1+1+2+2+3+5 = 15$. Mivel a Kruskal-algoritmus minimális összsúlyú feszítőfát ad, ezért nincs a gráfban 15-nél kisebb összsúlyú. A válasz tehát: <strong>nincs</strong>.</p>
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás Lépésről Lépésre</h3>
+                    <p class="text-slate-700 dark:text-slate-300">A gráf 8 csúcsú, tehát a feszítőfának pontosan $8 - 1 = 7$ élre van szüksége. A tanult Kruskal-algoritmust futtatjuk, növekvő élsúlyok szerint haladva.</p>
+                    
+                    <ul class="list-disc pl-5 mt-2 text-slate-700 dark:text-slate-300 space-y-2">
+                        <li><strong>1 súlyú élek vizsálata:</strong> A gráfban három 1-es súlyú él van: $\{f,a\}, \{b,c\}, \{d,h\}$. Ezek bevételekor sosem jön létre kör, hiszen még csak most kezdjük építeni a fát, így mind a hármat beválogatjuk. <br><em class="text-xs text-slate-500">(Kiválasztott élek: 3 db, Jelenlegi összsúly: $1+1+1 = 3$)</em></li>
+                        
+                        <li><strong>2 súlyú élek vizsgálata:</strong> Négy darab 2-es él van. Kettőt beveszünk: $\{f,g\}$ és $\{e,h\}$, mert ezek bekötnek új csúcsokat, nem zárnak kört. A másik kettőt ($\{a,g\}, \{d,e\}$) viszont <strong>eldobjuk</strong>, mert a végpontjaik a már felvett éleken keresztül is elérhetők egymásból (pl. az $\{a, g\}$ kört alkotna az $a-f-g$ úton), tehát azonos komponensben vannak. <br><em class="text-xs text-slate-500">(Kiválasztott élek: 5 db, Jelenlegi összsúly: $3 + 2+2 = 7$)</em></li>
+                        
+                        <li><strong>3 súlyú élek vizsgálata:</strong> Következik a 3 súlyú $\{b,e\}$ él. Ez két eddig független fa-ágat köt össze, így ezt bevesszük. <br><em class="text-xs text-slate-500">(Kiválasztott élek: 6 db, Jelenlegi összsúly: $7 + 3 = 10$)</em></li>
+                        
+                        <li><strong>4 súlyú élek vizsgálata:</strong> Következik a 4 súlyú $\{c,e\}$ él. Ezt elutasítjuk, mert az $e-b-c$ útvonal már létezik, így ez a beválogatás kört zárna be.</li>
+                        
+                        <li><strong>5 súlyú élek vizsgálata:</strong> Végül az 5 súlyú $\{e,g\}$ élt bevesszük, mert összeköti a megmaradt utolsó két nagy komponenst. <br><em class="text-xs text-slate-500">(Kiválasztott élek: 7 db, Jelenlegi összsúly: $10 + 5 = 15$)</em></li>
+                    </ul>
+                    
+                    <p class="text-slate-700 dark:text-slate-300 mt-4">Az algoritmus megállt, mert sikeresen beválogattunk 7 élt. A kapott feszítőfa összsúlya: $$1+1+1+2+2+3+5 = 15$$</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Mivel a Kruskal-algoritmus garantáltan a <em>minimális</em> összsúlyú feszítőfát adja, ezért biztosak lehetünk benne, hogy nincs a gráfban 15-nél kisebb összsúlyú fa. A feltett kérdésre a válasz tehát: <strong>nincs</strong> olyan feszítőfa, aminek súlya legfeljebb 14 lenne.</p>
                 </div>
             </div>
 
@@ -183,20 +238,30 @@
                 </div>
 
                 <div class="explanation-box">
-                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (5-6. fejezet)</h3>
-                    <p class="text-sm text-slate-700 dark:text-slate-300">Le kell fordítanunk a feladat mondatait gráfos fogalmakra:</p>
-                    <ul class="list-disc pl-5 text-sm space-y-1 text-slate-700 dark:text-slate-300 mt-2">
-                        <li><em>"bárhogyan választunk ki 10 csúcsot... mindig van olyan él, aminek egyik végpontja sincs benne"</em> $\rightarrow$ 10 csúcs sosem fog le minden élet. Tehát a minimális <strong>lefogó ponthalmaz</strong> mérete nagyobb 10-nél: $\tau(G) \ge 11$.</li>
-                        <li><em>"kiválasztható 11 él úgy, hogy minden csúcsra legföljebb egy illeszkedjen"</em> $\rightarrow$ Ez a <strong>párosítás</strong> definíciója. A feladat azt kéri, mutassuk meg, hogy a maximális párosítás mérete $\nu(G) \ge 11$.</li>
-                        <li>Mivel $G$ <strong>páros gráf</strong>, használhatjuk a <strong>Kőnig-tételt</strong>: $\nu(G) = \tau(G)$.</li>
-                    </ul>
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér: Kőnig tétele</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mb-2">Ezt a szöveges feladatot le kell fordítanunk a gráfelmélet egzakt nyelvére, konkrétan a párosítások ($\nu$) és a lefogó ponthalmazok ($\tau$) nyelvére.</p>
+                    
+                    <div class="definition-box text-sm">
+                        <strong class="text-emerald-700 dark:text-emerald-400">Definíciók:</strong><br>
+                        - <strong>Lefogó ponthalmaz ($\tau(G)$):</strong> Olyan csúcshalmaz, amely a gráf <em>minden egyes élének</em> legalább az egyik végpontját tartalmazza. $\tau(G)$ jelöli a legkisebb ilyen halmaz méretét.<br>
+                        - <strong>Független élhalmaz / Párosítás ($\nu(G)$):</strong> Olyan élhalmaz, amelyben semelyik két élnek nincs közös végpontja (tehát minden csúcsra max egy illeszkedik). $\nu(G)$ a maximális ilyen párosítás elemszáma.
+                    </div>
+                    
+                    <div class="theorem-box text-sm mt-2">
+                        <strong class="text-blue-700 dark:text-blue-400">Tétel (Kőnig-tétel):</strong> Bármely páros gráfban a maximális párosítás mérete megegyezik a minimális lefogó ponthalmaz méretével. $$ \nu(G) = \tau(G) $$
+                    </div>
                 </div>
 
                 <div class="solution-box">
-                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
-                    <p class="text-slate-700 dark:text-slate-300">A feladat első mondatában szereplő állítás azt jelenti, hogy $G$-ben a lefogó pontok minimális száma, $\tau(G) \ge 11$. Valóban, $\tau(G) \le 10$ éppen azt jelentené, hogy létezik $G$-ben 10 pontú lefogó ponthalmaz (vagyis 10 csúcs úgy, hogy minden él legalább egyik végpontja ezek között van).</p>
-                    <p class="text-slate-700 dark:text-slate-300 mt-2">A második mondatban szereplő, bizonyítandó állítás pedig a független élhalmaz (párosítás) definíciója szerint azt jelenti, hogy a $G$-beli független élek maximális száma, $\nu(G) \ge 11$.</p>
-                    <p class="text-slate-700 dark:text-slate-300 mt-2">Így a bizonyítandó állítás következik Kőnig tételéből: mivel $G$ páros gráf, ezért rá $\nu(G) = \tau(G)$, így a $\tau(G) \ge 11$ feltételből valóban adódik, hogy $\nu(G) \ge 11$.</p>
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás Lépésről Lépésre</h3>
+                    <p class="text-slate-700 dark:text-slate-300">A megoldáshoz dekódoljuk a feladat állításait:</p>
+                    
+                    <p class="text-slate-700 dark:text-slate-300 mt-2"><strong>1. Mit jelent az első mondat?</strong><br> "Bárhogyan választunk ki 10 csúcsot... mindig van olyan él, aminek egyik végpontja sincs a kiválasztottak között." Ez precízen azt jelenti, hogy 10 csúcs sosem elég ahhoz, hogy "lefogja" a gráf összes élét. Tehát nem létezik 10 elemű lefogó ponthalmaz. Ebből egyenesen következik, hogy a legkisebb lefogó ponthalmaz mérete legalább 11. Gráfjelöléssel: <strong>$\tau(G) \ge 11$</strong>.</p>
+                    
+                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>2. Mit jelent a második mondat (amit bizonyítani kell)?</strong><br> "Kiválasztható 11 él úgy, hogy minden csúcsra legföljebb egy illeszkedjen..." Ez pont a párosítás definíciója! Ha kiválasztható 11 ilyen él, az azt jelenti, hogy van egy (legalább) 11 méretű párosítás. Gráfjelöléssel azt kell bizonyítanunk, hogy: <strong>$\nu(G) \ge 11$</strong>.</p>
+                    
+                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>3. A bizonyítás:</strong> Mivel a feladat szövege szerint $G$ <strong>páros gráf</strong>, jogosan hivatkozhatunk Kőnig tételére, amely szerint: $$ \nu(G) = \tau(G) $$
+                    Mivel az első pontban beláttuk, hogy $\tau(G) \ge 11$, a Kőnig-tétel egyenlősége miatt azonnal adódik, hogy $\nu(G)$ is $\ge 11$. Ezzel az állítást bebizonyítottuk.</p>
                 </div>
             </div>
 
@@ -204,7 +269,7 @@
             <div class="task-card">
                 <div class="flex items-center gap-3 mb-6">
                     <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">5. Feladat</span>
-                    <h2 class="text-xl font-bold">Folyam és vágás</h2>
+                    <h2 class="text-xl font-bold">Folyam és vágás hálózatokban</h2>
                 </div>
                 
                 <div class="mb-6 text-slate-700 dark:text-slate-300">
@@ -212,17 +277,41 @@
                 </div>
 
                 <div class="explanation-box">
-                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (8. fejezet)</h3>
-                    <p class="text-sm text-slate-700 dark:text-slate-300">
-                        Két dolgot kell tennünk: mutatni egy érvényes folyamot, és találni egy olyan st-vágást, aminek a kapacitása pont annyi, mint a folyam értéke. A <strong>Ford-Fulkerson tétel</strong> garantálja, hogy a max folyam egyenlő a min vágással. Ha a vizsgán mutatunk egy $k$ értékű folyamot és egy $k$ kapacitású vágást, az tökéletes indoklás arra, hogy mindkettő optimális. Érdemes a forrásból kilépő éleken elindulni és szétosztani az értékeket a csomópontokon (Kirchhoff csomóponti törvény betartásával).
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér: Ford-Fulkerson tétel</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mb-2">
+                        Ebben a feladatban két dolgot kell manuálisan megtalálnunk: egy optimális folyamot és egy optimális vágást. A folyam ($f$) számokat rendel az élekhez a kapacitás ($c$) határáig, a Kirchhoff csomóponti törvény (beáramló = kiáramló) betartásával. A vágás egy $X \subset V$ csúcshalmaz (amiben $S \in X, T \notin X$), és a vágás <strong>kapacitása</strong> az $X$-ből kivezető élek kapacitásának összege.
                     </p>
+                    
+                    <div class="theorem-box text-sm">
+                        <strong class="text-blue-700 dark:text-blue-400">Tétel (Ford-Fulkerson max-flow min-cut):</strong> Bármely hálózatban a maximális folyam értéke egyenlő a minimális vágás kapacitásával. Sőt, tetszőleges folyam értéke legfeljebb akkora lehet, mint tetszőleges vágás kapacitása: $$ m_f \le c(X) $$
+                    </div>
+                    
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mt-2">Ennek a tételnek az ereje abban rejlik, hogy ha mutatunk egy vizsgán egy $k$ értékű folyamot ÉS egy $k$ kapacitású vágást, az tökéletes, bebetonozott bizonyítás arra, hogy megtaláltuk mindkettőből a maximumot, illetve a minimumot!</p>
                 </div>
 
                 <div class="solution-box">
-                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
-                    <p class="text-slate-700 dark:text-slate-300">A megoldók általában találnak egy folyamot próbálgatással. Egy 15 értékű folyam a következőképpen nézhet ki az éleken: az $S \to A$ élen 1, az $S \to B$ élen 7, az $S \to D$ élen 7 megy. (És így tovább, folytonosságot tartva: pl. $B \to C$-n 6, $B \to E$-n 1, $C \to T$-n 5, $E \to T$-n 7, $D \to T$-n 3).</p>
-                    <p class="text-slate-700 dark:text-slate-300 mt-2">A folyam értéke (az $S$-ből kilépő éleken az értékek összege): $1 + 7 + 7 = 15$.</p>
-                    <p class="text-slate-700 dark:text-slate-300 mt-2">Az $X = \{S, B, C\}$ vágás kapacitása szintén 15 (Az $X$-ből kilépő élek: $S \to A$ (1), $S \to D$ (9), $C \to T$ (5); $1+9+5 = 15$). Mivel a tanultak szerint minden folyam értéke legföljebb akkora, mint tetszőleges vágás kapacitása, ezért a 15 kapacitású vágás bizonyítja, hogy a 15 értékű folyam maximális, és fordítva, a folyam bizonyítja, hogy a vágás minimális.</p>
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás Lépésről Lépésre</h3>
+                    <p class="text-slate-700 dark:text-slate-300">A feladat célja, hogy próbálgatással (vagy javítóút algoritmussal) találjunk egy folyamot, amivel elakadunk, majd megtaláljuk a szűk keresztmetszetet (a vágást).</p>
+                    
+                    <p class="text-slate-700 dark:text-slate-300 mt-2"><strong>1. Folyam megadása (15 egység):</strong> Egy érvényes folyam eloszlás a következőképpen nézhet ki az éleken:</p>
+                    <ul class="list-disc pl-5 text-slate-700 dark:text-slate-300">
+                        <li>$S$-ből indítjuk: $S \to A$ élen $1$, $S \to B$ élen $7$, $S \to D$ élen $7$. (Összesen $S$-ből kimegy: $1+7+7 = 15$ egység, ez a folyam értéke).</li>
+                        <li>Közbülső elosztás a folytonosság miatt: $A \to B$-n $1$, így $B$-be összesen $7+1=8$ érkezik. Ezt továbbküldjük: $B \to C$-n $6$, $B \to E$-n $2$.</li>
+                        <li>$D$-be $7$ érkezik. Ebből $D \to E$-n átküldünk $4$-et, $D \to T$-n $3$-at.</li>
+                        <li>$E$-be $2$ (B-ből) $+ 4$ (D-ből) $= 6$ érkezik. Ezt mindet $E \to T$-re tesszük.</li>
+                        <li>$C$-be $6$ érkezik (B-ből), amiből $1$-et $E$-be küldünk (így módosítva a fenti összeget: $E$-be végül $2+4+1=7$ megy, ami $E \to T$-n folytatja útját), és $5$-öt $C \to T$-n.</li>
+                    </ul>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Bárhogyan is kavarjuk a belső csomópontokat, ha a kiáramló értékek összege ($1+7+7$) megegyezik a $T$-be beérkező összegekkel ($5+7+3 = 15$), egy <strong>$m_f = 15$</strong> értékű érvényes folyamot kapunk.</p>
+                    
+                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>2. Vágás megadása (15 kapacitás):</strong> Keressünk egy szűk keresztmetszetet! Válasszuk az $X = \{S, B, C\}$ halmazt. Mely élek lépnek ki ebből a halmazból?
+                    <ul class="list-disc pl-5 text-slate-700 dark:text-slate-300">
+                        <li>Az $S \to A$ él kilép, kapacitása: $1$</li>
+                        <li>Az $S \to D$ él kilép, kapacitása: $9$</li>
+                        <li>A $C \to T$ él kilép, kapacitása: $5$</li>
+                    </ul>
+                    A vágásba befelé menő éleket (pl $A \to B$) a kapacitás számításakor ignoráljuk. A kilépő élek kapacitásának összege: $$ c(X) = 1 + 9 + 5 = 15 $$</p>
+
+                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>3. Konklúzió:</strong> Mivel a tanult tétel (Ford-Fulkerson) szerint minden folyam értéke $\le$ tetszőleges vágás kapacitása, ezért ez a 15-ös kapacitású vágás a legkisebb, ami gátat szabhat a folyamnak, és a 15-ös értékű folyam a legnagyobb, ami átpréselhető. A vágás bizonyítja a folyam maximalitását, és fordítva.</p>
                 </div>
             </div>
 
@@ -230,24 +319,37 @@
             <div class="task-card">
                 <div class="flex items-center gap-3 mb-6">
                     <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">6. Feladat (IMSc)</span>
-                    <h2 class="text-xl font-bold">Élszínezés és Hamilton-kör</h2>
+                    <h2 class="text-xl font-bold">Élszínezés és Hamilton-kör (Bonyolultabb bizonyítás)</h2>
                 </div>
                 
                 <div class="mb-6 text-slate-700 dark:text-slate-300">
-                    <p>A hurokélt nem tartalmazó $G$ gráfban minden csúcs foka $d \ge 2$. Tudjuk, hogy $\chi_e(G) = d$, és $G$ élei csak egyféleképpen színezhetők meg helyesen $d$ színnel. Mutassuk meg, hogy $G$-ben van Hamilton-kör.</p>
+                    <p>A hurokélt nem tartalmazó $G$ gráfban minden csúcs foka $d \ge 2$. Tudjuk, hogy $\chi_e(G) = d$, és $G$ élei <strong>csak egyféleképpen</strong> színezhetők meg helyesen $d$ színnel (a színek cseréjétől, permutációjától eltekintve). Mutassuk meg, hogy $G$-ben van Hamilton-kör.</p>
                 </div>
 
                 <div class="explanation-box">
-                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (7. fejezet)</h3>
-                    <p class="text-sm text-slate-700 dark:text-slate-300">Ez egy nehezebb, bizonyítós feladat. A megadott feltételek: $d$-reguláris, és $d$ színnel van kiszínezve. Ez azt jelenti, hogy minden csúcsnál minden szín pontosan egyszer jelenik meg. Ha kiválasztunk két színt (pl. piros és kék), az általuk feszített részgráf minden csúcsában foka 2 lesz. Egy 2-reguláris gráf diszjunkt körökből áll. A trükk: mi van, ha ez nem egyetlen nagy kör? Akkor az egyik kis körben felcserélhetjük a piros és kék színeket. Ez egy ÚJ, helyes színezést adna, de a feladat kikötötte, hogy csak egyféle színezés létezik! Ez az ellentmondás bizonyítja, hogy csak egyetlen, minden csúcsot tartalmazó kör lehet, ami a definíció szerint a Hamilton-kör.</p>
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér: Élkromatikus szám és Reguláris gráfok</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mb-2">Ez egy IMSc (nehezebb, logikai) feladat. Amit a feltételekből azonnal tudunk:</p>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-slate-700 dark:text-slate-300">
+                        <li>Mivel minden csúcs foka $d$, ez egy <strong>$d$-reguláris</strong> gráf.</li>
+                        <li>A jó élszínezéshez $\chi_e(G) = d$ szín szükséges. Mi történik, ha egy $d$ fokú csúcsból kiinduló összes élet ki akarjuk színezni $d$ színnel? Csak egy lehetőség van: a csúcsnál a $d$ darab él mindegyike <strong>pontosan egy-egy különböző színt kap</strong>. Nincs hiányzó szín egy csúcsnál sem.</li>
+                    </ul>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mt-2">A "csak egyféleképpen színezhető" egy nagyon szigorú feltétel. Az indirekt bizonyítási stratégia klasszikus eszköze a gráfok színezésénél a <em>Kempe-láncok</em> módszere: válasszunk ki két színt (pl. Piros és Kék). A gráfban ezek az élek láncokat, köröket alkotnak. Ha a színeket a komponensekben fel tudnánk cserélni anélkül, hogy az egészet felcserélnénk, több színezés létezne.</p>
                 </div>
 
                 <div class="solution-box">
-                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
-                    <p class="text-slate-700 dark:text-slate-300">Vegyük $G$ egy élszínezését $d$ színnel és legyen a felhasznált színek közül kettő a piros és a kék. Álljon $G$-nek a $H$ részgráfja azokból az élekből, amik pirosak vagy kékek lettek.</p>
-                    <p class="text-slate-700 dark:text-slate-300 mt-2">Mivel minden csúcs foka $d$ és az egy csúcsra illeszkedő éleknek különböző színűnek kell lenniük, ezért $G$ minden csúcsára kell illeszkednie piros és kék élnek is. Így $H$-ban minden csúcs foka 2. Ebből következik, hogy $H$ minden összefüggő komponense egy páros hosszúságú kör.</p>
-                    <p class="text-slate-700 dark:text-slate-300 mt-2">Állítjuk, hogy $H$-nak csak egyetlen komponense van (ami tehát egy Hamilton-kör). Tegyük fel indirekt, hogy $H$-nak legalább két komponense van, legyen az egyik $K$. Cseréljük fel $K$-ban a piros és kék élek szerepét.</p>
-                    <p class="text-slate-700 dark:text-slate-300 mt-2">Ezzel továbbra is helyes élszínezést kapunk, hiszen minden csúcsnál megmarad 1 piros és 1 kék él. Továbbá ez az élszínezés lényegesen különbözik az eredetitől, hiszen a többi komponensben a színek változatlanok maradtak. Ez ellentmond annak a feltételnek, hogy az élszínezés egyértelmű. Tehát $H$ egyetlen körből áll, ami érinti az összes csúcsot: $G$-ben van Hamilton-kör.</p>
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás Lépésről Lépésre</h3>
+                    <p class="text-slate-700 dark:text-slate-300"><strong>1. Szín-párok feszítette részgráf:</strong> Vegyük $G$ egy érvényes élszínezését $d$ színnel. Legyen a felhasznált $d$ szín közül kettő konkrét kiválasztott szín a "piros" és a "kék". Hozzuk létre $G$-nek azt a $H$ részgráfját, ami az összes csúcsot tartalmazza, de az élek közül <strong>csak a piros és a kék</strong> színűeket tartjuk meg.</p>
+                    
+                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>2. A részgráf struktúrája (2-reguláris körök):</strong> Mivel a gráf $d$-reguláris volt, és $d$ színnel van színezve, ezért <em>minden egyes csúcsnál</em> pontosan egy piros és pontosan egy kék él találkozik. Ez azt jelenti, hogy a $H$ részgráfunkban minden csúcs foka pontosan $1+1=2$. <br>Egy gráf, amelyben minden csúcs foka pontosan 2 (azaz 2-reguláris), kizárólag diszjunkt, zárt körökből állhat. Tehát $H$ komponensei mind körök.</p>
+                    
+                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>3. Indirekt feltevés:</strong> Tegyük fel indirekt, hogy $H$-nak <em>több, mint egy</em> körkomponense van. Legyen az egyik ilyen elkülönült kör $K_1$, egy másik pedig $K_2$.</p>
+                    
+                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>4. Az ellentmondás (Kempe-csere):</strong> Mivel ezek a körök teljesen elszeparáltak (nincs közös csúcsuk), megtehetjük azt, hogy <strong>csak a $K_1$ körben</strong> felcseréljük a piros és kék színeket (a piros éleket kékre festjük, a kékeket pirosra), miközben a gráf többi részén ($K_2$-ben, stb) nem változtatunk semmit.<br>
+                    Ezzel a lépéssel egy <strong>új, helyes</strong> élszínezést kapunk, hiszen minden csúcsnál továbbra is marad 1 darab kék és 1 darab piros él, a többi szín éleihez pedig hozzá sem nyúltunk.<br>
+                    Ez a módosított színezés <em>lényegesen különbözik</em> az eredetitől, mert nem csak a színeket neveztük át globálisan, hanem lokálisan megbontottuk a struktúrát. Ez azonban ellentmond a feladat kiinduló feltételének, miszerint a gráf <strong>csak egyféleképpen</strong> színezhető!</p>
+                    
+                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>5. Következtetés:</strong> Mivel a több kör létezése ellentmondásra vezetett, ezért $H$-nak <strong>kizárólag egyetlen komponense</strong> lehet. Ez az egyetlen, hatalmas kör viszont tartalmazza $H$ (és így $G$) összes csúcsát, amire minden csúcs illeszkedik.<br>
+                    Egy olyan kör, amelyik a gráf összes csúcsát pontosan egyszer érinti, definíció szerint a <strong>Hamilton-kör</strong>. Ezzel bebizonyítottuk a feladat állítását.</p>
                 </div>
             </div>
 
