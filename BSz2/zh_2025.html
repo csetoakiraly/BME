@@ -294,9 +294,21 @@
 
                 <div class="solution-box">
                     <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás Lépésről Lépésre</h3>
-                    <p class="text-slate-700 dark:text-slate-300">A feladat célja, hogy próbálgatással (vagy javítóút algoritmussal) találjunk egy folyamot, amivel elakadunk, majd megtaláljuk a szűk keresztmetszetet (a vágást).</p>
+                    <p class="text-slate-700 dark:text-slate-300">A feladat célja, hogy megtaláljuk a maximális folyamot és az azt korlátozó minimális vágást. A maximális folyamot szisztematikusan a <strong>javítóutas algoritmussal (Ford-Fulkerson módszer)</strong> számolhatjuk ki.</p>
                     
-                    <p class="text-slate-700 dark:text-slate-300 mt-2"><strong>1. Folyam megadása (15 egység):</strong> Egy érvényes folyam eloszlás a következőképpen nézhet ki az éleken:</p>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/10 border-l-4 border-indigo-400 p-4 my-4 rounded-r-lg text-sm text-slate-700 dark:text-slate-300">
+                        <strong class="text-indigo-700 dark:text-indigo-400">Hogyan számoltuk ki a folyamot? (Javítóutas algoritmus lépései)</strong><br>
+                        1. Kezdetben minden élen $0$ a folyam.<br>
+                        2. Keresünk egy utat (javítóutat) a forrástól ($S$) a nyelőig ($T$), ahol minden élen van még szabad (kihasználatlan) kapacitás. Bármilyen utat választhatunk. Néhány lépés a lehetséges sok közül:<br>
+                        &nbsp;&nbsp;&nbsp;• <strong>1. út ($S \to D \to T$):</strong> Szabad kapacitások: $9$, illetve $3$. A szűk keresztmetszet $3$. Átküldünk $3$ egységet. Ezzel a $D \to T$ él <strong>telítődött</strong> (több nem mehet rajta).<br>
+                        &nbsp;&nbsp;&nbsp;• <strong>2. út ($S \to B \to C \to T$):</strong> Szabad kapacitások: $10$, $6$, $5$. A szűk keresztmetszet $5$. Átküldünk $5$ egységet. Ezzel a $C \to T$ él <strong>telítődött</strong>.<br>
+                        &nbsp;&nbsp;&nbsp;• <strong>3. út ($S \to D \to E \to T$):</strong> Az $S \to D$-n maradt még $9-3=6$ hely. A $D \to E$ kapacitása $6$. Az $E \to T$ kapacitása $8$. Átküldünk $6$ egységet. Ezzel a $D \to E$ él (és az $S \to D$ él maradéka is) <strong>telítődött</strong>.<br>
+                        &nbsp;&nbsp;&nbsp;• <strong>4. út ($S \to B \to E \to T$):</strong> Az $S \to B$-n van még $10-5=5$ hely. A $B \to E$ kapacitása $1$. Az $E \to T$-n van még $8-6=2$ hely. Átküldünk $1$ egységet. Ezzel a $B \to E$ él <strong>telítődött</strong>.<br>
+                        3. Ezt a folyamatot (utak keresése és telítése) addig ismételjük, amíg el nem akadunk. Egy ponton túl hiába próbálkozunk, a telített élek elzárják az utat $S$-ből $T$-be. (Lásd lentebb a vágást). Amikor nem találunk több javítóutat, a folyam maximális lett.<br>
+                        <em>Megjegyzés: Ha "rossz" utat választunk, a javítóutas algoritmus megengedi, hogy a segédgráfban "visszafelé" haladva egy élen visszavonjuk a már kiküldött folyamot, így garantáltan megtalálja a maximumot.</em>
+                    </div>
+
+                    <p class="text-slate-700 dark:text-slate-300 mt-2"><strong>1. A végső Folyam-eloszlás ($3+5+6+1 = 15$ egység):</strong> Az algoritmus fent leírt logikája alapján egy lehetséges érvényes folyam eloszlás a következőképpen néz ki az éleken:</p>
                     <ul class="list-disc pl-5 text-slate-700 dark:text-slate-300">
                         <li>$S$-ből indítjuk a maximumot: $S \to A$ élen $1$, $S \to B$ élen $7$, $S \to D$ élen $7$. (Összesen $S$-ből kimegy: $1+7+7 = 15$ egység).</li>
                         <li>$A$-ba érkezik $1$, amit továbbküldünk: $A \to D$ élen $1$.</li>
