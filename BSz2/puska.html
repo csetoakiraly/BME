@@ -856,6 +856,147 @@ html.dark math-example { background: rgba(255,255,255,0.02); border-color: #3341
     </math-theorem></div>
 </div>
 <div class="mb-12">
+  <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-200 border-b-2 border-indigo-500 pb-2 mb-6">6. Párosítás páros gráfban</h2>
+  <div class="mb-6"><section id="section-6-1" class="mb-16 animate-fade-in text-left">
+    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm">
+        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+        
+        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic mb-6">
+            Legyen $G = (A, B; E)$ páros gráf és $M$ egy párosítás $G$-ben. Ekkor egy $G$-béli $P$ út <b>javítóút</b> $M$-re nézve, ha rá az alábbiak teljesülnek:
+        </p>
+
+        <div class="space-y-4 ml-4">
+            <div class="flex gap-4">
+                <span class="font-black text-emerald-600">(1)</span>
+                <p class="text-slate-600 dark:text-slate-300">$P$ egy $M$ által nem fedett $A$-béli csúcsból indul;</p>
+            </div>
+            <div class="flex gap-4">
+                <span class="font-black text-emerald-600">(2)</span>
+                <p class="text-slate-600 dark:text-slate-300">$P$ egy $M$ által nem fedett $B$-béli csúcsban ér véget;</p>
+            </div>
+            <div class="flex gap-4">
+                <span class="font-black text-emerald-600">(3)</span>
+                <p class="text-slate-600 dark:text-slate-300">$P$-nek minden páros sorszámú éle (tehát a második, negyedik stb.) $M$-béli.</p>
+            </div>
+        </div>
+    </div>
+</section></div>
+  <div class="mb-6"><section id="section-6-2" class="mb-16 animate-fade-in text-left">
+    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm">
+        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Algoritmus</h4>
+
+        <p class="text-slate-800 dark:text-white font-bold mb-4 uppercase text-sm tracking-tight">
+            JAVÍTÓUTAS ALGORITMUS (MAXIMÁLIS PÁROSÍTÁS KERESÉSÉRE PÁROS GRÁFBAN)
+        </p>
+
+        <p class="text-slate-700 dark:text-slate-300 mb-6 font-medium">
+            <b>Bemenet:</b> Egy $G = (A,B;E)$ páros gráf
+        </p>
+
+        <div class="space-y-3 font-mono text-sm sm:text-base text-slate-800 dark:text-slate-200 ml-2">
+            <div class="flex gap-4">
+                <span class="text-amber-600/50 font-black w-4">1</span>
+                <p>$M \leftarrow \emptyset$ (vagy ehelyett $M$ lehet tetszőleges kezdeti párosítás is)</p>
+            </div>
+            <div class="flex gap-4">
+                <span class="text-amber-600/50 font-black w-4">2</span>
+                <p><b>ciklus</b></p>
+            </div>
+            <div class="flex gap-4 ml-6 md:ml-10">
+                <span class="text-amber-600/50 font-black w-4">3</span>
+                <p>KERESSÜNK EGY $P$ JAVÍTÓUTAT az $M$ párosításra nézve</p>
+            </div>
+            <div class="flex gap-4 ml-6 md:ml-10">
+                <span class="text-amber-600/50 font-black w-4">4</span>
+                <p><b>ha</b> nem létezik $M$-re nézve javítóút, <b>akkor: stop</b></p>
+            </div>
+            <div class="flex gap-4 ml-6 md:ml-10">
+                <span class="text-amber-600/50 font-black w-4">5</span>
+                <p><b>különben:</b></p>
+            </div>
+            <div class="flex gap-4 ml-12 md:ml-20">
+                <span class="text-amber-600/50 font-black w-4">6</span>
+                <p>$M \leftarrow M \setminus \{P \text{ páros sorszámú élei}\} \cup \{P \text{ páratlan sorszámú élei}\}$</p>
+            </div>
+            <div class="flex gap-4">
+                <span class="text-amber-600/50 font-black w-4">7</span>
+                <p><b>ciklus vége</b></p>
+            </div>
+        </div>
+    </div>
+</section></div>
+  <div class="mb-6"><section id="section-6-3" class="mb-16 animate-fade-in text-left">
+    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm">
+        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+        
+        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic mb-6">
+            Definíció. Legyen $G = (A,B;E)$ páros gráf és $M$ egy párosítás $G$-ben. A $G$-béli $P$ utat <b>alternáló útnak</b> hívjuk, ha rá a definíció (1) és (3) követelményei teljesülnek (de a (2) nem feltétlenül).
+        </p>
+
+        <p class="text-slate-700 dark:text-slate-300 leading-relaxed italic">
+            Más szóval: alternáló útnak az olyan utakat nevezzük, amik párosítás által nem fedett $A$-béli csúcsból indulnak és minden második élük $M$-béli.
+        </p>
+    </div>
+</section></div>
+  <div class="mb-6"><section id="section-6-5" class="mb-16 animate-fade-in text-left">
+    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
+        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
+            <b>Kőnig tétele</b> Ha a $G = (A,B;E)$ páros gráf $M$ párosítására nézve nincs javítóút, akkor $M$ maximális párosítás $G$-ben.
+        </p>
+    </div>
+
+    
+</section></div>
+  <div class="mb-6"><section id="section-6-6" class="mb-16 animate-fade-in text-left">
+    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
+        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
+            <b>Tétel. (Hall tétele)</b> A $G = (A,B;E)$ páros gráfban akkor és csak akkor létezik $A$-t lefedő párosítás, ha minden $X \subseteq A$ részhalmazra $|N(X)| \geq |X|$ teljesül.
+        </p>
+    </div>
+
+    
+</section></div>
+</div>
+<div class="mb-12">
+  <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-200 border-b-2 border-indigo-500 pb-2 mb-6">7. Teljes párosítás</h2>
+  <div class="mb-6"><section id="section-7-1" class="mb-16 animate-fade-in text-left">
+    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
+        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
+            Ha a $G = (A,B;E)$ páros gráf $d$-reguláris, ahol $d \geq 1$ tetszőleges egész, akkor $G$-ben van teljes párosítás.
+        </p>
+    </div>
+
+    
+</section></div>
+  <div class="mb-6"><section id="section-7-2" class="mb-16 animate-fade-in text-left">
+    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            <b>Definíció.</b> Legyen $G$ egy gráf és $k \geq 1$ egész szám. A $G$ gráf $k$ színnel <b>él színezhető</b>, ha $G$ minden éle kiszínezhető $k$ adott (tetszőleges) színnel úgy, hogy $G$ bármely két szomszédos (vagyis közös csúcsra illeszkedő) élének a színe különböző. A $G$ <b>élkromatikus száma</b> $k$ (gyakori jelölése: $\chi'(G)$), ha $G$ $k$ színnel él színezhető, de $(k-1)$-gyel már nem.
+        </p>
+    </div>
+
+    <div class="px-4 space-y-4 text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+        <p>
+            Az élszínezés lényege tehát az, hogy az azonos csúcsból induló éleknek mindenképpen különböző színt kell kapniuk. Ebből azonnal következik egy alsó becslés: az élkromatikus szám nem lehet kisebb a gráf maximális fokszámánál ($\Delta(G)$), hiszen a maximális fokszámú csúcsból induló élek mind különböző színt igényelnek.
+        </p>
+    </div>
+</section></div>
+  <div class="mb-6"><section id="section-7-7" class="mb-16 animate-fade-in text-left">
+    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
+        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            <b>(Kőnig élszínezési tétele)</b> Minden $G = (A,B;E)$ páros gráfra $\chi_e(G) = \Delta(G)$ teljesül.
+        </p>
+    </div>
+
+    
+</section></div>
+</div>
+<div class="mb-12">
   <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-200 border-b-2 border-indigo-500 pb-2 mb-6">8. Hálózatok és folyamok</h2>
   <div class="mb-6"><math-theorem>
         <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
@@ -877,6 +1018,187 @@ html.dark math-example { background: rgba(255,255,255,0.02); border-color: #3341
             </ul>
         </div>
     </math-theorem></div>
+  <div class="mb-6"><section id="section-8-1" class="mb-16 animate-fade-in text-left">
+    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            Legyen adott a $G = (V,E)$ irányított gráf, annak az $s, t \in V(G)$ egymástól különböző csúcsai és a $c : E \to \mathbb{R}^+ \cup \{0\}$ kapacitás függvény. Ez a függvény minden $e \in E$ élhez egy nemnegatív $c(e)$ kapacitás értéket rendel. Ekkor a **$(G,s,t,c)$ négyest hálózatnak nevezzük**.
+        </p>
+    </div>
+
+    <div class="px-4 space-y-6 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
+        <p>
+            A hálózat elméleti modellje lehetővé teszi a különböző áramlási problémák (pl. adatforgalom, szállítás) matematikai vizsgálatát. A **forrás ($s$)** az a pont, ahonnan az áramlás indul, a **nyelő ($t$)** pedig az, ahol végződik.
+        </p>
+    </div>
+</section></div>
+  <div class="mb-6"><section id="section-8-2" class="mb-16 animate-fade-in text-left">
+    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            Egy adott $(G,s,t,c)$ hálózat esetén <b>folyamnak</b> nevezzük az $f : E \to \mathbb{R}^+ \cup \{0\}$ függvényt, ha rá az alábbi feltételek teljesülnek:
+        </p>
+        <ul class="mt-6 space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-200">
+            <li class="flex items-start gap-3">
+                <span class="flex-none w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                <span>$0 \le f(e) \le c(e)$ minden $e \in E(G)$ él esetén;</span>
+            </li>
+            <li class="flex items-start gap-3">
+                <span class="flex-none w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                <span class="leading-relaxed">
+                    $\sum_{e:v \to \bullet} f(e) = \sum_{e:\bullet \to v} f(e)$ minden $v \in V(G), v \neq s,t$ csúcs esetén.
+                </span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="px-4 space-y-6 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
+        <p>
+            Az (1) feltétel a <b>kapacitáskorlát</b>: egy élen nem folyhat át több, mint annak a teherbírása. 
+        </p>
+        <p>
+            A (2) feltétel a <b>konzervációs szabály</b> (vagy Kirchhoff-törvény): minden belső csúcsra igaz, hogy a befolyó éleken érkező folyam összege megegyezik a kifolyó éleken távozó folyam összegével. Vagyis a folyam nem „veszhet el” és nem „keletkezhet” a belső csúcsokban.
+        </p>
+    </div>
+</section></div>
+  <div class="mb-6"><section id="section-8-3" class="mb-16 animate-fade-in text-left">
+    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            A $(G,s,t,c)$ hálózatban adott $f$ folyam **$m_f$-fel jelölt értéke**:
+        </p>
+        
+        <div class="mt-6 bg-white/50 dark:bg-slate-800/50 p-6 rounded-2xl text-center border border-emerald-100 dark:border-emerald-800/30 overflow-x-auto">
+            $$m_f = \sum_{e:s \to \bullet} f(e) - \sum_{e:\bullet \to s} f(e)$$
+        </div>
+    </div>
+
+    <div class="px-4 space-y-4 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
+        <p>
+            A folyam értéke tehát megmutatja a hálózaton keresztül áramló <b>nettó mennyiséget</b>. Ezt úgy számoljuk ki, hogy a forrásból ($s$) kimenő élek folyamértékeinek összegéből kivonjuk a forrásba esetlegesen visszatérő élek folyamértékeit.
+        </p>
+        <p>
+            Érdekesség, hogy a belső csúcsokra vonatkozó konzervációs szabály miatt belátható, hogy ugyanez az érték jelenik meg a nyelőnél ($t$) is, csak fordított előjellel: a nyelőbe befolyó és onnan kifolyó mennyiségek különbsége pontosan $m_f$ lesz.
+        </p>
+    </div>
+</section></div>
+  <div class="mb-6"><section id="section-8-4" class="mb-16 animate-fade-in text-left">
+    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            Legyen $f$ folyam a $(G,s,t,c)$ hálózatban. Ekkor az $f$-hez tartozó **$H_f$ segédgráfot** a következőképpen definiáljuk:
+        </p>
+        <p class="mt-4 text-sm md:text-base text-slate-700 dark:text-slate-200">
+            $H_f$ egy olyan irányított gráf, amelyre $V(H_f) = V(G)$, azaz csúcshalmaza azonos az eredeti gráféval. Élkészletébe az alábbi két típusú él kerül:
+        </p>
+        <ul class="mt-6 space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-200">
+            <li class="flex items-start gap-3">
+                <span class="flex-none w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                <span><b>Előre él:</b> Ha $e = (u,v)$ olyan éle $G$-nek, amelyre $f(e) < c(e)$, akkor $e = (u,v)$ bekerül $H_f$-be.</span>
+            </li>
+            <li class="flex items-start gap-3">
+                <span class="flex-none w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                <span><b>Visszaél:</b> Ha $e = (u,v)$ olyan éle $G$-nek, amelyre $f(e) > 0$, akkor $e$ megfordítása, az $e' = (v,u)$ él kerül be $H_f$-be.</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="px-4 space-y-6 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
+        <p>
+            A segédgráf lényege, hogy megmutassa, hol és milyen irányban lehet még változtatni a folyam értékén. Az <b>előre élek</b> azt jelzik, hogy az adott élen még van szabad kapacitás, tehát növelhető rajta az átfolyás. A <b>visszaélek</b> pedig azt mutatják meg, hogy egy élen már van valamekkora folyam, amit szükség esetén "visszaküldhetünk" vagy csökkenthetünk, hogy más utakon több férjen el.
+        </p>
+    </div>
+    
+</section></div>
+  <div class="mb-6"><section id="section-8-5" class="mb-16 animate-fade-in text-left">
+    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            Legyen $f$ folyam a $(G,s,t,c)$ hálózatban. Ekkor a **$H_f$ segédgráfbeli, $s$-ből $t$-be vezető irányított utakat** javítóútnak nevezzük $f$-re nézve.
+        </p>
+    </div>
+
+    <div class="px-4 space-y-6 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
+        <p>
+            A javítóút létezése kritikus fontosságú: ha találunk ilyen utat a segédgráfban, az azt jelenti, hogy a folyam értéke ($m_f$) még növelhető. Az út mentén található élek (legyenek azok előre vagy visszaélek) mentén egy meghatározott mennyiséggel módosíthatjuk az áramlást anélkül, hogy megsértenénk a kapacitáskorlátokat vagy a konzervációs szabályt.
+        </p>
+        <p>
+            Amikor a segédgráfban már <b>nem létezik</b> $s \to t$ irányított út, akkor a folyam értéke elérte a maximumát. Ez vezet el minket a Ford-Fulkerson tételhez.
+        </p>
+    </div>
+</section></div>
+  <div class="mb-6"><section id="section-8-8" class="mb-16 animate-fade-in text-left">
+    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            A $(G,s,t,c)$ hálózatban **st-vágásnak** nevezzük az $X \subseteq V(G)$ csúcshalmazt, ha rá $s \in X$ és $t \notin X$ teljesül. Ha a szövegkörnyezetből $s$ és $t$ szerepe egyértelmű, akkor $X$-et st-vágás helyett röviden **vágásnak** is hívjuk.
+        </p>
+    </div>
+
+    <div class="px-4 space-y-6 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
+        <p>
+            A vágás vizuálisan úgy képzelhető el, mint egy határvonal, amely két részre osztja a hálózat csúcsait: az egyik oldalon marad a forrás ($s$), a másik oldalon pedig a nyelő ($t$).
+        </p>
+        <p>
+            A hálózati folyamok elméletében a vágás azért fontos, mert minden folyamnak, ami $s$-ből $t$-be tart, előbb-utóbb "át kell kelnie" ezen a határon. A vágás korlátozza a hálózat áteresztőképességét, hasonlóan ahhoz, ahogy egy csővezeték legszűkebb keresztmetszete meghatározza a maximális átfolyást.
+        </p>
+    </div>
+</section></div>
+  <div class="mb-6"><section id="section-8-10-detailed" class="mb-16 animate-fade-in text-left">
+    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
+        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            Ha a $(G,s,t,c)$ hálózatban az $f$ folyamra nézve nincs javítóút, akkor $f$ maximális folyam (vagyis nincs $m_f$-nél nagyobb értékű folyam).
+        </p>
+    </div>
+
+    <div class="relative p-8 md:p-12 bg-white dark:bg-slate-900/40 rounded-[3rem] border-2 border-rose-100 dark:border-rose-900/30 shadow-sm overflow-hidden">
+        <div class="absolute top-0 right-0 p-8 opacity-5">
+            <svg class="w-24 h-24 text-rose-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        </div>
+
+        <h4 class="font-black text-rose-600 dark:text-rose-400 uppercase text-xs tracking-[0.3em] mb-8 flex items-center gap-3">
+            <span class="w-8 h-[2px] bg-rose-500"></span>
+            Bizonyítás
+        </h4>
+
+        <div class="space-y-6 text-slate-700 dark:text-slate-300">
+            <p class="text-sm md:text-base leading-relaxed">
+                Megmutatjuk, hogy létezik olyan $X$ $st$-vágás, aminek a kapacitása $c(X) = m_f$. Ebből az állítás szerint következni fog, hogy minden $f'$ folyamra $m_{f'} \le c(X) = m_f$ teljesül, és ezért $f$ értéke valóban maximális.
+            </p>
+
+            <p class="text-sm md:text-base leading-relaxed">
+                Álljon $X$ azokból a $v$ csúcsokból, amikre létezik $s$-ből $v$-be vezető irányított út a $H_f$ segédgráfban. Ekkor $t \notin X$, mert $f$-re nézve nem létezik javítóút. Másrészt $s \in X$ világos, így $X$ valóban $st$-vágás.
+            </p>
+
+            <div class="space-y-4">
+                <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-rose-400">
+                    <p class="text-sm md:text-base leading-relaxed">
+                        Azt állítjuk, hogy ha $e = (u,v)$ tetszőleges, $X$-ből kilépő él, akkor rá $f(e) = c(e)$ teljesül. Ha ez nem volna igaz, akkor $f(e) < c(e)$ miatt $e$ bekerülne $H_f$ élhalmazába (előre élként). Így egy $H_f$-ben $s$-ből $u$-ba vezető irányított út (ami $u \in X$ miatt létezik) megtoldható volna az $e = (u,v)$ éllel $v$-ig, és így egy $s$-ből $v$-be vezető irányított utat kapnánk; ez azonban ellentmond annak, hogy $v \notin X$.
+                    </p>
+                </div>
+
+                <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-rose-400">
+                    <p class="text-sm md:text-base leading-relaxed">
+                        Megmutatjuk azt is, hogy ha $e = (u,v)$ $X$-be belépő él, akkor rá $f(e) = 0$ teljesül. Ha ez nem volna igaz, akkor $f(e) > 0$ miatt $e' = (v,u)$, az $e$ megfordítottja bekerülne $H_f$ élhalmazába visszaélként. Így egy $H_f$-ben $s$-ből $v$-be vezető irányított út (ami $v \in X$ miatt létezik) megtoldható volna $e'$-vel $u$-ig, és így egy $s$-ből $u$-ba vezető irányított utat kapnánk; ez is ellentmondás, hiszen $u \notin X$.
+                    </p>
+                </div>
+            </div>
+
+            <p class="text-sm md:text-base leading-relaxed">
+                Mindezekből az következik, hogy $f$-re és $X$-re megismételhető az állítás bizonyításának a számolása – azzal a lényeges különbséggel, hogy egyenlőtlenség helyett egyenlőséget írhatunk:
+            </p>
+
+            <div class="bg-slate-50 dark:bg-slate-800/80 p-6 rounded-2xl text-center font-bold overflow-x-auto">
+                $$m_f = \sum \{f(e) : e \text{ kilép } X\text{-ből}\} - \sum \{f(e) : e \text{ belép } X\text{-be}\} = \sum \{c(e) : e \text{ kilép } X\text{-ből}\} - 0 = c(X)$$
+            </div>
+
+            <p class="text-sm md:text-base leading-relaxed italic pt-4">
+                Valóban: a fentiek szerint az $X$-ből kilépő, illetve az $X$-be belépő élekre $f(e) = c(e)$, illetve $f(e) = 0$ teljesül (ezeken kívül pedig ismét csak az állítást és a definíciót alkalmaztuk).
+            </p>
+        </div>
+    </div>
+</section></div>
 </div>
 <div class="mb-12">
   <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-200 border-b-2 border-indigo-500 pb-2 mb-6">9. Folyam általánosításai</h2>
