@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZH 2021 Tavasz - Bsz2 Jegyzet</title>
+
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
+            options: { enableMenu: false }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; line-height: 1.6; }
+        .nav-item { display: flex; flex-direction: column; width: 100%; text-align: left; padding: 1rem; border-radius: 0.75rem; border: 2px solid transparent; transition: all 0.2s; }
+        .nav-item.active { border-color: #6366f1; background-color: #f5f3ff; color: #4338ca; }
+        .dark .nav-item.active { background-color: #1e293b!important; border-color: #818cf8!important; color: #c7d2fe!important; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        
+        .task-card { background: white; border: 1px solid #e2e8f0; border-radius: 1.5rem; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); }
+        .dark .task-card { background: #1e293b; border-color: #334155; }
+        .solution-box { background: #f8fafc; border-left: 4px solid #6366f1; padding: 1.5rem; margin-top: 1.5rem; border-radius: 0 1rem 1rem 0; }
+        .dark .solution-box { background: #0f172a; border-left-color: #818cf8; }
+        .explanation-box { background: #fefce8; border: 1px dashed #f59e0b; padding: 1.5rem; margin-top: 1.5rem; border-radius: 1rem; }
+        .dark .explanation-box { background: rgba(245, 158, 11, 0.05); border-color: #78350f; }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
+
+    <aside id="sidebar" class="fixed md:sticky top-0 left-0 w-[85%] md:w-80 bg-white border-r border-slate-200 flex flex-col h-screen z-50 overflow-y-auto closed md:translate-x-0 shadow-2xl md:shadow-none dark:bg-slate-900 dark:border-slate-800 transition-transform duration-300">
+        <div class="p-6 border-b border-slate-100 hidden md:block dark:border-slate-800">
+            <h1 class="text-2xl font-extrabold text-indigo-600 italic">Bsz2 Jegyzet</h1>
+            <p class="text-slate-400 text-[10px] uppercase tracking-widest mt-1 font-bold">Vizsgafelkészítő</p>
+        </div>
+
+        <div class="px-8 py-4 border-b border-slate-100 flex items-center justify-between dark:border-slate-800">
+            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Éjszakai mód</span>
+            <button onclick="toggleNightMode()" class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 border dark:border-slate-700 transition-all active:scale-90 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
+        </div>
+
+        <nav id="main-nav" class="flex flex-col p-4 space-y-2 pb-4">
+            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2">Gráfelmélet</div>
+            <a href="index.html" class="nav-item"><span>1. Gráfelméleti alapok</span></a>
+            <a href="2.html" class="nav-item"><span>2. Fák tulajdonságai</span></a>
+            <a href="3.html" class="nav-item"><span>3. Hamilton-vonalak</span></a>
+            <a href="4.html" class="nav-item"><span>4. Gráfok színezése</span></a>
+            <a href="5.html" class="nav-item"><span>5. Párosítás fogalma</span></a>
+            <a href="6.html" class="nav-item"><span>6. Párosítás páros gráfban</span></a>
+            <a href="7.html" class="nav-item"><span>7. Teljes párosítás</span></a>
+            <a href="8.html" class="nav-item"><span>8. Hálózatok és folyamok</span></a>
+            <a href="9.html" class="nav-item"><span>9. Folyam általánosításai</span></a>
+            <a href="10.html" class="nav-item"><span>10. Összefüggőség</span></a>
+
+            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">ZH-k és Megoldások</div>
+            <a href="zh_2025.html" class="nav-item"><span class="font-bold text-sm">2025 Tavasz Zárthelyi</span></a>
+            <a href="zh_2024.html" class="nav-item"><span class="font-bold text-sm">2024 Tavasz Zárthelyi</span></a>
+            <a href="zh_2023.html" class="nav-item"><span class="font-bold text-sm">2023 Tavasz Zárthelyi</span></a>
+            <a href="zh_2022.html" class="nav-item"><span class="font-bold text-sm">2022 Tavasz Zárthelyi</span></a>
+            <a href="zh_2021.html" class="nav-item active"><span class="font-bold text-sm">2021 Tavasz Zárthelyi</span></a>
+        </nav>
+    </aside>
+
+    <main class="flex-grow p-4 md:p-12 pt-24 md:pt-12">
+        <div class="max-w-4xl mx-auto">
+            
+            <header class="mb-12">
+                <h1 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight mb-4">
+                    2021. április 30. <span class="text-indigo-600">Zárthelyi (Távoktatás)</span>
+                </h1>
+                <p class="text-slate-500 text-lg">Feladatok, magyarázatok és hivatalos megoldások lépésről lépésre.</p>
+            </header>
+
+            <!-- FELADAT 1 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">1. Feladat</span>
+                    <h2 class="text-xl font-bold">Kombinatorika (Jelszavak)</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>Birnenkopf úr új jelszót szeretne készíteni magának, mert a régit (herrbirnenkopf) ellopták. A jelszóval kapcsolatban a következő elvárásai vannak:</p>
+                    <ul class="list-disc pl-5 mt-2">
+                        <li>a) csak betűkből álljon (a számokat nem szereti), az angol abc 26 betűje jöhet szóba,</li>
+                        <li>b) egyetlen betű sem jelenhet meg egynél többször,</li>
+                        <li>c) pontosan 12 betű kell szerepeljen, mégpedig 7 kisbetű és 5 nagybetű, de ugyanaz a betű csak az egyik alakjában szerepelhet.</li>
+                    </ul>
+                    <p class="mt-2">Hány jelszóból választhat Birnenkopf úr? (A végeredmény számszerű értékét nem kell megadni; azonban a megoldásból ki kell derüljön, hogy hogyan lehetne azt kiszámolni olyan számológéppel, amely csak a négy alapműveletet ismeri.)</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mb-2">
+                        Kombinatorikai alapok. Gondoljuk végig a jelszó készítésének folyamatát lépésről lépésre:
+                    </p>
+                    <ul class="list-decimal pl-5 text-sm space-y-1 text-slate-700 dark:text-slate-300">
+                        <li>Válasszunk ki 12 különböző betűt az ABC 26 betűjéből. (Sorrend számít, mert jelszó). Ez variáció: $26 \cdot 25 \dots \cdot 15$.</li>
+                        <li>A 12 helyből válasszunk ki 5-öt, ahol a nagybetűk fognak állni (a többi 7 automatikusan kisbetű lesz). Ez kombináció: $\binom{12}{5}$.</li>
+                        <li>A két választás független egymástól, tehát szorozni kell.</li>
+                    </ul>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">Első megoldás. Hozzuk létre először a jelszónak azt a verzióját, ahol a kis- és nagybetűk még nem játszanak szerepet.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Mivel minden betű csak egyszer szerepelhet, ezt a tanultak szerint $26 \cdot 25 \cdot 24 \cdot \dots \cdot 15$-féleképp tehetjük meg.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Válasszunk ki most, hogy hova kerül kis-, illetve nagybetű: a 12 helyből 5-re kerül nagybetű, a választási lehetőségek száma tehát $\binom{12}{5}$ (hiszen a nagybetűk helyének kiválasztásával a kisbetűk helyzete is adottá válik).</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Mivel a jelszó minden kezdeti verzióját ennyiféleképp tudjuk végleges jelszóvá alakítani, a keresett szám $26 \cdot 25 \cdot 24 \cdot \dots \cdot 15 \cdot \binom{12}{5} = \frac{26 \cdot 25 \dots \cdot 15 \cdot 12 \cdot 11 \cdot 10 \cdot 9 \cdot 8}{5 \cdot 4 \cdot 3 \cdot 2}$.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 2 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">2. Feladat</span>
+                    <h2 class="text-xl font-bold">Kromatikus szám (Szabályos 11-szög átlókkal)</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>Egy szabályos 11-szögnek behúzzuk az összes legrövidebb átlóját. Határozzuk meg a kapott (11 csúcsú, 22 élű) gráf kromatikus számát.</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (4. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">
+                        A kapott gráfban egy csúcs szomszédos a két szomszédjával (a 11-szög élei) ÉS a két másodszomszédjával (a legrövidebb átlók). Tehát minden csúcs foka 4.
+                        Van benne háromszög (klikk 3 csúccsal): egy csúcs, a szomszédja, és a kettejüket összekötő átló. Így $\omega(G) = 3$, tehát legalább 3 szín kell. 
+                        Elég a 3 szín? Ha elkezdjük színezni a 11-szög mentén $1, 2, 3, 1, 2, 3 \dots$ mintával, akkor elakadunk, mert 11 nem osztható 3-mal. Sőt, az átlók miatt erős korlátok vannak.
+                    </p>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">A gráfot könnyű 4 színnel megszínezni, jó színezésért adjunk pontot.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Megmutatjuk, hogy 3 szín nem elég. Sorszámozzuk a 11-szög csúcsait tetszőleges csúcsnál kezdve az óramutató járása szerint. Tegyük fel indirekten, hogy létezik a gráfnak jó 3-színezése.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Ekkor az első három csúcs három különböző színt kapna (mondjuk az első az 1-et, a második a 2-t, a thirdik a 3-at), hiszen ezek egy 3-hosszú kört alkotnak.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Ekkor a negyedik csúcs ismét 1-es színű kéne legyen, hiszen van 2-es és 3-as színű szomszédja is (a 2. és 3. csúcs). Az ötödik csúcs így 2-es színű kéne legyen. A gondolatmenetet folytatva az derül ki, hogy a tizedik csúcs 1-es színű kell legyen, ez azonban nem lehetséges, hiszen szomszédja az első csúcs (is) a legrövidebb átló miatt.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">A kromatikus szám így <strong>4</strong>, mivel a látottak szerint legalább és legfeljebb is 4.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 3 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">3. Feladat</span>
+                    <h2 class="text-xl font-bold">Maximális párosítás és lefogó pontok</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>Adjunk meg egy maximális párosítást és egy minimális lefogó ponthalmazt a gráfban. (A gráf egy rácsszerű szerkezet átlókkal).</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (5-6. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">A feladat egy vizuális gráfban kéri az optimális struktúrák megadását. Mivel ez nem feltétlenül páros gráf, nem használhatjuk Kőnig tételét automatikusan, de a $\nu(G) \le \tau(G)$ gyenge egyenlőtlenség minden gráfra igaz. Ha találunk egy $k$ élű párosítást és egy $k$ csúcsú lefogó ponthalmazt, akkor bizonyítottuk, hogy mindkettő optimális.</p>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">Egy megfelelő ábra megadásával: a vastagított élek 6 élű párosítást, a nagyobb méretű csúcsok pedig 6 elemű lefogó ponthalmazt alkotnak.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Megmutatjuk, hogy a megadott párosítás maximális, a megadott lefogó ponthalmaz pedig minimális. Az előadásról tudjuk, hogy bármely $G$ gráfra $\nu(G) \le \tau(G)$ teljesül.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">A 6 élű párosítás igazolja, hogy $\nu(G) \ge 6$, a 6 csúcsú lefogó ponthalmaz pedig igazolja, hogy $\tau(G) \le 6$.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Így $6 \le \nu(G) \le \tau(G) \le 6$, ami csak úgy teljesülhet, ha mindenütt egyenlőség áll. $\nu(G) = 6$ igazolja a párosításunk maximalitását, $\tau(G) = 6$ pedig a lefogó ponthalmazunk minimalitását.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 4 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">4. Feladat</span>
+                    <h2 class="text-xl font-bold">Teljes páros gráf Euler-sétája</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>Egy $G = (A, B, E)$ páros gráfot <em>teljes páros gráfnak</em> nevezünk, ha $A$ minden csúcsa össze van kötve $B$ minden csúcsával (egy éllel). Hány különböző 101 csúcsú teljes páros gráf létezik, melynek van Euler-sétája? (Két gráfot akkor tekintünk különbözőnek, ha nem izomorfak.)</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (3. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mb-2">Egy teljes páros gráfot a két osztályának mérete határoz meg, legyen ez $a$ és $b$, ahol $a+b=101$. Jelölése: $K_{a,b}$.</p>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">Egy ilyen gráfban az $A$-beli csúcsok foka $b$, a $B$-beli csúcsok foka $a$. Az Euler-tétel szerint egy (összefüggő) gráfban akkor van Euler-séta, ha a páratlan fokú csúcsok száma 0 vagy 2. (Az él nélküli gráfnak is van Euler-sétája, ez is egy érvényes eset).</p>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">Jelöljük $K_{a,b}$-vel azt a teljes páros gráfot, melynek kisebbik (nem nagyobbik) osztályában $a$, a másik osztályában $b$ csúcs szerepel. Megmutatjuk, hogy a 101 csúcsú teljes páros gráfok közül $K_{0,101}$ és $K_{2,99}$ rendelkezik Euler-sétával, a többiek pedig nem.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">$K_{0,101}$-nek nincs éle, így az üres élhalmaz Euler-sétája lesz.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Minden más $K_{a,b}$ összefüggő. Ilyenkor tehát a tanult tétel szerint elég a fokszámok paritását vizsgálni. Az $a$ és $b$ számok közül pontosan egy páratlan, hiszen az összegük (101) páratlan.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Ha $a$ páratlan, akkor $K_{a,b}$-ben $b$ darab páratlan fokú csúcs lesz, ha pedig $b$ páratlan, akkor $a$ darab. Euler tétele szerint egy összefüggő gráfban akkor és csak akkor van Euler-séta, ha a páratlan fokú csúcsok száma legfeljebb 2.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Ez esetünkben pontosan $a = 2$ mellett teljesül, hiszen ha $a$ ennél nagyobb páros szám lenne, akkor kettőnél több páratlan fokú csúcs lenne $A$-ban, míg ha $a$ 2-nél nagyobb páratlan szám lenne, akkor $B$-ben lenne kettőnél több páratlan fokú csúcs.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">A megoldás tehát: <strong>2</strong> darab ilyen gráf létezik.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 5 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">5. Feladat</span>
+                    <h2 class="text-xl font-bold">Hálózat: Max-flow Min-cut</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>Adjunk meg a hálózatban egy maximális folyamot s-ből t-be és egy minimális s-t vágást.</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (8. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">Ahogy már sokszor láttuk, egy folyam maximalitását a legegyszerűbben egy vele azonos értékű/kapacitású vágás megadásával bizonyíthatjuk a Ford-Fulkerson tétel alapján.</p>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">Egy lehetséges 14 értékű folyam megadása. (A folyam folytonosságát, kapacitáskorlátait vizsgálni kell).</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Az $X = \{s, a, b, c\}$ vágás kapacitása 14, mivel a vágásból kimutató éleknek ennyi az összkapacitása.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Az előadáson tanultak szerint egyetlen vágás kapacitása sem lehet kisebb, mint egy tetszőleges folyam értéke, így bármely vágás kapacitása legalább 14 kell legyen, tehát az adott vágás minimális, és bármely folyam értéke legfeljebb 14, tehát a megadott folyam maximális.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 6 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">6. Feladat (IMSc)</span>
+                    <h2 class="text-xl font-bold">Sakktábla és dominók (Párosítás)</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>Egy $100 \times 100$-as sakktáblán kijelölünk 30 mezőt úgy, hogy összefüggő területet alkossanak, vagyis bármely kijelölt mezőből el lehessen jutni bármelyik másikba úgy, hogy oldalszomszédos kijelölt mezőkre léphetünk át. Mutassuk meg, hogy ekkor a kijelölt mezőkön mindig el lehet helyezni 8 darab $1 \times 2$-es dominót átfedés nélkül úgy, hogy minden dominó a sakktábla két szomszédos mezőjét fedi le.</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (5-6. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">
+                        A sakktáblát ábrázolhatjuk gráfként: a mezők a csúcsok, a szomszédos mezők között élek futnak. Ez egy <strong>páros gráf</strong> (a sakktábla fekete-fehér színezése miatt, él csak fekete és fehér mező közt van). A feladat 8 darab dominó elhelyezését kéri, ami gráfelméletileg egy 8 élű <strong>párosítást</strong> jelent ($\nu(G) \ge 8$). Mivel páros gráfról van szó, Kőnig tétele miatt $\nu(G) = \tau(G)$, tehát elég megmutatni, hogy a minimális lefogó ponthalmaz mérete $\tau(G) \ge 8$.
+                    </p>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">Legyenek egy $G$ gráf csúcsai a kijelölt mezők, két csúcsot kössünk össze, ha a mezők él mentén szomszédosak. A feltétel szerint ekkor $G$ összefüggő, tehát a tanultak szerint legalább 29 éle van (mivel 30 csúcsa van).</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">$G$ páros gráf, mivel a sakktábla mezőinek fekete-fehér színezése $G$ egy jó 2-színezését adja.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Vegyük észre, hogy a 2 mezőt fedő $1 \times 2$-es dominók épp $G$ éleinek felelnek meg, a dominók átfedés nélküli elhelyezése pedig olyan éleknek, melyeknek nincs közös csúcsa, vagyis olyanoknak, melyek párosítást alkotnak.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">A feladat tehát nem más, mint annak igazolása, hogy $\nu(G) \ge 8$. Mivel $G$ páros gráf, $\nu(G) = \tau(G)$, tehát elég azt belátnunk, hogy $\tau(G) \ge 8$.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Világos, hogy $G$-ben minden csúcs foka legfeljebb 4 (hiszen minden mezőnek csak 4 szomszédja lehet él mentén), így egy legfeljebb 7 csúcsú ponthalmaz csak $7 \cdot 4 = 28$ élet tud lefogni.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Mivel $G$-nek legalább 29 éle van, csakugyan minden lefogó ponthalmaza legalább 8 elemű; épp ezt kellett igazolnunk.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function toggleNightMode() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('nightMode', isDark);
+        }
+        (function() { if (localStorage.getItem('nightMode') === 'true') document.documentElement.classList.add('dark'); })();
+        window.addEventListener('load', () => { if (window.MathJax) MathJax.typesetPromise(); });
+    </script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZH 2022 Tavasz - Bsz2 Jegyzet</title>
+
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
+            options: { enableMenu: false }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; line-height: 1.6; }
+        .nav-item { display: flex; flex-direction: column; width: 100%; text-align: left; padding: 1rem; border-radius: 0.75rem; border: 2px solid transparent; transition: all 0.2s; }
+        .nav-item.active { border-color: #6366f1; background-color: #f5f3ff; color: #4338ca; }
+        .dark .nav-item.active { background-color: #1e293b!important; border-color: #818cf8!important; color: #c7d2fe!important; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        
+        .task-card { background: white; border: 1px solid #e2e8f0; border-radius: 1.5rem; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); }
+        .dark .task-card { background: #1e293b; border-color: #334155; }
+        .solution-box { background: #f8fafc; border-left: 4px solid #6366f1; padding: 1.5rem; margin-top: 1.5rem; border-radius: 0 1rem 1rem 0; }
+        .dark .solution-box { background: #0f172a; border-left-color: #818cf8; }
+        .explanation-box { background: #fefce8; border: 1px dashed #f59e0b; padding: 1.5rem; margin-top: 1.5rem; border-radius: 1rem; }
+        .dark .explanation-box { background: rgba(245, 158, 11, 0.05); border-color: #78350f; }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
+
+    <aside id="sidebar" class="fixed md:sticky top-0 left-0 w-[85%] md:w-80 bg-white border-r border-slate-200 flex flex-col h-screen z-50 overflow-y-auto closed md:translate-x-0 shadow-2xl md:shadow-none dark:bg-slate-900 dark:border-slate-800 transition-transform duration-300">
+        <div class="p-6 border-b border-slate-100 hidden md:block dark:border-slate-800">
+            <h1 class="text-2xl font-extrabold text-indigo-600 italic">Bsz2 Jegyzet</h1>
+            <p class="text-slate-400 text-[10px] uppercase tracking-widest mt-1 font-bold">Vizsgafelkészítő</p>
+        </div>
+
+        <div class="px-8 py-4 border-b border-slate-100 flex items-center justify-between dark:border-slate-800">
+            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Éjszakai mód</span>
+            <button onclick="toggleNightMode()" class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 border dark:border-slate-700 transition-all active:scale-90 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
+        </div>
+
+        <nav id="main-nav" class="flex flex-col p-4 space-y-2 pb-4">
+            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2">Gráfelmélet</div>
+            <a href="index.html" class="nav-item"><span>1. Gráfelméleti alapok</span></a>
+            <a href="2.html" class="nav-item"><span>2. Fák tulajdonságai</span></a>
+            <a href="3.html" class="nav-item"><span>3. Hamilton-vonalak</span></a>
+            <a href="4.html" class="nav-item"><span>4. Gráfok színezése</span></a>
+            <a href="5.html" class="nav-item"><span>5. Párosítás fogalma</span></a>
+            <a href="6.html" class="nav-item"><span>6. Párosítás páros gráfban</span></a>
+            <a href="7.html" class="nav-item"><span>7. Teljes párosítás</span></a>
+            <a href="8.html" class="nav-item"><span>8. Hálózatok és folyamok</span></a>
+            <a href="9.html" class="nav-item"><span>9. Folyam általánosításai</span></a>
+            <a href="10.html" class="nav-item"><span>10. Összefüggőség</span></a>
+
+            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">ZH-k és Megoldások</div>
+            <a href="zh_2025.html" class="nav-item"><span class="font-bold text-sm">2025 Tavasz Zárthelyi</span></a>
+            <a href="zh_2024.html" class="nav-item"><span class="font-bold text-sm">2024 Tavasz Zárthelyi</span></a>
+            <a href="zh_2023.html" class="nav-item"><span class="font-bold text-sm">2023 Tavasz Zárthelyi</span></a>
+            <a href="zh_2022.html" class="nav-item active"><span class="font-bold text-sm">2022 Tavasz Zárthelyi</span></a>
+            <a href="zh_2021.html" class="nav-item"><span class="font-bold text-sm">2021 Tavasz Zárthelyi</span></a>
+        </nav>
+    </aside>
+
+    <main class="flex-grow p-4 md:p-12 pt-24 md:pt-12">
+        <div class="max-w-4xl mx-auto">
+            
+            <header class="mb-12">
+                <h1 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight mb-4">
+                    2022. május 5. <span class="text-indigo-600">Zárthelyi</span>
+                </h1>
+                <p class="text-slate-500 text-lg">Feladatok, magyarázatok és hivatalos megoldások lépésről lépésre.</p>
+            </header>
+
+            <!-- FELADAT 1 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">1. Feladat</span>
+                    <h2 class="text-xl font-bold">Kombinatorika (Részhalmazok)</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>Hány olyan 6 elemű részhalmaza van az $\{1, 2, \dots, 10\}$ halmaznak, ami nem tartalmazza részhalmazként az $\{1, 2, 3\}$ halmazt? (A végeredmény számszerű értékét megadni nem kell, azonban a megoldásból ki kell derüljön, hogy hogyan lehetne azt kiszámolni egy olyan számológéppel, ami csak a négy alapműveletet ismeri.)</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">
+                        Ez egy klasszikus szita-formula jellegű, vagy komplementer számolásos kombinatorikai feladat.
+                    </p>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-slate-700 dark:text-slate-300 mt-2">
+                        <li><strong>Összes eset:</strong> Hány 6 elemű részhalmaza van egy 10 elemű halmaznak? Ez $\binom{10}{6}$.</li>
+                        <li><strong>Rossz esetek:</strong> Hány olyan 6 elemű részhalmaz van, ami <em>tartalmazza</em> az $\{1, 2, 3\}$-at? Ha ez a 3 elem fixen benne van a 6-ban, akkor a maradék 3 elemet a maradék 7 ($10-3$) elemből kell kiválasztani. Ez $\binom{7}{3}$ lehetőség.</li>
+                        <li><strong>Jó esetek:</strong> Összes eset mínusz rossz esetek.</li>
+                    </ul>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">Az $\{1, 2, \dots, 10\}$ összes 6 elemű részhalmazainak a száma $\binom{10}{6}$ (az $\binom{n}{k}$ definíciója szerint), aminek az értéke a tanultak szerint $\frac{10 \cdot 9 \cdot 8 \cdot 7 \cdot 6 \cdot 5}{6!} = 210$.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Ezek közül az $\{1, 2, 3\}$ halmazt tartalmazó részhalmazok száma $\binom{7}{3}$, mert ez a szám nyilván egyenlő a $\{4, 5, \dots, 10\}$ halmaz 3 elemű részhalmazainak a számával (hiszen az 1, 2, 3 elemeken kívül további 3 elemet kell választani a részhalmazba a $4, \dots, 10$ számok közül).</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Ennek az értéke pedig $\frac{7 \cdot 6 \cdot 5}{3!} = 35$.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Így az $\{1, 2, 3\}$ halmazt nem tartalmazó részhalmazok száma $210 - 35 = 175$.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 2 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">2. Feladat</span>
+                    <h2 class="text-xl font-bold">Euler-vonalak modellezése</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>Létezik-e olyan lépéssorozat a ($8 \times 8$-as) sakktáblán egy lóval, amire teljesül, hogy minden, egymástól (egyetlen) lólépés távolságra lévő mezőpár esetén a lépéssorozat során pontosan egyszer lépünk e közül a két mező közül az egyikről a másikra?</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (3. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">
+                        Fordítsuk le a feladatot gráfelméleti nyelvre:
+                    </p>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-slate-700 dark:text-slate-300 mt-2">
+                        <li><strong>Csúcsok:</strong> a sakktábla 64 mezője.</li>
+                        <li><strong>Élek:</strong> Két csúcs között van él, ha lólépésben elérhetők egymásból.</li>
+                        <li><strong>Kérdés:</strong> Van-e olyan séta, ami <em>minden élet pontosan egyszer</em> érint? Ez az <strong>Euler-séta</strong> definíciója.</li>
+                    </ul>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mt-2">Euler-séta pontosan akkor létezik egy összefüggő gráfban, ha a páratlan fokszámú csúcsok száma 0 vagy 2. Meg kell vizsgálnunk a csúcsok fokszámait ebben a "ló-gráfban". A sarkokból (pl. a1) csak 2 lólépés lehetséges (c2, b3), tehát a sarkok foka 2. De mi a helyzet a sarok melletti mezőkkel?</p>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">A $G$ gráf csúcsai legyenek a sakktábla mezői és két csúcs pontosan akkor legyen szomszédos $G$-ben (egyetlen él mentén), ha a megfelelő mezők egy lólépésre vannak egymástól. Ekkor a feladat által írt lépéssorozat létezése azt jelenti, hogy $G$-ben van Euler-séta.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Ha a $v$ csúcs az egyik olyan mezőt jelöli, ami a sakktábla valamelyik sarkában álló mezővel élszomszédos, akkor $v$ foka 3. Valóban, például az A2 mező (ami az A1 sarokkal élszomszédos) $G$-beli szomszédai a C1, a C3 és a B5 mezők.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Mivel az ilyen mezők száma nyolc (minden sarok mellett van kettő), ezért $G$-nek kettőnél több páratlan fokú csúcsa van.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Így a tanultak szerint $G$-ben nincs Euler-séta, ezért a feladatban írt lépéssorozat <strong>nem létezik</strong>.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 3 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">3. Feladat</span>
+                    <h2 class="text-xl font-bold">Kromatikus szám koordinátákkal</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>A 25 csúcsú $G$ gráf csúcsai legyenek a síknak azok a vektorai, amiknek mindkét koordinátája 0 és 4 közötti egész szám. ($V(G) = \{(x, y) \in \mathbb{R}^2 : 0 \le x, y \le 4, x, y \in \mathbb{Z}\}$.) Az $u, v \in V(G), u \neq v$ vektorok akkor legyenek szomszédosak $G$-ben, ha az $u + v$ vektor mindkét koordinátája (szigorúan) kisebb 5-nél. Határozzuk meg a $G$ gráf $\chi(G)$ kromatikus számát.</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (4. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">A szomszédsági feltétel: $(u_x + v_x < 5)$ ÉS $(u_y + v_y < 5)$. Két csúcs szomszédos, ha az összegük koordinátánként $\le 4$.</p>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-slate-700 dark:text-slate-300 mt-2">
+                        <li><strong>Klikk keresése ($\omega(G)$):</strong> Olyan vektorokat keresünk, amik páronként szomszédosak, vagyis összegük $\le 4$. Ha veszünk olyan vektorokat, amiknek mindkét koordinátája $\le 2$, akkor bármely kettő összege $\le 2+2=4$ lesz. Hány ilyen vektor van? $(0,0), (0,1), (0,2), (1,0), (1,1), (1,2), (2,0), (2,1), (2,2)$. Ezek száma $3 \times 3 = 9$. Mivel ezek páronként szomszédosak, alkotnak egy 9-es klikket. Így $\chi(G) \ge \omega(G) \ge 9$.</li>
+                        <li><strong>Színezés ($\le 9$):</strong> Tudunk-e 9 színnel színezni? A klikk csúcsai kapjanak 9 különböző színt. A többi csúcsot hozzá kell rendelni egy-egy színhez úgy, hogy ne legyen él azonos színűek között.</li>
+                    </ul>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">$G$-ben 9 csúcsú klikket alkotnak azok a vektorok, amiknek mindkét koordinátája legföljebb 2. Valóban, két ilyen vektor összegének mindkét koordinátája nyilván kisebb 5-nél. Így $\omega(G) \ge 9$.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Színezzük ki a fenti klikk csúcsait 9 különböző színnel.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Legyen e közül a 9 csúcs közül az $(0, 2)$ színe piros. Ekkor színezhetjük pirosra az összes olyan vektort, amiknek a második koordinátája legalább 3; valóban, így bármely két, pirosra színezett vektor összegének a második koordinátája legalább 5, így ezek közül egyik sem szomszédos.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Hasonlóan, ha $(2, 0)$ színe kék, akkor színezzük kékre az összes olyan vektort, amiknek az első koordinátája legalább 3 és amiket korábban még nem színeztünk pirosra. Ekkor bármely két kék vektor összegének az első koordinátája legalább 5, így ezek között sincsenek szomszédosak.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Mivel ezzel $G$ helyes színezését adtuk meg 9 színnel, ezért $\chi(G) \le 9$.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">A fentiekből és a tanult $\omega(G) \le \chi(G)$ állításból $9 \le \omega(G) \le \chi(G) \le 9$, amiből <strong>$\chi(G) = 9$</strong>.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 4 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">4. Feladat</span>
+                    <h2 class="text-xl font-bold">Szélességi bejárás (BFS) sorrendje</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>A BFS algoritmus (irányított gráfokra vonatkozó változata) a megadott (következő feladatban látható) irányított gráf csúcsait a következő sorrendben járta be: $S, \square, \square, A, T, \square, \square$. Egészítsük ki a sorozatot a hiányzó csúcsok neveivel és adjuk meg a bejáráshoz tartozó BFS-fát. (A gráf a feladat 5. ábráján látható: $S$-ből megy él $A, B, D$-be; $A$-ból $C$-be; $B$-ből $C$-be; $D$-ből $A, T, E$-be; $E$-ből $B, T$-be; $C$-ből $T$-be.)</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (1. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">A BFS (szélességi keresés) szintek szerint halad. Amit előbb értünk el, annak a szomszédait is előbb fogjuk sorra venni (FIFO sor - Queue). Az éleket csak "előre" nézzük, a gráf irányított.</p>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-slate-700 dark:text-slate-300 mt-2">
+                        <li>$S$-ből indulunk. $S$ szomszédai: $A, B, D$. Ezek lesznek a következő három bejárt csúcs. A sorozat: $S, (\text{valami } A, B, D \text{-ből}), (\text{valami } A, B, D \text{-ből}), A, \dots$</li>
+                        <li>Látjuk, hogy $A$ a 4. helyen van. Akkor a 2. és 3. helyen a $B$ és $D$ kell legyen (valamilyen sorrendben). A sorozat eleje: $S, (B, D \text{ vagy } D, B), A$.</li>
+                        <li>Nézzük meg, mik az újonnan elért szomszédok a $B, D, A$ csúcsokból. $B$-ből megy él $C$-be. $D$-ből megy él $A$-ba (már volt), $T$-be, $E$-be. $A$-ból megy él $C$-be.</li>
+                        <li>A megadott sorozatban $A$ után $T$ következik. $T$-t $S$ szomszédai közül fedeztük fel. Mivel $S$ szomszédai közül csak $D$-ből megy él $T$-be, ezért $D$-t előbb kellett bejárnunk (felderítenünk a szomszédait), mint $B$-t vagy $A$-t.</li>
+                    </ul>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">Mivel az eljárás $S$ után az abból egy élen elérhető csúcsokat sorolja föl, ezért a második és a harmadik helyen $B$ és $D$ áll valamilyen sorrendben.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Mivel azonban $B, D$ és $A$ után az ezek közül elsőnek felsorolt csúcsból egy élen elérhető (és korábban fel nem sorolt) csúcsoknak kell következnie, ezért a második helyen $D$ kell álljon, hiszen $B$-ből $T$-be nem vezet él.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Így $A$ után a $D$-ből egy élen elérhető (és korábban még be nem járt) csúcsok, vagyis $T$ és $E$ felsorolása kell következzen.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Ebből már kiderült a teljes sorozat, hiszen az utolsó helyre a megmaradó $C$ csúcsnak kell kerülnie: <strong>$S, D, B, A, T, E, C$</strong>.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">A fentiekből az is kiderült, hogy az eljárás a $D, B$ és $A$ csúcsokat $S$-ből, a $T$ és $E$ csúcsokat pedig $D$-ből éri el. Az utolsónak bejárt $C$ csúcsot viszont nyilván $B$-ből. Így a BFS-fa élei: <strong>$(S, D), (S, B), (S, A), (D, T), (D, E), (B, C)$</strong>.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 5 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">5. Feladat</span>
+                    <h2 class="text-xl font-bold">Maximális folyam és Vágás</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>a) Határozzuk meg a megadott hálózatban az $X = \{S, D, E\}$ vágás kapacitását.</p>
+                    <p>b) Adjunk meg a hálózatban egy maximális folyamot $S$-ből $T$-be (és mutassuk meg róla, hogy valóban maximális).</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (8. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">
+                        a) Vágás kapacitása a vágást generáló halmazból ($X$) kilépő élek kapacitásának összege.
+                        b) Meg kell adni egy folyamot, aminek az értéke megegyezik ennek a vágásnak a kapacitásával. A Ford-Fulkerson tétel szerint ha $m_f = c(X)$, akkor a folyam maximális, a vágás minimális.
+                    </p>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300"><strong>a)</strong> Az $X = \{S, D, E\}$ halmazból kilépő élek: $(S, A), (S, B), (D, T)$ és $(E, T)$; ezeknek a kapacitása sorra 4, 7, 9 és 5. Így az $X$ vágás kapacitása $4 + 7 + 9 + 5 =$ <strong>25</strong>.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2"><strong>b)</strong> A megadható folyam értéke 14 kell legyen (A megoldókulcs ábráján 14-es folyam szerepel egy másik vágással). Egy érvényes folyam például, aminek az értéke 14 (és ez a maximális): $S \to B \to C \to T$ úton 3, $S \to A \to C \to T$ úton 1, $S \to D \to E \to T$ úton 2, $S \to D \to T$ úton 8. Összesen $3+1+2+8 = 14$.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Az $\{S, A, B, C, E\}$ vágás kapacitása (a kilépő élek: $(S,D)$ kap:4, $(E,T)$ kap:5, $(C,T)$ kap:5) szintén 14.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Mivel tetszőleges folyam értéke legföljebb akkora, mint tetszőleges vágás kapacitása, ezért a 14 kapacitású vágás bizonyítja, hogy a 14 értékű folyam maximális.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 6 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">6. Feladat (IMSc)</span>
+                    <h2 class="text-xl font-bold">Párosítás reguláris páros gráfban</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>A $G = (A, B; E)$ páros gráf mindkét pontosztálya 10 csúcsú (vagyis $|A| = |B| = 10$). A gráf minden $e$ éléhez tartozik egy adott $w(e) \ge 0$ nemnegatív súly. Tudjuk, hogy a gráf minden $v$ csúcsára teljesül, hogy a $v$-re illeszkedő élek összsúlya legalább 8 és legföljebb 9 (és így $v$-re illeszkedik legalább egy él). Bizonyítsuk be, hogy $G$-ben van teljes párosítás.</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (6. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">Páros gráfban teljes párosítás létezését a <strong>Hall-tétel</strong> (vagy Frobenius-tétel) segítségével bizonyíthatjuk. Azt kell belátni, hogy minden $X \subseteq A$ részhalmazra $|N(X)| \ge |X|$ (ahol $N(X)$ az $X$ szomszédainak halmaza $B$-ben). A bizonyításhoz a csúcsokra illeszkedő élek súlyainak összegét fogjuk használni: megnézzük, hogy az $X$-ből kimenő élek összsúlya hogyan aránylik az $N(X)$-be beérkező élek összsúlyához.</p>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">Legyen $X \subseteq A$ tetszőleges. Ekkor az $X$ és $N(X)$ közötti élek összsúlya legalább $8 \cdot |X|$, mert minden $x \in X$ csúcsra illeszkedő élek összsúlya legalább 8 (és ezek az élek mind $N(X)$-be érkeznek).</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Így az $N(X)$-be érkező összes él összsúlya is legalább $8 \cdot |X|$, mert az $N(X)$-be $X$-en kívülről érkező élek összsúlya nemnegatív (mivel minden élsúly $\ge 0$).</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Másrészt az $N(X)$-be érkező élek összsúlya legföljebb $9 \cdot |N(X)|$, mert minden $y \in N(X)$ csúcsra illeszkedő élek összsúlya legföljebb 9.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Ezekből tehát $8 \cdot |X| \le 9 \cdot |N(X)|$, vagyis <strong>$|N(X)| \ge \frac{8}{9}|X|$</strong>.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Következik, hogy ha $|X| \le 8$, akkor $|N(X)| \ge |X|$ (mert $|X| \le 8$ esetén $\frac{8}{9}|X| > |X| - 1$, és a halmaz mérete csak egész lehet).</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Tegyük most fel, hogy $|X| = 9$ és legyen az $X$-be nem tartozó egyetlen $A$-beli csúcs $z$. Ha most $|N(X)| \le 8$ volna, akkor az $N(X)$-be nem tartozó, legalább két csúcs csak $z$-vel lehetne szomszédos. Ez azonban lehetetlen, mert így a $z$-be érkező élek összsúlya legalább $2 \cdot 8 = 16$ volna (ami ellentmond a "legfeljebb 9" feltételnek). Így $|N(X)| \ge |X|$ teljesül $|X| = 9$ esetén is.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Végül ha $|X| = 10$, vagyis $X = A$, akkor $N(X) = B$ (és így $|N(X)| = 10$). Valóban, különben $B$-ben kellene legyen izolált csúcs, ami a feladat szövege szerint lehetetlen.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Megmutattuk tehát, hogy $|N(X)| \ge |X|$ minden $X \subseteq A$ esetén teljesül. Mivel emellett $|A| = |B| = 10$ is igaz, ezért a tanult (Hall vagy Frobenius) tétel szerint $G$-ben valóban van teljes párosítás.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function toggleNightMode() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('nightMode', isDark);
+        }
+        (function() { if (localStorage.getItem('nightMode') === 'true') document.documentElement.classList.add('dark'); })();
+        window.addEventListener('load', () => { if (window.MathJax) MathJax.typesetPromise(); });
+    </script>
+</body>
+</html>

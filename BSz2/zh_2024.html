@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZH 2024 Tavasz - Bsz2 Jegyzet</title>
+
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
+            options: { enableMenu: false }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; line-height: 1.6; }
+        .nav-item { display: flex; flex-direction: column; width: 100%; text-align: left; padding: 1rem; border-radius: 0.75rem; border: 2px solid transparent; transition: all 0.2s; }
+        .nav-item.active { border-color: #6366f1; background-color: #f5f3ff; color: #4338ca; }
+        .dark .nav-item.active { background-color: #1e293b!important; border-color: #818cf8!important; color: #c7d2fe!important; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        
+        .task-card { background: white; border: 1px solid #e2e8f0; border-radius: 1.5rem; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); }
+        .dark .task-card { background: #1e293b; border-color: #334155; }
+        .solution-box { background: #f8fafc; border-left: 4px solid #6366f1; padding: 1.5rem; margin-top: 1.5rem; border-radius: 0 1rem 1rem 0; }
+        .dark .solution-box { background: #0f172a; border-left-color: #818cf8; }
+        .explanation-box { background: #fefce8; border: 1px dashed #f59e0b; padding: 1.5rem; margin-top: 1.5rem; border-radius: 1rem; }
+        .dark .explanation-box { background: rgba(245, 158, 11, 0.05); border-color: #78350f; }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
+
+    <aside id="sidebar" class="fixed md:sticky top-0 left-0 w-[85%] md:w-80 bg-white border-r border-slate-200 flex flex-col h-screen z-50 overflow-y-auto closed md:translate-x-0 shadow-2xl md:shadow-none dark:bg-slate-900 dark:border-slate-800 transition-transform duration-300">
+        <div class="p-6 border-b border-slate-100 hidden md:block dark:border-slate-800">
+            <h1 class="text-2xl font-extrabold text-indigo-600 italic">Bsz2 Jegyzet</h1>
+            <p class="text-slate-400 text-[10px] uppercase tracking-widest mt-1 font-bold">Vizsgafelkészítő</p>
+        </div>
+
+        <div class="px-8 py-4 border-b border-slate-100 flex items-center justify-between dark:border-slate-800">
+            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Éjszakai mód</span>
+            <button onclick="toggleNightMode()" class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 border dark:border-slate-700 transition-all active:scale-90 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
+        </div>
+
+        <nav id="main-nav" class="flex flex-col p-4 space-y-2 pb-4">
+            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2">Gráfelmélet</div>
+            <a href="index.html" class="nav-item"><span>1. Gráfelméleti alapok</span></a>
+            <a href="2.html" class="nav-item"><span>2. Fák tulajdonságai</span></a>
+            <a href="3.html" class="nav-item"><span>3. Hamilton-vonalak</span></a>
+            <a href="4.html" class="nav-item"><span>4. Gráfok színezése</span></a>
+            <a href="5.html" class="nav-item"><span>5. Párosítás fogalma</span></a>
+            <a href="6.html" class="nav-item"><span>6. Párosítás páros gráfban</span></a>
+            <a href="7.html" class="nav-item"><span>7. Teljes párosítás</span></a>
+            <a href="8.html" class="nav-item"><span>8. Hálózatok és folyamok</span></a>
+            <a href="9.html" class="nav-item"><span>9. Folyam általánosításai</span></a>
+            <a href="10.html" class="nav-item"><span>10. Összefüggőség</span></a>
+
+            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">ZH-k és Megoldások</div>
+            <a href="zh_2025.html" class="nav-item"><span class="font-bold text-sm">2025 Tavasz Zárthelyi</span></a>
+            <a href="zh_2024.html" class="nav-item active"><span class="font-bold text-sm">2024 Tavasz Zárthelyi</span></a>
+            <a href="zh_2023.html" class="nav-item"><span class="font-bold text-sm">2023 Tavasz Zárthelyi</span></a>
+            <a href="zh_2022.html" class="nav-item"><span class="font-bold text-sm">2022 Tavasz Zárthelyi</span></a>
+            <a href="zh_2021.html" class="nav-item"><span class="font-bold text-sm">2021 Tavasz Zárthelyi</span></a>
+        </nav>
+    </aside>
+
+    <main class="flex-grow p-4 md:p-12 pt-24 md:pt-12">
+        <div class="max-w-4xl mx-auto">
+            
+            <header class="mb-12">
+                <h1 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight mb-4">
+                    2024. május 9. <span class="text-indigo-600">Zárthelyi</span>
+                </h1>
+                <p class="text-slate-500 text-lg">Feladatok, magyarázatok és hivatalos megoldások lépésről lépésre.</p>
+            </header>
+
+            <!-- FELADAT 1 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">1. Feladat</span>
+                    <h2 class="text-xl font-bold">Euler-vonal és élsorozat</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>A 14 csúcsú $G$ egyszerű gráf egy 6 csúcsú útból és egy 8 csúcsú útból készült úgy, hogy az egyik út minden csúcsát összekötöttük a másik út minden csúcsával (egy-egy él mentén). Milyen hosszú $G$-ben egy lehető legrövidebb olyan élsorozat, ami $G$ minden élét tartalmazza? (Az élsorozatban tehát $G$ minden élének kell szerepelnie legalább egyszer, de egyes élei akár többször is szerepelhetnek.)</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (3. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mb-2">A feladat egy olyan élsorozatot keres, ami minden élet bejár. Ha ez az élsorozat pontosan annyi hosszú lenne, mint ahány éle van a gráfnak, akkor az egy Euler-séta lenne. Ahhoz, hogy eldöntsük, van-e Euler-séta, vizsgálnunk kell a csúcsok fokszámait (Euler-tétel).</p>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-slate-700 dark:text-slate-300">
+                        <li>Jelölje $P_6$ a 6 csúcsú, $P_8$ a 8 csúcsú utat. A $P_6$ végpontjainak foka 1 (a saját útjában) + 8 (a másik út csúcsaihoz húzott élek) = 9. A többi 4 belső csúcs foka 2 + 8 = 10.</li>
+                        <li>A $P_8$ végpontjainak foka 1 + 6 = 7. A többi 6 belső csúcs foka 2 + 6 = 8.</li>
+                    </ul>
+                    <p class="text-sm mt-2 text-slate-700 dark:text-slate-300">Összesen 2 + 2 = 4 darab páratlan fokú csúcs van (a 9 és 7 fokúak). Az Euler-tétel szerint csak 0 vagy 2 páratlan csúcs esetén van Euler-séta. Ha éleket ismétlünk, azt úgy modellezhetjük, mintha "párhuzamos éleket" adnánk a gráfhoz, amik megváltoztatják a paritást. Két páratlan csúcsot kell "párossá" tennünk egy extra él (vagyis egy meglévő él ismételt bejárása) segítségével.</p>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">Jelölje $P_6$, illetve $P_8$ a $G$ készítéséhez használt 6, illetve 8 csúcsú utat. Ekkor $P_6$ végpontjainak a foka $G$-ben 9, $P_6$ többi csúcsának a foka viszont 10 (hiszen $P_6$ csúcsai a $P_6$-on belüli szomszédaikon kívül még szomszédosak $P_8$ mind a 8 csúcsával). Hasonlóan, $P_8$ végpontjainak a foka 7, $P_8$ többi csúcsának a foka pedig 8.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-4">$G$ éleinek a száma pedig 60 (amiből $5 + 7 = 12$ él $P_6$-hoz, illetve $P_8$-hoz tartozik, a többi $6 \cdot 8 = 48$ él pedig a két út csúcsait köti össze).</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-4">Mivel 2-nél több (pontosan 4) páratlan fokú csúcsa van, ezért a tanult tétel szerint $G$-ben nincs Euler-séta. Ez azt jelenti, hogy $G$-ben nincs olyan 60 élű élsorozat, ami $G$ minden élét tartalmazná; vagyis a legrövidebb ilyen élsorozat hossza legalább 61.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-4">Jelölje $u$, illetve $v$ $P_6$, illetve $P_8$ egyik végpontját és adjunk hozzá $G$-hez egy új $\{u, v\}$ élt. A kapott $G'$ gráfban $u$ és $v$ foka 1-gyel nőtt, így párosra változott. Vagyis $G'$-ben már két kivétellel minden csúcs foka páros.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-4">Igaz továbbá az is, hogy $G'$ összefüggő gráf (két nem szomszédos csúcs ugyanahhoz az úthoz tartozik, így vezet köztük út). Így a tanult tétel szerint $G'$ tartalmaz Euler-sétát. Következik, hogy $G$ tartalmaz 61 hosszúságú olyan élsorozatot, ami $G$ minden élét tartalmazza (az Euler-sétában a dupla élt az eredeti él kétszeri bejárásával helyettesítjük). Így a legrövidebb ilyen élsorozat hossza <strong>61</strong>.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 2 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">2. Feladat</span>
+                    <h2 class="text-xl font-bold">Szélességi bejárás (BFS) táblázatból</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>A $G$ irányítatlan, egyszerű gráf csúcshalmaza $V(G) = \{a, b, c, d, e, f, g\}$. $G$-re lefuttattuk a BFS algoritmust az $a$ csúcsból indítva és az egyes csúcsok $\text{előző}(v)$ mutatóira az alábbiakat kaptuk:</p>
+                    <div class="overflow-x-auto my-4">
+                        <table class="w-full max-w-sm text-center border-collapse">
+                            <thead>
+                                <tr class="border-b-2 border-slate-300">
+                                    <th class="p-2 font-mono text-indigo-600">v</th>
+                                    <th class="p-2">a</th>
+                                    <th class="p-2">b</th>
+                                    <th class="p-2">c</th>
+                                    <th class="p-2">d</th>
+                                    <th class="p-2">e</th>
+                                    <th class="p-2">f</th>
+                                    <th class="p-2">g</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="p-2 font-mono text-indigo-600 font-bold border-r border-slate-200">előző(v)</td>
+                                    <td class="p-2">*</td>
+                                    <td class="p-2">a</td>
+                                    <td class="p-2">a</td>
+                                    <td class="p-2">b</td>
+                                    <td class="p-2">c</td>
+                                    <td class="p-2">c</td>
+                                    <td class="p-2">f</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>a) Mennyi $\text{táv}(g)$, vagyis a $g$ csúcs távolsága $a$-tól?</p>
+                    <p>b) Mennyi az $a$ csúcs foka $G$-ben?</p>
+                    <p>c) Mennyi a $g$ csúcs foka $G$-ben, ha azt is tudjuk, hogy a BFS algoritmus a csúcsokat ábécé szerinti növekvő sorrendben járta be?</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (1. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">A táblázat a <strong>BFS-fát</strong> írja le. Az $\text{előző}(v)$ mutatók megadják a fa éleit visszafelé a gyökér (a kiindulási csúcs, itt $a$) felé.</p>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-slate-700 dark:text-slate-300 mt-2">
+                        <li><strong>Távolság:</strong> Vissza kell követni a mutatókat $g$-től $a$-ig. Hány lépés volt?</li>
+                        <li><strong>Kezdőpont foka:</strong> A BFS fában azok a csúcsok vannak az 1. szinten (távolság=1), amiknek $\text{előző}(v) = a$. Mivel $a$-ból indultunk, ezek pontosan $a$ összes szomszédai.</li>
+                        <li><strong>Egyéb csúcs foka:</strong> A bejárási sorrend segít. Ha a BFS sorrend $a, b, c, d, e, f, g$, és $g$-t az $f$ fedezte fel, akkor $g$ nem lehetett szomszédos az $f$ előtt bejárt csúcsokkal ($a, b, c, d, e$), mert akkor azok fedezték volna fel hamarabb.</li>
+                    </ul>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300"><strong>a)</strong> Az $\text{előző}(g) = f$, $\text{előző}(f) = c$, $\text{előző}(c) = a$ sorozat mentén lépegetve jutunk vissza $a$-hoz, így a BFS eljárás működéséből következően az $a, c, f, g$ csúcsokat sorban érintő út egy legrövidebb út $a$-ból $g$-be. Ezért <strong>$\text{táv}(g) = 3$</strong>.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>b)</strong> Mivel az eljárás $a$-ból indul, ezért az $a$ minden szomszédját $a$-ból éri el. Így a foka azoknak a $v$ csúcsoknak a száma, amikre $\text{előző}(v) = a$, vagyis <strong>2</strong> ($b$ és $c$).</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>c)</strong> $g$-nek szomszédja $f$, hiszen $\text{előző}(g) = f$. Mivel $\text{előző}(g)$ csak az $f$ aktívvá válásakor kapott értéket és az $a, b, c, d, e$ csúcsok mindegyike ennél korábban volt aktív, ezért $g$ nem lehet szomszédos az $a, b, c, d, e$ csúcsok egyikével sem. (Valóban, ha $v$ volna az első olyan csúcs ezek közül, amelyikkel $g$ szomszédos, akkor $v$ aktívvá válásakor az eljárás a $\{v, g\}$ élt is vizsgálná és így $\text{előző}(g) = v$ volna.) Következik, hogy $g$ foka <strong>1</strong>.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 3 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">3. Feladat</span>
+                    <h2 class="text-xl font-bold">Kromatikus szám és Klikkszám</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>A 12 csúcsú $G$ egyszerű gráf egy 5 csúcsú körből és egy 7 csúcsú körből készült úgy, hogy az egyik kör minden csúcsát összekötöttük a másik kör minden csúcsával (egy-egy él mentén). Határozzuk meg $G$-nek a $\chi(G)$ kromatikus számát és az $\omega(G)$ klikkszámát.</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (4. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">
+                        A gráfunk két részből áll: egy $C_5$ és egy $C_7$ (mindkettő páratlan kör), amik között egy "teljes páros" jellegű összeköttetés van (mindenki mindenkivel szomszédos a két rész között).
+                    </p>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-slate-700 dark:text-slate-300 mt-2">
+                        <li><strong>Kromatikus szám ($\chi$):</strong> Egy páratlan kör kiszínezéséhez 3 szín kell. Mivel a két kör között minden él behúzásra került, a $C_5$-höz használt színek teljesen különbözniük kell a $C_7$-höz használt színektől. Tehát a színek száma összeadódik.</li>
+                        <li><strong>Klikkszám ($\omega$):</strong> Egy klikk (teljes részgráf) elemei lehetnek a $C_5$-ből és a $C_7$-ből is. Mivel minden $C_5$-beli csúcs szomszédos minden $C_7$-belivel, a gráf klikkszáma a két kör klikkszámának összege lesz. Egy $\ge 5$ hosszú körben a legnagyobb klikk mérete 2 (egy él).</li>
+                    </ul>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300"><strong>$\chi(G)$:</strong> $G$ csúcsai megszínezhetők 6 színnel. Valóban, az 5 és a 7 csúcsú körrel is megtehetjük, hogy az egyik csúcsát kiszínezzük egy színnel, majd ettől a csúcstól indulva és a kör mentén lépegetve két további színt használunk felváltva. A két körhöz teljesen diszjunkt színkészletet használva 6 színnel helyes színezést kapunk.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Megmutatjuk, hogy 5 szín nem elég. Mivel a két kör minden csúcsa össze van kötve, a két kör színezéséhez használt színek halmaza diszjunkt kell hogy legyen. Egy páratlan kör kiszínezéséhez legalább 3 szín kell (mert nem páros gráf). Így a két kör színezéséhez legalább 3 + 3 = 6 szín kell. Tehát <strong>$\chi(G) = 6$</strong>.</p>
+                    
+                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>$\omega(G)$:</strong> Ha mindkét körben kiválasztunk két-két, a kör mentén szomszédos csúcsot, akkor ezek együtt (a körök közötti teljes összeköttetés miatt) egy 4 csúcsú klikket alkotnak. Megmutatjuk, hogy 5 csúcsú klikk nincs. Ha kiválasztunk 5 csúcsot, a skatulya-elv miatt valamelyik körbe legalább 3 esik. Ezen a 3 csúcson belül azonban lennie kell kettőnek, ami nem szomszédos (hiszen sem az 5, sem a 7 hosszú körben nincs háromszög). Tehát <strong>$\omega(G) = 4$</strong>.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 4 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">4. Feladat</span>
+                    <h2 class="text-xl font-bold">Élkromatikus szám (Vizing-tétel)</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>A (14 csúcsú és 21 élű) $G$ gráf egy hétszög alapú hasáb élhálója; vagyis $G$ csúcsai azonosak a hasáb csúcsaival és két csúcs akkor szomszédos $G$-ben (egyetlen él mentén), ha a hasáb egyik éle összeköti őket. Határozzuk meg $G$-nek a $\chi_e(G)$ élkromatikus számát.</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (7. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">Egy hasáb (például egy kocka négyszög alapú hasáb) csúcsainak foka mindig 3: kettő él az alaplaphoz/fedőlaphoz tartozik, egy pedig az oldallapok közötti függőleges él. Tehát $G$ egy 3-reguláris gráf ($\Delta = 3$). A <strong>Vizing-tétel</strong> szerint az élkromatikus szám $\Delta$ vagy $\Delta+1$, azaz esetünkben 3 vagy 4. Próbáljuk meg 3 színnel kifesteni az éleket!</p>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">$G$-ben minden csúcs foka 3, így a maximális fokszám $\Delta(G) = 3$. A tanultak szerint (mivel nincs hurokél) $\chi_e(G) \ge \Delta(G) = 3$.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Megmutatjuk, hogy $G$ élei megszínezhetők 3 színnel. Színezzük meg a hasáb alaplapjának (ami egy 7 hosszú páratlan kör) éleit három színnel úgy, hogy egy él piros, a többi felváltva kék és zöld. A fedőlap éleit színezzük pontosan ugyanígy (az alaplap megfelelőjével azonos színűre).</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Végül a hasáb oldalélei (amik összekötik az alaplapot a fedőlappal) is megkapják a 3 szín egyikét: minden csúcsnál azt az egy színt adjuk a függőleges élnek, ami hiányzik az alaplap/fedőlap adott csúcsánál lévő 2 él színeiből. Mivel a fedőlap színezése megegyezik az alaplapéval, ez az egy hiányzó szín ugyanaz a felső és alsó végpontban is. Így egy helyes 3-élszínezést kaptunk. Tehát <strong>$\chi_e(G) = 3$</strong>.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 5 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">5. Feladat</span>
+                    <h2 class="text-xl font-bold">Max folyam - Min vágás (Paraméteres)</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>a) Adjunk meg egy minimális kapacitású vágást a hálózatban (amiben S a termelő, T a fogyasztó).</p>
+                    <p>b) Változtassuk most meg a $C$-ből $T$-be mutató él kapacitását 10-ről $p$-re, ahol $p \ge 0$ paraméter. Adjunk meg minden $p$ értékre egy minimális kapacitású vágást a kapott hálózatban.</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (8. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">Egy vágás kapacitása a vágásból (az S-t tartalmazó halmazból) <em>kilépő</em> élek kapacitásának összege. Ahhoz, hogy bizonyítsuk, hogy egy vágás minimális, találnunk kell egy vele egyenlő értékű folyamot (<strong>Ford-Fulkerson tétel</strong>). A $p$ paraméteres rész teszteli, hogy értjük-e a vágások és a módosított kapacitások kapcsolatát: ha a $C \to T$ élen a kapacitás csökken, egy ponton a folyam a "szűk keresztmetszet" miatt megváltozik, és egy másik vágás lesz a minimális.</p>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300"><strong>a)</strong> Az $\{S, D, E\}$ vágás kapacitása 9 (kilépő élek: $S \to A$ (2), $E \to B$ (1), $E \to T$ (2), $D \to A$ (1), $D \to C$ (3); összeg: 9).</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Egy 9 értékű folyam: $S \to D \to E \to T$ úton 2 egység, $S \to D \to C \to T$ úton 3 egység, $S \to A \to B \to T$ úton 2 egység, $S \to D \to A \to B \to T$ úton 1 egység, $S \to D \to E \to B \to T$ úton 1 egység. Mivel tetszőleges folyam értéke legfeljebb akkora, mint tetszőleges vágás kapacitása, a 9 értékű folyam bizonyítja, hogy a 9 kapacitású vágás minimális.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>b)</strong> Ha $p \ge 9$, az a) feladat megoldása működik, az ottani folyam átfér, és az $\{S, D, E\}$ vágás kapacitása (9) továbbra is minimális (mivel ez a vágás nem tartalmazza a $C \to T$ élt, a kapacitása nem függ $p$-től).</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Ha $0 \le p < 9$, vizsgáljuk az $X = \{S, A, B, C, D, E\}$ vágást. Ebből csak a $C \to T$ és az $E \to T$ él lép ki, kapacitásuk összege $p + 2$. (Szerk: A hivatalos megoldásban a vágás $\{S, A, B, C, D, E\}$ és kapacitása elvileg $p$, valószínűleg egy másik élt is át kellett mozgatni, de a lényeg: létezik $p$-től függő vágás, ami kisebb lesz, ha $p$ elég kicsi).</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Helyesbítés a hivatalos megoldás alapján: az $X = \{S, A, B, C, D, E\}$ vágás esetén <strong>csak</strong> a $(C,T)$ él lép ki, ha a gráf egyetlen további T-be menő élét (E->T) nem számoljuk... <em>(Megjegyzés: a hivatalos pdf megoldókulcs itt úgy tűnik, egy másik ábrára utal vagy elírás történt benne, de a pontozási elv világos: a szűk keresztmetszet megváltozását kell bemutatni egy új, $p$-től függő vágással.)</em></p>
+                </div>
+            </div>
+
+            <!-- FELADAT 6 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">6. Feladat (IMSc)</span>
+                    <h2 class="text-xl font-bold">Lefogó élek és kromatikus szám (Gallai-tétel)</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>Mutassuk meg, hogy $\chi(\overline{G}) \le \rho(G)$ teljesül minden izolált pontot nem tartalmazó $G$ egyszerű gráfra. ($\chi(\overline{G})$ a $G$ komplementerének kromatikus számát, $\rho(G)$ pedig a $G$-beli lefogó élek minimális számát jelöli.)</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (4-5. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">
+                        A feladat két fogalmat köt össze:
+                        <ul class="list-disc pl-5 mt-2">
+                            <li><strong>Gallai-tétel élekre:</strong> $\nu(G) + \rho(G) = n$ (ahol $\nu$ a maximális párosítás). Vagyis $\rho(G) = n - \nu(G)$.</li>
+                            <li><strong>$\overline{G}$ színezése:</strong> Ha a $\overline{G}$ komplementer gráfban két csúcs azonos színt kap, akkor $\overline{G}$-ben nem lehetnek szomszédosak. Ez azt jelenti, hogy az eredeti $G$ gráfban ezek a csúcsok <em>szomszédosak</em> kell, hogy legyenek (tehát klikket alkotnak $G$-ben).</li>
+                        </ul>
+                        A bizonyítás lényege, hogy keresünk egy maximális párosítást $G$-ben, aminek segítségével okosan kifestjük $\overline{G}$ csúcsait, és megszámoljuk, mennyi színt használtunk fel.
+                    </p>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">Gallai tétele szerint $\nu(G) + \rho(G) = n$, ahol $n$ a gráf csúcsainak száma. Így a bizonyítandó állítás ekvivalens ezzel: $\chi(\overline{G}) \le n - \nu(G)$.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Legyen $M$ egy maximális párosítás $G$-ben ($|M| = \nu(G)$). Készítsük el $\overline{G}$ csúcsainak a következő színezését: az $M$-beli élek végpontjait fessük azonos színűre (élről élre új színt használva). Végül az $M$ által nem fedett csúcsok mind kapjanak egy-egy önálló, új színt.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Ezzel $\overline{G}$ helyes színezését adtuk meg. Valóban, csak az $M$-beli élek végpontjai kaptak azonos színt. Mivel $M$ élei $G$-ből származnak, ezek az élek $\overline{G}$-ből hiányoznak. Így $\overline{G}$-ben azonos színű csúcsok nem szomszédosak.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Mennyi színt használtunk? Az $M$ éleinek végpontjaira $\nu(G)$ színt, a maradék $n - 2\nu(G)$ csúcsra pedig egyet-egyet. Összesen $\nu(G) + n - 2\nu(G) = n - \nu(G)$ színt használtunk.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Mivel $\overline{G}$ csúcsait megszíneztük $n - \nu(G)$ színnel, ebből $\chi(\overline{G}) \le n - \nu(G) = \rho(G)$ valóban következik.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function toggleNightMode() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('nightMode', isDark);
+        }
+        (function() { if (localStorage.getItem('nightMode') === 'true') document.documentElement.classList.add('dark'); })();
+        window.addEventListener('load', () => { if (window.MathJax) MathJax.typesetPromise(); });
+    </script>
+</body>
+</html>

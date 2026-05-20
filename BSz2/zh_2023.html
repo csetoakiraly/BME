@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZH 2023 Tavasz - Bsz2 Jegyzet</title>
+
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
+            options: { enableMenu: false }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; line-height: 1.6; }
+        .nav-item { display: flex; flex-direction: column; width: 100%; text-align: left; padding: 1rem; border-radius: 0.75rem; border: 2px solid transparent; transition: all 0.2s; }
+        .nav-item.active { border-color: #6366f1; background-color: #f5f3ff; color: #4338ca; }
+        .dark .nav-item.active { background-color: #1e293b!important; border-color: #818cf8!important; color: #c7d2fe!important; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        
+        .task-card { background: white; border: 1px solid #e2e8f0; border-radius: 1.5rem; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); }
+        .dark .task-card { background: #1e293b; border-color: #334155; }
+        .solution-box { background: #f8fafc; border-left: 4px solid #6366f1; padding: 1.5rem; margin-top: 1.5rem; border-radius: 0 1rem 1rem 0; }
+        .dark .solution-box { background: #0f172a; border-left-color: #818cf8; }
+        .explanation-box { background: #fefce8; border: 1px dashed #f59e0b; padding: 1.5rem; margin-top: 1.5rem; border-radius: 1rem; }
+        .dark .explanation-box { background: rgba(245, 158, 11, 0.05); border-color: #78350f; }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
+
+    <aside id="sidebar" class="fixed md:sticky top-0 left-0 w-[85%] md:w-80 bg-white border-r border-slate-200 flex flex-col h-screen z-50 overflow-y-auto closed md:translate-x-0 shadow-2xl md:shadow-none dark:bg-slate-900 dark:border-slate-800 transition-transform duration-300">
+        <div class="p-6 border-b border-slate-100 hidden md:block dark:border-slate-800">
+            <h1 class="text-2xl font-extrabold text-indigo-600 italic">Bsz2 Jegyzet</h1>
+            <p class="text-slate-400 text-[10px] uppercase tracking-widest mt-1 font-bold">Vizsgafelkészítő</p>
+        </div>
+
+        <div class="px-8 py-4 border-b border-slate-100 flex items-center justify-between dark:border-slate-800">
+            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Éjszakai mód</span>
+            <button onclick="toggleNightMode()" class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 border dark:border-slate-700 transition-all active:scale-90 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
+        </div>
+
+        <nav id="main-nav" class="flex flex-col p-4 space-y-2 pb-4">
+            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2">Gráfelmélet</div>
+            <a href="index.html" class="nav-item"><span>1. Gráfelméleti alapok</span></a>
+            <a href="2.html" class="nav-item"><span>2. Fák tulajdonságai</span></a>
+            <a href="3.html" class="nav-item"><span>3. Hamilton-vonalak</span></a>
+            <a href="4.html" class="nav-item"><span>4. Gráfok színezése</span></a>
+            <a href="5.html" class="nav-item"><span>5. Párosítás fogalma</span></a>
+            <a href="6.html" class="nav-item"><span>6. Párosítás páros gráfban</span></a>
+            <a href="7.html" class="nav-item"><span>7. Teljes párosítás</span></a>
+            <a href="8.html" class="nav-item"><span>8. Hálózatok és folyamok</span></a>
+            <a href="9.html" class="nav-item"><span>9. Folyam általánosításai</span></a>
+            <a href="10.html" class="nav-item"><span>10. Összefüggőség</span></a>
+
+            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">ZH-k és Megoldások</div>
+            <a href="zh_2025.html" class="nav-item"><span class="font-bold text-sm">2025 Tavasz Zárthelyi</span></a>
+            <a href="zh_2024.html" class="nav-item"><span class="font-bold text-sm">2024 Tavasz Zárthelyi</span></a>
+            <a href="zh_2023.html" class="nav-item active"><span class="font-bold text-sm">2023 Tavasz Zárthelyi</span></a>
+            <a href="zh_2022.html" class="nav-item"><span class="font-bold text-sm">2022 Tavasz Zárthelyi</span></a>
+            <a href="zh_2021.html" class="nav-item"><span class="font-bold text-sm">2021 Tavasz Zárthelyi</span></a>
+        </nav>
+    </aside>
+
+    <main class="flex-grow p-4 md:p-12 pt-24 md:pt-12">
+        <div class="max-w-4xl mx-auto">
+            
+            <header class="mb-12">
+                <h1 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight mb-4">
+                    2023. május 18. <span class="text-indigo-600">Zárthelyi</span>
+                </h1>
+                <p class="text-slate-500 text-lg">Feladatok, magyarázatok és hivatalos megoldások lépésről lépésre.</p>
+            </header>
+
+            <!-- FELADAT 1 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">1. Feladat</span>
+                    <h2 class="text-xl font-bold">Körmentesség és Élszám (Túlzsúfolt gráf)</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>A 10 csúcsú $G$ egyszerű gráfban teljesül, hogy bárhogyan is soroljuk fel a $(v_1, v_2, \dots, v_k)$ csupa különböző csúcsokat, ahol $3 \le k \le 10$, a $\{v_1, v_2\}, \{v_2, v_3\}, \dots, \{v_{k-1}, v_k\}$ és $\{v_k, v_1\}$ párok közül legalább az egyik benne van $G$ élhalmazában. Mutassuk meg, hogy ekkor $G$-nek legalább 36 éle van.</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (1. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mb-2">
+                        A feladat szövege bonyolultan van megfogalmazva, de dekódoljuk: "bárhogyan választunk $k$ csúcsot ($k \ge 3$), a rajtuk végigmenő 'kör' élei közül legalább egy <strong>benne van</strong> $G$-ben."
+                    </p>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mb-2">
+                        Gondolkodjunk a <strong>komplementer gráffal</strong> ($\overline{G}$)! A $\overline{G}$ élei pontosan azok, amik $G$-ből hiányoznak. A feltétel azt jelenti, hogy $\overline{G}$-ben <strong>nincs</strong> $k$ hosszú kör (mivel a lehetséges kör élei közül legalább egy $G$-ben van, tehát hiányzik $\overline{G}$-ből). És ez minden $k \ge 3$-ra igaz. Vagyis $\overline{G}$ <strong>körmentes</strong> (erdő/fa).
+                    </p>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">
+                        Egy $n$ csúcsú körmentes gráfnak legfeljebb $n-1$ éle van. Tehát a komplementer gráfnak max $10-1=9$ éle lehet. Ebből már kiszámolható $G$ éleinek száma.
+                    </p>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">A feladatban írt feltétel miatt a $\overline{G}$ gráf ($G$ komplementere) nem tartalmaz kört. Valóban: ha $\overline{G}$ tartalmazna kört és ez sorban a $v_1, v_2, \dots, v_k$ csúcsokat érintené, akkor a $\{v_1, v_2\}, \dots, \{v_{k-1}, v_k\}$ és $\{v_k, v_1\}$ párok közül mindegyik $\overline{G}$ éle volna, vagyis egyik sem tartozna $G$ élhalmazába. (Továbbá $G$ egyszerű volta miatt $k \ge 3$ is teljesülne, mert az egy, illetve két csúcsú körök hurokél, illetve párhuzamos élek létét feltételeznék.)</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-4">$\overline{G}$ körmentességéből a tanult tétel szerint következik, hogy legföljebb $10 - 1 = 9$ éle van.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-4">Mivel $G$ 10 csúcsából $\binom{10}{2} = \frac{10 \cdot 9}{2} = 45$ pár készíthető és ezek közül legföljebb 9 van $\overline{G}$ élhalmazában, ezért $G$-nek valóban legalább $45 - 9 = $ <strong>36</strong> éle van.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 2 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">2. Feladat</span>
+                    <h2 class="text-xl font-bold">Leghosszabb séta (Euler-tétel)</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>A $G$ egyszerű gráf csúcshalmaza $V(G) = \{1, 2, 3, \dots, 8\}$. $G$-ben szomszédos az 1 a 8-cal, ezen kívül pedig az $x, y \in V(G), x \neq y$ csúcsok pontosan akkor szomszédosak $G$-ben, ha $|x - y| \le 2$. Milyen hosszú $G$-ben a lehető leghosszabb séta? (A tanultak szerint egy séta hossza alatt az éleinek a számát értjük.)</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (3. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mb-2">Egy "séta" éleket nem ismételhet. A leghosszabb séta tehát az, ami a legtöbb élet bejárja. Ha be tudja járni az összes élet, akkor az egy Euler-séta. Számoljuk ki a csúcsok fokszámait!</p>
+                    <ul class="list-disc pl-5 text-sm space-y-1 text-slate-700 dark:text-slate-300">
+                        <li>Az élek szabálya: a szomszédos (különbség 1) és a másodszomszédos (különbség 2) csúcsok vannak összekötve. Plusz az 1 és a 8 össze van kötve (ez egy "körbeért" gráfot csinál, mint egy gyűrű).</li>
+                        <li>Nézzük a fokszámokat! Pl. a 3 szomszédai: 1, 2, 4, 5. (foka 4).</li>
+                        <li>A 8 szomszédai: 6, 7 (a szabály alapján) ÉS az 1 (a külön feltétel miatt). (foka 3).</li>
+                        <li>Az 1 szomszédai: 2, 3 ÉS a 8. (foka 3).</li>
+                        <li>A 2 szomszédai: 1, 3, 4 (nincs több "visszafele"). (foka 3).</li>
+                        <li>A 7 szomszédai: 5, 6, 8 (nincs több "előre"). (foka 3).</li>
+                        <li>Tehát a páratlan fokú csúcsok: 1, 2, 7, 8. Mivel 4 db van, nincs Euler séta. Két élet el kell hagynunk gondolatban, hogy csak 2 páratlan csúcs maradjon (vagy 0), hogy egy minél hosszabb "rész-sétát" kapjunk.</li>
+                    </ul>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">$G$-ben az 1, 2, 7 és 8 csúcsok foka 3 és a többi csúcs foka 4, $G$ éleinek a száma pedig 14.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Mivel 2-nél több páratlan fokú csúcsa van, ezért a tanult tétel szerint $G$-ben nincs Euler-séta. Ez azt jelenti, hogy $G$-ben nincs 14 élű séta, vagyis a leghosszabb séta hossza legföljebb 13.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Hagyjuk el most $G$-ből (például) az $\{1, 8\}$ élt. A kapott $G'$ gráfban már csak 2 páratlan fokú csúcs van (hiszen 1 és 8 foka 2 lett).</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">$G'$ összefüggő, hiszen például már az $\{x, x + 1\}$ típusú élek mentén is bármely két csúcsa között van út (vagyis az $1, 2, \dots, 8$ sorrendben bejárva a csúcsokat Hamilton-utat kapunk $G'$-ben).</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Így a tanult tétel szerint $G'$-ben már van Euler-séta. Következik, hogy $G$-ben van 13 élű séta, vagyis a leghosszabb séta hossza <strong>13</strong>.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 3 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">3. Feladat</span>
+                    <h2 class="text-xl font-bold">Teljes párosítás élhozzáadással (Kőnig-tétel)</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>Legalább hány élt kell hozzávenni az alábbi (rajzon látható fa) gráfhoz ahhoz, hogy a kapott gráfban legyen teljes párosítás?</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (5-6. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mb-2">
+                        Ez egy páros gráf (minden fa az). Teljes párosítás akkor van, ha a gráf $\nu(G) = n/2$ (a maximális párosítás mérete a csúcsok felét lefedi). A gráfban 10 csúcs van, tehát $\nu(G) = 5$ kéne legyen.
+                    </p>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">
+                        Kőnig tétele szerint páros gráfban $\nu(G) = \tau(G)$. Ha találunk egy kicsi lefogó ponthalmazt, ami mutatja, hogy $\tau(G)$ kicsi, akkor hiába adunk hozzá éleket, nehéz lesz növelni a párosítást (mert ha hozzáadunk egy élt, az maximum 1-gyel növeli a párosítás számát). Keressük meg a lefogó pontokat! Ha a felső 3 belső csúcsot kiválasztjuk, azok az alsó sor minden élét lefogják. A teljes gráf lefogásához elég kevés pont.
+                    </p>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">Jelölje a feladatbeli gráfot $G$. A megoldókulcs ábráján látható, hogy 2 élt elég hozzávenni $G$ élhalmazához: (Például a felső és alsó sor "lyukait" összekötve) ezek a további három vastagított éllel együtt teljes párosítást alkotnak a kapott gráfban.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Az eredeti gráfban bekarikázható három csúcs (a felső sor három belső csúcsa), ami lefogó ponthalmazt alkot (hiszen $G$ mindegyik élének legalább az egyik végpontja ez a három csúcs valamelyike).</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Így a tanultak szerint $G$-ben nincs 3-nál nagyobb párosítás, hiszen a három csúcsú lefogó ponthalmaz mutatja, hogy $\tau(G) \le 3$, így a tanult $\nu(G) \le \tau(G)$ összefüggés miatt $\nu(G) \le 3$ is igaz.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Így egyetlen él hozzávételével nem kaphatunk a gráfban teljes párosítást; valóban, ha ez lehetséges volna, akkor ennek az élnek a törlése után legalább 4 élű párosítás maradna $G$-ben (hiszen egy él törlése a párosítás méretét max 1-gyel csökkenti).</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Következik, hogy a teljes párosításhoz minimálisan <strong>2</strong> élt kell hozzávenni $G$-hez.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 4 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">4. Feladat</span>
+                    <h2 class="text-xl font-bold">Hiperkocka élszínezése</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>A $G$ egyszerű gráf csúcsai a négy hosszúságú bitsorozatok és két csúcs akkor szomszédos $G$-ben, ha a megfelelő bitsorozatok pontosan egy helyen térnek el egymástól. Határozzuk meg $G$-nek a $\chi_e(G)$ élkromatikus számát.</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (7. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">A feladatban leírt gráf a 4-dimenziós hiperkocka (olyan mint egy 3D-s kocka, de 4 bites kódokkal). Vizsgáljuk meg a tulajdonságait: minden csúcsból (bitsorozatból) pontosan 4 szomszéd érhető el (a 4 bit valamelyikének átbillentésével). Tehát a gráf 4-reguláris, $\Delta(G) = 4$.</p>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mt-2">Páros gráf-e a hiperkocka? Igen! Ha az alapján osztjuk két halmazba a csúcsokat, hogy mennyi a bitsorozatban az 1-esek száma (páros vagy páratlan), akkor látjuk, hogy egy él mindig egy páros és egy páratlan 1-es számú csúcsot köt össze. Kőnig élszínezési tétele kimondja, hogy páros gráfokra $\chi_e(G) = \Delta(G)$.</p>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">$G$-ben minden csúcs foka 4, hiszen mindegyik csúcsnak megfelelő bitsorozatot 4 helyen változtathatjuk meg, hogy egy szomszédos csúcsba jussunk. Így $G$-ben a maximális fokszám is $\Delta(G) = 4$.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Megmutatjuk, hogy $G$ páros gráf. Valóban, egy bit megváltoztatásával a bitek összege 1-gyel nő vagy csökken, vagyis a bitek összegének a paritása mindenképp megváltozik. Így ha $A$, illetve $B$ jelöli a páros, illetve páratlan sok 1-es bitet tartalmazó csúcsok halmazát, akkor $G$-nek minden éle $A$-beli csúcsot köt össze $B$-belivel a páros gráf definíciójának megfelelően.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Mivel $G$ páros gráf, ezért a tanult, megfelelő Kőnig-tétel miatt <strong>$\chi_e(G) = \Delta(G) = 4$</strong>.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 5 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">5. Feladat</span>
+                    <h2 class="text-xl font-bold">Folyam paraméterekkel és max-flow min-cut</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>a) A $p$ és $q$ valós paraméterek milyen értékére alkotnak a hálózatban az éleken szereplő értékek folyamot $S$-ből $T$-be? (Az ábrán zárójelben az élek kapacitása, a zárójelen kívül a folyamértékek láthatók.)</p>
+                    <p>b) Igaz-e, hogy $p$-nek és $q$-nak erre az értékére maximális értékű folyamot kapunk a hálózatban?</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (8-9. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300 mb-2"><strong>a) rész:</strong> Ahhoz, hogy a számok folyamot alkossanak, két dolognak kell teljesülnie: 1. $0 \le f(e) \le c(e)$ (nem haladhatja meg a kapacitást). 2. A Kirchhoff-törvénynek (belépő folyam = kilépő folyam) minden közbülső csúcsban teljesülnie kell.</p>
+                    <p class="text-sm text-slate-700 dark:text-slate-300"><strong>b) rész:</strong> A folyam maximális, ha nincs a segédgráfban ($H_f$) javítóút $S$-ből $T$-be. Vagy a Ford-Fulkerson tétel alapján: mutassunk egy st-vágást, aminek a kapacitása egyenlő a folyam értékével.</p>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300"><strong>a)</strong> Az $e = (D, T)$ élre alkalmazva a folyam definíciójából adódó $f(e) \le c(e)$ feltételt kapjuk, hogy $q + 2 \le 2$, vagyis $q \le 0$. Hasonlóan, az $e = (C, D)$ élre alkalmazva az $f(e) \ge 0$ feltételt kapjuk, hogy $q \ge 0$. Így tehát <strong>$q = 0$</strong>.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">A folyam definíciója szerint a folyammegmaradás feltételét a $C$ csúcsra felírva (beérkezik a $p(3)$ él, kimegy a $5(6)$ és a $q(2)$ él): $p + 2 = 5 + q$, amiből $q = 0$ miatt <strong>$p = 3$</strong> adódik.</p>
+
+                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>b) első megoldás (Segédgráffal):</strong> Megrajzoljuk a folyamhoz tartozó segédgráfot ($p=3, q=0$). A segédgráfban az $(S, A)$ és $(C, D)$ élek pl. telítettek, a többi élen lehet előre vagy visszafelé haladni. Ha megrajzoljuk, látható, hogy a segédgráfban nincs irányított út $S$-ből $T$-be, mert a segédgráfnak nincs az $\{S, A, D\}$ halmazból kivezető éle. Így a tanult tétel miatt a megadott folyam maximális értékű (mert nincs rá nézve javítóút).</p>
+
+                    <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>b) második megoldás (Vágással):</strong> A megadott folyam értéke ($S$-ből kimenő) $7 + 3 = 10$, így a maximális folyam értéke a hálózatban legalább 10. Az $\{S, A, D\}$ vágás kapacitása $10 = 3 + 2 + 3 + 2$ (ahol a felsorolt összeadandók sorban az $(S, C), (A, C), (A, B)$ és $(D, T)$ élek kapacitásainak felelnek meg). Így a minimális vágás kapacitása legföljebb 10. Mivel a Ford-Fulkerson tétel szerint a maximális folyam értéke egyenlő a minimális vágás kapacitásával, ezért ez a közös érték csak 10 lehet. Így a megadott folyam valóban <strong>maximális értékű</strong>.</p>
+                </div>
+            </div>
+
+            <!-- FELADAT 6 -->
+            <div class="task-card">
+                <div class="flex items-center gap-3 mb-6">
+                    <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg">6. Feladat (IMSc)</span>
+                    <h2 class="text-xl font-bold">Kromatikus szám és Lefogó pontok</h2>
+                </div>
+                
+                <div class="mb-6 text-slate-700 dark:text-slate-300">
+                    <p>A $G$ egyszerű gráf kromatikus száma $\chi(G) = 10$, a $G$-beli lefogó pontok minimális száma pedig $\tau(G) = 9$. Határozzuk meg $G$ maximális klikkméretét, $\omega(G)$-t.</p>
+                </div>
+
+                <div class="explanation-box">
+                    <h3 class="text-sm font-black uppercase text-amber-600 dark:text-amber-500 mb-2">Elméleti háttér (4-5. fejezet)</h3>
+                    <p class="text-sm text-slate-700 dark:text-slate-300">Tudjuk, hogy $\tau(G) = 9$, tehát van egy 9 elemű halmaz ($X$), ami lefedi az összes élet. Ez azt is jelenti, hogy $V(G) \setminus X$ egy <strong>független ponthalmaz</strong> (nincs él közöttük). Tudjuk továbbá, hogy $\chi(G) = 10$. Ebből az információból kell összerakni, hogy a gráf milyen sűrű lehet (mekkora a legnagyobb klikk).</p>
+                </div>
+
+                <div class="solution-box">
+                    <h3 class="text-sm font-black uppercase text-indigo-600 dark:text-indigo-400 mb-2">Hivatalos Megoldás</h3>
+                    <p class="text-slate-700 dark:text-slate-300">$\tau(G) = 9$ miatt $G$-ben van 9 csúcsú lefogó ponthalmaz. Legyen $X$ ilyen. Ekkor a tanultak (vagy egyszerűen a lefogó ponthalmaz definíciója) miatt $V(G) \setminus X$ független ponthalmaz, vagyis $X$-be nem tartozó csúcsok csak $X$-beliekkel lehetnek szomszédosak $G$-ben.</p>
+                    
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Megmutatjuk, hogy $X$ klikket alkot. Tegyük fel indirekt, hogy az $u, v \in X, u \neq v$ csúcsok nem szomszédosak $G$-ben. Színezzük ekkor $u$-t és $v$-t pirosra, $V(G) \setminus X$ csúcsait kékre, $X$ többi csúcsára pedig használjunk egy-egy külön színt. Így helyesen színeztük meg $G$ csúcsait $1 + 1 + 7 = 9$ színnel (hiszen az $X$-en kívüliek között nincs él, $u$ és $v$ közt meg feltettük, hogy nincs). Ez ellentmondásban van azzal, hogy $\chi(G) = 10$. Ez az ellentmondás mutatja, hogy $X$ valóban klikk.</p>
+
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Megmutatjuk, hogy $(V(G) \setminus X)$-nek van olyan csúcsa, ami $X$ minden csúcsával szomszédos. Tegyük fel ezért indirekt, hogy $(V(G) \setminus X)$ minden csúcsa legföljebb 8-cal szomszédos $X$ csúcsai közül. Színezzük most ki $X$ csúcsait 9 különböző színnel, majd $V(G) \setminus X$ minden $v$ csúcsát egy olyan $X$-beli csúcs színére, amivel $v$ nem szomszédos. Ezzel ismét helyesen színeztük meg $G$ csúcsait 9 színnel (hiszen a képhalmaz független), ami megint ellentmondás.</p>
+
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Következik tehát, hogy $G$-ben van 10 csúcsú klikk (az $X$ 9 csúcsa + az a csúcs az $X$-en kívülről, ami mindegyikükkel szomszédos). 11 csúcsú klikk viszont nyilván nem létezhet $\omega(G) \le \chi(G) = 10$ miatt. Így <strong>$\omega(G) = 10$</strong>.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function toggleNightMode() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('nightMode', isDark);
+        }
+        (function() { if (localStorage.getItem('nightMode') === 'true') document.documentElement.classList.add('dark'); })();
+        window.addEventListener('load', () => { if (window.MathJax) MathJax.typesetPromise(); });
+    </script>
+</body>
+</html>
