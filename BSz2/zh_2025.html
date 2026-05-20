@@ -309,10 +309,11 @@
                     <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>2. Vágás megadása (15 kapacitás):</strong> Keressünk egy szűk keresztmetszetet! Válasszuk az $X = \{S, B, C\}$ halmazt. Mely élek lépnek ki ebből a halmazból?
                     <ul class="list-disc pl-5 text-slate-700 dark:text-slate-300">
                         <li>Az $S \to A$ él kilép, kapacitása: $1$</li>
-                        <li>Az $S \to D$ él kilép, kapacitása: $9$</li>
+                        <li>Az $S \to D$ él kilép, kapacitása: $7$</li>
                         <li>A $C \to T$ él kilép, kapacitása: $5$</li>
+                        <li>A $B \to E$ él kilép, kapacitása: $2$</li>
                     </ul>
-                    A vágásba befelé menő éleket (pl $A \to B$) a kapacitás számításakor ignoráljuk. A kilépő élek kapacitásának összege: $$ c(X) = 1 + 9 + 5 = 15 $$</p>
+                    A vágásba befelé menő éleket (pl $A \to B$) a kapacitás számításakor ignoráljuk. A kilépő élek kapacitásának összege: $$ c(X) = 1 + 7 + 5 + 2 = 15 $$</p>
 
                     <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>3. Konklúzió:</strong> Mivel a tanult tétel (Ford-Fulkerson) szerint minden folyam értéke $\le$ tetszőleges vágás kapacitása, ezért ez a 15-ös kapacitású vágás a legkisebb, ami gátat szabhat a folyamnak, és a 15-ös értékű folyam a legnagyobb, ami átpréselhető. A vágás bizonyítja a folyam maximalitását, és fordítva.</p>
                 </div>
