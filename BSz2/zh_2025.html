@@ -298,22 +298,24 @@
                     
                     <p class="text-slate-700 dark:text-slate-300 mt-2"><strong>1. Folyam megadása (15 egység):</strong> Egy érvényes folyam eloszlás a következőképpen nézhet ki az éleken:</p>
                     <ul class="list-disc pl-5 text-slate-700 dark:text-slate-300">
-                        <li>$S$-ből indítjuk: $S \to A$ élen $1$, $S \to B$ élen $7$, $S \to D$ élen $7$. (Összesen $S$-ből kimegy: $1+7+7 = 15$ egység, ez a folyam értéke).</li>
-                        <li>Közbülső elosztás a folytonosság miatt: $A \to B$-n $1$, így $B$-be összesen $7+1=8$ érkezik. Ezt továbbküldjük: $B \to C$-n $6$, $B \to E$-n $2$.</li>
-                        <li>$D$-be $7$ érkezik. Ebből $D \to E$-n átküldünk $4$-et, $D \to T$-n $3$-at.</li>
-                        <li>$E$-be $2$ (B-ből) $+ 4$ (D-ből) $= 6$ érkezik. Ezt mindet $E \to T$-re tesszük.</li>
-                        <li>$C$-be $6$ érkezik (B-ből), amiből $1$-et $E$-be küldünk (így módosítva a fenti összeget: $E$-be végül $2+4+1=7$ megy, ami $E \to T$-n folytatja útját), és $5$-öt $C \to T$-n.</li>
+                        <li>$S$-ből indítjuk a maximumot: $S \to A$ élen $1$, $S \to B$ élen $7$, $S \to D$ élen $7$. (Összesen $S$-ből kimegy: $1+7+7 = 15$ egység).</li>
+                        <li>$A$-ba érkezik $1$, amit továbbküldünk: $A \to D$ élen $1$.</li>
+                        <li>$B$-be érkezik $7$ (S-ből). Ezt szétosztjuk a kimenő éleken: $B \to C$-n $5$, $B \to D$-n $1$, és $B \to E$-n $1$.</li>
+                        <li>$D$-be érkezik $7$ (S-ből) + $1$ (A-ból) + $1$ (B-ből) = $9$. Ezt továbbküldjük: $D \to E$-n $6$, $D \to T$-n $3$.</li>
+                        <li>$C$-be érkezik $5$ (B-ből). Ez mind kimegy a célba: $C \to T$-n $5$.</li>
+                        <li>$E$-be érkezik $1$ (B-ből) + $6$ (D-ből) = $7$. Ez mind kimegy a célba: $E \to T$-n $7$.</li>
                     </ul>
-                    <p class="text-slate-700 dark:text-slate-300 mt-2">Bárhogyan is kavarjuk a belső csomópontokat, ha a kiáramló értékek összege ($1+7+7$) megegyezik a $T$-be beérkező összegekkel ($5+7+3 = 15$), egy <strong>$m_f = 15$</strong> értékű érvényes folyamot kapunk.</p>
+                    <p class="text-slate-700 dark:text-slate-300 mt-2">Így $T$-be összesen $5$ (C-ből) + $3$ (D-ből) + $7$ (E-ből) = <strong>$15$</strong> egység érkezik, és minden csomópontban teljesül a folytonosság, tehát ez egy érvényes $15$ értékű folyam.</p>
                     
                     <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>2. Vágás megadása (15 kapacitás):</strong> Keressünk egy szűk keresztmetszetet! Válasszuk az $X = \{S, B, C\}$ halmazt. Mely élek lépnek ki ebből a halmazból?
                     <ul class="list-disc pl-5 text-slate-700 dark:text-slate-300">
                         <li>Az $S \to A$ él kilép, kapacitása: $1$</li>
                         <li>Az $S \to D$ él kilép, kapacitása: $7$</li>
+                        <li>A $B \to D$ él kilép, kapacitása: $1$</li>
+                        <li>A $B \to E$ él kilép, kapacitása: $1$</li>
                         <li>A $C \to T$ él kilép, kapacitása: $5$</li>
-                        <li>A $B \to E$ él kilép, kapacitása: $2$</li>
                     </ul>
-                    A vágásba befelé menő éleket (pl $A \to B$) a kapacitás számításakor ignoráljuk. A kilépő élek kapacitásának összege: $$ c(X) = 1 + 7 + 5 + 2 = 15 $$</p>
+                    A vágásba befelé menő éleket a kapacitás számításakor ignoráljuk. A kilépő élek kapacitásának összege: $$ c(X) = 1 + 7 + 1 + 1 + 5 = 15 $$</p>
 
                     <p class="text-slate-700 dark:text-slate-300 mt-4"><strong>3. Konklúzió:</strong> Mivel a tanult tétel (Ford-Fulkerson) szerint minden folyam értéke $\le$ tetszőleges vágás kapacitása, ezért ez a 15-ös kapacitású vágás a legkisebb, ami gátat szabhat a folyamnak, és a 15-ös értékű folyam a legnagyobb, ami átpréselhető. A vágás bizonyítja a folyam maximalitását, és fordítva.</p>
                 </div>
