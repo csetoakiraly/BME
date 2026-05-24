@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmuselmélet Jegyzet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- MathJax Config: enable $...$ for inline math -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <style>
+        /* ============================================================
+           1. ALAPOK ÉS GLOBÁLIS BEÁLLÍTÁSOK
+           ============================================================ */
+        :root {
+            --primary: #0f172a;
+            --secondary: #10b981;
+            --secondary-glow: rgba(16, 185, 129, 0.5);
+            --accent: #34d399;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-body: #cbd5e1;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --glass-active: rgba(16, 185, 129, 0.15);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image:
+                radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(3, 105, 161, 0.15) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            line-height: 1.7;
+        }
+
+        p, h1, h2, h3, h4, span, li {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+        }
+
+        /* ============================================================
+           2. SIDEBAR
+           ============================================================ */
+        .sidebar {
+            width: 300px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid var(--glass-border);
+            height: 100vh;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 30px 20px 20px 20px;
+            border-bottom: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .sidebar-header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #34d399, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--text-light); }
+
+        .tab-menu {
+            list-style: none;
+            padding: 20px 10px;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .tab-button {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: inherit;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .tab-button:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+        }
+        .tab-button.active {
+            background: var(--glass-active);
+            color: var(--secondary);
+            border-left: 4px solid var(--secondary);
+            border-radius: 4px 12px 12px 4px;
+        }
+
+        /* ============================================================
+           3. MAIN CONTENT
+           ============================================================ */
+        .main-content {
+            margin-left: 300px;
+            padding: 50px 60px;
+            flex-grow: 1;
+            max-width: 960px;
+        }
+
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .tab-pane.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: 24px;
+            padding: 40px 45px;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .content-card h2 {
+            margin-top: 0;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .content-card .week-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--glass-border);
+        }
+
+        .content-card p {
+            margin-bottom: 15px;
+            color: var(--text-body);
+            font-size: 1.05rem;
+        }
+
+        .content-card ul, .content-card ol {
+            padding-left: 22px;
+            margin-bottom: 20px;
+        }
+
+        .content-card li {
+            margin-bottom: 10px;
+            color: var(--text-body);
+            font-size: 1.05rem;
+        }
+
+        .content-card strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        /* ============================================================
+           4. CUSTOM ELEMENTS (BSz2 stílus)
+           ============================================================ */
+
+        /* SZEKCIÓ FEJLÉC */
+        math-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        math-header .num-badge {
+            flex: none;
+            background-color: var(--secondary);
+            color: white;
+            font-weight: 900;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        math-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light) !important;
+            text-decoration: underline;
+            text-decoration-color: rgba(16, 185, 129, 0.3);
+            text-decoration-thickness: 4px;
+            text-underline-offset: 8px;
+            margin: 0;
+        }
+
+        /* DEFINÍCIÓ */
+        math-def, math-theorem, math-note {
+            display: block;
+            margin: 1.5rem 0 2rem 0;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        math-def {
+            padding: 1.5rem;
+            background: rgba(16, 185, 129, 0.06);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            border-left: 6px solid #10b981;
+        }
+
+        math-def::before {
+            content: "DEFINÍCIÓ";
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            font-size: 0.6rem;
+            font-weight: 900;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.4rem;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        math-def p { color: var(--text-body) !important; }
+        math-def strong { color: #fff !important; }
+
+        /* TÉTEL */
+        math-theorem {
+            padding: 1.5rem;
+            background: rgba(245, 158, 11, 0.06);
+            border: 1px solid rgba(245, 158, 11, 0.15);
+            border-left: 6px solid #f59e0b;
+        }
+
+        math-theorem::before {
+            content: "TÉTEL";
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            font-size: 0.6rem;
+            font-weight: 900;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.4rem;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        math-theorem p { color: var(--text-body) !important; }
+        math-theorem strong { color: #fff !important; }
+
+        /* MEGJEGYZÉS */
+        math-note {
+            padding: 1.5rem;
+            background: rgba(99, 102, 241, 0.06);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-left: 6px solid #6366f1;
+        }
+
+        math-note::before {
+            content: "MEGJEGYZÉS";
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            font-size: 0.6rem;
+            font-weight: 900;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.4rem;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        math-note p { color: var(--text-body) !important; }
+
+        /* Nagy kiemelt képlet doboz */
+        .formula-box {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            padding: 20px 30px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+
+        .formula-box p {
+            color: var(--text-light) !important;
+            font-size: 1.2rem !important;
+            margin: 0;
+        }
+
+        /* Highlight box */
+        .highlight-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--secondary);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+
+        code {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background: rgba(0,0,0,0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #38bdf8;
+        }
+
+        /* ============================================================
+           5. RESPONSIVE
+           ============================================================ */
+        @media (max-width: 900px) {
+            .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--glass-border); }
+            .main-content { margin-left: 0; padding: 30px 20px; max-width: 100%; }
+            body { flex-direction: column; }
+            .tab-menu { display: flex; flex-wrap: wrap; gap: 5px; padding: 10px; }
+            .tab-button { width: auto; font-size: 0.85rem; padding: 10px 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1>Algoritmuselmélet</h1>
+            <a href="../index.html" class="back-link">← Vissza a főmenübe</a>
+        </div>
+        <ul class="tab-menu">
+            <li><button class="tab-button active" onclick="openTab(event, 'week6')">6. Hét: Keresés és Rendezések I.</button></li>
+            <li><button class="tab-button" onclick="openTab(event, 'week7')">7. Hét: Rendezések II. és Kupac</button></li>
+            <li><button class="tab-button" onclick="openTab(event, 'week8')">8. Hét: Bináris fák és Keresőfák</button></li>
+            <li><button class="tab-button" onclick="openTab(event, 'week9')">9. Hét: 2-3 fák és Hash-elés</button></li>
+            <li><button class="tab-button" onclick="openTab(event, 'week10')">10. Hét: Bonyolultságelmélet I.</button></li>
+            <li><button class="tab-button" onclick="openTab(event, 'week11')">11. Hét: Karp-redukció</button></li>
+            <li><button class="tab-button" onclick="openTab(event, 'week12')">12. Hét: NP-teljesség</button></li>
+            <li><button class="tab-button" onclick="openTab(event, 'week13')">13. Hét: Nevezetes NP-teljes problémák</button></li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+
+        <!-- ============================================================
+             6. HÉT: KERESÉS ÉS RENDEZÉSEK I.
+             ============================================================ -->
+        <section id="week6" class="tab-pane active">
+            <div class="content-card">
+                <h2>Keresés és Rendezések I.</h2>
+                <p class="week-subtitle">Rónyai-Ivanyos-Szabó: Algoritmusok, 2.1–2.2 fejezet</p>
+
+                <!-- 6.1 Keresés -->
+                <math-header><span class="num-badge">6.1</span><h3>Keresés rendezett halmazban</h3></math-header>
+
+                <p>A keresési eljárások jelentős szerepet játszanak az adatkezelő rendszerekben. A legalapvetőbb kérdés: adott egy $S$ halmaz, amely $n$ elemet tartalmaz, és egy $s$ kulcs. Eldöntendő, hogy $s \in S$ teljesül-e.</p>
+
+                <math-def>
+                    <p><strong>Lineáris keresés.</strong> Az elemeket sorban, balról jobbra haladva vizsgáljuk. Amint megtaláltuk $s$-t, megállunk. Ha végigértünk, $s$ nincs a halmazban.</p>
+                    <p>Futási idő: legrosszabb és átlagos esetben is $O(n)$.</p>
+                    <p>Előnye, hogy rendezetlen halmazra (és láncolt listára) is működik.</p>
+                </math-def>
+
+                <math-def>
+                    <p><strong>Bináris keresés.</strong> Csak <strong>rendezett</strong> tömb esetén alkalmazható. Az <em>oszd meg és uralkodj</em> elven alapul: a keresési tartomány középső elemével hasonlítjuk össze $s$-t, és az eredménytől függően a bal vagy a jobb féltömbben folytatjuk a keresést.</p>
+                    <p>Minden lépésben a keresési tartomány felére csökken, így a futási idő:</p>
+                </math-def>
+
+                <div class="formula-box">
+                    <p>$$T(n) = O(\log_2 n)$$</p>
+                </div>
+
+                <math-theorem>
+                    <p><strong>Az összehasonlítás-alapú keresés alsó korlátja.</strong> Bármely összehasonlítás-alapú keresési algoritmus legrosszabb esetben legalább $\lceil \log_2(n+1) \rceil$ összehasonlítást igényel. A bináris keresés tehát (konstans szorzótól eltekintve) <strong>optimális</strong>.</p>
+                </math-theorem>
+
+                <!-- 6.2 Elemi rendezések -->
+                <math-header><span class="num-badge">6.2</span><h3>Elemi rendezések ($O(n^2)$ módszerek)</h3></math-header>
+
+                <p>Azokat a rendezéseket, amelyek működése kizárólag az elemek közötti $\leq$ reláció tesztelésén alapul, <strong>összehasonlítás-alapú rendezéseknek</strong> hívjuk.</p>
+
+                <math-theorem>
+                    <p><strong>Információelméleti alsó korlát.</strong> Minden összehasonlítás-alapú rendező algoritmus legrosszabb esetben legalább $\Omega(n \log n)$ összehasonlítást igényel. Bizonyítás: $n$ elem összes lehetséges sorrendje $n!$, és minden összehasonlítás legfeljebb kétfelé ágazik (bináris döntési fa), tehát a fa magassága legalább $\log_2(n!) = \Omega(n \log n)$.</p>
+                </math-theorem>
+
+                <math-def>
+                    <p><strong>Buborékrendezés (Bubble Sort).</strong> A szomszédos elemek ismételt összehasonlításával és cseréjével működik. A „könnyebb" (kisebb) elemek fokozatosan felszállnak a tömb elejére, mint buborékok a vízben.</p>
+                    <p>Futási idő: $O(n^2)$ összehasonlítás és csere (legrosszabb és átlagos eset).</p>
+                    <p>Stabil rendezés (azonos elemek sorrendje megmarad), de a gyakorlatban rendkívül lassú.</p>
+                </math-def>
+
+                <math-def>
+                    <p><strong>Beszúrásos rendezés (Insertion Sort).</strong> A már rendezettnek tekintett $A[1 \ldots k]$ résztömbbe szúrjuk be a $(k+1)$-edik elemet a megfelelő helyre, a mögötte lévő elemeket jobbra tolva.</p>
+                    <p>A beszúrás helye lineáris vagy bináris kereséssel is kereshető. A bináris keresés az összehasonlítások számát $O(n \log n)$-re csökkenti, de a <strong>mozgatások</strong> (tolások) miatt az algoritmus összessége továbbra is $O(n^2)$ marad.</p>
+                    <p>Előnye: stabil, adaptív (majdnem rendezett inputra gyors), kis konstans szorzó.</p>
+                </math-def>
+
+                <!-- 6.3 Hatékony rendezések -->
+                <math-header><span class="num-badge">6.3</span><h3>Hatékony rendezések ($O(n \log n)$ módszerek)</h3></math-header>
+
+                <math-def>
+                    <p><strong>Összefésüléses rendezés (Merge Sort).</strong> Az <em>oszd meg és uralkodj</em> stratégiát követi:</p>
+                    <ol>
+                        <li><strong>Felosztás:</strong> A tömböt két feleakkora részre vágjuk.</li>
+                        <li><strong>Megoldás:</strong> Mindkét résztömböt rekurzívan rendezzük.</li>
+                        <li><strong>Összefésülés:</strong> A két rendezett résztömböt egyetlen lineáris költségű ($O(n)$) „merge" lépésben egyesítjük.</li>
+                    </ol>
+                </math-def>
+
+                <div class="formula-box">
+                    <p>$$T(n) = 2 \cdot T\!\left(\frac{n}{2}\right) + O(n) = O(n \log n)$$</p>
+                </div>
+
+                <p>A Merge Sort összköltséga pontosan $O(n \log n)$, tehát az alsó korlát erejéig <strong>optimális</strong>. Hátránya, hogy extra $O(n)$ memóriát igényel az összefésülési lépéshez (nem „in-place"). Stabil rendezés.</p>
+
+                <math-def>
+                    <p><strong>Gyorsrendezés (Quick Sort).</strong> C.A.R. Hoare (1960) módszere. Szintén az „oszd meg és uralkodj" elvre épül, de más stratégiával:</p>
+                    <ol>
+                        <li><strong>Partícionálás:</strong> Választunk egy $s$ elemet (a <em>pivotot</em>). A tömb elemeit átrendezzük úgy, hogy az $s$-nél kisebbek előre, a nagyobbak hátra kerüljenek, $s$ pedig a végleges helyére.</li>
+                        <li><strong>Rekurzió:</strong> A pivot bal és jobb oldalát rekurzívan rendezzük.</li>
+                    </ol>
+                    <p>Helyben (in-place) rendez. <strong>Nem stabil.</strong></p>
+                </math-def>
+
+                <math-theorem>
+                    <p><strong>Quick Sort futási ideje.</strong></p>
+                    <ul>
+                        <li><strong>Legjobb eset:</strong> $O(n \log n)$ — ha a pivot mindig a mediánt választja.</li>
+                        <li><strong>Legrosszabb eset:</strong> $O(n^2)$ — ha a pivot mindig a legkisebb/legnagyobb elemet választja (pl. már rendezett tömb).</li>
+                        <li><strong>Átlagos eset (véletlen pivot):</strong> $O(n \log n)$ — randomizálás, a várható összehasonlítás-szám $\approx 2n \ln n$.</li>
+                    </ul>
+                    <p>A gyakorlatban az egyik leggyorsabb rendezés: a konstans szorzója igen kicsi, cache-barát, és a véletlen pivotválasztás szinte kizárja a legrosszabb esetet.</p>
+                </math-theorem>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             7. HÉT: RENDEZÉSEK II. ÉS KUPAC
+             ============================================================ -->
+        <section id="week7" class="tab-pane">
+            <div class="content-card">
+                <h2>Rendezések II. és Kupac</h2>
+                <p class="week-subtitle">Rónyai-Ivanyos-Szabó: Algoritmusok, 2.2.5 és 2.3 fejezet</p>
+
+                <!-- 7.1 Kulcsmanipulációs rendezések -->
+                <math-header><span class="num-badge">7.1</span><h3>Kulcsmanipulációs rendezések</h3></math-header>
+
+                <p>Ezek az algoritmusok <strong>nem</strong> az elemek összehasonlításán alapulnak, hanem kihasználják a kulcsok belső szerkezetét (pl. számjegyeiket). Ha a kulcstartomány nem túl nagy, $O(n)$ lineáris idejű rendezés is megvalósítható — áttörve az $\Omega(n \log n)$ alsó korlátot!</p>
+
+                <math-def>
+                    <p><strong>Ládarendezés (Bucket Sort / Binsort).</strong> Feltétel: a kulcsok egész számok a $\{0, 1, \ldots, M-1\}$ tartományból.</p>
+                    <ol>
+                        <li>Létrehozunk $M$ „ládát" (üres listát).</li>
+                        <li>Minden elemet a kulcsának megfelelő ládába helyezünk ($O(1)$ per elem).</li>
+                        <li>A ládákat sorban kiürítjük — a kapott sorozat rendezett lesz.</li>
+                    </ol>
+                    <p>Futási idő: $O(n + M)$. Ha $M = O(n)$, ez <strong>lineáris</strong>.</p>
+                </math-def>
+
+                <math-def>
+                    <p><strong>Radix rendezés (Radix Sort).</strong> Összetett (többkomponensű) kulcsok rendezésére szolgál. Az ötlet: a ládarendezést alkalmazzuk komponensenként, a <strong>legkevésbé fontos</strong> (legalsó helyiértékű) komponenstől a legfontosabbig haladva.</p>
+                    <p>Kulcsfontosságú, hogy minden rész-ládarendezés <strong>stabil</strong> legyen, mert így a korábbi rendezettségek a magasabb helyi értékekre nézve megmaradnak.</p>
+                </math-def>
+
+                <div class="formula-box">
+                    <p>$$T(n) = O(d \cdot (n + M))$$</p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">ahol $d$ a komponensek (jegyek) száma, $M$ az egy jegy lehetséges értékeinek száma</p>
+                </div>
+
+                <p>Ha $d$ és $M$ konstans (pl. 32 bites egész szám, $d=4$ bájt, $M=256$), akkor az egész rendezés $O(n)$ lineáris!</p>
+
+                <!-- 7.2 Kupac -->
+                <math-header><span class="num-badge">7.2</span><h3>A Kupac (Heap) adatszerkezet</h3></math-header>
+
+                <math-def>
+                    <p><strong>Kupac (Heap).</strong> Egy <em>majdnem teljes</em> bináris fa, amelyben érvényes a <strong>kupac-tulajdonság</strong>:</p>
+                    <ul>
+                        <li><strong>Min-kupac:</strong> Minden csúcs értéke $\leq$ a gyerekei értékénél. A gyökérben a minimum van.</li>
+                        <li><strong>Max-kupac:</strong> Minden csúcs értéke $\geq$ a gyerekei értékénél. A gyökérben a maximum van.</li>
+                    </ul>
+                    <p><strong>Tömbös ábrázolás:</strong> Az $i$-edik csúcs bal gyereke az $2i$, jobb gyereke a $2i+1$, szülője az $\lfloor i/2 \rfloor$ indexen található.</p>
+                </math-def>
+
+                <math-header><span class="num-badge">7.3</span><h3>Kupac alapműveletek</h3></math-header>
+
+                <p><strong>Felszivárog (SiftUp / BubbleUp):</strong> Beszúráskor az új elemet a fa legalsó szintjére (a tömb végére) tesszük, majd addig cseréljük a szülőjével, amíg a kupac-tulajdonság helyre nem áll. A fa magassága $\lfloor \log_2 n \rfloor$, így a költség:</p>
+                <div class="formula-box"><p>$$O(\log n)$$</p></div>
+
+                <p><strong>Lesüllyeszt (SiftDown / Heapify):</strong> Ha a gyökér sérti a kupac-tulajdonságot, a gyerekei közül a kisebbikkel (min-kupac esetén) cseréljük, és rekurzívan lefelé haladunk. Költség: $O(\log n)$.</p>
+
+                <p><strong>Minimum/Maximum törlése (ExtractMin / ExtractMax):</strong> A gyökeret eltávolítjuk, a tömb utolsó elemét a gyökérbe tesszük, és lesüllyesztjük. Költség: $O(\log n)$.</p>
+
+                <p><strong>Kupacépítés (BuildHeap):</strong> Az egész tömböt kupaccá alakítjuk úgy, hogy alulról felfelé haladva minden belső csúcsra meghívjuk a SiftDown-t.</p>
+
+                <math-theorem>
+                    <p><strong>A kupacépítés lineáris idejű!</strong> Bár $O(n)$ darab SiftDown hívás van, amelyek egyenként $O(\log n)$ költségűek, a legtöbb csúcs a fa alján van (keveset kell süllyeszteni). A pontos összeg:</p>
+                    <p>$$\sum_{h=0}^{\lfloor \log n \rfloor} \left\lceil \frac{n}{2^{h+1}} \right\rceil \cdot O(h) = O(n)$$</p>
+                </math-theorem>
+
+                <!-- 7.4 Kupacos rendezés -->
+                <math-header><span class="num-badge">7.4</span><h3>Kupacos rendezés (Heap Sort)</h3></math-header>
+
+                <p>A Heap Sort két fázisból áll:</p>
+                <ol>
+                    <li><strong>Kupacépítés:</strong> A tömböt $O(n)$ idő alatt max-kupaccá alakítjuk.</li>
+                    <li><strong>Rendezés:</strong> $n$-szer kivesszük a maximumot (a gyökeret), a tömb végére helyezzük, és a csökkentett kupacot $O(\log n)$ alatt helyreállítjuk.</li>
+                </ol>
+
+                <div class="formula-box">
+                    <p>$$T(n) = O(n) + n \cdot O(\log n) = O(n \log n)$$</p>
+                </div>
+
+                <math-note>
+                    <p><strong>Összehasonlítás a Quick Sorttal:</strong> A Heap Sort mindig $O(n \log n)$ (nincs $O(n^2)$ legrosszabb eset!), helyben (in-place) rendez, és csak $O(1)$ extra memóriát használ. Hátránya, hogy nem stabil, és a gyakorlatban a konstans szorzója kicsit nagyobb, mint a Quick Sorté (cache-hatékonyság miatt).</p>
+                </math-note>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             8. HÉT: BINÁRIS FÁK ÉS KERESŐFÁK
+             ============================================================ -->
+        <section id="week8" class="tab-pane">
+            <div class="content-card">
+                <h2>Bináris fák és Keresőfák</h2>
+                <p class="week-subtitle">Rónyai-Ivanyos-Szabó: Algoritmusok, 3.1–3.2 fejezet + Piros-fekete fák (kiegészítés)</p>
+
+                <!-- 8.1 Bejárások -->
+                <math-header><span class="num-badge">8.1</span><h3>Bináris fák bejárása</h3></math-header>
+
+                <p>A fa bejárása során minden csúcsot pontosan egyszer „látogatunk meg". A mélységi bejárások (DFS) három fajtáját különböztetjük meg, attól függően, hogy a gyökeret (szülőt) mikor dolgozzuk fel a gyerekekhez képest:</p>
+
+                <math-def>
+                    <p><strong>Preorder (Szülő → Bal → Jobb).</strong> Először feldolgozzuk a gyökeret, majd rekurzívan bejárjuk a bal, végül a jobb részfát. Alkalmazás: fa másolása, prefix kifejezés kiírása.</p>
+                </math-def>
+
+                <math-def>
+                    <p><strong>Inorder (Bal → Szülő → Jobb).</strong> Először a bal részfát, majd a gyökeret, végül a jobb részfát járjuk be. Bináris <em>keresőfa</em> esetén ez <strong>növekvő sorrendben</strong> adja vissza az elemeket!</p>
+                </math-def>
+
+                <math-def>
+                    <p><strong>Posztorder (Bal → Jobb → Szülő).</strong> Először a bal, majd a jobb részfát járjuk be, legvégül a gyökeret dolgozzuk fel. Alkalmazás: fa törlése, kifejezésfa kiértékelése (postfix).</p>
+                </math-def>
+
+                <p>Mindhárom bejárás futási ideje $O(n)$, hiszen minden csúcsot pontosan egyszer érintünk.</p>
+
+                <!-- 8.2 BST -->
+                <math-header><span class="num-badge">8.2</span><h3>Bináris keresőfák (BST)</h3></math-header>
+
+                <math-def>
+                    <p><strong>A keresőfa-tulajdonság.</strong> Egy bináris fa <strong>keresőfa</strong>, ha minden $v$ csúcsra igaz:</p>
+                    <ul>
+                        <li>A bal részfájában lévő <em>minden</em> elem kisebb, mint $v$ kulcsa.</li>
+                        <li>A jobb részfájában lévő <em>minden</em> elem nagyobb (vagy egyenlő), mint $v$ kulcsa.</li>
+                    </ul>
+                </math-def>
+
+                <p><strong>Alapműveletek:</strong></p>
+                <ul>
+                    <li><strong>Keresés:</strong> A gyökértől indulunk. Ha a keresett kulcs kisebb a csúcsnál, balra lépünk; ha nagyobb, jobbra. Addig ismételjük, amíg meg nem találjuk, vagy NIL-be nem ütközünk.</li>
+                    <li><strong>Beszúrás:</strong> Ugyanúgy „keresünk" az új elemmel, és oda fűzzük be levélként, ahol a keresés „kiesett" a fából.</li>
+                    <li><strong>Minimum:</strong> A gyökértől mindig balra lépkedünk, amíg lehet.</li>
+                    <li><strong>Maximum:</strong> A gyökértől mindig jobbra lépkedünk.</li>
+                    <li><strong>Törlés:</strong> Ha a törlendő csúcs levél → egyszerűen eltávolítjuk. Ha egy gyereke van → a gyerek lép a helyére. Ha két gyereke van → a jobb részfa minimumával (rákövetkező elem, „successor") helyettesítjük.</li>
+                </ul>
+
+                <math-theorem>
+                    <p><strong>BST műveletek futási ideje.</strong> Minden alapművelet ideje $O(h)$, ahol $h$ a fa magassága.</p>
+                    <ul>
+                        <li><strong>Legjobb eset</strong> (kiegyensúlyozott fa): $h = O(\log n)$.</li>
+                        <li><strong>Legrosszabb eset</strong> (elfajuló fa, láncolt listává válik): $h = O(n)$.</li>
+                    </ul>
+                    <p>Ez motiválja a kiegyensúlyozott keresőfák (AVL, Piros-fekete, 2-3 fák) használatát.</p>
+                </math-theorem>
+
+                <!-- 8.3 Piros-fekete fák -->
+                <math-header><span class="num-badge">8.3</span><h3>Piros-fekete fák</h3></math-header>
+
+                <math-note>
+                    <p><strong>Figyelem:</strong> Ez a téma a Rónyai-Ivanyos-Szabó könyvben <strong>nem</strong> szerepel. Az alábbiakban az előadásanyag alapján foglalom össze a lényeget.</p>
+                </math-note>
+
+                <math-def>
+                    <p><strong>Piros-fekete fa.</strong> Egy bináris keresőfa, ahol minden csúcs kap egy extra attribútumot: <strong>piros</strong> vagy <strong>fekete</strong> színt. Az alábbi 5 szabályt kell kielégítenie:</p>
+                    <ol>
+                        <li>Minden csúcs vagy piros, vagy fekete.</li>
+                        <li>A <strong>gyökér mindig fekete</strong>.</li>
+                        <li>Minden levél (NIL) fekete.</li>
+                        <li><strong>Piros csúcsnak nem lehet piros gyereke</strong> (nincs két egymást követő piros csúcs).</li>
+                        <li>Bármely csúcsból az alatta lévő <em>bármely</em> levélig vezető úton <strong>ugyanannyi fekete</strong> csúcs van (ez a <em>fekete-magasság</em>).</li>
+                    </ol>
+                </math-def>
+
+                <math-theorem>
+                    <p><strong>Magasság-garancia.</strong> Egy $n$ belső csúcsot tartalmazó piros-fekete fa magassága legfeljebb $2 \log_2(n+1)$. Így <strong>minden művelet</strong> (keresés, beszúrás, törlés) garantáltan $O(\log n)$ idejű.</p>
+                </math-theorem>
+
+                <p><strong>Beszúrás lépései:</strong></p>
+                <ol>
+                    <li>Az új csúcsot a BST beszúrási szabálya szerint levélként fűzzük be, és <strong>pirosra</strong> színezzük.</li>
+                    <li>Ha az 5 szabály közül valamelyik sérül (leggyakrabban a 4. szabály: piros szülő + piros gyerek), <strong>javító eljárást</strong> hajtunk végre. Ennek 3 esete van (a nagybácsi színétől függően):
+                        <ul>
+                            <li><strong>1. eset:</strong> A nagybácsi <strong>piros</strong> → átszínezés (szülő és nagybácsi feketére, nagyszülő pirosra), és a probléma feljebb tolódik.</li>
+                            <li><strong>2. eset:</strong> A nagybácsi <strong>fekete</strong>, és az új csúcs „belső" unoka → forgatás a szülő körül, ezzel a 3. esetre vezetjük vissza.</li>
+                            <li><strong>3. eset:</strong> A nagybácsi <strong>fekete</strong>, és az új csúcs „külső" unoka → átszínezés + forgatás a nagyszülő körül. Ezzel helyreáll az egyensúly.</li>
+                        </ul>
+                    </li>
+                    <li>Végül a gyökeret feketére színezzük.</li>
+                </ol>
+
+                <math-note>
+                    <p>A <strong>forgatások</strong> (bal- és jobbraforgatás) $O(1)$ idejű lokális átalakítások, amelyek megőrzik a keresőfa-tulajdonságot, de megváltoztatják a fa alakját (egyensúlyosabbá teszik). Az AVL fáknál is hasonlóan működnek (lásd könyv, 73. oldal).</p>
+                </math-note>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             9. HÉT: 2-3 FÁK ÉS HASH-ELÉS
+             ============================================================ -->
+        <section id="week9" class="tab-pane">
+            <div class="content-card">
+                <h2>2-3 fák és Hash-elés</h2>
+                <p class="week-subtitle">Rónyai-Ivanyos-Szabó: Algoritmusok, 3.3 és 4. fejezet</p>
+
+                <!-- 9.1 2-3 fák -->
+                <math-header><span class="num-badge">9.1</span><h3>2-3 fák</h3></math-header>
+
+                <math-def>
+                    <p><strong>2-3 fa.</strong> Egy kiegyensúlyozott keresőfa, amelyben minden belső csúcsnak <strong>2 vagy 3 gyereke</strong> van (és ennek megfelelően 1 vagy 2 kulcsot tartalmaz). Minden levél <strong>azonos szinten</strong> helyezkedik el.</p>
+                    <ul>
+                        <li><strong>2-csúcs:</strong> 1 kulcs, 2 gyerek (a bal gyerek kisebb, a jobb nagyobb).</li>
+                        <li><strong>3-csúcs:</strong> 2 kulcs ($a < b$), 3 gyerek (bal $< a$, középső $a$ és $b$ között, jobb $> b$).</li>
+                    </ul>
+                </math-def>
+
+                <p><strong>Keresés:</strong> A gyökértől indulva a kulcsokkal való összehasonlítás alapján a megfelelő részfába lépünk le, akárcsak egy BST-ben, csak itt egy csúcsban akár két összehasonlítás is szükséges.</p>
+
+                <p><strong>Beszúrás:</strong></p>
+                <ol>
+                    <li>Megkeressük a megfelelő levél-szintet.</li>
+                    <li>Ha a szülőben van hely (2-csúcs) → 3-csúccsá bővítjük.</li>
+                    <li>Ha nincs hely (3-csúcs) → <strong>csúcsvágás (split)</strong>: a 3 kulcsból a középsőt felküldjük a szülőbe, a maradék 2-ből két 2-csúcsot képzünk. Ha a szülő is megtelik, a vágás felfelé propagálódik. Ha a gyökérig ér, a fa magassága eggyel nő.</li>
+                </ol>
+
+                <p><strong>Törlés:</strong> Hasonlóan, ha egy csúcs „üressé" válna, <strong>csúcsösszevonás (merge)</strong> vagy kulcsátadás történik a testvérektől.</p>
+
+                <math-theorem>
+                    <p><strong>2-3 fák magassága.</strong> Egy $n$ kulcsot tartalmazó 2-3 fa magassága $\Theta(\log n)$. Pontosabban: $\log_3(n+1) \leq h \leq \log_2(n+1)$. Így minden művelet $O(\log n)$ idejű.</p>
+                </math-theorem>
+
+                <!-- 9.2 Hash-elés -->
+                <math-header><span class="num-badge">9.2</span><h3>Hash-elés (Címkiszámításos keresés)</h3></math-header>
+
+                <math-def>
+                    <p><strong>Hash-tábla.</strong> Olyan adatszerkezet, amely kulcsokhoz egy $h: U \to \{0, 1, \ldots, M-1\}$ <strong>hash-függvény</strong> segítségével rendel tárolási címet egy $M$ méretű táblában. Az ideális cél: a keresés, beszúrás, törlés <strong>átlagosan $O(1)$</strong> legyen.</p>
+                    <p>Ha $h(K_1) = h(K_2)$ két különböző $K_1 \neq K_2$ kulcsra, azt <strong>ütközésnek (collision)</strong> nevezzük.</p>
+                </math-def>
+
+                <math-header><span class="num-badge">9.3</span><h3>Ütközésfeloldási stratégiák</h3></math-header>
+
+                <math-def>
+                    <p><strong>Vödrös hash-elés (Chaining / Láncolás).</strong> A tábla minden pozíciója egy <strong>láncolt lista</strong> fejére mutat. Az azonos hash-értékű kulcsok ugyanabba a „vödörbe" (listába) kerülnek.</p>
+                    <ul>
+                        <li>Beszúrás: $O(1)$ (a lista elejére).</li>
+                        <li>Keresés: $O(1 + \alpha)$ átlagosan, ahol $\alpha = n/M$ a <strong>kitöltési tényező</strong>.</li>
+                    </ul>
+                    <p>Előnye: egyszerű, jól működik nagy $\alpha$ esetén is. Háttértáras adatbázisoknál is használják.</p>
+                </math-def>
+
+                <math-def>
+                    <p><strong>Nyitott címzés (Open Addressing).</strong> Nincs láncolt lista: az elemeket <strong>magában a tömbben</strong> tároljuk. Ütközéskor egy meghatározott <strong>próbasorozat</strong> mentén keresünk szabad cellát.</p>
+                </math-def>
+
+                <p>A három fő próba-stratégia:</p>
+
+                <ol>
+                    <li>
+                        <p><strong>Lineáris próbálás:</strong> $h_i(K) = (h(K) + i) \bmod M$, azaz egyesével lépkedünk.</p>
+                        <p>Hátránya: <strong>elsődleges csomósodás (primary clustering)</strong> — a foglalt cellák összefüggő blokkokba tömörülnek, ami exponenciálisan lassítja a keresést magas kitöltöttségnél.</p>
+                    </li>
+                    <li>
+                        <p><strong>Kvadratikus próba:</strong> $h_i(K) = (h(K) + c_1 i + c_2 i^2) \bmod M$.</p>
+                        <p>A lépésköz négyzetesen nő, ezzel csökkenti az elsődleges csomósodást. Hátránya: <strong>másodlagos csomósodás</strong> — az azonos kiindulópontú kulcsok ugyanazt a próbasorozatot követik.</p>
+                    </li>
+                    <li>
+                        <p><strong>Kettős hash-elés (Double Hashing):</strong> $h_i(K) = (h(K) + i \cdot h'(K)) \bmod M$, ahol $h'$ egy második, <em>független</em> hash-függvény.</p>
+                        <p>Két ütköző kulcs különböző $h'$ értékkel különböző próbasorozatot követ. Ez <strong>gyakorlatilag megszünteti</strong> a csomósodást. Fontos, hogy $h'(K)$ és $M$ relatív prímek legyenek (ez biztosítja, hogy az egész tábla bejárható).</p>
+                    </li>
+                </ol>
+
+                <math-theorem>
+                    <p><strong>Sikertelen keresés várható próbaszáma</strong> (egyenletes hash-elésnél, nyitott címzéssel): $\approx \frac{1}{1 - \alpha}$, ahol $\alpha = n/M$. Ha $\alpha = 0.9$ (90%-os kitöltöttség), átlagosan 10 próba kell. Ezért érdemes a kitöltöttséget <strong>$\alpha \leq 0.7$</strong> alatt tartani.</p>
+                </math-theorem>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             10. HÉT: BONYOLULTSÁGELMÉLET I.
+             ============================================================ -->
+        <section id="week10" class="tab-pane">
+            <div class="content-card">
+                <h2>Bonyolultságelmélet I.</h2>
+                <p class="week-subtitle">Rónyai-Ivanyos-Szabó: Algoritmusok, 8. fejezet</p>
+
+                <!-- 10.1 Alapfogalmak -->
+                <math-header><span class="num-badge">10.1</span><h3>Alapfogalmak</h3></math-header>
+
+                <p>A bonyolultságelmélet célja: a <em>problémák</em> (nem az algoritmusok!) nehézségének osztályozása. Nem azt kérdezzük, hogy „milyen gyors a legjobb ismert algoritmus?", hanem: <strong>„van-e egyáltalán hatékony algoritmus erre a problémára?"</strong></p>
+
+                <math-def>
+                    <p><strong>Döntési probléma (Nyelv).</strong> Egy döntési probléma formálisan egy $L \subseteq \Sigma^*$ nyelv, ahol $\Sigma^*$ az ábécé feletti összes szó halmaza. Egy szó ($x$) eldöntése: $x \in L$ vagy $x \notin L$?</p>
+                </math-def>
+
+                <math-def>
+                    <p><strong>Turing-gép (TG).</strong> Egy elméleti számítási modell: véges állapotú vezérlő + végtelen szalag + olvasó/író fej. Képes bármely algoritmust szimulálni (Church-Turing tézis). A futási idő a lépések száma az input hossza ($n = |x|$) függvényében.</p>
+                </math-def>
+
+                <!-- 10.2 P osztály -->
+                <math-header><span class="num-badge">10.2</span><h3>A P osztály</h3></math-header>
+
+                <math-def>
+                    <p><strong>P (Polinomiális idő).</strong> Azon döntési problémák (nyelvek) osztálya, amelyek <strong>determinisztikus</strong> Turing-géppel <strong>polinom időben</strong> eldönthetők:</p>
+                </math-def>
+
+                <div class="formula-box">
+                    <p>$$\mathbf{P} = \bigcup_{k=0}^{\infty} \text{DTIME}(n^k)$$</p>
+                </div>
+
+                <p>Intuitívan: a P-beli problémák a <strong>hatékonyan megoldható</strong> feladatok. Példák:</p>
+                <ul>
+                    <li>Rendezés ($O(n \log n)$)</li>
+                    <li>Legrövidebb út gráfban (Dijkstra: $O(n^2)$)</li>
+                    <li>Minimális feszítőfa (Kruskal: $O(m \log n)$)</li>
+                    <li>Prímtesztelés (AKS: $O(n^6)$, ahol $n$ az input bitjeinek száma)</li>
+                </ul>
+
+                <!-- 10.3 NP osztály -->
+                <math-header><span class="num-badge">10.3</span><h3>Az NP osztály</h3></math-header>
+
+                <math-def>
+                    <p><strong>Nemdeterminisztikus Turing-gép (NTG).</strong> Olyan Turing-gép, amely egy állapotból <strong>többféleképpen</strong> léphet tovább (nem-determinisztikus átmenetfüggvény). Egy NTG „elfogad" egy inputot, ha <strong>létezik legalább egy</strong> számítási út, amely elfogadó állapotba vezet.</p>
+                    <p>Intuitívan: az NTG „megsejti" a helyes megoldást, és utána (determinisztikusan) ellenőrzi.</p>
+                </math-def>
+
+                <math-def>
+                    <p><strong>NP (Nemdeterminisztikus Polinomiális idő).</strong> Azon döntési problémák osztálya, amelyek <strong>nemdeterminisztikus</strong> Turing-géppel polinom időben eldönthetők.</p>
+                    <p><strong>Ekvivalens definíció (tanú-bíró):</strong> Egy $L$ nyelv NP-beli, ha létezik egy polinom idejű <strong>determinisztikus ellenőrző</strong> (bíró) algoritmus $V$, és egy polinomiális méretű <strong>tanú</strong> (certificate) $c$, úgy hogy:</p>
+                </math-def>
+
+                <div class="formula-box">
+                    <p>$$x \in L \iff \exists\, c \text{ (polinom méretű)}: V(x, c) = \text{ELFOGAD}$$</p>
+                </div>
+
+                <p>Intuitívan: az NP-beli problémák azok, amelyekre a megoldás ugyan nehéz lehet, de <strong>ha valaki adna nekünk egy megoldást (tanút), azt gyorsan ellenőrizni tudjuk</strong>.</p>
+
+                <math-theorem>
+                    <p><strong>$\mathbf{P} \subseteq \mathbf{NP}$.</strong> Minden P-beli probléma triviálisan NP-beli is (a determinisztikus Turing-gép egy speciális nemdeterminisztikus is). A fordított irány ($\mathbf{NP} \subseteq \mathbf{P}$, azaz $\mathbf{P} = \mathbf{NP}$?) a számítástudomány <strong>legnagyobb nyitott kérdése</strong>.</p>
+                </math-theorem>
+
+                <!-- 10.4 coNP -->
+                <math-header><span class="num-badge">10.4</span><h3>A coNP osztály</h3></math-header>
+
+                <math-def>
+                    <p><strong>coNP.</strong> Azon nyelvek osztálya, amelyek <strong>komplementere</strong> NP-beli. Más szóval: $L \in \text{coNP}$ $\iff$ $\overline{L} \in \text{NP}$.</p>
+                    <p>Ha NP-ben az „igen" válasznak van könnyen ellenőrizhető tanúja, akkor coNP-ben a <strong>„nem" válasznak</strong> van ilyen (cáfolat, refutation).</p>
+                </math-def>
+
+                <p><strong>Példa:</strong> Az „összetett szám-e?" probléma NP-beli (tanú: két nem-triviális tényező). A komplementere, „prím szám-e?", coNP-beli. (Valójában mindkettő P-beli is, de ez nem triviális.)</p>
+
+                <p>Nyilvánvalóan $\mathbf{P} \subseteq \mathbf{NP} \cap \mathbf{coNP}$, és feltételezhető (de nem bizonyított), hogy $\mathbf{NP} \neq \mathbf{coNP}$.</p>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             11. HÉT: KARP-REDUKCIÓ
+             ============================================================ -->
+        <section id="week11" class="tab-pane">
+            <div class="content-card">
+                <h2>Karp-redukció</h2>
+                <p class="week-subtitle">Rónyai-Ivanyos-Szabó: Algoritmusok, 8. fejezet</p>
+
+                <!-- 11.1 Definíció -->
+                <math-header><span class="num-badge">11.1</span><h3>A Karp-redukció fogalma</h3></math-header>
+
+                <p>Ahhoz, hogy a problémák relatív nehézségét összehasonlítsuk, szükségünk van egy formális „visszavezetés" fogalomra.</p>
+
+                <math-def>
+                    <p><strong>Karp-redukció (polinomiális visszavezetés).</strong> Azt mondjuk, hogy az $L_1$ nyelv <strong>Karp-redukálható</strong> az $L_2$ nyelvre (jelölés: $L_1 \leq_p L_2$ vagy $L_1 \prec L_2$), ha létezik egy <strong>polinom időben kiszámítható</strong> $f: \Sigma^* \to \Sigma^*$ függvény, amelyre:</p>
+                </math-def>
+
+                <div class="formula-box">
+                    <p>$$x \in L_1 \iff f(x) \in L_2$$</p>
+                </div>
+
+                <p>Intuitívan: az $L_1$ probléma <strong>nem nehezebb</strong>, mint $L_2$ (legfeljebb polinomnyi extra munkával). Ha van gyors algoritmusunk $L_2$-re, akkor $L_1$-re is kapunk egyet: kiszámítjuk $f(x)$-et, és arra futtatjuk az $L_2$-megoldót.</p>
+
+                <!-- 11.2 Tulajdonságok -->
+                <math-header><span class="num-badge">11.2</span><h3>A Karp-redukció tulajdonságai</h3></math-header>
+
+                <math-theorem>
+                    <p><strong>Zártság lefelé.</strong></p>
+                    <ul>
+                        <li>Ha $L_1 \leq_p L_2$ és $L_2 \in \mathbf{P}$, akkor $L_1 \in \mathbf{P}$.</li>
+                        <li>Ha $L_1 \leq_p L_2$ és $L_2 \in \mathbf{NP}$, akkor $L_1 \in \mathbf{NP}$.</li>
+                    </ul>
+                </math-theorem>
+
+                <math-theorem>
+                    <p><strong>Tranzitivitás.</strong> Ha $A \leq_p B$ és $B \leq_p C$, akkor $A \leq_p C$.</p>
+                    <p>Bizonyítás: az $f$ és $g$ redukciós függvények kompozíciója ($g \circ f$) szintén polinom időben kiszámítható.</p>
+                </math-theorem>
+
+                <math-note>
+                    <p><strong>Kontra-pozitív gondolkodás.</strong> Ha $L_1 \leq_p L_2$ és $L_1 \notin \mathbf{P}$, akkor $L_2 \notin \mathbf{P}$ sem! A redukció tehát arra is alkalmas, hogy „nehézséget" vigyünk át egyik problémáról a másikra.</p>
+                </math-note>
+
+                <!-- 11.3 Példa -->
+                <math-header><span class="num-badge">11.3</span><h3>Hogyan adjunk meg redukciót?</h3></math-header>
+
+                <p>Egy Karp-redukció megadásához három dolgot kell tenni:</p>
+                <ol>
+                    <li><strong>Megadjuk az $f$ függvényt:</strong> leírjuk, hogyan transzformáljuk az $L_1$ egy inputját $L_2$ egy inputjává.</li>
+                    <li><strong>Bizonyítjuk a helyességet:</strong> megmutatjuk, hogy $x \in L_1 \iff f(x) \in L_2$ (mindkét irányban!).</li>
+                    <li><strong>Bizonyítjuk, hogy $f$ polinom idejű:</strong> megmutatjuk, hogy a transzformáció kiszámítása polinom időben végezhető.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             12. HÉT: NP-TELJESSÉG
+             ============================================================ -->
+        <section id="week12" class="tab-pane">
+            <div class="content-card">
+                <h2>NP-teljesség</h2>
+                <p class="week-subtitle">Rónyai-Ivanyos-Szabó: Algoritmusok, 8. fejezet</p>
+
+                <!-- 12.1 Definíció -->
+                <math-header><span class="num-badge">12.1</span><h3>NP-nehéz és NP-teljes problémák</h3></math-header>
+
+                <math-def>
+                    <p><strong>NP-nehéz (NP-hard).</strong> Egy $L$ nyelv NP-nehéz, ha <strong>minden</strong> $L' \in \mathbf{NP}$ nyelvre igaz, hogy $L' \leq_p L$. Azaz: $L$ legalább olyan nehéz, mint az NP <em>bármelyik</em> problémája.</p>
+                </math-def>
+
+                <math-def>
+                    <p><strong>NP-teljes (NP-complete).</strong> Egy $L$ nyelv NP-teljes, ha két feltétel teljesül:</p>
+                    <ol>
+                        <li>$L \in \mathbf{NP}$ (a megoldás polinom időben ellenőrizhető).</li>
+                        <li>$L$ NP-nehéz (minden NP-beli probléma visszavezethető rá).</li>
+                    </ol>
+                </math-def>
+
+                <div class="formula-box">
+                    <p>$$L \text{ NP-teljes} \iff L \in \mathbf{NP} \;\wedge\; \forall L' \in \mathbf{NP}: L' \leq_p L$$</p>
+                </div>
+
+                <math-theorem>
+                    <p><strong>Az NP-teljesség jelentősége.</strong> Ha <em>bármely egyetlen</em> NP-teljes problémára létezne polinom idejű algoritmus, akkor <strong>$\mathbf{P} = \mathbf{NP}$</strong> teljesülne (mert az összes NP-beli probléma polinom időben visszavezethető rá). Ez jelenleg nem ismert, és széles körben feltételezik, hogy $\mathbf{P} \neq \mathbf{NP}$.</p>
+                </math-theorem>
+
+                <!-- 12.2 Hogyan bizonyítunk? -->
+                <math-header><span class="num-badge">12.2</span><h3>Hogyan bizonyítjuk, hogy egy probléma NP-teljes?</h3></math-header>
+
+                <p>Két lépés szükséges:</p>
+
+                <ol>
+                    <li><strong>Megmutatjuk, hogy $L_{\text{új}} \in \mathbf{NP}$.</strong> Ehhez meg kell adni:
+                        <ul>
+                            <li>Egy polinom méretű <strong>tanút</strong> (certificate).</li>
+                            <li>Egy polinom idejű <strong>bírót</strong> (verifier), amely ellenőrzi a tanút.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Egy ismert NP-teljes problémát Karp-redukálunk $L_{\text{új}}$-ra.</strong> Pl. megmutatjuk, hogy $\text{SAT} \leq_p L_{\text{új}}$ (vagy $\text{3-SAT} \leq_p L_{\text{új}}$). A tranzitivitás miatt ez elegendő: minden NP-beli probléma visszavezethető SAT-ra (Cook-Levin tétel alapján), SAT visszavezethető $L_{\text{új}}$-ra, tehát minden NP-beli probléma visszavezethető $L_{\text{új}}$-ra is.</li>
+                </ol>
+
+                <math-note>
+                    <p><strong>A redukció irányára figyelj!</strong> Ahhoz, hogy $L_{\text{új}}$ nehézségét bizonyítsuk, egy <em>már ismert nehéz</em> problémát kell visszavezetni $L_{\text{új}}$-ra ($\text{SAT} \leq_p L_{\text{új}}$), nem fordítva! A fordított irány ($L_{\text{új}} \leq_p \text{SAT}$) csak azt mondaná, hogy $L_{\text{új}}$ legfeljebb olyan nehéz, mint SAT.</p>
+                </math-note>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             13. HÉT: NEVEZETES NP-TELJES PROBLÉMÁK
+             ============================================================ -->
+        <section id="week13" class="tab-pane">
+            <div class="content-card">
+                <h2>Nevezetes NP-teljes problémák</h2>
+                <p class="week-subtitle">Rónyai-Ivanyos-Szabó: Algoritmusok, 8. fejezet</p>
+
+                <!-- 13.1 SAT -->
+                <math-header><span class="num-badge">13.1</span><h3>A SAT probléma és a Cook-Levin tétel</h3></math-header>
+
+                <math-def>
+                    <p><strong>SAT (Satisfiability / Kielégíthetőség).</strong> Adott egy Boole-formula (logikai változókból $\wedge, \vee, \neg$ műveletekkel felépítve). Kérdés: létezik-e a változóknak olyan igazságértékelése (igaz/hamis hozzárendelés), amelyre a formula igaz lesz?</p>
+                </math-def>
+
+                <math-theorem>
+                    <p><strong>Cook-Levin tétel (1971).</strong> A SAT probléma <strong>NP-teljes</strong>.</p>
+                    <p>Ez volt az első probléma, amelyről bebizonyították, hogy NP-teljes. A bizonyítás lényege: bármely NTG számítás leírható egy Boole-formulaként, amely pontosan akkor kielégíthető, ha az NTG elfogadja az inputot.</p>
+                </math-theorem>
+
+                <!-- 13.2 3-SAT -->
+                <math-header><span class="num-badge">13.2</span><h3>3-SAT</h3></math-header>
+
+                <math-def>
+                    <p><strong>3-SAT.</strong> A SAT speciális esete, ahol a formula <strong>konjunktív normálformában</strong> (CNF) van, és minden klóz pontosan <strong>3 literált</strong> tartalmaz.</p>
+                    <p>Például: $(x_1 \vee \neg x_2 \vee x_3) \wedge (\neg x_1 \vee x_2 \vee x_4) \wedge \ldots$</p>
+                </math-def>
+
+                <math-theorem>
+                    <p><strong>3-SAT NP-teljes.</strong> Bizonyítás: $\text{SAT} \leq_p \text{3-SAT}$. Bármely CNF formula átalakítható 3 literálos klózokra (hosszabb klózok felbontása új változókkal, rövidebb klózok kiterjesztése dummy változókkal).</p>
+                </math-theorem>
+
+                <math-note>
+                    <p><strong>Fontos különbség:</strong> A <strong>2-SAT</strong> probléma (minden klóz legfeljebb 2 literál) <strong>P-beli</strong> — hatékonyan megoldható implikációs gráffal! Az NP-teljesség pontosan 3 literálnál „robban be".</p>
+                </math-note>
+
+                <!-- 13.3 Gráfszínezés -->
+                <math-header><span class="num-badge">13.3</span><h3>Gráfos NP-teljes problémák</h3></math-header>
+
+                <math-def>
+                    <p><strong>3-SZÍN (3-Coloring).</strong> Adott egy gráf $G$. Kiszínezhető-e a csúcshalmaza 3 színnel úgy, hogy bármely él két végpontja különböző színű legyen?</p>
+                    <p>NP-teljes. Bizonyítás: $\text{3-SAT} \leq_p \text{3-SZÍN}$.</p>
+                </math-def>
+
+                <math-def>
+                    <p><strong>MAXFTLEN (Maximum Független Halmaz / Independent Set).</strong> Adott egy $G$ gráf és egy $k$ szám. Van-e $G$-ben legalább $k$ méretű független csúcshalmaz (amelyben semelyik két csúcs nem szomszédos)?</p>
+                    <p>NP-teljes.</p>
+                </math-def>
+
+                <math-def>
+                    <p><strong>MAXKLIKK (Maximum Clique).</strong> Adott egy $G$ gráf és egy $k$ szám. Van-e $G$-ben legalább $k$ méretű klikk (teljes részgráf, amelyben minden pár szomszédos)?</p>
+                    <p>NP-teljes. Kapcsolat: a $G$ gráf klikkjei pontosan a $\overline{G}$ komplementer gráf független halmazai, tehát $\text{MAXFTLEN} \leq_p \text{MAXKLIKK}$ triviális.</p>
+                </math-def>
+
+                <math-def>
+                    <p><strong>Hamilton-kör.</strong> Adott egy $G$ gráf. Létezik-e benne olyan kör, amely minden csúcsot pontosan egyszer érint?</p>
+                    <p>NP-teljes. (Ne keverjük össze az Euler-körrel, amely minden <em>élet</em> érint!)</p>
+                </math-def>
+
+                <!-- 13.4 Számelméleti és optimalizálási problémák -->
+                <math-header><span class="num-badge">13.4</span><h3>Számelméleti és optimalizálási problémák</h3></math-header>
+
+                <math-def>
+                    <p><strong>Utazó ügynök probléma (TSP, döntési változat).</strong> Adott egy élsúlyozott teljes gráf és egy $K$ korlát. Létezik-e Hamilton-kör, amelynek összsúlya $\leq K$?</p>
+                    <p>NP-teljes. (Mivel a Hamilton-kör visszavezethető rá: adjunk 1 súlyt az éleknek, 2-t a nem-éleknek, és kérdezzük, van-e $n$ összköltségű Hamilton-kör.)</p>
+                </math-def>
+
+                <math-def>
+                    <p><strong>Részhalmazösszeg (Subset Sum).</strong> Adottak $a_1, a_2, \ldots, a_n$ pozitív egész számok és egy $B$ célérték. Kiválasztható-e egy részhalmaz, amelynek összege pontosan $B$?</p>
+                    <p>NP-teljes.</p>
+                </math-def>
+
+                <math-def>
+                    <p><strong>Hátizsák probléma (Knapsack).</strong> $n$ tárgy adott, mindegyiknek van egy súlya ($w_i$) és egy értéke ($v_i$), valamint egy $W$ kapacitáskorlát. Kiválasztható-e egy részhalmaz, amelynek összsúlya $\leq W$, és összértéke $\geq V$?</p>
+                    <p>NP-teljes (a döntési változat).</p>
+                </math-def>
+
+                <math-def>
+                    <p><strong>Partíció probléma.</strong> Adott $a_1, \ldots, a_n$ pozitív egész szám. Feloszthatók-e két halmazra úgy, hogy a két halmaz összege egyenlő legyen?</p>
+                    <p>NP-teljes. (Speciális esete a Részhalmazösszeg problémának $B = \frac{1}{2}\sum a_i$-vel.)</p>
+                </math-def>
+
+                <math-note>
+                    <p><strong>Összefoglaló: Redukciók láncolata.</strong> A legfontosabb NP-teljességi bizonyítások a következő „láncot" követik: $\text{SAT} \leq_p \text{3-SAT} \leq_p \text{3-SZÍN}$, $\text{3-SAT} \leq_p \text{MAXFTLEN} \leq_p \text{MAXKLIKK}$, $\text{3-SAT} \leq_p \text{Hamilton-kör} \leq_p \text{TSP}$, $\text{3-SAT} \leq_p \text{Részhalmazösszeg} \leq_p \text{Partíció}$.</p>
+                </math-note>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        function openTab(evt, tabId) {
+            // Hide all tab panes
+            var tabPanes = document.getElementsByClassName("tab-pane");
+            for (var i = 0; i < tabPanes.length; i++) {
+                tabPanes[i].classList.remove("active");
+            }
+
+            // Remove active class from all buttons
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            // Show the selected tab
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+
+            // Re-render MathJax for the newly visible content
+            if (window.MathJax && MathJax.typesetPromise) {
+                MathJax.typesetPromise([document.getElementById(tabId)]);
+            }
+        }
+    </script>
+</body>
+</html>
