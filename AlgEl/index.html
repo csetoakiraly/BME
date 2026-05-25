@@ -1390,10 +1390,10 @@ Left-Rotate(T, x):
                     A szabály: a szülőt (5) feketére, a nagyszülőt (4) pirosra színezzük, majd balra forgatunk a nagyszülő (4) körül.</p>
                     <div class="mermaid" style="text-align: center;">
                         graph TD
-                            A((2:Fekete)) --- B((1:Fekete))
-                            A --- C((5:Fekete))
-                            C --- D((4:Piros))
-                            C --- E((9:Piros))
+                            A(("2:Fekete")) --- B(("1:Fekete"))
+                            A --- C(("5:Fekete"))
+                            C --- D(("4:Piros"))
+                            C --- E(("9:Piros"))
                     </div>
                 </math-def>
 
@@ -1493,8 +1493,8 @@ Left-Rotate(T, x):
                     <div class="mermaid" style="text-align: center;">
                         graph TD
                             A((3)) --- B((5))
-                            A --- C((y))
-                            B --- D((x))
+                            A --- C(("y"))
+                            B --- D(("x"))
                             B --- E((12))
                             C --- F((10))
                             C --- G((100))
@@ -1506,9 +1506,9 @@ Left-Rotate(T, x):
                     <p><strong>(b) MINTÖR lépései:</strong> A gyökeret (3) eltávolítjuk, a legutolsó elem (21) kerül a helyére. Mivel a feladat szerint a süllyesztés után $y$ kerül a gyökérbe, a 21-nek az $y$-nal kell helyet cserélnie (ehhez $y < 5$-nek kell teljesülnie). Az új gyökér $y$ lesz. A 21 tovább süllyed: az új helyén a gyerekei 10 és 100. A kisebbik a 10, így azzal is cserél. A 21 végül a 10 helyére kerül, levél lesz.</p>
                     <div class="mermaid" style="text-align: center;">
                         graph TD
-                            A((y)) --- B((5))
+                            A(("y")) --- B((5))
                             A --- C((10))
-                            B --- D((x))
+                            B --- D(("x"))
                             B --- E((12))
                             C --- F((21))
                             C --- G((100))
@@ -1704,10 +1704,10 @@ Left-Rotate(T, x):
                     3. A szabály szerint a szülőt (3) átszínezzük feketére, a nagyszülőt (5) pirosra, majd egyet forgatunk jobbra a nagyszülő (5) körül.</p>
                     <div class="mermaid" style="text-align: center;">
                         graph TD
-                            A((7:Fekete)) --- B((3:Fekete))
-                            A --- C((9:Fekete))
-                            B --- D((2:Piros))
-                            B --- E((5:Piros))
+                            A(("7:Fekete")) --- B(("3:Fekete"))
+                            A --- C(("9:Fekete"))
+                            B --- D(("2:Piros"))
+                            B --- E(("5:Piros"))
                     </div>
                 </math-def>
 
@@ -1873,10 +1873,10 @@ Left-Rotate(T, x):
                     <p><strong>A végső állapot:</strong> A gyökér 20(Fekete). Bal gyereke 15(Fekete). A 15 bal gyereke 10(Piros), jobb gyereke 18(Piros). A 20 jobb gyereke 30(Fekete).</p>
                     <div class="mermaid" style="text-align: center;">
                         graph TD
-                            A((20:Fekete)) --- B((15:Fekete))
-                            A --- C((30:Fekete))
-                            B --- D((10:Piros))
-                            B --- E((18:Piros))
+                            A(("20:Fekete")) --- B(("15:Fekete"))
+                            A --- C(("30:Fekete"))
+                            B --- D(("10:Piros"))
+                            B --- E(("18:Piros"))
                     </div>
                 </math-def>
 
