@@ -425,10 +425,25 @@
                 <math-header><span class="num-badge">6.2</span><h3>Elemi rendezések ($O(n^2)$ módszerek)</h3></math-header>
 
                 <p>Azokat a rendezéseket, amelyek működése kizárólag az elemek közötti $\leq$ reláció tesztelésén alapul, <strong>összehasonlítás-alapú rendezéseknek</strong> hívjuk.</p>
+                
+                <math-note>
+                    <p><strong>Fontos rendezési fogalmak:</strong>
+                    <br>• <strong>Stabil rendezés:</strong> Az azonos kulcsú elemek relatív sorrendje a rendezés után is megmarad (pl. ha a piros 5-ös eredetileg a kék 5-ös előtt volt, utána is ott lesz).
+                    <br>• <strong>Helyben (in-place) rendezés:</strong> Az algoritmus a bemeneti tömbön felül csak $O(1)$ (konstans) méretű extra memóriát használ (néhány segédváltozót).</p>
+                </math-note>
 
                 <math-theorem>
-                    <p><strong>Információelméleti alsó korlát.</strong> Minden összehasonlítás-alapú rendező algoritmus legrosszabb esetben legalább $\Omega(n \log n)$ összehasonlítást igényel. Bizonyítás: $n$ elem összes lehetséges sorrendje $n!$, és minden összehasonlítás legfeljebb kétfelé ágazik (bináris döntési fa), tehát a fa magassága legalább $\log_2(n!) = \Omega(n \log n)$.</p>
+                    <p><strong>Információelméleti alsó korlát.</strong> Minden összehasonlítás-alapú rendező algoritmus legrosszabb esetben legalább $\Omega(n \log n)$ összehasonlítást igényel.</p>
                 </math-theorem>
+
+                <math-def>
+                    <p><strong>Döntési fa modell (Decision Tree).</strong> A fenti tétel bizonyításának kulcsa. Minden összehasonlítás-alapú algoritmus leírható egy bináris fával, ahol:</p>
+                    <ul>
+                        <li><strong>Belső csúcsok:</strong> az elemek közötti összehasonlításokat reprezentálják.</li>
+                        <li><strong>Levelek:</strong> a lehetséges végeredményeket (rendezett sorrendeket) jelölik.</li>
+                    </ul>
+                    <p>A fa magassága adja a legrosszabb eset lépésszámát. Mivel $n$ elemnek $n!$ lehetséges sorrendje van, a döntési fának legalább $n!$ levele kell legyen. Egy bináris fa, aminek $n!$ levele van, legalább $\log_2(n!) = \Omega(n \log n)$ magas. Így minden algoritmus igényelhet ennyi lépést.</p>
+                </math-def>
 
                 <math-def>
                     <p><strong>Buborékrendezés (Bubble Sort).</strong> A szomszédos elemek ismételt összehasonlításával és cseréjével működik. A „könnyebb" (kisebb) elemek fokozatosan felszállnak a tömb elejére, mint buborékok a vízben.</p>
@@ -442,6 +457,11 @@
                     <p>Előnye: stabil, adaptív (majdnem rendezett inputra gyors), kis konstans szorzó.</p>
                 </math-def>
 
+                <math-def>
+                    <p><strong>Kiválasztásos rendezés (Selection Sort).</strong> A tömböt egy rendezett és egy rendezetlen részre bontjuk. Minden iterációban megkeressük a rendezetlen rész minimumát, és kicseréljük a rendezetlen rész legelső elemével, amivel az bekerül a rendezett részbe.</p>
+                    <p>Futási idő: $O(n^2)$ minden esetben (nem adaptív). Az összehasonlítások száma viszonylag sok, de a cserék száma legfeljebb $n$, így ha az elemek mozgatása drága, előnyös lehet. <strong>Nem stabil</strong> (bár stabilan is megvalósítható tömb eltolással, de akkor a mozgatások száma megnő).</p>
+                </math-def>
+
                 <!-- 6.3 Hatékony rendezések -->
                 <math-header><span class="num-badge">6.3</span><h3>Hatékony rendezések ($O(n \log n)$ módszerek)</h3></math-header>
 
@@ -450,8 +470,24 @@
                     <ol>
                         <li><strong>Felosztás:</strong> A tömböt két feleakkora részre vágjuk.</li>
                         <li><strong>Megoldás:</strong> Mindkét résztömböt rekurzívan rendezzük.</li>
-                        <li><strong>Összefésülés:</strong> A két rendezett résztömböt egyetlen lineáris költségű ($O(n)$) „merge" lépésben egyesítjük.</li>
+                        <li><strong>Összefésülés (Merge):</strong> Két mutatót (pointert) indítunk a két rendezett résztömb elejéről. Mindig a két mutató által mutatott elem közül a kisebbet másoljuk át egy <strong>segédtömbbe</strong>, majd azt a mutatót léptetjük. Ezért igényel $O(n)$ extra memóriát. Végül a segédtömb tartalmát visszamásoljuk.</li>
                     </ol>
+                    <pre style="background: var(--surface-2); padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: monospace; font-size: 0.9rem; margin-top: 1rem; color: var(--text-color);">
+Merge(A, p, q, r):
+    n1 = q - p + 1
+    n2 = r - q
+    L[1..n1+1] és R[1..n2+1] új tömbök
+    For i = 1 to n1: L[i] = A[p + i - 1]
+    For j = 1 to n2: R[j] = A[q + j]
+    L[n1+1] = &infin;; R[n2+1] = &infin;   // Őrszemek (sentinels)
+    i = 1; j = 1
+    For k = p to r:
+        If L[i] &lt;= R[j]:
+            A[k] = L[i]
+            i = i + 1
+        Else:
+            A[k] = R[j]
+            j = j + 1</pre>
                 </math-def>
 
                 <div class="formula-box">
@@ -463,9 +499,21 @@
                 <math-def>
                     <p><strong>Gyorsrendezés (Quick Sort).</strong> C.A.R. Hoare (1960) módszere. Szintén az „oszd meg és uralkodj" elvre épül, de más stratégiával:</p>
                     <ol>
-                        <li><strong>Partícionálás:</strong> Választunk egy $s$ elemet (a <em>pivotot</em>). A tömb elemeit átrendezzük úgy, hogy az $s$-nél kisebbek előre, a nagyobbak hátra kerüljenek, $s$ pedig a végleges helyére.</li>
+                        <li><strong>Partícionálás:</strong> Választunk egy $s$ elemet (a <em>pivotot</em>). A tömb elemeit átrendezzük úgy, hogy az $s$-nél kisebbek előre, a nagyobbak hátra kerüljenek. Ezt jellemzően két mutatóval végzik (pl. Hoare-féle partícionálás): az egyik elölről, a másik hátulról indul, és ha olyat találnak, ami a rossz oldalon van, megcserélik őket.</li>
                         <li><strong>Rekurzió:</strong> A pivot bal és jobb oldalát rekurzívan rendezzük.</li>
                     </ol>
+                    <pre style="background: var(--surface-2); padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: monospace; font-size: 0.9rem; margin-top: 1rem; color: var(--text-color);">
+Hoare-Partition(A, p, r):
+    x = A[p]  // pivot (itt az első elem)
+    i = p - 1
+    j = r + 1
+    While True:
+        Repeat j = j - 1 Until A[j] &lt;= x
+        Repeat i = i + 1 Until A[i] &gt;= x
+        If i &lt; j:
+            Swap(A[i], A[j])
+        Else:
+            Return j</pre>
                     <p>Helyben (in-place) rendez. <strong>Nem stabil.</strong></p>
                 </math-def>
 
@@ -505,8 +553,30 @@
                 </math-def>
 
                 <math-def>
+                    <p><strong>Leszámláló rendezés (Counting Sort).</strong> Szintén kis egész számos kulcsokra. Ahelyett, hogy listákat fűznénk össze:</p>
+                    <ol>
+                        <li>Megszámoljuk az egyes értékek előfordulását (gyakorisági tömb).</li>
+                        <li>Kumulatív (göngyölt) összeget számolunk belőlük, amiből kiderül, hogy egy adott érték hová kerül a rendezett tömbben.</li>
+                        <li>A bemenetet (hátulról előrefelé, a stabilitás miatt) végignézve az elemeket a végleges helyükre tesszük.</li>
+                    </ol>
+                    <pre style="background: var(--surface-2); padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: monospace; font-size: 0.9rem; margin-top: 1rem; color: var(--text-color);">
+Counting-Sort(A, B, k):  // A: input, B: output, k: max érték
+    Let C[0..k] be a new array initialized to 0
+    For j = 1 to A.length:
+        C[A[j]] = C[A[j]] + 1
+    // C[i] most azt mutatja, hány darab i érték van.
+    For i = 1 to k:
+        C[i] = C[i] + C[i-1]
+    // C[i] most azt mutatja, hány elem &lt;= i.
+    For j = A.length downto 1:
+        B[C[A[j]]] = A[j]
+        C[A[j]] = C[A[j]] - 1</pre>
+                    <p>Futási idő: $O(n + k)$, ahol $k$ a kulcstartomány mérete. <strong>Stabil</strong> rendezés.</p>
+                </math-def>
+
+                <math-def>
                     <p><strong>Radix rendezés (Radix Sort).</strong> Összetett (többkomponensű) kulcsok rendezésére szolgál. Az ötlet: a ládarendezést alkalmazzuk komponensenként, a <strong>legkevésbé fontos</strong> (legalsó helyiértékű) komponenstől a legfontosabbig haladva.</p>
-                    <p>Kulcsfontosságú, hogy minden rész-ládarendezés <strong>stabil</strong> legyen, mert így a korábbi rendezettségek a magasabb helyi értékekre nézve megmaradnak.</p>
+                    <p>Kulcsfontosságú, hogy minden rész-ládarendezés <strong>stabil</strong> legyen. <em>Példa:</em> a 24, 15, 21 rendezése. Először az utolsó számjegy szerint rendezünk: 21, 24, 15. Másodszor az első számjegy szerint: 15, 21, 24. Ha az első számjegy szerinti rendezés nem lenne stabil, a 21 és 24 relatív sorrendje (amit az első lépésben jól beállítottunk) elromolhatna!</p>
                 </math-def>
 
                 <div class="formula-box">
@@ -533,16 +603,32 @@
                 <p><strong>Felszivárog (SiftUp / BubbleUp):</strong> Beszúráskor az új elemet a fa legalsó szintjére (a tömb végére) tesszük, majd addig cseréljük a szülőjével, amíg a kupac-tulajdonság helyre nem áll. A fa magassága $\lfloor \log_2 n \rfloor$, így a költség:</p>
                 <div class="formula-box"><p>$$O(\log n)$$</p></div>
 
-                <p><strong>Lesüllyeszt (SiftDown / Heapify):</strong> Ha a gyökér sérti a kupac-tulajdonságot, a gyerekei közül a kisebbikkel (min-kupac esetén) cseréljük, és rekurzívan lefelé haladunk. Költség: $O(\log n)$.</p>
+                <p><strong>Lesüllyeszt (SiftDown / Heapify):</strong> Ha egy csúcs sérti a kupac-tulajdonságot (kisebb, mint a gyerekei max-kupacban), a gyerekei közül a nagyobbikkel cseréljük, és rekurzívan lefelé haladunk. Költség: $O(\log n)$.</p>
+                <pre style="background: var(--surface-2); padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: monospace; font-size: 0.9rem; margin-top: 0.5rem; margin-bottom: 1rem; color: var(--text-color);">
+Max-Heapify(A, i):
+    l = 2 * i      // bal gyerek
+    r = 2 * i + 1  // jobb gyerek
+    largest = i
+    If l &lt;= A.heap_size and A[l] &gt; A[largest]:
+        largest = l
+    If r &lt;= A.heap_size and A[r] &gt; A[largest]:
+        largest = r
+    If largest != i:
+        Swap(A[i], A[largest])
+        Max-Heapify(A, largest)</pre>
 
                 <p><strong>Minimum/Maximum törlése (ExtractMin / ExtractMax):</strong> A gyökeret eltávolítjuk, a tömb utolsó elemét a gyökérbe tesszük, és lesüllyesztjük. Költség: $O(\log n)$.</p>
 
-                <p><strong>Kupacépítés (BuildHeap):</strong> Az egész tömböt kupaccá alakítjuk úgy, hogy alulról felfelé haladva minden belső csúcsra meghívjuk a SiftDown-t.</p>
+                <p><strong>Kupacépítés (BuildHeap):</strong> Az egész tömböt kupaccá alakítjuk úgy, hogy alulról felfelé haladva minden belső csúcsra meghívjuk a SiftDown-t. <em>Miért nem felülről-lefelé SiftUp-pal csináljuk?</em> Mert a SiftUp módszernél az alsó szinten lévő sok elemnek kéne sokat felmászni (a levelek fele $O(\log n)$ lépést tehet), míg a SiftDown módszernél csak kevés elem mászik sokat lefelé (csak a gyökér léphet $\log n$-t).</p>
 
                 <math-theorem>
                     <p><strong>A kupacépítés lineáris idejű!</strong> Bár $O(n)$ darab SiftDown hívás van, amelyek egyenként $O(\log n)$ költségűek, a legtöbb csúcs a fa alján van (keveset kell süllyeszteni). A pontos összeg:</p>
                     <p>$$\sum_{h=0}^{\lfloor \log n \rfloor} \left\lceil \frac{n}{2^{h+1}} \right\rceil \cdot O(h) = O(n)$$</p>
                 </math-theorem>
+
+                <math-note>
+                    <p><strong>Prioritási sor (Priority Queue):</strong> A kupac a leggyakoribb megvalósítása a prioritási sornak. Ez egy olyan absztrakt adattípus, ahol minden elemnek van egy "prioritása", és mindig a legmagasabb prioritású (legkisebb vagy legnagyobb értékű) elemet vesszük ki először. Tipikus alkalmazása pl. a Dijkstra-algoritmus, vagy az operációs rendszerek folyamatütemezője.</p>
+                </math-note>
 
                 <!-- 7.4 Kupacos rendezés -->
                 <math-header><span class="num-badge">7.4</span><h3>Kupacos rendezés (Heap Sort)</h3></math-header>
@@ -560,6 +646,74 @@
                 <math-note>
                     <p><strong>Összehasonlítás a Quick Sorttal:</strong> A Heap Sort mindig $O(n \log n)$ (nincs $O(n^2)$ legrosszabb eset!), helyben (in-place) rendez, és csak $O(1)$ extra memóriát használ. Hátránya, hogy nem stabil, és a gyakorlatban a konstans szorzója kicsit nagyobb, mint a Quick Sorté (cache-hatékonyság miatt).</p>
                 </math-note>
+
+                <!-- 7.5 Összefoglaló táblázat -->
+                <math-header><span class="num-badge">7.5</span><h3>Rendezések Összehasonlító Táblázata</h3></math-header>
+
+                <div style="overflow-x: auto; margin: 1.5rem 0;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--glass-border);">
+                                <th style="padding: 0.75rem;">Algoritmus</th>
+                                <th style="padding: 0.75rem;">Legjobb idő</th>
+                                <th style="padding: 0.75rem;">Átlagos idő</th>
+                                <th style="padding: 0.75rem;">Legrosszabb idő</th>
+                                <th style="padding: 0.75rem;">Stabil?</th>
+                                <th style="padding: 0.75rem;">Helyben rendez?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--glass-border);">
+                                <td style="padding: 0.75rem;"><strong>Selection Sort</strong></td>
+                                <td style="padding: 0.75rem;">$O(n^2)$</td>
+                                <td style="padding: 0.75rem;">$O(n^2)$</td>
+                                <td style="padding: 0.75rem;">$O(n^2)$</td>
+                                <td style="padding: 0.75rem; color: #f87171;">Nem</td>
+                                <td style="padding: 0.75rem; color: var(--accent);">Igen</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--glass-border);">
+                                <td style="padding: 0.75rem;"><strong>Bubble Sort</strong></td>
+                                <td style="padding: 0.75rem;">$O(n)$</td>
+                                <td style="padding: 0.75rem;">$O(n^2)$</td>
+                                <td style="padding: 0.75rem;">$O(n^2)$</td>
+                                <td style="padding: 0.75rem; color: var(--accent);">Igen</td>
+                                <td style="padding: 0.75rem; color: var(--accent);">Igen</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--glass-border);">
+                                <td style="padding: 0.75rem;"><strong>Insertion Sort</strong></td>
+                                <td style="padding: 0.75rem;">$O(n)$</td>
+                                <td style="padding: 0.75rem;">$O(n^2)$</td>
+                                <td style="padding: 0.75rem;">$O(n^2)$</td>
+                                <td style="padding: 0.75rem; color: var(--accent);">Igen</td>
+                                <td style="padding: 0.75rem; color: var(--accent);">Igen</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--glass-border);">
+                                <td style="padding: 0.75rem;"><strong>Merge Sort</strong></td>
+                                <td style="padding: 0.75rem;">$O(n \log n)$</td>
+                                <td style="padding: 0.75rem;">$O(n \log n)$</td>
+                                <td style="padding: 0.75rem;">$O(n \log n)$</td>
+                                <td style="padding: 0.75rem; color: var(--accent);">Igen</td>
+                                <td style="padding: 0.75rem; color: #f87171;">Nem ($O(n)$)</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--glass-border);">
+                                <td style="padding: 0.75rem;"><strong>Quick Sort</strong></td>
+                                <td style="padding: 0.75rem;">$O(n \log n)$</td>
+                                <td style="padding: 0.75rem;">$O(n \log n)$</td>
+                                <td style="padding: 0.75rem;">$O(n^2)$</td>
+                                <td style="padding: 0.75rem; color: #f87171;">Nem</td>
+                                <td style="padding: 0.75rem; color: var(--accent);">Igen</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem;"><strong>Heap Sort</strong></td>
+                                <td style="padding: 0.75rem;">$O(n \log n)$</td>
+                                <td style="padding: 0.75rem;">$O(n \log n)$</td>
+                                <td style="padding: 0.75rem;">$O(n \log n)$</td>
+                                <td style="padding: 0.75rem; color: #f87171;">Nem</td>
+                                <td style="padding: 0.75rem; color: var(--accent);">Igen</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
@@ -607,7 +761,24 @@
                     <li><strong>Beszúrás:</strong> Ugyanúgy „keresünk" az új elemmel, és oda fűzzük be levélként, ahol a keresés „kiesett" a fából.</li>
                     <li><strong>Minimum:</strong> A gyökértől mindig balra lépkedünk, amíg lehet.</li>
                     <li><strong>Maximum:</strong> A gyökértől mindig jobbra lépkedünk.</li>
-                    <li><strong>Törlés:</strong> Ha a törlendő csúcs levél → egyszerűen eltávolítjuk. Ha egy gyereke van → a gyerek lép a helyére. Ha két gyereke van → a jobb részfa minimumával (rákövetkező elem, „successor") helyettesítjük.</li>
+                    <li><strong>Rákövetkező (Successor):</strong> Ha van jobb részfája, akkor annak a minimuma. Ha nincs, felfelé haladunk a szülőkön, amíg először nem érkezünk bal gyerek felől. (A <strong>megelőző, Predecessor</strong> ennek szimmetrikus párja).
+                    <pre style="background: var(--surface-2); padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: monospace; font-size: 0.9rem; margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--text-color);">
+Tree-Successor(x):
+    If x.right != NIL:
+        Return Tree-Minimum(x.right)
+    y = x.parent
+    While y != NIL and x == y.right:
+        x = y
+        y = y.parent
+    Return y</pre>
+                    </li>
+                    <li><strong>Törlés:</strong> Három eset lehetséges:
+                        <ol style="margin-top: 0.5rem; margin-bottom: 0;">
+                            <li>Ha a törlendő csúcs <strong>levél</strong>: egyszerűen eltávolítjuk (szülőjének mutatóját NIL-re állítjuk).</li>
+                            <li>Ha <strong>egy gyereke van</strong>: a csúcsot kivágjuk, és a gyereke lép a helyére (a szülője a gyerekre fog mutatni).</li>
+                            <li>Ha <strong>két gyereke van</strong>: Megkeressük a rákövetkezőjét (successor), ami biztosan a jobb részfa minimuma (ennek már biztosan nincs bal gyereke!). A törlendő csúcs kulcsát felülírjuk a rákövetkező kulcsával, majd a rákövetkező eredeti csúcsát az 1. vagy 2. eset szerint töröljük.</li>
+                        </ol>
+                    </li>
                 </ul>
 
                 <math-theorem>
@@ -641,21 +812,54 @@
                     <p><strong>Magasság-garancia.</strong> Egy $n$ belső csúcsot tartalmazó piros-fekete fa magassága legfeljebb $2 \log_2(n+1)$. Így <strong>minden művelet</strong> (keresés, beszúrás, törlés) garantáltan $O(\log n)$ idejű.</p>
                 </math-theorem>
 
-                <p><strong>Beszúrás lépései:</strong></p>
+                <p><strong>Beszúrás lépései és javítás:</strong></p>
                 <ol>
-                    <li>Az új csúcsot a BST beszúrási szabálya szerint levélként fűzzük be, és <strong>pirosra</strong> színezzük.</li>
-                    <li>Ha az 5 szabály közül valamelyik sérül (leggyakrabban a 4. szabály: piros szülő + piros gyerek), <strong>javító eljárást</strong> hajtunk végre. Ennek 3 esete van (a nagybácsi színétől függően):
-                        <ul>
-                            <li><strong>1. eset:</strong> A nagybácsi <strong>piros</strong> → átszínezés (szülő és nagybácsi feketére, nagyszülő pirosra), és a probléma feljebb tolódik.</li>
-                            <li><strong>2. eset:</strong> A nagybácsi <strong>fekete</strong>, és az új csúcs „belső" unoka → forgatás a szülő körül, ezzel a 3. esetre vezetjük vissza.</li>
-                            <li><strong>3. eset:</strong> A nagybácsi <strong>fekete</strong>, és az új csúcs „külső" unoka → átszínezés + forgatás a nagyszülő körül. Ezzel helyreáll az egyensúly.</li>
+                    <li>Az új csúcsot a normál BST szabályok szerint levélként fűzzük be, és <strong>pirosra</strong> színezzük. (Ezzel a fekete-magasság nem sérül, de létrejöhet két egymást követő piros csúcs).</li>
+                    <li>Ha a szülő is piros (sérül a 4. szabály), megvizsgáljuk az "új csúcs" <strong>nagybátyjának (a szülő testvérének) színét</strong>:
+                        <ul style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                            <li><strong>1. eset (Piros nagybácsi):</strong> A szülőt és a nagybácsit átszínezzük feketére, a nagyszülőt pedig pirosra. Ezzel a hiba (piros-piros él) feljebb tolódott a nagyszülőre. Rekurzívan ismételjük a javítást.</li>
+                            <li><strong>2. eset (Fekete nagybácsi, "Törött vonal"):</strong> Az új csúcs "belső" unoka (pl. a nagyszülő bal gyerekének a jobb gyereke). Egy forgatással a szülő körül "egyenes vonallá" alakítjuk (átmegyünk a 3. esetbe).</li>
+                            <li><strong>3. eset (Fekete nagybácsi, "Egyenes vonal"):</strong> Az új csúcs "külső" unoka (pl. nagyszülő bal gyerekének bal gyereke). A szülőt feketére, a nagyszülőt pirosra színezzük, majd a nagyszülő körül egy forgatást végzünk. Ezzel a fa egyensúlya helyreállt, a javítás befejeződött.</li>
                         </ul>
                     </li>
-                    <li>Végül a gyökeret feketére színezzük.</li>
+                    <li>Végül a gyökeret (ha piros lett volna) feketére színezzük.</li>
                 </ol>
 
                 <math-note>
-                    <p>A <strong>forgatások</strong> (bal- és jobbraforgatás) $O(1)$ idejű lokális átalakítások, amelyek megőrzik a keresőfa-tulajdonságot, de megváltoztatják a fa alakját (egyensúlyosabbá teszik). Az AVL fáknál is hasonlóan működnek (lásd könyv, 73. oldal).</p>
+                    <p>A <strong>forgatások</strong> (bal- és jobbraforgatás) $O(1)$ idejű lokális átalakítások, amelyek megőrzik a keresőfa-tulajdonságot, de megváltoztatják a fa alakját (egyensúlyosabbá teszik). Példa a balra forgatásra (ahol `y` az `x` jobb gyereke, és `y` kerül `x` helyére):</p>
+                    <pre style="background: var(--surface-1); padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: monospace; font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--text-color);">
+Left-Rotate(T, x):
+    y = x.right           // y lesz az új gyökér a részfában
+    x.right = y.left      // y bal részfája átkerül x jobb oldalára
+    if y.left != NIL:
+        y.left.parent = x
+    y.parent = x.parent   // y felveszi x szülőjét
+    if x.parent == NIL:
+        T.root = y
+    else if x == x.parent.left:
+        x.parent.left = y
+    else:
+        x.parent.right = y
+    y.left = x            // x lesz y bal gyereke
+    x.parent = y</pre>
+                </math-note>
+
+                <!-- 8.4 AVL Fák -->
+                <math-header><span class="num-badge">8.4</span><h3>AVL Fák</h3></math-header>
+
+                <p>A könyv (3.5 fejezet) egy másik kiegyensúlyozott fa adatszerkezetet, az AVL fát is részletezi. Itt az <strong>egyensúlyi tényező</strong> (balance factor) alapján működik a kiegyensúlyozás, ami a bal és jobb részfák magasságának különbsége.</p>
+
+                <math-def>
+                    <p><strong>AVL tulajdonság:</strong> Minden csúcsra a bal és jobb részfa magasságának különbsége legfeljebb 1 (tehát az egyensúlyi tényező $\in \{-1, 0, 1\}$).</p>
+                    <p>Ha egy beszúrás után ez valahol 2-re vagy -2-re nő, <strong>forgatásokkal</strong> kell helyreállítani. Négy eset van:</p>
+                    <ul>
+                        <li><strong>Egyszeres balra (RR) / jobbra (LL) forgatás:</strong> Ha a fa ugyanabban az irányban billent el, ahogy a gyerek is.</li>
+                        <li><strong>Kettős (LR vagy RL) forgatás:</strong> Először a gyerek körül forgatunk az ellentétes irányba, majd a szülő körül a megfelelő irányba.</li>
+                    </ul>
+                </math-def>
+
+                <math-note>
+                    <p><strong>AVL vs Piros-Fekete fa:</strong> Az AVL fa szigorúbban kiegyensúlyozott (szigorúbb a magasság korlát), ezért a <em>keresés</em> egy picit gyorsabb benne. Cserébe egy beszúrás vagy törlés során az AVL fában akár több forgatás is kellhet végig a gyökérig, míg a Piros-Fekete fa beszúrása garantáltan <strong>legfeljebb 2 forgatást</strong> (törlése legfeljebb 3-at) igényel. Ezért dinamikus rendszerekben (pl. C++ `std::map`) a Piros-Fekete fa a standard.</p>
                 </math-note>
             </div>
         </section>
@@ -685,7 +889,10 @@
                 <ol>
                     <li>Megkeressük a megfelelő levél-szintet.</li>
                     <li>Ha a szülőben van hely (2-csúcs) → 3-csúccsá bővítjük.</li>
-                    <li>Ha nincs hely (3-csúcs) → <strong>csúcsvágás (split)</strong>: a 3 kulcsból a középsőt felküldjük a szülőbe, a maradék 2-ből két 2-csúcsot képzünk. Ha a szülő is megtelik, a vágás felfelé propagálódik. Ha a gyökérig ér, a fa magassága eggyel nő.</li>
+                    <li>Ha nincs hely (3-csúcs) → <strong>csúcsvágás (split)</strong>:
+                        <br><em>Példa:</em> Egy $[10, 20]$ 3-csúcsba érkezik a $15$. Átmenetileg létrejön a $[10, 15, 20]$ túlcsordult csúcs. A középső elemet ($15$) felküldjük a szülőbe, a maradék kettőből pedig két darab 2-csúcs lesz (az egyik a $10$-et, a másik a $20$-at tartalmazza).
+                        <br>Ha a szülő is megtelik, a vágás felfelé propagálódik. Ha a gyökérig ér, a gyökér is kettéválik, és egy új gyökér jön létre felette (a fa magassága eggyel nő, és felülről épül!).
+                    </li>
                 </ol>
 
                 <p><strong>Törlés:</strong> Hasonlóan, ha egy csúcs „üressé" válna, <strong>csúcsösszevonás (merge)</strong> vagy kulcsátadás történik a testvérektől.</p>
@@ -693,6 +900,14 @@
                 <math-theorem>
                     <p><strong>2-3 fák magassága.</strong> Egy $n$ kulcsot tartalmazó 2-3 fa magassága $\Theta(\log n)$. Pontosabban: $\log_3(n+1) \leq h \leq \log_2(n+1)$. Így minden művelet $O(\log n)$ idejű.</p>
                 </math-theorem>
+
+                <math-note>
+                    <p><strong>B-fák (Könyv 3.4. fejezet):</strong> A 2-3 fák általánosításai háttértáras adatbázisokhoz. Egy $t \geq 2$ paraméterrel (minimum fokszám) jellemezzük. Minden belső csúcsnak (a gyökeret kivéve) legalább $t$, legfeljebb $2t$ gyereke lehet (azaz $t-1$ .. $2t-1$ kulcsot tartalmaz).
+                    <br>Célja, hogy minimalizálja a merevlemez olvasási (I/O) műveleteit azáltal, hogy egész blokkokat olvas be egyszerre egy nagy csúcs formájában. A B-fa magasságára érvényes felső korlát:</p>
+                    <div class="formula-box" style="margin-top: 0.5rem; margin-bottom: 0.5rem; padding: 0.5rem;">
+                        <p>$$h \leq \log_t \frac{n+1}{2}$$</p>
+                    </div>
+                </math-note>
 
                 <!-- 9.2 Hash-elés -->
                 <math-header><span class="num-badge">9.2</span><h3>Hash-elés (Címkiszámításos keresés)</h3></math-header>
@@ -715,6 +930,7 @@
 
                 <math-def>
                     <p><strong>Nyitott címzés (Open Addressing).</strong> Nincs láncolt lista: az elemeket <strong>magában a tömbben</strong> tároljuk. Ütközéskor egy meghatározott <strong>próbasorozat</strong> mentén keresünk szabad cellát.</p>
+                    <p><em>Fontos implementációs részlet (Törlés):</em> Nyitott címzésnél egy elemet nem lehet csak úgy kitörölni (üresre állítani a cellát), mert az megszakíthatná más elemek próbasorozatát, amik az ütközés miatt kerültek hátrébb. Ezért be kell vezetni egy speciális <strong>TÖRÖLT (DELETED)</strong> jelzést. Kereséskor a TÖRÖLT cellákon tovább kell lépni, de beszúráskor ezek a cellák újra felhasználhatók (felülírhatók).</p>
                 </math-def>
 
                 <p>A három fő próba-stratégia:</p>
@@ -722,11 +938,11 @@
                 <ol>
                     <li>
                         <p><strong>Lineáris próbálás:</strong> $h_i(K) = (h(K) + i) \bmod M$, azaz egyesével lépkedünk.</p>
-                        <p>Hátránya: <strong>elsődleges csomósodás (primary clustering)</strong> — a foglalt cellák összefüggő blokkokba tömörülnek, ami exponenciálisan lassítja a keresést magas kitöltöttségnél.</p>
+                        <p>Hátránya: <strong>elsődleges csomósodás (primary clustering)</strong> — mivel minden kulcs ugyanazt a +1 lépésközt használja, a foglalt cellák hosszú, összefüggő blokkokba tömörülnek. Ha egy ütköző elem egy blokk végére kerül, meg is növeli a blokk méretét, ami "hólabda hatást" okoz, és exponenciálisan lassítja a keresést magas kitöltöttségnél.</p>
                     </li>
                     <li>
                         <p><strong>Kvadratikus próba:</strong> $h_i(K) = (h(K) + c_1 i + c_2 i^2) \bmod M$.</p>
-                        <p>A lépésköz négyzetesen nő, ezzel csökkenti az elsődleges csomósodást. Hátránya: <strong>másodlagos csomósodás</strong> — az azonos kiindulópontú kulcsok ugyanazt a próbasorozatot követik.</p>
+                        <p>A lépésköz négyzetesen nő (pl. +1, +4, +9...), így ha egy blokkba is esünk, gyorsan "kiugrunk" belőle, csökkentve az elsődleges csomósodást. Hátránya: <strong>másodlagos csomósodás</strong> — két különböző kulcs, amelynek az elsődleges hash-értéke véletlenül megegyezik ($h(K_1) = h(K_2)$), azonos ugrási sorozatot fog követni, így végig "követik" egymást az üres hely keresése közben.</p>
                     </li>
                     <li>
                         <p><strong>Kettős hash-elés (Double Hashing):</strong> $h_i(K) = (h(K) + i \cdot h'(K)) \bmod M$, ahol $h'$ egy második, <em>független</em> hash-függvény.</p>
@@ -737,6 +953,19 @@
                 <math-theorem>
                     <p><strong>Sikertelen keresés várható próbaszáma</strong> (egyenletes hash-elésnél, nyitott címzéssel): $\approx \frac{1}{1 - \alpha}$, ahol $\alpha = n/M$. Ha $\alpha = 0.9$ (90%-os kitöltöttség), átlagosan 10 próba kell. Ezért érdemes a kitöltöttséget <strong>$\alpha \leq 0.7$</strong> alatt tartani.</p>
                 </math-theorem>
+
+                <math-header><span class="num-badge">9.4</span><h3>Univerzális Hash-elés</h3></math-header>
+
+                <p>Ha egyetlen determinisztikus hash-függvényt használunk, mindig létezik olyan kulcshalmaz, ami mind egy vödörbe esik ($O(n)$ keresési idő). Ezt védhetjük ki <strong>univerzális hash-eléssel</strong>.</p>
+
+                <math-def>
+                    <p><strong>Univerzális függvénycsalád:</strong> Egy $\mathcal{H}$ hash-függvénycsalád univerzális, ha bármely két különböző $k \neq l$ kulcsra, ha egy random $h \in \mathcal{H}$ függvényt választunk, az ütközés valószínűsége: $\Pr[h(k) = h(l)] \leq \frac{1}{M}$</p>
+                    <p><strong>Klasszikus konstrukció:</strong> Válasszunk egy $p \geq |U|$ prímszámot, valamint véletlen $a \in \{1, \ldots, p-1\}$ és $b \in \{0, \ldots, p-1\}$ értékeket. Ekkor a függvény:</p>
+                </math-def>
+
+                <div class="formula-box">
+                    <p>$$h_{a,b}(k) = ((a \cdot k + b) \bmod p) \bmod M$$</p>
+                </div>
             </div>
         </section>
 
@@ -755,6 +984,7 @@
 
                 <math-def>
                     <p><strong>Döntési probléma (Nyelv).</strong> Egy döntési probléma formálisan egy $L \subseteq \Sigma^*$ nyelv, ahol $\Sigma^*$ az ábécé feletti összes szó halmaza. Egy szó ($x$) eldöntése: $x \in L$ vagy $x \notin L$?</p>
+                    <p>A bonyolultságelmélet kizárólag IGEN/NEM kérdésekkel foglalkozik. <em>Miért nem optimalizálási problémákkal?</em> Mert minden optimalizálási probléma visszavezethető döntési problémára egy paraméter bevezetésével. Pl. "Mi a legrövidebb út?" $\to$ "Van-e $K$-nál rövidebb út?". Ha utóbbit meg tudjuk oldani, bináris kereséssel megtaláljuk az optimumot is.</p>
                 </math-def>
 
                 <math-def>
@@ -780,6 +1010,11 @@
                     <li>Prímtesztelés (AKS: $O(n^6)$, ahol $n$ az input bitjeinek száma)</li>
                 </ul>
 
+                <math-note>
+                    <p><strong>A kódolás mérete (Gyakori csapda!):</strong> A bonyolultságelméletben $n$ mindig az <em>input ábrázolásához szükséges bitek száma</em>. 
+                    <br>Ha a bemenet egy $N$ nagyságú szám, a bitjeinek száma $n \approx \log_2 N$. Ha egy algoritmus (pl. naiv prímtesztelés osztással) $\sqrt{N}$ lépést tesz meg, az valójában $O(2^{n/2})$ lépés, azaz <strong>exponenciális</strong> a bemenet tényleges méretében! Azokat az algoritmusokat, amik $N$-ben polinomiálisak (de $n$-ben exponenciálisak), <strong>pszeudopolinomiális</strong> algoritmusoknak hívjuk (pl. hátizsák probléma dinamikus programozással).</p>
+                </math-note>
+
                 <!-- 10.3 NP osztály -->
                 <math-header><span class="num-badge">10.3</span><h3>Az NP osztály</h3></math-header>
 
@@ -798,6 +1033,12 @@
                 </div>
 
                 <p>Intuitívan: az NP-beli problémák azok, amelyekre a megoldás ugyan nehéz lehet, de <strong>ha valaki adna nekünk egy megoldást (tanút), azt gyorsan ellenőrizni tudjuk</strong>.</p>
+                
+                <math-note>
+                    <p><strong>P vs NP intuitívan:</strong> Gondoljunk egy bonyolult puzzle-re (pl. Rubik-kocka, vagy egy nagy Sudoku).
+                    <br>• <strong>P:</strong> Olyan probléma, amit könnyű (polinom időben) <em>megoldani</em>.
+                    <br>• <strong>NP:</strong> Olyan probléma, amit könnyű (polinom időben) <em>leellenőrizni</em>, ha valaki megadja a megoldást. A megoldás megtalálása lehet nagyon nehéz, de a kész Sudokuról másodpercek alatt megmondjuk, hogy helyes-e.</p>
+                </math-note>
 
                 <math-theorem>
                     <p><strong>$\mathbf{P} \subseteq \mathbf{NP}$.</strong> Minden P-beli probléma triviálisan NP-beli is (a determinisztikus Turing-gép egy speciális nemdeterminisztikus is). A fordított irány ($\mathbf{NP} \subseteq \mathbf{P}$, azaz $\mathbf{P} = \mathbf{NP}$?) a számítástudomány <strong>legnagyobb nyitott kérdése</strong>.</p>
@@ -861,13 +1102,18 @@
                 </math-note>
 
                 <!-- 11.3 Példa -->
-                <math-header><span class="num-badge">11.3</span><h3>Hogyan adjunk meg redukciót?</h3></math-header>
+                <math-header><span class="num-badge">11.3</span><h3>Hogyan adjunk meg redukciót a gyakorlatban?</h3></math-header>
 
-                <p>Egy Karp-redukció megadásához három dolgot kell tenni:</p>
+                <math-note>
+                    <p><strong>A redukció iránya (Kritikus!):</strong> Ha be akarjuk bizonyítani, hogy egy ÚJ probléma nehéz, akkor egy már ismert, <strong>RÉGI nehéz problémát kell visszavezetni az ÚJ problémára</strong> ($RÉGI \leq_p ÚJ$). Soha nem fordítva! Ha az Újat vezetjük vissza a Régire, azzal csak azt bizonyítjuk, hogy az Új probléma nem nehezebb a réginél (ami triviális, hiszen a régi már eleve az egyik legnehezebb).</p>
+                </math-note>
+
+                <p>Egy $A \leq_p B$ Karp-redukció megadásához négy dolgot kell tenni (recept):</p>
                 <ol>
-                    <li><strong>Megadjuk az $f$ függvényt:</strong> leírjuk, hogyan transzformáljuk az $L_1$ egy inputját $L_2$ egy inputjává.</li>
-                    <li><strong>Bizonyítjuk a helyességet:</strong> megmutatjuk, hogy $x \in L_1 \iff f(x) \in L_2$ (mindkét irányban!).</li>
-                    <li><strong>Bizonyítjuk, hogy $f$ polinom idejű:</strong> megmutatjuk, hogy a transzformáció kiszámítása polinom időben végezhető.</li>
+                    <li><strong>Konstrukció (az $f$ függvény megadása):</strong> Leírjuk algoritmus szintjén, hogyan készítünk az $A$ probléma tetszőleges $x$ inputjából egy megfelelő $f(x)$ inputot a $B$ probléma számára.</li>
+                    <li><strong>Polinom idejűség:</strong> Megindokoljuk, hogy ez a konstrukciós lépés miért hajtható végre polinom időben.</li>
+                    <li><strong>$\Rightarrow$ irány bizonyítása:</strong> Ha az eredeti $x$ bemenetre IGEN volt a válasz, bebizonyítjuk, hogy az átalakított $f(x)$ bemenetre is IGEN a válasz a $B$ probléma szerint.</li>
+                    <li><strong>$\Leftarrow$ irány bizonyítása:</strong> Ha az átalakított $f(x)$ bemenetre IGEN a válasz a $B$ probléma szerint, bebizonyítjuk, hogy az eredeti $x$ bemenetre is IGEN a válasz az $A$ probléma szerint. (A "mindkét irány" bizonyítása elengedhetetlen!)</li>
                 </ol>
             </div>
         </section>
@@ -941,7 +1187,7 @@
 
                 <math-theorem>
                     <p><strong>Cook-Levin tétel (1971).</strong> A SAT probléma <strong>NP-teljes</strong>.</p>
-                    <p>Ez volt az első probléma, amelyről bebizonyították, hogy NP-teljes. A bizonyítás lényege: bármely NTG számítás leírható egy Boole-formulaként, amely pontosan akkor kielégíthető, ha az NTG elfogadja az inputot.</p>
+                    <p>Ez volt az első probléma, amelyről bebizonyították, hogy NP-teljes. A bizonyítás lényege: bármely NTG számítás (állapotátmenetek, szalag tartalma) lépésről-lépésre leírható egy hatalmas, de polinom méretű Boole-formulaként. Ez a formula pontosan akkor kielégíthető, ha az NTG elfogadja az adott inputot egy polinom hosszú elfogadó számítási úton.</p>
                 </math-theorem>
 
                 <!-- 13.2 3-SAT -->
@@ -1007,7 +1253,13 @@
                 </math-def>
 
                 <math-note>
-                    <p><strong>Összefoglaló: Redukciók láncolata.</strong> A legfontosabb NP-teljességi bizonyítások a következő „láncot" követik: $\text{SAT} \leq_p \text{3-SAT} \leq_p \text{3-SZÍN}$, $\text{3-SAT} \leq_p \text{MAXFTLEN} \leq_p \text{MAXKLIKK}$, $\text{3-SAT} \leq_p \text{Hamilton-kör} \leq_p \text{TSP}$, $\text{3-SAT} \leq_p \text{Részhalmazösszeg} \leq_p \text{Partíció}$.</p>
+                    <p><strong>Összefoglaló: Redukciók láncolata (Karp 21 problémája alapján).</strong> Richard Karp 1972-ben 21 különböző területről származó problémáról bizonyította be, hogy NP-teljesek, mindezt a SAT-ra (és egymásra) visszavezetve. A jegyzetben szereplő legfontosabb bizonyítási láncok:</p>
+                    <ul>
+                        <li><strong>Gráfszínezés irány:</strong> $\text{SAT} \leq_p \text{3-SAT} \leq_p \text{3-SZÍN}$</li>
+                        <li><strong>Részgráfok irány:</strong> $\text{3-SAT} \leq_p \text{Független Halmaz (MAXFTLEN)} \leq_p \text{Klikk (MAXKLIKK)} \leq_p \text{Csúcslefedés (Vertex Cover)}$</li>
+                        <li><strong>Útvonalkeresés irány:</strong> $\text{3-SAT} \leq_p \text{Hamilton-kör} \leq_p \text{Utazó Ügynök (TSP)}$</li>
+                        <li><strong>Számelmélet irány:</strong> $\text{3-SAT} \leq_p \text{Részhalmazösszeg} \leq_p \text{Partíció} \leq_p \text{Hátizsák}$</li>
+                    </ul>
                 </math-note>
             </div>
         </section>
