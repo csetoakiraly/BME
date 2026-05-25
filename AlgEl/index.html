@@ -402,6 +402,12 @@
             <li><button class="tab-button" onclick="openTab(event, 'week13')">13. Hét: Nevezetes NP-teljes problémák</button></li>
         </ul>
         <div class="sidebar-header" style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid var(--glass-border); border-bottom: none;">
+            <h2 style="margin: 0; font-size: 1.1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Összefoglalók</h2>
+        </div>
+        <ul class="tab-menu" style="padding-top: 0;">
+            <li><button class="tab-button" onclick="openTab(event, 'sorting_table')">Rendezések Táblázat</button></li>
+        </ul>
+        <div class="sidebar-header" style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid var(--glass-border); border-bottom: none;">
             <h2 style="margin: 0; font-size: 1.1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Gyakorlás / ZH</h2>
         </div>
         <ul class="tab-menu" style="padding-top: 0;">
@@ -671,74 +677,6 @@ Max-Heapify(A, i):
                 <math-note>
                     <p><strong>Összehasonlítás a Quick Sorttal:</strong> A Heap Sort mindig $O(n \log n)$ (nincs $O(n^2)$ legrosszabb eset!), helyben (in-place) rendez, és csak $O(1)$ extra memóriát használ. Hátránya, hogy nem stabil, és a gyakorlatban a konstans szorzója kicsit nagyobb, mint a Quick Sorté (cache-hatékonyság miatt).</p>
                 </math-note>
-
-                <!-- 7.5 Összefoglaló táblázat -->
-                <math-header><span class="num-badge">7.5</span><h3>Rendezések Összehasonlító Táblázata</h3></math-header>
-
-                <div style="overflow-x: auto; margin: 1.5rem 0;">
-                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                        <thead>
-                            <tr style="border-bottom: 2px solid var(--glass-border);">
-                                <th style="padding: 0.75rem;">Algoritmus</th>
-                                <th style="padding: 0.75rem;">Legjobb idő</th>
-                                <th style="padding: 0.75rem;">Átlagos idő</th>
-                                <th style="padding: 0.75rem;">Legrosszabb idő</th>
-                                <th style="padding: 0.75rem;">Stabil?</th>
-                                <th style="padding: 0.75rem;">Helyben rendez?</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="border-bottom: 1px solid var(--glass-border);">
-                                <td style="padding: 0.75rem;"><strong>Selection Sort</strong></td>
-                                <td style="padding: 0.75rem;">$O(n^2)$</td>
-                                <td style="padding: 0.75rem;">$O(n^2)$</td>
-                                <td style="padding: 0.75rem;">$O(n^2)$</td>
-                                <td style="padding: 0.75rem; color: #f87171;">Nem</td>
-                                <td style="padding: 0.75rem; color: var(--accent);">Igen</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid var(--glass-border);">
-                                <td style="padding: 0.75rem;"><strong>Bubble Sort</strong></td>
-                                <td style="padding: 0.75rem;">$O(n)$</td>
-                                <td style="padding: 0.75rem;">$O(n^2)$</td>
-                                <td style="padding: 0.75rem;">$O(n^2)$</td>
-                                <td style="padding: 0.75rem; color: var(--accent);">Igen</td>
-                                <td style="padding: 0.75rem; color: var(--accent);">Igen</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid var(--glass-border);">
-                                <td style="padding: 0.75rem;"><strong>Insertion Sort</strong></td>
-                                <td style="padding: 0.75rem;">$O(n)$</td>
-                                <td style="padding: 0.75rem;">$O(n^2)$</td>
-                                <td style="padding: 0.75rem;">$O(n^2)$</td>
-                                <td style="padding: 0.75rem; color: var(--accent);">Igen</td>
-                                <td style="padding: 0.75rem; color: var(--accent);">Igen</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid var(--glass-border);">
-                                <td style="padding: 0.75rem;"><strong>Merge Sort</strong></td>
-                                <td style="padding: 0.75rem;">$O(n \log n)$</td>
-                                <td style="padding: 0.75rem;">$O(n \log n)$</td>
-                                <td style="padding: 0.75rem;">$O(n \log n)$</td>
-                                <td style="padding: 0.75rem; color: var(--accent);">Igen</td>
-                                <td style="padding: 0.75rem; color: #f87171;">Nem ($O(n)$)</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid var(--glass-border);">
-                                <td style="padding: 0.75rem;"><strong>Quick Sort</strong></td>
-                                <td style="padding: 0.75rem;">$O(n \log n)$</td>
-                                <td style="padding: 0.75rem;">$O(n \log n)$</td>
-                                <td style="padding: 0.75rem;">$O(n^2)$</td>
-                                <td style="padding: 0.75rem; color: #f87171;">Nem</td>
-                                <td style="padding: 0.75rem; color: var(--accent);">Igen</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 0.75rem;"><strong>Heap Sort</strong></td>
-                                <td style="padding: 0.75rem;">$O(n \log n)$</td>
-                                <td style="padding: 0.75rem;">$O(n \log n)$</td>
-                                <td style="padding: 0.75rem;">$O(n \log n)$</td>
-                                <td style="padding: 0.75rem; color: #f87171;">Nem</td>
-                                <td style="padding: 0.75rem; color: var(--accent);">Igen</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </section>
 
@@ -1925,6 +1863,117 @@ Left-Rotate(T, x):
                     <br>$\Leftarrow$: Ha $G'$-ben van két egy pontban metsző $n$ hosszú kör, akkor a mesterséges kör struktúrája miatt az egyik kör kötelezően a mesterséges kör kell hogy legyen (mivel annak csúcsaihoz másképp nem lehet eljutni). A másik $n$ hosszú kör tehát kizárólag az eredeti $G$ csúcsait használhatja, azaz az eredeti $G$-ben lévő Hamilton-kör.</p>
                 </math-def>
 
+            </div>
+        </section>
+
+        <!-- ============================================================
+             ÖSSZEFOGLALÓK: RENDEZÉSEK TÁBLÁZAT
+             ============================================================ -->
+        <section id="sorting_table" class="tab-pane">
+            <div class="content-card">
+                <h2>Rendezési Algoritmusok Összefoglaló Táblázata</h2>
+                <p class="week-subtitle">Az összes kurzuson tárgyalt rendezés egy helyen</p>
+
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Alapfogalmak a táblázathoz:</strong>
+                    <br>• <strong>Stabil-e?</strong> Megőrzi-e az egyenlő értékű elemek eredeti relatív sorrendjét a kimenetben? (Nagyon fontos pl. Radix sortnál).
+                    <br>• <strong>Helyben rendező-e (In-place)?</strong> Igényel-e a bemeneti tömbön felül több extra memóriát, mint konstans $O(1)$? Ha nem igényel, akkor helyben rendező.</p>
+                </div>
+
+                <div style="overflow-x: auto; margin: 1.5rem 0;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--glass-border); background-color: rgba(255, 255, 255, 0.05);">
+                                <th style="padding: 1rem;">Algoritmus</th>
+                                <th style="padding: 1rem;">Legjobb eset</th>
+                                <th style="padding: 1rem;">Átlagos eset</th>
+                                <th style="padding: 1rem;">Legrosszabb eset</th>
+                                <th style="padding: 1rem;">Stabil?</th>
+                                <th style="padding: 1rem;">Helyben rendez?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Elemi rendezések -->
+                            <tr style="border-bottom: 1px solid var(--glass-border);">
+                                <td style="padding: 1rem;"><strong>Buborékrendezés</strong><br><span style="font-size: 0.8em; color: var(--text-muted);">Bubble Sort</span></td>
+                                <td style="padding: 1rem;">$O(n)$</td>
+                                <td style="padding: 1rem;">$O(n^2)$</td>
+                                <td style="padding: 1rem;">$O(n^2)$</td>
+                                <td style="padding: 1rem; color: var(--accent);">Igen</td>
+                                <td style="padding: 1rem; color: var(--accent);">Igen</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--glass-border);">
+                                <td style="padding: 1rem;"><strong>Beszúrásos rendezés</strong><br><span style="font-size: 0.8em; color: var(--text-muted);">Insertion Sort</span></td>
+                                <td style="padding: 1rem;">$O(n)$</td>
+                                <td style="padding: 1rem;">$O(n^2)$</td>
+                                <td style="padding: 1rem;">$O(n^2)$</td>
+                                <td style="padding: 1rem; color: var(--accent);">Igen</td>
+                                <td style="padding: 1rem; color: var(--accent);">Igen</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--glass-border);">
+                                <td style="padding: 1rem;"><strong>Kiválasztásos rendezés</strong><br><span style="font-size: 0.8em; color: var(--text-muted);">Selection Sort</span></td>
+                                <td style="padding: 1rem;">$O(n^2)$</td>
+                                <td style="padding: 1rem;">$O(n^2)$</td>
+                                <td style="padding: 1rem;">$O(n^2)$</td>
+                                <td style="padding: 1rem; color: #f87171;">Nem</td>
+                                <td style="padding: 1rem; color: var(--accent);">Igen</td>
+                            </tr>
+                            
+                            <!-- Hatékony rendezések -->
+                            <tr style="border-bottom: 1px solid var(--glass-border);">
+                                <td style="padding: 1rem;"><strong>Összefésüléses rendezés</strong><br><span style="font-size: 0.8em; color: var(--text-muted);">Merge Sort</span></td>
+                                <td style="padding: 1rem;">$O(n \log n)$</td>
+                                <td style="padding: 1rem;">$O(n \log n)$</td>
+                                <td style="padding: 1rem;">$O(n \log n)$</td>
+                                <td style="padding: 1rem; color: var(--accent);">Igen</td>
+                                <td style="padding: 1rem; color: #f87171;">Nem ($O(n)$)</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--glass-border);">
+                                <td style="padding: 1rem;"><strong>Gyorsrendezés</strong><br><span style="font-size: 0.8em; color: var(--text-muted);">Quick Sort</span></td>
+                                <td style="padding: 1rem;">$O(n \log n)$</td>
+                                <td style="padding: 1rem;">$O(n \log n)$</td>
+                                <td style="padding: 1rem;">$O(n^2)$</td>
+                                <td style="padding: 1rem; color: #f87171;">Nem</td>
+                                <td style="padding: 1rem; color: var(--accent);">Igen</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--glass-border);">
+                                <td style="padding: 1rem;"><strong>Kupacrendezés</strong><br><span style="font-size: 0.8em; color: var(--text-muted);">Heap Sort</span></td>
+                                <td style="padding: 1rem;">$O(n \log n)$</td>
+                                <td style="padding: 1rem;">$O(n \log n)$</td>
+                                <td style="padding: 1rem;">$O(n \log n)$</td>
+                                <td style="padding: 1rem; color: #f87171;">Nem</td>
+                                <td style="padding: 1rem; color: var(--accent);">Igen</td>
+                            </tr>
+
+                            <!-- Kulcsmanipulációs rendezések -->
+                            <tr style="border-bottom: 1px solid var(--glass-border);">
+                                <td style="padding: 1rem;"><strong>Ládarendezés</strong><br><span style="font-size: 0.8em; color: var(--text-muted);">Bucket Sort</span></td>
+                                <td style="padding: 1rem;">$O(n + k)$</td>
+                                <td style="padding: 1rem;">$O(n + k)$</td>
+                                <td style="padding: 1rem;">$O(n^2)$ <br><span style="font-size: 0.8em; color: var(--text-muted);">(ha egy ládába kerül minden)</span></td>
+                                <td style="padding: 1rem; color: var(--accent);">Igen</td>
+                                <td style="padding: 1rem; color: #f87171;">Nem ($O(n+k)$)</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--glass-border);">
+                                <td style="padding: 1rem;"><strong>Leszámláló rendezés</strong><br><span style="font-size: 0.8em; color: var(--text-muted);">Counting Sort</span></td>
+                                <td style="padding: 1rem;">$O(n + k)$</td>
+                                <td style="padding: 1rem;">$O(n + k)$</td>
+                                <td style="padding: 1rem;">$O(n + k)$</td>
+                                <td style="padding: 1rem; color: var(--accent);">Igen</td>
+                                <td style="padding: 1rem; color: #f87171;">Nem ($O(n+k)$)</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 1rem;"><strong>Radix rendezés</strong><br><span style="font-size: 0.8em; color: var(--text-muted);">Radix Sort</span></td>
+                                <td style="padding: 1rem;">$O(d(n+k))$</td>
+                                <td style="padding: 1rem;">$O(d(n+k))$</td>
+                                <td style="padding: 1rem;">$O(d(n+k))$</td>
+                                <td style="padding: 1rem; color: var(--accent);">Igen</td>
+                                <td style="padding: 1rem; color: #f87171;">Nem</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="font-size: 0.85em; color: var(--text-muted); margin-top: 1rem;">* Jelölések: <strong>$n$</strong> a bemeneti elemek száma, <strong>$k$</strong> a kulcsok lehetséges értékeinek száma (a kulcstartomány mérete), <strong>$d$</strong> a számjegyek vagy komponensek száma Radix sort esetén.</p>
+                </div>
             </div>
         </section>
 
