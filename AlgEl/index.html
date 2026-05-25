@@ -22,8 +22,21 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-        mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+        mermaid.initialize({ startOnLoad: false, theme: 'dark' });
         window.mermaid = mermaid;
+        
+        // Ensure mermaid renders on the initially active tab
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(() => {
+                const activeTab = document.querySelector('.tab-pane.active');
+                if (activeTab && window.mermaid) {
+                    try {
+                        const nodes = activeTab.querySelectorAll('.mermaid:not([data-processed="true"])');
+                        if (nodes.length > 0) window.mermaid.run({ nodes: nodes });
+                    } catch(e) {}
+                }
+            }, 500);
+        });
     </script>
 
     <style>
@@ -1940,9 +1953,16 @@ Left-Rotate(T, x):
                 MathJax.typesetPromise([document.getElementById(tabId)]);
             }
             
-            // Re-render Mermaid diagrams in the active tab (they sometimes fail to render if hidden)
+            // Re-render Mermaid diagrams in the active tab
             if (window.mermaid) {
-                window.mermaid.run({ querySelector: '#' + tabId + ' .mermaid' });
+                try {
+                    var nodes = document.querySelectorAll('#' + tabId + ' .mermaid:not([data-processed="true"])');
+                    if (nodes.length > 0) {
+                        window.mermaid.run({ nodes: nodes });
+                    }
+                } catch(e) {
+                    console.error("Mermaid render error:", e);
+                }
             }
         }
     </script>
