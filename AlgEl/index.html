@@ -20,6 +20,11 @@
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+        window.mermaid = mermaid;
+    </script>
 
     <style>
         /* ============================================================
@@ -382,6 +387,15 @@
             <li><button class="tab-button" onclick="openTab(event, 'week11')">11. Hét: Karp-redukció</button></li>
             <li><button class="tab-button" onclick="openTab(event, 'week12')">12. Hét: NP-teljesség</button></li>
             <li><button class="tab-button" onclick="openTab(event, 'week13')">13. Hét: Nevezetes NP-teljes problémák</button></li>
+        </ul>
+        <div class="sidebar-header" style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid var(--glass-border); border-bottom: none;">
+            <h2 style="margin: 0; font-size: 1.1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Gyakorlás / ZH</h2>
+        </div>
+        <ul class="tab-menu" style="padding-top: 0;">
+            <li><button class="tab-button" onclick="openTab(event, 'zh2_minta')">ZH2 - Minta feladatsor</button></li>
+            <li><button class="tab-button" onclick="openTab(event, 'zh2_2023')">ZH2 - 2023. tavasz</button></li>
+            <li><button class="tab-button" onclick="openTab(event, 'zh2_2024')">ZH2 - 2024. tavasz</button></li>
+            <li><button class="tab-button" onclick="openTab(event, 'zh2_2025')">ZH2 - 2025. tavasz</button></li>
         </ul>
     </aside>
 
@@ -1262,6 +1276,645 @@ Left-Rotate(T, x):
             </div>
         </section>
 
+        <!-- ============================================================
+             ZH2: MINTA FELADATSOR
+             ============================================================ -->
+        <section id="zh2_minta" class="tab-pane">
+            <div class="content-card">
+                <h2>Minta 2. ZH Megoldásokkal</h2>
+                <p class="week-subtitle">Gyakorlás a 2. zárthelyire</p>
+
+                <!-- 1. Feladat -->
+                <math-header><span class="num-badge">1</span><h3>Kupac építés és műveletek</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong><br>
+                    (a) Rajzolja fel a 3, 8, 4, 12, 10, 6, 21, 33 tömbbel adott kupacot bináris fa alakban. (Itt indoklás nem szükséges.)<br>
+                    (b) Szúrja be ebbe a kupacba (a fa alakban) az 5-öt, majd hajtson végre egy MINTÖR-t, a megoldása során látszódjanak az egyes lépései a műveleteknek.</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás (a):</strong> Az elemeket a tömb indexei alapján fentről lefelé, balról jobbra olvassuk be a fába. Az $i$-edik elem bal gyereke a $2i$, jobb gyereke a $2i+1$ indexen van.</p>
+                    <div class="mermaid" style="text-align: center;">
+                        graph TD
+                            A((3)) --- B((8))
+                            A --- C((4))
+                            B --- D((12))
+                            B --- E((10))
+                            C --- F((6))
+                            C --- G((21))
+                            D --- H((33))
+                    </div>
+                </math-def>
+
+                <math-def>
+                    <p><strong>Megoldás (b) - Beszúrás:</strong> Az új elemet (5) a fa legalsó szintjének első szabad helyére tesszük (a 12 jobb gyerekeként). Mivel ez min-kupac, és az 5 kisebb a szülőjénél (12), felszivárogtatjuk. Kicseréljük a 12-vel, majd az új szülőjével (8) is. A 3-nál már nem kisebb, így megáll.</p>
+                    <div class="mermaid" style="text-align: center;">
+                        graph TD
+                            A((3)) --- B((5))
+                            A --- C((4))
+                            B --- D((8))
+                            B --- E((10))
+                            C --- F((6))
+                            C --- G((21))
+                            D --- H((33))
+                            D --- I((12))
+                    </div>
+                </math-def>
+
+                <math-def>
+                    <p><strong>Megoldás (b) - MINTÖR:</strong> A gyökeret (3) eltávolítjuk. Helyére az utolsó elem (12) kerül. Ezután a 12-t lesüllyesztjük: összehasonlítjuk a gyerekeivel (5 és 4). A kisebbikkel cserélünk, tehát a 4-gyel. A 12 új helyén a gyerekei 6 és 21. A kisebbik a 6, tehát azzal cserélünk. Itt a 12 levéllé válik, a süllyesztés megáll.</p>
+                    <div class="mermaid" style="text-align: center;">
+                        graph TD
+                            A((4)) --- B((5))
+                            A --- C((6))
+                            B --- D((8))
+                            B --- E((10))
+                            C --- F((12))
+                            C --- G((21))
+                            D --- H((33))
+                    </div>
+                </math-def>
+                
+                <!-- 2. Feladat -->
+                <math-header><span class="num-badge">2</span><h3>Keresőfa pre-order bejárás</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> Egy bináris keresőfa preorder bejárása során a fa csúcsait 3, 10, 4, 8, 7, 9 sorrendben látogatjuk meg. Rajzolja fel ezt a hat csúcsú bináris keresőfát, ahol ez megtörténhetett, majd lássa be, hogy a fa csak így nézhet ki.</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong> A preorder bejárás (Szülő $\to$ Bal $\to$ Jobb) miatt a sorozat <strong>első eleme mindig a fa gyökere</strong>! Tehát a gyökér a 3.<br>
+                    A bináris keresőfa (BST) tulajdonság miatt a 3-nál kisebb elemek balra, a nagyobbak jobbra kerülnek. Mivel a felsorolásban minden további elem (10, 4, 8, 7, 9) nagyobb 3-nál, a 3-nak <strong>nincs bal részfája</strong>.<br>
+                    A jobb részfa preorder bejárása: 10, 4, 8, 7, 9. Ennek gyökere a 10. A 10-nél kisebbek (4, 8, 7, 9) a bal részfába kerülnek. Jobb részfája a 10-nek nincs.<br>
+                    A 10 bal részfájának gyökere a 4. A 4-nél nagyobbak (8, 7, 9) a jobb részfájába kerülnek.<br>
+                    A 4 jobb részfájának gyökere a 8. A 8-nál kisebb (7) balra, a nagyobb (9) jobbra kerül.</p>
+                    <div class="mermaid" style="text-align: center;">
+                        graph TD
+                            A((3)) --- B[NIL]
+                            style B fill:transparent,stroke:transparent,color:transparent
+                            A --- C((10))
+                            C --- D((4))
+                            C --- E[NIL]
+                            style E fill:transparent,stroke:transparent,color:transparent
+                            D --- F[NIL]
+                            style F fill:transparent,stroke:transparent,color:transparent
+                            D --- G((8))
+                            G --- H((7))
+                            G --- I((9))
+                    </div>
+                </math-def>
+
+                <!-- 3. Feladat -->
+                <math-header><span class="num-badge">3</span><h3>Piros-fekete fa beszúrás</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> Szúrja be a következő piros-fekete fába a 9-et. (A kerek csúcs fekete, a szögletes pedig piros.) A megoldásban látszódjanak melyik műveleteket végzi, de indokolni nem kell.<br>
+                    A fa (zárójelben a szín): 2(F) a gyökér, bal gyereke 1(F), jobb gyereke 4(F). A 4 jobb gyereke 5(P).</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong></p>
+                    <p>1. Naiv beszúrás: A 9 az 5 jobb gyereke lesz, és az új elemet mindig <strong>pirosra</strong> színezzük. Ezzel azonban megsértjük azt a szabályt, hogy piros csúcsnak nem lehet piros gyereke (az 5 és a 9 is piros).</p>
+                    <p>2. Javítás: Megnézzük a 9 "nagybátyját" (a 4 bal gyerekét), ami NIL (vagyis fekete). Ez a "fekete nagybácsi, egyenes vonal" esete (Right-Right, mivel a 4 jobb gyereke az 5, és az 5 jobb gyereke a 9).<br>
+                    A szabály: a szülőt (5) feketére, a nagyszülőt (4) pirosra színezzük, majd balra forgatunk a nagyszülő (4) körül.</p>
+                    <div class="mermaid" style="text-align: center;">
+                        graph TD
+                            A((2:Fekete)) --- B((1:Fekete))
+                            A --- C((5:Fekete))
+                            C --- D((4:Piros))
+                            C --- E((9:Piros))
+                    </div>
+                </math-def>
+
+                <!-- 4. Feladat -->
+                <math-header><span class="num-badge">4</span><h3>2-3 fa tulajdonság</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> Egy kezdetben üres 2-3-fába az 1, 2, ..., n számokat szúrtuk be ebben a sorrendben. Bizonyítsa be, hogy a keletkezett fában a háromgyerekes csúcsok száma O(log n).</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong> Háromgyerekes (3-csúcs) bármikor csak úgy tud keletkezni, hogy egy kétgyerekes csúcsnak keletkezik egy harmadik gyereke (akár a levél szinten új elem beszúrásával, akár feljebb egy csúcsvágás propagálásával).<br>
+                    Mivel az elemeket szigorúan monoton növekvő sorrendben (1, 2, ..., n) szúrjuk be, az új elem <strong>mindig a fa legjobboldalibb</strong> pozíciójába (a maximális elem után) érkezik. Ezért a legalsó, levél szinten <strong>csak a legjobboldalibb csúcs</strong> lehet háromgyerekes (vagy válik azzá, majd hasad ketté).<br>
+                    Ugyanez igaz a felsőbb szintekre is: a csúcsvágások (split) csak a jobb szélen haladnak felfelé, a fa többi része (a belső csúcsok) már soha nem módosul a további beszúrások során.<br>
+                    Ebből következik, hogy szintenként <strong>legfeljebb egy</strong> háromgyerekes csúcs (a legjobboldalibb) lehet a keletkezett fában. Mivel a 2-3 fa magassága garantáltan $O(\log n)$, így a háromgyerekes csúcsok maximális száma is megegyezik a szintek számával, ami $O(\log n)$.</p>
+                </math-def>
+
+                <!-- 5. Feladat -->
+                <math-header><span class="num-badge">5</span><h3>coNP bizonyítás</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> Lássa be, hogy az alábbi eldöntési probléma coNP-ben van:<br>
+                    <strong>Input:</strong> $G$ egyszerű, összefüggő, irányítatlan gráf<br>
+                    <strong>Kérdés:</strong> Igaz-e, hogy $G$ minden feszítőfájában van olyan csúcs, aminek a feszítőfában négy szomszédja van (azaz a csúcs foka a fában negyedfokú)?</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong> Azt kell belátni, hogy a probléma <strong>komplementere NP-beli</strong>. Azaz van egy polinom méretű, gyorsan ellenőrizhető tanú a komplementer probléma "igen" inputjaira.<br>
+                    A komplementer kérdés: <em>Igaz-e, hogy $G$-nek van olyan feszítőfája, amiben nincsen negyedfokú csúcs?</em><br>
+                    A tanú magától értetődően maga az <strong>$F$ feszítőfa</strong> lesz. Ez polinom (sőt, lineáris) méretű, hiszen pontosan $|V|-1$ élt tartalmaz.<br>
+                    Az ellenőrző algoritmusnak (bírónak) a következőket kell polinom időben leellenőriznie:
+                    <ol>
+                        <li>$F$ élei valóban $G$ élei-e? ($O(m)$ idő)</li>
+                        <li>$F$ valóban összefüggő-e és minden csúcsot tartalmaz-e? (Egy BFS futtatása $F$-en: $O(n)$ idő)</li>
+                        <li>Van-e $F$-ben negyedfokú csúcs? (Végigmegyünk az $F$ csúcsain, és minden csúcs fokszámát ellenőrizzük: $O(n)$ idő)</li>
+                    </ol>
+                    Mivel mindez polinom időben elvégezhető, a komplementer probléma NP-ben van, így az eredeti probléma coNP-ben van.</p>
+                </math-def>
+
+                <!-- 6. Feladat -->
+                <math-header><span class="num-badge">6</span><h3>NP-teljesség bizonyítása redukcióval</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> P-ben van vagy NP-teljes az alábbi NP-beli eldöntési feladat?<br>
+                    <strong>Input:</strong> $G$ irányítatlan gráf szomszédsági mátrixával és $k$ pozitív egész szám.<br>
+                    <strong>Kérdés:</strong> Igaz-e, hogy $G$-ben van $k$ méretű klikk ÉS $k$ elemű független ponthalmaz is?</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong> A feladat <strong>NP-teljes</strong>. Ehhez egy már ismert NP-teljes problémát, például a MAXFTLEN-t (Maximum Független Halmaz problémát) kell polinom időben visszavezetnünk (Karp-redukálni) erre a problémára.<br>
+                    <strong>Konstrukció ($MAXFTLEN \leq_p ÚJ$):</strong> Kapunk a MAXFTLEN-ből egy $(G, k)$ bemenetet. Készítsünk ebből egy $(G', k')$ bemenetet az új probléma számára.<br>
+                    - Legyen $k' = k$.<br>
+                    - $G'$-t úgy kapjuk $G$-ből, hogy hozzáveszünk $k$ darab <strong>új csúcsot</strong>, amelyeket egymással mind összekötünk (tehát alkotnak egy $k$ méretű klikket), és mind a $k$ új csúcsot összekötjük $G$ <strong>minden eredeti csúcsával</strong>.<br>
+                    Ez a konstrukció nyilvánvalóan polinom időben ($O(n^2)$) elvégezhető.</p>
+                    
+                    <p><strong>Helyesség bizonyítása:</strong><br>
+                    $\Rightarrow$ (Ha volt $k$ méretű független halmaz $G$-ben): Akkor $G'$-ben is lesz $k$ méretű független halmaz (hiszen az eredeti $G$ csúcsai közötti éleket nem bántottuk, az új csúcsokkal való összekötés pedig nem rontja el a régi független halmazt). Továbbá $G'$-ben mesterségesen létrehoztunk egy $k$ méretű klikket is az új csúcsokból. Tehát az új problémára is IGEN a válasz.<br>
+                    $\Leftarrow$ (Ha az új gráfban van $k$-klikk és $k$-független halmaz): Az új gráfban a $k$ méretű független halmaz elemei biztosan az eredeti $G$ csúcsai közül kerülnek ki, hiszen az újonnan hozzáadott csúcsok mindennel (így egymással és a régi csúcsokkal is) össze vannak kötve, így egyetlen új csúcs sem lehet része 1-nél nagyobb független halmaznak. Tehát az eredeti $G$-ben is létezik $k$ méretű független halmaz.</p>
+                </math-def>
+
+                <!-- 7. Feladat -->
+                <math-header><span class="num-badge">7</span><h3>Dinamikus Adatszerkezet (Két Kupac)</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> Ha adott $n$ szám, akkor hívjuk közülük középső elemnek a rendezés szerinti $\lceil n/2 \rceil$-ediket. Kezdetben adottak az $a_1, a_2, \ldots, a_n$ egész számok. Építsen fel egy adatszerkezetet $O(n)$ összehasonlítást használva úgy, hogy a felépített adatszerkezetben az alábbi két műveletet $k$ tárolt elem esetén $O(\log k)$ lépésben meg lehessen valósítani:<br>
+                    BESZÚR: egy új elemet illeszt az adatszerkezetbe,<br>
+                    KÖZÉPTÖR: az aktuális középső elemet törli.</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong> Használjunk <strong>két kupacot</strong>: egy Max-kupacot (neve legyen `LeftHeap`) a kisebb elemeknek, és egy Min-kupacot (`RightHeap`) a nagyobb elemeknek. A cél az, hogy a `LeftHeap` gyökerében mindig a "középső" elem csücsüljön.</p>
+                    <p><strong>Építés ($O(n)$):</strong> Egy lineáris idejű mediánkereső algoritmussal (vagy egyszerű felosztással) megkeressük az $\lceil n/2 \rceil$-edik elemet. Az ennél kisebb vagy egyenlő elemekből felépítünk egy Max-kupacot, a nagyobbakból egy Min-kupacot. A kupacépítés a tanult SiftDown módszerrel $O(n)$ idejű.</p>
+                    <p><strong>Invariáns tulajdonság:</strong> A `LeftHeap` mérete mindig vagy megegyezik a `RightHeap` méretével, vagy pontosan 1-gyel nagyobb nála. Így a `LeftHeap` gyökere (a Max-kupac maximuma) adja meg a mindenkori mediánt.</p>
+                    <p><strong>BESZÚR(x) ($O(\log k)$):</strong> Összehasonlítjuk $x$-et a `LeftHeap` gyökerével (a mediánnal). Ha kisebb (vagy egyenlő), a `LeftHeap`-be szúrjuk, ha nagyobb, a `RightHeap`-be ($O(\log k)$). Ezután ellenőrizzük az invariánst: ha a méretek különbsége 2-re nőne, a nagyobbik kupac gyökerét kivesszük (MINTÖR / MAXTÖR) és beszúrjuk a másik kupacba. Mivel a törlés és beszúrás is logaritmikus, ez a lépés $O(\log k)$.</p>
+                    <p><strong>KÖZÉPTÖR ($O(\log k)$):</strong> A medián mindig a `LeftHeap` gyökere, tehát itt végzünk el egy hagyományos MAXTÖR műveletet ($O(\log k)$). Ha a törlés után a `LeftHeap` kisebbé válna a `RightHeap`-nél, akkor a `RightHeap` gyökerét (MINTÖR) áthelyezzük a `LeftHeap`-be (BESZÚR), hogy az invariáns helyreálljon ($O(\log k)$).</p>
+                </math-def>
+
+            </div>
+        </section>
+
+        <!-- ============================================================
+             ZH2: 2023. TAVASZ
+             ============================================================ -->
+        <section id="zh2_2023" class="tab-pane">
+            <div class="content-card">
+                <h2>2. Zárthelyi - 2023. tavasz</h2>
+                <p class="week-subtitle">2023. június 1.</p>
+
+                <!-- 1. Feladat -->
+                <math-header><span class="num-badge">1</span><h3>Kupac elemzés</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> Egy kupac tömbös reprezentációja: 3, 5, $y$, $x$, 12, 10, 100, 7, 16, 21.<br>
+                    (a) Rajzolja fel a kupacot bináris fa alakban.<br>
+                    (b) Egy MINTÖR végrehajtása után a gyökérbe $y$ kerül. Rajzolja fel ezt a MINTÖR utáni kupacot.<br>
+                    (c) Határozza meg $x$ és $y$ összes lehetséges értékét, ha tudjuk, hogy a tárolt elemek mind különböző egész számok.</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong></p>
+                    <p><strong>(a) Eredeti kupac:</strong> A tömb alapján felrajzolva az indexek szerint:</p>
+                    <div class="mermaid" style="text-align: center;">
+                        graph TD
+                            A((3)) --- B((5))
+                            A --- C((y))
+                            B --- D((x))
+                            B --- E((12))
+                            C --- F((10))
+                            C --- G((100))
+                            D --- H((7))
+                            D --- I((16))
+                            E --- J((21))
+                    </div>
+                    
+                    <p><strong>(b) MINTÖR lépései:</strong> A gyökeret (3) eltávolítjuk, a legutolsó elem (21) kerül a helyére. Mivel a feladat szerint a süllyesztés után $y$ kerül a gyökérbe, a 21-nek az $y$-nal kell helyet cserélnie (ehhez $y < 5$-nek kell teljesülnie). Az új gyökér $y$ lesz. A 21 tovább süllyed: az új helyén a gyerekei 10 és 100. A kisebbik a 10, így azzal is cserél. A 21 végül a 10 helyére kerül, levél lesz.</p>
+                    <div class="mermaid" style="text-align: center;">
+                        graph TD
+                            A((y)) --- B((5))
+                            A --- C((10))
+                            B --- D((x))
+                            B --- E((12))
+                            C --- F((21))
+                            C --- G((100))
+                            D --- H((7))
+                            D --- I((16))
+                    </div>
+                    
+                    <p><strong>(c) $x$ és $y$ értéke:</strong> Mivel ez egy min-kupac, egy szülő mindig kisebb a gyerekeinél.
+                    <br>• Az eredeti fában $y$ a 3 gyereke volt, tehát $y > 3$. A süllyesztésnél láttuk, hogy a 21 az $y$-t választotta kisebbik gyereknek az 5 helyett, tehát $y < 5$. Így $3 < y < 5 \implies y = 4$.
+                    <br>• Az $x$ az 5 gyereke, tehát $x > 5$. Az $x$ gyerekei a 7 és 16, tehát $x < 7$ és $x < 16$. Így $5 < x < 7 \implies x = 6$.</p>
+                </math-def>
+
+                <!-- 2. Feladat -->
+                <math-header><span class="num-badge">2</span><h3>Keresőfa útvonal</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> Egy bináris keresőfában, melyben csupa különböző egész számot tárolunk, a 11-es szám keresése során a 3, 17, 8, z, 11 kulcsokat látjuk ebben a sorrendben. Adja meg z összes lehetséges értékét.</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong> Kövessük végig a keresés útját a BST szabályai szerint:
+                    <br>• <strong>3 $\to$ 17:</strong> A keresett elem (11) nagyobb 3-nál, jobbra lépünk a 17-re. (Ez rendben van). Ebből tudjuk, hogy $z > 3$.
+                    <br>• <strong>17 $\to$ 8:</strong> A 11 kisebb 17-nél, balra lépünk a 8-ra. Ebből tudjuk, hogy $z < 17$.
+                    <br>• <strong>8 $\to$ z:</strong> A 11 nagyobb 8-nál, jobbra lépünk a $z$-re. Ebből tudjuk, hogy $z > 8$.
+                    <br>• <strong>z $\to$ 11:</strong> Két eset lehetséges:
+                    <br>&nbsp;&nbsp;1. eset: A 11 a $z$ bal gyereke. Ekkor $11 < z$. Kombinálva az eddigiekkel: $11 < z < 17$. Mivel egész számok, $z \in \{12, 13, 14, 15, 16\}$.
+                    <br>&nbsp;&nbsp;2. eset: A 11 a $z$ jobb gyereke. Ekkor $11 > z$. Kombinálva az eddigiekkel: $8 < z < 11$. Így $z \in \{9, 10\}$.
+                    <br>Összesítve a lehetséges értékek: <strong>$z \in \{9, 10, 12, 13, 14, 15, 16\}$</strong>.</p>
+                </math-def>
+
+                <!-- 3. Feladat -->
+                <math-header><span class="num-badge">3</span><h3>Hash-elés nyitott címzéssel</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> 11 méretű hash tábla, nyílt címzés, lineáris próba. $h(x) = x \bmod 11$. Egy számot töröltünk (* jelzi). A tábla állapota:<br>
+                    T[3]=14, T[4]=3, T[6]=6, T[7]=18, T[8]=*, T[9]=9, T[10]=20. (A többi üres).<br>
+                    (a) Hogyan zajlik a 19 keresése? Mely cellákat vizsgáljuk meg?<br>
+                    (b) Mi lehetett a törölt szám értéke, ha pozitív egész és < 20?</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong>
+                    <br><strong>(a) Keresés 19-re:</strong> 
+                    <br>1. Kiszámoljuk az alap hash értéket: $h(19) = 19 \bmod 11 = 8$.
+                    <br>2. Megnézzük a 8-as cellát. Ott a * (DELETED) jelzés van. Mivel korábban itt lehetett egy elem, amivel ütközött volna a 19, a lineáris próba miatt <strong>kötelező továbbmenni</strong>!
+                    <br>3. Megnézzük a 9-es cellát: ott a 9 van (nem 19). Továbbmegyünk.
+                    <br>4. Megnézzük a 10-es cellát: ott a 20 van. Továbbmegyünk (körbefordulunk).
+                    <br>5. Megnézzük a 0-ás cellát: ez teljesen <strong>üres (NIL)</strong>. A keresés itt áll meg, a 19 nincs a táblában.
+                    <br>Vizsgált cellák: <strong>8, 9, 10, 0</strong>.</p>
+                    
+                    <p><strong>(b) A törölt szám értéke:</strong> A törölt szám a 8-as indexen állt meg. Milyen alap hash értékekkel ($h(x)$) köthetett ki itt?
+                    <br>• Ha $h(x) = 8$: azonnal bekerült a 8-asra. Ilyen szám 20 alatt: $x=8$ és $x=19$.
+                    <br>• Ha $h(x) = 7$: a 7-es cellát vizsgálta először. Ha a 18 már ott volt, továbbment a 8-asra. Ilyen szám: $x=7$ és $x=18$ (de 18 már van a táblában, elemek pedig különbözőek). Tehát $x=7$.
+                    <br>• Ha $h(x) = 6$: a 6-ost és 7-est vizsgálva eljuthatott a 8-ig. Számok: $x=6$ (már van a táblában) és $x=17$.
+                    <br>• Ha $h(x) = 5$: az 5-ös cella <strong>üres</strong>, tehát ha $h(x)=5$ lett volna, akkor oda kerül, sosem ér el a 8-asig!
+                    <br>Összes lehetséges érték: <strong>$x \in \{7, 8, 17, 19\}$</strong>.</p>
+                </math-def>
+                
+                <!-- 4. Feladat -->
+                <math-header><span class="num-badge">4</span><h3>Gráf algoritmus felismerése</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> Bicikliutakat festenek fel úgy, hogy a főtérről minden csomópontba el lehessen jutni. Ehhez éleket (utakat) kell kiválasztani a gráfból, hogy a megszűnő parkolóhelyek száma (élsúlyok) minimális legyen. Adjon $O(n^2)$ algoritmust.</p>
+                </div>
+                
+                <math-def>
+                    <p><strong>Megoldás:</strong> A feladat lényegében egy <strong>Minimális Feszítőfa (MST)</strong> keresése. A cél egy olyan részgráf (fa) megtalálása, amely minden csúcsot összeköt (összefüggő), és az élsúlyok összege minimális.<br>
+                    Algoritmus: <strong>Prim algoritmusa</strong>. Sűrű gráf vagy szomszédsági mátrixos ábrázolás esetén a Prim algoritmus futási ideje pontosan $O(n^2)$, ami tökéletesen megfelel a feladat elvárásainak.</p>
+                </math-def>
+
+                <!-- 5-6. Feladat -->
+                <math-header><span class="num-badge">5-6</span><h3>NP-teljesség (42-KÖR)</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> A 42-KÖR probléma: Lehet-e $G$ csúcsait 42 pontdiszjunkt körrel lefedni? Lássa be, hogy NP-ben van és NP-teljes.</p>
+                </div>
+                
+                <math-def>
+                    <p><strong>Megoldás (NP-ben van):</strong> A tanú (certificate) maga a 42 darab kör (a csúcsok sorozata). Ennek mérete polinom (maximum $n$ csúcs van bennük összesen). Az ellenőrző algoritmus polinom időben ($O(n^2)$) megvizsgálja, hogy: (1) Valóban 42 kör van-e, (2) a körök élei léteznek-e $G$-ben, (3) a köröknek nincsenek közös csúcsai (pontdiszjunktak), és (4) a 42 kör együtt lefedi-e $G$ összes csúcsát.</p>
+                    
+                    <p><strong>Megoldás (NP-teljes):</strong> Karp-redukcióval visszavezetjük rá az ismert NP-teljes <strong>Hamilton-kör</strong> problémát ($HAM \leq_p \text{42-KÖR}$).<br>
+                    Konstrukció: Kapunk egy $G$ gráfot, ami a HAM bemenete. Hozzunk létre egy $G'$ gráfot úgy, hogy $G$-hez hozzáveszünk <strong>41 darab izolált háromszöget</strong> ($K_3$). Ezek az új csúcsok semmilyen más éllel nincsenek bekötve $G$-be.<br>
+                    Bizonyítás:
+                    <br>$\Rightarrow$: Ha $G$-ben volt Hamilton-kör, akkor $G'$-ben a Hamilton-kör + a 41 darab izolált háromszög pontosan 42 darab pontdiszjunkt kört ad, amik lefedik $G'$ csúcsait.
+                    <br>$\Leftarrow$: Ha $G'$-t le lehet fedni 42 körrel, akkor a 41 izolált háromszöget (mivel nincsenek összekötve mással) kötelezően 41 önálló körnek kell lefednie. Így pontosan 1 darab kör marad az eredeti $G$ részgráf lefedésére, ami definíció szerint egy Hamilton-kör $G$-ben.</p>
+                </math-def>
+
+                <!-- 7. Feladat -->
+                <math-header><span class="num-badge">7</span><h3>Összetett Adatszerkezet Tervezése</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> Diákok pontjainak nyilvántartása. Neptun kód alapján beszúrás ($O(\log n)$), pontnövelés ($O(\log n)$), lekérdezés ($O(\log n)$). Valamint a <strong>KI_A_LEGJOBB</strong> lekérdezés, aminek $O(k)$ időben kell visszaadnia a maximális pontszámú $k$ diák Neptun kódját.</p>
+                </div>
+                
+                <math-def>
+                    <p><strong>Megoldás:</strong> Két összekapcsolt adatszerkezetet használunk:
+                    <ol>
+                        <li><strong>Neptun-fa (Piros-Fekete fa):</strong> A kulcs a Neptun-kód. Minden csúcs tárolja a diák pontszámát, és egy memóriamutatót a másik fában lévő helyére. Mivel ez kiegyensúlyozott BST, a keresés (HÁNY_PONT) és beszúrás azonnali $O(\log n)$.</li>
+                        <li><strong>Pont-fa (Piros-Fekete fa):</strong> A kulcs a pontszám. Egy pontszámhoz több diák is tartozhat, ezért minden csúcs egy <strong>kétszeresen láncolt listát</strong> tárol a diákok Neptun-kódjaival. 
+                        <br>Ezen felül tartunk egy <strong>globális mutatót (MAX_PTR)</strong>, ami mindig a Pont-fa legnagyobb kulcsú csúcsára (legjobb jobboldali levél) mutat.</li>
+                    </ol>
+                    <br><strong>Műveletek végrehajtása:</strong>
+                    <br>• <strong>BESZÚR_DIÁK(x):</strong> Beszúrjuk a Neptun-fába (0 pont). A Pont-fában megkeressük a 0 pontos csúcsot (vagy létrehozzuk), és beszúrjuk a láncolt listájába az $x$-et. Mutatókat beállítjuk. Mindez $O(\log n)$.
+                    <br>• <strong>PONT_NÖVELÉS(x,y):</strong> Megkeressük a Neptun-fában ($O(\log n)$). A mutatóján keresztül $O(1)$ idő alatt kiveszszük a Pont-fa eddigi listájából. Frissítjük a pontját (+y), majd beszúrjuk a Pont-fában az új pontszámának megfelelő helyre ($O(\log n)$). Ha az új pont nagyobb, mint a MAX_PTR által mutatott pont, frissítjük a MAX_PTR-t.
+                    <br>• <strong>KI_A_LEGJOBB():</strong> A MAX_PTR megadja a legnagyobb pontszámú csúcsot $O(1)$ idő alatt. Végigmegyünk az ehhez a csúcshoz tartozó láncolt listán, ami pontosan $k$ diákot tartalmaz, és kiírjuk őket. Futásidő: $O(k)$.</p>
+                </math-def>
+
+            </div>
+        </section>
+
+        <!-- ============================================================
+             ZH2: 2024. TAVASZ
+             ============================================================ -->
+        <section id="zh2_2024" class="tab-pane">
+            <div class="content-card">
+                <h2>2. Zárthelyi - 2024. tavasz</h2>
+                <p class="week-subtitle">2024. tavasza</p>
+
+                <!-- 1. Feladat -->
+                <math-header><span class="num-badge">1</span><h3>Kupac elemzés</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong><br>
+                    (a) Rajzolja fel az 50, 57, 51, 65, 62, 86, 87, 88, 68, 70 tömbbel adott kupacot bináris fa alakban.<br>
+                    (b) Szúrja be ebbe a kupacba az 55-öt, majd hajtson végre egy MINTÖR-t, a megoldása során látszódjanak a lépések.</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás (a):</strong> Az elemek indexek alapján történő fába írása:</p>
+                    <div class="mermaid" style="text-align: center;">
+                        graph TD
+                            A((50)) --- B((57))
+                            A --- C((51))
+                            B --- D((65))
+                            B --- E((62))
+                            C --- F((86))
+                            C --- G((87))
+                            D --- H((88))
+                            D --- I((68))
+                            E --- J((70))
+                    </div>
+
+                    <p><strong>Megoldás (b) - Beszúrás:</strong> A 55 a fa legutolsó szabad helyére kerül (a 62 jobb gyerekeként, azaz a 11-es indexre). Utána felszivárog: összehasonlítjuk a szülőjével (62). Kisebb, így cserél. Az új szülője az 57. Annál is kisebb, így cserél. Az 50-nél már nem kisebb, megáll.</p>
+                    <div class="mermaid" style="text-align: center;">
+                        graph TD
+                            A((50)) --- B((55))
+                            A --- C((51))
+                            B --- D((65))
+                            B --- E((57))
+                            C --- F((86))
+                            C --- G((87))
+                            D --- H((88))
+                            D --- I((68))
+                            E --- J((70))
+                            E --- K((62))
+                    </div>
+
+                    <p><strong>Megoldás (b) - MINTÖR:</strong> Eltávolítjuk a gyökeret (50). Helyére a legutolsó elem (62) kerül. A 62 lesüllyed: gyerekei 55 és 51. A kisebbik az 51. Cserél az 51-gyel. A 62 új helyén a gyerekei 86 és 87. Mivel 62 kisebb mindkettőnél, a süllyedés megáll.</p>
+                    <div class="mermaid" style="text-align: center;">
+                        graph TD
+                            A((51)) --- B((55))
+                            A --- C((62))
+                            B --- D((65))
+                            B --- E((57))
+                            C --- F((86))
+                            C --- G((87))
+                            D --- H((88))
+                            D --- I((68))
+                            E --- J((70))
+                    </div>
+                </math-def>
+
+                <!-- 2. Feladat -->
+                <math-header><span class="num-badge">2</span><h3>Bináris keresőfák fúziója</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> Adott két bináris keresőfa. Az egyik a csupa különböző $a_1, \ldots, a_n$ elemeket tárolja és magassága $2024 \log n$. A másik a csupa különböző $b_1, \ldots, b_n$ elemeket tárolja és magassága $n/2024$. Tudjuk, hogy minden $a_i$ kisebb minden $b_j$-nél. Adjon $O(\log n)$ lépésszámú algoritmust, ami előállít egy olyan bináris keresőfát, ami éppen az összes $a_i$-t és $b_j$-t tárolja.</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong> Mivel minden $a_i < b_j$, egyszerűen összeilleszthetjük a két fát úgy, hogy kiválasztjuk az első fa legmagasabb (legnagyobb) elemét (legyen ez $a_{max}$), és kinevezzük az új fa gyökerének. Ennek a gyökérnek a bal részfája az első fa megmaradt része lesz, a jobb részfája pedig a teljes második fa.<br>
+                    <strong>Lépések:</strong>
+                    <br>1. Megkeressük az első fa legnagyobb elemét (jobbra tartva). Ennek időigénye az első fa magassága, ami $O(2024 \log n) = O(\log n)$.
+                    <br>2. Töröljük ezt a maximális elemet az első fából. Mivel ez a legnagyobb elem, jobb gyereke nincs, így a törlés triviális és legfeljebb $O(\log n)$ idő.
+                    <br>3. Legyen ez a kivett $a_{max}$ az új gyökér. Bal gyerekként bekötjük az első fa maradékának gyökerét, jobb gyerekként pedig a második fa gyökerét. Ennek lépésszáma $O(1)$.
+                    <br><strong>Futásidő:</strong> $O(\log n) + O(\log n) + O(1) = O(\log n)$. A második fa $O(n)$ magassága nem számít, mert abban nem kellett keresnünk.</p>
+                </math-def>
+
+                <!-- 3. Feladat -->
+                <math-header><span class="num-badge">3</span><h3>Piros-fekete fa beszúrás</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> Szúrja be a következő piros-fekete fába a 2-t.<br>
+                    Gyökér: 7(Fekete). Bal gyerek: 5(Fekete), Jobb gyerek: 9(Fekete). Az 5 bal gyereke: 3(Piros).</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong><br>
+                    1. A 2-t naiv módon beszúrjuk a 3 bal gyerekeként. Színe piros lesz. Ezzel pirosnak piros gyereke lett (3 is piros, 2 is piros).<br>
+                    2. Javítás: Megnézzük a 2 "nagybátyját", vagyis az 5 jobb gyerekét. Mivel az nem létezik, NIL, így fekete. Ez tehát a "fekete nagybácsi, egyenes vonal" esete (Left-Left).<br>
+                    3. A szabály szerint a szülőt (3) átszínezzük feketére, a nagyszülőt (5) pirosra, majd egyet forgatunk jobbra a nagyszülő (5) körül.</p>
+                    <div class="mermaid" style="text-align: center;">
+                        graph TD
+                            A((7:Fekete)) --- B((3:Fekete))
+                            A --- C((9:Fekete))
+                            B --- D((2:Piros))
+                            B --- E((5:Piros))
+                    </div>
+                </math-def>
+
+                <!-- 4. Feladat -->
+                <math-header><span class="num-badge">4</span><h3>Hash-elés kvadratikus próbával</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> 11 méretű hash táblába kvadratikus próbával szúrja be a 25, majd a 14 számot a $h(x) = x \bmod 11$ hash függvénnyel. A kvadratikus próbasorozat iterációja: $+1^2, -1^2, +2^2, -2^2, +3^2, \ldots$<br>
+                    Tábla: T[2]=57, T[3]=47, T[4]=37, T[7]=40, T[9]=20, T[10]=*.</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong> Kvadratikus próbasorozat képlete: $(h(x) \pm i^2) \bmod m$.<br>
+                    <strong>25 beszúrása:</strong> $h(25) = 25 \bmod 11 = 3$.
+                    <br>• Próba 1 (alap): 3 $\to$ foglalt (47)
+                    <br>• Próba 2 ($+1^2$): $3+1 = 4$ $\to$ foglalt (37)
+                    <br>• Próba 3 ($-1^2$): $3-1 = 2$ $\to$ foglalt (57)
+                    <br>• Próba 4 ($+2^2$): $3+4 = 7$ $\to$ foglalt (40)
+                    <br>• Próba 5 ($-2^2$): $3-4 = -1 \equiv 10 \pmod{11}$ $\to$ itt DELETED (*) jel van, ide beszúrhatunk! A 25 a 10-es indexre kerül.</p>
+                    
+                    <p><strong>14 beszúrása:</strong> $h(14) = 14 \bmod 11 = 3$.
+                    <br>Ugyanazt a próbautat járja be, mint a 25! Tehát végigpróbálja a 3, 4, 2, 7, 10 indexeket. Mivel a 10-es indexre az előbb tettük be a 25-öt, az is foglalt lesz. Tovább kell lépni.
+                    <br>• Próba 6 ($+3^2$): $3+9 = 12 \equiv 1 \pmod{11}$ $\to$ az 1-es index ÜRES! Ide kerül a 14.</p>
+                </math-def>
+
+                <!-- 5. Feladat -->
+                <math-header><span class="num-badge">5</span><h3>NP-ben levő probléma bizonyítása</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> Szomszédsági mátrixszal adott egy irányítatlan gráf. Bizonyítsa be, hogy a következő probléma NP-ben van:<br>
+                    <em>Van-e a gráf minden $u$ és $v$ pontja között Hamilton-út?</em></p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong> Ahhoz, hogy belássuk, hogy a probléma NP-ben van, meg kell adnunk egy polinom méretű tanút az IGEN válaszokra, amit polinom időben lehet ellenőrizni.<br>
+                    <strong>Tanú:</strong> Legyen a tanú egy lista, ami a gráf minden lehetséges $(u, v)$ pontpárjára tartalmaz egy konkrét Hamilton-utat (ami egy $n$ csúcsból álló sorozat). Mivel legfeljebb $O(n^2)$ pontpár van, és mindegyik út hossza $n$, a tanú teljes mérete $O(n^3)$, ami polinom méretű.<br>
+                    <strong>Ellenőrző algoritmus (Bíró):</strong> Végigmegy a tanú listáján található összes $O(n^2)$ darab úton. Minden útról egyenként ellenőrzi, hogy a két végpontja valóban a megfelelő $u$ és $v$, tartalmazza-e a gráf mind az $n$ csúcsát (nincs-e ismétlődés), és a csúcsok közötti élek léteznek-e az eredeti gráf szomszédsági mátrixában. Egy út ellenőrzése $O(n)$ lépés, így a teljes ellenőrzés $O(n^3)$ lépés alatt lefut, ami polinom idő.</p>
+                </math-def>
+
+                <!-- 6. Feladat -->
+                <math-header><span class="num-badge">6</span><h3>NP-teljesség (KÉTKLIKK)</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> P-ben van vagy NP-teljes az alábbi eldöntési feladat?<br>
+                    <strong>Input:</strong> $G$ irányítatlan gráf, $k, \ell$ egész számok.<br>
+                    <strong>Kérdés:</strong> Igaz-e, hogy $G$-ben van egy $k$ és egy $\ell$ méretű klikk, melyeknek nincs közös csúcsuk?</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong> A feladat NP-teljes. Ehhez a MAXKLIKK (egy adott gráfban $k$ méretű klikk keresése) problémát redukáljuk erre a problémára (legyen a neve KÉTKLIKK).<br>
+                    <strong>Konstrukció ($MAXKLIKK \leq_p KÉTKLIKK$):</strong> Kapunk egy $(G, k)$ MAXKLIKK bemenetet. Készítsünk egy $G'$ gráfot a következőképpen: vegyünk <strong>két teljesen azonos és diszjunkt példányt</strong> az eredeti $G$ gráfból. (A két példány között semmilyen él nem fut). Az új paraméterek legyenek $k' = k$ és $\ell' = k$. Ez a lépés $O(n^2)$ időben, polinom alatt elvégezhető.<br>
+                    <strong>Helyesség:</strong> 
+                    <br>$\Rightarrow$: Ha $G$-ben volt egy $k$ méretű klikk, akkor $G'$-ben mindkét $G$-példányban megtalálható ez a klikk. Mivel a két példány között nincs kapcsolat, ez a két $k$-klikk diszjunkt. A KÉTKLIKK válasza IGEN.
+                    <br>$\Leftarrow$: Ha $G'$-ben van két diszjunkt, $k$ méretű klikk, az azt jelenti, hogy legalább az egyik (de valójában mindkettő) az egyik $G$ példányon belül található (hiszen a példányok között nincs él, így egy klikk nem nyúlhat át a másik példányba). Tehát az eredeti $G$-ben is biztosan van $k$ méretű klikk.</p>
+                </math-def>
+
+                <!-- 7. Feladat -->
+                <math-header><span class="num-badge">7</span><h3>Játék pontok és Bináris fa</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> Egy játéknak $n=2^q$ szintje van. Az $i$-edik szinten $p[i]$ pont szerezhető. A $p[i]$ értékeket egy teljes bináris fa leveleiben tároljuk (balról jobbra). Minden nem-levél csúcs a gyerekeiben található pontok összegét tárolja. Adjon $O(\log n)$ algoritmust a $SZINT(k)$ művelet megvalósítására, ami megmondja, hanyadik szinten éri el a játékos először az összesítésben $k$ pontot.</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong> Ezt a fát úgy képzelhetjük el, mint egy egydimenziós fenwick fát vagy szegmensfát. A gyökércsúcs bal oldali gyereke ($bal(x)$) pontosan az első $n/2$ szint (a teljes bal részfa leveleinek) pontszámainak összegét tárolja.<br>
+                    <strong>Algoritmus:</strong> A gyökérből ($x$) indulunk, a keresett ponthatár a kezdeti $k$.
+                    <br>1. Összehasonlítjuk $k$-t a $bal(x)$ értékével.
+                    <br>2. Ha $k \leq bal(x)$, az azt jelenti, hogy a $k$ pontot már a bal részfában (az első $n/2$ pályán) elérjük. Ekkor <strong>balra lépünk</strong>, és a $k$ változatlan marad.
+                    <br>3. Ha $k > bal(x)$, az azt jelenti, hogy a bal részfában lévő összes pont sem elegendő. Tovább kell mennünk a jobb részfába (a második $n/2$ pályára). Ekkor <strong>jobbra lépünk</strong>, ÉS a keresett ponthatárból levonjuk a bal részfában megszerezhető pontokat: $k' = k - bal(x)$.
+                    <br>4. Ezt ismételjük, amíg egy levélhez nem érünk. A levél indexe (amit az út során feljegyezhetünk balra/jobbra lépések sorozataként) lesz a válasz.<br>
+                    <strong>Futásidő:</strong> Mivel egy teljes bináris fában haladunk a gyökértől egy levélig, a fa magassága $\log_2 n$. Így a lépésszám pontosan $O(\log n)$.</p>
+                </math-def>
+
+            </div>
+        </section>
+
+        <!-- ============================================================
+             ZH2: 2025. TAVASZ
+             ============================================================ -->
+        <section id="zh2_2025" class="tab-pane">
+            <div class="content-card">
+                <h2>2. Zárthelyi - 2025. tavasz</h2>
+                <p class="week-subtitle">2025. május 15.</p>
+
+                <!-- 1. Feladat -->
+                <math-header><span class="num-badge">1</span><h3>Lineáris Kupacépítés</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> Építsen kupacot az órán tanult lineáris idejű módszerrel a következő tömbből: 35, 37, 15, 20, 6, 13.<br>
+                    (a) Ábrázolja a lépéseket fa reprezentációban.<br>
+                    (b) A kapott kupacban végezzen el egy MINTÖR műveletet.</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás (a) - Építés (SiftDown alulról felfelé):</strong><br>
+                    Az elemekből felépített fa kezdetben: 35(gyökér), bal: 37, jobb: 15. A 37 gyerekei: 20 és 6. A 15 gyereke: 13.<br>
+                    A lineáris építés az utolsó belső csúcstól (index = $\lfloor 6/2 \rfloor = 3$) indul visszafelé.
+                    <br>1. Vizsgáljuk a 15-öt. Gyereke a 13. Kisebb, így cserél. (A 15 helyére a 13 kerül).
+                    <br>2. Vizsgáljuk a 37-et. Gyereke a 20 és 6. A kisebbik a 6, tehát cserél.
+                    <br>3. Vizsgáljuk a 35-öt (gyökér). Gyerekei a 6 és 13. A kisebb a 6, tehát cserél. A 35 a 6 helyére kerül, ahol gyerekei a 20 és 37. Mivel a 20 kisebb, megint cserél.
+                    <br>Ezzel felépült a kupac!</p>
+                    <div class="mermaid" style="text-align: center;">
+                        graph TD
+                            A((6)) --- B((20))
+                            A --- C((13))
+                            B --- D((35))
+                            B --- E((37))
+                            C --- F((15))
+                    </div>
+
+                    <p><strong>Megoldás (b) - MINTÖR:</strong> A gyökér (6) távozik, az utolsó elem (15) lép a helyére.<br>
+                    A 15 lesüllyed: gyerekei 20 és 13. A kisebbik a 13, tehát cserél a 13-mal. A 15 új helyén (ahol a 13 volt) már nincs gyereke, így megáll.</p>
+                    <div class="mermaid" style="text-align: center;">
+                        graph TD
+                            A((13)) --- B((20))
+                            A --- C((15))
+                            B --- D((35))
+                            B --- E((37))
+                    </div>
+                </math-def>
+
+                <!-- 2. Feladat -->
+                <math-header><span class="num-badge">2</span><h3>Hash-elés "visszafelé" lineáris próbával</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> 11 méretű hash tábla, $h(k) = k \bmod 11$. Az ütközéskezelés <strong>lineáris próba</strong> (a próbasorozat iterációja itt "visszafelé" halad: $-1$, a táblázat alapján dedukálhatóan!). A tábla állapota:<br>
+                    T[0]=44, T[1]=56, T[4]=16, T[5]=38, T[9]=* (törölt), T[10]=21. (Többi üres).<br>
+                    (a) Szúrja be a 98 és 33 kulcsokat.<br>
+                    (b) Törölje a 44-et (TÖRÖL(44)).<br>
+                    (c) A KERES(34) során hány cellát vizsgál meg?</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong><br>
+                    A tábla struktúrájából és a megoldókulcsból egyértelmű, hogy a próbasorozat iterációja <strong>csökkenő (balra lépő)</strong>: ha foglalt, az $(i-1) \bmod 11$ cellát nézi meg.
+                    <br><strong>(a) BESZÚR(98):</strong> $h(98) = 98 \bmod 11 = 10$. A 10-es cella foglalt (21). Lépünk egyet "vissza": a 9-es cellába. Itt * (DELETED) van, így a 98 elfoglalja a 9-es cellát.
+                    <br><strong>(a) BESZÚR(33):</strong> $h(33) = 0$. A 0-ás cella foglalt (44). Visszalépünk a 10-esre (foglalt, 21), a 9-esre (foglalt, 98), majd a 8-asra (ÜRES). A 33 a 8-as cellába kerül.</p>
+                    
+                    <p><strong>(b) TÖRÖL(44):</strong> $h(44) = 0$. A 0-ás cellába beteszünk egy * (DELETED) jelet.</p>
+                    
+                    <p><strong>(c) KERES(34):</strong> $h(34) = 34 \bmod 11 = 1$.
+                    <br>Próbák:
+                    <br>1. Index 1: 56 (nem 34)
+                    <br>2. Index 0: * (törölt, tovább kell menni)
+                    <br>3. Index 10: 21 (nem 34)
+                    <br>4. Index 9: 98 (nem 34)
+                    <br>5. Index 8: 33 (nem 34)
+                    <br>6. Index 7: ÜRES (NIL). A keresés megáll.
+                    <br>A vizsgált cellák száma: <strong>6 db</strong>.</p>
+                </math-def>
+
+                <!-- 3. Feladat -->
+                <math-header><span class="num-badge">3</span><h3>Piros-fekete fa beszúrások láncolata</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> Egy kezdetben üres piros-fekete fába sorban szúrja be a 10, 20, 30, 15, 18 számokat. Ábrázolja a fát minden beszúrás (és szükséges forgatás/átszínezés) után.</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás (Lépések):</strong>
+                    <br>1. <strong>Beszúr 10:</strong> Gyökér lesz, színe <strong>Fekete</strong>.
+                    <br>2. <strong>Beszúr 20:</strong> Jobb gyerek, <strong>Piros</strong>. (Nincs szabálysértés).
+                    <br>3. <strong>Beszúr 30:</strong> 20 jobb gyereke, <strong>Piros</strong>. Szabálysértés: piros-piros (20-30). A nagybácsi (10 bal gyereke) NIL, azaz fekete. Ez egy egyenes (Right-Right) eset.
+                    <br><em>Javítás:</em> A szülőt (20) feketére, a nagyszülőt (10) pirosra színezzük, majd balra forgatunk a 10 körül. A 20 lesz a fekete gyökér, a 10 és 30 piros gyerekek.
+                    <br>4. <strong>Beszúr 15:</strong> 10 jobb gyereke, <strong>Piros</strong>. Szabálysértés: piros-piros (10-15). A nagybácsi (30) viszont <strong>Piros</strong>.
+                    <br><em>Javítás (Színcsere):</em> Szülő (10) és nagybácsi (30) fekete lesz, a nagyszülő (20) piros lenne, de mivel gyökér, marad fekete!
+                    <br>5. <strong>Beszúr 18:</strong> 15 jobb gyereke, <strong>Piros</strong>. Szabálysértés: piros-piros (15-18). Nagybácsi (10 bal gyereke) NIL, azaz fekete. Ez egy "tört vonal" (Right-Right a 15-höz képest, de a 15 a 10 jobb gyereke... várjunk csak!). A 15 a 10 jobb gyereke, a 18 a 15 jobb gyereke. Ez egyenes (Right-Right) eset a 10-15-18 ágon.
+                    <br><em>Javítás:</em> Szülő (15) fekete, nagyszülő (10) piros lesz, és balra forgatunk a 10 körül.</p>
+                    
+                    <p><strong>A végső állapot:</strong> A gyökér 20(Fekete). Bal gyereke 15(Fekete). A 15 bal gyereke 10(Piros), jobb gyereke 18(Piros). A 20 jobb gyereke 30(Fekete).</p>
+                    <div class="mermaid" style="text-align: center;">
+                        graph TD
+                            A((20:Fekete)) --- B((15:Fekete))
+                            A --- C((30:Fekete))
+                            B --- D((10:Piros))
+                            B --- E((18:Piros))
+                    </div>
+                </math-def>
+
+                <!-- 4. Feladat -->
+                <math-header><span class="num-badge">4</span><h3>NP-beli probléma felismerése</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> Mutassa meg, hogy az alábbi probléma NP-ben van: Teljesül-e, hogy $\chi(G) \leq \omega(G)$? (Kromatikus szám $\leq$ Klikkszám).</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong> Egy probléma akkor van NP-ben, ha egy "IGEN" válaszhoz létezik polinom méretű tanú, ami polinom időben ellenőrizhető.
+                    <br>A feltétel: Van-e olyan $k$ és $\ell$ szám, amire $\chi(G) \leq k \leq \ell \leq \omega(G)$? (Tehát a gráf kiszínezhető $k$ színnel, és van benne egy legalább $k$ méretű klikk).
+                    <br><strong>Tanú:</strong> Egy érvényes $k$-színezés megadása (minden csúcshoz egy szín), és egy $\ell$ méretű klikk csúcsainak felsorolása, ahol $\ell \geq k$. A mérete $O(n)$, polinom.
+                    <br><strong>Ellenőrző:</strong> 
+                    <br>1. $O(m)$ alatt leellenőrzi, hogy a színezés helyes-e (minden él végpontja különböző színű).
+                    <br>2. $O(n^2)$ alatt leellenőrzi, hogy a felsorolt $\ell$ csúcs valóban teljes részgráfot alkot-e.
+                    <br>3. Ellenőrzi, hogy a színek száma ($k$) kisebb vagy egyenlő-e $\ell$-nél.
+                    <br>Mivel mindez $O(n^2)$ idő, a probléma NP-ben van.</p>
+                </math-def>
+                
+                <!-- 5. Feladat -->
+                <math-header><span class="num-badge">5</span><h3>Alkalmazott Adatszerkezetek</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> Adjon $O(n)$ algoritmust, ami kiírja egy $n$ elemű halmaz $k$ legkisebb elemét, ha tudjuk, hogy $k \leq n/\log_2 n$.</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong> Használjunk <strong>Kupacot</strong>!
+                    <br>1. Építsünk egy Min-Kupacot a halmaz összes ($n$ darab) eleméből az órán tanult lineáris (bottom-up SiftDown) módszerrel. Ez <strong>$O(n)$</strong> időt vesz igénybe.
+                    <br>2. Hívjuk meg a MINTÖR (Extract-Min) műveletet pontosan $k$-szor. Minden egyes hívás $O(\log n)$ lépés, így összesen $O(k \log n)$ idő.
+                    <br><strong>Futásidő analízis:</strong> A teljes időigény $O(n) + O(k \log n)$. Mivel $k \leq n/\log_2 n$, így behelyettesítve: $k \log n \leq (n/\log_2 n) \cdot \log_2 n = n$. 
+                    <br>Tehát az időigény $O(n) + O(n) = O(n)$. Tökéletesen megfelel az elvárásnak.</p>
+                </math-def>
+
+                <!-- 6. Feladat -->
+                <math-header><span class="num-badge">6</span><h3>NP-teljesség: 2KÖR probléma</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> 2KÖR probléma: Létezik-e a gráfban két olyan kör, hogy mindkettő hossza $v$ (ahol $2v-1$ a csúcsok száma), és pontosan egy közös csúcsuk van? Adjon Karp-redukciót a Hamilton-körből ($H \leq_p \text{2KÖR}$).</p>
+                </div>
+
+                <math-def>
+                    <p><strong>Megoldás:</strong> Legyen $G$ a Hamilton-kör feladat egy bemenete ($n$ csúccsal). A cél, hogy előállítsunk egy $G'$ gráfot $2n-1$ csúccsal, ami pontosan akkor tartalmaz két 1 pontban metsző $n$-hosszú kört, ha $G$-ben volt Hamilton-kör.
+                    <br><strong>Konstrukció:</strong> Vegyük a $G$ gráfot. Válasszunk ki benne egy tetszőleges $x$ csúcsot. Építsünk hozzá $G$-hez egy teljesen új, $n$ hosszú kört úgy, hogy az új kör csúcsai (egy kivételével) diszjunktak $G$-től, és az egyetlen közös csúcs az $x$ legyen. Ez $O(n)$ idő alatt megépíthető.
+                    <br><strong>Helyesség:</strong> 
+                    <br>$\Rightarrow$: Ha $G$-ben volt Hamilton-kör ($n$ hosszú kör), akkor $G'$-ben meglesz ez a Hamilton kör (aminek része $x$), ÉS a mesterségesen hozzáadott $n$ hosszú kör, amik kizárólag az $x$-ben metszik egymást.
+                    <br>$\Leftarrow$: Ha $G'$-ben van két egy pontban metsző $n$ hosszú kör, akkor a mesterséges kör struktúrája miatt az egyik kör kötelezően a mesterséges kör kell hogy legyen (mivel annak csúcsaihoz másképp nem lehet eljutni). A másik $n$ hosszú kör tehát kizárólag az eredeti $G$ csúcsait használhatja, azaz az eredeti $G$-ben lévő Hamilton-kör.</p>
+                </math-def>
+
+            </div>
+        </section>
+
     </main>
 
     <script>
@@ -1285,6 +1938,11 @@ Left-Rotate(T, x):
             // Re-render MathJax for the newly visible content
             if (window.MathJax && MathJax.typesetPromise) {
                 MathJax.typesetPromise([document.getElementById(tabId)]);
+            }
+            
+            // Re-render Mermaid diagrams in the active tab (they sometimes fail to render if hidden)
+            if (window.mermaid) {
+                window.mermaid.run({ querySelector: '#' + tabId + ' .mermaid' });
             }
         }
     </script>
