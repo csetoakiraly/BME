@@ -1231,6 +1231,158 @@
         </section>
 
         <!-- ============================================================
+             6. GYAKORLAT
+             ============================================================ -->
+        <section id="gyak6" class="tab-pane">
+            <div class="content-card">
+                <h2>6. Gyakorlat: Keresés és Rendezések I.</h2>
+                <p class="week-subtitle">Feladatok és megoldások lépésről lépésre</p>
+
+                <!-- 1. Feladat -->
+                <math-header><span class="num-badge">1.</span><h3>Alapvető rendezések</h3></math-header>
+                <math-def>
+                    <p><strong>Feladat:</strong> Rendezzük a 6, 3, 1, 4 tömböt buborék-, beszúrásos, összefésüléses, és gyorsrendezéssel! Hány összehasonlítás történik?</p>
+                </math-def>
+                <math-note>
+                    <p><strong>Megoldás:</strong></p>
+                    <ul>
+                        <li><strong>(a) Buborék (Bubble):</strong> <br>
+                        1. menet: (6,3) $\to$ [3,6,1,4]; (6,1) $\to$ [3,1,6,4]; (6,4) $\to$ [3,1,4,6] $\to$ 3 összehas.<br>
+                        2. menet: (3,1) $\to$ [1,3,4,6]; (3,4) ok $\to$ 2 összehas.<br>
+                        3. menet: (1,3) ok $\to$ 1 összehas. <br>
+                        Összesen: <strong>6 összehasonlítás</strong>.</li>
+                        <li><strong>(b) Beszúrásos (Insertion):</strong> <br>
+                        3 beszúrása: (3,6) $\to$ [3,6,1,4] (1). <br>
+                        1 beszúrása: (1,6), (1,3) $\to$ [1,3,6,4] (2). <br>
+                        4 beszúrása: (4,6), (4,3) $\to$ [1,3,4,6] (2). <br>
+                        Összesen: <strong>5 összehasonlítás</strong>.</li>
+                        <li><strong>(c) Összefésüléses (Merge):</strong> <br>
+                        Bontás: [6,3] és [1,4]. Rendezés: [3,6] (1), és [1,4] (1). <br>
+                        Összefésülés: (3,1)$\to$1, (3,4)$\to$3, (6,4)$\to$4, (6 marad). (3). <br>
+                        Összesen: <strong>5 összehasonlítás</strong>.</li>
+                        <li><strong>(d) Gyorsrendezés (Quick):</strong> (Mindig az első elem a pivot)<br>
+                        Pivot 6: (3,6), (1,6), (4,6). Kisebbek: [3,1,4] (3).<br>
+                        [3,1,4] pivot 3: (1,3), (4,3). Bontás: [1], pivot 3, [4] (2).<br>
+                        Összesen: <strong>5 összehasonlítás</strong>.</li>
+                    </ul>
+                </math-note>
+
+                <!-- 2. Feladat -->
+                <math-header><span class="num-badge">2.</span><h3>Speciális index keresése rendezett tömbben</h3></math-header>
+                <math-def>
+                    <p><strong>Feladat:</strong> $T[1 \dots n]$ különböző egész számok, rendezett. Adjunk $O(\log_2 n)$ algoritmust $i$ keresésére, ahol $T[i] = i$.</p>
+                </math-def>
+                <math-note>
+                    <p><strong>Megoldás:</strong> Mivel az elvárt idő $O(\log n)$ és a tömb rendezett, <strong>Bináris keresést</strong> alkalmazunk.</p>
+                    <p>Működés: Nézzük meg a középső elemet: $T[m]$.
+                    <ul>
+                        <li>Ha $T[m] == m$, megtaláltuk az indexet, visszatérünk.</li>
+                        <li>Ha $T[m] > m$: Mivel a számok <em>különböző egészek</em>, minden rákövetkező indexen a szám legalább olyan gyorsan nő, mint az index. Tehát ha $T[m] > m$, akkor minden $j > m$ esetén $T[j] > j$ lesz. Ezért a megoldást a <strong>bal oldalon</strong> (kisebb indexek felé) kell keresni!</li>
+                        <li>Ha $T[m] < m$: Ugyanezen gondolatmenet alapján a megoldást a <strong>jobb oldalon</strong> kell keresni.</li>
+                    </ul>
+                    Ez pontosan megfelezi a keresési teret minden lépésben, így az idő $O(\log n)$.</p>
+                </math-note>
+
+                <!-- 3. Feladat -->
+                <math-header><span class="num-badge">3.</span><h3>Többször előforduló elemek</h3></math-header>
+                <math-def>
+                    <p><strong>Feladat:</strong> Adott $n$ darab szám. Határozzuk meg $O(n \log_2 n)$ lépésben az összes olyat, ami egynél többször fordul elő.</p>
+                </math-def>
+                <math-note>
+                    <p><strong>Megoldás:</strong> 
+                    <ol>
+                        <li><strong>Rendezés:</strong> Rendezzük a $T$ tömböt egy optimalizált, $O(n \log n)$ futásidejű algoritmussal (pl. Összefésüléses vagy Kupacos rendezés). Ekkor az azonos elemek egymás mellé kerülnek.</li>
+                        <li><strong>Lineáris keresés:</strong> Menjünk végig a rendezett tömbön egyetlen ciklussal ($i=1 \dots n-1$). Ha $T[i] == T[i+1]$ (és hogy ne írjuk ki többször, ellenőrizzük, hogy $T[i] \neq T[i-1]$), akkor írjuk ki a $T[i]$-t. Ez a lépés $O(n)$ idejű.</li>
+                    </ol>
+                    Összes idő: $O(n \log n) + O(n) = O(n \log n)$.</p>
+                </math-note>
+
+                <!-- 4. Feladat -->
+                <math-header><span class="num-badge">4.</span><h3>Változás megkeresése bináris kereséssel</h3></math-header>
+                <math-def>
+                    <p><strong>Feladat:</strong> $T[1 \dots n]$, tudjuk hogy $T[1] \neq T[n]$. Találjunk egy indexet $O(\log_2 n)$ időben, ahol $T[i] \neq T[i+1]$.</p>
+                </math-def>
+                <math-note>
+                    <p><strong>Megoldás:</strong> Módosított <strong>Bináris keresés</strong>.</p>
+                    <p>Legyen $L = 1$ és $R = n$. Tudjuk, hogy $T[L] \neq T[R]$.
+                    Vizsgáljuk a középső elemet: $m = \lfloor (L+R)/2 \rfloor$.
+                    <ul>
+                        <li>Ha $T[m] == T[L]$: Mivel a két szél már nem egyenlő, de az eleje és a közepe igen, a változásnak <strong>biztosan a jobb térfélen</strong> (az $m$ és $R$ között) kell lennie. Legyen $L = m$.</li>
+                        <li>Ha $T[m] \neq T[L]$: Akkor a változásnak <strong>biztosan a bal térfélen</strong> (az $L$ és $m$ között) kellett megtörténnie. Legyen $R = m$.</li>
+                    </ul>
+                    Ezt ismételjük, amíg $R - L == 1$. Ekkor megtaláltuk a keresett indexet: $i = L$. (Hiszen $T[L] \neq T[R]$, azaz $T[L] \neq T[L+1]$).<br>
+                    Futási idő a felezés miatt $O(\log n)$.</p>
+                </math-note>
+
+                <!-- 5. Feladat -->
+                <math-header><span class="num-badge">5.</span><h3>Szűk intervallum</h3></math-header>
+                <math-def>
+                    <p><strong>Feladat:</strong> $n$ különböző egész szám, van-e 100 elem, melyekre a maximum különbség $\le 2026$. Idő: $O(n \log_2 n)$.</p>
+                </math-def>
+                <math-note>
+                    <p><strong>Megoldás:</strong> 
+                    <ol>
+                        <li><strong>Rendezés:</strong> Rendezzük a tömböt monoton növekvően $O(n \log n)$ időben.</li>
+                        <li><strong>Csúszóablak:</strong> Ha a tömb rendezett, akkor bármely 100 szomszédos elem esetén a legnagyobb különbség mindig a legelső és legutolsó (100. elem) között van. 
+                        Iteráljunk $i = 1$-től $n-99$-ig, és ellenőrizzük: ha $T[i+99] - T[i] \le 2026$, akkor találtunk egy ilyen 100 fős "ablakot", térjünk vissza <em>Igaz</em>-zal. </li>
+                        <li>Ha a ciklus lefutott és nem találtunk, térjünk vissza <em>Hamis</em>-sal.</li>
+                    </ol>
+                    Rendezés $O(n \log n)$, ellenőrzés $O(n) \implies O(n \log n)$.</p>
+                </math-note>
+
+                <!-- 6. Feladat -->
+                <math-header><span class="num-badge">6.</span><h3>Két elem összege egy adott szám</h3></math-header>
+                <math-def>
+                    <p><strong>Feladat:</strong> Található-e két elem, amiknek összege $b$. Idő: $O(n \log_2 n)$.</p>
+                </math-def>
+                <math-note>
+                    <p><strong>Megoldás:</strong>
+                    <ol>
+                        <li><strong>Rendezés:</strong> Rendezzük a tömböt $O(n \log n)$ időben.</li>
+                        <li><strong>Kétmutatós (Two-pointer) technika:</strong> Legyen $L = 1$ (eleje) és $R = n$ (vége).
+                        <ul>
+                            <li>Ha $T[L] + T[R] == b$: Megtaláltuk.</li>
+                            <li>Ha $T[L] + T[R] < b$: Túl kicsi az összeg, a bal mutatót ($L$) növeljük, hogy nagyobb számot kapjunk.</li>
+                            <li>Ha $T[L] + T[R] > b$: Túl nagy az összeg, a jobb mutatót ($R$) csökkentjük, hogy kisebb számot kapjunk.</li>
+                        </ul>
+                        Mivel a két mutató csak egymás felé mozog, ez a lépés csak $O(n)$ idő.
+                        </li>
+                    </ol>
+                    Összes idő ismét $O(n \log n)$.</p>
+                </math-note>
+
+                <!-- 7. Feladat -->
+                <math-header><span class="num-badge">7.</span><h3>Anya- és apacsavarok (Nuts and Bolts)</h3></math-header>
+                <math-def>
+                    <p><strong>Feladat:</strong> Két dobozban $n$ anya és $n$ apa csavar. Csak anyát apával lehet összehasonlítani (kisebb, nagyobb, egyenlő). Párosítsuk őket $O(n \log n)$ átlagos időben.</p>
+                </math-def>
+                <math-note>
+                    <p><strong>Megoldás:</strong> Ez a probléma a <strong>Randomizált Gyorsrendezés (Quicksort)</strong> algoritmusával egyenértékű!
+                    <ul>
+                        <li>Válasszunk <em>véletlenszerűen</em> egy anyacsavart (ez lesz az első pivot).</li>
+                        <li>Ezzel az anyacsavarral teszteljük végig az <em>összes</em> apacsavart (az anyához képest). Az apacsavarokat osszuk 3 kupacba: kisebbek, egyenlő (ebből pontosan 1 van), nagyobbak.</li>
+                        <li>Fogjuk meg azt az 1 db apacsavart, amelyik pontosan illeszkedett (egyenlő volt).</li>
+                        <li>Most ezzel a megtalált pivot apacsavarral menjünk végig az <em>összes többi</em> anyacsavaron, és oszlassuk őket is kisebb és nagyobb kupacokra.</li>
+                        <li>Ezután a kisebb anyákat a kisebb apákkal, a nagyobbakat a nagyobbakkal párosítsuk <strong>rekurzívan</strong>.</li>
+                    </ul>
+                    Mivel véletlenszerűen választjuk a pivotot, az átlagos mélység $\log n$ lesz, minden szinten $O(n)$ tesztet végzünk, így a várható (átlagos) összehasonlítás-szám $O(n \log n)$.</p>
+                </math-note>
+
+                <!-- 8. Feladat -->
+                <math-header><span class="num-badge">8.</span><h3>Watson lehetetlen algoritmusa</h3></math-header>
+                <math-def>
+                    <p><strong>Feladat:</strong> Watson állítja, olyan algoritmust talált, ahol <em>akármekkora</em> tömbben minden elem legfeljebb 2026-szor vesz részt összehasonlításban. Miért téved?</p>
+                </math-def>
+                <math-note>
+                    <p><strong>Megoldás:</strong> Ha minden elem legfeljebb 2026-szor szerepel egy összehasonlításban, akkor $n$ elem esetén a maximális összehasonlítások száma legfeljebb $\frac{n \cdot 2026}{2} = 1013 \cdot n$, ami $O(n)$ (lineáris) nagyságrendű.</p>
+                    <p>Azonban tudjuk az <strong>Információelméleti alsó korlát tételből</strong>, hogy bármilyen összehasonlítás-alapú rendezésnek a legrosszabb esetben <strong>legalább $\Omega(n \log n)$</strong> összehasonlítást KELL végeznie ahhoz, hogy a lehetséges $n!$ permutáció közül kiválassza a helyeset. <br>
+                    Mivel $1013 \cdot n$ elég nagy $n$ esetén szigorúan kisebb lesz, mint $c \cdot n \log n$, így Watson állítása logikai (matematikai) <strong>lehetetlenség</strong>. Ilyen összehasonlítás alapú algoritmus nem létezhet.</p>
+                </math-note>
+
+            </div>
+        </section>
+
+        <!-- ============================================================
              7. GYAKORLAT
              ============================================================ -->
         <section id="gyak7" class="tab-pane">
