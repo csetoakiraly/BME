@@ -406,6 +406,7 @@
         </div>
         <ul class="tab-menu" style="padding-top: 0;">
             <li><button class="tab-button" onclick="openTab(event, 'sorting_table')">Rendezések Táblázat</button></li>
+            <li><button class="tab-button" onclick="openTab(event, 'graph_algo')">Gráfalgoritmusok</button></li>
             <li><button class="tab-button" style="color: var(--accent); font-weight: bold;" onclick="openTab(event, 'puska')">Puska / Képletgyűjtemény</button></li>
         </ul>
         <div class="sidebar-header" style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid var(--glass-border); border-bottom: none;">
@@ -432,6 +433,88 @@
     </aside>
 
     <main class="main-content">
+
+        <!-- ============================================================
+             GRÁFALGORITMUSOK
+             ============================================================ -->
+        <section id="graph_algo" class="tab-pane">
+            <div class="content-card">
+                <h2>Gráfalgoritmusok Összefoglaló</h2>
+                <p class="week-subtitle">Gráfbejárások, Feszítőfák és Legrövidebb Utak</p>
+
+                <!-- 1. Gráfbejárások -->
+                <math-header><span class="num-badge">1</span><h3>Gráfbejárások</h3></math-header>
+                <math-def>
+                    <p><strong>Szélességi Keresés (BFS - Breadth-First Search)</strong></p>
+                    <ul>
+                        <li><strong>Cél:</strong> Legrövidebb utak megtalálása <em>súlyozatlan</em> gráfban, vagy komponensek/páros gráf tulajdonság ellenőrzése.</li>
+                        <li><strong>Adatszerkezet:</strong> Sor (Queue). FIFO (First In First Out) logikával működik.</li>
+                        <li><strong>Működés:</strong> A kezdőcsúcsból indulva először a közvetlen (1 távolságra lévő) szomszédokat látogatja meg, majd azok szomszédait (2 távolságra lévők), mintha "hullámokban" terjedne.</li>
+                        <li><strong>Időbonyolultság:</strong> $O(|V| + |E|)$.</li>
+                    </ul>
+                </math-def>
+                <math-def>
+                    <p><strong>Mélységi Keresés (DFS - Depth-First Search)</strong></p>
+                    <ul>
+                        <li><strong>Cél:</strong> Útkeresés (pl. labirintus), kördetektálás (visszaélek), topologikus rendezés és erősen összefüggő komponensek keresése.</li>
+                        <li><strong>Adatszerkezet:</strong> Verem (Stack) vagy Rekurzió. LIFO (Last In First Out) logikával működik.</li>
+                        <li><strong>Működés:</strong> Egy úton halad előre, amilyen mélyre csak tud. Ha elakad (zsákutca), akkor visszalép (backtrack) a legutolsó elágazáshoz, és próbálkozik másik irányba.</li>
+                        <li><strong>Időbonyolultság:</strong> $O(|V| + |E|)$.</li>
+                    </ul>
+                </math-def>
+
+                <!-- 2. Minimális Feszítőfák -->
+                <math-header><span class="num-badge">2</span><h3>Minimális Feszítőfák (MST)</h3></math-header>
+                <p>Olyan körmentes részgráf (fa), amely minden csúcsot összeköt, és az éleinek súlyösszege a lehető legkisebb. (Pl. hálózatépítés minimális költséggel).</p>
+                <math-def>
+                    <p><strong>Prim algoritmusa</strong></p>
+                    <ul>
+                        <li><strong>Mikor használjuk:</strong> Általában <strong>sűrű gráfok</strong> esetén éri meg jobban.</li>
+                        <li><strong>Működés:</strong> Csúcsközpontú. Kiválasztunk egy tetszőleges kezdőcsúcsot. A fát lépésről lépésre növeljük úgy, hogy a fában lévő csúcsokból kilépő összes él közül mindig a <strong>legkisebb súlyút</strong> vesszük hozzá a fához (feltéve, hogy nem okoz kört, azaz az él másik fele még nincs a fában).</li>
+                        <li><strong>Adatszerkezet:</strong> Prioritási sor (Kupac), a csúcsok elérési költségeit tárolva.</li>
+                        <li><strong>Időbonyolultság:</strong> Adatszerkezettől függően $O(|E| \log |V|)$ vagy szomszédsági mátrixszal $O(|V|^2)$.</li>
+                    </ul>
+                </math-def>
+                <math-def>
+                    <p><strong>Kruskal algoritmusa</strong></p>
+                    <ul>
+                        <li><strong>Mikor használjuk:</strong> Főleg <strong>ritka gráfok</strong> esetén gyorsabb.</li>
+                        <li><strong>Működés:</strong> Élközpontú. A gráf összes élét növekvő sorrendbe rendezi a súlyuk alapján. Végigmegy a rendezett listán, és minden élt berak a feszítőfába, ha a két végpontja még nincs összekötve (tehát az él beszúrása nem zár be kört). Ha kör alakulna ki, eldobja az élt.</li>
+                        <li><strong>Adatszerkezet:</strong> Diszjunkt halmazok (Union-Find / Unió-hol-van) a körök hatékony detektálásához.</li>
+                        <li><strong>Időbonyolultság:</strong> $O(|E| \log |E|)$ (a rendezés miatt).</li>
+                    </ul>
+                </math-def>
+
+                <!-- 3. Legrövidebb utak -->
+                <math-header><span class="num-badge">3</span><h3>Legrövidebb utak súlyozott gráfban</h3></math-header>
+                <math-def>
+                    <p><strong>Dijkstra algoritmusa</strong></p>
+                    <ul>
+                        <li><strong>Cél:</strong> Legrövidebb út egy forrásból minden más csúcsba.</li>
+                        <li><strong>Feltétel:</strong> Csak <strong>NEMNEGATÍV élsúlyok</strong> esetén működik!</li>
+                        <li><strong>Működés:</strong> Mohó algoritmus. Minden csúcshoz nyilvántart egy "eddigi legrövidebb távolságot". Egy prioritási sorból mindig a legkisebb távolságú, még nem fixált csúcsot veszi ki, és ezen keresztül "meglazítja" (frissíti) a szomszédai távolságát. Ha frissített, a szomszéd bekerül a prioritási sorba.</li>
+                        <li><strong>Időbonyolultság:</strong> Kupaccal megvalósítva $O((|V| + |E|) \log |V|)$.</li>
+                    </ul>
+                </math-def>
+                <math-def>
+                    <p><strong>Bellman-Ford algoritmus</strong></p>
+                    <ul>
+                        <li><strong>Cél:</strong> Legrövidebb út egy forrásból minden más csúcsba.</li>
+                        <li><strong>Előnye:</strong> Képes kezelni <strong>negatív élsúlyokat</strong> is, és észreveszi, ha <strong>negatív kör</strong> van a gráfban (ebben az esetben nem is definiálható legrövidebb út, mert a körön körbe-körbe menve a távolság $\to -\infty$).</li>
+                        <li><strong>Működés:</strong> $|V|-1$-szer végigmegy a gráf <em>összes élén</em>, és minden élen elvégzi a "lazítás" műveletét. Ha a $|V|$-edik futásnál is történik frissítés, az azt jelenti, hogy negatív kör van a gráfban.</li>
+                        <li><strong>Időbonyolultság:</strong> $O(|V| \cdot |E|)$ (Sokkal lassabb a Dijkstránál).</li>
+                    </ul>
+                </math-def>
+                <math-def>
+                    <p><strong>Floyd-Warshall algoritmus</strong></p>
+                    <ul>
+                        <li><strong>Cél:</strong> Legrövidebb út <strong>minden csúcspárból minden csúcspárba</strong> (All-Pairs Shortest Path).</li>
+                        <li><strong>Működés:</strong> Dinamikus programozás. Egy távolságmátrixot frissít iteratívan, kihasználva a szabályt: a legrövidebb út $A$-ból $B$-be vagy közvetlenül megy, vagy egy $K$ köztes csúcson keresztül, amire $Táv(A, B) = \min(Táv(A, B), Táv(A, K) + Táv(K, B))$.</li>
+                        <li><strong>Időbonyolultság:</strong> $O(|V|^3)$. Sűrű gráfoknál is stabil, kicsi az adminisztrációs költsége.</li>
+                    </ul>
+                </math-def>
+            </div>
+        </section>
 
         <!-- ============================================================
              PUSKA / KÉPLETGYŰJTEMÉNY
@@ -477,8 +560,10 @@
                     <p><strong>Bejárások Bináris Keresőfában (BST):</strong></p>
                     <ul>
                         <li><strong>In-order (Bal $\to$ Gyökér $\to$ Jobb):</strong> Szigorúan <em>monoton növekvő</em> (rendezett) sorrendet ad.</li>
-                        <li><strong>Pre-order (Gyökér $\to$ Bal $\to$ Jobb):</strong> Az <em>első elem mindig a fa gyökere</em>. Ebből felépíthető a teljes fa.</li>
+                        <li><strong>Pre-order (Gyökér $\to$ Bal $\to$ Jobb):</strong> Az <em>első elem mindig a fa gyökere</em>.</li>
+                        <li><strong>Post-order (Bal $\to$ Jobb $\to$ Gyökér):</strong> Az <em>utolsó elem mindig a fa gyökere</em>.</li>
                     </ul>
+                    <p><strong>Fa visszaépítése:</strong> Bármely Pre-order vagy Post-order felsorolásból a (különböző elemű) BST egyértelműen felépíthető. Vesszük a gyökeret (Pre-ordernél az első, Post-ordernél az utolsó elem), majd az elemeket szétválogatjuk gyökérnél kisebbekre (bal részfa elemei) és gyökérnél nagyobbakra (jobb részfa elemei), majd ugyanezt rekurzívan folytatjuk.</p>
                 </math-def>
 
                 <math-def>
@@ -491,6 +576,11 @@
                             <li>Bármelyik csúcsból a tőle leszármazó levelekig vezető összes úton a <strong>fekete csúcsok száma (fekete magasság) megegyezik</strong>.</li>
                         </ol>
                     </div>
+                    <p><strong>Vizsgatrükk - Beszúrás (Mindig pirosként szúrunk be):</strong> Ha megsérül a 3. szabály, meg kell nézni a <strong>nagybácsi</strong> színét:</p>
+                    <ul>
+                        <li>Ha a nagybácsi <strong>PIROS: Csak átszínezés kell!</strong> Szülő és nagybácsi fekete lesz, a nagyszülő piros. Ha a nagyszülő a gyökér, visszafestjük feketére. Ha nem, a hibát feljebb toltuk, iterálunk.</li>
+                        <li>Ha a nagybácsi <strong>FEKETE (vagy NIL): Forgatás kell!</strong> Egy vagy két forgatással (LL, RR, LR, RL) a szülő a régi nagyszülő helyébe lép, és átszínezzük: az új részfa-gyökér fekete lesz, a gyerekei pirosak. Kész vagyunk!</li>
+                    </ul>
                 </math-def>
 
                 <math-note>
@@ -514,6 +604,9 @@
                     </div>
                 </math-def>
                 <math-note>
+                    <p><strong>Csomósodás (Clustering):</strong>
+                    <br>• <strong>Elsődleges csomósodás (Primary clustering):</strong> Lineáris próbánál jelentkezik. Mivel az ütköző elemek egymás utáni cellákat foglalnak el, hosszú egybefüggő blokkok alakulnak ki. Ezek a blokkok rontják a beszúrási és keresési időt.
+                    <br>• <strong>Másodlagos csomósodás (Secondary clustering):</strong> Kvadratikus próbánál jelentkezik. Ha két kulcs azonos alap hash-értékre (ugyanarra a cellára) képződik, a próbasorozatuk (az ugrások sorrendje) is pontosan megegyezik majd, amivel "fantom" csomósodást hoznak létre.</p>
                     <p><strong>FONTOS SZABÁLY:</strong> Keresés során, ha a próba egy olyan cellához ér, amiben a <strong>DELETED (*)</strong> szimbólum van (mert töröltek onnan egy elemet), akkor <strong>a keresést nem szabad megállítani!</strong> Tovább kell lépni az $i$-t növelve, mert lehet, hogy a keresett elem ütközés miatt még hátrébb került.</p>
                 </math-note>
 
