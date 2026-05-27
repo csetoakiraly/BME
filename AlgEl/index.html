@@ -2891,15 +2891,23 @@ Left-Rotate(T, x):
                     Algoritmus: <strong>Prim algoritmusa</strong>. Sűrű gráf vagy szomszédsági mátrixos ábrázolás esetén a Prim algoritmus futási ideje pontosan $O(n^2)$, ami tökéletesen megfelel a feladat elvárásainak.</p>
                 </math-def>
 
-                <!-- 5-6. Feladat -->
-                <math-header><span class="num-badge">5-6</span><h3>NP-teljesség (42-KÖR)</h3></math-header>
+                <!-- 5. Feladat -->
+                <math-header><span class="num-badge">5</span><h3>NP-ben van (42-KÖR)</h3></math-header>
                 <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
-                    <p><strong>Feladat:</strong> A 42-KÖR probléma: Lehet-e $G$ csúcsait 42 pontdiszjunkt körrel lefedni? Lássa be, hogy NP-ben van és NP-teljes.</p>
+                    <p><strong>Feladat:</strong> Lássa be, hogy a 42-KÖR probléma (Lehet-e $G$ csúcsait 42 pontdiszjunkt körrel lefedni?) NP-ben van.</p>
                 </div>
                 
                 <math-def>
                     <p><strong>Megoldás (NP-ben van):</strong> A tanú (certificate) maga a 42 darab kör (a csúcsok sorozata). Ennek mérete polinom (maximum $n$ csúcs van bennük összesen). Az ellenőrző algoritmus polinom időben ($O(n^2)$) megvizsgálja, hogy: (1) Valóban 42 kör van-e, (2) a körök élei léteznek-e $G$-ben, (3) a köröknek nincsenek közös csúcsai (pontdiszjunktak), és (4) a 42 kör együtt lefedi-e $G$ összes csúcsát.</p>
-                    
+                </math-def>
+
+                <!-- 6. Feladat -->
+                <math-header><span class="num-badge">6</span><h3>NP-nehéz (42-KÖR)</h3></math-header>
+                <div style="background: var(--surface-2); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p><strong>Feladat:</strong> Lássa be, hogy a 42-KÖR probléma NP-teljes, ha egy megfelelő problémát redukál rá.</p>
+                </div>
+                
+                <math-def>
                     <p><strong>Megoldás (NP-teljes):</strong> Karp-redukcióval visszavezetjük rá az ismert NP-teljes <strong>Hamilton-kör</strong> problémát ($HAM \leq_p \text{42-KÖR}$).<br>
                     Konstrukció: Kapunk egy $G$ gráfot, ami a HAM bemenete. Hozzunk létre egy $G'$ gráfot úgy, hogy $G$-hez hozzáveszünk <strong>41 darab izolált háromszöget</strong> ($K_3$). Ezek az új csúcsok semmilyen más éllel nincsenek bekötve $G$-be.<br>
                     Bizonyítás:
