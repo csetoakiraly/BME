@@ -406,6 +406,7 @@
         </div>
         <ul class="tab-menu" style="padding-top: 0;">
             <li><button class="tab-button" onclick="openTab(event, 'sorting_table')">Rendezések Táblázat</button></li>
+            <li><button class="tab-button" style="color: var(--primary); font-weight: bold;" onclick="openTab(event, 'puska')">Puska / Képletgyűjtemény</button></li>
         </ul>
         <div class="sidebar-header" style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid var(--glass-border); border-bottom: none;">
             <h2 style="margin: 0; font-size: 1.1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Gyakorlás / ZH</h2>
@@ -431,6 +432,142 @@
     </aside>
 
     <main class="main-content">
+
+        <!-- ============================================================
+             PUSKA / KÉPLETGYŰJTEMÉNY
+             ============================================================ -->
+        <section id="puska" class="tab-pane">
+            <div class="content-card">
+                <h2>Algoritmuselmélet ZH2 Puska</h2>
+                <p class="week-subtitle">Legfontosabb tételek, képletek, definíciók a feladatmegoldáshoz</p>
+
+                <!-- 1. Rendezések -->
+                <math-header><span class="num-badge">1</span><h3>Rendezések</h3></math-header>
+                <math-def>
+                    <p><strong>Információelméleti alsó korlát:</strong></p>
+                    <div class="formula-box">
+                        <p>Bármely összehasonlítás-alapú rendező algoritmus a legrosszabb esetben <strong>legalább $\Omega(n \log_2 n)$</strong> összehasonlítást kell, hogy végezzen.</p>
+                    </div>
+                </math-def>
+                <math-note>
+                    <p><strong>Keresés binárisan:</strong> Csak <em>rendezett</em> tömbben működik, az időigénye $O(\log n)$. Ha keresni is kell és van rá $O(n \log n)$ idő, érdemes előbb rendezni a tömböt.</p>
+                    <p><strong>Radix rendezés:</strong> Csak akkor működik helyesen a helyiértékenkénti (jobbról balra) rendezés, ha az egyes fázisokban használt rész-rendezés (pl. Leszámláló rendezés) <strong>STABIL</strong> (megtartja az egyenlő kulcsok korábbi relatív sorrendjét).</p>
+                </math-note>
+
+                <!-- 2. Kupac -->
+                <math-header><span class="num-badge">2</span><h3>Kupacok (Heaps)</h3></math-header>
+                <math-def>
+                    <p><strong>Indexelési szabályok:</strong> (Tömbös reprezentáció 1-es indextől)</p>
+                    <div class="formula-box" style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                        <p>$\text{Bal gyerek: } \mathbf{2i}$</p>
+                        <p>$\text{Jobb gyerek: } \mathbf{2i+1}$</p>
+                        <p>$\text{Szülő: } \mathbf{\lfloor i/2 \rfloor}$</p>
+                    </div>
+                </math-def>
+                <math-note>
+                    <p><strong>Kupac építése (Build-Heap):</strong> $O(n)$ idő alatt lehetséges (Sift-Down / Lesüllyesztés stratégiával alulról felfelé).</p>
+                    <p><strong>MINTÖR / MAXTÖR:</strong> $O(\log n)$ idő. (A gyökér helyére az <em>utolsó levél</em> kerül, majd süllyesztés).</p>
+                    <p><strong>BESZÚRÁS:</strong> $O(\log n)$ idő. (Az elem a <em>legalsó szint első szabad helyére</em> kerül, majd szivárogtatás felfelé).</p>
+                </math-note>
+
+                <!-- 3. Fák -->
+                <math-header><span class="num-badge">3</span><h3>Keresőfák (BST, Red-Black, 2-3)</h3></math-header>
+                
+                <math-def>
+                    <p><strong>Bejárások Bináris Keresőfában (BST):</strong></p>
+                    <ul>
+                        <li><strong>In-order (Bal $\to$ Gyökér $\to$ Jobb):</strong> Szigorúan <em>monoton növekvő</em> (rendezett) sorrendet ad.</li>
+                        <li><strong>Pre-order (Gyökér $\to$ Bal $\to$ Jobb):</strong> Az <em>első elem mindig a fa gyökere</em>. Ebből felépíthető a teljes fa.</li>
+                    </ul>
+                </math-def>
+
+                <math-def>
+                    <p><strong>Piros-Fekete fa 4 alapszabálya:</strong></p>
+                    <div class="formula-box">
+                        <ol style="margin-bottom: 0;">
+                            <li>A gyökér mindig <strong>FEKETE</strong>.</li>
+                            <li>A levelek (NIL) <strong>FEKETÉK</strong>.</li>
+                            <li><strong style="color: var(--error);">Piros csúcsnak nem lehet piros gyereke.</strong> (Nincs két piros egymás után).</li>
+                            <li>Bármelyik csúcsból a tőle leszármazó levelekig vezető összes úton a <strong>fekete csúcsok száma (fekete magasság) megegyezik</strong>.</li>
+                        </ol>
+                    </div>
+                </math-def>
+
+                <math-note>
+                    <p><strong>2-3 Fa tulajdonságai:</strong></p>
+                    <ul>
+                        <li>Minden belső csúcsnak pontosan 2 vagy 3 gyereke van.</li>
+                        <li><strong>Tökéletesen kiegyensúlyozott:</strong> Minden levél (NIL) pontosan ugyanazon a mélységen van.</li>
+                        <li>Ezekből következik, hogy a magasság mindig <strong>$O(\log n)$</strong>.</li>
+                        <li>Beszúrásnál (split / hasítás) mindig a fa <em>felfelé</em> nő (vagy legalábbis a középső elem felfelé propagál).</li>
+                    </ul>
+                </math-note>
+
+                <!-- 4. Hash -->
+                <math-header><span class="num-badge">4</span><h3>Hash-elés nyílt címzéssel</h3></math-header>
+                <math-def>
+                    <p><strong>Próbasorozatok képletei:</strong> (ahol $i = 0, 1, 2, \dots$ a próbálkozások száma, $m$ a tábla mérete)</p>
+                    <div class="formula-box">
+                        <p style="margin-bottom: 5px;"><strong>Lineáris próba:</strong> $\quad h_i(x) = (h(x) + i) \bmod m$</p>
+                        <p style="margin-bottom: 5px;"><strong>Kvadratikus próba:</strong> $\quad h_i(x) = (h(x) + c_1 i + c_2 i^2) \bmod m$</p>
+                        <p style="margin-bottom: 0px;"><strong>Kettős hash-elés:</strong> $\quad h_i(x) = (h_1(x) + i \cdot h_2(x)) \bmod m$</p>
+                    </div>
+                </math-def>
+                <math-note>
+                    <p><strong>FONTOS SZABÁLY:</strong> Keresés során, ha a próba egy olyan cellához ér, amiben a <strong>DELETED (*)</strong> szimbólum van (mert töröltek onnan egy elemet), akkor <strong>a keresést nem szabad megállítani!</strong> Tovább kell lépni az $i$-t növelve, mert lehet, hogy a keresett elem ütközés miatt még hátrébb került.</p>
+                </math-note>
+
+                <!-- 5. Bonyolultság -->
+                <math-header><span class="num-badge">5</span><h3>Bonyolultságelmélet</h3></math-header>
+                
+                <math-def>
+                    <p><strong>Osztályok definíciói:</strong></p>
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 10px;">
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-left: 3px solid #10b981; border-radius: 4px;">
+                            <strong>P (Polinomiális):</strong> Azok az eldöntési problémák, amelyek determinisztikus algoritmussal polinom időben $O(n^k)$ megoldhatók.
+                        </div>
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-left: 3px solid #3b82f6; border-radius: 4px;">
+                            <strong>NP (Nondeterminisztikus Polinomiális):</strong> Azok az eldöntési problémák, amelyekre az <em>IGEN</em> válasz létezését egy polinom méretű "tanúval" polinom időben le lehet ellenőrizni (verifikálni).
+                        </div>
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-left: 3px solid #f59e0b; border-radius: 4px;">
+                            <strong>coNP:</strong> Azok a problémák, amelyek komplementere (nemleges feltételre keresünk "tanút") eleme az NP-nek.
+                        </div>
+                    </div>
+                </math-def>
+
+                <math-def>
+                    <p><strong>Karp-redukció ($A \leq_p B$):</strong> $A$ probléma polinom időben visszavezethető $B$-re, ha létezik egy $f$ polinom idejű algoritmus, ami az $A$ probléma inputjait $B$ probléma inputjaivá alakítja úgy, hogy:</p>
+                    <div class="formula-box" style="text-align: center;">
+                        <p>$x \in A \iff f(x) \in B$</p>
+                    </div>
+                    <p><strong>Tranzitivitás:</strong> Ha $A \leq_p B$ és $B \leq_p C$, akkor $A \leq_p C$.</p>
+                </math-def>
+
+                <math-def>
+                    <p><strong>NP-nehéz és NP-teljes:</strong></p>
+                    <div class="formula-box">
+                        <p>Egy $L$ probléma <strong>NP-nehéz</strong>, ha $\forall L' \in \mathbf{NP}$ esetén: $L' \leq_p L$.</p>
+                        <p>Egy $L$ probléma <strong>NP-teljes</strong> $\iff$ $L \in \mathbf{NP}$ <strong>ÉS</strong> $L$ NP-nehéz.</p>
+                    </div>
+                    <p>Cook-Levin tétel (az első NP-teljes probléma): <strong>SAT (Kielégíthetőség)</strong>.</p>
+                </math-def>
+
+                <math-note>
+                    <p><strong>Nevezetes NP-teljes problémák (amik a redukciókhoz jól jönnek):</strong></p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <span style="background: var(--surface-0); padding: 4px 10px; border-radius: 20px; font-size: 0.9em; border: 1px solid var(--glass-border);">SAT és 3-SAT</span>
+                        <span style="background: var(--surface-0); padding: 4px 10px; border-radius: 20px; font-size: 0.9em; border: 1px solid var(--glass-border);">3-SZÍNEZHETŐSÉG</span>
+                        <span style="background: var(--surface-0); padding: 4px 10px; border-radius: 20px; font-size: 0.9em; border: 1px solid var(--glass-border);">Hamilton-kör</span>
+                        <span style="background: var(--surface-0); padding: 4px 10px; border-radius: 20px; font-size: 0.9em; border: 1px solid var(--glass-border);">Utazó Ügynök (TSP)</span>
+                        <span style="background: var(--surface-0); padding: 4px 10px; border-radius: 20px; font-size: 0.9em; border: 1px solid var(--glass-border);">Független Halmaz (MAXFTLN)</span>
+                        <span style="background: var(--surface-0); padding: 4px 10px; border-radius: 20px; font-size: 0.9em; border: 1px solid var(--glass-border);">Klikk (MAXKLIKK)</span>
+                        <span style="background: var(--surface-0); padding: 4px 10px; border-radius: 20px; font-size: 0.9em; border: 1px solid var(--glass-border);">Részhalmazösszeg</span>
+                        <span style="background: var(--surface-0); padding: 4px 10px; border-radius: 20px; font-size: 0.9em; border: 1px solid var(--glass-border);">Partíció</span>
+                        <span style="background: var(--surface-0); padding: 4px 10px; border-radius: 20px; font-size: 0.9em; border: 1px solid var(--glass-border);">Hátizsák</span>
+                    </div>
+                </math-note>
+            </div>
+        </section>
 
         <!-- ============================================================
              12. GYAKORLAT
