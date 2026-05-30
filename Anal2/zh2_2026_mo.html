@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026. ZH2 Megoldások</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7;
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        h1 { 
+            color: white; 
+            font-weight: 800; 
+            font-size: 2.8rem; 
+            text-align: center; 
+            margin-bottom: 50px; 
+            letter-spacing: -0.5px;
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            margin-top: 0; 
+            border-bottom: 1px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .task-description {
+            background: var(--task-bg);
+            border-left: 5px solid var(--task-color);
+            padding: 25px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 35px;
+            font-size: 1.25rem;
+            color: #e0f2fe;
+            line-height: 1.7;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .task-description strong {
+            color: var(--task-color);
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .formula-box {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 4px solid var(--secondary);
+            padding: 20px 25px;
+            border-radius: 0 16px 16px 0;
+            margin: 25px 0;
+            font-size: 1.25rem;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        .formula-box b {
+            color: var(--secondary);
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .calc-step {
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 3px solid rgba(255,255,255,0.15);
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            line-height: 2;
+        }
+
+        .math-block {
+            margin: 15px 0;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .result {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+            padding: 20px 25px;
+            border-radius: 16px;
+            display: block;
+            font-weight: 700;
+            margin-top: 30px;
+            font-size: 1.4rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);
+        }
+
+        .mjx-chtml { color: white !important; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 30px 15px; }
+            .card { padding: 25px 20px; }
+            h1 { font-size: 2.2rem; }
+            .task-description, .calc-step { font-size: 1.1rem; }
+            .result { font-size: 1.2rem; }
+            mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Vissza az Összefoglalóhoz
+        </a>
+
+        <h1>2026. Május 14. ZH2 Megoldások</h1>
+
+        <!-- 1. Feladat -->
+        <div class="card">
+            <h2>1. Hatványsorok konvergenciája</h2>
+            
+            <div class="task-description">
+                <strong>1. Feladat (12+12=24 pont)</strong>
+                Milyen $x \in \mathbb{R}$ esetén konvergensek az alábbi sorok? A b) részben adja meg a hatványsor összegfüggvényét is!
+                <br>a) $\displaystyle \sum_{k \in \mathbb{N}^+} \frac{(3x - 6)^k}{k^2 \cdot 6^{k+1}}$
+                <br>b) $\displaystyle \sum_{k \in \mathbb{N}} (-1)^k \frac{x^{2k+1}}{(2k)!}$
+            </div>
+
+            <div class="formula-box">
+                <b>Alkalmazott Képlet (Cauchy-gyökkritérium):</b> 
+                $$ R = \frac{1}{\lim_{k\to\infty} \sqrt[k]{|a_k|}} $$
+            </div>
+
+            <div class="calc-step">
+                <b>a) rész:</b> $\sum_{k \in \mathbb{N}^+} \frac{(3x - 6)^k}{k^2 \cdot 6^{k+1}}$
+                <div class="math-block">
+                    1. Alakítsuk át a sort, hogy az $(x - x_0)^k$ forma előálljon:
+                    $$ \frac{(3(x - 2))^k}{k^2 \cdot 6 \cdot 6^k} = \frac{3^k (x - 2)^k}{6k^2 \cdot 6^k} = \frac{(x - 2)^k}{6k^2 \cdot 2^k} $$
+                </div>
+                <div class="math-block">
+                    2. Az általános tag $a_k = \frac{1}{6k^2 \cdot 2^k}$. Számítsuk ki a konvergenciasugarat:
+                    $$ \lim_{k\to\infty} \sqrt[k]{|a_k|} = \lim_{k\to\infty} \frac{1}{\sqrt[k]{6} \cdot (\sqrt[k]{k})^2 \cdot 2} = \frac{1}{1 \cdot 1^2 \cdot 2} = \frac{1}{2} $$
+                </div>
+                A kapott limesz reciprokja a konvergenciasugár: $R_a = 2$.<br>
+                A belső tartomány tehát $|x - 2| < 2 \implies x \in ]0, 4[$.
+            </div>
+
+            <div class="calc-step">
+                3. Vizsgáljuk meg az intervallum végpontjait:
+                <div class="math-block">
+                    - Ha $x = 0$, a sor: $\displaystyle \sum_{k=1}^\infty \frac{(-2)^k}{6k^2 \cdot 2^k} = \sum_{k=1}^\infty \frac{(-1)^k}{6k^2}$. Ez egy alternáló sor, az $\frac{1}{6k^2}$ monoton csökkenve tart nullához, így a <b>Leibniz-kritérium</b> alapján konvergens.
+                    <br>- Ha $x = 4$, a sor: $\displaystyle \sum_{k=1}^\infty \frac{2^k}{6k^2 \cdot 2^k} = \sum_{k=1}^\infty \frac{1}{6k^2}$. Mivel a $\sum \frac{1}{k^\alpha}$ sor konvergens ha $\alpha > 1$ (itt $\alpha=2$), ez a sor is konvergens.
+                </div>
+            </div>
+            
+            <div class="formula-box">
+                <b>Trükk (Nevezetes Taylor-sor):</b> 
+                $$ \cos(x) = \sum_{k=0}^\infty (-1)^k \frac{x^{2k}}{(2k)!} $$
+            </div>
+
+            <div class="calc-step">
+                <b>b) rész:</b> $\sum_{k \in \mathbb{N}} (-1)^k \frac{x^{2k+1}}{(2k)!}$
+                <div class="math-block">
+                    1. Alakítsuk át az általános tagot, hogy felismerjünk egy nevezetes hatványsort:
+                    $$ \sum_{k=0}^\infty (-1)^k \frac{x \cdot x^{2k}}{(2k)!} = x \sum_{k=0}^\infty (-1)^k \frac{x^{2k}}{(2k)!} $$
+                </div>
+                <div class="math-block">
+                    2. A szummán belüli rész pontosan a $\cos x$ Taylor-sora.
+                    $$ x \sum_{k=0}^\infty (-1)^k \frac{x^{2k}}{(2k)!} = x \cos(x) $$
+                </div>
+                Mivel a $\cos x$ Taylor-sora minden $x \in \mathbb{R}$ esetén konvergens, ez a hatványsor is konvergens minden valós számra.
+            </div>
+
+            <div class="result">
+                Eredmény: a) Konvergens pontosan akkor, ha $x \in [0, 4]$.<br>
+                b) Minden $x \in \mathbb{R}$ esetén konvergens, az összegfüggvény $f(x) = x \cos(x)$.
+            </div>
+        </div>
+
+        <!-- 2. Feladat -->
+        <div class="card">
+            <h2>2. Taylor-sorfejtés és Derivált kiszámítása</h2>
+            
+            <div class="task-description">
+                <strong>2. Feladat (24 pont)</strong>
+                Határozza meg az alábbi függvény $x_0 = 0$ körüli Taylor-sorfejtését, Taylor-sorának konvergenciasugarát és az $f^{(100)}(0)$ deriváltat!
+                $$ f(x) := \frac{1}{(2 + x)^2} \quad (x \in \mathbb{R} \setminus \{-2\}) $$
+            </div>
+
+            <div class="formula-box">
+                <b>Mértani sor összegképlete (Sorfejtés alapja):</b> 
+                $$ \frac{1}{1 - q} = \sum_{n=0}^\infty q^n \quad (\text{ha } |q| < 1) $$
+            </div>
+
+            <div class="calc-step">
+                1. Vegyük észre a deriváltkapcsolatot! Legyen $g(x) := \frac{1}{2+x}$.
+                <div class="math-block">
+                    Ennek deriváltja:
+                    $$ g'(x) = -\frac{1}{(2+x)^2} = -f(x) \implies f(x) = -g'(x) $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                2. Fejtsük sorba a $g(x)$ függvényt a mértani sor segítségével:
+                <div class="math-block">
+                    $$ g(x) = \frac{1}{2 \left(1 + \frac{x}{2}\right)} = \frac{1}{2} \cdot \frac{1}{1 - \left(-\frac{x}{2}\right)} $$
+                    $$ g(x) = \frac{1}{2} \sum_{n=0}^\infty \left(-\frac{x}{2}\right)^n = \sum_{n=0}^\infty \frac{(-1)^n}{2^{n+1}} x^n $$
+                </div>
+                A sor akkor konvergens, ha $|-\frac{x}{2}| < 1 \implies |x| < 2$. Így $g(x)$ konvergenciasugara $R=2$.
+            </div>
+
+            <div class="calc-step">
+                3. Határozzuk meg $f(x)$ Taylor-sorát $g(x)$ deriválásával:
+                <div class="math-block">
+                    $$ f(x) = -g'(x) = -\frac{d}{dx} \left( \sum_{n=0}^\infty \frac{(-1)^n}{2^{n+1}} x^n \right) $$
+                    A konstans (0-dik foku) tag deriváltja 0, így az indexelést indíthatjuk $n=1$-től:
+                    $$ f(x) = -\sum_{n=1}^\infty \frac{(-1)^n \cdot n}{2^{n+1}} x^{n-1} $$
+                </div>
+                Indexeltolás ($m = n-1 \implies n = m+1$):
+                <div class="math-block">
+                    $$ f(x) = -\sum_{m=0}^\infty \frac{(-1)^{m+1} \cdot (m+1)}{2^{m+2}} x^m = \sum_{m=0}^\infty \frac{(-1)^m (m+1)}{2^{m+2}} x^m $$
+                </div>
+                A konvergenciasugár deriválásnál nem változik, tehát $f(x)$ konvergenciasugara is $R = 2$.
+            </div>
+
+            <div class="calc-step">
+                4. Számítsuk ki az $f^{(100)}(0)$ deriváltat!
+                <div class="math-block">
+                    Tudjuk, hogy a Taylor-sor $x^n$-es tagjának együtthatója $a_n = \frac{f^{(n)}(0)}{n!}$. Ebből adódik, hogy:
+                    $$ f^{(n)}(0) = a_n \cdot n! $$
+                    Alkalmazzuk ezt $n=100$-ra. A fenti sorfejtésből az $a_{100}$ együttható ($m=100$):
+                    $$ a_{100} = \frac{(-1)^{100} (100+1)}{2^{100+2}} = \frac{101}{2^{102}} $$
+                    A 100. derivált tehát:
+                    $$ f^{(100)}(0) = 100! \cdot \frac{101}{2^{102}} = \frac{101!}{2^{102}} $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: $f(x) = \sum_{n=0}^\infty \frac{(-1)^n (n+1)}{2^{n+2}} x^n$, $R = 2$, $f^{(100)}(0) = \frac{101!}{2^{102}}$.
+            </div>
+        </div>
+
+        <!-- 3. Feladat -->
+        <div class="card">
+            <h2>3. Többváltozós függvény határértéke</h2>
+            
+            <div class="task-description">
+                <strong>3. Feladat (16 pont)</strong>
+                Határozza meg az alábbi határértéket (amennyiben létezik)!
+                $$ \lim_{(x,y)\to(0,0)} \frac{x(3x + 4y)}{\sqrt{x^2 + y^2}} = ? $$
+            </div>
+
+            <div class="formula-box">
+                <b>Polárkoordinátás helyettesítés origóban:</b> 
+                $$ x = r \cos \varphi, \quad y = r \sin \varphi \quad (r \to 0) $$
+                <b>Rendőrelv:</b> Ha $\lim_{r\to 0} g(r) = 0$, és $h(\varphi)$ korlátos függvény, akkor $\lim_{r\to 0} g(r) \cdot h(\varphi) = 0$.
+            </div>
+
+            <div class="calc-step">
+                Legyen $f(x,y) := \frac{3x^2 + 4xy}{\sqrt{x^2 + y^2}}$. Mivel az origóba tartunk, érdemes polárkoordinátákat alkalmazni.
+                <div class="math-block">
+                    Helyettesítés: $x = r \cos \varphi$ és $y = r \sin \varphi$, ahol $r \to 0$.
+                    $$ f(r\cos\varphi, r\sin\varphi) = \frac{3(r\cos\varphi)^2 + 4(r\cos\varphi)(r\sin\varphi)}{\sqrt{(r\cos\varphi)^2 + (r\sin\varphi)^2}} $$
+                    $$ = \frac{r^2(3\cos^2\varphi + 4\cos\varphi\sin\varphi)}{\sqrt{r^2(\cos^2\varphi + \sin^2\varphi)}} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                Egyszerűsítsük a kifejezést (tudva, hogy $\cos^2\varphi + \sin^2\varphi = 1$ és $r>0$):
+                <div class="math-block">
+                    $$ = \frac{r^2(3\cos^2\varphi + 4\cos\varphi\sin\varphi)}{r} = r \underbrace{(3\cos^2\varphi + 4\cos\varphi\sin\varphi)}_{\text{korlátos}} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                Mivel $r \to 0$ és a zárójelben lévő trigonometrikus kifejezés minden $\varphi$ szögre véges, korlátos szám (sin és cos értéke legfeljebb 1), a "nullába tartó szorozva korlátossal" elv alapján (Rendőrelv / Átviteli elv):
+                <div class="math-block">
+                    $$ \lim_{r\to 0} r(3\cos^2\varphi + 4\cos\varphi\sin\varphi) = 0 \cdot \text{korlátos} = 0 $$
+                </div>
+                A határérték tehát létezik, és független az iránytól ($\varphi$-től).
+            </div>
+
+            <div class="result">
+                Eredmény: $\lim_{(x,y)\to(0,0)} f(x,y) = 0$.
+            </div>
+        </div>
+
+        <!-- 4. Feladat -->
+        <div class="card">
+            <h2>4. Parciális deriváltak és Differenciálhatóság</h2>
+            
+            <div class="task-description">
+                <strong>4. Feladat (18 pont)</strong>
+                Legyen
+                $$ f(x,y) := \begin{cases} \frac{3x\cosh(y)}{x^2+2y^2} - 2x, & \text{ha } (x,y) \neq (0,0) \\ 0, & \text{ha } (x,y) = (0,0) \end{cases} $$
+                a) Számítsa ki $f$ elsőrendű parciális deriváltjait a sík minden pontjában!<br>
+                b) A sík mely pontjaiban differenciálható (totálisan) $f$? (Indokoljunk.)
+            </div>
+
+            <div class="formula-box">
+                <b>Parciális derivált definíciója az origóban:</b> 
+                $$ \partial_x f(0,0) = \lim_{x\to 0} \frac{f(x,0) - f(0,0)}{x} $$
+                Ha a törtes képlettel kapott derivált határértéke a nullában problémás (pl. 0/0), <b>mindig</b> a definíciót kell használni az ellenőrzéshez!
+            </div>
+
+            <div class="calc-step">
+                <b>a) Parciális deriváltak origón kívül ($(x,y) \neq (0,0)$):</b>
+                <div class="math-block">
+                    A tört deriválási szabályát használva ($x$ és $y$ szerint külön-külön deriválva):
+                    $$ \partial_1 f(x,y) = \frac{3\cosh(y)(x^2+2y^2) - (3x\cosh(y))(2x)}{(x^2+2y^2)^2} - 2 = \frac{3\cosh(y)(x^2+2y^2) - 6x^2\cosh(y)}{(x^2+2y^2)^2} - 2 $$
+                    $$ \partial_2 f(x,y) = \frac{3x\sinh(y)(x^2+2y^2) - (3x\cosh(y))(4y)}{(x^2+2y^2)^2} - 0 = \frac{3x\sinh(y)(x^2+2y^2) - 12xy\cosh(y)}{(x^2+2y^2)^2} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>a) Parciális deriváltak az origóban (definícióval):</b>
+                <div class="math-block">
+                    Deriválás $x$ szerint:
+                    $$ \partial_1 f(0,0) = \lim_{x\to 0} \frac{f(x,0) - f(0,0)}{x} = \lim_{x\to 0} \frac{\frac{3x\cosh(0)}{x^2} - 2x - 0}{x} $$
+                    Tudjuk, hogy $\cosh(0) = 1$:
+                    $$ = \lim_{x\to 0} \left( \frac{3x}{x^3} - 2 \right) = \lim_{x\to 0} \left( \frac{3}{x^2} - 2 \right) = +\infty $$
+                    Mivel a limesz végtelen, $\partial_1 f(0,0)$ <b>nem létezik</b>.
+                </div>
+                <div class="math-block">
+                    Deriválás $y$ szerint:
+                    $$ \partial_2 f(0,0) = \lim_{y\to 0} \frac{f(0,y) - f(0,0)}{y} = \lim_{y\to 0} \frac{0 - 0}{y} = 0 $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>b) Totális differenciálhatóság vizsgálata:</b>
+                <div class="math-block">
+                    - <b>Origóban:</b> Mivel az $x$ szerinti parciális derivált nem létezik az origóban, $f$ itt biztosan <b>nem differenciálható</b>.<br>
+                    - <b>Origón kívül:</b> A parciális deriváltak ($\partial_1 f$ és $\partial_2 f$) az $\mathbb{R}^2 \setminus \{(0,0)\}$ nyílt halmazon folytonos függvények (a nevező sosem nulla), így itt a függvény <b>differenciálható</b>.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: Csak az origón kívül, az $\mathbb{R}^2 \setminus \{(0,0)\}$ pontokban differenciálható.
+            </div>
+        </div>
+
+        <!-- 5. Feladat -->
+        <div class="card">
+            <h2>5. Kétváltozós függvény lokális szélsőértéke</h2>
+            
+            <div class="task-description">
+                <strong>5. Feladat (18 pont)</strong>
+                Legyen $f(x,y) := 2x^2 + 3xy^2 - 4x \quad ((x,y) \in \mathbb{R}^2)$.<br>
+                Határozza meg $f$ lokális szélsőértékeit és ezek típusát!
+            </div>
+
+            <div class="formula-box">
+                <b>Sylvester-kritérium (Szélsőérték besorolása Hesse-determinánssal):</b><br>
+                1. Ha $\det H_f < 0 \implies$ <b>Nyeregpont</b>.<br>
+                2. Ha $\det H_f > 0 \implies$ Van szélsőérték. Ha $\partial_{xx} f > 0$, akkor <b>Minimum</b>, ha $\partial_{xx} f < 0$, akkor <b>Maximum</b>.
+            </div>
+
+            <div class="calc-step">
+                1. Határozzuk meg a stacionárius pontokat a gradiens nullával egyenlővé tételével:
+                <div class="math-block">
+                    $$ \partial_x f(x,y) = 4x + 3y^2 - 4 = 0 $$
+                    $$ \partial_y f(x,y) = 6xy = 0 $$
+                </div>
+                A második egyenletből: $6xy = 0 \implies x = 0$ vagy $y = 0$.
+            </div>
+
+            <div class="calc-step">
+                Vizsgáljuk meg a két esetet:
+                <div class="math-block">
+                    - <b>Ha $x = 0$:</b> Behelyettesítve az első egyenletbe: $0 + 3y^2 - 4 = 0 \implies 3y^2 = 4 \implies y^2 = 4/3 \implies y = \pm\frac{2}{\sqrt{3}}$.<br>
+                    Így kapunk két pontot: $P_1(0, 2/\sqrt{3})$ és $P_2(0, -2/\sqrt{3})$.
+                    <br><br>
+                    - <b>Ha $y = 0$:</b> Behelyettesítve az első egyenletbe: $4x + 0 - 4 = 0 \implies 4x = 4 \implies x = 1$.<br>
+                    Így kapunk egy harmadik pontot: $P_3(1, 0)$.
+                </div>
+                A stacionárius pontok: $(0, \pm\frac{2}{\sqrt{3}})$ és $(1,0)$.
+            </div>
+
+            <div class="calc-step">
+                2. Írjuk fel a Hesse-mátrixot a másodrendű deriváltakkal:
+                <div class="math-block">
+                    $$ \partial_{xx} f = 4, \quad \partial_{yy} f = 6x, \quad \partial_{xy} f = 6y $$
+                    $$ H_f(x,y) = \begin{pmatrix} 4 & 6y \\ 6y & 6x \end{pmatrix} $$
+                    $$ \det H_f(x,y) = 4(6x) - (6y)^2 = 24x - 36y^2 $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                3. Vizsgáljuk a pontokat (Sylvester-kritérium):
+                <div class="math-block">
+                    - <b>$P_1, P_2(0, \pm 2/\sqrt{3})$-ban:</b> $\det H_f = 24(0) - 36(4/3) = -48 < 0 \implies$ <b>Indefinit (Nyeregpontok)</b>.
+                    <br><br>
+                    - <b>$P_3(1, 0)$-ban:</b> $\det H_f = 24(1) - 36(0) = 24 > 0$.<br>
+                    Mivel $D_1 = \partial_{xx}f(1,0) = 4 > 0$ és a determináns pozitív, a mátrix <b>Pozitív definit</b>, így az $f$-nek itt <b>Lokális minimuma</b> van.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: Nyeregpontok a $(0, \pm 2/\sqrt{3})$ pontokban, lokális minimum az $(1, 0)$ pontban.
+            </div>
+        </div>
+
+        <!-- 6. Feladat -->
+        <div class="card">
+            <h2>6. Háromváltozós lokális szélsőérték (IMSC)</h2>
+            
+            <div class="task-description">
+                <strong>6. Feladat (10 pont, IMSC)</strong>
+                Határozza meg az $f(x,y,z) = xyz$ lokális szélsőértékhelyeit!
+            </div>
+
+            <div class="formula-box">
+                <b>Mi is az a lokális szélsőérték?</b><br>
+                Egy $P_0$ stacionárius pont csak akkor minimum vagy maximum, ha a $P_0$ <b>összes</b> szomszédjában a függvényérték egyértelműen nagyobb/kisebb, mint $P_0$-ban. Ha "billeg" a függvény, azaz bizonyos irányokban nagyobb, máshol meg kisebb értékeket vesz fel, akkor az nyeregpont, <b>nem szélsőérték</b>!
+            </div>
+
+            <div class="calc-step">
+                1. Keressük a stacionárius pontokat:
+                <div class="math-block">
+                    $$ \partial_x f(x,y,z) = yz = 0 $$
+                    $$ \partial_y f(x,y,z) = xz = 0 $$
+                    $$ \partial_z f(x,y,z) = xy = 0 $$
+                </div>
+                A feltételek pontosan akkor teljesülnek, ha a pont <b>valamelyik koordinátatengelyen</b> helyezkedik el (azaz legalább két koordináta $0$). Például az x-tengelyen: $(x,0,0)$.
+            </div>
+
+            <div class="calc-step">
+                2. Vizsgáljuk meg a környezetet:
+                <div class="math-block">
+                    A tengelyeken a függvényérték mindenhol pontosan $0$: $f(x,y,z) = 0$.<br>
+                    Azonban egy tengelyponton elhelyezkedő pont tetszőlegesen kis környezetében mindig találhatók olyan pontok (pl. $x>0, y>0, z>0$ irányban kimozdulva), ahol $f(x,y,z) > 0$, és olyan pontok is (pl. $x>0, y>0, z<0$ irányban), ahol $f(x,y,z) < 0$.
+                </div>
+                Mivel a függvény bármely stacionárius pont bármilyen kis környezetében felvesz pozitív és negatív értékeket is, míg a stacionárius pontban 0 az értéke, ezért <b>egyik stacionárius pont sem lokális szélsőérték</b>.
+            </div>
+
+            <div class="result">
+                Eredmény: A függvénynek nincsenek lokális szélsőértékei.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
