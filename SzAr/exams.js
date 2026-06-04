@@ -99,19 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.appendChild(optionsList);
             }
 
-            const actionsDiv = document.createElement('div');
-            actionsDiv.style.marginTop = '15px';
-            actionsDiv.style.display = 'flex';
-            actionsDiv.style.gap = '10px';
-
-            const revealBtn = document.createElement('button');
-            revealBtn.className = 'submit-btn';
-            revealBtn.innerText = 'Mutasd a megoldást';
-            revealBtn.style.padding = '8px 16px';
-            revealBtn.style.fontSize = '0.9em';
-            
             const solutionDiv = document.createElement('div');
-            solutionDiv.style.display = 'none';
+            solutionDiv.style.display = 'block';
             solutionDiv.style.marginTop = '15px';
             solutionDiv.style.padding = '15px';
             solutionDiv.style.background = 'rgba(16, 185, 129, 0.1)';
@@ -138,22 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
             solutionDiv.appendChild(explHeader);
             solutionDiv.appendChild(explText);
 
-            revealBtn.onclick = () => {
-                if (solutionDiv.style.display === 'none') {
-                    solutionDiv.style.display = 'block';
-                    revealBtn.innerText = 'Megoldás elrejtése';
-                    revealBtn.style.background = 'var(--surface-0)';
-                    revealBtn.style.color = 'var(--text-primary)';
-                } else {
-                    solutionDiv.style.display = 'none';
-                    revealBtn.innerText = 'Mutasd a megoldást';
-                    revealBtn.style.background = 'var(--accent)';
-                    revealBtn.style.color = 'var(--bg-color)';
-                }
-            };
-
-            actionsDiv.appendChild(revealBtn);
-            card.appendChild(actionsDiv);
             card.appendChild(solutionDiv);
 
             realExamContent.appendChild(card);
