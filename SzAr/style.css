@@ -512,3 +512,33 @@ header p {
     margin-top: 1.5rem;
     color: var(--text-secondary);
 }
+
+/* --- Valós Vizsgák Stílusok --- */
+.exam-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    background: transparent;
+    border: 1px solid var(--card-border);
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.tab-button:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.tab-button.active-tab {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}

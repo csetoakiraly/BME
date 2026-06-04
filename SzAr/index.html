@@ -28,6 +28,7 @@
         <div style="margin-top: 2rem;">
             <button id="nav-flashcards" class="nav-btn active">Tanulókártyák</button>
             <button id="nav-mock-exam" class="nav-btn">Gyakorló ZH (30 perc)</button>
+            <button id="nav-exams" class="nav-btn">Vizsga Feladatok</button>
         </div>
     </div>
     <div class="main-content">
@@ -65,11 +66,24 @@
                 <button id="restart-mock-exam" class="submit-btn" style="margin-top:20px;">Új Próba ZH Indítása</button>
             </div>
         </div>
+        <div id="real-exams-container" style="display: none;">
+            <div class="mock-exam-header" style="flex-direction: column; align-items: flex-start; gap: 15px;">
+                <h2>Valós Vizsga Feladatlapok</h2>
+                <div class="exam-tabs" id="exam-tabs">
+                    <!-- Dinamikusan generált fülek -->
+                </div>
+            </div>
+            <div id="real-exam-content">
+                <!-- A kiválasztott vizsga kérdései ide renderelődnek -->
+            </div>
+        </div>
     </div>
     
     <script src="data.js"></script>
     <script src="mockExamData.js"></script>
+    <script src="examsData.js"></script>
     <script src="mockExam.js"></script>
+    <script src="exams.js"></script>
     <script src="app.js"></script>
 </body>
 
