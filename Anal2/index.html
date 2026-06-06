@@ -385,11 +385,19 @@
     <div class="sidebar">
         <h2>Analízis 2<br>Zárthelyi Segédlet</h2>
         <div style="padding: 10px 25px 5px 25px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700;">Témakörök</div>
+        <a href="#" onclick="showSection('s1', this)">1. Szétválasztható DE</a>
+        <a href="#" onclick="showSection('s2', this)">2. Elsőrendű lineáris DE</a>
+        <a href="#" onclick="showSection('s3', this)">3. n-edrendű lineáris DE</a>
+        <a href="#" onclick="showSection('s4', this)">4. Lineáris rekurziók</a>
+        <a href="#" onclick="showSection('s5', this)">5. Sorok konvergenciája</a>
         <a href="#" class="active-link" onclick="showSection('s6', this)">6. Hatványsorok</a>
         <a href="#" onclick="showSection('s7', this)">7. Taylor-sorok</a>
         <a href="#" onclick="showSection('s8', this)">8. Többváltozós Határérték</a>
         <a href="#" onclick="showSection('s9', this)">9. Parciális Derivált</a>
         <a href="#" onclick="showSection('s10', this)">10. Szélsőértékek</a>
+        <a href="#" onclick="showSection('s11', this)">11. Kettős integrál</a>
+        <a href="#" onclick="showSection('s12', this)">12. Többváltozós integrál</a>
+        <a href="#" onclick="showSection('s13', this)">13. Fourier-sor</a>
         
         <div style="padding: 20px 25px 5px 25px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 10px;">Összefoglalók</div>
         <a href="#" style="color: #f59e0b; font-weight: bold;" onclick="showSection('zh2', this)">★ ZH2 Összefoglaló</a>
@@ -478,6 +486,225 @@
                         $$ y(x) = \frac{-1}{x^2 + C} $$
                     </div>
                     <p><b>Végeredmény:</b> A megoldások: $y(x) = \frac{-1}{x^2 + C}$ és az $y \equiv 0$ triviális megoldás.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 2. Gyakorlat -->
+        <section id="s2">
+            <h1>2. Elsőrendű lineáris és helyettesítéses differenciálegyenletek</h1>
+            <div class="card glass">
+                
+                <h3>1. Általános alak</h3>
+                <p>Az elsőrendű lineáris differenciálegyenlet normálalakja, ahol $p(x)$ és $q(x)$ folytonos függvények:</p>
+                <div class="formula">
+                    $$y' + p(x)y = q(x)$$
+                </div>
+                <div class="explanation">
+                    <b>Homogén és inhomogén:</b> Ha $q(x) = 0$, akkor az egyenlet <b>homogén</b> (és szétválasztható változójúként megoldható). Ha $q(x) \neq 0$, akkor <b>inhomogén</b>.
+                </div>
+
+                <h3>2. A megoldás menete (Állandók variálása)</h3>
+                <p>A megoldás két lépésből áll. Először megoldjuk a homogén részt:</p>
+                <div class="formula">
+                    $$y' + p(x)y = 0 \implies \int \frac{dy}{y} = -\int p(x) dx$$
+                </div>
+                <p>Ennek általános megoldása $Y_h(x) = C \cdot e^{- \int p(x) dx}$ alakú.</p>
+                <p>A második lépésben a konstanst "variáljuk", azaz feltesszük, hogy $C$ egy $x$-től függő függvény ($c(x)$):</p>
+                <div class="formula">
+                    $$y(x) = c(x) \cdot e^{- \int p(x) dx}$$
+                </div>
+                <p>Ezt visszahelyettesítve az eredeti (inhomogén) egyenletbe, a bal oldalon sok tag kiesik, és $c'(x)$ könnyen integrálhatóvá válik.</p>
+
+                <h3>3. Bernoulli-differenciálegyenlet</h3>
+                <p>Olyan nemlineáris egyenlet, amely helyettesítéssel lineárissá tehető:</p>
+                <div class="formula">
+                    $$y' + p(x)y = q(x)y^\alpha \quad (\alpha \neq 0, \alpha \neq 1)$$
+                </div>
+                <div class="explanation">
+                    <b>Helyettesítés:</b> Osszuk el az egyenletet $y^\alpha$-val, majd vezessük be az $u = y^{1-\alpha}$ új függvényt! Ennek deriváltja $u' = (1-\alpha)y^{-\alpha}y'$, amit visszahelyettesítve egy már elsőrendű lineáris egyenletet kapunk $u$-ra.
+                </div>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Elsőrendű lineáris differenciálegyenlet</h3>
+                    <p>Oldjuk meg az $y' - \frac{2}{x}y = x^2$ egyenletet ($x > 0$)!</p>
+                    <p><b>Megoldás:</b><br>1. Homogén egyenlet megoldása:</p>
+                    <div class="formula">
+                        $$ y' - \frac{2}{x}y = 0 \implies \frac{dy}{dx} = \frac{2}{x}y \implies \int \frac{dy}{y} = \int \frac{2}{x} dx $$
+                    </div>
+                    <p>Integrálva: $\ln|y| = 2\ln x + C \implies \ln|y| = \ln(x^2) + C$. Ebből a homogén megoldás: $Y_h(x) = c \cdot x^2$.</p>
+
+                    <p>2. Állandók variálása: Legyen $y(x) = c(x)x^2$. Ennek deriváltja a szorzatszabállyal: $y' = c'(x)x^2 + c(x)2x$.</p>
+                    <p>Helyettesítsük vissza az eredeti $y' - \frac{2}{x}y = x^2$ egyenletbe:</p>
+                    <div class="formula">
+                        $$ (c'(x)x^2 + 2xc(x)) - \frac{2}{x}(c(x)x^2) = x^2 $$
+                    </div>
+                    <p>A $c(x)$-es tagok mindig kiesnek! Marad: $c'(x)x^2 = x^2 \implies c'(x) = 1$.</p>
+                    <p>Ezt integrálva kapjuk: $c(x) = x + K$.</p>
+                    <p><b>Végeredmény:</b> $y(x) = (x + K)x^2 = x^3 + Kx^2$.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3. Gyakorlat -->
+        <section id="s3">
+            <h1>3. n-edrendű állandó együtthatós lineáris DE</h1>
+            <div class="card glass">
+                
+                <h3>1. Általános alak</h3>
+                <p>Az egyenletben a deriváltak együtthatói csak számok ($a_i \in \mathbb{R}$):</p>
+                <div class="formula">
+                    $$a_n y^{(n)} + a_{n-1} y^{(n-1)} + \dots + a_1 y' + a_0 y = f(x)$$
+                </div>
+
+                <h3>2. Homogén egyenlet megoldása (Karakterisztikus egyenlet)</h3>
+                <p>Ha $f(x) = 0$, az $y = e^{\lambda x}$ próbafüggvénnyel a differenciálegyenlet egy algebrai polinommá (karakterisztikus egyenletté) alakul:</p>
+                <div class="formula">
+                    $$a_n \lambda^n + a_{n-1} \lambda^{n-1} + \dots + a_1 \lambda + a_0 = 0$$
+                </div>
+                <p>Ennek gyökei ($\lambda_i$) alapján írjuk fel az alapmegoldásokat:</p>
+                <ul>
+                    <li><b>Valós, egyszeres gyök ($\lambda$):</b> $e^{\lambda x}$</li>
+                    <li><b>Valós, $k$-szoros gyök ($\lambda$):</b> $e^{\lambda x}, x e^{\lambda x}, \dots, x^{k-1} e^{\lambda x}$</li>
+                    <li><b>Komplex konjugált gyökpár ($\alpha \pm \beta i$):</b> $e^{\alpha x} \cos(\beta x)$ és $e^{\alpha x} \sin(\beta x)$</li>
+                </ul>
+                <div class="explanation">
+                    <b>Általános megoldás:</b> A kapott alapmegoldásokat konstansokkal szorozva összeadjuk: $Y_h(x) = C_1 y_1(x) + C_2 y_2(x) + \dots + C_n y_n(x)$.
+                </div>
+
+                <h3>3. Inhomogén egyenlet megoldása (Próbafüggvény módszer)</h3>
+                <p>Ha az $f(x)$ jobb oldal "szép" (polinom, exponenciális, szinusz/koszinusz vagy ezek szorzata), akkor a partikuláris megoldást ($y_p$) az $f(x)$ alakjához hasonlóan keressük, ismeretlen együtthatókkal ($A, B, C\dots$).</p>
+                <p>Rezonancia: Ha az $f(x)$-ben lévő "frekvencia" (pl. az exponenciális kitevője) megegyezik a homogén megoldás egyik gyökével (multiplicitása $s$), akkor a próbafüggvényt be kell szorozni $x^s$-nel.</p>
+                
+                <div class="formula">
+                    $$y_{ált}(x) = Y_h(x) + y_p(x)$$
+                </div>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Másodrendű állandó együtthatós egyenlet</h3>
+                    <p>Oldjuk meg az $y'' - 5y' + 6y = 0$ homogén egyenletet!</p>
+                    <p><b>Megoldás:</b><br>1. Írjuk fel a karakterisztikus egyenletet (minden deriváltat $\lambda$ megfelelő hatványára cserélünk):</p>
+                    <div class="formula">
+                        $$ \lambda^2 - 5\lambda + 6 = 0 $$
+                    </div>
+                    <p>2. Oldjuk meg a másodfokú egyenletet! A megoldóképlettel vagy szorzattá alakítással: $(\lambda - 2)(\lambda - 3) = 0$.</p>
+                    <p>A két gyök: $\lambda_1 = 2$ és $\lambda_2 = 3$. Mivel ezek valós, egyszeres gyökök, a két alapmegoldás $e^{2x}$ és $e^{3x}$.</p>
+                    <p><b>Végeredmény:</b> Az általános megoldás: $Y_h(x) = C_1 e^{2x} + C_2 e^{3x}$.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. Gyakorlat -->
+        <section id="s4">
+            <h1>4. Lineáris rekurziók és sorok konvergenciája</h1>
+            <div class="card glass">
+                
+                <h3>1. Másodrendű lineáris rekurzió</h3>
+                <p>Egy sorozat elemét az előző kettő lineáris kombinációjaként kapjuk meg:</p>
+                <div class="formula">
+                    $$x_n = A x_{n-1} + B x_{n-2} \quad (n \ge 2)$$
+                </div>
+                
+                <h3>2. Megoldás karakterisztikus egyenlettel</h3>
+                <p>Keressük a megoldást $x_n = q^n$ alakban. Ezt behelyettesítve és $q^{n-2}$-vel osztva kapjuk a karakterisztikus egyenletet:</p>
+                <div class="formula">
+                    $$q^2 - A q - B = 0$$
+                </div>
+                <p>A gyökök ($q_1, q_2$) alapján az explicit képlet:</p>
+                <ul>
+                    <li><b>Két különböző valós gyök:</b> $x_n = C_1 q_1^n + C_2 q_2^n$</li>
+                    <li><b>Egy darab kétszeres gyök ($q$):</b> $x_n = (C_1 + C_2 n) q^n$</li>
+                </ul>
+                <div class="explanation">
+                    <b>Kezdeti értékek:</b> A $C_1$ és $C_2$ konstansokat az első két elem ($x_0, x_1$) behelyettesítésével kapott kétismeretlenes egyenletrendszerből számoljuk ki.
+                </div>
+
+                <h3>3. Végtelen sorok fogalma</h3>
+                <p>Egy $(a_n)$ sorozat elemeinek végtelen összegét sornak nevezzük: $\sum_{n=1}^\infty a_n$.</p>
+                <p>A <b>részletösszegek sorozata</b> ($S_k$) az első $k$ elem összege: $S_k = a_1 + a_2 + \dots + a_k$.</p>
+                <p>A sor <b>konvergens</b> és összege $S$, ha a részletösszegek sorozata tart $S$-hez: $\lim_{k\to\infty} S_k = S$.</p>
+
+                <h3>4. Geometriai (mértani) sor</h3>
+                <p>A leghasznosabb kiszámítható sor, ahol minden tag egy $q$ konstanssal van szorozva az előzőhöz képest.</p>
+                <div class="formula">
+                    $$\sum_{n=0}^{\infty} q^n = \frac{1}{1-q} \quad \text{ha } |q| < 1$$
+                </div>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Fibonacci-szerű rekurzió</h3>
+                    <p>Legyen $x_n = 5x_{n-1} - 6x_{n-2}$, kezdeti feltételek: $x_0 = 1, x_1 = 5$. Adjuk meg az explicit képletet!</p>
+                    <p><b>Megoldás:</b><br>1. Karakterisztikus egyenlet: $q^2 - 5q + 6 = 0$.</p>
+                    <p>2. Gyökök: $q_1 = 2$, $q_2 = 3$. Az általános alak: $x_n = C_1 2^n + C_2 3^n$.</p>
+                    <p>3. Kezdeti feltételek behelyettesítése:</p>
+                    <ul>
+                        <li>$n=0$ esetén: $x_0 = C_1 2^0 + C_2 3^0 \implies C_1 + C_2 = 1$</li>
+                        <li>$n=1$ esetén: $x_1 = C_1 2^1 + C_2 3^1 \implies 2C_1 + 3C_2 = 5$</li>
+                    </ul>
+                    <p>A kétismeretlenes egyenletrendszerből: $C_1 = 1 - C_2$, beírva a másodikba: $2(1-C_2) + 3C_2 = 5 \implies 2 + C_2 = 5 \implies C_2 = 3$. Ebből $C_1 = -2$.</p>
+                    <p><b>Végeredmény:</b> $x_n = -2 \cdot 2^n + 3 \cdot 3^n$.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 5. Gyakorlat -->
+        <section id="s5">
+            <h1>5. Sorok konvergenciakritériumai</h1>
+            <div class="card glass">
+                
+                <h3>1. Szükséges feltétel</h3>
+                <p>Ahhoz, hogy egy sor egyáltalán konvergens lehessen, az $n$-edik tagnak nullához kell tartania:</p>
+                <div class="formula">
+                    $$\text{Ha } \sum_{n=1}^\infty a_n \text{ konvergens} \implies \lim_{n \to \infty} a_n = 0$$
+                </div>
+                <div class="explanation">
+                    <b>Cáfolat:</b> Ha a határérték nem nulla, a sor <b>biztosan divergens</b>! (De ha nulla, attól még lehet divergens is, pl. harmonikus sor).
+                </div>
+
+                <h3>2. Hányadoskritérium (D'Alembert)</h3>
+                <p>Kiszámoljuk az egymást követő tagok hányadosának határértékét:</p>
+                <div class="formula">
+                    $$L = \lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right|$$
+                </div>
+                <ul>
+                    <li>Ha $L < 1$, a sor <b>konvergens</b> (abszolút).</li>
+                    <li>Ha $L > 1$, a sor <b>divergens</b>.</li>
+                    <li>Ha $L = 1$, a kritérium nem dönt (másik teszt kell).</li>
+                </ul>
+
+                <h3>3. Gyökkritérium (Cauchy)</h3>
+                <p>Kiszámoljuk az $n$-edik tag $n$-edik gyökének határértékét (főleg az $n$-edik hatványon lévő kifejezéseknél jó):</p>
+                <div class="formula">
+                    $$L = \lim_{n \to \infty} \sqrt[n]{|a_n|}$$
+                </div>
+                <p>Az eredmény értékelése megegyezik a hányadoskritériuméval ($L < 1$ konvergens, $L > 1$ divergens).</p>
+
+                <h3>4. Integrálkritérium</h3>
+                <p>Ha $f(x)$ pozitív, monoton csökkenő folytonos függvény, és $a_n = f(n)$, akkor az $\sum a_n$ sor és az $\int_1^\infty f(x) dx$ improprius integrál egyszerre konvergens vagy divergens.</p>
+                <div class="explanation">
+                    Ezzel igazolható a <b>Hiperharmonikus sor</b> szabálya: $\sum \frac{1}{n^\alpha}$ konvergens, ha $\alpha > 1$, és divergens, ha $\alpha \le 1$.
+                </div>
+
+                <h3>5. Leibniz-kritérium (Alternáló sorokra)</h3>
+                <p>Egy $\sum_{n=1}^\infty (-1)^n a_n$ alakú (váltakozó előjelű) sor konvergens, ha az $(a_n)$ sorozat tagjai (abszolút értékben) monoton csökkenve tartanak a nullához.</p>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Sor konvergenciájának vizsgálata</h3>
+                    <p>Döntsük el a $\sum_{n=1}^\infty \frac{3^n}{n!}$ sor konvergenciáját!</p>
+                    <p><b>Megoldás:</b><br>Mivel faktoriális ($n!$) és exponenciális ($3^n$) kifejezések szerepelnek, a <b>hányadoskritérium</b> a leggyorsabb.</p>
+                    <p>Legyen $a_n = \frac{3^n}{n!}$ és $a_{n+1} = \frac{3^{n+1}}{(n+1)!}$.</p>
+                    <p>Vizsgáljuk a határértéket:</p>
+                    <div class="formula">
+                        $$ L = \lim_{n \to \infty} \frac{a_{n+1}}{a_n} = \lim_{n \to \infty} \frac{\frac{3^{n+1}}{(n+1)!}}{\frac{3^n}{n!}} = \lim_{n \to \infty} \frac{3^{n+1} \cdot n!}{3^n \cdot (n+1)!} $$
+                    </div>
+                    <p>Egyszerűsítsünk! Tudjuk, hogy $3^{n+1} / 3^n = 3$, és $(n+1)! / n! = n+1$:</p>
+                    <div class="formula">
+                        $$ L = \lim_{n \to \infty} \frac{3}{n+1} = 0 $$
+                    </div>
+                    <p>Mivel $L = 0 < 1$, a hányadoskritérium értelmében a sor <b>konvergens</b>.</p>
                 </div>
 
             </div>
@@ -1022,6 +1249,184 @@
                     </ul>
                     <p>4. Függvényértékek: $f(2,2) = 4$, $f(-2,-2) = 4$ (ezek a <b>maximumok</b>). $f(2,-2) = -4$, $f(-2,2) = -4$ (ezek a <b>minimumok</b>).</p>
                 </div>
+            </div>
+        </section>
+
+        <!-- 11. Gyakorlat -->
+        <section id="s11">
+            <h1>11. Kétváltozós integrál és Polártranszformáció</h1>
+            <div class="card glass">
+                
+                <h3>1. Kettős integrál fogalma</h3>
+                <p>Az $\iint_T f(x,y) dA$ kettős integrál egy $T$ síkbeli tartomány fölötti térfogatot adja meg, ahol $f(x,y)$ a magasság.</p>
+
+                <h3>2. Fubini-tétel (Téglalap tartományon)</h3>
+                <p>Ha $T = [a,b] \times [c,d]$ egy téglalap, akkor a kettős integrál két egymás utáni egyváltozós integrálra bontható, és a sorrend tetszőleges:</p>
+                <div class="formula">
+                    $$\iint_T f(x,y) dA = \int_a^b \left( \int_c^d f(x,y) dy \right) dx = \int_c^d \left( \int_a^b f(x,y) dx \right) dy$$
+                </div>
+
+                <h3>3. Normáltartományok</h3>
+                <p>Nem téglalap alakú tartományoknál a határok függvények lesznek:</p>
+                <ul>
+                    <li><b>Y-szerinti normáltartomány:</b> Az $x$ konstansok között fut ($a \le x \le b$), míg $y$ két függvény között ($g_1(x) \le y \le g_2(x)$). Ekkor belül $y$ szerint integrálunk először.</li>
+                    <li><b>X-szerinti normáltartomány:</b> Az $y$ konstansok között fut ($c \le y \le d$), míg $x$ két függvény között ($h_1(y) \le x \le h_2(y)$). Ekkor belül $x$ szerint integrálunk először.</li>
+                </ul>
+                <div class="explanation">
+                    <b>Alapszabály:</b> A KÜLSŐ integrál határai MINDIG csak számok lehetnek! Sosem maradhat a legvégén változó.
+                </div>
+
+                <h3>4. Polárkoordinátás transzformáció</h3>
+                <p>Ha a tartomány kör, körgyűrű vagy körcikk, sokkal egyszerűbb áttérni szögre ($\varphi$) és távolságra ($r$):</p>
+                <div class="formula">
+                    $$x = r \cos \varphi, \quad y = r \sin \varphi$$
+                </div>
+                <p><b>Jacobi-determináns:</b> Minden transzformációnál az integrálási változók ($dx dy$) átírásakor meg kell szorozni az integrálandó függvényt a Jacobi-determináns abszolút értékével. Polárkoordináták esetén ez mindig $r$:</p>
+                <div class="formula">
+                    $$dx dy \quad \longrightarrow \quad r \cdot dr d\varphi$$
+                </div>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Polártranszformáció</h3>
+                    <p>Számítsuk ki az $\iint_T (x^2 + y^2) dA$ integrált, ahol $T$ az origó középpontú, 2 sugarú negyedkör az első síknegyedben ($x \ge 0, y \ge 0$)!</p>
+                    <p><b>Megoldás:</b><br>1. Határok felírása polárkoordinátákban:</p>
+                    <ul>
+                        <li>A sugár ($r$) fut az origótól a kör széléig: $0 \le r \le 2$.</li>
+                        <li>A szög ($\varphi$) az első síknegyedet fedi le: $0 \le \varphi \le \pi/2$.</li>
+                    </ul>
+                    <p>2. A függvény átírása: $x^2 + y^2 = (r\cos\varphi)^2 + (r\sin\varphi)^2 = r^2(\cos^2\varphi + \sin^2\varphi) = r^2$.</p>
+                    <p>3. Az integrál felírása (ne felejtsük el a szorzást $r$-rel!):</p>
+                    <div class="formula">
+                        $$ \int_0^{\pi/2} \int_0^2 (r^2) \cdot r \, dr \, d\varphi = \int_0^{\pi/2} \int_0^2 r^3 \, dr \, d\varphi $$
+                    </div>
+                    <p>4. Először az $r$ szerinti integrálást végezzük el:</p>
+                    <div class="formula">
+                        $$ \int_0^2 r^3 dr = \left[ \frac{r^4}{4} \right]_0^2 = \frac{16}{4} - 0 = 4 $$
+                    </div>
+                    <p>5. Majd a $\varphi$ szerinti integrálást:</p>
+                    <div class="formula">
+                        $$ \int_0^{\pi/2} 4 d\varphi = [4\varphi]_0^{\pi/2} = 4 \cdot \frac{\pi}{2} - 0 = 2\pi $$
+                    </div>
+                    <p><b>Végeredmény:</b> $2\pi$.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 12. Gyakorlat -->
+        <section id="s12">
+            <h1>12. Többváltozós integrál, Henger- és Gömbi koordináták</h1>
+            <div class="card glass">
+                
+                <h3>1. Hármas integrál fogalma</h3>
+                <p>A hármas integrál térbeli ($V$) testekre vonatkozik. Ha az $f(x,y,z) \equiv 1$ függvényt integráljuk, a test térfogatát kapjuk. Ha az $f(x,y,z)$ a sűrűség, akkor a test tömegét.</p>
+
+                <h3>2. Hengerkoordináták (Cilindrikus)</h3>
+                <p>Ha a test hengerszimmetrikus (pl. henger, kúp, paraboloid), a $z$ tengelyt megtartjuk, az $x,y$ síkban pedig polárkoordinátákat használunk:</p>
+                <div class="formula">
+                    $$x = r \cos \varphi, \quad y = r \sin \varphi, \quad z = z$$
+                </div>
+                <p><b>Jacobi-determináns:</b> Itt is az $x,y$ sík transzformációja történik, így az integrálási tényező ismét:</p>
+                <div class="formula">
+                    $$|J| = r \quad \implies \quad dx dy dz \longrightarrow r \cdot dr d\varphi dz$$
+                </div>
+
+                <h3>3. Gömbi koordináták (Szférikus)</h3>
+                <p>Ha a test gömbszimmetrikus (pl. gömb, gömbréteg), három adat határoz meg egy pontot: a távolság az origótól ($r$), a földrajzi hosszúság ($\varphi$, az $xy$ síkon), és a szélesség az északi pólustól ($z$ tengelytől) lefelé mérve ($\vartheta$):</p>
+                <div class="formula">
+                    $$x = r \sin \vartheta \cos \varphi, \quad y = r \sin \vartheta \sin \varphi, \quad z = r \cos \vartheta$$
+                </div>
+                <p>Az általános határok egy teljes gömbre: $r \in [0, R]$, $\varphi \in [0, 2\pi]$, $\vartheta \in [0, \pi]$.</p>
+                <p><b>Jacobi-determináns:</b> Gömbi koordinátáknál a szorzótényező jóval összetettebb:</p>
+                <div class="formula">
+                    $$|J| = r^2 \sin \vartheta \quad \implies \quad dx dy dz \longrightarrow r^2 \sin \vartheta \cdot dr d\varphi d\vartheta$$
+                </div>
+                <div class="explanation">
+                    <b>Tipp:</b> A $\vartheta$ maximális értéke $\pi$ (180 fok), ami a "déli pólust" jelenti. A gömb többi felét a $\varphi$ (ami $2\pi$-ig megy) fedi le körbeforgással. Sose legyen $\vartheta > \pi$!
+                </div>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Térfogatszámítás Gömbi koordinátákkal</h3>
+                    <p>Számítsuk ki egy $R$ sugarú gömb térfogatát hármas integrállal!</p>
+                    <p><b>Megoldás:</b><br>1. A térfogat az $f(x,y,z) = 1$ függvény integrálja a $V$ gömbtartományon.</p>
+                    <p>2. A határok egy teljes gömbre: $0 \le r \le R$, $0 \le \varphi \le 2\pi$, $0 \le \vartheta \le \pi$.</p>
+                    <p>3. Írjuk fel az integrált (a szorzótényező $r^2 \sin \vartheta$!):</p>
+                    <div class="formula">
+                        $$ V = \int_0^{2\pi} \int_0^\pi \int_0^R 1 \cdot r^2 \sin \vartheta \, dr \, d\vartheta \, d\varphi $$
+                    </div>
+                    <p>4. Az integrálok teljesen függetlenek, szétbonthatjuk őket három külön szorzatra:</p>
+                    <div class="formula">
+                        $$ V = \left( \int_0^{2\pi} 1 d\varphi \right) \cdot \left( \int_0^\pi \sin \vartheta d\vartheta \right) \cdot \left( \int_0^R r^2 dr \right) $$
+                    </div>
+                    <p>5. Számítsuk ki a három tagot:</p>
+                    <ul>
+                        <li>$\varphi$: $[ \varphi ]_0^{2\pi} = 2\pi$</li>
+                        <li>$\vartheta$: $[ -\cos \vartheta ]_0^\pi = (-\cos \pi) - (-\cos 0) = -(-1) - (-1) = 2$</li>
+                        <li>$r$: $[ \frac{r^3}{3} ]_0^R = \frac{R^3}{3}$</li>
+                    </ul>
+                    <p><b>Végeredmény:</b> $V = 2\pi \cdot 2 \cdot \frac{R^3}{3} = \frac{4\pi R^3}{3}$, ami valóban a gömb térfogatképlete.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 13. Gyakorlat -->
+        <section id="s13">
+            <h1>13. Fourier-sor és Fourier-transzformált</h1>
+            <div class="card glass">
+                
+                <h3>1. Fourier-sor célja</h3>
+                <p>Periodikus függvényeket próbálunk végtelen sok szinusz és koszinusz hullám összegeként felírni. Legyen az $f(x)$ függvény $2\pi$ szerint periodikus.</p>
+                <div class="formula">
+                    $$f(x) \sim \frac{a_0}{2} + \sum_{n=1}^\infty \left( a_n \cos(nx) + b_n \sin(nx) \right)$$
+                </div>
+
+                <h3>2. Együtthatók (Euler-Fourier formulák)</h3>
+                <p>Az együtthatókat a függvény megfelelő trigonometrikus taggal való szorzásával és integrálásával kapjuk egy teljes periódusra (pl. $[-\pi, \pi]$):</p>
+                <div class="formula" style="text-align: left; padding-left: 40px;">
+                    $a_0 = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) dx$<br><br>
+                    $a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos(nx) dx \quad (n \ge 1)$<br><br>
+                    $b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin(nx) dx \quad (n \ge 1)$
+                </div>
+
+                <h3>3. Páros és páratlan függvények trükkjei</h3>
+                <p>Mivel a koszinusz páros, a szinusz páratlan függvény, az integrálok gyakran egyszerűsödnek a $[-\pi, \pi]$ szimmetrikus intervallumon:</p>
+                <ul>
+                    <li><b>Ha $f(x)$ páros</b> ($f(-x) = f(x)$): Csak koszinuszos tagjai lesznek! A szinuszos együtthatók nulla értéket vesznek fel ($b_n = 0$). Az integrálás felezhető: $\int_{-\pi}^{\pi} = 2 \int_0^{\pi}$.</li>
+                    <li><b>Ha $f(x)$ páratlan</b> ($f(-x) = -f(x)$): Csak szinuszos tagjai lesznek! A koszinuszos együtthatók (és $a_0$) mind nullák ($a_n = 0$).</li>
+                </ul>
+
+                <h3>4. Dirichlet-tétel a konvergenciáról</h3>
+                <p>A Fourier-sor a folytonos pontokban a függvény eredeti értékéhez tart. <b>Szakadási pontokban</b> viszont a bal és jobb oldali határérték számtani közepéhez (pont a feléhez):</p>
+                <div class="formula">
+                    $$\text{Sor összege a szakadásban} = \frac{f(x^+) + f(x^-)}{2}$$
+                </div>
+
+                <h3>5. Fourier-transzformált</h3>
+                <p>Nem periodikus jeleknél a "frekvenciaspektrum" folytonos lesz. Az $f(x)$ függvény (időtartomány) Fourier-transzformáltja az $\hat{f}(\omega)$ (frekvenciatartomány), ami komplex értékű is lehet:</p>
+                <div class="formula">
+                    $$\hat{f}(\omega) = \int_{-\infty}^{\infty} f(x) e^{-i\omega x} dx$$
+                </div>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Fourier-együttható kiszámítása</h3>
+                    <p>Legyen $f(x) = x$, ha $x \in [-\pi, \pi]$, és folytassuk periodikusan. Mennyi a Fourier-sora?</p>
+                    <p><b>Megoldás:</b><br>1. Vizsgáljuk a paritást! $f(-x) = -x = -f(x)$, tehát a függvény <b>páratlan</b>.</p>
+                    <p>2. Mivel páratlan, minden $a_n = 0$ és $a_0 = 0$. Csak a $b_n$ együtthatókat kell számolni.</p>
+                    <p>3. $b_n$ felírása és parciális integrálás ($u=x, v'=\sin(nx) \implies u'=1, v=\frac{-\cos(nx)}{n}$):</p>
+                    <div class="formula">
+                        $$ b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} x \sin(nx) dx = \frac{2}{\pi} \int_0^{\pi} x \sin(nx) dx $$
+                    </div>
+                    <div class="formula">
+                        $$ b_n = \frac{2}{\pi} \left[ x \cdot \frac{-\cos(nx)}{n} \right]_0^\pi - \frac{2}{\pi} \int_0^\pi 1 \cdot \frac{-\cos(nx)}{n} dx $$
+                    </div>
+                    <p>A második integrál tag (koszinusz) nullát ad egy teljes periódus alatt. Marad az első tag:</p>
+                    <div class="formula">
+                        $$ b_n = \frac{2}{\pi} \left( \pi \frac{-\cos(n\pi)}{n} - 0 \right) = -\frac{2}{n} \cos(n\pi) = -\frac{2}{n} (-1)^n = \frac{2 (-1)^{n+1}}{n} $$
+                    </div>
+                    <p><b>Végeredmény:</b> $f(x) \sim \sum_{n=1}^\infty \frac{2(-1)^{n+1}}{n} \sin(nx)$.</p>
+                </div>
+
             </div>
         </section>
 
