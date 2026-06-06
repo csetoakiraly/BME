@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025. Tavasz Vizsga (Alpha) Megoldások</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7;
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        h1 { 
+            color: white; 
+            font-weight: 800; 
+            font-size: 2.8rem; 
+            text-align: center; 
+            margin-bottom: 50px; 
+            letter-spacing: -0.5px;
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            margin-top: 0; 
+            border-bottom: 1px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .section-title {
+            color: var(--secondary);
+            font-size: 2.2rem;
+            margin-top: 60px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--glass-border);
+            padding-bottom: 15px;
+            text-align: left;
+            font-weight: 800;
+        }
+
+        .task-description {
+            background: var(--task-bg);
+            border-left: 5px solid var(--task-color);
+            padding: 25px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 35px;
+            font-size: 1.25rem;
+            color: #e0f2fe;
+            line-height: 1.7;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .task-description strong {
+            color: var(--task-color);
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .formula-box {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 4px solid var(--secondary);
+            padding: 20px 25px;
+            border-radius: 0 16px 16px 0;
+            margin: 25px 0;
+            font-size: 1.25rem;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        .formula-box b {
+            color: var(--secondary);
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .calc-step {
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 3px solid rgba(255,255,255,0.15);
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            line-height: 2;
+        }
+
+        .math-block {
+            margin: 15px 0;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .result {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+            padding: 20px 25px;
+            border-radius: 16px;
+            display: block;
+            font-weight: 700;
+            margin-top: 30px;
+            font-size: 1.4rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);
+        }
+
+        .mjx-chtml { color: white !important; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 30px 15px; }
+            .card { padding: 25px 20px; }
+            h1 { font-size: 2.2rem; }
+            .section-title { font-size: 1.8rem; }
+            .task-description, .calc-step { font-size: 1.1rem; }
+            .result { font-size: 1.2rem; }
+            mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Vissza az Összefoglalóhoz
+        </a>
+
+        <h1>2025. Tavasz Vizsga (Alpha) Megoldások</h1>
+
+        <div class="section-title">Teszt rész</div>
+
+        <!-- 1. Feladat -->
+        <div class="card">
+            <h2>1. Kétváltozós határérték</h2>
+            
+            <div class="task-description">
+                <strong>1. Feladat</strong>
+                Válassza ki a helyes megoldást!
+                $$ \lim_{(x,y)\to(0,0)} \frac{x^2 y}{x^2 + 2y^2} = ? $$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $0$; <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $1$;</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $-1$;</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> nem létezik;</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz.</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Polárkoordinátás helyettesítés és rendőrelv:</b> 
+                $$ x = r \cos \varphi, \quad y = r \sin \varphi \quad (r \to 0) $$
+            </div>
+
+            <div class="calc-step">
+                Helyettesítsük be a polárkoordinátákat a kifejezésbe:
+                <div class="math-block">
+                    $$ \lim_{r\to 0+} \frac{(r\cos\varphi)^2 (r\sin\varphi)}{(r\cos\varphi)^2 + 2(r\sin\varphi)^2} = \lim_{r\to 0+} \frac{r^3 \cos^2\varphi \sin\varphi}{r^2(\cos^2\varphi + 2\sin^2\varphi)} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                Egyszerűsítsünk $r^2$-tel és alkalmazzuk a rendőrelvet:
+                <div class="math-block">
+                    $$ = \lim_{r\to 0+} r \cdot \underbrace{\frac{\cos^2\varphi \sin\varphi}{\cos^2\varphi + 2\sin^2\varphi}}_{\text{korlátos}} = 0 $$
+                </div>
+                A szögfüggvényeket tartalmazó tört nevezője mindig $\ge \min(\cos^2\varphi, 2\sin^2\varphi) > 0$, és a számláló korlátos ($-1 \le \dots \le 1$), ezért a nullába tartó $r$ miatt a szorzat is nullába tart.
+            </div>
+
+            <div class="result">
+                Eredmény: 0
+            </div>
+        </div>
+
+        <!-- 2. Feladat -->
+        <div class="card">
+            <h2>2. Differenciálegyenlet rendje</h2>
+            
+            <div class="task-description">
+                <strong>2. Feladat</strong>
+                Azon legalacsonyabbrendű, lineáris, állandó együtthatós, homogén differenciálegyenlet rendje, amelynek megoldása az $y(x) := \cos(2x) + x e^x + x^2 \quad (x \in \mathbb{R})$ függvény:
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $3$;</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $4$;</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $5$;</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $6$;</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $7$; <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz.</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Alaprendszer és karakterisztikus gyökök:</b>
+                Minden tag a karakterisztikus egyenlet egy gyökéből származik. A tagok alapján felírhatjuk a szükséges gyököket és azok multiplicitását.
+            </div>
+
+            <div class="calc-step">
+                Vizsgáljuk meg a függvény tagjait egyenként:
+                <div class="math-block">
+                    - $\cos(2x)$: Komplex konjugált gyökpárból származik: $\lambda_{1,2} = \pm 2i$. (Ez 2 db gyök)<br>
+                    - $x e^x$: A belső $e^x$ miatt a gyök $\lambda = 1$. A szorzó $x$ miatt a gyök multiplicitása legalább 2. (Ez 2 db gyök: $\lambda_{3,4} = 1$)<br>
+                    - $x^2$: Ez a konstans függvény többszörös gyökeként adódik ($x^2 e^{0x}$). A gyök $\lambda = 0$. A szorzó $x^2$ miatt a multiplicitása legalább 3. (Ez 3 db gyök: $\lambda_{5,6,7} = 0$)
+                </div>
+            </div>
+
+            <div class="calc-step">
+                Összesítve a gyökök számát kapjuk a differenciálegyenlet minimális rendjét:
+                <div class="math-block">
+                    A szükséges gyökök száma: $2 + 2 + 3 = 7$. Az egyenlet rendje a gyökök számával egyezik meg.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: 7
+            </div>
+        </div>
+
+        <!-- 3. Feladat -->
+        <div class="card">
+            <h2>3. Lineáris rekurzió</h2>
+            
+            <div class="task-description">
+                <strong>3. Feladat</strong>
+                Az $f(n) = f(n-2) + f(n-3) \quad (n \in \mathbb{N}, n \ge 3)$ lineáris rekurzió összes megoldásait tartalmazó vektortér dimenziója:
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $1$;</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $2$;</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $3$; <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> végtelen;</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz.</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Vektortér dimenziója:</b> 
+                Egy $k$-adrendű homogén lineáris rekurzió megoldásai egy $k$-dimenziós vektorteret alkotnak, mivel a sorozat minden tagját az első $k$ darab kezdőérték egyértelműen meghatározza.
+            </div>
+
+            <div class="calc-step">
+                Határozzuk meg a rekurzió rendjét!
+                <div class="math-block">
+                    A rekurzió felírható így is: $f(n) - f(n-2) - f(n-3) = 0$. <br>
+                    A legnagyobb indexkülönbség az $n$ és $n-3$ között pontosan 3. Így ez egy 3-adrendű lineáris rekurzió, ami azt jelenti, hogy 3 kezdőértéket kell megadnunk egyértelmű sorozat generálásához.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: 3
+            </div>
+        </div>
+
+        <!-- 4. Feladat -->
+        <div class="card">
+            <h2>4. Hatványsor konvergenciasugara</h2>
+            
+            <div class="task-description">
+                <strong>4. Feladat</strong>
+                A $\displaystyle \sum_{n \in \mathbb{N}} \frac{3^n}{\sqrt{n^2+1}}(x-5)^n$ hatványsor (együttható-sorozatának) konvergenciasugara:
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $0$;</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $\frac{1}{3}$; <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $3$;</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $5$;</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $\frac{1}{5}$;</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $+\infty$;</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz.</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Cauchy-Hadamard tétel (Gyökkritérium):</b>
+                $$ R = \frac{1}{\lim_{n\to\infty} \sqrt[n]{|a_n|}} $$
+            </div>
+
+            <div class="calc-step">
+                Alkalmazzuk a gyökkritériumot a hatványsor együtthatóira, $a_n = \frac{3^n}{\sqrt{n^2+1}}$:
+                <div class="math-block">
+                    $$ \lim_{n\to\infty} \sqrt[n]{|a_n|} = \lim_{n\to\infty} \sqrt[n]{\frac{3^n}{\sqrt{n^2+1}}} = \lim_{n\to\infty} \frac{3}{\sqrt[2n]{n^2+1}} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                Vizsgáljuk meg a nevező határértékét a rendőrelv segítségével! Tudjuk, hogy:
+                <div class="math-block">
+                    $$ 1 \le \sqrt[2n]{n^2+1} \le \sqrt[2n]{2n^2} = \sqrt[2n]{2} \cdot (\sqrt[n]{n})^{\frac{1}{2}} \to 1 \cdot 1^{\frac{1}{2}} = 1 $$
+                </div>
+                Így a nevező $1$-hez tart, a tört határértéke pedig $3 / 1 = 3$.<br>
+                A konvergenciasugár ennek a reciprokja.
+            </div>
+
+            <div class="result">
+                Eredmény: $1/3$
+            </div>
+        </div>
+
+        <!-- 5. Feladat -->
+        <div class="card">
+            <h2>5. Differenciálegyenlet tulajdonságai</h2>
+            
+            <div class="task-description">
+                <strong>5. Feladat</strong>
+                Az $y'(x) = x^3(y(x) + \sin(x)) \quad (x \in \mathbb{R})$ differenciálegyenlet
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li style="margin-bottom: 10px;">lineáris; <span style="margin-left: 15px;"><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I</span> <span style="margin-left: 10px;"><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</span></li>
+                    <li style="margin-bottom: 10px;">szeparálható; <span style="margin-left: 15px;"><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I</span> <span style="margin-left: 10px;"><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H</span></li>
+                    <li style="margin-bottom: 10px;">$y(0) = 0$ kezdeti feltétel melletti megoldása egyértelmű. <span style="margin-left: 15px;"><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I</span> <span style="margin-left: 10px;"><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</span></li>
+                </ul>
+            </div>
+
+            <div class="calc-step">
+                1. <b>Lineáris:</b>
+                <div class="math-block">
+                    Az egyenletet átalakítva: $y' - x^3 y = x^3 \sin(x)$.<br>
+                    Ez pontosan egy $y' + p(x)y = q(x)$ alakú elsőrendű lineáris differenciálegyenlet. Állítás: <b>Igaz</b>.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                2. <b>Szeparálható:</b>
+                <div class="math-block">
+                    Egy egyenlet szeparálható, ha $y' = f(x)g(y)$ alakba írható. A $\sin(x)$ tag (azaz az additív $x^3 \sin x$) miatt a jobb oldal nem írható fel egy tisztán $x$-től és egy tisztán $y$-tól függő kifejezés szorzataként. Állítás: <b>Hamis</b>.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                3. <b>Egyértelmű megoldás:</b>
+                <div class="math-block">
+                    Mivel a differenciálegyenlet lineáris és az együtthatófüggvények (valamint a jobb oldal) mindenütt folytonosak, a lineáris differenciálegyenletekre vonatkozó egzisztencia és unicitás tétel alapján bármely kezdeti érték probléma megoldása egyértelmű a teljes értelmezési tartományon. Állítás: <b>Igaz</b>.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: Igaz, Hamis, Igaz
+            </div>
+        </div>
+
+        <!-- 6. Feladat -->
+        <div class="card">
+            <h2>6. Kétváltozós függvény tulajdonságai</h2>
+            
+            <div class="task-description">
+                <strong>6. Feladat</strong>
+                Legyen $\displaystyle f(x,y) := \sqrt{x^2+y^2} \quad ((x,y) \in \mathbb{R}^2)$. Mely állítások igazak?
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li style="margin-bottom: 10px;">Az $f$ függvénynek létezik maximuma az origó középpontú zárt egységkörlapon. <span style="margin-left: 15px;"><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I</span> <span style="margin-left: 10px;"><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</span></li>
+                    <li style="margin-bottom: 10px;">Az $f$ függvénynek létezik lokális szélsőértéke az értelmezési tartományán. <span style="margin-left: 15px;"><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I</span> <span style="margin-left: 10px;"><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</span></li>
+                    <li style="margin-bottom: 10px;">Az $f$ függvény folytonos az értelmezési tartományának minden pontjában. <span style="margin-left: 15px;"><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I</span> <span style="margin-left: 10px;"><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</span></li>
+                    <li style="margin-bottom: 10px;">Az $f$ függvény (totálisan) differenciálható az értelmezési tartományának minden pontjában. <span style="margin-left: 15px;"><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I</span> <span style="margin-left: 10px;"><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H</span></li>
+                </ul>
+            </div>
+
+            <div class="calc-step">
+                Ezt elemenként vizsgáljuk:
+                <div class="math-block">
+                    1. <b>Maximum a zárt körlapon:</b> A zárt egységkörlap korlátos és zárt, azaz kompakt halmaz. Mivel $f$ folytonos, a Weierstrass-tétel értelmében felveszi a maximumát (és minimumát) ezen a halmazon. <b>Igaz</b>.<br><br>
+                    2. <b>Lokális szélsőérték:</b> $f(x,y) = \sqrt{x^2+y^2}$ értéke mindig nemnegatív, az origóban pedig $f(0,0)=0$. Tehát az $(0,0)$ pontban globális (és egyben lokális) minimuma van. <b>Igaz</b>.<br><br>
+                    3. <b>Folytonosság:</b> Az $x^2+y^2$ polinom mindenütt folytonos, a gyökfüggvény úgyszintén folytonos a nemnegatív számokon. Folytonos függvények kompozíciója folytonos. <b>Igaz</b>.<br><br>
+                    4. <b>Differenciálhatóság:</b> Bár az origón kívül differenciálható, a $(0,0)$ pontban a parciális deriváltak sem léteznek (hasonlóan az egyváltozós $|x|$ függvényhez az origóban csúcsa van), így ott nem differenciálható. <b>Hamis</b>.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: Igaz, Igaz, Igaz, Hamis
+            </div>
+        </div>
+
+        <!-- 7. Feladat -->
+        <div class="card">
+            <h2>7. Numerikus sorok állításai</h2>
+            
+            <div class="task-description">
+                <strong>7. Feladat</strong>
+                Legyen $\sum_{n \in \mathbb{N}} a_n$ és $\sum_{n \in \mathbb{N}} b_n$ numerikus sor.
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li style="margin-bottom: 10px;">a) Ha $a_n \xrightarrow{n\to\infty} 0$, akkor $\sum_{n \in \mathbb{N}} a_n$ minden esetben konvergens. <span style="margin-left: 15px;"><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I</span> <span style="margin-left: 10px;"><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H</span></li>
+                    <li style="margin-bottom: 10px;">b) Ha minden $n \in \mathbb{N}$ esetén $0 \le a_n \le b_n$ és $\sum_{n \in \mathbb{N}} b_n$ konvergens, akkor $\sum_{n \in \mathbb{N}} a_n$ is konvergens. <span style="margin-left: 15px;"><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I</span> <span style="margin-left: 10px;"><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</span></li>
+                    <li style="margin-bottom: 10px;">c) Ha $\sum_{n \in \mathbb{N}} a_n$ konvergens és $\sum_{n \in \mathbb{N}} b_n$ divergens, akkor $\sum_{n \in \mathbb{N}} (a_n + b_n)$ divergens. <span style="margin-left: 15px;"><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I</span> <span style="margin-left: 10px;"><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</span></li>
+                </ul>
+            </div>
+
+            <div class="calc-step">
+                Elemzés állításonként:
+                <div class="math-block">
+                    <b>a)</b> Az állítás azt feltételezi, hogy a konvergencia szükséges feltétele egyben elégséges is. Ez nem igaz, az ellenpélda a harmonikus sor: $a_n = \frac{1}{n} \to 0$, de $\sum \frac{1}{n} = \infty$. <b>Hamis</b>.<br><br>
+                    <b>b)</b> Ez pontosan a pozitív tagú sorokra vonatkozó <b>Majoráns kritérium</b> kimondása, amely ismert tétel. <b>Igaz</b>.<br><br>
+                    <b>c)</b> Egy konvergens sor és egy divergens sor összege mindig divergens sor. Ha konvergens lenne, akkor a különbségük, $\sum (a_n+b_n) - \sum a_n = \sum b_n$ is konvergens lenne, ami ellentmondás azzal, hogy az divergens. <b>Igaz</b>.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: a) Hamis, b) Igaz, c) Igaz
+            </div>
+        </div>
+
+        <div class="section-title">Kifejtős rész</div>
+
+        <!-- 8. Feladat -->
+        <div class="card">
+            <h2>8. Kettős integrál normáltartományon</h2>
+            
+            <div class="task-description">
+                <strong>1.a) Feladat</strong>
+                Számítsa ki az $\displaystyle \int_H f$ integrál értékét, ahol
+                $$ f(x, y) := 3x \quad ((x, y) \in \mathbb{R}^2) $$
+                $H$ pedig az $y = 2x^2 - x$ és $y = x^2 + x$ egyenletű alakzatok által határolt korlátos tartomány.
+            </div>
+
+            <div class="calc-step">
+                1. Keressük meg a tartományt határoló görbék metszéspontjait:
+                <div class="math-block">
+                    Tegyük egyenlővé a két parabolát:
+                    $$ 2x^2 - x = x^2 + x \implies x^2 - 2x = 0 \implies x(x - 2) = 0 $$
+                    A metszéspontok x-koordinátái tehát: $x = 0$ és $x = 2$.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                2. Állapítsuk meg a normáltartomány határait:
+                <div class="math-block">
+                    A két függvény közül a $[0, 2]$ intervallumon az $y = x^2 + x$ halad "felül" (pl. az $x=1$ belső pontban az értékük $1^2+1=2$, illetve $2(1^2)-1=1$).
+                    Így a tartomány:
+                    $$ H = \{(x, y) \in \mathbb{R}^2 \mid 0 \le x \le 2, \, 2x^2 - x \le y \le x^2 + x\} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                3. Számítsuk ki az integrált:
+                <div class="math-block">
+                    $$ \int_H f = \int_0^2 \int_{2x^2 - x}^{x^2 + x} 3x \,dy \,dx = \int_0^2 \Big[ 3xy \Big]_{y=2x^2 - x}^{x^2 + x} \,dx $$
+                    $$ = \int_0^2 3x(x^2 + x - (2x^2 - x)) \,dx = \int_0^2 3x(2x - x^2) \,dx $$
+                    $$ = \int_0^2 (6x^2 - 3x^3) \,dx = \left[ 2x^3 - \frac{3x^4}{4} \right]_0^2 = 2(8) - \frac{3(16)}{4} = 16 - 12 = 4 $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: 4
+            </div>
+        </div>
+
+        <!-- 9. Feladat -->
+        <div class="card">
+            <h2>9. Hármas integrál hengerkoordinátákkal</h2>
+            
+            <div class="task-description">
+                <strong>1.b) Feladat</strong>
+                Számítsa ki az $\displaystyle \int_H f$ integrál értékét, ahol
+                $$ f(x, y, z) := \frac{3}{\sqrt{x^2+y^2}} \quad ((x, y, z) \in \mathbb{R}^3) $$
+                $$ H := \{ (x, y, z) \in \mathbb{R}^3 \mid 1 \le x^2 + y^2 \le 9, \, 0 \le z \le 2\sqrt{x^2+y^2} \} $$
+            </div>
+
+            <div class="formula-box">
+                <b>Hengerkoordinátás transzformáció:</b><br>
+                $x = r \cos \varphi$, $y = r \sin \varphi$, $z = z$. <br>
+                Jacobi-determináns (Térfogati elem): $dV = r \,dr \,d\varphi \,dz$.<br>
+                A sugár helyettesítése: $\sqrt{x^2+y^2} = r$.
+            </div>
+
+            <div class="calc-step">
+                1. Határozzuk meg a hengerkoordinátás határokat a feltételekből:
+                <div class="math-block">
+                    - Az $x, y$ feltétel: $1 \le x^2 + y^2 \le 9 \implies 1 \le r^2 \le 9 \implies 1 \le r \le 3$. A szög egy teljes kört leír: $0 \le \varphi \le 2\pi$.<br>
+                    - A $z$ feltétel: $0 \le z \le 2\sqrt{x^2+y^2} \implies 0 \le z \le 2r$.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                2. Írjuk fel az integrált és helyettesítsük be az új változókat:
+                <div class="math-block">
+                    $$ \iiint_H \frac{3}{\sqrt{x^2+y^2}} \,dx\,dy\,dz = \int_1^3 \int_0^{2\pi} \int_0^{2r} \frac{3}{r} \cdot \underbrace{r \,dz\,d\varphi\,dr}_{\text{Jacobi}} $$
+                    Az $r$ változóval lehet egyszerűsíteni a törtben:
+                    $$ = \int_1^3 \int_0^{2\pi} \int_0^{2r} 3 \,dz\,d\varphi\,dr $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                3. Integráljunk a változók szerint sorban (belülről kifelé):
+                <div class="math-block">
+                    A legbelső integrál a $z$ változóra:
+                    $$ \int_0^{2r} 3 \,dz = [3z]_{0}^{2r} = 6r $$
+                    Középső integrál a $\varphi$ szögre:
+                    $$ \int_0^{2\pi} 6r \,d\varphi = [6r\varphi]_{0}^{2\pi} = 12\pi r $$
+                    A külső integrál a sugárra ($r$):
+                    $$ \int_1^3 12\pi r \,dr = 12\pi \left[ \frac{r^2}{2} \right]_1^3 = 12\pi \left( \frac{9}{2} - \frac{1}{2} \right) = 12\pi \cdot 4 = 48\pi $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: $48\pi$
+            </div>
+        </div>
+
+        <!-- 10. Feladat -->
+        <div class="card">
+            <h2>10. Fourier-transzformált</h2>
+            
+            <div class="task-description">
+                <strong>2. Feladat</strong>
+                Számítsuk ki az
+                $$ f(x) := \begin{cases} 2x, & \text{ha } x \in [-1/2, 1/2] \\ 0, & \text{ha } x \in \mathbb{R} \setminus [-1/2, 1/2] \end{cases} $$
+                függvény Fourier-transzformáltját.
+            </div>
+
+            <div class="formula-box">
+                <b>Fourier-transzformált definíciója és Euler-formula:</b>
+                $$ \mathscr{F}(f)(\omega) = \int_{-\infty}^{\infty} f(x)e^{-i\omega x} dx $$
+                $$ e^{-i\omega x} = \cos(\omega x) - i\sin(\omega x) $$
+            </div>
+
+            <div class="calc-step">
+                1. Helyettesítsük be a függvényt a definícióba minden $\omega \neq 0$ esetén:
+                <div class="math-block">
+                    $$ \mathscr{F}(f)(\omega) = \int_{-1/2}^{1/2} 2x e^{-i\omega x} dx $$
+                    Az Euler-formulát alkalmazva bontsuk fel az integrált valós és képzetes részre:
+                    $$ = \int_{-1/2}^{1/2} 2x (\cos(\omega x) - i\sin(\omega x)) dx = 2 \int_{-1/2}^{1/2} x \cos(\omega x) dx - 2i \int_{-1/2}^{1/2} x \sin(\omega x) dx $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                2. Vizsgáljuk meg a paritást:
+                <div class="math-block">
+                    A szimmetrikus origó közepű intervallumon az első rész integrandusza, $x \cos(\omega x)$, páratlan függvény (mivel $x$ páratlan, $\cos$ páros). Egy páratlan függvény integrálja $[-a, a]$ intervallumon mindig 0.<br>
+                    Így az első integrál eltűnik és marad:
+                    $$ = -2i \int_{-1/2}^{1/2} x \sin(\omega x) dx $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                3. Számítsuk ki a maradék integrált parciálisan:
+                <div class="math-block">
+                    ($u = x \implies u' = 1$, és $v' = \sin(\omega x) \implies v = -\frac{\cos(\omega x)}{\omega}$)
+                    $$ \int x \sin(\omega x) dx = -x \frac{\cos(\omega x)}{\omega} - \int 1 \cdot \left( -\frac{\cos(\omega x)}{\omega} \right) dx = -x \frac{\cos(\omega x)}{\omega} + \frac{\sin(\omega x)}{\omega^2} $$
+                    
+                    Ezt alkalmazva a határokkal (kihasználva, hogy a belső függvény már páros):
+                    $$ -2i \left[ -x \frac{\cos(\omega x)}{\omega} + \frac{\sin(\omega x)}{\omega^2} \right]_{-1/2}^{1/2} $$
+                    $$ = \frac{2i}{\omega} \cos\left(\frac{\omega}{2}\right) - \frac{4i}{\omega^2} \sin\left(\frac{\omega}{2}\right) $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                4. Az $\omega = 0$ eset vizsgálata (a határértékkel is egyezik, de definíció alapján a leggyorsabb):
+                <div class="math-block">
+                    $$ \mathscr{F}(f)(0) = \int_{-1/2}^{1/2} 2x e^0 dx = \int_{-1/2}^{1/2} 2x dx = \left[ x^2 \right]_{-1/2}^{1/2} = \frac{1}{4} - \frac{1}{4} = 0 $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: $\mathscr{F}(f)(\omega) = \frac{2i}{\omega} \cos\left(\frac{\omega}{2}\right) - \frac{4i}{\omega^2} \sin\left(\frac{\omega}{2}\right)$, és $\omega=0$ esetén 0.
+            </div>
+        </div>
+
+        <!-- 11. Feladat -->
+        <div class="card">
+            <h2>11. Abszolút konvergencia és konvergencia (Elmélet)</h2>
+            
+            <div class="task-description">
+                <strong>3. Feladat</strong>
+                Mi a kapcsolat numerikus sorok konvergenciája és abszolút konvergenciája között? Mondjuk ki és bizonyítsuk az erről szóló tételt!
+            </div>
+
+            <div class="calc-step">
+                <b>Tétel kimondása:</b><br>
+                Minden abszolút konvergens numerikus sor konvergens.
+            </div>
+
+            <div class="calc-step">
+                <b>Bizonyítás lépései:</b>
+                <div class="math-block">
+                    1. Legyen $\sum_{n \in \mathbb{N}} a_n$ abszolút konvergens numerikus sor és $\varepsilon > 0$.<br>
+                    2. A sorokra vonatkozó Cauchy-kritérium alapján létezik olyan küszöbindex $N \in \mathbb{N}$, hogy minden $n, m \in \mathbb{N}$ és $n > m \ge N$ esetén a részletösszegek különbségére (amely a sor abszolút értékére vonatkozik) igaz, hogy:
+                    $$ \left| \sum_{k=m+1}^n |a_k| \right| < \varepsilon $$
+                </div>
+                <div class="math-block">
+                    3. Mivel minden vizsgált tag abszolút értéke nemnegatív, ez felírható úgy is, hogy az összeg eleve pozitív: $\sum_{k=m+1}^n |a_k| < \varepsilon$.<br>
+                    4. Most alkalmazzuk a véges tagszámú háromszög-egyenlőtlenséget az eredeti $\sum a_n$ sor elemeire:
+                    $$ \left| \sum_{k=m+1}^n a_k \right| \le \sum_{k=m+1}^n |a_k| < \varepsilon $$
+                </div>
+                A kapott egyenlőtlenség pontosan a Cauchy-kritérium teljesülését jelenti a $\sum_{n \in \mathbb{N}} a_n$ (nem feltétlenül abszolútértékes) sorra is. Így a sor valóban konvergens.
+            </div>
+        </div>
+
+        <!-- 12. Feladat -->
+        <div class="card">
+            <h2>12. Függvénysorozat limeszfüggvénye (+10 pont)</h2>
+            
+            <div class="task-description">
+                <strong>4. Feladat</strong>
+                Határozzuk meg az alábbi függvénysorozat (pontonkénti) limeszfüggvényét!
+                $$ f_n(x) := n \sin\left(\frac{x}{n}\right) \quad (n \in \mathbb{N}^+, x \in \mathbb{R}) $$
+            </div>
+
+            <div class="formula-box">
+                <b>Nevezetes határérték:</b>
+                $$ \lim_{t\to 0} \frac{\sin t}{t} = 1 $$
+            </div>
+
+            <div class="calc-step">
+                Vizsgáljuk meg a pontonkénti limeszt két esetben!
+                <div class="math-block">
+                    1. <b>Ha $x = 0$:</b>
+                    $$ \lim_{n\to\infty} f_n(0) = \lim_{n\to\infty} n \sin(0) = \lim_{n\to\infty} 0 = 0 $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    2. <b>Ha $x \neq 0$:</b>
+                    Alakítsuk át az egyenletet, hogy a nevezetes $\frac{\sin t}{t}$ határértéket használhassuk. Legyen a belső változó $t = \frac{x}{n}$. Ha $n \to \infty$, akkor $t \to 0$.
+                    $$ f_n(x) = n \sin\left(\frac{x}{n}\right) = x \cdot \frac{n}{x} \sin\left(\frac{x}{n}\right) = x \cdot \frac{\sin\left(\frac{x}{n}\right)}{\frac{x}{n}} $$
+                    Mivel $\lim_{n\to\infty} \frac{\sin(x/n)}{x/n} = 1$, ezért a teljes kifejezés limesze:
+                    $$ \lim_{n\to\infty} f_n(x) = x \cdot 1 = x $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: A limeszfüggvény $f(x) = x$, értelmezési tartománya $\operatorname{Dom}(f) = \mathbb{R}$.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

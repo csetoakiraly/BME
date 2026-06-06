@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025. Vizsga 1. Megoldások</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7;
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        h1 { 
+            color: white; 
+            font-weight: 800; 
+            font-size: 2.8rem; 
+            text-align: center; 
+            margin-bottom: 50px; 
+            letter-spacing: -0.5px;
+        }
+        
+        .section-title {
+            color: white;
+            text-align: center;
+            font-size: 2.2rem;
+            margin: 60px 0 30px 0;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            margin-top: 0; 
+            border-bottom: 1px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .task-description {
+            background: var(--task-bg);
+            border-left: 5px solid var(--task-color);
+            padding: 25px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 35px;
+            font-size: 1.25rem;
+            color: #e0f2fe;
+            line-height: 1.7;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .task-description strong {
+            color: var(--task-color);
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .formula-box {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 4px solid var(--secondary);
+            padding: 20px 25px;
+            border-radius: 0 16px 16px 0;
+            margin: 25px 0;
+            font-size: 1.25rem;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        .formula-box b {
+            color: var(--secondary);
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .calc-step {
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 3px solid rgba(255,255,255,0.15);
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            line-height: 2;
+        }
+
+        .math-block {
+            margin: 15px 0;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .result {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+            padding: 20px 25px;
+            border-radius: 16px;
+            display: block;
+            font-weight: 700;
+            margin-top: 30px;
+            font-size: 1.4rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);
+        }
+
+        .mjx-chtml { color: white !important; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 30px 15px; }
+            .card { padding: 25px 20px; }
+            h1 { font-size: 2.2rem; }
+            .section-title { font-size: 1.8rem; }
+            .task-description, .calc-step { font-size: 1.1rem; }
+            .result { font-size: 1.2rem; }
+            mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Vissza az Összefoglalóhoz
+        </a>
+
+        <h1>2025. Június 3. Vizsga Megoldások (&alpha; variáns)</h1>
+
+        <div class="section-title">Teszt Rész</div>
+
+        <!-- Teszt 1. Feladat -->
+        <div class="card">
+            <h2>Teszt 1. Többváltozós függvény határértéke</h2>
+            <div class="task-description">
+                <strong>1. Feladat (4 pont)</strong>
+                Számítsa ki a következő határértéket:
+                $$ \lim_{(x,y)\to(0,0)} \frac{\sin(x^2y)}{xy} = ? $$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $0$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $1$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $-1$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> nem létezik</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz</li>
+                </ul>
+            </div>
+            <div class="formula-box">
+                <b>Alkalmazott nevezetes határérték:</b>
+                $$ \lim_{t \to 0} \frac{\sin(t)}{t} = 1 $$
+            </div>
+            <div class="calc-step">
+                <div class="math-block">
+                    Bővítsük a törtet $x$-szel (feltéve, hogy $x \neq 0$), hogy a nevezőben pontosan a szinusz argumentuma ($x^2y$) szerepeljen:
+                    $$ \lim_{(x,y)\to(0,0)} \frac{\sin(x^2y)}{x^2y} \cdot x $$
+                </div>
+                Amikor $(x,y) \to (0,0)$, a szorzat is $x^2y \to 0$. Ekkor az első tényező határértéke a nevezetes limesz alapján pontosan 1. A második tényező ($x$) határértéke pedig nyilvánvalóan 0.
+                <div class="math-block">
+                    $$ 1 \cdot 0 = 0 $$
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: 0
+            </div>
+        </div>
+
+        <!-- Teszt 2. Feladat -->
+        <div class="card">
+            <h2>Teszt 2. Differenciálegyenlet megoldása</h2>
+            <div class="task-description">
+                <strong>2. Feladat (4 pont)</strong>
+                Az $y'' + 9y' = 0$ differenciálegyenlet általános megoldása $y_{\text{ált}}(x) = \dots \quad (C_1, C_2 \in \mathbb{R}, x \in \mathbb{R})$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $C_1 e^{3x} + C_2 x e^{3x}$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $C_1 e^{3x} + C_2 e^{-3x}$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $C_1 + C_2 e^{-9x}$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $C_1 \sin(3x) + C_2 \cos(3x)$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $C_1 \sin(3x) + C_2 x \sin(3x)$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz</li>
+                </ul>
+            </div>
+            <div class="formula-box">
+                <b>Karakterisztikus egyenlet:</b>
+                Állandó együtthatós lineáris homogén differenciálegyenleteknél az $y = e^{\lambda x}$ helyettesítéssel kapjuk meg a karakterisztikus egyenletet.
+            </div>
+            <div class="calc-step">
+                1. Írjuk fel a karakterisztikus egyenletet:
+                <div class="math-block">
+                    $$ \lambda^2 + 9\lambda = 0 $$
+                </div>
+            </div>
+            <div class="calc-step">
+                2. Oldjuk meg az egyenletet:
+                <div class="math-block">
+                    $$ \lambda(\lambda + 9) = 0 \implies \lambda_1 = 0, \quad \lambda_2 = -9 $$
+                </div>
+            </div>
+            <div class="calc-step">
+                3. Írjuk fel az általános megoldást a gyökök segítségével:
+                <div class="math-block">
+                    $$ y_{\text{ált}}(x) = C_1 e^{\lambda_1 x} + C_2 e^{\lambda_2 x} = C_1 e^{0 \cdot x} + C_2 e^{-9x} = C_1 + C_2 e^{-9x} $$
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: $C_1 + C_2 e^{-9x}$
+            </div>
+        </div>
+
+        <!-- Teszt 3. Feladat -->
+        <div class="card">
+            <h2>Teszt 3. Gradiens vektor és normája</h2>
+            <div class="task-description">
+                <strong>3. Feladat (4 pont)</strong>
+                Legyen $f(x,y) := 2x^2 + 3y^2 \quad ((x,y) \in \mathbb{R}^2)$. Határozza meg a gradiens vektor hosszát az $(1,0)$ pontban!
+                $$ \|\text{grad} f(1,0)\| = ? $$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $(4, 0)$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $(2, 0)$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $4$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $2$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $16$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz</li>
+                </ul>
+            </div>
+            <div class="formula-box">
+                <b>Gradiens vektor:</b>
+                $$ \text{grad} f(x,y) = \begin{bmatrix} \partial_x f(x,y) \\ \partial_y f(x,y) \end{bmatrix} $$
+                <b>Vektor normája (hossza):</b>
+                $$ \| \mathbf{v} \| = \sqrt{v_1^2 + v_2^2} $$
+            </div>
+            <div class="calc-step">
+                1. Számítsuk ki a parciális deriváltakat, majd írjuk fel a gradienst:
+                <div class="math-block">
+                    $$ \partial_x f(x,y) = 4x $$
+                    $$ \partial_y f(x,y) = 6y $$
+                    $$ \text{grad} f(x,y) = \begin{bmatrix} 4x \\ 6y \end{bmatrix} $$
+                </div>
+            </div>
+            <div class="calc-step">
+                2. Helyettesítsük be az $(1,0)$ pontot:
+                <div class="math-block">
+                    $$ \text{grad} f(1,0) = \begin{bmatrix} 4(1) \\ 6(0) \end{bmatrix} = \begin{bmatrix} 4 \\ 0 \end{bmatrix} $$
+                </div>
+            </div>
+            <div class="calc-step">
+                3. Számítsuk ki a kapott vektor hosszát (normáját):
+                <div class="math-block">
+                    $$ \|\text{grad} f(1,0)\| = \sqrt{4^2 + 0^2} = 4 $$
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: 4
+            </div>
+        </div>
+
+        <!-- Teszt 4. Feladat -->
+        <div class="card">
+            <h2>Teszt 4. Hatványsorok konvergenciatartománya</h2>
+            <div class="task-description">
+                <strong>4. Feladat (4 pont)</strong>
+                Tudjuk, hogy a $\sum_{n \in \mathbb{N}} a_n(x - 2)^n$ hatványsor $x = 0$ esetén konvergens. Ekkor $x = 4$ esetén a hatványsor viselkedésére vonatkozóan melyik állítás igaz?
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> az $(a_n)_{n \in \mathbb{N}}$ együttható-sorozat választásától függetlenül konvergens</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> az $(a_n)_{n \in \mathbb{N}}$ együttható-sorozat választásától függetlenül divergens</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> az $(a_n)_{n \in \mathbb{N}}$ együttható-sorozat választásától függően lehet konvergens és divergens <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                </ul>
+            </div>
+            <div class="formula-box">
+                <b>Hatványsorok konvergenciája:</b><br>
+                Egy hatványsor egy $x_0$ középpontú nyílt $(x_0 - R, x_0 + R)$ intervallumon biztosan konvergens (ahol $R$ a konvergenciasugár). Az intervallum határpontjaiban ($x_0 - R$ és $x_0 + R$) a konvergencia már egyénileg vizsgálandó, a sorozattól függ.
+            </div>
+            <div class="calc-step">
+                A hatványsor középpontja $x_0 = 2$.
+                <div class="math-block">
+                    Mivel a sor konvergens $x = 0$-ban, és ezen pont távolsága a középponttól $|0 - 2| = 2$, a konvergenciasugár $R \ge 2$.<br>
+                    A vizsgált új pont $x = 4$, amelynek a távolsága a középponttól szintén $|4 - 2| = 2$.
+                </div>
+                Mivel $x=4$ pontosan ugyanolyan távol van a középponttól, mint a már ismert, épp a határon (vagy belül) lévő $x=0$ pont, lehetséges, hogy pontosan a konvergenciatartomány határán helyezkedik el (amennyiben $R=2$). A határpontokban a sor viselkedése az $(a_n)$ együtthatóktól függően lehet konvergens vagy akár divergens is.
+            </div>
+            <div class="result">
+                Eredmény: Az $(a_n)_{n\in\mathbb{N}}$ együttható-sorozat választásától függően lehet konvergens és divergens.
+            </div>
+        </div>
+
+        <!-- Teszt 5. Feladat -->
+        <div class="card">
+            <h2>Teszt 5. Differenciálegyenlet tulajdonságai</h2>
+            <div class="task-description">
+                <strong>5. Feladat (4 pont)</strong>
+                Az $y' = e^{x+2y} \quad (x \in \mathbb{R})$ differenciálegyenlet szeparálható-e, lineáris-e, és az $(1,0)$ ponthoz tartozó vonaleleme 1 meredekségű-e?
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li>szeparálható; &nbsp;&nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I &nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</li>
+                    <li>lineáris; &nbsp;&nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H</li>
+                    <li>$(1,0)$ ponthoz tartozó vonaleleme 1 meredekségű. &nbsp;&nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H</li>
+                </ul>
+            </div>
+            <div class="formula-box">
+                <b>Fogalmak és Definíciók:</b><br>
+                - <i>Szeparálható</i>, ha $y' = f(x)g(y)$ alakba szétbontható.<br>
+                - <i>Lineáris</i>, ha $y' + p(x)y = q(x)$ formájú (azaz $y$-ban és deriváltjában lineáris).<br>
+                - <i>Vonalelem meredeksége</i> egy $(x_0, y_0)$ pontban maga a derivált értéke: $y'(x_0)$.
+            </div>
+            <div class="calc-step">
+                1. Szeparálhatóság és linearitás vizsgálata:
+                <div class="math-block">
+                    Az exponenciális azonosság miatt bontsuk fel a kitevőt:
+                    $$ y' = e^{x+2y} = e^x \cdot e^{2y} $$
+                    Mivel felírható egy tisztán $x$-től és egy tisztán $y$-tól függő függvény szorzataként, az egyenlet <b>szeparálható</b>.<br>
+                    Az ismeretlen függvény ($y$) egy exponenciális kifejezés kitevőjében van, így az egyenlet <b>nem lineáris</b>.
+                </div>
+            </div>
+            <div class="calc-step">
+                2. Meredekség vizsgálata az $(1,0)$ pontban:
+                <div class="math-block">
+                    Helyettesítsük be az $x=1$ és $y=0$ értékeket az egyenletbe a derivált ($y'$) kiszámításához:
+                    $$ y'(1) = e^{1 + 2 \cdot 0} = e^1 = e $$
+                    Mivel $e \approx 2.718 \neq 1$, az $(1,0)$ ponthoz tartozó vonalelem meredeksége <b>nem 1</b>.
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: Szeparálható: Igen (I) | Lineáris: Nem (H) | (1,0) vonaleleme 1 meredekségű: Nem (H).
+            </div>
+        </div>
+
+        <!-- Teszt 6. Feladat -->
+        <div class="card">
+            <h2>Teszt 6. Többváltozós függvények deriválhatósága</h2>
+            <div class="task-description">
+                <strong>6. Feladat (4 pont)</strong>
+                Döntse el, hogy mely állítások igazak egy $f: \mathbb{R}^2 \to \mathbb{R}$ tetszőleges függvényről!
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li>Ha $f$ (totálisan) deriválható egy $(x_0, y_0)$ pontban, akkor ott minden esetben folytonos is. &nbsp;&nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I &nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</li>
+                    <li>Ha $f$ (totálisan) deriválható egy $(x_0, y_0)$ pontban, és itt mindkét parciális deriváltja nulla, akkor ebben a pontban minden iránymenti derivált is nulla. &nbsp;&nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I &nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</li>
+                    <li>Ha $f$-nek léteznek a parciális deriváltjai egy $(x_0, y_0)$ pontban, akkor $f$ ebben a pontban folytonos. &nbsp;&nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H</li>
+                    <li>Ha $f$ folytonos egy $(x_0, y_0)$ pontban, akkor ebben a pontban $f$-nek minden esetben létezik a gradiense. &nbsp;&nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H</li>
+                </ul>
+            </div>
+            <div class="formula-box">
+                <b>Kétváltozós függvények differenciálhatósági elmélete:</b><br>
+                - A <i>totális deriválhatóság</i> olyan erős tulajdonság, ami önmagában is garantálja a folytonosságot és minden iránymenti derivált létezését.<br>
+                - A parciális deriváltak puszta létezése <b>nem</b> elegendő a folytonossághoz.<br>
+                - A folytonosság <b>nem</b> garantálja a differenciálhatóságot vagy a gradienst (pl. egy "csúcsos" felület esetében).
+            </div>
+            <div class="calc-step">
+                Vizsgáljuk meg az állításokat sorban:
+                <ul>
+                    <li><b>Ha $f$ totálisan deriválható egy pontban, akkor ott minden esetben folytonos is:</b> Igaz (I). A totális differenciálhatóság egyértelműen maga után vonja a folytonosságot.</li>
+                    <li><b>Ha $f$ totálisan deriválható és itt mindkét parciális deriváltja nulla, akkor ebben a pontban minden iránymenti derivált is nulla:</b> Igaz (I). A totális deriválhatóság miatt az iránymenti derivált a gradiens és az irányvektor skalárszorzata. Mivel a gradiens $[0, 0]$, a szorzat minden irányra $0$.</li>
+                    <li><b>Ha $f$-nek léteznek a parciális deriváltjai egy pontban, akkor $f$ folytonos:</b> Hamis (H). Ez önmagában kevés. Ha a parciális deriváltak léteznek is, az csak a tengelyek mentén ad információt. Ahhoz, hogy folytonos legyen, a parciális deriváltaknak a pont egy környezetében is létezniük kell és folytonosnak lenniük.</li>
+                    <li><b>Ha $f$ folytonos egy pontban, akkor minden esetben létezik a gradiense:</b> Hamis (H). Gondoljunk az origóban lévő abszolútérték-függvényre ($f(x,y) = |x| + |y|$): folytonos, de parciális deriváltjai (gradiense) ott nem léteznek.</li>
+                </ul>
+            </div>
+            <div class="result">
+                Eredmény: Igen (I), Igen (I), Nem (H), Nem (H).
+            </div>
+        </div>
+
+        <!-- Teszt 7. Feladat -->
+        <div class="card">
+            <h2>Teszt 7. Sorok konvergenciája</h2>
+            <div class="task-description">
+                <strong>7. Feladat (4 pont)</strong>
+                Legyen $a_n = (-1)^n \frac{\sin(n)}{n^2} \quad (n \in \mathbb{N}^+)$. Mely állítások igazak a sorra?
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li>A $\sum_{n \in \mathbb{N}^+} a_n$ sor Leibniz típusú. &nbsp;&nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H</li>
+                    <li>A $\sum_{n \in \mathbb{N}^+} a_n$ sor konvergens. &nbsp;&nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I &nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</li>
+                    <li>A $\sum_{n \in \mathbb{N}^+} a_n$ sor abszolút konvergens. &nbsp;&nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I &nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</li>
+                </ul>
+            </div>
+            <div class="formula-box">
+                <b>Sorok konvergenciakritériumai:</b><br>
+                - <i>Leibniz-sor:</i> Szigorúan váltakozó előjelű tagokból áll, a tagok abszolút értéke pedig monoton csökkenve nullához tart.<br>
+                - <i>Abszolút konvergencia és Majoráns-kritérium:</i> Ha $\sum |a_n|$ konvergens, akkor az eredeti sor is konvergens (mégpedig abszolút). Gyakran jól becsülhető felülről pl. $|\sin(n)| \le 1$ felhasználásával.
+            </div>
+            <div class="calc-step">
+                Vizsgáljuk meg az állításokat:
+                <ul>
+                    <li><b>A sor Leibniz típusú:</b> Hamis (H). Noha a $(-1)^n$ szorzót tartalmazza, a $\sin(n)$ tényező miatt a sor tagjai nem tisztán felváltva cserélnek előjelet (a szinusz maga is változtatja az előjelét látszólag rendszertelenül, és nem teljesül a monotonitás sem).</li>
+                    <li><b>A sor abszolút konvergens:</b> Igaz (I). Írjuk fel a sor tagjainak abszolút értékét:
+                        <div class="math-block">
+                            $$ |a_n| = \left| (-1)^n \frac{\sin(n)}{n^2} \right| = \frac{|\sin(n)|}{n^2} \le \frac{1}{n^2} $$
+                        </div>
+                        Mivel a $\sum \frac{1}{n^2}$ harmonikus sor konvergens (a kitevő $2 > 1$), a Majoráns-kritérium alapján az eredeti sor abszolút konvergens.
+                    </li>
+                    <li><b>A sor konvergens:</b> Igaz (I). Ez triviálisan adódik abból, hogy a sor már bizonyítottan abszolút konvergens. Minden abszolút konvergens sor egyúttal (sima) konvergens is.</li>
+                </ul>
+            </div>
+            <div class="result">
+                Eredmény: Leibniz: Nem (H) | Konvergens: Igen (I) | Abszolút konvergens: Igen (I).
+            </div>
+        </div>
+
+        <div class="section-title">Kifejtős Rész</div>
+
+        <!-- Kifejtős 1. Feladat -->
+        <div class="card">
+            <h2>Kifejtős 1. Kettős és Hármas integrál</h2>
+            <div class="task-description">
+                <strong>1. Feladat (12+14=26 pont)</strong>
+                Számítsuk ki az $\int_H f$ integrál értékét, ahol<br>
+                <b>a)</b> $f(x, y) := 6xe^{y^3} \quad ((x, y) \in \mathbb{R}^2)$, és $H$ a $(1, 1)$, $(0, 1)$ és $(0, 0)$ csúcspontok által meghatározott háromszöglap;<br>
+                <b>b)</b> $f(x, y, z) := \sqrt{x^2 + y^2} \quad ((x, y, z) \in \mathbb{R}^3)$, és $H := \{(x, y, z) \in \mathbb{R}^3 \mid 1 \le x^2 + y^2 + z^2 \le 4,\; 0 \le z,\; y \le 0\}$.
+            </div>
+            <div class="formula-box">
+                <b>Alkalmazott módszerek:</b><br>
+                a) <i>Normáltartomány:</i> Ha $y$-ra kívül integrálunk: $0 \le y \le 1$, a belső $x$ határ pedig: $0 \le x \le y$.<br>
+                b) <i>Gömbi koordináták:</i> $x = r \cos\varphi \sin\theta$, $y = r \sin\varphi \sin\theta$, $z = r \cos\theta$. A térfogatelemhez (Jacobi-determináns) a $r^2 \sin\theta$ szorzó is szükséges.
+            </div>
+            <div class="calc-step">
+                <b>a) rész megoldása:</b>
+                <div class="math-block">
+                    Írjuk fel a tartományt: $H = \{(x, y) \in \mathbb{R}^2 \mid 0 \le y \le 1, \; 0 \le x \le y \}$. A függvény ezen a normáltartományon folytonos. Integráljuk először $x$, majd $y$ szerint:
+                    $$ \int_H f = \int_0^1 \left( \int_0^y 6x e^{y^3} \, dx \right) \, dy $$
+                </div>
+                <div class="math-block">
+                    Számítsuk ki a belső integrált ($x$ szerint, itt az $e^{y^3}$ konstans):
+                    $$ \int_0^y 6x e^{y^3} \, dx = e^{y^3} \left[ 3x^2 \right]_{x=0}^y = 3y^2 e^{y^3} $$
+                </div>
+                <div class="math-block">
+                    Végezzük el a külső integrálást ($y$ szerint). Vegyük észre a deriváltkapcsolatot (helyettesítéses integrálással, mivel az $(y^3)' = 3y^2$ a függvény előtt van):
+                    $$ \int_0^1 3y^2 e^{y^3} \, dy = \left[ e^{y^3} \right]_0^1 = e^1 - e^0 = e - 1 $$
+                </div>
+            </div>
+            <div class="calc-step">
+                <b>b) rész megoldása:</b>
+                <div class="math-block">
+                    Határozzuk meg a gömbi koordináták integrálási határait:<br>
+                    - Sugár: $1 \le x^2 + y^2 + z^2 \le 4 \implies 1 \le r \le 2$<br>
+                    - Inklinációs szög ($\theta$): Mivel $z \ge 0$, így a felső félgömbön vagyunk, tehát $0 \le \theta \le \frac{\pi}{2}$<br>
+                    - Azimut szög ($\varphi$): Mivel $y \le 0$ az alsó félsíkot jelenti (ahol a szinusz negatív), a szög a harmadik és negyedik síknegyedben van: $\pi \le \varphi \le 2\pi$.
+                </div>
+                <div class="math-block">
+                    A függvényt írjuk át gömbi koordinátákkal: $\sqrt{x^2 + y^2} = \sqrt{r^2 \sin^2\theta (\cos^2\varphi + \sin^2\varphi)} = r \sin\theta$.<br>
+                    Írjuk fel az integrált, a $r^2 \sin\theta$ térfogatelemmel (Jacobi) beszorozva:
+                    $$ \int_H f = \int_1^2 \int_\pi^{2\pi} \int_0^{\pi/2} (r \sin\theta) \cdot (r^2 \sin\theta) \, d\theta \, d\varphi \, dr = \int_1^2 \int_\pi^{2\pi} \int_0^{\pi/2} r^3 \sin^2\theta \, d\theta \, d\varphi \, dr $$
+                </div>
+                <div class="math-block">
+                    A változók elválaszthatók egymástól, így külön szorzótényezőkként számíthatók ki:
+                    $$ = \left( \int_1^2 r^3 \, dr \right) \cdot \left( \int_\pi^{2\pi} 1 \, d\varphi \right) \cdot \left( \int_0^{\pi/2} \sin^2\theta \, d\theta \right) $$
+                </div>
+                <div class="math-block">
+                    Számítsuk ki a három integrált egyenként:<br>
+                    1. Sugár integrálja: $\int_1^2 r^3 \, dr = \left[ \frac{r^4}{4} \right]_1^2 = \frac{16}{4} - \frac{1}{4} = \frac{15}{4}$<br>
+                    2. $\varphi$ szög integrálja: $\int_\pi^{2\pi} 1 \, d\varphi = \pi$<br>
+                    3. $\theta$ szög integrálja (linearizálással $\sin^2\theta = \frac{1 - \cos(2\theta)}{2}$): $\int_0^{\pi/2} \frac{1 - \cos(2\theta)}{2} \, d\theta = \left[ \frac{\theta}{2} - \frac{\sin(2\theta)}{4} \right]_0^{\pi/2} = \frac{\pi}{4} - 0 = \frac{\pi}{4}$
+                </div>
+                <div class="math-block">
+                    Az eredmények összeszorzásával:
+                    $$ \frac{15}{4} \cdot \pi \cdot \frac{\pi}{4} = \frac{15\pi^2}{16} $$
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: a) $e - 1$,&nbsp;&nbsp; b) $\frac{15\pi^2}{16}$
+            </div>
+        </div>
+
+        <!-- Kifejtős 2. Feladat -->
+        <div class="card">
+            <h2>Kifejtős 2. Fourier-transzformáció</h2>
+            <div class="task-description">
+                <strong>2. Feladat (10 pont)</strong>
+                Legyen $f: \mathbb{R} \to \mathbb{R}$ abszolút integrálható függvény. Fejezzük ki az $\mathcal{F}(x \mapsto 2x \cdot f(3x))$ Fourier-transzformáltat az $f$ függvény Fourier-transzformáltjának segítségével.
+            </div>
+            <div class="formula-box">
+                <b>Fourier-transzformáció tulajdonságai:</b><br>
+                - <i>Skálázás (hasonlóság):</i> $\mathcal{F}(f(ax))(\omega) = \frac{1}{|a|} \mathcal{F}(f)\left(\frac{\omega}{a}\right)$<br>
+                - <i>Szorzás $x$-szel:</i> Ha a függvényt az $x$ változóval szorozzuk, az a frekvenciatartományban a deriváláshoz vezet: $\mathcal{F}(x \cdot f(x))(\omega) = i \cdot \mathcal{F}(f)'(\omega)$
+            </div>
+            <div class="calc-step">
+                Vezessünk be egy új $g(x)$ függvényt, hogy elkerüljük az összetett függvény deriválásának komplikációit.
+                <div class="math-block">
+                    1. Legyen $g(x) = x \cdot f(x)$. A fenti deriválási szabály alapján ennek a Fourier-transzformáltja:
+                    $$ \mathcal{F}(g)(\omega) = i \cdot \mathcal{F}(f)'(\omega) $$
+                </div>
+            </div>
+            <div class="calc-step">
+                <div class="math-block">
+                    2. Építsük fel a keresett, összetettebb kifejezést. Írjuk át úgy a képletet, hogy megjelenjen a $g(3x)$:
+                    $$ 2x \cdot f(3x) = \frac{2}{3} \cdot (3x \cdot f(3x)) = \frac{2}{3} \cdot g(3x) $$
+                </div>
+            </div>
+            <div class="calc-step">
+                <div class="math-block">
+                    3. Erre már alkalmazhatjuk a skálázási (hasonlósági) tételt ($a=3$ belső szorzóval):
+                    $$ \mathcal{F}(g(3x))(\omega) = \frac{1}{3} \mathcal{F}(g)\left(\frac{\omega}{3}\right) $$
+                </div>
+            </div>
+            <div class="calc-step">
+                <div class="math-block">
+                    4. Most helyettesítsük be vissza $\mathcal{F}(g)$ alakját, majd szorozzuk be a kimaradt konstanssal:
+                    $$ \mathcal{F}(2x \cdot f(3x))(\omega) = \frac{2}{3} \mathcal{F}(g(3x))(\omega) = \frac{2}{3} \cdot \frac{1}{3} \mathcal{F}(g)\left(\frac{\omega}{3}\right) = \frac{2}{9} \left( i \cdot \mathcal{F}(f)'\left(\frac{\omega}{3}\right) \right) $$
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: $\mathcal{F}(x \mapsto 2x \cdot f(3x))(\omega) = \frac{2i}{9} \mathcal{F}(f)'\left(\frac{\omega}{3}\right)$
+            </div>
+        </div>
+
+        <!-- Kifejtős 3. Feladat -->
+        <div class="card">
+            <h2>Kifejtős 3. Differenciálegyenlet tétel és bizonyítás</h2>
+            <div class="task-description">
+                <strong>3. Feladat (14 pont)</strong>
+                Írjuk fel az elsőrendű, függvény együtthatós, homogén, lineáris differenciálegyenletek általános alakját. Írjuk fel és bizonyítsuk be a megoldás általános alakjáról tanult tételt.
+            </div>
+            <div class="formula-box">
+                <b>Tétel kimondása:</b><br>
+                Legyen $I \subseteq \mathbb{R}$ nyílt intervallum, $g: I \to \mathbb{R}$ folytonos függvény, és jelölje $G$ egy tetszőleges primitív függvényét $g$-nek. Ekkor az $y: I \to \mathbb{R}$ differenciálható függvényre pontosan akkor teljesül az
+                $$ y'(x) + g(x)y(x) = 0 \quad (x \in I) $$
+                egyenlőség, ha létezik $C \in \mathbb{R}$, amelyre
+                $$ y(x) = C e^{-G(x)} \quad (x \in I). $$
+            </div>
+            <div class="calc-step">
+                <b>Bizonyítás első fele (Elégségesség):</b>
+                <div class="math-block">
+                    Először belátjuk, hogy minden fenti alakú függvény az (1) differenciálegyenlet megoldása.<br>
+                    Legyen $C \in \mathbb{R}$ tetszőleges, és legyen minden $x \in I$ esetén $y(x) := C e^{-G(x)}$.<br>
+                    Ezt láncszabállyal deriválva (kihasználva, hogy $G'(x) = g(x)$):
+                    $$ y'(x) = C e^{-G(x)} \cdot (-G'(x)) = -C e^{-G(x)} g(x) $$
+                </div>
+                <div class="math-block">
+                    Helyettesítsük vissza a deriváltat az eredeti egyenletbe:
+                    $$ y'(x) + g(x)y(x) = -C e^{-G(x)} g(x) + g(x) \left( C e^{-G(x)} \right) = 0 $$
+                    Látjuk, hogy az összeg tényleg nullát ad, tehát az egyenlet teljesül.
+                </div>
+            </div>
+            <div class="calc-step">
+                <b>Bizonyítás második fele (Szükségesség):</b>
+                <div class="math-block">
+                    Most legyen $y: I \to \mathbb{R}$ olyan függvény, amely az adott intervallumon maradéktalanul kielégíti a differenciálegyenletet ($y'(x) + g(x)y(x) = 0$). Megmutatjuk, hogy ekkor $y$ biztosan felírható a fenti alakban.<br>
+                    Szorozzuk be az egyenlet mindkét oldalát az integráló tényezővel ($e^{G(x)}$):
+                    $$ e^{G(x)} y'(x) + e^{G(x)} g(x) y(x) = 0 $$
+                </div>
+                <div class="math-block">
+                    Vegyük észre, hogy a kapott bal oldal pontosan egy szorzat deriváltja alakú:
+                    $$ \left( y(x) \cdot e^{G(x)} \right)' = y'(x) e^{G(x)} + y(x) e^{G(x)} G'(x) = e^{G(x)} y'(x) + e^{G(x)} g(x) y(x) $$
+                </div>
+                <div class="math-block">
+                    Vagyis a differenciálegyenlet az alábbi módon írható át:
+                    $$ \left( y(x) \cdot e^{G(x)} \right)' = 0 \quad (x \in I) $$
+                    Ha egy függvény deriváltja egy teljes nyílt intervallumon nulla, akkor a függvény mindenképpen konstans. Így garantáltan létezik egy $C \in \mathbb{R}$ konstans, melyre:
+                    $$ y(x) e^{G(x)} = C \implies y(x) = C e^{-G(x)} $$
+                </div>
+            </div>
+            <div class="result">
+                Ezzel a tételt teljes egészében, mindkét irányban beláttuk.
+            </div>
+        </div>
+
+        <!-- Kifejtős 4. Feladat -->
+        <div class="card">
+            <h2>Kifejtős 4. Nyílt halmaz bizonyítása</h2>
+            <div class="task-description">
+                <strong>4. Feladat (+10 pontért)</strong>
+                Igazoljuk, hogy a $B_1 = \{x \in \mathbb{R}^n \mid \|x\| < 1\} \subset \mathbb{R}^n$ egységgömb nyílt halmaz.
+            </div>
+            <div class="formula-box">
+                <b>Nyílt halmaz topológiai definíciója:</b><br>
+                Egy $H \subset \mathbb{R}^n$ halmaz nyílt, ha bármely választott $x \in H$ belső pontjának létezik olyan $\varepsilon > 0$ sugarú gömbkörnyezete ($B_\varepsilon(x) = \{z \in \mathbb{R}^n \mid \|z - x\| < \varepsilon\}$), amely még teljes egészében $H$-ban helyezkedik el ($B_\varepsilon(x) \subset H$).<br>
+                <b>Bizonyítás eszköze (Háromszög-egyenlőtlenség):</b> $\|a + b\| \le \|a\| + \|b\|$
+            </div>
+            <div class="calc-step">
+                <div class="math-block">
+                    Azt kell megmutatnunk, hogy bármely kiválasztott $x \in B_1$ esetén adható egy kellően kis $\varepsilon > 0$ sugár, amely mentén rajzolt $B_\varepsilon(x)$ környezet bekerül $B_1$-be.<br>
+                    Legyen $x \in B_1$ tetszőlegesen rögzített. A halmaz definíciója szerint ekkor $\|x\| < 1$.
+                </div>
+            </div>
+            <div class="calc-step">
+                <div class="math-block">
+                    Konstruáljuk meg az $\varepsilon$ sugarat az $x$ határtól mért távolsága alapján:
+                    $$ \varepsilon = 1 - \|x\| $$
+                    Mivel $\|x\| < 1$, ezért $1 - \|x\| > 0$, így érvényes $\varepsilon > 0$ sugarat választottunk.
+                </div>
+            </div>
+            <div class="calc-step">
+                <div class="math-block">
+                    Most vizsgáljuk meg a konstruált környezet ($B_\varepsilon(x)$) egy tetszőleges $y$ pontját, vajon benne van-e az eredeti gömbben. Legyen $y \in B_\varepsilon(x)$, ekkor a környezet definíciója miatt:
+                    $$ \|y - x\| < \varepsilon $$
+                    Ezt, és a háromszög-egyenlőtlenséget felhasználva becsüljük meg az $y$ origótól mért távolságát ($\|y\|$):
+                    $$ \|y\| = \|x + (y - x)\| \le \|x\| + \|y - x\| $$
+                </div>
+                <div class="math-block">
+                    Helyettesítsük be az egyenlőtlenséget és az $\varepsilon$ értékét:
+                    $$ \|x\| + \|y - x\| < \|x\| + \varepsilon = \|x\| + (1 - \|x\|) = 1 $$
+                </div>
+            </div>
+            <div class="calc-step">
+                <div class="math-block">
+                    Azt kaptuk, hogy bármely vizsgált $y$-ra $\|y\| < 1$ adódik, azaz $y \in B_1$.<br>
+                    Mivel ez minden $y \in B_\varepsilon(x)$ pontra egyöntetűen fennáll, ezért $B_\varepsilon(x) \subset B_1$, pontosan ezt akartuk bizonyítani.
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: A $B_1$ egységgömb minden pontja belső pont, tehát $B_1$ valóban nyílt halmaz.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

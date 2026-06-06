@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025. Vizsga Megoldások</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7;
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        h1 { 
+            color: white; 
+            font-weight: 800; 
+            font-size: 2.8rem; 
+            text-align: center; 
+            margin-bottom: 50px; 
+            letter-spacing: -0.5px;
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            margin-top: 0; 
+            border-bottom: 1px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .task-description {
+            background: var(--task-bg);
+            border-left: 5px solid var(--task-color);
+            padding: 25px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 35px;
+            font-size: 1.25rem;
+            color: #e0f2fe;
+            line-height: 1.7;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .task-description strong {
+            color: var(--task-color);
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .formula-box {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 4px solid var(--secondary);
+            padding: 20px 25px;
+            border-radius: 0 16px 16px 0;
+            margin: 25px 0;
+            font-size: 1.25rem;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        .formula-box b {
+            color: var(--secondary);
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .calc-step {
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 3px solid rgba(255,255,255,0.15);
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            line-height: 2;
+        }
+
+        .math-block {
+            margin: 15px 0;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .result {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+            padding: 20px 25px;
+            border-radius: 16px;
+            display: block;
+            font-weight: 700;
+            margin-top: 30px;
+            font-size: 1.4rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);
+        }
+
+        .mjx-chtml { color: white !important; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 30px 15px; }
+            .card { padding: 25px 20px; }
+            h1 { font-size: 2.2rem; }
+            .task-description, .calc-step { font-size: 1.1rem; }
+            .result { font-size: 1.2rem; }
+            mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Vissza az Összefoglalóhoz
+        </a>
+
+        <h1>2025. Június 11. Vizsga Megoldások</h1>
+
+        <!-- Teszt 1. Feladat -->
+        <div class="card">
+            <h2>Teszt 1. Többváltozós függvény határértéke</h2>
+            
+            <div class="task-description">
+                <strong>1. Feladat</strong>
+                Válassza ki az egyetlen helyes megoldást!
+                $$ \lim_{(x,y)\to(0,0)} \frac{xy}{x^2 - 2y^2} = ? $$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $0$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $\frac{1}{2}$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $-1$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> nem létezik <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Iránymenti határértékek vizsgálata:</b> 
+                Ha különböző irányokból (pl. $y=0$ vagy $x=y$ mentén) különböző határértékeket kapunk az origóban, akkor a függvény határértéke nem létezik.
+            </div>
+
+            <div class="calc-step">
+                1. Közelítsünk az $x$-tengely mentén ($y=0$):
+                <div class="math-block">
+                    $$ \lim_{x\to 0} \frac{x \cdot 0}{x^2 - 0} = \lim_{x\to 0} 0 = 0 $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                2. Közelítsünk az $x=y$ egyenes mentén:
+                <div class="math-block">
+                    $$ \lim_{x\to 0} \frac{x \cdot x}{x^2 - 2x^2} = \lim_{x\to 0} \frac{x^2}{-x^2} = -1 $$
+                </div>
+                Mivel $0 \neq -1$, a határérték függ az iránytól.
+            </div>
+
+            <div class="result">
+                Eredmény: nem létezik.
+            </div>
+        </div>
+
+        <!-- Teszt 2. Feladat -->
+        <div class="card">
+            <h2>Teszt 2. Állandó együtthatós lineáris differenciálegyenlet</h2>
+            
+            <div class="task-description">
+                <strong>2. Feladat</strong>
+                Az $y'' = y$ differenciálegyenlet általános megoldása $y_a(x) = \dots$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $C_1 e^x + C_2 x e^x$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $C_1 \sin(x) + C_2 \cos(x)$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $C_1 e^x + C_2 e^{-x}$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $C_1 \sin(x) + C_2 x \sin(x)$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $C_1 + C_2 e^x$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Karakterisztikus egyenlet:</b> 
+                Egy $ay'' + by' + cy = 0$ típusú egyenlethez a $\lambda$ paraméterrel felírt $a\lambda^2 + b\lambda + c = 0$ egyenlet tartozik.
+            </div>
+
+            <div class="calc-step">
+                1. Írjuk fel a differenciálegyenletet $y'' - y = 0$ alakban, és adjuk meg a karakterisztikus egyenletét:
+                <div class="math-block">
+                    $$ \lambda^2 - 1 = 0 $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                2. A gyökök $\lambda_1 = 1$ és $\lambda_2 = -1$.
+                Ezek valós és különböző gyökök, így az alapmegoldások $e^{\lambda_1 x}$ és $e^{\lambda_2 x}$.
+                <div class="math-block">
+                    $$ y_a(x) = C_1 e^x + C_2 e^{-x} $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: $C_1 e^x + C_2 e^{-x}$.
+            </div>
+        </div>
+
+        <!-- Teszt 3. Feladat -->
+        <div class="card">
+            <h2>Teszt 3. Halmaz határpontjai</h2>
+            
+            <div class="task-description">
+                <strong>3. Feladat</strong>
+                A $H := \{(x,y) \in \mathbb{R}^2 \mid 0 < x < 1, 0 < y < 1\} \cup \{(1,0)\}$ halmaz határpontjainak száma:
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $0$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $1$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $4$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> végtelen <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz</li>
+                </ul>
+            </div>
+
+            <div class="calc-step">
+                Vizsgáljuk meg a halmazt!
+                <div class="math-block">
+                    A halmaz egy nyílt egységnégyzet a koordinátarendszerben, kibővítve egyetlen ponttal, az $(1,0)$ ponttal.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                Egy ponthalmaz határpontja olyan pont, amelynek bármely környezetében van a halmazhoz tartozó és a halmazhoz nem tartozó pont is.
+                <div class="math-block">
+                    A nyílt négyzet határa a négyzet "kerete", azaz a peremvonalak. Ennek a keretnek végtelen sok pontja van.
+                    Az $(1,0)$ pont szintén ezen a határon helyezkedik el. A teljes határvonal pontjainak száma tehát végtelen.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: végtelen.
+            </div>
+        </div>
+
+        <!-- Teszt 4. Feladat -->
+        <div class="card">
+            <h2>Teszt 4. Hatványsor konvergenciasugara</h2>
+            
+            <div class="task-description">
+                <strong>4. Feladat</strong>
+                A $\sum_{n \in \mathbb{N}} \frac{(n+1)5^{2n}}{n!} (x-3)^n$ hatványsor (együttható-sorozatának) konvergenciasugara:
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $0$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $5$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $\frac{1}{5}$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $25$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $\frac{1}{25}$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $+\infty$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>D'Alembert-féle hányadoskritérium:</b> 
+                $$ R = \frac{1}{\lim_{n\to\infty} \left| \frac{a_{n+1}}{a_n} \right|} $$
+                Ha a határérték $0$, akkor a konvergenciasugár végtelen ($\infty$).
+            </div>
+
+            <div class="calc-step">
+                Határozzuk meg az $a_n = \frac{(n+1)5^{2n}}{n!}$ sorozat hányadosának határértékét:
+                <div class="math-block">
+                    $$ \left| \frac{a_{n+1}}{a_n} \right| = \frac{(n+2)5^{2(n+1)}}{(n+1)!} \cdot \frac{n!}{(n+1)5^{2n}} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                Egyszerűsítsük a kifejezést:
+                <div class="math-block">
+                    $$ = \frac{n+2}{(n+1)^2} \cdot 5^2 = \frac{n+2}{n^2+2n+1} \cdot 25 $$
+                </div>
+                Mivel a számláló foka (1) kisebb a nevező fokánál (2), a határérték $n \to \infty$ esetén $0$. Ebből következik, hogy $R = \infty$.
+            </div>
+
+            <div class="result">
+                Eredmény: $+\infty$.
+            </div>
+        </div>
+
+        <!-- Teszt 5. Feladat -->
+        <div class="card">
+            <h2>Teszt 5. Szeparábilis differenciálegyenlet</h2>
+            
+            <div class="task-description">
+                <strong>5. Feladat</strong>
+                Az $y'(x) = 3\sqrt[3]{y^2(x)}$ $(x \in \mathbb{R})$ differenciálegyenlet
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li style="margin-bottom: 5px;">lineáris; &nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H</li>
+                    <li style="margin-bottom: 5px;">megoldása az $x \mapsto x^3$ ($x \in \mathbb{R}$) függvény; &nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</li>
+                    <li style="margin-bottom: 5px;">$y(0)=0$ kezdeti feltétel melletti megoldása létezik és egyértelmű. &nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H</li>
+                </ul>
+            </div>
+
+            <div class="calc-step">
+                Vizsgáljuk meg az állításokat:
+                <div class="math-block">
+                    - <b>Lineáris?</b> Nem, mert a függvény a jobboldalon $y^{2/3}$ formában szerepel, tehát nem lineáris kifejezés $y$-ban. <b>(Hamis)</b>
+                </div>
+                <div class="math-block">
+                    - <b>Megoldása az $x \mapsto x^3$?</b> Helyettesítsük be: $y(x) = x^3 \implies y'(x) = 3x^2$. 
+                    A jobboldal: $3\sqrt[3]{(x^3)^2} = 3\sqrt[3]{x^6} = 3x^2$. A két oldal megegyezik, tehát ez egy megoldás. <b>(Igaz)</b>
+                </div>
+                <div class="math-block">
+                    - <b>Egyértelmű az $y(0)=0$ feltétellel?</b> Két triviális megoldást is ismerünk, ami teljesíti a kezdeti feltételt: $y(x) = x^3$ (mert $0^3 = 0$), és az $y(x) \equiv 0$ konstans függvény is. Mivel több megoldás is van, nem egyértelmű a megoldás. <b>(Hamis)</b>
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: lineáris (H), megoldása az $x \mapsto x^3$ (I), egyértelmű a megoldás (H).
+            </div>
+        </div>
+
+        <!-- Teszt 6. Feladat -->
+        <div class="card">
+            <h2>Teszt 6. Többváltozós függvény tulajdonságai</h2>
+            
+            <div class="task-description">
+                <strong>6. Feladat</strong>
+                Legyen 
+                $$ f(x,y) := \begin{cases} \frac{1}{x^2+y^2} & \text{ha } (x,y) \in \mathbb{R}^2 \setminus \{(0,0)\} \\ 0 & \text{ha } (x,y) = (0,0) \end{cases} $$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li style="margin-bottom: 5px;">Az $f$ függvény folytonos az értelmezési tartományán. &nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H</li>
+                    <li style="margin-bottom: 5px;">Az $f$ függvénynek létezik minimuma az origó középpontú zárt egységkörlapon. &nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</li>
+                    <li style="margin-bottom: 5px;">Az $f$ függvénynek létezik maximuma az origó középpontú zárt egységkörlapon. &nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H</li>
+                    <li style="margin-bottom: 5px;">Az $f$ függvénynek létezik lokális szélsőértéke az értelmezési tartományán. &nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</li>
+                </ul>
+            </div>
+
+            <div class="calc-step">
+                Vizsgáljuk meg a függvény viselkedését, elsősorban az origóban:
+                <div class="math-block">
+                    - <b>Folytonos?</b> Az origóban a határérték $\lim_{(x,y)\to(0,0)} \frac{1}{x^2+y^2} = +\infty$, ami nem egyezik meg a függvény értékével (0). <b>(Hamis)</b>
+                </div>
+                <div class="math-block">
+                    - <b>Minimuma létezik?</b> Mivel minden origón kívüli pontban $f(x,y) > 0$, és $f(0,0)=0$, így az origóban globális (és egyben lokális) minimuma van, melynek értéke 0. <b>(Igaz)</b>
+                </div>
+                <div class="math-block">
+                    - <b>Maximuma létezik?</b> Mivel az origó környékén a függvény értéke minden határon túl nő ($+\infty$-be tart), nem korlátos felülről, így nem létezik maximuma a zárt egységkörlapon sem. <b>(Hamis)</b>
+                </div>
+                <div class="math-block">
+                    - <b>Lokális szélsőértéke létezik?</b> Igen, az origóban felvett minimum lokális szélsőérték is egyben. <b>(Igaz)</b>
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: Folytonos (H), Minimuma van (I), Maximuma van (H), Lokális szélsőértéke van (I).
+            </div>
+        </div>
+
+        <!-- Teszt 7. Feladat -->
+        <div class="card">
+            <h2>Teszt 7. Számsorok konvergenciája</h2>
+            
+            <div class="task-description">
+                <strong>7. Feladat</strong>
+                Legyen $(a_n)_{n\in\mathbb{N}}$ tetszőleges valós számsorozat.
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li style="margin-bottom: 5px;">Ha minden $n \in \mathbb{N}^+$ esetén $\frac{-1}{n^2} \le a_n \le \frac{1}{n^2}$, akkor a $\sum_{n\in\mathbb{N}} a_n$ numerikus sor konvergens. &nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</li>
+                    <li style="margin-bottom: 5px;">Ha minden $n \in \mathbb{N}$ esetén $\sqrt[n]{|a_n|} < 1$, akkor a $\sum_{n\in\mathbb{N}} a_n$ numerikus sor konvergens. &nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H</li>
+                    <li style="margin-bottom: 5px;">Ha minden $n \in \mathbb{N}^+$ esetén $a_n \ge \frac{1}{n}$, akkor a $\sum_{n\in\mathbb{N}} a_n$ numerikus sor divergens. &nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</li>
+                </ul>
+            </div>
+
+            <div class="calc-step">
+                Állítások ellenőrzése:
+                <div class="math-block">
+                    - <b>Első:</b> Az egyenlőtlenség jelentése $|a_n| \le \frac{1}{n^2}$. Mivel a $\sum \frac{1}{n^2}$ hiperharmonikus sor konvergens, a majoráns kritérium alapján $\sum a_n$ abszolút konvergens, és ezért konvergens is. <b>(Igaz)</b>
+                </div>
+                <div class="math-block">
+                    - <b>Második:</b> A gyökkritérium szerint szigorú egyenlőtlenség ($< 1$) minden $n$-re önmagában nem elegendő a konvergenciához; ahhoz a $\limsup \sqrt[n]{|a_n|} < 1$ teljesülése szükséges (azaz kell, hogy felülről korlátozza egy 1-nél kisebb fix szám). Például $a_n = \frac{1}{n}$ esetén $\sqrt[n]{1/n} < 1$, de a harmonikus sor divergens. <b>(Hamis)</b>
+                </div>
+                <div class="math-block">
+                    - <b>Harmadik:</b> Mivel a harmonikus sor $\sum \frac{1}{n}$ divergens ($\infty$-hez tart), és az $a_n$ tagok ennél nagyobbak vagy egyenlőek vele, a minoráns kritérium alapján a $\sum a_n$ sor is divergens. <b>(Igaz)</b>
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: Első (I), Második (H), Harmadik (I).
+            </div>
+        </div>
+
+        <!-- Kifejtős 1. Feladat -->
+        <div class="card">
+            <h2>Kifejtős 1. Többes integrál</h2>
+            
+            <div class="task-description">
+                <strong>1. Feladat (12+12=24 pont)</strong>
+                Számítsuk ki az $\int_H f$ integrál értékét, ahol
+                <br><br>
+                <b>a)</b> $f(x, y) := \frac{x}{\sqrt{x^2 + y^2}}$, $\quad H := \{(x, y) \in \mathbb{R}^2 \mid 1 \le x^2 + y^2 \le 4, 0 \le x \le y\}$
+                <br><br>
+                <b>b)</b> $f(x, y, z) := 2y$, $\quad H \subseteq \mathbb{R}^3$ a koordinátasíkok ($x=0,y=0,z=0$), valamint az $x = 2$, $y = 3$ és $z = x + 1$ síkok által határolt tartomány.
+            </div>
+
+            <div class="formula-box">
+                <b>Polárkoordinátás helyettesítés:</b> 
+                $x = r \cos \varphi$, $y = r \sin \varphi$, $dx dy = r \,dr \,d\varphi$. 
+            </div>
+
+            <div class="calc-step">
+                <b>a) rész:</b> Írjuk át a tartományt polárkoordinátákra!
+                <div class="math-block">
+                    A feltétel $1 \le x^2 + y^2 \le 4$ alapján a sugár: $1 \le r \le 2$.<br>
+                    A feltétel $0 \le x \le y$ alapján az első síknegyedben vagyunk (ahol sin és cos pozitív), és $r\cos\varphi \le r\sin\varphi \implies 1 \le \tan\varphi$, amiből $\frac{\pi}{4} \le \varphi \le \frac{\pi}{2}$.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                Állítsuk össze és számítsuk ki az integrált:
+                <div class="math-block">
+                    $$ \iint_H \frac{x}{\sqrt{x^2+y^2}} dx dy = \int_{\pi/4}^{\pi/2} \int_1^2 \frac{r\cos\varphi}{r} \cdot r \,dr d\varphi = \left( \int_{\pi/4}^{\pi/2} \cos\varphi \,d\varphi \right) \cdot \left( \int_1^2 r \,dr \right) $$
+                </div>
+                <div class="math-block">
+                    Szög szerinti integrál: $\left[ \sin\varphi \right]_{\pi/4}^{\pi/2} = 1 - \frac{\sqrt{2}}{2}$
+                    <br>
+                    Sugár szerinti integrál: $\left[ \frac{r^2}{2} \right]_1^2 = \frac{4}{2} - \frac{1}{2} = \frac{3}{2}$
+                </div>
+                A végeredmény ezek szorzata.
+            </div>
+
+            <div class="calc-step">
+                <b>b) rész:</b> Határozzuk meg az integrálási határokat Descartes-koordinátákban!
+                <div class="math-block">
+                    $x$ határai: $0 \le x \le 2$<br>
+                    $y$ határai: $0 \le y \le 3$<br>
+                    $z$ határai: $0 \le z \le x+1$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                Végezzük el az integrálást belülről kifelé haladva:
+                <div class="math-block">
+                    $$ \iiint_H 2y \,dz dy dx = \int_0^2 \int_0^3 \int_0^{x+1} 2y \,dz dy dx $$
+                    $$ = \int_0^2 \int_0^3 2y \cdot [z]_0^{x+1} \,dy dx = \int_0^2 \int_0^3 2y(x+1) \,dy dx $$
+                </div>
+                Szétválaszthatjuk az integrált:
+                <div class="math-block">
+                    $$ = \left( \int_0^2 (x+1) \,dx \right) \cdot \left( \int_0^3 2y \,dy \right) $$
+                    $$ = \left[ \frac{(x+1)^2}{2} \right]_0^2 \cdot \left[ y^2 \right]_0^3 = \left( \frac{9}{2} - \frac{1}{2} \right) \cdot (9 - 0) = 4 \cdot 9 = 36 $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: a) $\frac{3}{2}\left(1 - \frac{\sqrt{2}}{2}\right)$, b) $36$.
+            </div>
+        </div>
+
+        <!-- Kifejtős 2. Feladat -->
+        <div class="card">
+            <h2>Kifejtős 2. Fourier-sorok</h2>
+            
+            <div class="task-description">
+                <strong>2. Feladat (6+6=12 pont)</strong>
+                Legyen $f$ az a $2\pi$ szerint periodikus függvény, amelyre
+                $$ f(x) := \begin{cases} x + 41 & \text{ha } x \in [-\pi, 0[ \\ x + 43 & \text{ha } x \in [0, \pi[ \end{cases} $$
+                a) Jelölje $\Phi$ az $f$ függvény Fourier-sorának összegfüggvényét. Adjuk meg a $\Phi(0)$ és $\Phi(1)$ értékeket.<br>
+                b) Adjuk meg az $a_{42}(f)$ Fourier-együtthatót. (Indokoljunk.)
+            </div>
+
+            <div class="formula-box">
+                <b>Dirichlet-tétel:</b> 
+                Szakadási pontokban a Fourier-sor a jobb és bal oldali határérték számtani közepéhez tart:
+                $$ \Phi(x) = \frac{f(x-0) + f(x+0)}{2} $$
+                Folytonossági pontokban a függvényértékhez tart: $\Phi(x) = f(x)$.
+            </div>
+
+            <div class="calc-step">
+                <b>a) rész:</b> Határozzuk meg a Fourier-sor összegét a megadott pontokban!
+                <div class="math-block">
+                    Az $x = 0$ szakadási pont. Alkalmazzuk a Dirichlet-tételt:
+                    $$ \Phi(0) = \frac{f(0-0) + f(0+0)}{2} = \frac{41 + 43}{2} = 42 $$
+                </div>
+                <div class="math-block">
+                    Az $x = 1$ folytonossági pont (mivel benne van a $]0, \pi[$ intervallumban), így:
+                    $$ \Phi(1) = f(1) = 1 + 43 = 44 $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>b) rész:</b> Számítsuk ki az $a_{42}$ együtthatót!
+                <div class="math-block">
+                    Toljuk el a függvényt egy konstanssal lefelé: $g(x) = f(x) - 42$.
+                    $$ g(x) = \begin{cases} x - 1 & \text{ha } x \in ]-\pi, 0[ \\ x + 1 & \text{ha } x \in ]0, \pi[ \end{cases} $$
+                    Vegyük észre, hogy $g(x)$ (az origótól eltekintve) <b>páratlan függvény</b>, mert $g(-x) = -x - 1 = -(x + 1) = -g(x)$ (ahol $x>0$).
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    A koszinuszos tagok együtthatói:
+                    $$ a_{42}(f) = a_{42}(g + 42) = a_{42}(g) = \frac{1}{\pi} \int_{-\pi}^\pi g(x) \cos(42x) dx $$
+                    Mivel a $g(x)$ páratlan és a $\cos(42x)$ páros, a szorzatuk páratlan függvény. Páratlan függvény szimmetrikus intervallumon vett integrálja pontosan $0$.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: a) $\Phi(0) = 42$, $\Phi(1) = 44$. b) $a_{42}(f) = 0$.
+            </div>
+        </div>
+
+        <!-- Kifejtős 3. Feladat -->
+        <div class="card">
+            <h2>Kifejtős 3. Taylor-sorok elmélete</h2>
+            
+            <div class="task-description">
+                <strong>3. Feladat (4+10=14 pont)</strong>
+                a) Milyen elégséges feltételt tanultunk arra, hogy egy függvény $x_0$ körüli Taylor-sorának összege megegyezzék magával a függvénnyel az $]x_0 - r, x_0 + r[$ intervallumon?<br>
+                b) Bizonyítsuk be az a) pontbeli állítást.
+            </div>
+
+            <div class="calc-step">
+                <b>a) Elégséges feltétel:</b>
+                <div class="math-block">
+                    Legyen $f$ végtelenszer differenciálható az $]x_0 - r, x_0 + r[$ intervallumon. 
+                    Ha az $(f^{(n)})_{n\in\mathbb{N}}$ deriváltfüggvények sorozata <b>egyenletesen korlátos</b> ezen az intervallumon (vagyis létezik olyan $K > 0$, hogy $|f^{(n)}(x)| \le K$ minden $n$-re és $x$-re), 
+                    akkor a Taylor-sor ezen az intervallumon konvergens, és összege maga az $f(x)$ függvény.
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <b>Taylor-formula Lagrange-féle maradéktaggal:</b> 
+                $$ f(x) = T_{n, x_0}^f(x) + \frac{f^{(n+1)}(\xi)}{(n+1)!} (x - x_0)^{n+1} $$
+                ahol $\xi$ egy $x_0$ és $x$ közötti pont, a maradéktag tart a nullához.
+            </div>
+
+            <div class="calc-step">
+                <b>b) Bizonyítás:</b>
+                <div class="math-block">
+                    Tegyük fel, hogy az $]x_0 - r, x_0 + r[$ intervallumon az egyenletes korlátosság teljesül, azaz $\forall n \in \mathbb{N}$ és $\forall x \in ]x_0 - r, x_0 + r[$ esetén $|f^{(n)}(x)| \le K$.
+                </div>
+                <div class="math-block">
+                    Írjuk fel a függvény és a Taylor-polinom különbségét (maradéktag):
+                    $$ |f(x) - T_{n, x_0}^f(x)| = \left| \frac{f^{(n+1)}(\xi)}{(n+1)!} (x - x_0)^{n+1} \right| $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                Becsüljük felül a kifejezést:
+                <div class="math-block">
+                    Mivel $\xi$ is az intervallumban van, $|f^{(n+1)}(\xi)| \le K$.
+                    Ezen kívül $|x - x_0| < r$, így a hatvány felülbecsülhető $r^{n+1}$-gyel.
+                    $$ \left| \frac{f^{(n+1)}(\xi)}{(n+1)!} (x - x_0)^{n+1} \right| \le \frac{K \cdot r^{n+1}}{(n+1)!} $$
+                </div>
+                <div class="math-block">
+                    Tudjuk, hogy az exponenciális növekedésnél a faktoriális gyorsabban nő, így bármilyen fix $r$ esetén:
+                    $$ \lim_{n\to\infty} \frac{r^{n+1}}{(n+1)!} = 0 $$
+                    Ebből következik, hogy a maradéktag tart a nullához, vagyis a Taylor-sor (mely a polinomok limesze) konvergál az $f(x)$-hez.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: A Taylor-sor konvergenciáját az biztosítja, ha a deriváltak egyenletesen korlátosak, amit a Lagrange-maradéktag becslésével bizonyítottunk.
+            </div>
+        </div>
+
+        <!-- Kifejtős 4. Feladat -->
+        <div class="card">
+            <h2>Kifejtős 4. Egyenlőtlenség bizonyítása (Bónusz)</h2>
+            
+            <div class="task-description">
+                <strong>4. Feladat (plusz 10 pontért)</strong>
+                Igazoljuk, hogy minden $n \in \mathbb{N}^+$ esetén:
+                $$ \sum_{j=1}^n j(n - j) \le \sum_{j=1}^n j^2 $$
+            </div>
+
+            <div class="formula-box">
+                <b>Számtani és mértani közép közötti egyenlőtlenség:</b> 
+                Ha $a,b \ge 0$, akkor $ab \le \left( \frac{a+b}{2} \right)^2$.
+            </div>
+
+            <div class="calc-step">
+                <b>Megoldás Számtani-mértani közepekkel:</b>
+                <div class="math-block">
+                    Alkalmazzuk az egyenlőtlenséget az összeg minden tagjára: $a = j$ és $b = n-j$.
+                    $$ j(n - j) \le \left( \frac{j + (n - j)}{2} \right)^2 = \left( \frac{n}{2} \right)^2 = \frac{n^2}{4} $$
+                </div>
+                <div class="math-block">
+                    Szummázzuk ezt $n$ alkalommal:
+                    $$ \sum_{j=1}^n j(n - j) \le \sum_{j=1}^n \frac{n^2}{4} = n \cdot \frac{n^2}{4} = \frac{n^3}{4} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                Becsüljük meg a jobb oldalt:
+                <div class="math-block">
+                    A jobboldalon álló négyzetösszeg pontos értéke ismert:
+                    $$ \sum_{j=1}^n j^2 = \frac{n(n+1)(2n+1)}{6} = \frac{2n^3 + 3n^2 + n}{6} $$
+                </div>
+                <div class="math-block">
+                    Hasonlítsuk össze a kapott korlátot ezzel a kifejezéssel:
+                    $$ \frac{2n^3 + 3n^2 + n}{6} > \frac{2n^3}{6} = \frac{n^3}{3} $$
+                    Mivel $\frac{n^3}{3} > \frac{n^3}{4}$, így az eredeti állítás felső becslése ($\frac{n^3}{4}$) szigorúan kisebb, mint a jobb oldal ($\frac{n^3}{3}$). Az állítás tehát igaz, és így még élesebb becslést is igazoltunk.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: Az egyenlőtlenség a számtani-mértani közép (vagy Cauchy-Schwarz) egyenlőtlenség segítségével könnyen bizonyítható.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

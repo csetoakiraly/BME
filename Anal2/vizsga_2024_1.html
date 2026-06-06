@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024. Tavasz Vizsga (Alfa) Megoldások</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7;
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        h1 { 
+            color: white; 
+            font-weight: 800; 
+            font-size: 2.8rem; 
+            text-align: center; 
+            margin-bottom: 50px; 
+            letter-spacing: -0.5px;
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            margin-top: 0; 
+            border-bottom: 1px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .task-description {
+            background: var(--task-bg);
+            border-left: 5px solid var(--task-color);
+            padding: 25px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 35px;
+            font-size: 1.25rem;
+            color: #e0f2fe;
+            line-height: 1.7;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .task-description strong {
+            color: var(--task-color);
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .formula-box {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 4px solid var(--secondary);
+            padding: 20px 25px;
+            border-radius: 0 16px 16px 0;
+            margin: 25px 0;
+            font-size: 1.25rem;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        .formula-box b {
+            color: var(--secondary);
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .calc-step {
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 3px solid rgba(255,255,255,0.15);
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            line-height: 2;
+        }
+
+        .math-block {
+            margin: 15px 0;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .result {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+            padding: 20px 25px;
+            border-radius: 16px;
+            display: block;
+            font-weight: 700;
+            margin-top: 30px;
+            font-size: 1.4rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);
+        }
+
+        .mjx-chtml { color: white !important; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 30px 15px; }
+            .card { padding: 25px 20px; }
+            h1 { font-size: 2.2rem; }
+            .task-description, .calc-step { font-size: 1.1rem; }
+            .result { font-size: 1.2rem; }
+            mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Vissza az Összefoglalóhoz
+        </a>
+
+        <h1>2024. Tavasz Vizsga (Alfa Variáns)</h1>
+
+        <!-- Teszt 1 -->
+        <div class="card">
+            <h2>Teszt 1. Kétváltozós határérték</h2>
+            <div class="task-description">
+                <strong>1. Kérdés</strong>
+                Határozza meg a következő határértéket:
+                $$ \lim_{(x,y)\to(0,0)} \frac{\sin(xy)}{|xy|} = ? $$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $0$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $1$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $-1$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> nem létezik <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz</li>
+                </ul>
+            </div>
+            <div class="calc-step">
+                Vizsgáljuk meg a határértéket különböző irányokból!
+                <div class="math-block">
+                    - Ha az $y = x$ egyenes mentén közelítünk ($x > 0$):
+                    $$ \lim_{x\to 0+} \frac{\sin(x^2)}{|x^2|} = \lim_{x\to 0+} \frac{\sin(x^2)}{x^2} = 1 $$
+                    - Ha az $y = -x$ egyenes mentén közelítünk ($x > 0$):
+                    $$ \lim_{x\to 0+} \frac{\sin(-x^2)}{|-x^2|} = \lim_{x\to 0+} \frac{-\sin(x^2)}{x^2} = -1 $$
+                </div>
+                Mivel a két különböző irányból vett határérték nem egyezik meg ($1 \neq -1$), a határérték nem létezik.
+            </div>
+            <div class="result">
+                Eredmény: nem létezik
+            </div>
+        </div>
+
+        <!-- Teszt 2 -->
+        <div class="card">
+            <h2>Teszt 2. Differenciálegyenlet próbafüggvénye</h2>
+            <div class="task-description">
+                <strong>2. Kérdés</strong>
+                Az $y''(x) - 2y'(x) + y(x) = e^{-x}$ differenciálegyenlet megoldásakor milyen alakban keressük a próbafüggvényt ($y_p(x)$)?
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $Ae^x$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $Ae^{-x}$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $Axe^x$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $Ax^2e^x$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $Ax^2e^{-x}$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz</li>
+                </ul>
+            </div>
+            <div class="formula-box">
+                <b>Rezonancia vizsgálat:</b>
+                Ha a külső gerjesztés $\alpha$ kitevője megegyezik a karakterisztikus egyenlet valamelyik gyökével (multiplicitás = $m$), akkor a próbafüggvényt $x^m$-mel szorozni kell.
+            </div>
+            <div class="calc-step">
+                1. Írjuk fel a homogén rész karakterisztikus egyenletét:
+                <div class="math-block">
+                    $$ r^2 - 2r + 1 = 0 \implies (r-1)^2 = 0 \implies r = 1 \text{ (kétszeres gyök)} $$
+                </div>
+                2. Vizsgáljuk a zavaró függvényt (jobb oldal): $e^{-x}$. Itt az exponenciális kitevő $\alpha = -1$.
+                <div class="math-block">
+                    Mivel $\alpha = -1 \neq 1$, nincs rezonancia ($m = 0$).<br>
+                    Így a próbafüggvény alakja az alapvető exponenciális forma marad:
+                    $$ y_p(x) = A e^{-x} $$
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: $A e^{-x}$
+            </div>
+        </div>
+
+        <!-- Teszt 3 -->
+        <div class="card">
+            <h2>Teszt 3. Hatványsor konvergenciája</h2>
+            <div class="task-description">
+                <strong>3. Kérdés</strong>
+                Tudjuk, hogy a $\sum a_n(x + 2)^n$ hatványsor $x = 1$ esetén konvergens. Ekkor mi mondható el az $x = -3$ esetben a hatványsor konvergenciájáról?
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> az $(a_n)_{n\in\mathbb{N}}$ együttható-sorozat választásától függetlenül konvergens <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> az $(a_n)_{n\in\mathbb{N}}$ együttható-sorozat választásától függően lehet konvergens és divergens</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> az $(a_n)_{n\in\mathbb{N}}$ együttható-sorozat választásától függetlenül divergens</li>
+                </ul>
+            </div>
+            <div class="calc-step">
+                1. Határozzuk meg a hatványsor középpontját és a konvergenciasugár alsó korlátját:
+                <div class="math-block">
+                    A sor középpontja $x_0 = -2$.<br>
+                    Az $x = 1$ pontban a sor konvergens, ennek távolsága a középponttól: 
+                    $$ d = |1 - (-2)| = 3 $$
+                    Tehát a konvergenciasugár $R \ge 3$. Abel-tétele alapján a $(-2-3, -2+3) = (-5, 1)$ nyílt intervallumban a sor abszolút konvergens.
+                </div>
+                2. Vizsgáljuk meg az $x = -3$ pontot:
+                <div class="math-block">
+                    Az $x = -3$ pont távolsága a középponttól:
+                    $$ |-3 - (-2)| = |-1| = 1 $$
+                    Mivel $1 < 3 \le R$, ez a pont szigorúan a konvergencia-intervallum belsejébe esik.
+                </div>
+                Ennélfogva a hatványsor az $x = -3$ pontban abszolút konvergens, ami azt jelenti, hogy az $(a_n)$ együtthatók konkrét értékétől függetlenül biztosan konvergens.
+            </div>
+            <div class="result">
+                Eredmény: az $(a_n)$ együttható-sorozat választásától függetlenül konvergens.
+            </div>
+        </div>
+
+        <!-- Teszt 4 -->
+        <div class="card">
+            <h2>Teszt 4. Számsor összege</h2>
+            <div class="task-description">
+                <strong>4. Kérdés</strong>
+                Számítsa ki a következő sor összegét:
+                $$ \sum_{n=0}^\infty \frac{2^{n+1} + 3^n}{2^{2n+1}} = ? $$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $0$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $1$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $4$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $+\infty$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz</li>
+                </ul>
+            </div>
+            <div class="calc-step">
+                1. Bontsuk fel a törtet és alakítsuk át a kifejezéseket:
+                <div class="math-block">
+                    A nevező: $2^{2n+1} = 2 \cdot (2^2)^n = 2 \cdot 4^n$.<br>
+                    A sor felbontva:
+                    $$ \sum_{n=0}^\infty \left( \frac{2 \cdot 2^n}{2 \cdot 4^n} + \frac{3^n}{2 \cdot 4^n} \right) = \sum_{n=0}^\infty \left( \left(\frac{1}{2}\right)^n + \frac{1}{2}\left(\frac{3}{4}\right)^n \right) $$
+                </div>
+                2. Számítsuk ki a két különálló mértani sor összegét ($\sum_{n=0}^\infty q^n = \frac{1}{1-q}$):
+                <div class="math-block">
+                    Első tag:
+                    $$ \sum_{n=0}^\infty \left(\frac{1}{2}\right)^n = \frac{1}{1 - 1/2} = 2 $$
+                    Második tag:
+                    $$ \frac{1}{2} \sum_{n=0}^\infty \left(\frac{3}{4}\right)^n = \frac{1}{2} \cdot \frac{1}{1 - 3/4} = \frac{1}{2} \cdot 4 = 2 $$
+                </div>
+                Az összeg a két érték összege: $2 + 2 = 4$.
+            </div>
+            <div class="result">
+                Eredmény: 4
+            </div>
+        </div>
+
+        <!-- Teszt 5 -->
+        <div class="card">
+            <h2>Teszt 5. Sorozatok és Sorok konvergenciája</h2>
+            <div class="task-description">
+                <strong>5. Kérdés (Igaz/Hamis)</strong>
+                Legyenek $(a_n)$ és $(b_n)$ olyan számsorozatok amelyekre teljesül, hogy a $\sum b_n$ sor konvergens, és létezik olyan $N \in \mathbb{N}$, hogy minden $n \ge N$ esetén $|a_n| \le b_n$. Ekkor:
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li>a) $\sum a_n$ konvergens: &nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> Igaz &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> Hamis</li>
+                    <li>b) $\lim a_n = 0$: &nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> Igaz &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> Hamis</li>
+                    <li>c) $\sum b_n$ abszolút konvergens: &nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> Igaz &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> Hamis</li>
+                </ul>
+            </div>
+            <div class="calc-step">
+                Elemzés a Majoráns-kritérium alapján:
+                <div class="math-block">
+                    Mivel $|a_n| \ge 0$, következik, hogy $b_n \ge 0$ minden $n \ge N$ esetén.<br>
+                    Mivel $\sum b_n$ konvergens és $b_n$ egy majoráló sorozat, a majoráns-kritérium alapján a $\sum |a_n|$ sor konvergens (vagyis az $a_n$ sor abszolút konvergens).
+                </div>
+                - <b>a) állítás:</b> Mivel $\sum a_n$ abszolút konvergens, ebből egyenesen következik, hogy a sor "sima" konvergens is. <b>(Igaz)</b><br>
+                - <b>b) állítás:</b> Mivel $\sum a_n$ konvergens, teljesíti a konvergencia szükséges feltételét, azaz az általános tag nullához tart. <b>(Igaz)</b><br>
+                - <b>c) állítás:</b> Mivel $b_n \ge 0$ ($n \ge N$-től), ezért $b_n = |b_n|$, tehát $\sum b_n = \sum |b_n|$, ami konvergens. Tehát a $b_n$ sor abszolút konvergens. <b>(Igaz)</b>
+            </div>
+            <div class="result">
+                Eredmény: a) Igaz, b) Igaz, c) Igaz
+            </div>
+        </div>
+
+        <!-- Teszt 6 -->
+        <div class="card">
+            <h2>Teszt 6. Többváltozós függvények tulajdonságai</h2>
+            <div class="task-description">
+                <strong>6. Kérdés (Igaz/Hamis)</strong>
+                Legyen $f: \mathbb{R}^2 \to \mathbb{R}_+$ folytonos függvény, amelyre $f(0,0) = 0$ teljesül.
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li>a) Az $f$ függvénynek lokális szélsőértéke van az origóban: &nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> Igaz &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> Hamis</li>
+                    <li>b) $\lim_{(x,y)\to(0,0)} f(x,y) = 0$: &nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> Igaz &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> Hamis</li>
+                    <li>c) $f$-nek létezik maximuma az $\{(x,y) \in \mathbb{R}^2 \mid x^2 + y^2 \le 1\}$ halmazon: &nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> Igaz &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> Hamis</li>
+                    <li>d) $\int_0^1 \int_0^x f(x,y) dy dx = \int_0^x \int_0^1 f(x,y) dx dy$: &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> Igaz &nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> Hamis</li>
+                </ul>
+            </div>
+            <div class="calc-step">
+                Állítások elemzése:
+                <div class="math-block">
+                    - <b>a) állítás:</b> Mivel az $f$ függvény értékkészlete $\mathbb{R}_+$ (azaz $f(x,y) \ge 0$), és $f(0,0)=0$, az origó a függvény abszolút minimumhelye, ami egyben lokális szélsőérték is. <b>(Igaz)</b><br>
+                    - <b>b) állítás:</b> Mivel $f$ mindenhol folytonos, a határérték az origóban pontosan megegyezik a behelyettesítési értékkel, ami $0$. <b>(Igaz)</b><br>
+                    - <b>c) állítás:</b> A megadott halmaz egy zárt körlap (zárt és korlátos, azaz kompakt). A Weierstrass-tétel értelmében egy folytonos függvény kompakt halmazon felveszi a minimumát és maximumát. <b>(Igaz)</b><br>
+                    - <b>d) állítás:</b> A kettős integrálnál az integrálási sorrend felcserélése (Fubini-tétel) nem hajtható végre a határok módosítása nélkül. A jobb oldalon a külső integrál felső határa $x$ függ a változótól, ami matematikailag értelmetlen ebben a formában (a helyes írásmód $\int_0^1 \int_y^1 f(x,y) dx dy$ lenne). <b>(Hamis)</b>
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: a) Igaz, b) Igaz, c) Igaz, d) Hamis
+            </div>
+        </div>
+
+        <!-- Teszt 7 -->
+        <div class="card">
+            <h2>Teszt 7. Differenciálegyenletek osztályozása</h2>
+            <div class="task-description">
+                <strong>7. Kérdés (Igaz/Hamis)</strong>
+                Döntse el, hogy az $y'(x) = \sinh(x)(y(x) - 1)$ differenciálegyenlet:
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li>elsőrendű: &nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> Igaz &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> Hamis</li>
+                    <li>homogén lineáris: &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> Igaz &nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> Hamis</li>
+                    <li>szeparálható: &nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> Igaz &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> Hamis</li>
+                </ul>
+            </div>
+            <div class="calc-step">
+                Vizsgáljuk meg az egyenlet felépítését! Alakítsuk át az egyenletet: $y' - \sinh(x)y = -\sinh(x)$.
+                <div class="math-block">
+                    - <b>Elsőrendű:</b> Csak az első derivált ($y'$) szerepel benne, nincsenek magasabb rendű deriváltak. <b>(Igaz)</b><br>
+                    - <b>Homogén lineáris:</b> Az egyenlet lineáris, azonban a jobb oldalon szereplő $-\sinh(x)$ egy nullától különböző "zavaró tag", ezáltal az egyenlet <i>inhomogén</i>. <b>(Hamis)</b><br>
+                    - <b>Szeparálható:</b> Az egyenlet felírható $y' = f(x)g(y)$ alakban, ahol $\sinh(x)$ csak $x$-től, az $(y-1)$ kifejezés pedig csak $y$-tól függ, vagyis a változók szétválaszthatók. <b>(Igaz)</b>
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: elsőrendű: Igaz, homogén lineáris: Hamis, szeparálható: Igaz
+            </div>
+        </div>
+
+        <!-- Kifejtős 1 -->
+        <div class="card">
+            <h2>Kifejtős 1. Hármas integrál gömbi koordinátákkal</h2>
+            
+            <div class="task-description">
+                <strong>1. Feladat (15 pont)</strong>
+                Integráljuk az $f(x, y, z) := \frac{x}{x^2 + y^2}$ függvényt a megadott halmazon:
+                $$ H := \{(x, y, z) \in \mathbb{R}^3 \mid 1 \le x^2 + y^2 + z^2 \le 4, x \ge 0, y \ge 0, z \le 0\} $$
+            </div>
+
+            <div class="formula-box">
+                <b>Gömbi koordinátás helyettesítés:</b> 
+                $$ x = r \sin\theta \cos\varphi, \quad y = r \sin\theta \sin\varphi, \quad z = r \cos\theta $$
+                <b>Jacobi-determináns:</b> $J = r^2 \sin\theta$
+            </div>
+
+            <div class="calc-step">
+                1. Határozzuk meg a gömbi koordináták határait a $H$ halmaz definíciója alapján:
+                <div class="math-block">
+                    - $1 \le x^2 + y^2 + z^2 \le 4 \implies 1 \le r^2 \le 4 \implies r \in [1, 2]$<br>
+                    - $z \le 0 \implies r \cos\theta \le 0 \implies \cos\theta \le 0 \implies \theta \in \left[\frac{\pi}{2}, \pi\right]$<br>
+                    - $x \ge 0$ és $y \ge 0 \implies \cos\varphi \ge 0$ és $\sin\varphi \ge 0 \implies \varphi \in \left[0, \frac{\pi}{2}\right]$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                2. Írjuk fel az integrandust a gömbi koordinátákkal:
+                <div class="math-block">
+                    $$ f(r,\theta,\varphi) = \frac{r \sin\theta \cos\varphi}{(r \sin\theta \cos\varphi)^2 + (r \sin\theta \sin\varphi)^2} $$
+                    $$ = \frac{r \sin\theta \cos\varphi}{r^2 \sin^2\theta (\cos^2\varphi + \sin^2\varphi)} = \frac{r \sin\theta \cos\varphi}{r^2 \sin^2\theta} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                3. Szorozzuk meg a Jacobi-determinánssal és integráljunk:
+                <div class="math-block">
+                    $$ \int_H f \cdot J \, dV = \int_1^2 \int_{\pi/2}^\pi \int_0^{\pi/2} \left( \frac{r \sin\theta \cos\varphi}{r^2 \sin^2\theta} \right) \cdot r^2 \sin\theta \, d\varphi \, d\theta \, dr $$
+                    Figyeljük meg, hogy az összes $\theta$-függő és a legtöbb $r$-függő tag a törtben nagyszerűen egyszerűsödik!
+                    $$ = \int_1^2 \int_{\pi/2}^\pi \int_0^{\pi/2} r \cos\varphi \, d\varphi \, d\theta \, dr $$
+                </div>
+            </div>
+            
+            <div class="calc-step">
+                4. A változók szétválaszthatók, így az integrálok szorzataként számolhatunk:
+                <div class="math-block">
+                    $$ = \left( \int_1^2 r \, dr \right) \cdot \left( \int_{\pi/2}^\pi 1 \, d\theta \right) \cdot \left( \int_0^{\pi/2} \cos\varphi \, d\varphi \right) $$
+                    $$ = \left[ \frac{r^2}{2} \right]_1^2 \cdot [\theta]_{\pi/2}^\pi \cdot [\sin\varphi]_0^{\pi/2} $$
+                    $$ = \left( \frac{4}{2} - \frac{1}{2} \right) \cdot \left( \pi - \frac{\pi}{2} \right) \cdot (1 - 0) = \frac{3}{2} \cdot \frac{\pi}{2} \cdot 1 = \frac{3\pi}{4} $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: $\frac{3\pi}{4}$
+            </div>
+        </div>
+
+        <!-- Kifejtős 2 -->
+        <div class="card">
+            <h2>Kifejtős 2. Fourier-sorok és Dirichlet-tétel</h2>
+            
+            <div class="task-description">
+                <strong>2. Feladat (17 pont)</strong>
+                Legyen $f$ az a $2\pi$ szerint periodikus függvény, amelyre:
+                $$ f(x) := \begin{cases} x + \pi, & \text{ha } x \in [-\pi, 0[ \\ x, & \text{ha } x \in [0, \pi[ \end{cases} $$
+                a) Mondjuk ki a Fourier-sorok pontonkénti konvergenciájáról szóló Dirichlet-tételt.<br>
+                b) Jelölje $\Phi$ az $f$ függvény Fourier-sorának összegfüggvényét. Adjuk meg a $\Phi(0)$ és $\Phi(-\frac{\pi}{2})$ értékeket.<br>
+                c) Számítsuk ki az $a_3(f)$ Fourier-együtthatót.
+            </div>
+
+            <div class="calc-step">
+                <b>a) Dirichlet-tétel kimondása:</b>
+                <div class="math-block">
+                    Legyen $f: \mathbb{R} \to \mathbb{R}$ egy $2\pi$ szerint periodikus függvény, és tegyük fel, hogy a $[-\pi, \pi]$ intervallum felbontható úgy véges sok részintervallumra, hogy ezek belsején $f$ monoton és korlátos. Ekkor $f$ Fourier-sora minden $x \in \mathbb{R}$ pontban konvergens, és az összegfüggvényre igaz, hogy:
+                    $$ (\Phi(f))(x) = \frac{f(x-0) + f(x+0)}{2} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>b) $\Phi$ értékeinek meghatározása:</b>
+                <div class="math-block">
+                    Mivel $f$-re teljesülnek a Dirichlet-tétel feltételei (szakaszonként monoton és korlátos), a szakadási helyeken a jobb és bal oldali határérték számtani közepét veszi fel, a folytonossági helyeken pedig magát a függvényértéket.
+                    <br><br>
+                    Az $x = 0$ pontban szakadása van:
+                    $$ \Phi(0) = \frac{f(0-0) + f(0+0)}{2} = \frac{(\pi) + 0}{2} = \frac{\pi}{2} $$
+                    Az $x = -\frac{\pi}{2}$ pontban a függvény folytonos:
+                    $$ \Phi\left(-\frac{\pi}{2}\right) = f\left(-\frac{\pi}{2}\right) = -\frac{\pi}{2} + \pi = \frac{\pi}{2} $$
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <b>Páratlan függvények integrálja:</b> 
+                Ha egy $g(x)$ függvény páratlan ($g(-x) = -g(x)$), akkor a szimmetrikus $[-\pi, \pi]$ intervallumon vett határozott integrálja nulla.
+            </div>
+
+            <div class="calc-step">
+                <b>c) Az $a_3(f)$ együttható kiszámítása:</b>
+                <div class="math-block">
+                    A Fourier-együttható definíciója:
+                    $$ a_3(f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos(3x) \, dx $$
+                    Vegyük észre a következő trükköt! Toljuk el a függvényt $\frac{\pi}{2}$-vel lefelé: $g(x) = f(x) - \frac{\pi}{2}$.<br>
+                    A kapott $g(x)$ függvény véges sok pont kivételével (az $x=0$ szakadást leszámítva) <b>páratlan</b> függvény lesz! Mivel a $\cos(3x)$ páros függvény, a szorzatuk $g(x)\cos(3x)$ egy páratlan függvény.
+                    <br><br>
+                    Ezért a szimmetrikus integrálja nulla:
+                    $$ a_3\left(f - \frac{\pi}{2}\right) = \frac{1}{\pi} \int_{-\pi}^\pi \left(f(x) - \frac{\pi}{2}\right) \cos(3x) \, dx = 0 $$
+                    Tudjuk, hogy az együttható felbontható: $a_3(f) = a_3\left(f - \frac{\pi}{2}\right) + a_3\left(\frac{\pi}{2}\right)$.<br>
+                    Mivel egy konstans függvény Fourier-sorában az $a_3$ (kosinuszos) együttható $0$, így kapjuk, hogy:
+                    $$ a_3(f) = 0 + 0 = 0 $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: $\Phi(0) = \frac{\pi}{2}$, $\Phi\left(-\frac{\pi}{2}\right) = \frac{\pi}{2}$, és $a_3(f) = 0$.
+            </div>
+        </div>
+
+        <!-- Kifejtős 3 -->
+        <div class="card">
+            <h2>Kifejtős 3. Iránymenti deriváltak (Elmélet)</h2>
+            
+            <div class="task-description">
+                <strong>3. Feladat (18 pont)</strong>
+                Mondjuk ki és bizonyítsuk be az iránymenti deriváltak kiszámításáról szóló tételt.
+            </div>
+
+            <div class="formula-box">
+                <b>Tétel Kimondása:</b><br>
+                Ha az $f: \mathbb{R}^n \to \mathbb{R}$ függvény (totálisan) differenciálható az $\underline{a} \in \operatorname{int}(\operatorname{Dom}(f))$ pontban, akkor minden $\underline{e} \in \mathbb{R}^n$ és $\|\underline{e}\| = 1$ (egységvektor) esetén $f$ az $\underline{e}$ irány mentén deriválható az $\underline{a}$ pontban, és:
+                $$ D_{\underline{e}}f(\underline{a}) = \langle \operatorname{grad}f(\underline{a}), \underline{e} \rangle $$
+            </div>
+
+            <div class="calc-step">
+                <b>Bizonyítás:</b>
+                <div class="math-block">
+                    Legyen $f$ egy olyan függvény, amely totálisan differenciálható az $\underline{a}$ pontban, valamint legyen $\underline{e} \in \mathbb{R}^n$ egy egységvektor ($\|\underline{e}\| = 1$). Legyen $\varepsilon > 0$ egy tetszőleges valós szám.
+                </div>
+                <div class="math-block">
+                    Az $f$ függvény totális differenciálhatóságának definíciójából adódóan létezik olyan $\delta > 0$, hogy ha $\|\underline{x} - \underline{a}\| < \delta$ és $\underline{x} \neq \underline{a}$, akkor teljesül a következő egyenlőtlenség:
+                    $$ \frac{|f(\underline{x}) - f(\underline{a}) - \langle \operatorname{grad}f(\underline{a}), \underline{x} - \underline{a} \rangle|}{\|\underline{x} - \underline{a}\|} < \varepsilon $$
+                </div>
+                <div class="math-block">
+                    Legyen $0 < t < \delta$. Helyettesítsünk az egyenlőtlenségbe $\underline{x} := \underline{a} + t\underline{e}$ értéket! Mivel $\|\underline{a} + t\underline{e} - \underline{a}\| = \|t\underline{e}\| = t\|\underline{e}\| = t < \delta$, a behelyettesítés érvényes:
+                    $$ \left| \frac{f(\underline{a} + t\underline{e}) - f(\underline{a}) - \langle \operatorname{grad}f(\underline{a}), t\underline{e} \rangle}{t} \right| = \left| \frac{f(\underline{a} + t\underline{e}) - f(\underline{a})}{t} - \langle \operatorname{grad}f(\underline{a}), \underline{e} \rangle \right| < \varepsilon $$
+                </div>
+                <div class="math-block">
+                    Mivel ez minden tetszőleges $\varepsilon > 0$-ra fennáll a megfelelően kicsi $t$-k esetén, ez egyenesen az iránymenti derivált határértékes definíciója. Eszerint:
+                    $$ D_{\underline{e}}f(\underline{a}) = \lim_{t\to 0+} \frac{f(\underline{a} + t\underline{e}) - f(\underline{a})}{t} = \langle \operatorname{grad}f(\underline{a}), \underline{e} \rangle $$
+                    Ezzel a tételt sikeresen beláttuk.
+                </div>
+            </div>
+        </div>
+
+        <!-- Kifejtős 4 -->
+        <div class="card">
+            <h2>Kifejtős 4. Integrálos egyenlőtlenség (IMSC)</h2>
+            
+            <div class="task-description">
+                <strong>4. Feladat (plusz 10 pontért)</strong>
+                Bizonyítsuk be, hogy ha $f: \mathbb{R} \to \mathbb{R}^+$ folytonos függvény és $a < b$ valós számok, akkor
+                $$ \int_a^b f(x) \, dx \cdot \int_a^b \frac{1}{f(x)} \, dx \ge (b - a)^2 $$
+            </div>
+
+            <div class="formula-box">
+                <b>Segítség / Trükk:</b> Szorozzuk meg a kifejezést 2-vel, majd alakítsuk át a szorzatot kettős integrállá a Fubini-tétel segítségével.
+            </div>
+
+            <div class="calc-step">
+                1. Írjuk fel az integrálok szorzatát kétszer, majd vonjuk össze őket a Fubini-tétellel:
+                <div class="math-block">
+                    $$ 2 \left( \int_a^b f(x) \, dx \cdot \int_a^b \frac{1}{f(x)} \, dx \right) = \left( \int_a^b \int_a^b \frac{f(x)}{f(y)} \, dy \, dx \right) + \left( \int_a^b \int_a^b \frac{f(y)}{f(x)} \, dy \, dx \right) $$
+                    A változók átnevezésével és összevonással kapjuk a következő egyetlen kettős integrált a $[a,b] \times [a,b]$ tartomány felett:
+                    $$ = \iint_{[a,b]\times[a,b]} \left( \frac{f(x)}{f(y)} + \frac{f(y)}{f(x)} \right) \, d(x,y) $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                2. Alkalmazzuk a számtani-mértani egyenlőtlenséget az integrandusra!
+                <div class="math-block">
+                    Tudjuk, hogy bármely pozitív $u > 0$ valós számra $u + \frac{1}{u} \ge 2$. (Ez abból következik, hogy $(u-1)^2 \ge 0$).<br>
+                    Mivel $f(x)$ szigorúan pozitív ($\mathbb{R}^+$ az értékkészlete), az $u = \frac{f(x)}{f(y)}$ hányados szintén pozitív lesz. Így:
+                    $$ \frac{f(x)}{f(y)} + \frac{f(y)}{f(x)} \ge 2 $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                3. Használjuk fel a Riemann-integrál monotonitását!
+                <div class="math-block">
+                    Mivel az integrandus minden pontban legalább 2, a kettős integrál értéke alulról becsülhető a konstans függvénnyel:
+                    $$ \iint_{[a,b]\times[a,b]} \left( \frac{f(x)}{f(y)} + \frac{f(y)}{f(x)} \right) \, d(x,y) \ge \iint_{[a,b]\times[a,b]} 2 \, d(x,y) $$
+                    A 2-es konstanst integrálva egy négyzet alakú tartomány felett a terület és a magasság szorzata adódik:
+                    $$ = 2 \cdot \text{Terület}([a,b]\times[a,b]) = 2(b - a)^2 $$
+                </div>
+                Osztva mindkét oldalt 2-vel, pontosan a bizonyítandó állítást kapjuk:
+                $$ \int_a^b f(x) \, dx \cdot \int_a^b \frac{1}{f(x)} \, dx \ge (b - a)^2 $$
+                Ezzel az állítást sikerrel igazoltuk.
+            </div>
+            
+            <div class="result">
+                Eredmény: A bizonyítás teljes.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

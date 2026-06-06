@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024. Vizsga (3. alkalom) Megoldások</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7;
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        h1 { 
+            color: white; 
+            font-weight: 800; 
+            font-size: 2.8rem; 
+            text-align: center; 
+            margin-bottom: 50px; 
+            letter-spacing: -0.5px;
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            margin-top: 0; 
+            border-bottom: 1px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .task-description {
+            background: var(--task-bg);
+            border-left: 5px solid var(--task-color);
+            padding: 25px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 35px;
+            font-size: 1.25rem;
+            color: #e0f2fe;
+            line-height: 1.7;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .task-description strong {
+            color: var(--task-color);
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .formula-box {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 4px solid var(--secondary);
+            padding: 20px 25px;
+            border-radius: 0 16px 16px 0;
+            margin: 25px 0;
+            font-size: 1.25rem;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        .formula-box b {
+            color: var(--secondary);
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .calc-step {
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 3px solid rgba(255,255,255,0.15);
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            line-height: 2;
+        }
+
+        .math-block {
+            margin: 15px 0;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .result {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+            padding: 20px 25px;
+            border-radius: 16px;
+            display: block;
+            font-weight: 700;
+            margin-top: 30px;
+            font-size: 1.4rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);
+        }
+
+        .mjx-chtml { color: white !important; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 30px 15px; }
+            .card { padding: 25px 20px; }
+            h1 { font-size: 2.2rem; }
+            .task-description, .calc-step { font-size: 1.1rem; }
+            .result { font-size: 1.2rem; }
+            mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Vissza az Összefoglalóhoz
+        </a>
+
+        <h1>2024. Vizsga (3. alkalom) Megoldások (α variáns)</h1>
+
+        <!-- Teszt 1. Feladat -->
+        <div class="card">
+            <h2>Teszt 1. Többváltozós határérték</h2>
+            
+            <div class="task-description">
+                <strong>1. Feladat (5 pont)</strong>
+                $$ \lim_{(x,y)\to(0,0)} \frac{2xy}{x^2+y^2} = ? $$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $0$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $1$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $-1$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> nem létezik <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Irány menti limesz vizsgálata:</b> 
+                Az origóhoz $y = mx$ egyenesek mentén közelítve ellenőrizhető, hogy az eredmény függ-e az $m$ meredekségtől.
+            </div>
+
+            <div class="calc-step">
+                Ha az $y = mx$ irány mentén tartunk az origóhoz ($x \to 0$):
+                <div class="math-block">
+                    $$ \lim_{x\to 0} \frac{2x(mx)}{x^2+(mx)^2} = \lim_{x\to 0} \frac{2mx^2}{x^2(1+m^2)} = \frac{2m}{1+m^2} $$
+                </div>
+                Mivel a kapott határérték függ az $m$ meredekségtől (különböző egyenesek mentén haladva más-más értéket kapunk), a határérték nem létezik.
+            </div>
+
+            <div class="result">
+                Eredmény: nem létezik
+            </div>
+        </div>
+
+        <!-- Teszt 2. Feladat -->
+        <div class="card">
+            <h2>Teszt 2. Másodrendű differenciálegyenlet</h2>
+            
+            <div class="task-description">
+                <strong>2. Feladat (5 pont)</strong>
+                Az $y'' + 4y' + 4y = 0$ differenciálegyenlet általános megoldása $y_a(x) = \dots$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $C_1e^{2x}$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $C_1e^{-2x}$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $C_1e^{2x} + C_2xe^{2x}$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $C_1e^{2x} + C_2e^{-2x}$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $C_1e^{-2x} + C_2xe^{-2x}$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Karakterisztikus egyenlet:</b> 
+                Állandó együtthatós lineáris homogén egyenletnél felírjuk a $\lambda^2 + a\lambda + b = 0$ egyenletet. Ha dupla valós gyök van (belső rezonancia), az alapmegoldások $e^{\lambda x}$ és $x e^{\lambda x}$.
+            </div>
+
+            <div class="calc-step">
+                Írjuk fel a karakterisztikus egyenletet:
+                <div class="math-block">
+                    $$ \lambda^2 + 4\lambda + 4 = 0 \implies (\lambda + 2)^2 = 0 \implies \lambda_{1,2} = -2 $$
+                </div>
+                A kétszeres gyök miatt belső rezonancia lép fel, így az általános megoldás alakja:
+                <div class="math-block">
+                    $$ y(x) = C_1 e^{-2x} + C_2 x e^{-2x} $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: $C_1 e^{-2x} + C_2 x e^{-2x}$
+            </div>
+        </div>
+
+        <!-- Teszt 3. Feladat -->
+        <div class="card">
+            <h2>Teszt 3. Kétváltozós függvény szélsőértéke</h2>
+            
+            <div class="task-description">
+                <strong>3. Feladat (5 pont)</strong>
+                Legyen
+                $$ f(x, y) := \begin{cases} \frac{1}{\sqrt{x^2 + y^2}} & \text{, ha } (x, y) \in \mathbb{R}^2 \setminus \{(0, 0)\} \\ 0 & \text{, ha } (x, y) = (0, 0) \end{cases} $$
+                Válassza ki a megfelelő állítást a szélsőértékekről!
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> Az $f$ függvénynek létezik lokális maximuma és lokális minimuma is;</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> Az $f$ függvénynek nem létezik lokális maximuma, és létezik lokális minimuma; <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> Az $f$ függvénynek létezik lokális maximuma, és nem létezik lokális minimuma;</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> Az $f$ függvénynek nem létezik lokális szélsőértéke.</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Globális szélsőérték definíciója:</b> 
+                Egy $P_0$ pontban globális minimum van, ha $f(P_0) \le f(P)$ minden $P$ pontra. Ha globális minimum van, az egyben lokális is.
+            </div>
+
+            <div class="calc-step">
+                Vizsgáljuk meg a függvény értékeit:
+                <div class="math-block">
+                    - Az origóban: $f(0,0) = 0$.<br>
+                    - Minden más $(x,y) \neq (0,0)$ pontban a nevező szigorúan pozitív, tehát $f(x,y) > 0$.
+                </div>
+                Ez azt jelenti, hogy $f(x,y) \ge f(0,0)$ az értelmezési tartomány minden pontjában. Így az origóban (szigorú) <b>lokális (és globális) minimum</b> van.
+            </div>
+
+            <div class="calc-step">
+                Létezik-e maximum?
+                <div class="math-block">
+                    Ahogy közeledünk az origóhoz (például $x=0, y \to 0$), a függvényérték $1 / |y| \to \infty$. A függvény felülről nem korlátos, így <b>lokális maximuma nincs</b>.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: Az $f$ függvénynek nem létezik lokális maximuma, és létezik lokális minimuma.
+            </div>
+        </div>
+
+        <!-- Teszt 4. Feladat -->
+        <div class="card">
+            <h2>Teszt 4. Hatványsor konvergenciája</h2>
+            
+            <div class="task-description">
+                <strong>4. Feladat (5 pont)</strong>
+                A $\sum_{n \in \mathbb{N}} \frac{x^n}{(-2)^n n^3}$ sor pontosan akkor konvergens, ha $x \in \dots$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $]-2, 2]$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $[-2, 2]$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $]-\frac{1}{2}, \frac{1}{2}]$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $[-\frac{1}{2}, \frac{1}{2}]$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Cauchy-Hadamard tétel:</b> 
+                Konvergenciasugár $R = \frac{1}{\lim_{n\to\infty} \sqrt[n]{|a_n|}}$. A sor biztosan konvergens a $]-R, R[$ nyílt intervallumon, a végpontokban külön vizsgálat szükséges.
+            </div>
+
+            <div class="calc-step">
+                1. Számítsuk ki a konvergenciasugarat:
+                <div class="math-block">
+                    Az általános tag $a_n = \frac{1}{(-2)^n n^3}$.
+                    $$ \lim_{n\to\infty} \sqrt[n]{|a_n|} = \lim_{n\to\infty} \frac{1}{2 \cdot (\sqrt[n]{n})^3} = \frac{1}{2 \cdot 1^3} = \frac{1}{2} $$
+                    A konvergenciasugár tehát $R = 2$. Így a sor biztosan konvergens a $]-2, 2[$ intervallumon.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                2. Végpontok vizsgálata:
+                <div class="math-block">
+                    - <b>Ha $x = 2$:</b> A sor $\sum_{n=1}^\infty \frac{2^n}{(-2)^n n^3} = \sum_{n=1}^\infty \frac{(-1)^n}{n^3}$.<br>
+                    Ez egy alternáló sor, az $\frac{1}{n^3}$ monoton csökkenve tart nullához, így a Leibniz-kritérium alapján <b>konvergens</b>.
+                    <br><br>
+                    - <b>Ha $x = -2$:</b> A sor $\sum_{n=1}^\infty \frac{(-2)^n}{(-2)^n n^3} = \sum_{n=1}^\infty \frac{1}{n^3}$.<br>
+                    Mivel a $\sum \frac{1}{n^\alpha}$ sor konvergens, ha $\alpha > 1$ (itt $\alpha=3$), ez is <b>konvergens</b>.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: $[-2, 2]$
+            </div>
+        </div>
+
+        <!-- Teszt 5-7. Feladat -->
+        <div class="card">
+            <h2>Teszt 5-7. Igaz-Hamis állítások</h2>
+            
+            <div class="task-description">
+                <strong>5-7. Feladat (30 pont)</strong>
+                Döntse el minden állításról, hogy Igaz (I) vagy Hamis (H)!
+            </div>
+
+            <div class="calc-step">
+                <b>5. Az $y'(x)x^3 - 2y^2(x) = 0$ differenciálegyenlet:</b>
+                <div class="math-block">
+                    - <b>Szeparálható: (I)</b> Igen, mert átalakítható $y'(x) = \frac{2y^2(x)}{x^3}$ alakra.<br>
+                    - <b>Megoldása az $x \mapsto x^2$ függvény: (I)</b> Behelyettesítve $y=x^2$ és $y'=2x$: $2x \cdot x^3 - 2(x^2)^2 = 2x^4 - 2x^4 = 0$. Igaz.<br>
+                    - <b>$K=0$-hoz tartozó izoklinája tartalmazza az $(1, 1)$ pontot: (H)</b> Az izoklina egyenlete $y'=0$, azaz $0 = \frac{2y^2}{x^3}$. Ha behelyettesítjük az $(1,1)$ pontot: $0 = \frac{2\cdot 1^2}{1^3} = 2$, ami ellentmondás.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>6. Legyen $f: \mathbb{R}^2 \to \mathbb{R}$ tetszőleges függvény:</b>
+                <div class="math-block">
+                    - <b>Ha $f$ totálisan deriválható, akkor ott minden esetben folytonos: (I)</b> Ismert tétel.<br>
+                    - <b>Ha mindkét parciális derivált nulla, minden iránymenti derivált is nulla: (H)</b> Nem feltétlenül (pl. ha a függvény nem totálisan deriválható abban a pontban, a gradiens formula nem működik).<br>
+                    - <b>Ha léteznek a parciális deriváltjai, akkor folytonos: (H)</b> A tengelyeken kívül máshogy viselkedő függvények esetében megszakadhat a folytonosság a parciális deriváltak létezése ellenére.<br>
+                    - <b>Ha folytonos, akkor létezik gradiense: (H)</b> Csak folytonosságból nem következik a deriválhatóság.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>7. Legyen $\displaystyle a_n = \cos(n\pi) \frac{3^{2n-1}}{n^2 \cdot 9^n}$:</b>
+                <div class="math-block">
+                    Egyszerűsítsük: $a_n = (-1)^n \frac{9^n \cdot \frac{1}{3}}{n^2 \cdot 9^n} = (-1)^n \frac{1}{3n^2}$.<br>
+                    - <b>Leibniz típusú: (I)</b> Váltakozó előjelű és $|a_n|$ csökkenve tart a nullához.<br>
+                    - <b>Konvergens: (I)</b> Mivel Leibniz-sor, biztosan konvergens.<br>
+                    - <b>Nem abszolút konvergens: (H)</b> Az abszolútértékek sora $\sum \frac{1}{3n^2}$, ami szintén konvergens.
+                </div>
+            </div>
+        </div>
+
+        <!-- Kifejtős 1. Feladat -->
+        <div class="card">
+            <h2>Kifejtős 1. Kettős és Hármas integrál</h2>
+            
+            <div class="task-description">
+                <strong>1. Feladat (12+12=24 pont)</strong>
+                a) $\int_0^1 \int_y^1 \sin(x^2) dx dy = ?$ (Próbálkozzunk az integrálok sorrendjének felcserélésével)<br><br>
+                b) $\int_H \frac{1}{\sqrt{x^2+y^2}} d(x,y,z) = ?$, ahol $H = \{(x,y,z) \in \mathbb{R}^3 \mid 4 \le x^2+y^2 \le 9, y \ge 0, 0 \le z \le 2\}$
+            </div>
+
+            <div class="formula-box">
+                <b>Integrálási határok cseréje:</b> Ha a tartomány $0 \le y \le 1$ és $y \le x \le 1$, ez egy háromszög, ami egyenértékű azzal, hogy $0 \le x \le 1$ és $0 \le y \le x$.<br>
+                <b>Hengerkoordináták:</b> $x = r \cos \varphi, y = r \sin \varphi, z = z$, a Jacobi-determináns $|J| = r$.
+            </div>
+
+            <div class="calc-step">
+                <b>a) rész:</b>
+                <div class="math-block">
+                    Cseréljük fel az integrálási sorrendet a fenti megállapítás alapján:
+                    $$ \int_0^1 \int_0^x \sin(x^2) dy dx $$
+                    A belső integrál egyszerű: $\int_0^x \sin(x^2) dy = [y \sin(x^2)]_0^x = x \sin(x^2)$.
+                    Így a feladat:
+                    $$ \int_0^1 x \sin(x^2) dx $$
+                    Helyettesítés: legyen $u = x^2$, ekkor $du = 2x dx$. A primitív függvény $-\frac{1}{2}\cos(x^2)$.
+                    $$ \left[ -\frac{\cos(x^2)}{2} \right]_0^1 = -\frac{\cos(1)}{2} - \left(-\frac{1}{2}\right) = \frac{1 - \cos(1)}{2} $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>b) rész:</b>
+                <div class="math-block">
+                    Térjünk át hengerkoordinátákra. A feltételek:
+                    - $4 \le r^2 \le 9 \implies 2 \le r \le 3$
+                    - $y \ge 0 \implies \varphi \in [0, \pi]$
+                    - $0 \le z \le 2 \implies z \in [0, 2]$
+                    
+                    Az integrandus és a Jacobi-determináns: $\frac{1}{\sqrt{r^2}} \cdot r = \frac{1}{r} \cdot r = 1$.
+                    $$ \int_2^3 \int_0^\pi \int_0^2 1 dz d\varphi dr = \left(\int_2^3 1 dr\right) \left(\int_0^\pi 1 d\varphi\right) \left(\int_0^2 1 dz\right) $$
+                    $$ = (3 - 2) \cdot (\pi - 0) \cdot (2 - 0) = 1 \cdot \pi \cdot 2 = 2\pi $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: a) $\frac{1 - \cos(1)}{2}$<br>
+                b) $2\pi$
+            </div>
+        </div>
+
+        <!-- Kifejtős 2. Feladat -->
+        <div class="card">
+            <h2>Kifejtős 2. Fourier-sorok</h2>
+            
+            <div class="task-description">
+                <strong>2. Feladat (6+4=10 pont)</strong>
+                Legyen $f$ az a $2\pi$ szerint periodikus függvény, amelyre
+                $$ f(x) := \begin{cases} x^2 + \pi, & \text{ha } x \in [-\pi, 0[ \\ -x, & \text{ha } x \in [0, \pi[ \end{cases} $$
+                a) Jelölje $\Phi$ az $f$ függvény Fourier-sorának összegfüggvényét. Adjuk meg a $\Phi(0)$ és $\Phi(1)$ értékeket!<br>
+                b) Egyenletesen konvergens-e $\mathbb{R}$-en az $f$ függvény Fourier-sora?
+            </div>
+
+            <div class="formula-box">
+                <b>Dirichlet-tétel:</b> Folytonossági pontokban $\Phi(x) = f(x)$. Szakadási pontokban az összegfüggvény értéke a jobb és bal oldali határértékek számtani közepe: $\Phi(x_0) = \frac{f(x_0+) + f(x_0-)}{2}$.
+            </div>
+
+            <div class="calc-step">
+                <b>a) rész:</b>
+                <div class="math-block">
+                    Vizsgáljuk az $x=0$ pontot. Ez szakadási pont:
+                    - Balról: $f(0-) = \lim_{x\to 0^-} (x^2 + \pi) = \pi$.
+                    - Jobbról: $f(0+) = \lim_{x\to 0^+} (-x) = 0$.
+                    Így $\Phi(0) = \frac{\pi + 0}{2} = \frac{\pi}{2}$.
+                    <br><br>
+                    Vizsgáljuk az $x=1$ pontot. Mivel $1 \in ]0, \pi[$, ez folytonossági pont:
+                    $\Phi(1) = f(1) = -1$.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>b) rész:</b>
+                <div class="math-block">
+                    Ha egy Fourier-sor egyenletesen konvergens, az összegfüggvénye ($\Phi$) folytonos kell hogy legyen. Mivel az $x=0$ pontban szakadás van, és így $\Phi$ nem folytonos (értéke a bal és jobb határ számtani közepe), a sor <b>nem lehet egyenletesen konvergens</b>.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: a) $\Phi(0) = \frac{\pi}{2}$, $\Phi(1) = -1$.<br>
+                b) Nem, mert az összegfüggvény nem folytonos.
+            </div>
+        </div>
+
+        <!-- Kifejtős 3. Feladat -->
+        <div class="card">
+            <h2>Kifejtős 3. Hányadoskritérium bizonyítása</h2>
+            
+            <div class="task-description">
+                <strong>3. Feladat (6+10=16 pont)</strong>
+                Mondjuk ki és bizonyítsuk be a numerikus sorokra vonatkozó hányadoskritériumot.
+            </div>
+
+            <div class="formula-box">
+                <b>A Tétel kimondása:</b><br>
+                Legyen $(a_n)$ pozitív tagú sorozat.
+                <br>1. Ha $\limsup_{n\to\infty} \frac{a_{n+1}}{a_n} < 1$, akkor a $\sum a_n$ sor konvergens.
+                <br>2. Ha $\liminf_{n\to\infty} \frac{a_{n+1}}{a_n} > 1$, akkor a $\sum a_n$ sor divergens.
+            </div>
+
+            <div class="calc-step">
+                <b>Bizonyítás (Konvergencia):</b>
+                <div class="math-block">
+                    Tegyük fel, hogy $\limsup_{n\to\infty} \frac{a_{n+1}}{a_n} < 1$. Ekkor válasszunk egy $q$ valós számot úgy, hogy a limesz szupremum és az 1 közé essen: $\dots < q < 1$.
+                    Ekkor létezik olyan $N$ küszöbindex, hogy minden $n \ge N$ esetén $\frac{a_{n+1}}{a_n} < q$, vagyis $a_{n+1} < q \cdot a_n$.
+                </div>
+                <div class="math-block">
+                    Teljes indukcióval belátható, hogy minden $n \ge N$ esetén:
+                    $$ a_n \le q^{n-N} a_N = q^n \frac{a_N}{q^N} $$
+                    Mivel $0 < q < 1$, a $\sum q^n$ mértani sor konvergens. Vele együtt konvergens a $\sum q^n \frac{a_N}{q^N}$ sor is (mert konstansszorosa). Így a <b>majoránskritérium</b> alapján a mi $\sum a_n$ sorunk is konvergens.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>Bizonyítás (Divergencia):</b>
+                <div class="math-block">
+                    Tegyük fel, hogy $\liminf_{n\to\infty} \frac{a_{n+1}}{a_n} > 1$. Ekkor létezik olyan $N$ küszöbindex, hogy minden $n \ge N$ esetén $\frac{a_{n+1}}{a_n} > 1$, azaz $a_{n+1} > a_n$.
+                </div>
+                <div class="math-block">
+                    Ez azt jelenti, hogy az $(a_n)$ sorozat tagjai az $N$ indextől kezdve szigorúan monoton növekednek. Mivel a sorozat pozitív tagú, nem tarthat 0-hoz ($\lim_{n\to\infty} a_n \neq 0$). Mivel a konvergencia szükséges feltétele nem teljesül, a sor divergens.
+                </div>
+            </div>
+        </div>
+
+        <!-- Kifejtős 4. Feladat -->
+        <div class="card">
+            <h2>Kifejtős 4. Nyílt halmazok metszete (IMSC / Plusz pont)</h2>
+            
+            <div class="task-description">
+                <strong>4. Feladat (plusz 10 pontért)</strong>
+                Legyen $n \in \mathbb{N}^+$. Bizonyítsuk be, hogy ha az $\mathbb{R}^n$-beli $A$ és $B$ halmazok nyíltak, akkor $A \cap B$ is nyílt.
+            </div>
+
+            <div class="formula-box">
+                <b>Nyílt halmaz definíciója:</b> 
+                Egy halmaz nyílt, ha minden $x$ pontjához létezik olyan $\epsilon > 0$ sugarú nyílt gömb $B_\epsilon(x)$, amely teljes egészében része a halmaznak.
+            </div>
+
+            <div class="calc-step">
+                1. Eset: $A \cap B = \emptyset$.
+                <div class="math-block">
+                    Az üres halmaz definíció szerint nyílt, így az állítás triviálisan teljesül.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                2. Eset: Legyen $x \in A \cap B$ egy tetszőleges pont a metszetből.
+                <div class="math-block">
+                    - Mivel $x \in A$ és $A$ nyílt, létezik olyan $r_1 > 0$ sugár, amelyre a $B_{r_1}(x)$ környezet teljes egészében benne van $A$-ban ($B_{r_1}(x) \subseteq A$).<br>
+                    - Hasonlóképpen, mivel $x \in B$ és $B$ nyílt, létezik egy $r_2 > 0$ sugár, amelyre $B_{r_2}(x) \subseteq B$.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                3. A metszet tulajdonságának bizonyítása:
+                <div class="math-block">
+                    Legyen a két sugár közül a kisebbik $r = \min(r_1, r_2)$. Nyilvánvaló, hogy $r > 0$.
+                    Mivel $r \le r_1$ és $r \le r_2$, az $r$ sugarú gömb részhalmaza mindkét korábbi gömbnek:
+                    $$ B_r(x) \subseteq B_{r_1}(x) \subseteq A $$
+                    $$ B_r(x) \subseteq B_{r_2}(x) \subseteq B $$
+                </div>
+                A $B_r(x)$ gömb tehát egyaránt része $A$-nak és $B$-nek, így része a metszetüknek is ($B_r(x) \subseteq A \cap B$). Mivel $x$ a metszet tetszőleges pontja volt, találtunk minden pont körül a halmazban maradó környezetet, ami éppen a nyíltság definíciója.
+            </div>
+
+            <div class="result">
+                Eredmény: Bizonyítás befejezve.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
