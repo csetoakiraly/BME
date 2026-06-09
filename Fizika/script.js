@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Inicializáljuk az oldalsávot
     function renderSidebar() {
-        let html = '';
+        let html = '<a href="#" class="exam-link puska-btn" id="puska-btn">📚 Összefoglaló Puska</a>';
         for (const [year, exams] of Object.entries(examData)) {
             html += `<div class="year-group">
                         <div class="year-title">${year}</div>`;
@@ -35,6 +35,14 @@ document.addEventListener('DOMContentLoaded', () => {
             html += `</div>`;
         }
         sidebarMenu.innerHTML = html;
+
+        // Puska gomb eseménykezelője
+        document.getElementById('puska-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelectorAll('.exam-link').forEach(l => l.classList.remove('active'));
+            e.target.classList.add('active');
+            renderCheatSheet();
+        });
 
         // Eseménykezelők a linkekre
         document.querySelectorAll('.exam-link').forEach(link => {
@@ -105,6 +113,59 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         questionsContainer.innerHTML = html;
+
+        if (window.MathJax && typeof window.MathJax.typesetPromise === 'function') {
+            MathJax.typesetPromise([questionsContainer]).catch(function (err) {
+                console.error("MathJax rendering error: ", err);
+            });
+        }
+    }
+
+    // Puska megjelenítése
+    function renderCheatSheet() {
+        examTitle.textContent = '📚 Összefoglaló Puska';
+        examSubtitle.textContent = 'Törvények, definíciók és képletek gyűjteménye az összes vizsgából';
+        
+        let theoryHtml = '<h2 class="section-heading">Törvények és Definíciók</h2>';
+        let formulaHtml = '<h2 class="section-heading">Képletgyűjtemény</h2>';
+        
+        let uniqueTheories = new Set();
+        let uniqueFormulas = new Set();
+        let theoryIndex = 1;
+        let formulaIndex = 1;
+
+        for (const [year, exams] of Object.entries(examData)) {
+            exams.forEach(exam => {
+                exam.questions.forEach(q => {
+                    if (q.type === 'theory') {
+                        if (!uniqueTheories.has(q.text)) {
+                            uniqueTheories.add(q.text);
+                            theoryHtml += `<div class="card">`;
+                            theoryHtml += `<div class="question-text"><b>${theoryIndex}.</b> ${safeHTML(q.text)}</div>`;
+                            if (q.formula) theoryHtml += `<div class="formula-box">${safeHTML(q.formula)}</div>`;
+                            if (q.explanation) theoryHtml += `<div class="explanation-text">${safeHTML(q.explanation)}</div>`;
+                            theoryHtml += `</div>`;
+                            theoryIndex++;
+                        }
+                    } else if (q.type === 'calculation') {
+                        if (q.formula && !uniqueFormulas.has(q.formula)) {
+                            uniqueFormulas.add(q.formula);
+                            formulaHtml += `<div class="card">`;
+                            // Feladat kontextusként
+                            formulaHtml += `<div class="question-text"><b>${formulaIndex}.</b> ${safeHTML(q.text)}</div>`;
+                            formulaHtml += `<div class="formula-box" style="font-size: 1.2rem; text-align: center;">${safeHTML(q.formula)}</div>`;
+                            formulaHtml += `</div>`;
+                            formulaIndex++;
+                        }
+                    }
+                });
+            });
+        }
+        
+        if (theoryIndex === 1) theoryHtml = '';
+        if (formulaIndex === 1) formulaHtml = '';
+
+        questionsContainer.innerHTML = theoryHtml + formulaHtml;
 
         if (window.MathJax && typeof window.MathJax.typesetPromise === 'function') {
             MathJax.typesetPromise([questionsContainer]).catch(function (err) {
