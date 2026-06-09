@@ -1,0 +1,146 @@
+Név:                                                                                 Fizika i vizsga 3                                 Csoport: 
+Neptun kód: 
+I. rész: Törvény kimondása (8 pont) 
+Ismertesse az Ampère-féle gerjesztési törvényt ábra segítségével (1+1 pont)! 
+Adja meg a törvényt egyenlet alakjában is (1 pont), és nevezze meg a 
+törvényben szereplő fizikai mennyiségeket (1 pont)! Hogyan lehet 
+meghatározni az áram által keltett indukcióvektor irányát (2 pont)? Röviden 
+vázolja Ørsted kísérletét (2 pont)! 
+ 
+ 
+II. rész: Igaz vagy hamis? (10×2=20 pont, minimális pontszám: 0 pont) 
+Írjon az állítás elé egy I betűt, ha az állítás igaz, H betűt, ha hamis! A helyes 
+válasz +2 pontot, a helytelen válasz −1 pontot, üresen hagyott kérdés 0 
+pontot ér. 
+I 
+Szobahőmérsékletű fém- és fafelületre helyezett jégkockák közül 
+azért olvad el a fémfelületre helyezett jégkocka hamarabb, mert a 
+fém jobb hővezető a fánál. 
+H 
+Ha egy kiterjedt testre ható eredő forgatónyomaték nulla, akkor a 
+test nem forog. 
+H 
+A hősugárzás létrejöttéhez légnemű közeg (pl. levegő) szükséges. 
+ 
+I 
+ 
+Rugalmas kötél egyik végét harmonikusan gerjesztjük, a másik vég 
+szabadon mozoghat. A szabad véghez érkező hullám azonos 
+fázisban verődik vissza. 
+I 
+A radiátor fölé függesztett papírkígyó forgásba jön. Igaz vagy 
+hamis, hogy a jelenség oka a hőáramlás? 
+H 
+Sorosan kapcsolt kondenzátorok kapacitása összeadódik. 
+ 
+H 
+Az elektrosztatikus mező erővonalai önmagukban záródó 
+ görbék. 
+ I 
+Kondenzátor töltésére és feszültségére igaz: U/Q=állandó. 
+ 
+I 
+Az Ampere törvény általánosított alakja szerint az elektromos tér 
+fluxusának megváltozása is mágneses teret kelt. 
+H 
+Egy szigeteletlen homogén drótdarab ellenállása R. Ha a drótot három 
+egyenlő részre vágjuk, s a darabokat párhuzamosan összefogjuk, az 
+ellenállása harmad részére csökken. 
+0 = 8,85410-12 As/Vm   0  = 410-7 Vs/Am  e= -1,6 10-19 C me = 9,1*10-31kg,  
+mp = 1,67x10−27 kg  
+A válaszok betűjelei (számolásos feladatok): 
+1. 
+2. 
+3. 
+4. 
+5. 
+6. 
+7. 
+8. 
+9. 
+b 
+b  
+ c 
+a 
+ a 
+c  
+b  
+c 
+c 
+ 
+ 
+ 
+  
+III. rész: Számolásos feladatok (9×8=72 pont) 
+ 
+1. Mekkora a mágneses indukció értéke a homogén mágneses térben, ha 5 
+N erővel hat az egyenes vezető 1m hosszú szakaszára, ha abban 10 A 
+erősségű áram folyik, és a vezető merőleges az indukcióvonalakra? 
+a  50 Vs/m2            b.     0,5 Vs/m2               c.  1 Vs/m2         d. egyik sem 
+ 
+2.  Egy 6 cm hosszú, 300 menetű tekercsben 1A erősségű áram folyik. 
+Mekkora a mágneses indukció a tekercs belsejében 
+a.  0,6 
+𝑉𝑠
+𝑚2                  b.  6,28x10-3 
+𝑉𝑠
+𝑚2       c.     0,3  
+𝑉𝑠
+𝑚2       d. egyik sem 
+ 
+3.Egyik végén nyitott síp alapfrekvenciája 440 Hz. Milyen hosszú a síp, ha 
+a hang terjedési sebessége 330 m/s? 
+a. 0,375 m              b. 0,75 m                    c.   0,188 m            d. egyik sem 
+ 
+4. Az ábra szerinti kapcsolásban az AB 
+pontokra 225 V feszültséget kapcsolunk. 
+Mekkora a töltés a kondenzátoron?  
+a.  2,25x10-4 C   b. 1,125x10-4 C   c. 9x10-4 C  
+d. egyik sem  
+ 
+5. Az ábrán látható elektromos hálózatban a 
+4 ohmos ellenálláson 2A erősségű áram 
+folyik. Mekkora feszültség esik a 10 ohmos 
+ellenálláson? 
+a. 60 V     b. 20 V        c. 40  V       d. egyik sem 
+ 
+6. Függőleges irányú harmonikus rezgéseket végző vízszintes fémlapon 
+egy pénzdarab helyezkedik el. Megfigyelték, hogy első ízben akkor 
+sikerült becsúsztatni egy vékony papírlapot, a pénzdarab és a fémlap közé, 
+amikor a rezgésszám elérte a 18-at másodpercenként. Mennyi volt a fémlap 
+rezgésének amplitúdója? 
+a. 3.95x10-2 mm       b. 3,1x10-2 m  
+c. 0,78 mm 
+    d. egyik sem                  
+ 
+7. Egy zárt, 60 cm oldalélű, kocka alakú akvárium vizének hőmérsékletét a 
+benne elhelyezett fűtőtest állandó, 28 0C-os hőmérsékleten tartja. Az 
+akvárium fala 12 mm vastagságú, 0,8 W/(Km) hővezetési együtthatójú 
+üvegből készült, a szoba levegőjének hőmérséklete 22 0C. Mekkora a 
+fűtőtest által leadott teljesítmény, ha feltesszük, hogy a kocka alap- és 
+fedlapján keresztül a hővezetés elhanyagolható, a maradék négy lapon 
+keresztül pedig egyforma? 
+a. 960 W     b.576 W       c. 480 W       d.  egyik sem 
+ 
+8. Egy vízszintes tengelyű, m tömegű állócsigára hosszú fo-
+nalat csévéltünk. A fonál szabad végére egy M= 2m tömegű 
+testet rögzítettünk. Mekkora gyorsulással mozog az M tömegű 
+test az elengedés után? (Az R sugarú, korong alakú csiga 
+tehetetlenségi nyomatéka mR2/2.)  
+ 
+a. g/2           b. 2g/5  
+       c. 4g/5  
+        d. egyik sem  
+ 
+9 Másodpercenként 2,4·1023 oxigénmolekula ütközik egy12 cm2 területű sík 
+fallal. A molekulák falra merőleges sebességkomponensének átlagos 
+nagysága 260 m/s. Mekkora a falra ható nyomás? (Az oxigéngáz moláris 
+tömege 32g/mol, az Avogadro állandó  6·1023 mol−1 .) 
+a.  2,8 kPa              b. 3,7 kPa             c. 5,5 kPa          d. egyik sem   
+ 
+IMSC: 
+ 
+Egy R ellenállású, zárt vezetőkarikán átmenő mágneses fluxus τ időn 
+keresztül változik a Φ(t) = at(τ− t) függvény szerint. Számítsuk ki ezalatt 
+az idő alatt a karikában keletkező Joule-hő mennyiségét! (A karika 
+önindukcióját hanyagoljuk el!) 
