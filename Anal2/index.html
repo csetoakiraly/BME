@@ -536,26 +536,6 @@
                     <b>Helyettesítés:</b> Osszuk el az egyenletet $y^\alpha$-val, majd vezessük be az $u = y^{1-\alpha}$ új függvényt! Ennek deriváltja $u' = (1-\alpha)y^{-\alpha}y'$, amit visszahelyettesítve egy már elsőrendű lineáris egyenletet kapunk $u$-ra.
                 </div>
 
-                <div class="example">
-                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Elsőrendű lineáris differenciálegyenlet</h3>
-                    <p>Oldjuk meg az $y' - \frac{2}{x}y = x^2$ egyenletet ($x > 0$)!</p>
-                    <p><b>Megoldás:</b><br>1. Homogén egyenlet megoldása:</p>
-                    <div class="formula">
-                        $$ y' - \frac{2}{x}y = 0 \implies \frac{dy}{dx} = \frac{2}{x}y \implies \int \frac{dy}{y} = \int \frac{2}{x} dx $$
-                    </div>
-                    <p>Integrálva: $\ln|y| = 2\ln x + C \implies \ln|y| = \ln(x^2) + C$. Ebből a homogén megoldás: $Y_h(x) = c \cdot x^2$.</p>
-
-                    <p>2. Állandók variálása: Legyen $y(x) = c(x)x^2$. Ennek deriváltja a szorzatszabállyal: $y' = c'(x)x^2 + c(x)2x$.</p>
-                    <p>Helyettesítsük vissza az eredeti $y' - \frac{2}{x}y = x^2$ egyenletbe:</p>
-                    <div class="formula">
-                        $$ (c'(x)x^2 + 2xc(x)) - \frac{2}{x}(c(x)x^2) = x^2 $$
-                    </div>
-                    <p>A $c(x)$-es tagok mindig kiesnek! Marad: $c'(x)x^2 = x^2 \implies c'(x) = 1$.</p>
-                    <p>Ezt integrálva kapjuk: $c(x) = x + K$.</p>
-                    <p><b>Végeredmény:</b> $y(x) = (x + K)x^2 = x^3 + Kx^2$.</p>
-                </div>
-
-
                 <h3>4. Helyettesítéssel megoldható differenciálegyenletek</h3>
                 <p>Bizonyos típusú egyenleteket ügyes helyettesítéssel azonnal szétválaszthatóvá tehetünk:</p>
                 
@@ -579,7 +559,25 @@
                     $$ \frac{1}{b}(u' - a) = F(u) \implies u' = bF(u) + a $$
                 </div>
             </div>
-        </section>
+        
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Elsőrendű lineáris differenciálegyenlet</h3>
+                    <p>Oldjuk meg az $y' - \frac{2}{x}y = x^2$ egyenletet ($x > 0$)!</p>
+                    <p><b>Megoldás:</b><br>1. Homogén egyenlet megoldása:</p>
+                    <div class="formula">
+                        $$ y' - \frac{2}{x}y = 0 \implies \frac{dy}{dx} = \frac{2}{x}y \implies \int \frac{dy}{y} = \int \frac{2}{x} dx $$
+                    </div>
+                    <p>Integrálva: $\ln|y| = 2\ln x + C \implies \ln|y| = \ln(x^2) + C$. Ebből a homogén megoldás: $Y_h(x) = c \cdot x^2$.</p>
+
+                    <p>2. Állandók variálása: Legyen $y(x) = c(x)x^2$. Ennek deriváltja a szorzatszabállyal: $y' = c'(x)x^2 + c(x)2x$.</p>
+                    <p>Helyettesítsük vissza az eredeti $y' - \frac{2}{x}y = x^2$ egyenletbe:</p>
+                    <div class="formula">
+                        $$ (c'(x)x^2 + 2xc(x)) - \frac{2}{x}(c(x)x^2) = x^2 $$
+                    </div>
+                    <p>A $c(x)$-es tagok mindig kiesnek! Marad: $c'(x)x^2 = x^2 \implies c'(x) = 1$.</p>
+                    <p>Ezt integrálva kapjuk: $c(x) = x + K$.</p>
+                    <p><b>Végeredmény:</b> $y(x) = (x + K)x^2 = x^3 + Kx^2$.</p>
+                </div></section>
 
         <!-- 3. Gyakorlat -->
         <section id="s3">
@@ -724,23 +722,6 @@
                 <h3>5. Leibniz-kritérium (Alternáló sorokra)</h3>
                 <p>Egy $\sum_{n=1}^\infty (-1)^n a_n$ alakú (váltakozó előjelű) sor konvergens, ha az $(a_n)$ sorozat tagjai (abszolút értékben) monoton csökkenve tartanak a nullához.</p>
 
-                <div class="example">
-                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Sor konvergenciájának vizsgálata</h3>
-                    <p>Döntsük el a $\sum_{n=1}^\infty \frac{3^n}{n!}$ sor konvergenciáját!</p>
-                    <p><b>Megoldás:</b><br>Mivel faktoriális ($n!$) és exponenciális ($3^n$) kifejezések szerepelnek, a <b>hányadoskritérium</b> a leggyorsabb.</p>
-                    <p>Legyen $a_n = \frac{3^n}{n!}$ és $a_{n+1} = \frac{3^{n+1}}{(n+1)!}$.</p>
-                    <p>Vizsgáljuk a határértéket:</p>
-                    <div class="formula">
-                        $$ L = \lim_{n \to \infty} \frac{a_{n+1}}{a_n} = \lim_{n \to \infty} \frac{\frac{3^{n+1}}{(n+1)!}}{\frac{3^n}{n!}} = \lim_{n \to \infty} \frac{3^{n+1} \cdot n!}{3^n \cdot (n+1)!} $$
-                    </div>
-                    <p>Egyszerűsítsünk! Tudjuk, hogy $3^{n+1} / 3^n = 3$, és $(n+1)! / n! = n+1$:</p>
-                    <div class="formula">
-                        $$ L = \lim_{n \to \infty} \frac{3}{n+1} = 0 $$
-                    </div>
-                    <p>Mivel $L = 0 < 1$, a hányadoskritérium értelmében a sor <b>konvergens</b>.</p>
-                </div>
-
-
                 <h3>6. Sorok alaptulajdonságai</h3>
                 <p>Ha a $\sum a_n$ és $\sum b_n$ sorok konvergensek, akkor az összegük és skalárszorosuk is konvergens, és a műveletek tagonként elvégezhetők:</p>
                 <div class="formula">
@@ -758,7 +739,22 @@
                     $$ \text{Ha } 0 \le b_n \le a_n \text{ és } \sum b_n \text{ div.} \implies \sum a_n \text{ is div.} $$
                 </div>
             </div>
-        </section>
+        
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Sor konvergenciájának vizsgálata</h3>
+                    <p>Döntsük el a $\sum_{n=1}^\infty \frac{3^n}{n!}$ sor konvergenciáját!</p>
+                    <p><b>Megoldás:</b><br>Mivel faktoriális ($n!$) és exponenciális ($3^n$) kifejezések szerepelnek, a <b>hányadoskritérium</b> a leggyorsabb.</p>
+                    <p>Legyen $a_n = \frac{3^n}{n!}$ és $a_{n+1} = \frac{3^{n+1}}{(n+1)!}$.</p>
+                    <p>Vizsgáljuk a határértéket:</p>
+                    <div class="formula">
+                        $$ L = \lim_{n \to \infty} \frac{a_{n+1}}{a_n} = \lim_{n \to \infty} \frac{\frac{3^{n+1}}{(n+1)!}}{\frac{3^n}{n!}} = \lim_{n \to \infty} \frac{3^{n+1} \cdot n!}{3^n \cdot (n+1)!} $$
+                    </div>
+                    <p>Egyszerűsítsünk! Tudjuk, hogy $3^{n+1} / 3^n = 3$, és $(n+1)! / n! = n+1$:</p>
+                    <div class="formula">
+                        $$ L = \lim_{n \to \infty} \frac{3}{n+1} = 0 $$
+                    </div>
+                    <p>Mivel $L = 0 < 1$, a hányadoskritérium értelmében a sor <b>konvergens</b>.</p>
+                </div></section>
 
         <!-- 6. Gyakorlat -->
         <section id="s6" class="active">
@@ -1326,7 +1322,17 @@
                     <b>Alapszabály:</b> A KÜLSŐ integrál határai MINDIG csak számok lehetnek! Sosem maradhat a legvégén változó.
                 </div>
 
-                <h3>4. Polárkoordinátás transzformáció</h3>
+                
+                <h3>4. Általános Integráltranszformáció</h3>
+                <p>Ha egy $\underline{g}(u,v) = (x(u,v), y(u,v))$ folytonosan differenciálható, injektív leképezéssel áttérünk új változókra, akkor az integrálást a következőképpen végezhetjük el:</p>
+                <div class="formula">
+                    $$ \iint_{g(H)} f(x,y) dx dy = \iint_H f(\underline{g}(u,v)) \cdot |\det \underline{g}'(u,v)| du dv $$
+                </div>
+                <div class="explanation">
+                    <b>Mi ez a determináns?</b> A $\det \underline{g}'(u,v)$ nem más, mint a <b>Jacobi-determináns</b>, amely a terület lokális torzulását mutatja meg az új koordinátarendszerben. Ennek abszolút értékével <b>kötelező</b> beszorozni az integrálandó függvényt! A legismertebb ilyen transzformáció a polárkoordinátás áttérés.
+                </div>
+                
+                <h3>5. Polárkoordinátás transzformáció</h3>
                 <p>Ha a tartomány kör, körgyűrű vagy körcikk, sokkal egyszerűbb áttérni szögre ($\varphi$) és távolságra ($r$):</p>
                 <div class="formula">
                     $$x = r \cos \varphi, \quad y = r \sin \varphi$$
@@ -1368,10 +1374,28 @@
             <h1>12. Többváltozós integrál, Henger- és Gömbi koordináták</h1>
             <div class="card glass">
                 
-                <h3>1. Hármas integrál fogalma</h3>
+                
+                <h3>1. n-dimenziós Normáltartomány (Definíció)</h3>
+                <ul>
+                    <li><b>1-dimenzióban:</b> Egy zárt intervallum (pl. $[a, b]$).</li>
+                    <li><b>(n+1)-dimenzióban:</b> Egy $H \subseteq \mathbb{R}^{n+1}$ halmaz akkor normáltartomány, ha az "alapja" ($H'$) egy $n$-dimenziós normáltartomány, a "magassága" pedig két folytonos függvény, $g(\underline{x})$ és $h(\underline{x})$ közé esik:
+                    <div class="formula">$$ H = \{(\underline{x}, y) \in H' \times \mathbb{R} \mid g(\underline{x}) \le y \le h(\underline{x})\} $$</div>
+                    </li>
+                </ul>
+
+                <h3>2. Integrálás normáltartományon (Fubini-tétel általánosítása)</h3>
+                <p>Ha egy $f$ függvény folytonos egy ilyen $H$ normáltartományon, akkor az integrálást felbonthatjuk: először a belső változó ($y$) szerint integrálunk a függvényhatárok között, majd a maradék $n$ változó szerint az alap tartományon ($H'$).</p>
+                <div class="formula">
+                    $$ \int_H f = \int_{H'} \left( \int_{g(\underline{x})}^{h(\underline{x})} f(\underline{x}, y) \, dy \right) d\underline{x} $$
+                </div>
+                <div class="explanation">
+                    <b>Miért fontos ez?</b> Ez a tétel garantálja, hogy egy bonyolult (pl. 3 vagy 4 dimenziós) test térfogatát mindig visszavezethetjük több, egymásba ágyazott egyváltozós integrálra!
+                </div>
+                
+                <h3>3. Hármas integrál fogalma</h3>
                 <p>A hármas integrál térbeli ($V$) testekre vonatkozik. Ha az $f(x,y,z) \equiv 1$ függvényt integráljuk, a test térfogatát kapjuk. Ha az $f(x,y,z)$ a sűrűség, akkor a test tömegét.</p>
 
-                <h3>2. Hengerkoordináták (Cilindrikus)</h3>
+                <h3>4. Hengerkoordináták (Cilindrikus)</h3>
                 <p>Ha a test hengerszimmetrikus (pl. henger, kúp, paraboloid), a $z$ tengelyt megtartjuk, az $x,y$ síkban pedig polárkoordinátákat használunk:</p>
                 <div class="formula">
                     $$x = r \cos \varphi, \quad y = r \sin \varphi, \quad z = z$$
@@ -1381,7 +1405,7 @@
                     $$|J| = r \quad \implies \quad dx dy dz \longrightarrow r \cdot dr d\varphi dz$$
                 </div>
 
-                <h3>3. Gömbi koordináták (Szférikus)</h3>
+                <h3>5. Gömbi koordináták (Szférikus)</h3>
                 <p>Ha a test gömbszimmetrikus (pl. gömb, gömbréteg), három adat határoz meg egy pontot: a távolság az origótól ($r$), a földrajzi hosszúság ($\varphi$, az $xy$ síkon), és a szélesség az északi pólustól ($z$ tengelytől) lefelé mérve ($\vartheta$):</p>
                 <div class="formula">
                     $$x = r \sin \vartheta \cos \varphi, \quad y = r \sin \vartheta \sin \varphi, \quad z = r \cos \vartheta$$
@@ -1425,18 +1449,23 @@
             <h1>13. Fourier-sor és Fourier-transzformált</h1>
             <div class="card glass">
                 
-                <h3>1. Fourier-sor célja</h3>
-                <p>Periodikus függvényeket próbálunk végtelen sok szinusz és koszinusz hullám összegeként felírni. Legyen az $f(x)$ függvény $2\pi$ szerint periodikus.</p>
+                <h3>1. Fourier-sor formális definíciója</h3>
+                <p>Periodikus függvényeket próbálunk szinusz és koszinusz hullámok összegeként felírni. Legyen $f : \mathbb{R} \to \mathbb{R}$ egy $2\pi$ szerint periodikus függvény, amely <b>Riemann-integrálható</b> a $[-\pi, \pi]$ intervallumon.</p>
+                <p>Először definiáljuk a véges $n$-edik részletösszeget:</p>
                 <div class="formula">
-                    $$f(x) \sim \frac{a_0}{2} + \sum_{n=1}^\infty \left( a_n \cos(nx) + b_n \sin(nx) \right)$$
+                    $$\Phi_n(f)(x) = \frac{a_0(f)}{2} + \sum_{k=1}^n \left( a_k(f) \cos(kx) + b_k(f) \sin(kx) \right)$$
+                </div>
+                <p>Az $(\Phi_n(f))_{n\in\mathbb{N}}$ függvénysort az $f$ függvény <b>Fourier-sorának</b> nevezzük, amelynek "végtelen" határértékét így jelöljük:</p>
+                <div class="formula">
+                    $$f(x) \sim \frac{a_0(f)}{2} + \sum_{k=1}^\infty \left( a_k(f) \cos(kx) + b_k(f) \sin(kx) \right)$$
                 </div>
 
                 <h3>2. Együtthatók (Euler-Fourier formulák)</h3>
-                <p>Az együtthatókat a függvény megfelelő trigonometrikus taggal való szorzásával és integrálásával kapjuk egy teljes periódusra (pl. $[-\pi, \pi]$):</p>
+                <p>Az együtthatókat a függvény megfelelő trigonometrikus taggal való szorzásával és integrálásával kapjuk. A zárójelben lévő $(f)$ jelölés mutatja, hogy ezek az együtthatók az $f$ függvényhez tartoznak:</p>
                 <div class="formula" style="text-align: left; padding-left: 40px;">
-                    $a_0 = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) dx$<br><br>
-                    $a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos(nx) dx \quad (n \ge 1)$<br><br>
-                    $b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin(nx) dx \quad (n \ge 1)$
+                    $a_0(f) = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) dx$<br><br>
+                    $a_k(f) = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos(kx) dx \quad (k \ge 1)$<br><br>
+                    $b_k(f) = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin(kx) dx \quad (k \ge 1)$
                 </div>
 
                 <h3>3. Páros és páratlan függvények trükkjei</h3>
@@ -1458,26 +1487,6 @@
                     $$\hat{f}(\omega) = \int_{-\infty}^{\infty} f(x) e^{-i\omega x} dx$$
                 </div>
 
-                <div class="example">
-                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Fourier-együttható kiszámítása</h3>
-                    <p>Legyen $f(x) = x$, ha $x \in [-\pi, \pi]$, és folytassuk periodikusan. Mennyi a Fourier-sora?</p>
-                    <p><b>Megoldás:</b><br>1. Vizsgáljuk a paritást! $f(-x) = -x = -f(x)$, tehát a függvény <b>páratlan</b>.</p>
-                    <p>2. Mivel páratlan, minden $a_n = 0$ és $a_0 = 0$. Csak a $b_n$ együtthatókat kell számolni.</p>
-                    <p>3. $b_n$ felírása és parciális integrálás ($u=x, v'=\sin(nx) \implies u'=1, v=\frac{-\cos(nx)}{n}$):</p>
-                    <div class="formula">
-                        $$ b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} x \sin(nx) dx = \frac{2}{\pi} \int_0^{\pi} x \sin(nx) dx $$
-                    </div>
-                    <div class="formula">
-                        $$ b_n = \frac{2}{\pi} \left[ x \cdot \frac{-\cos(nx)}{n} \right]_0^\pi - \frac{2}{\pi} \int_0^\pi 1 \cdot \frac{-\cos(nx)}{n} dx $$
-                    </div>
-                    <p>A második integrál tag (koszinusz) nullát ad egy teljes periódus alatt. Marad az első tag:</p>
-                    <div class="formula">
-                        $$ b_n = \frac{2}{\pi} \left( \pi \frac{-\cos(n\pi)}{n} - 0 \right) = -\frac{2}{n} \cos(n\pi) = -\frac{2}{n} (-1)^n = \frac{2 (-1)^{n+1}}{n} $$
-                    </div>
-                    <p><b>Végeredmény:</b> $f(x) \sim \sum_{n=1}^\infty \frac{2(-1)^{n+1}}{n} \sin(nx)$.</p>
-                </div>
-
-
                 <h3>6. A Fourier-transzformált tulajdonságai</h3>
                 <p>A Fourier-transzformált egy lineáris operátor, amelyhez számos hasznos szabály tartozik, melyekkel integrálás nélkül vezethetünk le új transzformáltakat:</p>
                 <ul>
@@ -1498,7 +1507,25 @@
                     <div class="formula">$$ \mathcal{F}(f')(\omega) = i\omega \mathcal{F}(f)(\omega) $$</div>
                     </li>
                 </ul>
-            </div>
+            
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Fourier-együttható kiszámítása</h3>
+                    <p>Legyen $f(x) = x$, ha $x \in [-\pi, \pi]$, és folytassuk periodikusan. Mennyi a Fourier-sora?</p>
+                    <p><b>Megoldás:</b><br>1. Vizsgáljuk a paritást! $f(-x) = -x = -f(x)$, tehát a függvény <b>páratlan</b>.</p>
+                    <p>2. Mivel páratlan, minden $a_n = 0$ és $a_0 = 0$. Csak a $b_n$ együtthatókat kell számolni.</p>
+                    <p>3. $b_n$ felírása és parciális integrálás ($u=x, v'=\sin(nx) \implies u'=1, v=\frac{-\cos(nx)}{n}$):</p>
+                    <div class="formula">
+                        $$ b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} x \sin(nx) dx = \frac{2}{\pi} \int_0^{\pi} x \sin(nx) dx $$
+                    </div>
+                    <div class="formula">
+                        $$ b_n = \frac{2}{\pi} \left[ x \cdot \frac{-\cos(nx)}{n} \right]_0^\pi - \frac{2}{\pi} \int_0^\pi 1 \cdot \frac{-\cos(nx)}{n} dx $$
+                    </div>
+                    <p>A második integrál tag (koszinusz) nullát ad egy teljes periódus alatt. Marad az első tag:</p>
+                    <div class="formula">
+                        $$ b_n = \frac{2}{\pi} \left( \pi \frac{-\cos(n\pi)}{n} - 0 \right) = -\frac{2}{n} \cos(n\pi) = -\frac{2}{n} (-1)^n = \frac{2 (-1)^{n+1}}{n} $$
+                    </div>
+                    <p><b>Végeredmény:</b> $f(x) \sim \sum_{n=1}^\infty \frac{2(-1)^{n+1}}{n} \sin(nx)$.</p>
+                </div></div>
         </section>
 
         
