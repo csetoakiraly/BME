@@ -1307,13 +1307,13 @@
                 <p>Az $\iint_T f(x,y) dA$ kettős integrál egy $T$ síkbeli tartomány fölötti térfogatot adja meg, ahol $f(x,y)$ a magasság.</p>
 
                 <h3>2. Fubini-tétel (Téglalap tartományon)</h3>
-                <p>Ha $T = [a,b] \times [c,d]$ egy téglalap, akkor a kettős integrál két egymás utáni egyváltozós integrálra bontható, és a sorrend tetszőleges:</p>
+                <p>Ha az $f(x,y)$ függvény <b>Riemann-integrálható</b> a $T = [a,b] \times [c,d]$ téglalapon (illetve külön-külön is integrálható a megfelelő intervallumokon), akkor a kettős integrál két egymás utáni egyváltozós integrálra bontható. Továbbá, ha az $f$ függvény <b>folytonos</b> $T$-n, akkor a tétel feltételei automatikusan teljesülnek, és az integrálás sorrendje tetszőlegesen felcserélhető:</p>
                 <div class="formula">
                     $$\iint_T f(x,y) dA = \int_a^b \left( \int_c^d f(x,y) dy \right) dx = \int_c^d \left( \int_a^b f(x,y) dx \right) dy$$
                 </div>
 
                 <h3>3. Normáltartományok</h3>
-                <p>Nem téglalap alakú tartományoknál a határok függvények lesznek:</p>
+                <p>Nem téglalap alakú tartományoknál a határok függvények lesznek ($g, h$ folytonos függvények). Ha az $f$ függvény <b>folytonos</b> a normáltartományon, akkor ott integrálható, és az integrálás határai a következők lesznek:</p>
                 <ul>
                     <li><b>Y-szerinti normáltartomány:</b> Az $x$ konstansok között fut ($a \le x \le b$), míg $y$ két függvény között ($g_1(x) \le y \le g_2(x)$). Ekkor belül $y$ szerint integrálunk először.</li>
                     <li><b>X-szerinti normáltartomány:</b> Az $y$ konstansok között fut ($c \le y \le d$), míg $x$ két függvény között ($h_1(y) \le x \le h_2(y)$). Ekkor belül $x$ szerint integrálunk először.</li>
@@ -1324,7 +1324,7 @@
 
                 
                 <h3>4. Általános Integráltranszformáció</h3>
-                <p>Ha egy $\underline{g}(u,v) = (x(u,v), y(u,v))$ folytonosan differenciálható, injektív leképezéssel áttérünk új változókra, akkor az integrálást a következőképpen végezhetjük el:</p>
+                <p>Legyen $G \subseteq \mathbb{R}^2$ egy <b>nyílt halmaz</b>, a leképezés pedig $\underline{g}: G \to \mathbb{R}^2$ folytonosan differenciálható. Tegyük fel, hogy $H \subseteq G$ egy <b>Jordan-mérhető</b> halmaz, és a leképezés $H$ belsejében injektív. Ha az $f$ függvény <b>korlátos</b> a $g\langle H\rangle$ halmazon, akkor az integrálást a következőképpen végezhetjük el:</p>
                 <div class="formula">
                     $$ \iint_{g(H)} f(x,y) dx dy = \iint_H f(\underline{g}(u,v)) \cdot |\det \underline{g}'(u,v)| du dv $$
                 </div>
@@ -1333,7 +1333,7 @@
                 </div>
                 
                 <h3>5. Polárkoordinátás transzformáció</h3>
-                <p>Ha a tartomány kör, körgyűrű vagy körcikk, sokkal egyszerűbb áttérni szögre ($\varphi$) és távolságra ($r$):</p>
+                <p>A polártranszformáció elvégzéséhez feltesszük, hogy a tartomány egy $A \subseteq [0, +\infty[ \times [0, 2\pi]$ <b>Jordan-mérhető</b> halmaz, és a leképezett $f$ függvény <b>korlátos</b>. Ekkor sokkal egyszerűbb áttérni szögre ($\varphi$) és távolságra ($r$):</p>
                 <div class="formula">
                     $$x = r \cos \varphi, \quad y = r \sin \varphi$$
                 </div>
@@ -1396,7 +1396,7 @@
                 <p>A hármas integrál térbeli ($V$) testekre vonatkozik. Ha az $f(x,y,z) \equiv 1$ függvényt integráljuk, a test térfogatát kapjuk. Ha az $f(x,y,z)$ a sűrűség, akkor a test tömegét.</p>
 
                 <h3>4. Hengerkoordináták (Cilindrikus)</h3>
-                <p>Ha a test hengerszimmetrikus (pl. henger, kúp, paraboloid), a $z$ tengelyt megtartjuk, az $x,y$ síkban pedig polárkoordinátákat használunk:</p>
+                <p>Feltesszük, hogy a kiindulási halmaz $A \subseteq \mathbb{R}^+ \times [0, 2\pi] \times \mathbb{R}$ <b>Jordan-mérhető</b>, az $f$ függvény pedig <b>korlátos</b>. Ha a test hengerszimmetrikus (pl. henger, kúp, paraboloid), a $z$ tengelyt megtartjuk, az $x,y$ síkban pedig polárkoordinátákat használunk:</p>
                 <div class="formula">
                     $$x = r \cos \varphi, \quad y = r \sin \varphi, \quad z = z$$
                 </div>
@@ -1406,7 +1406,7 @@
                 </div>
 
                 <h3>5. Gömbi koordináták (Szférikus)</h3>
-                <p>Ha a test gömbszimmetrikus (pl. gömb, gömbréteg), három adat határoz meg egy pontot: a távolság az origótól ($r$), a földrajzi hosszúság ($\varphi$, az $xy$ síkon), és a szélesség az északi pólustól ($z$ tengelytől) lefelé mérve ($\vartheta$):</p>
+                <p>Itt feltesszük, hogy a kiindulási halmaz $A \subseteq \mathbb{R}^+ \times [0, \pi] \times [0, 2\pi]$ <b>Jordan-mérhető</b>, az $f$ pedig <b>korlátos</b>. Ha a test gömbszimmetrikus (pl. gömb, gömbréteg), három adat határoz meg egy pontot: a távolság az origótól ($r$), a földrajzi hosszúság ($\varphi$, az $xy$ síkon), és a szélesség az északi pólustól ($z$ tengelytől) lefelé mérve ($\vartheta$):</p>
                 <div class="formula">
                     $$x = r \sin \vartheta \cos \varphi, \quad y = r \sin \vartheta \sin \varphi, \quad z = r \cos \vartheta$$
                 </div>
@@ -1471,24 +1471,26 @@
                 <h3>3. Páros és páratlan függvények trükkjei</h3>
                 <p>Mivel a koszinusz páros, a szinusz páratlan függvény, az integrálok gyakran egyszerűsödnek a $[-\pi, \pi]$ szimmetrikus intervallumon:</p>
                 <ul>
-                    <li><b>Ha $f(x)$ páros</b> ($f(-x) = f(x)$): Csak koszinuszos tagjai lesznek! A szinuszos együtthatók nulla értéket vesznek fel ($b_n = 0$). Az integrálás felezhető: $\int_{-\pi}^{\pi} = 2 \int_0^{\pi}$.</li>
-                    <li><b>Ha $f(x)$ páratlan</b> ($f(-x) = -f(x)$): Csak szinuszos tagjai lesznek! A koszinuszos együtthatók (és $a_0$) mind nullák ($a_n = 0$).</li>
+                    <li><b>Ha $f(x)$ páros</b> (akár csak "véges sok pont kivételével" is): Csak koszinuszos tagjai lesznek! Minden $k \ge 1$-re $b_k(f) = 0$. Az integrálás felezhető: $\int_{-\pi}^{\pi} = 2 \int_0^{\pi}$.</li>
+                    <li><b>Ha $f(x)$ páratlan</b> (véges sok pont kivételével): Csak szinuszos tagjai lesznek! Minden $k \ge 0$-ra $a_k(f) = 0$.</li>
+                    <li><b>Konstans eltolása:</b> Ha egy $c \in \mathbb{R}$ konstanst adunk a függvényhez ($f+c$), az csak az $a_0$-t módosítja! A magasabb rendű együtthatók nem változnak: $a_k(f+c) = a_k(f)$ és $b_k(f+c) = b_k(f)$ minden $k \ge 1$-re.</li>
                 </ul>
 
                 <h3>4. Dirichlet-tétel a konvergenciáról</h3>
-                <p>A Fourier-sor a folytonos pontokban a függvény eredeti értékéhez tart. <b>Szakadási pontokban</b> viszont a bal és jobb oldali határérték számtani közepéhez (pont a feléhez):</p>
+                <p><b>A tétel szigorú feltétele:</b> Tegyük fel, hogy a $[-\pi, \pi]$ intervallum felbontható <i>véges sok</i> olyan részintervallumra, amelyek belsejében az $f$ függvény <b>monoton és korlátos</b>. Ekkor a Fourier-sor minden $x \in \mathbb{R}$ pontban konvergens.</p>
+                <p>A Fourier-sor összege a folytonos pontokban a függvény eredeti értékéhez tart. <b>Szakadási pontokban</b> viszont a bal és jobb oldali határérték számtani közepéhez (pont a feléhez):</p>
                 <div class="formula">
                     $$\text{Sor összege a szakadásban} = \frac{f(x^+) + f(x^-)}{2}$$
                 </div>
 
                 <h3>5. Fourier-transzformált</h3>
-                <p>Nem periodikus jeleknél a "frekvenciaspektrum" folytonos lesz. Az $f(x)$ függvény (időtartomány) Fourier-transzformáltja az $\hat{f}(\omega)$ (frekvenciatartomány), ami komplex értékű is lehet:</p>
+                <p>Legyen $f: \mathbb{R} \to \mathbb{R}$ egy <b>abszolút integrálható</b> függvény. Nem periodikus jeleknél a "frekvenciaspektrum" folytonos lesz. Az $f$ függvény (időtartomány) Fourier-transzformáltja az $\mathcal{F}(f)(\omega)$ (frekvenciatartomány), ami komplex értékű is lehet:</p>
                 <div class="formula">
                     $$\hat{f}(\omega) = \int_{-\infty}^{\infty} f(x) e^{-i\omega x} dx$$
                 </div>
 
                 <h3>6. A Fourier-transzformált tulajdonságai</h3>
-                <p>A Fourier-transzformált egy lineáris operátor, amelyhez számos hasznos szabály tartozik, melyekkel integrálás nélkül vezethetünk le új transzformáltakat:</p>
+                <p>Legyenek $f, g: \mathbb{R} \to \mathbb{R}$ <b>abszolút integrálható</b> függvények. A Fourier-transzformált egy lineáris operátor, amelyhez számos hasznos szabály tartozik, melyekkel integrálás nélkül vezethetünk le új transzformáltakat:</p>
                 <ul>
                     <li><b>(a) Linearitás:</b> $\mathcal{F}(\alpha f + \beta g) = \alpha \mathcal{F}(f) + \beta \mathcal{F}(g)$</li>
                     <li><b>(b) Időbeli skálázás (nyújtás):</b> Ha az időt $a$-val osztjuk, a frekvencia $a$-val szorzódik és az amplitúdó nő:
