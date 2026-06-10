@@ -260,3 +260,52 @@ h1 {
     line-height: 1.7;
     font-size: 1.05rem;
 }
+
+/* Responsive Design / Mobile */
+@media screen and (max-width: 768px) {
+    body {
+        display: block;
+    }
+    
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--glass-border);
+        padding: 20px 15px;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        padding: 20px 15px;
+        width: 100%;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .section-heading {
+        font-size: 1.4rem;
+    }
+    
+    .card {
+        padding: 20px 15px;
+        margin-bottom: 25px;
+    }
+    
+    .options-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .option-btn {
+        padding: 12px 15px;
+        font-size: 1rem;
+    }
+    
+    .welcome-card {
+        padding: 40px 20px !important;
+    }
+}

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Nyomtatható Képletgyűjtemény</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: white; 
+            color: black; 
+            line-height: 1.0; 
+            padding: 5px; 
+            max-width: 100%; 
+            margin: 0 auto;
+            font-size: 8px; /* Mikro betűméret */
+        }
+        h1 { display: none; }
+        h2 { 
+            margin-top: 5px; 
+            border-bottom: 1px solid #333; 
+            padding-bottom: 1px; 
+            color: #333; 
+            font-size: 1.1em; 
+            text-transform: uppercase; 
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3px;
+        }
+
+        .formula-card { 
+            page-break-inside: avoid; 
+            border: 1px solid #ccc; 
+            padding: 2px; 
+            border-radius: 2px; 
+            background: #fafafa;
+        }
+        .label { 
+            font-weight: bold; 
+            font-size: 0.6em; 
+            display: block; 
+            text-align: center;
+            background: #eee; 
+            padding: 1px 2px; 
+            border-radius: 2px; 
+            border: 1px solid #ccc; 
+            margin-bottom: 1px;
+        }
+        .derivation { 
+            font-size: 0.8em; 
+            text-align: center; 
+        }
+        
+        @media print {
+            @page { margin: 0.1cm; }
+            body { padding: 0; font-size: 7pt; background: white; line-height: 0.95; }
+            .grid-container { 
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 1px !important; 
+            }
+            .formula-card { 
+                border: 1px dashed #999; 
+                background: white; 
+                padding: 0;
+            }
+            .label { 
+                border: none; 
+                background: transparent; 
+                text-decoration: none; 
+                font-weight: normal;
+                font-size: 0.55em; 
+                margin-bottom: 0;
+                display: block;
+                text-align: center;
+            }
+            h2 { page-break-after: avoid; margin-top: 2px; margin-bottom: 1px; font-size: 0.8em; }
+            .MathJax { font-size: 1.12em !important; } /* PICIT KISEBB, HOGY BEFÉRJEN */
+        }
+    </style>
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<h2>1</h2>
+<div class="grid-container">
+<div class="formula-card">
+            <span class="label">Hengeres vezető mágneses tere</span>
+            <div class="derivation"><div>$$ \oint \mathbf{H} \cdot \mathrm{d}\mathbf{l} = \sum I $$</div><div>$$ I_{z\acute{a}rt} = J \cdot A = J \cdot \pi r^2 $$</div><div>$$ H \cdot 2\pi r = J \cdot \pi r^2 $$</div><div>$$ H = \frac{J \cdot r}{2} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Mozgó rúd mágneses térben</span>
+            <div class="derivation"><div>$$ U_i = B \cdot \ell \cdot v $$</div><div>$$ U = U_i $$</div><div>$$ U = B \cdot \ell \cdot v $$</div><div>$$ v = \frac{U}{B \cdot \ell} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Nyitott síp hossza</span>
+            <div class="derivation"><div>$$ L = \frac{\lambda}{2} $$</div><div>$$ \lambda = \frac{v}{f} $$</div><div>$$ L = \frac{1}{2} \cdot \frac{v}{f} = \frac{v}{2f} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Indukált örvényes elektromos tér</span>
+            <div class="derivation"><div>$$ \oint \mathbf{E} \cdot \mathrm{d}\mathbf{l} = -\frac{\mathrm{d}\Phi_B}{\mathrm{d}t} $$</div><div>$$ U = E \cdot 2\pi r $$</div><div>$$ \Phi_B = B \cdot A = B \cdot \pi r^2 $$</div><div>$$ \frac{\mathrm{d}\Phi_B}{\mathrm{d}t} = \pi r^2 \frac{\mathrm{d}B}{\mathrm{d}t} $$</div><div>$$ E \cdot 2\pi r = \pi r^2 \frac{\mathrm{d}B}{\mathrm{d}t} $$</div><div>$$ E = \frac{\pi r^2}{2\pi r} \frac{\mathrm{d}B}{\mathrm{d}t} $$</div><div>$$ E = \frac{r}{2} \frac{\mathrm{d}B}{\mathrm{d}t} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Vezetőhurok forgatónyomatéka</span>
+            <div class="derivation"><div>$$ M = I \cdot A \cdot B \cdot \sin(\alpha) $$</div><div>$$ A = a^2 $$</div><div>$$ M = I \cdot a^2 \cdot B \cdot \sin(\alpha) $$</div><div>$$ I = \frac{M}{a^2 \cdot B \cdot \sin(\alpha)} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Párhuzamos ágak feszültsége</span>
+            <div class="derivation"><div>$$ U_{AB} = \frac{ \sum \frac{U_i}{R_i} }{ \sum \frac{1}{R_i} } $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Sebességszűrő elektronra</span>
+            <div class="derivation"><div>$$ E_k = \frac{1}{2} m v^2 $$</div><div>$$ v^2 = \frac{2 E_k}{m} $$</div><div>$$ v = \sqrt{ \frac{2 E_k}{m} } $$</div><div>$$ F_e = F_m $$</div><div>$$ q \cdot E = q \cdot v \cdot B $$</div><div>$$ E = v \cdot B $$</div><div>$$ E = B \cdot \sqrt{ \frac{2 E_k}{m} } $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Eredő Coulomb-erő háromszögben</span>
+            <div class="derivation"><div>$$ F_1 = k \frac{Q^2}{a^2} $$</div><div>$$ F_{eredő} = \sqrt{ F_1^2 + F_1^2 + 2 \cdot F_1 \cdot F_1 \cdot \cos(60^{\circ}) } $$</div><div>$$ F_{eredő} = \sqrt{ 2 F_1^2 + F_1^2 } = \sqrt{ 3 F_1^2 } $$</div><div>$$ F_{eredő} = F_1 \sqrt{3} $$</div><div>$$ F_{eredő} = k \frac{Q^2}{a^2} \sqrt{3} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Gördülő henger gyorsulása</span>
+            <div class="derivation"><div>$$ F - F_s = m \cdot a $$</div><div>$$ F \cdot R + F_s \cdot R = \Theta \cdot \beta $$</div><div>$$ (F + F_s) \cdot R = \left( \frac{1}{2} m R^2 \right) \cdot \left( \frac{a}{R} \right) $$</div><div>$$ F + F_s = \frac{1}{2} m \cdot a $$</div><div>$$ (F - F_s) + (F + F_s) = m \cdot a + \frac{1}{2} m \cdot a $$</div><div>$$ 2 F = \frac{3}{2} m \cdot a $$</div><div>$$ a = \frac{4 F}{3 m} $$</div></div>
+        </div>
+</div>
+<h2>2</h2>
+<div class="grid-container">
+<div class="formula-card">
+            <span class="label">Telep belső ellenállása</span>
+            <div class="derivation"><div>$$ U_0 = I \cdot (R_k + r) $$</div><div>$$ U_0 = I_1 \cdot (R_{k1} + r) $$</div><div>$$ U_0 = I_2 \cdot (R_{k2} + r) $$</div><div>$$ I_1 \cdot (R_{k1} + r) = I_2 \cdot (R_{k2} + r) $$</div><div>$$ I_1 \cdot R_{k1} + I_1 \cdot r = I_2 \cdot R_{k2} + I_2 \cdot r $$</div><div>$$ I_1 \cdot r - I_2 \cdot r = I_2 \cdot R_{k2} - I_1 \cdot R_{k1} $$</div><div>$$ r = \frac{I_2 \cdot R_{k2} - I_1 \cdot R_{k1}}{I_1 - I_2} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Dróthurok a mérlegen</span>
+            <div class="derivation"><div>$$ F_g = m \cdot g $$</div><div>$$ F_m = B \cdot I \cdot L $$</div><div>$$ B \cdot I \cdot L = m \cdot g $$</div><div>$$ I = \frac{m \cdot g}{B \cdot L} $$</div><div>$$ R = \frac{U}{I} $$</div><div>$$ R = \frac{U}{\frac{m \cdot g}{B \cdot L}} $$</div><div>$$ R = \frac{U \cdot B \cdot L}{m \cdot g} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Nyitott síp hossza II</span>
+            <div class="derivation"><div>$$ L = \frac{\lambda}{2} $$</div><div>$$ \lambda = \frac{v}{f} $$</div><div>$$ L = \frac{v}{2f} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Egyenes tekercs mágneses tere</span>
+            <div class="derivation"><div>$$ B = \mu_0 \cdot \frac{N}{l} \cdot I $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Gyorsítófeszültség sebességszűrőből</span>
+            <div class="derivation"><div>$$ Q \cdot E = Q \cdot v \cdot B $$</div><div>$$ v = \frac{E}{B} $$</div><div>$$ Q \cdot U = \frac{1}{2} m \cdot v^2 $$</div><div>$$ U = \frac{m \cdot v^2}{2 \cdot Q} $$</div><div>$$ U = \frac{m \cdot E^2}{2 \cdot Q \cdot B^2} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Sínpáron induló rúd gyorsulása</span>
+            <div class="derivation"><div>$$ I = \frac{U}{R} $$</div><div>$$ F = B \cdot I \cdot l = B \cdot \frac{U}{R} \cdot l $$</div><div>$$ a = \frac{F}{m} = \frac{B \cdot U \cdot l}{m \cdot R} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Gördülő henger mozgási energiája</span>
+            <div class="derivation"><div>$$ E_k = \frac{1}{2} m \cdot v^2 + \frac{1}{2} \Theta \cdot \omega^2 $$</div><div>$$ E_{rot} = \frac{1}{2} \left( \frac{1}{2} m \cdot R^2 \right) \cdot \left( \frac{v}{R} \right)^2 = \frac{1}{4} m \cdot v^2 $$</div><div>$$ W = E_k = \frac{1}{2} m \cdot v^2 + \frac{1}{4} m \cdot v^2 = \frac{3}{4} m \cdot v^2 $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Szauna fűtése</span>
+            <div class="derivation"><div>$$ P = k \cdot \Delta T $$</div><div>$$ P_1 = k \cdot \Delta T_1 $$</div><div>$$ P_2 = k \cdot \Delta T_2 $$</div><div>$$ P_2 = P_1 \cdot \frac{\Delta T_2}{\Delta T_1} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Eredő Coulomb-erő négyzetben</span>
+            <div class="derivation"><div>$$ F_1 = k \frac{Q^2}{a^2} $$</div><div>$$ F_{1,2} = \sqrt{ F_1^2 + F_1^2 } = F_1 \sqrt{2} $$</div><div>$$ F_3 = k \frac{Q^2}{(a\sqrt{2})^2} = \frac{1}{2} F_1 $$</div><div>$$ F_{eredő} = F_1 \sqrt{2} + \frac{1}{2} F_1 = F_1 \left( \sqrt{2} + 0.5 \right) $$</div><div>$$ F_{eredő} = k \frac{Q^2}{a^2} \left( \sqrt{2} + 0.5 \right) $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Rezgő gyöngy vonaltöltésen</span>
+            <div class="derivation"><div>$$ F = - Q \cdot E(x) = - \left( \frac{2 \lambda \cdot Q}{\pi \varepsilon_0 L^2} \right) \cdot x $$</div><div>$$ D = \frac{2 \lambda \cdot Q}{\pi \varepsilon_0 L^2} $$</div><div>$$ T = 2\pi \sqrt{ \frac{m}{D} } $$</div><div>$$ T = 2\pi \sqrt{ \frac{m \cdot \pi \varepsilon_0 L^2}{2 \lambda \cdot Q} } = \pi L \sqrt{ \frac{2 \pi \varepsilon_0 \cdot m}{\lambda \cdot Q} } $$</div></div>
+        </div>
+</div>
+<h2>3</h2>
+<div class="grid-container">
+<div class="formula-card">
+            <span class="label">Vezetőre ható Lorentz-erő</span>
+            <div class="derivation"><div>$$ F = I \cdot L \cdot B \cdot \sin(\alpha) $$</div><div>$$ F = I \cdot L \cdot B $$</div><div>$$ B = \frac{F}{I \cdot L} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Szolenoid mágneses tere</span>
+            <div class="derivation"><div>$$ B = \mu_0 \cdot \frac{N}{L} \cdot I $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Félig nyitott síp hossza</span>
+            <div class="derivation"><div>$$ L = \frac{\lambda}{4} $$</div><div>$$ \lambda = \frac{v}{f} $$</div><div>$$ L = \frac{v}{4f} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Kondenzátor töltésének kiszámítása</span>
+            <div class="derivation"><div>$$ C = \frac{Q}{U} $$</div><div>$$ Q = C \cdot U $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Feszültség kiszámítása Ohm-törvénnyel</span>
+            <div class="derivation"><div>$$ U = I \cdot R $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Rezgő lapon pattogó test</span>
+            <div class="derivation"><div>$$ a_{\max} = g $$</div><div>$$ a_{\max} = A \cdot \omega^2 = A \cdot (2\pi f)^2 = A \cdot 4\pi^2 f^2 $$</div><div>$$ g = A \cdot 4\pi^2 f^2 $$</div><div>$$ A = \frac{g}{4\pi^2 f^2} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Hővezetés üvegfalon át</span>
+            <div class="derivation"><div>$$ P = \lambda \cdot A_{össz} \cdot \frac{\Delta T}{d} $$</div><div>$$ A_{össz} = 4 \cdot a^2 $$</div><div>$$ P = \lambda \cdot (4 \cdot a^2) \cdot \frac{\Delta T}{d} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Állócsigára tekert fonál gyorsulása</span>
+            <div class="derivation"><div>$$ M \cdot g - K = M \cdot a $$</div><div>$$ K \cdot R = \Theta \cdot \beta $$</div><div>$$ K \cdot R = \left( \frac{1}{2} m R^2 \right) \cdot \left( \frac{a}{R} \right) \implies K = \frac{1}{2} m \cdot a $$</div><div>$$ M \cdot g - \frac{1}{2} m \cdot a = M \cdot a $$</div><div>$$ 2m \cdot g = 2m \cdot a + \frac{1}{2} m \cdot a = \frac{5}{2} m \cdot a $$</div><div>$$ a = \frac{4}{5} g $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Kinetikus gázelmélet nyomása</span>
+            <div class="derivation"><div>$$ p = \frac{F}{A} $$</div><div>$$ F = n \cdot 2 \cdot m \cdot v_x $$</div><div>$$ F = n \cdot 2 \cdot \frac{M}{N_A} \cdot v_x $$</div><div>$$ p = \frac{2 \cdot n \cdot M \cdot v_x}{N_A \cdot A} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Változó fluxus Joule-hője</span>
+            <div class="derivation"><div>$$ U_e(t) = -\frac{\mathrm{d}\Phi}{\mathrm{d}t} $$</div><div>$$ U_e(t) = 2at - a\tau $$</div><div>$$ P(t) = \frac{U_e(t)^2}{R} = \frac{(2at - a\tau)^2}{R} = \frac{4a^2 t^2 - 4a^2 \tau t + a^2 \tau^2}{R} $$</div><div>$$ W = \int_0^\tau P(t) \, \mathrm{d}t = \frac{1}{R} \left[ \frac{4a^2 t^3}{3} - \frac{4a^2 \tau t^2}{2} + a^2 \tau^2 t \right]_0^\tau $$</div><div>$$ W = \frac{1}{R} \left( \frac{4}{3} a^2 \tau^3 - 2 a^2 \tau^3 + a^2 \tau^3 \right) = \frac{a^2 \tau^3}{3R} $$</div></div>
+        </div>
+</div>
+<h2>11</h2>
+<div class="grid-container">
+<div class="formula-card">
+            <span class="label">Áramkör belső ellenállása</span>
+            <div class="derivation"><div>$$ I_1 = \frac{U}{R_1 + r} $$</div><div>$$ I_2 = \frac{U}{R_2 + r} $$</div><div>$$ U = I_1(R_1 + r) = I_2(R_2 + r) $$</div><div>$$ I_1 R_1 + I_1 r = I_2 R_2 + I_2 r $$</div><div>$$ I_1 r - I_2 r = I_2 R_2 - I_1 R_1 $$</div><div>$$ r(I_1 - I_2) = I_2 R_2 - I_1 R_1 $$</div><div>$$ r = \frac{I_2 R_2 - I_1 R_1}{I_1 - I_2} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Mágneses mérleg</span>
+            <div class="derivation"><div>$$ F_g = m \cdot g $$</div><div>$$ F_m = B \cdot I \cdot L $$</div><div>$$ m \cdot g = B \cdot I \cdot L $$</div><div>$$ I = \frac{U}{R} $$</div><div>$$ m \cdot g = B \cdot \frac{U}{R} \cdot L $$</div><div>$$ m \cdot g \cdot R = B \cdot U \cdot L $$</div><div>$$ R = \frac{B \cdot U \cdot L}{m \cdot g} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Nyitott síp</span>
+            <div class="derivation"><div>$$ L = \frac{\lambda}{2} $$</div><div>$$ \lambda = 2L $$</div><div>$$ v = f \cdot \lambda $$</div><div>$$ v = f \cdot 2L $$</div><div>$$ L = \frac{v}{2f} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Tekercs mágneses tere</span>
+            <div class="derivation"><div>$$ B = \mu_0 \cdot \frac{N}{l} \cdot I $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Sebességszűrő</span>
+            <div class="derivation"><div>$$ F_e = q \cdot E $$</div><div>$$ F_m = q \cdot v \cdot B $$</div><div>$$ q \cdot E = q \cdot v \cdot B $$</div><div>$$ v = \frac{E}{B} $$</div><div>$$ q \cdot U = \frac{1}{2} m \cdot v^2 $$</div><div>$$ q \cdot U = \frac{1}{2} m \cdot \left(\frac{E}{B}\right)^2 $$</div><div>$$ U = \frac{m \cdot E^2}{2 \cdot q \cdot B^2} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Lorentz-erő sínpáron</span>
+            <div class="derivation"><div>$$ F = B \cdot I \cdot \ell $$</div><div>$$ I = \frac{U}{R} $$</div><div>$$ F = B \cdot \frac{U}{R} \cdot \ell $$</div><div>$$ a = \frac{F}{m} $$</div><div>$$ a = \frac{B \cdot U \cdot \ell}{m \cdot R} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Gördülő henger megállítása</span>
+            <div class="derivation"><div>$$ E_k = \frac{1}{2} m v^2 + \frac{1}{2} \Theta \omega^2 $$</div><div>$$ \Theta = \frac{1}{2} m R^2 $$</div><div>$$ \omega = \frac{v}{R} $$</div><div>$$ E_k = \frac{1}{2} m v^2 + \frac{1}{2} \left(\frac{1}{2} m R^2\right) \left(\frac{v}{R}\right)^2 $$</div><div>$$ E_k = \frac{1}{2} m v^2 + \frac{1}{4} m v^2 $$</div><div>$$ E_k = \frac{3}{4} m v^2 $$</div><div>$$ W = \frac{3}{4} m v^2 $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Szauna fűtése</span>
+            <div class="derivation"><div>$$ P = k \cdot \Delta T $$</div><div>$$ P_1 = k \cdot \Delta T_1 $$</div><div>$$ k = \frac{P_1}{\Delta T_1} $$</div><div>$$ P_2 = k \cdot \Delta T_2 $$</div><div>$$ P_2 = P_1 \cdot \frac{\Delta T_2}{\Delta T_1} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Négyzetes töltésrendszer</span>
+            <div class="derivation"><div>$$ F_1 = k \frac{Q^2}{a^2} $$</div><div>$$ F_{1,2} = \sqrt{2} \cdot F_1 $$</div><div>$$ F_3 = k \frac{Q^2}{(a\sqrt{2})^2} = \frac{1}{2} F_1 $$</div><div>$$ F = \sqrt{2} F_1 + \frac{1}{2} F_1 $$</div><div>$$ F = k \frac{Q^2}{a^2} \left(\sqrt{2} + \frac{1}{2}\right) $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Kinetikus gáz nyomása</span>
+            <div class="derivation"><div>$$ \Delta p_1 = 2 m v $$</div><div>$$ F = \frac{N}{t} \cdot 2 m v $$</div><div>$$ p = \frac{F}{A} = \frac{N \cdot 2 m v}{t \cdot A} $$</div><div>$$ m = \frac{M}{N_A} $$</div><div>$$ p = \frac{2 N M v}{t A N_A} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">töltött gyöngy</span>
+            <div class="derivation"><div>$$k_E = \frac{2\lambda}{\pi\varepsilon_0 L^2} $$</div><div>$$ F = -q \cdot E(x) = -(q \cdot k_E) \cdot x $$</div><div>$$ D = q \cdot k_E $$</div><div>$$ T = 2\pi \sqrt{\frac{m}{D}} $$</div><div>$$ T = 2\pi \sqrt{\frac{m \pi \varepsilon_0 L^2}{2 \lambda q}} $$</div></div>
+        </div>
+</div>
+<h2>12</h2>
+<div class="grid-container">
+<div class="formula-card">
+            <span class="label">Kondenzátorok párhuzamosan</span>
+            <div class="derivation"><div>$$ Q_1 = C_1 \cdot U_1 $$</div><div>$$ C_{eredő} = C_1 + C_x $$</div><div>$$ Q_1 = C_{eredő} \cdot U_2 $$</div><div>$$ C_1 \cdot U_1 = (C_1 + C_x) \cdot U_2 $$</div><div>$$ \frac{C_1 \cdot U_1}{U_2} = C_1 + C_x $$</div><div>$$ C_x = \frac{C_1 \cdot U_1}{U_2} - C_1 $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Diavetítő lencse</span>
+            <div class="derivation"><div>$$ \frac{1}{f} = \frac{1}{t_1} + \frac{1}{k_1} $$</div><div>$$ N = \frac{k_1}{t_1} $$</div><div>$$ t_1 = \frac{k_1}{N} $$</div><div>$$ L_1 = t_1 + k_1 $$</div><div>$$k_2 = L_2 - t_2$$</div><div>$$ \frac{1}{t_2} + \frac{1}{L_2 - t_2} = \frac{1}{f} $$</div><div>$$ \frac{L_2}{t_2 (L_2 - t_2)} = \frac{1}{f} $$</div><div>$$ f \cdot L_2 = t_2 L_2 - t_2^2 $$</div><div>$$ t_2^2 - L_2 t_2 + f L_2 = 0 $$</div><div>$$ \Delta t = |t_2 - t_1| $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Áramkör Thevenin</span>
+            <div class="derivation"><div>$$ V_{ref} = 0 \text{ V} $$</div><div>$$ V_A = \frac{\sum \frac{U_i}{R_i}}{\sum \frac{1}{R_i}} $$</div><div>$$ V_B = \frac{\sum \frac{U_j}{R_j}}{\sum \frac{1}{R_j}} $$</div><div>$$ U_{AB} = |V_A - V_B| $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Akkumulátor lemerülése</span>
+            <div class="derivation"><div>$$ P_{össz} = N \cdot P_1 $$</div><div>$$ I = \frac{P_{össz}}{U} $$</div><div>$$ \Delta Q = \frac{Q_{max}}{2} $$</div><div>$$ t = \frac{\Delta Q}{I} $$</div><div>$$ t = \frac{\Delta Q \cdot U}{P_{össz}} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Csillapított rezgés</span>
+            <div class="derivation"><div>$$ E(t) = E_0 e^{-2\beta t} $$</div><div>$$ E(t_1) = E_0 e^{-1} $$</div><div>$$ -2\beta t_1 = -1 $$</div><div>$$ \beta = \frac{1}{2t_1} $$</div><div>$$ \omega_0 = \sqrt{\frac{D}{m}} $$</div><div>$$ \omega = \sqrt{\omega_0^2 - \beta^2} $$</div><div>$$ f = \frac{\omega}{2\pi} = \frac{\sqrt{\frac{D}{m} - \left(\frac{1}{2t_1}\right)^2}}{2\pi} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Elektromos dipólus</span>
+            <div class="derivation"><div>$$ p = Q \cdot d $$</div><div>$$ U = -p \cdot E \cdot \cos\theta $$</div><div>$$\theta = 0^\circ$$</div><div>$$ U_{min} = -p \cdot E $$</div><div>$$\theta = 180^\circ$$</div><div>$$ U_{max} = p \cdot E $$</div><div>$$ W = U_{max} - U_{min} = p \cdot E - (-p \cdot E) = 2 \cdot p \cdot E $$</div><div>$$ W = 2 \cdot Q \cdot d \cdot E $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Zárt síp</span>
+            <div class="derivation"><div>$$ L = \frac{3\lambda}{4} $$</div><div>$$ \lambda = \frac{4L}{3} $$</div><div>$$ v = f \cdot \lambda $$</div><div>$$ v = f \cdot \frac{4L}{3} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Korong és lógó teher</span>
+            <div class="derivation"><div>$$ m \cdot g - K = m \cdot a $$</div><div>$$ K \cdot R = \Theta \cdot \beta $$</div><div>$$ \Theta = \frac{1}{2} M R^2 $$</div><div>$$ \beta = \frac{a}{R} $$</div><div>$$ K \cdot R = \left(\frac{1}{2} M R^2\right) \cdot \frac{a}{R} $$</div><div>$$ K = \frac{1}{2} M a $$</div><div>$$ a = \frac{2K}{M} $$</div><div>$$ m \cdot g - K = m \cdot \frac{2K}{M} $$</div><div>$$ m \cdot g = K \left(1 + \frac{2m}{M}\right) $$</div><div>$$ K = \frac{m \cdot g}{1 + \frac{2m}{M}} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Wheatstone-híd</span>
+            <div class="derivation"><div>$$ V_A = U \cdot \frac{R_2}{R_1 + R_2} $$</div><div>$$ V_B = U \cdot \frac{R_4}{R_3 + R_4} $$</div><div>$$ U_{AB} = |V_A - V_B| $$</div><div>$$ U_{AB} = U \cdot \left| \frac{R_2}{R_1 + R_2} - \frac{R_4}{R_3 + R_4} \right| $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Léggömb felfújása</span>
+            <div class="derivation"><div>$$ \frac{p_1 \cdot V_1}{T_1} = \frac{p_2 \cdot V_2}{T_2} $$</div><div>$$ V_1 = V_2 \cdot \frac{p_2}{p_1} \cdot \frac{T_1}{T_2} $$</div></div>
+        </div>
+</div>
+<h2>13</h2>
+<div class="grid-container">
+<div class="formula-card">
+            <span class="label">Rezgés amplitúdója</span>
+            <div class="derivation"><div>$$ \frac{1}{2} D x^2 + \frac{1}{2} m v^2 = \frac{1}{2} D A^2 $$</div><div>$$ D x^2 + m v^2 = D A^2 $$</div><div>$$ x^2 + \frac{m v^2}{D} = A^2 $$</div><div>$$ A = \sqrt{x^2 + \frac{m v^2}{D}} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Lorentz-erő vektoros</span>
+            <div class="derivation"><div>$$ \mathbf{F} = q \cdot (\mathbf{v} \times \mathbf{B}) $$</div><div>$$ \mathbf{v} = (v_x, 0, 0) $$</div><div>$$ \mathbf{B} = (B_x, B_y, B_z) $$</div><div>$$ \mathbf{v} \times \mathbf{B} = (0, -v_x B_z, v_x B_y) $$</div><div>$$ |\mathbf{v} \times \mathbf{B}| = \sqrt{0^2 + (-v_x B_z)^2 + (v_x B_y)^2} $$</div><div>$$ |\mathbf{v} \times \mathbf{B}| = v_x \cdot \sqrt{B_z^2 + B_y^2} $$</div><div>$$ F = q \cdot v_x \cdot \sqrt{B_z^2 + B_y^2} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Hengeres vezető mágneses tere</span>
+            <div class="derivation"><div>$$ \oint \mathbf{H} \cdot \mathrm{d}\mathbf{l} = I_{bezárt} $$</div><div>$$ I_{bezárt} = j \cdot \pi r^2 $$</div><div>$$ H \cdot 2\pi r = j \cdot \pi r^2 $$</div><div>$$ H \cdot 2 = j \cdot r $$</div><div>$$ H = \frac{j \cdot r}{2} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Akkumulátor lemerülése</span>
+            <div class="derivation"><div>$$ P_{össz} = N \cdot P_1 $$</div><div>$$ I = \frac{P_{össz}}{U} $$</div><div>$$ \Delta Q = \frac{Q_{max}}{2} $$</div><div>$$ t = \frac{\Delta Q}{I} $$</div><div>$$ t = \frac{\Delta Q \cdot U}{P_{össz}} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Szauna fűtése</span>
+            <div class="derivation"><div>$$ P = k \cdot \Delta T $$</div><div>$$ P_1 = k \cdot \Delta T_1 $$</div><div>$$ k = \frac{P_1}{\Delta T_1} $$</div><div>$$ P_2 = k \cdot \Delta T_2 $$</div><div>$$ P_2 = P_1 \cdot \frac{\Delta T_2}{\Delta T_1} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Ceruzaelem belső ellenállása</span>
+            <div class="derivation"><div>$$ I_1 = \frac{U_0}{R + r} $$</div><div>$$ I_2 = \frac{2U_0}{R + 2r} $$</div><div>$$ I_2 = k \cdot I_1 $$</div><div>$$ \frac{2U_0}{R + 2r} = k \cdot \frac{U_0}{R + r} $$</div><div>$$ \frac{2}{R + 2r} = \frac{k}{R + r} $$</div><div>$$ 2(R + r) = k(R + 2r) $$</div><div>$$ 2R - kR = 2kr - 2r $$</div><div>$$ R(2 - k) = r(2k - 2) $$</div><div>$$ r = R \frac{2 - k}{2k - 2} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Zárt síp</span>
+            <div class="derivation"><div>$$ L = \frac{3\lambda}{4} $$</div><div>$$ \lambda = \frac{4L}{3} $$</div><div>$$ v = f \cdot \lambda $$</div><div>$$ v = f \cdot \frac{4L}{3} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Korong és lógó teher</span>
+            <div class="derivation"><div>$$ m \cdot g - K = m \cdot a $$</div><div>$$ K \cdot R = \Theta \cdot \beta $$</div><div>$$ \Theta = \frac{1}{2} M R^2 $$</div><div>$$ \beta = \frac{a}{R} $$</div><div>$$ K \cdot R = \left(\frac{1}{2} M R^2\right) \cdot \frac{a}{R} $$</div><div>$$ K = \frac{1}{2} M a $$</div><div>$$ a = \frac{2K}{M} $$</div><div>$$ m \cdot g - K = m \cdot \frac{2K}{M} $$</div><div>$$ m \cdot g = K \left(1 + \frac{2m}{M}\right) $$</div><div>$$ K = \frac{m \cdot g}{1 + \frac{2m}{M}} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Kondenzátor lemezek között mozgó töltés</span>
+            <div class="derivation"><div>$$ E = \frac{U}{d} $$</div><div>$$ F_e = q \cdot E = q \cdot \frac{U}{d} $$</div><div>$$ F_g = m \cdot g $$</div><div>$$ \tan\alpha = \frac{F_g}{F_e} $$</div><div>$$ \tan\alpha = \frac{m \cdot g}{q \cdot \frac{U}{d}} = \frac{m \cdot g \cdot d}{q \cdot U} $$</div><div>$$ \alpha = \arctan\left(\frac{m \cdot g \cdot d}{q \cdot U}\right) $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Áramkör Thevenin</span>
+            <div class="derivation"><div>$$ V_{ref} = 0 \text{ V} $$</div><div>$$ V_A = \frac{\sum \frac{U_i}{R_i}}{\sum \frac{1}{R_i}} $$</div><div>$$ V_B = \frac{\sum \frac{U_j}{R_j}}{\sum \frac{1}{R_j}} $$</div><div>$$ U_{AB} = |V_A - V_B| $$</div></div>
+        </div>
+</div>
+<h2>14</h2>
+<div class="grid-container">
+<div class="formula-card">
+            <span class="label">Kondenzátorok párhuzamosan</span>
+            <div class="derivation"><div>$$ Q_1 = C_1 \cdot U_1 $$</div><div>$$ C_{eredő} = C_1 + C_x $$</div><div>$$ Q_1 = C_{eredő} \cdot U_2 $$</div><div>$$ C_1 \cdot U_1 = (C_1 + C_x) \cdot U_2 $$</div><div>$$ \frac{C_1 \cdot U_1}{U_2} = C_1 + C_x $$</div><div>$$ C_x = \frac{C_1 \cdot U_1}{U_2} - C_1 $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Lorentz-erő vektoros</span>
+            <div class="derivation"><div>$$ \mathbf{F} = q \cdot (\mathbf{v} \times \mathbf{B}) $$</div><div>$$ \mathbf{v} = (v_x, 0, 0) $$</div><div>$$ \mathbf{B} = (B_x, B_y, B_z) $$</div><div>$$ \mathbf{v} \times \mathbf{B} = (0, -v_x B_z, v_x B_y) $$</div><div>$$ |\mathbf{v} \times \mathbf{B}| = \sqrt{0^2 + (-v_x B_z)^2 + (v_x B_y)^2} $$</div><div>$$ |\mathbf{v} \times \mathbf{B}| = v_x \cdot \sqrt{B_z^2 + B_y^2} $$</div><div>$$ F = q \cdot v_x \cdot \sqrt{B_z^2 + B_y^2} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Két telepes áramkör</span>
+            <div class="derivation"><div>$$ I_1 = \frac{U_{közös} - U_1}{R_1} $$</div><div>$$ I_2 = \frac{U_{közös} - U_2}{R_2} $$</div><div>$$ I_{közös} = I_1 + I_2 = \frac{U_{közös} - U_1}{R_1} + \frac{U_{közös} - U_2}{R_2} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Akkumulátor lemerülése</span>
+            <div class="derivation"><div>$$ P_{össz} = N \cdot P_1 $$</div><div>$$ I = \frac{P_{össz}}{U} $$</div><div>$$ \Delta Q = \frac{Q_{max}}{2} $$</div><div>$$ t = \frac{\Delta Q}{I} $$</div><div>$$ t = \frac{\Delta Q \cdot U}{P_{össz}} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Szauna fűtése</span>
+            <div class="derivation"><div>$$ P = k \cdot \Delta T $$</div><div>$$ P_1 = k \cdot \Delta T_1 $$</div><div>$$ k = \frac{P_1}{\Delta T_1} $$</div><div>$$ P_2 = k \cdot \Delta T_2 $$</div><div>$$ P_2 = P_1 \cdot \frac{\Delta T_2}{\Delta T_1} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Lejtőn csúszó rézlap</span>
+            <div class="derivation"><div>$$ Q = \Delta E_p = m \cdot g \cdot h $$</div><div>$$ h = s \cdot \sin\alpha $$</div><div>$$ Q = m \cdot g \cdot s \cdot \sin\alpha $$</div><div>$$ Q = c \cdot m \cdot \Delta T $$</div><div>$$ m \cdot g \cdot s \cdot \sin\alpha = c \cdot m \cdot \Delta T $$</div><div>$$ \Delta T = \frac{g \cdot s \cdot \sin\alpha}{c} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Zárt síp</span>
+            <div class="derivation"><div>$$ L = \frac{3\lambda}{4} $$</div><div>$$ \lambda = \frac{4L}{3} $$</div><div>$$ v = f \cdot \lambda $$</div><div>$$ v = f \cdot \frac{4L}{3} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Korong és lógó teher</span>
+            <div class="derivation"><div>$$ m \cdot g - K = m \cdot a $$</div><div>$$ K \cdot R = \Theta \cdot \beta $$</div><div>$$ \Theta = \frac{1}{2} M R^2 $$</div><div>$$ \beta = \frac{a}{R} $$</div><div>$$ K \cdot R = \left(\frac{1}{2} M R^2\right) \cdot \frac{a}{R} $$</div><div>$$ K = \frac{1}{2} M a $$</div><div>$$ a = \frac{2K}{M} $$</div><div>$$ m \cdot g - K = m \cdot \frac{2K}{M} $$</div><div>$$ m \cdot g = K \left(1 + \frac{2m}{M}\right) $$</div><div>$$ K = \frac{m \cdot g}{1 + \frac{2m}{M}} $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Négyzetes töltésrendszer</span>
+            <div class="derivation"><div>$$ F_1 = k \frac{Q^2}{a^2} $$</div><div>$$ F_{1,2} = \sqrt{2} \cdot F_1 $$</div><div>$$ F_3 = k \frac{Q^2}{(a\sqrt{2})^2} = \frac{1}{2} F_1 $$</div><div>$$ F = \sqrt{2} F_1 + \frac{1}{2} F_1 $$</div><div>$$ F = k \frac{Q^2}{a^2} \left(\sqrt{2} + \frac{1}{2}\right) $$</div></div>
+        </div>
+<div class="formula-card">
+            <span class="label">Töltés kondenzátoron</span>
+            <div class="derivation"><div>$$ I_C = 0 $$</div><div>$$ U_C = U_{telep} \cdot \frac{R_2}{R_1 + R_2} $$</div><div>$$ Q = C \cdot U_C $$</div></div>
+        </div>
+</div>
+</body></html>

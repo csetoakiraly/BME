@@ -1,0 +1,176 @@
+[
+  {
+    "examId": "vizsga-1-2023",
+    "examTitle": "1. Vizsga",
+    "label": "Hengeres vezető mágneses tere",
+    "derivation": "Induljunk ki az Ampère-féle gerjesztési törvényből:<br>$$ \\\\oint \\\\mathbf{H} \\\\cdot \\\\mathrm{d}\\\\mathbf{l} = \\\\sum I $$<br>Mivel a vezető hengerszimmetrikus, egy r sugarú körpályát választunk (ahol r < R), és az integrál bal oldala:<br>$$ H \\\\cdot 2\\\\pi r $$<br>A körpálya által közbezárt áram (I_{z\\\\acute{a}rt}) az áramsűrűség (J) és az r sugarú kör területének szorzata:<br>$$ I_{z\\\\acute{a}rt} = J \\\\cdot A = J \\\\cdot \\\\pi r^2 $$<br>A kettőt egyenlővé téve:<br>$$ H \\\\cdot 2\\\\pi r = J \\\\cdot \\\\pi r^2 $$<br>Osszuk el mindkét oldalt 2\\\\pi r-rel, hogy megkapjuk a mágneses térerősséget (H):<br>$$ H = \\\\frac{J \\\\cdot r}{2} $$"
+  },
+  {
+    "examId": "vizsga-1-2023",
+    "examTitle": "1. Vizsga",
+    "label": "Mozgó rúd mágneses térben",
+    "derivation": "A mozgó rúdban a mágneses tér miatt feszültség indukálódik, melynek nagysága:<br>$$ U_i = B \\\\cdot \\\\ell \\\\cdot v $$<br>ahol B a mágneses indukció, \\\\ell a sínpár nyomtávja (a rúd hossza), v a rúd sebessége.<br>Lenz törvénye értelmében ez az indukált feszültség a külső feszültséggel (U) ellentétes irányú.<br>A rúd akkor éri el az állandósult sebességet, amikor a rúdra ható eredő erő nulla. Ez akkor következik be, ha már nem folyik áram a rendszerben, vagyis a két feszültség pontosan kiegyenlíti egymást:<br>$$ U = U_i $$<br>Helyettesítsük be U_i képletét:<br>$$ U = B \\\\cdot \\\\ell \\\\cdot v $$<br>Rendezzük át a képletet a sebességre (v), ehhez osszuk el mindkét oldalt (B \\\\cdot \\\\ell)-el:<br>$$ v = \\\\frac{U}{B \\\\cdot \\\\ell} $$"
+  },
+  {
+    "examId": "vizsga-1-2023",
+    "examTitle": "1. Vizsga",
+    "label": "Nyitott síp hossza",
+    "derivation": "Egy mindkét végén nyitott sípban az alaprezgés esetén a síp végein duzzadóhelyek, középen pedig egyetlen csomópont alakul ki. A síp hossza (L) így pontosan a hullámhossz (\\\\lambda) fele:<br>$$ L = \\\\frac{\\\\lambda}{2} $$<br>A hullámhosszt a hullám terjedési sebessége (v) és a frekvenciája (f) közötti összefüggés adja meg:<br>$$ \\\\lambda = \\\\frac{v}{f} $$<br>Helyettesítsük be ezt a kifejezést a síp hosszának képletébe:<br>$$ L = \\\\frac{1}{2} \\\\cdot \\\\frac{v}{f} = \\\\frac{v}{2f} $$"
+  },
+  {
+    "examId": "vizsga-1-2023",
+    "examTitle": "1. Vizsga",
+    "label": "Indukált örvényes elektromos tér",
+    "derivation": "Induljunk ki a Faraday-féle indukciós törvény integrális alakjából:<br>$$ \\\\oint \\\\mathbf{E} \\\\cdot \\\\mathrm{d}\\\\mathbf{l} = -\\\\frac{\\\\mathrm{d}\\\\Phi_B}{\\\\mathrm{d}t} $$<br>Mivel a henger belsejében vagyunk (r < a), vegyünk fel egy r sugarú körpályát. A kör mentén a feszültség:<br>$$ U = E \\\\cdot 2\\\\pi r $$<br>A mágneses fluxus (\\\\Phi_B) ezen a körön belül:<br>$$ \\\\Phi_B = B \\\\cdot A = B \\\\cdot \\\\pi r^2 $$<br>Ennek időbeli deriváltja (mivel a terület állandó, csak B változik az időben):<br>$$ \\\\frac{\\\\mathrm{d}\\\\Phi_B}{\\\\mathrm{d}t} = \\\\pi r^2 \\\\frac{\\\\mathrm{d}B}{\\\\mathrm{d}t} $$<br>Tegyük egyenlővé a két oldalt (a negatív előjeltől most eltekintünk, mert csak a nagyságra vagyunk kíváncsiak):<br>$$ E \\\\cdot 2\\\\pi r = \\\\pi r^2 \\\\frac{\\\\mathrm{d}B}{\\\\mathrm{d}t} $$<br>Osszuk el mindkét oldalt 2\\\\pi r-rel az elektromos térerősség (E) kifejezéséhez:<br>$$ E = \\\\frac{\\\\pi r^2}{2\\\\pi r} \\\\frac{\\\\mathrm{d}B}{\\\\mathrm{d}t} $$<br>Egyszerűsítve az egyenletet:<br>$$ E = \\\\frac{r}{2} \\\\frac{\\\\mathrm{d}B}{\\\\mathrm{d}t} $$"
+  },
+  {
+    "examId": "vizsga-1-2023",
+    "examTitle": "1. Vizsga",
+    "label": "Vezetőhurok forgatónyomatéka",
+    "derivation": "Egy áramjárta vezetőhurokra ható forgatónyomaték (M) nagysága a következő képlettel számolható:<br>$$ M = I \\\\cdot A \\\\cdot B \\\\cdot \\\\sin(\\\\alpha) $$<br>Ahol I az áramerősség, A a hurok területe, B a mágneses indukció, és \\\\alpha a hurok normálvektora és a mágneses indukcióvektor által bezárt szög.<br>Mivel a vezetőhurok négyzet alakú (legyen az oldalhossza a), a területe:<br>$$ A = a^2 $$<br>Ezt visszahelyettesítve a forgatónyomaték képletébe:<br>$$ M = I \\\\cdot a^2 \\\\cdot B \\\\cdot \\\\sin(\\\\alpha) $$<br>Célunk az áramerősség (I) meghatározása. Osszuk el az egyenlet mindkét oldalát (a^2 \\\\cdot B \\\\cdot \\\\sin(\\\\alpha))-val:<br>$$ I = \\\\frac{M}{a^2 \\\\cdot B \\\\cdot \\\\sin(\\\\alpha)} $$"
+  },
+  {
+    "examId": "vizsga-1-2023",
+    "examTitle": "1. Vizsga",
+    "label": "Párhuzamos ágak feszültsége",
+    "derivation": "A párhuzamosan kapcsolt feszültséggenerátoros ágak eredő feszültségét a csomóponti potenciálok módszerével, vagy más néven a Millman-tétellel határozhatjuk meg.<br>A feszültség (U_{AB}) a következő súlyozott átlagként írható fel, ahol minden generátor feszültségét (U_i) osztjuk az adott ág belső ellenállásával (R_i), majd ezt az összeget elosztjuk a vezetőképességek (az ellenállások reciprokainak) összegével:<br>$$ U_{AB} = \\\\frac{ \\\\sum \\\\frac{U_i}{R_i} }{ \\\\sum \\\\frac{1}{R_i} } $$"
+  },
+  {
+    "examId": "vizsga-1-2023",
+    "examTitle": "1. Vizsga",
+    "label": "Sebességszűrő elektronra",
+    "derivation": "Először fejezzük ki az elektron sebességét (v) a kinetikus (mozgási) energiájából (E_k). A mozgási energia képlete:<br>$$ E_k = \\\\frac{1}{2} m v^2 $$<br>Szorozzuk meg mindkét oldalt 2-vel, és osszuk el az elektron tömegével (m):<br>$$ v^2 = \\\\frac{2 E_k}{m} $$<br>Ebből gyökvonással megkapjuk a sebességet:<br>$$ v = \\\\sqrt{ \\\\frac{2 E_k}{m} } $$<br>Egy sebességszűrőben az egyenes vonalú egyenletes mozgás feltétele az, hogy a részecskére ható elektromos erő (F_e) és mágneses Lorentz-erő (F_m) pontosan kiegyenlítse egymást:<br>$$ F_e = F_m $$<br>Tudjuk, hogy az elektromos erő F_e = q \\\\cdot E, a mágneses erő pedig F_m = q \\\\cdot v \\\\cdot B.<br>Tegyük egyenlővé a kettőt:<br>$$ q \\\\cdot E = q \\\\cdot v \\\\cdot B $$<br>Osszuk el mindkét oldalt a töltéssel (q):<br>$$ E = v \\\\cdot B $$<br>Végül helyettesítsük be a korábban kifejezett sebességet:<br>$$ E = B \\\\cdot \\\\sqrt{ \\\\frac{2 E_k}{m} } $$"
+  },
+  {
+    "examId": "vizsga-1-2023",
+    "examTitle": "1. Vizsga",
+    "label": "Eredő Coulomb-erő háromszögben",
+    "derivation": "Bármelyik csúcsban lévő töltésre a másik két csúcsban lévő töltés fejt ki Coulomb-erőt. Mivel a töltések (Q) és a távolságok (a) is megegyeznek, ezen két erő nagysága azonos. Egy ilyen erő nagysága a Coulomb-törvény alapján:<br>$$ F_1 = k \\\\frac{Q^2}{a^2} $$<br>Mivel a háromszög szabályos, a két erővektor közötti szög pontosan 60^{\\\\circ}.<br>Az eredő erőt (F_{eredő}) a két azonos nagyságú vektor összeadásával kapjuk, melyhez használhatjuk a koszinusztételt. Az eredő vektor hossza:<br>$$ F_{eredő} = \\\\sqrt{ F_1^2 + F_1^2 + 2 \\\\cdot F_1 \\\\cdot F_1 \\\\cdot \\\\cos(60^{\\\\circ}) } $$<br>Mivel \\\\cos(60^{\\\\circ}) = 1/2, a képlet leegyszerűsödik:<br>$$ F_{eredő} = \\\\sqrt{ 2 F_1^2 + F_1^2 } = \\\\sqrt{ 3 F_1^2 } $$<br>Kiemelve F_1-et a gyök alól:<br>$$ F_{eredő} = F_1 \\\\sqrt{3} $$<br>Visszahelyettesítve az F_1 kifejezését:<br>$$ F_{eredő} = k \\\\frac{Q^2}{a^2} \\\\sqrt{3} $$"
+  },
+  {
+    "examId": "vizsga-1-2023",
+    "examTitle": "1. Vizsga",
+    "label": "Gördülő henger gyorsulása",
+    "derivation": "A hengerre kétféle mozgásegyenletet írunk fel. A haladó mozgásra Newton II. törvénye:<br>$$ F - F_s = m \\\\cdot a $$<br>ahol F a húzóerő, F_s a tapadási súrlódási erő, m a tömeg, a a gyorsulás.<br>A forgómozgásra a perdülettételt írjuk fel a tömegközéppontra. Mindkét erő azonos irányban forgat:<br>$$ F \\\\cdot R + F_s \\\\cdot R = \\\\Theta \\\\cdot \\\\beta $$<br>Tiszta gördülés esetén a szöggyorsulás \\\\beta = a / R, a homogén henger tehetetlenségi nyomatéka pedig \\\\Theta = 1/2 m R^2.<br>Helyettesítsük be ezeket:<br>$$ (F + F_s) \\\\cdot R = \\\\left( \\\\frac{1}{2} m R^2 \\\\right) \\\\cdot \\\\left( \\\\frac{a}{R} \\\\right) $$<br>Egyszerűsítve R-rel:<br>$$ F + F_s = \\\\frac{1}{2} m \\\\cdot a $$<br>Adjuk össze a haladó és a forgómozgás egyenleteit:<br>$$ (F - F_s) + (F + F_s) = m \\\\cdot a + \\\\frac{1}{2} m \\\\cdot a $$<br>Az F_s kiesik:<br>$$ 2 F = \\\\frac{3}{2} m \\\\cdot a $$<br>Fejezzük ki a gyorsulást (a):<br>$$ a = \\\\frac{4 F}{3 m} $$"
+  },
+  {
+    "examId": "vizsga-2-2023",
+    "examTitle": "2. Vizsga",
+    "label": "Telep belső ellenállása",
+    "derivation": "Az áramkörre vonatkozó Ohm-törvény alapján az üresjárási feszültség (U_0) kifejezhető az áramerősség (I) és az ellenállások (külső R_k és belső r) szorzataként:<br>$$ U_0 = I \\\\cdot (R_k + r) $$<br>A két különböző kapcsolóálláshoz tartozó adatokkal felírva:<br>$$ U_0 = I_1 \\\\cdot (R_{k1} + r) $$<br>$$ U_0 = I_2 \\\\cdot (R_{k2} + r) $$<br>A két egyenlet jobb oldalát egyenlővé tesszük:<br>$$ I_1 \\\\cdot (R_{k1} + r) = I_2 \\\\cdot (R_{k2} + r) $$<br>Bontsuk fel a zárójeleket:<br>$$ I_1 \\\\cdot R_{k1} + I_1 \\\\cdot r = I_2 \\\\cdot R_{k2} + I_2 \\\\cdot r $$<br>Rendezzük a belső ellenállást tartalmazó tagokat az egyik oldalra:<br>$$ I_1 \\\\cdot r - I_2 \\\\cdot r = I_2 \\\\cdot R_{k2} - I_1 \\\\cdot R_{k1} $$<br>Emeljük ki r-t, majd osszunk az áramok különbségével:<br>$$ r = \\\\frac{I_2 \\\\cdot R_{k2} - I_1 \\\\cdot R_{k1}}{I_1 - I_2} $$"
+  },
+  {
+    "examId": "vizsga-2-2023",
+    "examTitle": "2. Vizsga",
+    "label": "Dróthurok a mérlegen",
+    "derivation": "A mérleg akkor mutat zérust, ha a gravitációs erőt (F_g) teljes mértékben kiegyenlíti a felfelé mutató mágneses Lorentz-erő (F_m).<br>A gravitációs erő:<br>$$ F_g = m \\\\cdot g $$<br>A Lorentz-erő:<br>$$ F_m = B \\\\cdot I \\\\cdot L $$<br>Egyenlítjük ki a két erőt:<br>$$ B \\\\cdot I \\\\cdot L = m \\\\cdot g $$<br>Fejezzük ki az áramerősséget (I):<br>$$ I = \\\\frac{m \\\\cdot g}{B \\\\cdot L} $$<br>A hurok ellenállásának (R) meghatározásához Ohm törvényét használjuk:<br>$$ R = \\\\frac{U}{I} $$<br>Helyettesítsük be a kapott áramerősséget:<br>$$ R = \\\\frac{U}{\\\\frac{m \\\\cdot g}{B \\\\cdot L}} $$<br>A tört nevezőjét átrendezve:<br>$$ R = \\\\frac{U \\\\cdot B \\\\cdot L}{m \\\\cdot g} $$"
+  },
+  {
+    "examId": "vizsga-2-2023",
+    "examTitle": "2. Vizsga",
+    "label": "Nyitott síp hossza II",
+    "derivation": "Egy mindkét végén nyitott síp esetében a síp hossza (L) a kialakuló alap állóhullám hullámhosszának (\\\\lambda) pontosan a fele:<br>$$ L = \\\\frac{\\\\lambda}{2} $$<br>A hullámhosszt a hangsebesség (v) és a frekvencia (f) hányadosa adja:<br>$$ \\\\lambda = \\\\frac{v}{f} $$<br>Behelyettesítve:<br>$$ L = \\\\frac{v}{2f} $$"
+  },
+  {
+    "examId": "vizsga-2-2023",
+    "examTitle": "2. Vizsga",
+    "label": "Egyenes tekercs mágneses tere",
+    "derivation": "Egy egyenes tekercs (szolenoid) belsejében a mágneses mező indukcióját (B) az alábbi összefüggéssel számolhatjuk ki:<br>$$ B = \\\\mu_0 \\\\cdot \\\\frac{N}{l} \\\\cdot I $$<br>Ahol \\\\mu_0 a vákuum mágneses permeabilitása, N a tekercs menetszáma, l a tekercs hossza, I pedig a tekercsben folyó áramerősség."
+  },
+  {
+    "examId": "vizsga-2-2023",
+    "examTitle": "2. Vizsga",
+    "label": "Gyorsítófeszültség sebességszűrőből",
+    "derivation": "A sebességszűrőn a részecskék akkor haladhatnak át, ha az elektromos és mágneses erők kioltják egymást:<br>$$ Q \\\\cdot E = Q \\\\cdot v \\\\cdot B $$<br>Ebből a sebesség:<br>$$ v = \\\\frac{E}{B} $$<br>A gyorsítófeszültség (U) és a mozgási energia kapcsolata a munkatétel szerint:<br>$$ Q \\\\cdot U = \\\\frac{1}{2} m \\\\cdot v^2 $$<br>Fejezzük ki U-t:<br>$$ U = \\\\frac{m \\\\cdot v^2}{2 \\\\cdot Q} $$<br>Helyettesítsük be a sebességet:<br>$$ U = \\\\frac{m \\\\cdot E^2}{2 \\\\cdot Q \\\\cdot B^2} $$"
+  },
+  {
+    "examId": "vizsga-2-2023",
+    "examTitle": "2. Vizsga",
+    "label": "Sínpáron induló rúd gyorsulása",
+    "derivation": "A rúd bekapcsoláskor még áll, így az áramot csak az Ohm-törvény határozza meg:<br>$$ I = \\\\frac{U}{R} $$<br>A gyorsító Lorentz-erő:<br>$$ F = B \\\\cdot I \\\\cdot l = B \\\\cdot \\\\frac{U}{R} \\\\cdot l $$<br>Newton II. törvénye alapján a gyorsulás (a) az erő (F) és a tömeg (m) hányadosa:<br>$$ a = \\\\frac{F}{m} = \\\\frac{B \\\\cdot U \\\\cdot l}{m \\\\cdot R} $$"
+  },
+  {
+    "examId": "vizsga-2-2023",
+    "examTitle": "2. Vizsga",
+    "label": "Gördülő henger mozgási energiája",
+    "derivation": "A tisztán gördülő henger megállításához szükséges munka egyenlő a teljes mozgási energiájával (E_k). Ez a haladó és a forgómozgás energiájának összege:<br>$$ E_k = \\\\frac{1}{2} m \\\\cdot v^2 + \\\\frac{1}{2} \\\\Theta \\\\cdot \\\\omega^2 $$<br>Tiszta gördülés esetén \\\\omega = v / R, a homogén tömör henger tehetetlenségi nyomatéka pedig \\\\Theta = 1/2 m R^2.<br>Helyettesítsük be a rotációs tagba:<br>$$ E_{rot} = \\\\frac{1}{2} \\\\left( \\\\frac{1}{2} m \\\\cdot R^2 \\\\right) \\\\cdot \\\\left( \\\\frac{v}{R} \\\\right)^2 = \\\\frac{1}{4} m \\\\cdot v^2 $$<br>A teljes mozgási energia így:<br>$$ W = E_k = \\\\frac{1}{2} m \\\\cdot v^2 + \\\\frac{1}{4} m \\\\cdot v^2 = \\\\frac{3}{4} m \\\\cdot v^2 $$"
+  },
+  {
+    "examId": "vizsga-2-2023",
+    "examTitle": "2. Vizsga",
+    "label": "Szauna fűtése",
+    "derivation": "Newton lehűlési törvénye alapján az egyensúlyi fűtőteljesítmény (P) egyenesen arányos a külső és belső hőmérséklet különbségével (\\\\Delta T):<br>$$ P = k \\\\cdot \\\\Delta T $$<br>Felírva a két esetre:<br>$$ P_1 = k \\\\cdot \\\\Delta T_1 $$<br>$$ P_2 = k \\\\cdot \\\\Delta T_2 $$<br>Kifejezve a k arányossági tényezőt az elsőből, majd behelyettesítve a másodikba:<br>$$ P_2 = P_1 \\\\cdot \\\\frac{\\\\Delta T_2}{\\\\Delta T_1} $$"
+  },
+  {
+    "examId": "vizsga-2-2023",
+    "examTitle": "2. Vizsga",
+    "label": "Eredő Coulomb-erő négyzetben",
+    "derivation": "A négyzet egyik csúcsában lévő töltésre a két szomszédos töltés egymásra merőleges, F_1 nagyságú erőket fejt ki:<br>$$ F_1 = k \\\\frac{Q^2}{a^2} $$<br>Ezek eredője a négyzet átlója mentén hat, nagysága Pitagorasz-tétellel:<br>$$ F_{1,2} = \\\\sqrt{ F_1^2 + F_1^2 } = F_1 \\\\sqrt{2} $$<br>A szemközti (átlós) töltés távolsága a\\\\sqrt{2}, az általa kifejtett erő (szintén átlós irányú):<br>$$ F_3 = k \\\\frac{Q^2}{(a\\\\sqrt{2})^2} = \\\\frac{1}{2} F_1 $$<br>A teljes eredő erő a kettő összege:<br>$$ F_{eredő} = F_1 \\\\sqrt{2} + \\\\frac{1}{2} F_1 = F_1 \\\\left( \\\\sqrt{2} + 0.5 \\\\right) $$<br>Behelyettesítve F_1-et:<br>$$ F_{eredő} = k \\\\frac{Q^2}{a^2} \\\\left( \\\\sqrt{2} + 0.5 \\\\right) $$"
+  },
+  {
+    "examId": "vizsga-2-2023",
+    "examTitle": "2. Vizsga",
+    "label": "Rezgő gyöngy vonaltöltésen",
+    "derivation": "A szál közepétől vett kis x kitérés (x \\\\ll L) esetén az elektromos térerősség a középpont közelében közelítőleg lineáris:<br>$$ E(x) \\\\approx \\\\frac{2 \\\\lambda}{\\\\pi \\\\varepsilon_0 L^2} \\\\cdot x $$<br>A -Q töltésű gyöngyre ható visszatérítő erő:<br>$$ F = - Q \\\\cdot E(x) = - \\\\left( \\\\frac{2 \\\\lambda \\\\cdot Q}{\\\\pi \\\\varepsilon_0 L^2} \\\\right) \\\\cdot x $$<br>Ez egy harmonikus rezgőmozgás D direkciós erővel (rugóállandóval):<br>$$ D = \\\\frac{2 \\\\lambda \\\\cdot Q}{\\\\pi \\\\varepsilon_0 L^2} $$<br>A rezgés periódusideje:<br>$$ T = 2\\\\pi \\\\sqrt{ \\\\frac{m}{D} } $$<br>Behelyettesítve D-t:<br>$$ T = 2\\\\pi \\\\sqrt{ \\\\frac{m \\\\cdot \\\\pi \\\\varepsilon_0 L^2}{2 \\\\lambda \\\\cdot Q} } = \\\\pi L \\\\sqrt{ \\\\frac{2 \\\\pi \\\\varepsilon_0 \\\\cdot m}{\\\\lambda \\\\cdot Q} } $$"
+  },
+  {
+    "examId": "vizsga-3-2023",
+    "examTitle": "3. Vizsga",
+    "label": "Vezetőre ható Lorentz-erő",
+    "derivation": "Egy egyenes, áramjárta vezetőre a homogén mágneses térben ható Lorentz-erő (F) nagysága:<br>$$ F = I \\\\cdot L \\\\cdot B \\\\cdot \\\\sin(\\\\alpha) $$<br>Mivel a vezető merőleges az indukcióvonalakra, \\\\alpha = 90^{\\\\circ}, így \\\\sin(90^{\\\\circ}) = 1. A képlet:<br>$$ F = I \\\\cdot L \\\\cdot B $$<br>A mágneses indukció (B) kifejezéséhez osztunk az áramerősség és a hossz szorzatával:<br>$$ B = \\\\frac{F}{I \\\\cdot L} $$"
+  },
+  {
+    "examId": "vizsga-3-2023",
+    "examTitle": "3. Vizsga",
+    "label": "Szolenoid mágneses tere",
+    "derivation": "Egy egyenes tekercs belsejében az indukció (B):<br>$$ B = \\\\mu_0 \\\\cdot \\\\frac{N}{L} \\\\cdot I $$<br>Ahol \\\\mu_0 a vákuum mágneses permeabilitása, N a menetszám, L a tekercs hossza, I pedig az áramerősség. Az adatokat közvetlenül a képletbe kell helyettesíteni."
+  },
+  {
+    "examId": "vizsga-3-2023",
+    "examTitle": "3. Vizsga",
+    "label": "Félig nyitott síp hossza",
+    "derivation": "Félig nyitott síp (egyik végén zárt, másik végén nyitott) alaprezgése esetén a síp hossza (L) a hullámhossz (\\\\lambda) negyede:<br>$$ L = \\\\frac{\\\\lambda}{4} $$<br>A hullámhossz kifejezhető a hangsebességből (v) és a frekvenciából (f):<br>$$ \\\\lambda = \\\\frac{v}{f} $$<br>Behelyettesítve a hossz képletébe:<br>$$ L = \\\\frac{v}{4f} $$"
+  },
+  {
+    "examId": "vizsga-3-2023",
+    "examTitle": "3. Vizsga",
+    "label": "Kondenzátor töltésének kiszámítása",
+    "derivation": "A kondenzátor kapacitásának (C) definíciója:<br>$$ C = \\\\frac{Q}{U} $$<br>ahol Q a töltés, U a feszültség. A töltés kiszámításához átrendezzük a képletet:<br>$$ Q = C \\\\cdot U $$"
+  },
+  {
+    "examId": "vizsga-3-2023",
+    "examTitle": "3. Vizsga",
+    "label": "Feszültség kiszámítása Ohm-törvénnyel",
+    "derivation": "Ohm törvénye szerint egy R ellenálláson eső U feszültség:<br>$$ U = I \\\\cdot R $$<br>Elegendő ismerni az adott ágon átfolyó I áramot és az ellenállás értékét."
+  },
+  {
+    "examId": "vizsga-3-2023",
+    "examTitle": "3. Vizsga",
+    "label": "Rezgő lapon pattogó test",
+    "derivation": "A test akkor emelkedik el a fémlaptól, ha a lap lefelé mutató maximális gyorsulása eléri a nehézségi gyorsulást (g):<br>$$ a_{\\\\max} = g $$<br>A harmonikus rezgőmozgás maximális gyorsulása:<br>$$ a_{\\\\max} = A \\\\cdot \\\\omega^2 = A \\\\cdot (2\\\\pi f)^2 = A \\\\cdot 4\\\\pi^2 f^2 $$<br>Tegyük egyenlővé a kettőt:<br>$$ g = A \\\\cdot 4\\\\pi^2 f^2 $$<br>Az amplitúdó (A) kifejezve:<br>$$ A = \\\\frac{g}{4\\\\pi^2 f^2} $$"
+  },
+  {
+    "examId": "vizsga-3-2023",
+    "examTitle": "3. Vizsga",
+    "label": "Hővezetés üvegfalon át",
+    "derivation": "A Fourier-féle hővezetési törvény alapján a hőáram (P):<br>$$ P = \\\\lambda \\\\cdot A_{össz} \\\\cdot \\\\frac{\\\\Delta T}{d} $$<br>A kocka alakú akvárium 4 oldalfalán keresztül távozik hő, így egy fal a^2 területe mellett az összfelület:<br>$$ A_{össz} = 4 \\\\cdot a^2 $$<br>Ezt behelyettesítve:<br>$$ P = \\\\lambda \\\\cdot (4 \\\\cdot a^2) \\\\cdot \\\\frac{\\\\Delta T}{d} $$"
+  },
+  {
+    "examId": "vizsga-3-2023",
+    "examTitle": "3. Vizsga",
+    "label": "Állócsigára tekert fonál gyorsulása",
+    "derivation": "A lefelé eső test (M) haladó mozgása Newton II. törvénye szerint:<br>$$ M \\\\cdot g - K = M \\\\cdot a $$<br>A csiga (m) forgómozgása a perdülettétel szerint:<br>$$ K \\\\cdot R = \\\\Theta \\\\cdot \\\\beta $$<br>Tiszta gördülés miatt \\\\beta = a / R, a csiga tehetetlenségi nyomatéka \\\\Theta = 1/2 m R^2. Helyettesítve:<br>$$ K \\\\cdot R = \\\\left( \\\\frac{1}{2} m R^2 \\\\right) \\\\cdot \\\\left( \\\\frac{a}{R} \\\\right) \\\\implies K = \\\\frac{1}{2} m \\\\cdot a $$<br>Ezt visszaírva a haladó mozgás egyenletébe:<br>$$ M \\\\cdot g - \\\\frac{1}{2} m \\\\cdot a = M \\\\cdot a $$<br>Átrendezve és az M=2m feltételt használva:<br>$$ 2m \\\\cdot g = 2m \\\\cdot a + \\\\frac{1}{2} m \\\\cdot a = \\\\frac{5}{2} m \\\\cdot a $$<br>A gyorsulás:<br>$$ a = \\\\frac{4}{5} g $$"
+  },
+  {
+    "examId": "vizsga-3-2023",
+    "examTitle": "3. Vizsga",
+    "label": "Kinetikus gázelmélet nyomása",
+    "derivation": "A nyomás (p) az erő (F) és a felület (A) hányadosa:<br>$$ p = \\\\frac{F}{A} $$<br>Az erőt a molekulák lendületváltozása adja. Egy molekula visszapattanásakor a lendületváltozás 2\\\\cdot m\\\\cdot v_x. Ha n a másodpercenként ütköző részecskék száma, az erő:<br>$$ F = n \\\\cdot 2 \\\\cdot m \\\\cdot v_x $$<br>A gázmolekula tömege m = M / N_A. Ezt beírva az erőbe:<br>$$ F = n \\\\cdot 2 \\\\cdot \\\\frac{M}{N_A} \\\\cdot v_x $$<br>A nyomás képlete végső formában:<br>$$ p = \\\\frac{2 \\\\cdot n \\\\cdot M \\\\cdot v_x}{N_A \\\\cdot A} $$"
+  },
+  {
+    "examId": "vizsga-3-2023",
+    "examTitle": "3. Vizsga",
+    "label": "Változó fluxus Joule-hője",
+    "derivation": "A Faraday-törvény alapján az indukált feszültség:<br>$$ U_e(t) = -\\\\frac{\\\\mathrm{d}\\\\Phi}{\\\\mathrm{d}t} $$<br>A fluxus \\\\Phi(t) = a \\\\tau t - a t^2, melynek deriváltja:<br>$$ U_e(t) = 2at - a\\\\tau $$<br>A Joule-hő teljesítménye:<br>$$ P(t) = \\\\frac{U_e(t)^2}{R} = \\\\frac{(2at - a\\\\tau)^2}{R} = \\\\frac{4a^2 t^2 - 4a^2 \\\\tau t + a^2 \\\\tau^2}{R} $$<br>A teljes hőmennyiség (W) a teljesítmény integrálja 0-tól \\\\tau-ig:<br>$$ W = \\\\int_0^\\\\tau P(t) \\\\, \\\\mathrm{d}t = \\\\frac{1}{R} \\\\left[ \\\\frac{4a^2 t^3}{3} - \\\\frac{4a^2 \\\\tau t^2}{2} + a^2 \\\\tau^2 t \\\\right]_0^\\\\tau $$<br>A határokat behelyettesítve:<br>$$ W = \\\\frac{1}{R} \\\\left( \\\\frac{4}{3} a^2 \\\\tau^3 - 2 a^2 \\\\tau^3 + a^2 \\\\tau^3 \\\\right) = \\\\frac{a^2 \\\\tau^3}{3R} $$"
+  }
+]

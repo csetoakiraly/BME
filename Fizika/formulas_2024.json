@@ -1,0 +1,248 @@
+[
+  {
+    "examId": "vizsga-24-1",
+    "examTitle": "1. Vizsga",
+    "label": "Áramkör belső ellenállása",
+    "derivation": "Ohm-törvény a teljes áramkörre egy állapotban: $$ I_1 = \\\\frac{U}{R_1 + r} $$, ahol $$U$$ a telep feszültsége, $$R_1$$ a külső ellenállás, $$r$$ a belső ellenállás.<br>Egy másik állapotban: $$ I_2 = \\\\frac{U}{R_2 + r} $$.<br>Fejezzük ki mindkettőből a feszültséget: $$ U = I_1(R_1 + r) = I_2(R_2 + r) $$.<br>Bontsuk fel a zárójeleket: $$ I_1 R_1 + I_1 r = I_2 R_2 + I_2 r $$.<br>Rendezzük át úgy, hogy a belső ellenállást ($$r$$) tartalmazó tagok egy oldalra kerüljenek: $$ I_1 r - I_2 r = I_2 R_2 - I_1 R_1 $$.<br>Emeljük ki az $$r$$-t: $$ r(I_1 - I_2) = I_2 R_2 - I_1 R_1 $$.<br>Végül osszunk le az áramok különbségével, így megkapjuk a belső ellenállást: $$ r = \\\\frac{I_2 R_2 - I_1 R_1}{I_1 - I_2} $$."
+  },
+  {
+    "examId": "vizsga-24-1",
+    "examTitle": "1. Vizsga",
+    "label": "Mágneses mérleg",
+    "derivation": "A mérleg akkor mutat nullát, ha a nehézségi erő ($$F_g$$) és a felfelé mutató mágneses Lorentz-erő ($$F_m$$) pontosan kiegyenlíti egymást.<br>A nehézségi erő: $$ F_g = m \\\\cdot g $$.<br>A mágneses erő a huzalon: $$ F_m = B \\\\cdot I \\\\cdot L $$, ahol $$B$$ a mágneses indukció, $$I$$ az áram, $$L$$ a hossz.<br>A kettőt egyenlővé téve: $$ m \\\\cdot g = B \\\\cdot I \\\\cdot L $$.<br>Az áramkörre felírt Ohm-törvény alapján az áramerősség $$ I = \\\\frac{U}{R} $$.<br>Ezt behelyettesítve: $$ m \\\\cdot g = B \\\\cdot \\\\frac{U}{R} \\\\cdot L $$.<br>Szorozzunk át az $$R$$ ellenállással: $$ m \\\\cdot g \\\\cdot R = B \\\\cdot U \\\\cdot L $$.<br>Osszunk le a nehézségi erővel ($$m \\\\cdot g$$), hogy megkapjuk a keresett ellenállást: $$ R = \\\\frac{B \\\\cdot U \\\\cdot L}{m \\\\cdot g} $$."
+  },
+  {
+    "examId": "vizsga-24-1",
+    "examTitle": "1. Vizsga",
+    "label": "Nyitott síp",
+    "derivation": "Egy mindkét végén nyitott síp esetében az alaprezgéskor a síp hosszában ($$L$$) pontosan a hullámhossz fele fér el: $$ L = \\\\frac{\\\\lambda}{2} $$.<br>Ebből a hullámhosszt kifejezve: $$ \\\\lambda = 2L $$.<br>A hang terjedési sebessége ($$v$$) a frekvencia ($$f$$) és a hullámhossz ($$\\\\lambda$$) szorzata: $$ v = f \\\\cdot \\\\lambda $$.<br>Helyettesítsük be ide a hullámhosszt: $$ v = f \\\\cdot 2L $$.<br>Végül fejezzük ki a síp hosszát úgy, hogy elosztjuk a sebességet a többi taggal: $$ L = \\\\frac{v}{2f} $$."
+  },
+  {
+    "examId": "vizsga-24-1",
+    "examTitle": "1. Vizsga",
+    "label": "Tekercs mágneses tere",
+    "derivation": "Egy egyenes tekercs (szolenoid) belsejében a mágneses indukció ($$B$$) nagysága egyenesen arányos a menetek számával ($$N$$) és az áramerősséggel ($$I$$), valamint fordítottan arányos a tekercs hosszával ($$l$$).<br>Az összefüggés: $$ B = \\\\mu_0 \\\\cdot \\\\frac{N}{l} \\\\cdot I $$, ahol $$\\\\mu_0$$ a vákuum permeabilitása (fizikai állandó).<br>Ebbe a képletbe csak be kell helyettesíteni az ismert fizikai paramétereket, nincs szükség algebrai átrendezésre."
+  },
+  {
+    "examId": "vizsga-24-1",
+    "examTitle": "1. Vizsga",
+    "label": "Sebességszűrő",
+    "derivation": "A sebességszűrőn egyenes vonalban azok a részecskék jutnak át, amelyekre az elektromos erő ($$F_e$$) és a mágneses erő ($$F_m$$) megegyezik.<br>Az elektromos erő: $$ F_e = q \\\\cdot E $$.<br>A mágneses erő: $$ F_m = q \\\\cdot v \\\\cdot B $$.<br>Egyenlővé téve: $$ q \\\\cdot E = q \\\\cdot v \\\\cdot B $$.<br>A töltéssel ($$q$$) egyszerűsítve megkapjuk a részecske sebességét: $$ v = \\\\frac{E}{B} $$.<br>A részecske ezt a sebességet az $$U$$ gyorsítófeszültség hatására szerzi meg, amire a munkatételt írjuk fel: az elektromos tér munkája egyenlő a mozgási energiával, azaz $$ q \\\\cdot U = \\\\frac{1}{2} m \\\\cdot v^2 $$.<br>Behelyettesítve a sebességet: $$ q \\\\cdot U = \\\\frac{1}{2} m \\\\cdot \\\\left(\\\\frac{E}{B}\\\\right)^2 $$.<br>Osszunk le a töltéssel ($$q$$), hogy megkapjuk a feszültséget: $$ U = \\\\frac{m \\\\cdot E^2}{2 \\\\cdot q \\\\cdot B^2} $$."
+  },
+  {
+    "examId": "vizsga-24-1",
+    "examTitle": "1. Vizsga",
+    "label": "Lorentz-erő sínpáron",
+    "derivation": "A sínpáron lévő rúdra Lorentz-erő hat a mágneses tér miatt: $$ F = B \\\\cdot I \\\\cdot \\\\ell $$, ahol $$B$$ a mágneses tér, $$I$$ az áram, $$\\\\ell$$ a rúd hossza.<br>Az áramkörben folyó áramot az Ohm-törvény adja meg: $$ I = \\\\frac{U}{R} $$.<br>Ezt behelyettesítve az erőképletbe: $$ F = B \\\\cdot \\\\frac{U}{R} \\\\cdot \\\\ell $$.<br>Newton második törvénye alapján a test gyorsulása az erő és a tömeg hányadosa: $$ a = \\\\frac{F}{m} $$.<br>Helyettesítsük be a kapott erőt: $$ a = \\\\frac{B \\\\cdot U \\\\cdot \\\\ell}{m \\\\cdot R} $$."
+  },
+  {
+    "examId": "vizsga-24-1",
+    "examTitle": "1. Vizsga",
+    "label": "Gördülő henger megállítása",
+    "derivation": "A tiszta gördülést végző henger teljes mozgási energiája a haladó és a forgó mozgási energiák összege: $$ E_k = \\\\frac{1}{2} m v^2 + \\\\frac{1}{2} \\\\Theta \\\\omega^2 $$.<br>A tömör henger tehetetlenségi nyomatéka: $$ \\\\Theta = \\\\frac{1}{2} m R^2 $$, a tiszta gördülés miatt a szögsebesség: $$ \\\\omega = \\\\frac{v}{R} $$.<br>Helyettesítsük be ezeket: $$ E_k = \\\\frac{1}{2} m v^2 + \\\\frac{1}{2} \\\\left(\\\\frac{1}{2} m R^2\\\\right) \\\\left(\\\\frac{v}{R}\\\\right)^2 $$.<br>Az $$R^2$$ tagok kiejtik egymást: $$ E_k = \\\\frac{1}{2} m v^2 + \\\\frac{1}{4} m v^2 $$.<br>A törteket közös nevezőre hozva: $$ E_k = \\\\frac{3}{4} m v^2 $$.<br>A megállításhoz végzett munkának (munkatétel alapján) pontosan ezzel a kezdeti kinetikus energiával kell megegyeznie: $$ W = \\\\frac{3}{4} m v^2 $$."
+  },
+  {
+    "examId": "vizsga-24-1",
+    "examTitle": "1. Vizsga",
+    "label": "Szauna fűtése",
+    "derivation": "A Newton-féle lehűlési törvény szerint az állandó hőmérséklet fenntartásához szükséges fűtőteljesítmény ($$P$$) egyenesen arányos a külső és belső hőmérséklet különbségével ($$\\\\Delta T$$).<br>Ez felírható úgy, hogy $$ P = k \\\\cdot \\\\Delta T $$, ahol $$k$$ egy állandó.<br>Az első állapotra: $$ P_1 = k \\\\cdot \\\\Delta T_1 $$, amiből a konstans kifejezhető: $$ k = \\\\frac{P_1}{\\\\Delta T_1} $$.<br>A második állapotra felírt egyenletbe ($$ P_2 = k \\\\cdot \\\\Delta T_2 $$) behelyettesítve ezt a konstanst, megkapjuk az új teljesítményt: $$ P_2 = P_1 \\\\cdot \\\\frac{\\\\Delta T_2}{\\\\Delta T_1} $$."
+  },
+  {
+    "examId": "vizsga-24-1",
+    "examTitle": "1. Vizsga",
+    "label": "Négyzetes töltésrendszer",
+    "derivation": "Vizsgáljuk a négyzet egyik csúcsában lévő töltést! A két szomszédos csúcsban lévő töltés egyenként $$ F_1 = k \\\\frac{Q^2}{a^2} $$ taszítóerőt fejt ki rá.<br>Mivel ezek merőlegesek egymásra, az eredőjük a Pitagorasz-tétel alapján az átló irányába mutat: $$ F_{1,2} = \\\\sqrt{2} \\\\cdot F_1 $$.<br>A negyedik töltés a négyzet átellenes csúcsában van, távolsága $$ a\\\\sqrt{2} $$.<br>Az általa kifejtett taszítóerő: $$ F_3 = k \\\\frac{Q^2}{(a\\\\sqrt{2})^2} = \\\\frac{1}{2} F_1 $$.<br>Mivel $$F_{1,2}$$ és $$F_3$$ iránya megegyezik, a teljes eredő erő: $$ F = \\\\sqrt{2} F_1 + \\\\frac{1}{2} F_1 $$.<br>Kiemelve $$F_1$$-et: $$ F = k \\\\frac{Q^2}{a^2} \\\\left(\\\\sqrt{2} + \\\\frac{1}{2}\\\\right) $$."
+  },
+  {
+    "examId": "vizsga-24-1",
+    "examTitle": "1. Vizsga",
+    "label": "Kinetikus gáz nyomása",
+    "derivation": "Egyetlen molekula rugalmas ütközése a fallal kétszeres lendületváltozást okoz: $$ \\\\Delta p_1 = 2 m v $$.<br>Ha $$t$$ idő alatt $$N$$ molekula ütközik, a falra ható teljes erő Newton II. törvénye alapján a lendületváltozás sebessége: $$ F = \\\\frac{N}{t} \\\\cdot 2 m v $$.<br>A nyomás ($$p$$) az erő és a felület ($$A$$) hányadosa: $$ p = \\\\frac{F}{A} = \\\\frac{N \\\\cdot 2 m v}{t \\\\cdot A} $$.<br>A tömeget kifejezve a moláris tömegből ($$M$$) és az Avogadro-számból ($$N_A$$): $$ m = \\\\frac{M}{N_A} $$.<br>A nyomás végleges képlete: $$ p = \\\\frac{2 N M v}{t A N_A} $$."
+  },
+  {
+    "examId": "vizsga-24-1",
+    "examTitle": "1. Vizsga",
+    "label": "IMSC töltött gyöngy",
+    "derivation": "A vonaltöltés tere kis kitérés ($$x$$) esetén egyenesen arányos a kitéréssel: $$ E(x) \\\\approx k_E \\\\cdot x $$, ahol $$k_E = \\\\frac{2\\\\lambda}{\\\\pi\\\\varepsilon_0 L^2} $$.<br>A gyöngyre ható visszatérítő erő: $$ F = -q \\\\cdot E(x) = -(q \\\\cdot k_E) \\\\cdot x $$.<br>Mivel az erő lineárisan arányos a kitéréssel, a mozgás harmonikus, direkciós erőállandója $$ D = q \\\\cdot k_E $$.<br>A rezgésidő képlete $$ T = 2\\\\pi \\\\sqrt{\\\\frac{m}{D}} $$.<br>Behelyettesítve a $$D$$ értékét: $$ T = 2\\\\pi \\\\sqrt{\\\\frac{m \\\\pi \\\\varepsilon_0 L^2}{2 \\\\lambda q}} $$."
+  },
+  {
+    "examId": "vizsga-24-2",
+    "examTitle": "2. Vizsga",
+    "label": "Kondenzátorok párhuzamosan",
+    "derivation": "A kezdetben feltöltött kondenzátor töltése: $$ Q_1 = C_1 \\\\cdot U_1 $$.<br>Amikor egy töltetlen ($$C_x$$) kondenzátorral párhuzamosan kapcsoljuk, az össztöltés nem változik, de megoszlik, a feszültség pedig lecsökken $$U_2$$-re.<br>A párhuzamosan kapcsolt rendszer eredő kapacitása: $$ C_{eredő} = C_1 + C_x $$.<br>Az össztöltésre felírva: $$ Q_1 = C_{eredő} \\\\cdot U_2 $$, azaz $$ C_1 \\\\cdot U_1 = (C_1 + C_x) \\\\cdot U_2 $$.<br>Osszunk le az új feszültséggel: $$ \\\\frac{C_1 \\\\cdot U_1}{U_2} = C_1 + C_x $$.<br>Vonjuk ki a $$C_1$$-et, hogy megkapjuk az ismeretlen kapacitást: $$ C_x = \\\\frac{C_1 \\\\cdot U_1}{U_2} - C_1 $$."
+  },
+  {
+    "examId": "vizsga-24-2",
+    "examTitle": "2. Vizsga",
+    "label": "Diavetítő lencse",
+    "derivation": "A lencsetörvény alapján az első esetben felírjuk a fókusztávolság összefüggését: $$ \\\\frac{1}{f} = \\\\frac{1}{t_1} + \\\\frac{1}{k_1} $$.<br>Mivel a nagyítás $$ N = \\\\frac{k_1}{t_1} $$, a tárgytávolság kifejezhető: $$ t_1 = \\\\frac{k_1}{N} $$.<br>A tárgy és az ernyő közötti távolság: $$ L_1 = t_1 + k_1 $$.<br>Az ernyőt közelebb hozzuk, az új távolság $$ L_2 $$.<br>Ekkor az új tárgytávolságot ($$t_2$$) és képtávolságot ($$k_2 = L_2 - t_2$$) használva a lencsetörvény: $$ \\\\frac{1}{t_2} + \\\\frac{1}{L_2 - t_2} = \\\\frac{1}{f} $$.<br>Közös nevezőre hozva: $$ \\\\frac{L_2}{t_2 (L_2 - t_2)} = \\\\frac{1}{f} $$.<br>Keresztbeszorzás után: $$ f \\\\cdot L_2 = t_2 L_2 - t_2^2 $$.<br>Mindent egy oldalra rendezve egy másodfokú egyenletet kapunk a $$t_2$$-re: $$ t_2^2 - L_2 t_2 + f L_2 = 0 $$.<br>A keresett elmozdulás a két tárgytávolság különbsége lesz: $$ \\\\Delta t = |t_2 - t_1| $$."
+  },
+  {
+    "examId": "vizsga-24-2",
+    "examTitle": "2. Vizsga",
+    "label": "Áramkör Thevenin",
+    "derivation": "Több hurkos, összetett egyenáramú hálózat esetén célszerű a csomóponti potenciálok módszerét alkalmazni. Kinevezünk egy közös vezetéket referenciapontnak ($$ V_{ref} = 0 \\\\text{ V} $$).<br>Az ismeretlen feszültségű csomópontra (A) felírjuk a Kirchhoff-féle csomóponti törvényt (az oda befutó áramok összege nulla).<br>Az ágak áramát a potenciálkülönbségek és az ágak ellenállásának hányadosaként kapjuk, az egyenlet rendezése a Millman-tételt adja: $$ V_A = \\\\frac{\\\\sum \\\\frac{U_i}{R_i}}{\\\\sum \\\\frac{1}{R_i}} $$.<br>A B pont potenciálja is ugyanígy számítható: $$ V_B = \\\\frac{\\\\sum \\\\frac{U_j}{R_j}}{\\\\sum \\\\frac{1}{R_j}} $$.<br>A két pont közötti feszültség a potenciáljaik különbségének abszolút értéke: $$ U_{AB} = |V_A - V_B| $$."
+  },
+  {
+    "examId": "vizsga-24-2",
+    "examTitle": "2. Vizsga",
+    "label": "Akkumulátor lemerülése",
+    "derivation": "A bekapcsolt fogyasztók (izzók) összteljesítménye a számuk ($$N$$) és az egyedi teljesítményük ($$P_1$$) szorzata: $$ P_{össz} = N \\\\cdot P_1 $$.<br>Az akkumulátor feszültségét ($$U$$) ismerve az áramerősséget kifejezzük a teljesítményből: $$ I = \\\\frac{P_{össz}}{U} $$.<br>Az akkumulátor töltésének felét kell elhasználni, így az elvesztett töltésmennyiség: $$ \\\\Delta Q = \\\\frac{Q_{max}}{2} $$.<br>Az idő ($$t$$), ami alatt ez a töltés elfolyik, a töltés és az áramerősség hányadosa: $$ t = \\\\frac{\\\\Delta Q}{I} $$.<br>Helyettesítsük be az áramot: $$ t = \\\\frac{\\\\Delta Q \\\\cdot U}{P_{össz}} $$."
+  },
+  {
+    "examId": "vizsga-24-2",
+    "examTitle": "2. Vizsga",
+    "label": "Csillapított rezgés",
+    "derivation": "A csillapított rezgés energiája időben exponenciálisan csökken: $$ E(t) = E_0 e^{-2\\\\beta t} $$.<br>Egy adott $$t_1$$ idő múlva az energia $$ E(t_1) = E_0 e^{-1} $$ lesz.<br>A kettőt összevetve az exponensek megegyeznek: $$ -2\\\\beta t_1 = -1 $$, amiből a csillapítási tényező: $$ \\\\beta = \\\\frac{1}{2t_1} $$.<br>A rendszer saját körfrekvenciája: $$ \\\\omega_0 = \\\\sqrt{\\\\frac{D}{m}} $$.<br>A csillapított rezgés tényleges körfrekvenciája: $$ \\\\omega = \\\\sqrt{\\\\omega_0^2 - \\\\beta^2} $$.<br>A keresett frekvencia pedig a körfrekvencia és $$2\\\\pi$$ hányadosa: $$ f = \\\\frac{\\\\omega}{2\\\\pi} = \\\\frac{\\\\sqrt{\\\\frac{D}{m} - \\\\left(\\\\frac{1}{2t_1}\\\\right)^2}}{2\\\\pi} $$."
+  },
+  {
+    "examId": "vizsga-24-2",
+    "examTitle": "2. Vizsga",
+    "label": "Elektromos dipólus",
+    "derivation": "A két ellentétes töltésből álló rúd egy elektromos dipólust alkot. A dipólmomentum nagysága: $$ p = Q \\\\cdot d $$, ahol $$d$$ a rúd hossza.<br>A dipólus potenciális energiája homogén külső térben: $$ U = -p \\\\cdot E \\\\cdot \\\\cos\\\\theta $$.<br>A legkisebb energiájú állapotban a dipólus iránya megegyezik a térerősséggel ($$\\\\theta = 0^\\\\circ$$): $$ U_{min} = -p \\\\cdot E $$.<br>A legnagyobb energiájú állapotban pont ellentétesen áll ($$\\\\theta = 180^\\\\circ$$): $$ U_{max} = p \\\\cdot E $$.<br>A végzett munka az energiakülönbség: $$ W = U_{max} - U_{min} = p \\\\cdot E - (-p \\\\cdot E) = 2 \\\\cdot p \\\\cdot E $$.<br>A dipólmomentumot visszaírva: $$ W = 2 \\\\cdot Q \\\\cdot d \\\\cdot E $$."
+  },
+  {
+    "examId": "vizsga-24-2",
+    "examTitle": "2. Vizsga",
+    "label": "Zárt síp",
+    "derivation": "Egyik végén zárt csőben állóhullámok alakulnak ki. A zárt végen csomópont, a nyitott végen duzzadóhely van.<br>Az első felharmonikus (a nyitott végen kívül még egy duzzadóhely) esetén a cső hosszában a hullámhossz háromnegyede fér el: $$ L = \\\\frac{3\\\\lambda}{4} $$.<br>Szorozzunk 4-gyel és osszunk 3-mal a hullámhossz kifejezéséhez: $$ \\\\lambda = \\\\frac{4L}{3} $$.<br>A hang terjedési sebessége a frekvencia és a hullámhossz szorzata: $$ v = f \\\\cdot \\\\lambda $$.<br>Behelyettesítve a hullámhosszt: $$ v = f \\\\cdot \\\\frac{4L}{3} $$."
+  },
+  {
+    "examId": "vizsga-24-2",
+    "examTitle": "2. Vizsga",
+    "label": "Korong és lógó teher",
+    "derivation": "Írjuk fel Newton második törvényét a lógó testre: $$ m \\\\cdot g - K = m \\\\cdot a $$.<br>A forgó korongra a nyomatékegyenlet: $$ K \\\\cdot R = \\\\Theta \\\\cdot \\\\beta $$.<br>Tömör korongra $$ \\\\Theta = \\\\frac{1}{2} M R^2 $$, a szöggyorsulás pedig $$ \\\\beta = \\\\frac{a}{R} $$.<br>Ezt behelyettesítve: $$ K \\\\cdot R = \\\\left(\\\\frac{1}{2} M R^2\\\\right) \\\\cdot \\\\frac{a}{R} $$. Az $$R$$-ek kiesnek: $$ K = \\\\frac{1}{2} M a $$.<br>A gyorsulást kifejezve: $$ a = \\\\frac{2K}{M} $$.<br>Helyettesítsük be ezt a haladó mozgás egyenletébe: $$ m \\\\cdot g - K = m \\\\cdot \\\\frac{2K}{M} $$.<br>Rendezzük a $$K$$-t tartalmazó tagokat: $$ m \\\\cdot g = K \\\\left(1 + \\\\frac{2m}{M}\\\\right) $$.<br>Leosztva megkapjuk a kötélerőt: $$ K = \\\\frac{m \\\\cdot g}{1 + \\\\frac{2m}{M}} $$."
+  },
+  {
+    "examId": "vizsga-24-2",
+    "examTitle": "2. Vizsga",
+    "label": "Wheatstone-híd",
+    "derivation": "A kapcsolásban a teleppel két ág van párhuzamosan kötve. Mindkét ág önmagában egy-egy feszültségosztó.<br>Az A pont potenciálja a második ellenálláson eső feszültséggel egyezik meg: $$ V_A = U \\\\cdot \\\\frac{R_2}{R_1 + R_2} $$.<br>A B pont potenciálja hasonlóképpen: $$ V_B = U \\\\cdot \\\\frac{R_4}{R_3 + R_4} $$.<br>A két pont közötti feszültségkülönbség: $$ U_{AB} = |V_A - V_B| $$.<br>Behelyettesítve és az $$U$$ feszültséget kiemelve: $$ U_{AB} = U \\\\cdot \\\\left| \\\\frac{R_2}{R_1 + R_2} - \\\\frac{R_4}{R_3 + R_4} \\\\right| $$."
+  },
+  {
+    "examId": "vizsga-24-2",
+    "examTitle": "2. Vizsga",
+    "label": "Léggömb felfújása",
+    "derivation": "Zárt, ideális gázra felírható az egyesített gáztörvény, mivel a molekulaszám (anyagmennyiség) nem változik a belélegzett és a felfújt levegőben: $$ \\\\frac{p_1 \\\\cdot V_1}{T_1} = \\\\frac{p_2 \\\\cdot V_2}{T_2} $$.<br>Szorozzunk át a $$T_1$$ kezdeti hőmérséklettel és osszunk le a $$p_1$$ kezdeti nyomással, hogy kifejezzük a keresett belélegzett térfogatot: $$ V_1 = V_2 \\\\cdot \\\\frac{p_2}{p_1} \\\\cdot \\\\frac{T_1}{T_2} $$.<br>A hőmérsékleteket Kelvinbe át kell váltani a behelyettesítés előtt."
+  },
+  {
+    "examId": "vizsga-24-3",
+    "examTitle": "3. Vizsga",
+    "label": "Rezgés amplitúdója",
+    "derivation": "A harmonikus rezgőmozgást végző test mechanikai energiája állandó.<br>A tetszőleges pillanatban meglévő energiák összege megegyezik a maximális kitéréskor meglévő energiával: $$ \\\\frac{1}{2} D x^2 + \\\\frac{1}{2} m v^2 = \\\\frac{1}{2} D A^2 $$.<br>Szorozzuk be az egyenletet 2-vel: $$ D x^2 + m v^2 = D A^2 $$.<br>Osszunk le a rugóállandóval ($$D$$): $$ x^2 + \\\\frac{m v^2}{D} = A^2 $$.<br>Vegyünk négyzetgyököt, így megkapjuk a rezgés amplitúdóját: $$ A = \\\\sqrt{x^2 + \\\\frac{m v^2}{D}} $$."
+  },
+  {
+    "examId": "vizsga-24-3",
+    "examTitle": "3. Vizsga",
+    "label": "Lorentz-erő vektoros",
+    "derivation": "A mágneses térben mozgó töltésre ható Lorentz-erő vektoros alakja: $$ \\\\mathbf{F} = q \\\\cdot (\\\\mathbf{v} \\\\times \\\\mathbf{B}) $$.<br>A sebességvektornak csak x irányú komponense van: $$ \\\\mathbf{v} = (v_x, 0, 0) $$.<br>A mágneses tér vektor komponensei $$ \\\\mathbf{B} = (B_x, B_y, B_z) $$.<br>A vektoriális szorzat eredménye: $$ \\\\mathbf{v} \\\\times \\\\mathbf{B} = (0, -v_x B_z, v_x B_y) $$.<br>Ennek a vektornak a hossza a Pitagorasz-tétellel: $$ |\\\\mathbf{v} \\\\times \\\\mathbf{B}| = \\\\sqrt{0^2 + (-v_x B_z)^2 + (v_x B_y)^2} $$.<br>Emeljük ki a $$v_x$$ tényezőt: $$ |\\\\mathbf{v} \\\\times \\\\mathbf{B}| = v_x \\\\cdot \\\\sqrt{B_z^2 + B_y^2} $$.<br>Az erő nagysága a töltéssel szorozva: $$ F = q \\\\cdot v_x \\\\cdot \\\\sqrt{B_z^2 + B_y^2} $$."
+  },
+  {
+    "examId": "vizsga-24-3",
+    "examTitle": "3. Vizsga",
+    "label": "Hengeres vezető mágneses tere",
+    "derivation": "Vezető belsejében a mágneses térerősséget az Ampère-féle gerjesztési törvénnyel számítjuk: $$ \\\\oint \\\\mathbf{H} \\\\cdot \\\\mathrm{d}\\\\mathbf{l} = I_{bezárt} $$.<br>Vegyünk fel egy $$r$$ sugarú kört integrálási útként, ekkor az integrál $$ H \\\\cdot 2\\\\pi r $$.<br>A körülfogott áram az áramsűrűség ($$j$$) és a kör területének szorzata: $$ I_{bezárt} = j \\\\cdot \\\\pi r^2 $$.<br>Egyenlővé téve: $$ H \\\\cdot 2\\\\pi r = j \\\\cdot \\\\pi r^2 $$.<br>Egyszerűsítsünk $$\\pi$$-vel és egy darab $$r$$-rel: $$ H \\\\cdot 2 = j \\\\cdot r $$.<br>Osszunk le 2-vel a térerősséghez: $$ H = \\\\frac{j \\\\cdot r}{2} $$."
+  },
+  {
+    "examId": "vizsga-24-3",
+    "examTitle": "3. Vizsga",
+    "label": "Akkumulátor lemerülése",
+    "derivation": "A bekapcsolt fogyasztók (izzók) összteljesítménye a számuk ($$N$$) és az egyedi teljesítményük ($$P_1$$) szorzata: $$ P_{össz} = N \\\\cdot P_1 $$.<br>Az akkumulátor feszültségét ($$U$$) ismerve az áramerősséget kifejezzük a teljesítményből: $$ I = \\\\frac{P_{össz}}{U} $$.<br>Az akkumulátor töltésének felét kell elhasználni, így az elvesztett töltésmennyiség: $$ \\\\Delta Q = \\\\frac{Q_{max}}{2} $$.<br>Az idő ($$t$$), ami alatt ez a töltés elfolyik, a töltés és az áramerősség hányadosa: $$ t = \\\\frac{\\\\Delta Q}{I} $$.<br>Helyettesítsük be az áramot: $$ t = \\\\frac{\\\\Delta Q \\\\cdot U}{P_{össz}} $$."
+  },
+  {
+    "examId": "vizsga-24-3",
+    "examTitle": "3. Vizsga",
+    "label": "Szauna fűtése",
+    "derivation": "A Newton-féle lehűlési törvény szerint az állandó hőmérséklet fenntartásához szükséges fűtőteljesítmény ($$P$$) egyenesen arányos a külső és belső hőmérséklet különbségével ($$\\\\Delta T$$).<br>Ez felírható úgy, hogy $$ P = k \\\\cdot \\\\Delta T $$, ahol $$k$$ egy állandó.<br>Az első állapotra: $$ P_1 = k \\\\cdot \\\\Delta T_1 $$, amiből a konstans kifejezhető: $$ k = \\\\frac{P_1}{\\\\Delta T_1} $$.<br>A második állapotra felírt egyenletbe ($$ P_2 = k \\\\cdot \\\\Delta T_2 $$) behelyettesítve ezt a konstanst, megkapjuk az új teljesítményt: $$ P_2 = P_1 \\\\cdot \\\\frac{\\\\Delta T_2}{\\\\Delta T_1} $$."
+  },
+  {
+    "examId": "vizsga-24-3",
+    "examTitle": "3. Vizsga",
+    "label": "Ceruzaelem belső ellenállása",
+    "derivation": "Egy elem és egy $$R$$ ellenállás esetén a körben folyó áram: $$ I_1 = \\\\frac{U_0}{R + r} $$.<br>Két elem sorbakötésekor a feszültség ($$2U_0$$) és a belső ellenállás ($$2r$$) is duplázódik, az áram: $$ I_2 = \\\\frac{2U_0}{R + 2r} $$.<br>Tudjuk, hogy az áram $$k$$-szorosára nőtt: $$ I_2 = k \\\\cdot I_1 $$.<br>Helyettesítsük be: $$ \\\\frac{2U_0}{R + 2r} = k \\\\cdot \\\\frac{U_0}{R + r} $$.<br>$$U_0$$-lal egyszerűsítve: $$ \\\\frac{2}{R + 2r} = \\\\frac{k}{R + r} $$.<br>Keresztszorzással: $$ 2(R + r) = k(R + 2r) $$.<br>Zárójeleket bontva és $$r$$-re rendezve: $$ 2R - kR = 2kr - 2r $$.<br>Kiemelve: $$ R(2 - k) = r(2k - 2) $$.<br>A belső ellenállás: $$ r = R \\\\frac{2 - k}{2k - 2} $$."
+  },
+  {
+    "examId": "vizsga-24-3",
+    "examTitle": "3. Vizsga",
+    "label": "Zárt síp",
+    "derivation": "Egyik végén zárt csőben állóhullámok alakulnak ki. A zárt végen csomópont, a nyitott végen duzzadóhely van.<br>Az első felharmonikus (a nyitott végen kívül még egy duzzadóhely) esetén a cső hosszában a hullámhossz háromnegyede fér el: $$ L = \\\\frac{3\\\\lambda}{4} $$.<br>Szorozzunk 4-gyel és osszunk 3-mal a hullámhossz kifejezéséhez: $$ \\\\lambda = \\\\frac{4L}{3} $$.<br>A hang terjedési sebessége a frekvencia és a hullámhossz szorzata: $$ v = f \\\\cdot \\\\lambda $$.<br>Behelyettesítve a hullámhosszt: $$ v = f \\\\cdot \\\\frac{4L}{3} $$."
+  },
+  {
+    "examId": "vizsga-24-3",
+    "examTitle": "3. Vizsga",
+    "label": "Korong és lógó teher",
+    "derivation": "Írjuk fel Newton második törvényét a lógó testre: $$ m \\\\cdot g - K = m \\\\cdot a $$.<br>A forgó korongra a nyomatékegyenlet: $$ K \\\\cdot R = \\\\Theta \\\\cdot \\\\beta $$.<br>Tömör korongra $$ \\\\Theta = \\\\frac{1}{2} M R^2 $$, a szöggyorsulás pedig $$ \\\\beta = \\\\frac{a}{R} $$.<br>Ezt behelyettesítve: $$ K \\\\cdot R = \\\\left(\\\\frac{1}{2} M R^2\\\\right) \\\\cdot \\\\frac{a}{R} $$. Az $$R$$-ek kiesnek: $$ K = \\\\frac{1}{2} M a $$.<br>A gyorsulást kifejezve: $$ a = \\\\frac{2K}{M} $$.<br>Helyettesítsük be ezt a haladó mozgás egyenletébe: $$ m \\\\cdot g - K = m \\\\cdot \\\\frac{2K}{M} $$.<br>Rendezzük a $$K$$-t tartalmazó tagokat: $$ m \\\\cdot g = K \\\\left(1 + \\\\frac{2m}{M}\\\\right) $$.<br>Leosztva megkapjuk a kötélerőt: $$ K = \\\\frac{m \\\\cdot g}{1 + \\\\frac{2m}{M}} $$."
+  },
+  {
+    "examId": "vizsga-24-3",
+    "examTitle": "3. Vizsga",
+    "label": "Kondenzátor lemezek között mozgó töltés",
+    "derivation": "A síkkondenzátor lemezei között a homogén elektromos térerősség: $$ E = \\\\frac{U}{d} $$.<br>Az elektromos erő vízszintes irányú: $$ F_e = q \\\\cdot E = q \\\\cdot \\\\frac{U}{d} $$.<br>A gravitációs erő függőleges irányú: $$ F_g = m \\\\cdot g $$.<br>A test a két erő eredőjének irányába kezd el mozogni. A vízszintessel bezárt szög tangense a függőleges és a vízszintes erő aránya: $$ \\\\tan\\\\alpha = \\\\frac{F_g}{F_e} $$.<br>Behelyettesítve az erőket: $$ \\\\tan\\\\alpha = \\\\frac{m \\\\cdot g}{q \\\\cdot \\\\frac{U}{d}} = \\\\frac{m \\\\cdot g \\\\cdot d}{q \\\\cdot U} $$.<br>A szöget az arkusz tangenssel kapjuk meg: $$ \\\\alpha = \\\\arctan\\\\left(\\\\frac{m \\\\cdot g \\\\cdot d}{q \\\\cdot U}\\\\right) $$."
+  },
+  {
+    "examId": "vizsga-24-3",
+    "examTitle": "3. Vizsga",
+    "label": "Áramkör Thevenin",
+    "derivation": "Több hurkos, összetett egyenáramú hálózat esetén célszerű a csomóponti potenciálok módszerét alkalmazni. Kinevezünk egy közös vezetéket referenciapontnak ($$ V_{ref} = 0 \\\\text{ V} $$).<br>Az ismeretlen feszültségű csomópontra (A) felírjuk a Kirchhoff-féle csomóponti törvényt (az oda befutó áramok összege nulla).<br>Az ágak áramát a potenciálkülönbségek és az ágak ellenállásának hányadosaként kapjuk, az egyenlet rendezése a Millman-tételt adja: $$ V_A = \\\\frac{\\\\sum \\\\frac{U_i}{R_i}}{\\\\sum \\\\frac{1}{R_i}} $$.<br>A B pont potenciálja is ugyanígy számítható: $$ V_B = \\\\frac{\\\\sum \\\\frac{U_j}{R_j}}{\\\\sum \\\\frac{1}{R_j}} $$.<br>A két pont közötti feszültség a potenciáljaik különbségének abszolút értéke: $$ U_{AB} = |V_A - V_B| $$."
+  },
+  {
+    "examId": "vizsga-24-4",
+    "examTitle": "4. Vizsga",
+    "label": "Kondenzátorok párhuzamosan",
+    "derivation": "A kezdetben feltöltött kondenzátor töltése: $$ Q_1 = C_1 \\\\cdot U_1 $$.<br>Amikor egy töltetlen ($$C_x$$) kondenzátorral párhuzamosan kapcsoljuk, az össztöltés nem változik, de megoszlik, a feszültség pedig lecsökken $$U_2$$-re.<br>A párhuzamosan kapcsolt rendszer eredő kapacitása: $$ C_{eredő} = C_1 + C_x $$.<br>Az össztöltésre felírva: $$ Q_1 = C_{eredő} \\\\cdot U_2 $$, azaz $$ C_1 \\\\cdot U_1 = (C_1 + C_x) \\\\cdot U_2 $$.<br>Osszunk le az új feszültséggel: $$ \\\\frac{C_1 \\\\cdot U_1}{U_2} = C_1 + C_x $$.<br>Vonjuk ki a $$C_1$$-et, hogy megkapjuk az ismeretlen kapacitást: $$ C_x = \\\\frac{C_1 \\\\cdot U_1}{U_2} - C_1 $$."
+  },
+  {
+    "examId": "vizsga-24-4",
+    "examTitle": "4. Vizsga",
+    "label": "Lorentz-erő vektoros",
+    "derivation": "A mágneses térben mozgó töltésre ható Lorentz-erő vektoros alakja: $$ \\\\mathbf{F} = q \\\\cdot (\\\\mathbf{v} \\\\times \\\\mathbf{B}) $$.<br>A sebességvektornak csak x irányú komponense van: $$ \\\\mathbf{v} = (v_x, 0, 0) $$.<br>A mágneses tér vektor komponensei $$ \\\\mathbf{B} = (B_x, B_y, B_z) $$.<br>A vektoriális szorzat eredménye: $$ \\\\mathbf{v} \\\\times \\\\mathbf{B} = (0, -v_x B_z, v_x B_y) $$.<br>Ennek a vektornak a hossza a Pitagorasz-tétellel: $$ |\\\\mathbf{v} \\\\times \\\\mathbf{B}| = \\\\sqrt{0^2 + (-v_x B_z)^2 + (v_x B_y)^2} $$.<br>Emeljük ki a $$v_x$$ tényezőt: $$ |\\\\mathbf{v} \\\\times \\\\mathbf{B}| = v_x \\\\cdot \\\\sqrt{B_z^2 + B_y^2} $$.<br>Az erő nagysága a töltéssel szorozva: $$ F = q \\\\cdot v_x \\\\cdot \\\\sqrt{B_z^2 + B_y^2} $$."
+  },
+  {
+    "examId": "vizsga-24-4",
+    "examTitle": "4. Vizsga",
+    "label": "Két telepes áramkör",
+    "derivation": "A két hurkos áramkört a csomóponti törvénnyel oldjuk meg. Legyen az áramkör alsó, közös vezetéke a 0 V-os potenciálú referencia pont.<br>A feladat egy középső, közös feszültségforrást ($$U_{közös}$$) határoz meg, aminek felső pontja így adott potenciálra kerül.<br>A bal ág árama az Ohm-törvény értelmében a potenciálkülönbség és az ellenállás hányadosa: $$ I_1 = \\\\frac{U_{közös} - U_1}{R_1} $$.<br>A jobb ág árama ugyanígy: $$ I_2 = \\\\frac{U_{közös} - U_2}{R_2} $$.<br>Kirchhoff csomóponti törvénye alapján a közös ágban folyó teljes áram a két mellékág áramának összege kell hogy legyen: $$ I_{közös} = I_1 + I_2 = \\\\frac{U_{közös} - U_1}{R_1} + \\\\frac{U_{közös} - U_2}{R_2} $$."
+  },
+  {
+    "examId": "vizsga-24-4",
+    "examTitle": "4. Vizsga",
+    "label": "Akkumulátor lemerülése",
+    "derivation": "A bekapcsolt fogyasztók (izzók) összteljesítménye a számuk ($$N$$) és az egyedi teljesítményük ($$P_1$$) szorzata: $$ P_{össz} = N \\\\cdot P_1 $$.<br>Az akkumulátor feszültségét ($$U$$) ismerve az áramerősséget kifejezzük a teljesítményből: $$ I = \\\\frac{P_{össz}}{U} $$.<br>Az akkumulátor töltésének felét kell elhasználni, így az elvesztett töltésmennyiség: $$ \\\\Delta Q = \\\\frac{Q_{max}}{2} $$.<br>Az idő ($$t$$), ami alatt ez a töltés elfolyik, a töltés és az áramerősség hányadosa: $$ t = \\\\frac{\\\\Delta Q}{I} $$.<br>Helyettesítsük be az áramot: $$ t = \\\\frac{\\\\Delta Q \\\\cdot U}{P_{össz}} $$."
+  },
+  {
+    "examId": "vizsga-24-4",
+    "examTitle": "4. Vizsga",
+    "label": "Szauna fűtése",
+    "derivation": "A Newton-féle lehűlési törvény szerint az állandó hőmérséklet fenntartásához szükséges fűtőteljesítmény ($$P$$) egyenesen arányos a külső és belső hőmérséklet különbségével ($$\\\\Delta T$$).<br>Ez felírható úgy, hogy $$ P = k \\\\cdot \\\\Delta T $$, ahol $$k$$ egy állandó.<br>Az első állapotra: $$ P_1 = k \\\\cdot \\\\Delta T_1 $$, amiből a konstans kifejezhető: $$ k = \\\\frac{P_1}{\\\\Delta T_1} $$.<br>A második állapotra felírt egyenletbe ($$ P_2 = k \\\\cdot \\\\Delta T_2 $$) behelyettesítve ezt a konstanst, megkapjuk az új teljesítményt: $$ P_2 = P_1 \\\\cdot \\\\frac{\\\\Delta T_2}{\\\\Delta T_1} $$."
+  },
+  {
+    "examId": "vizsga-24-4",
+    "examTitle": "4. Vizsga",
+    "label": "Lejtőn csúszó rézlap",
+    "derivation": "Mivel a rézlap állandó sebességgel csúszik lefelé a lejtőn, a mozgási energiája nem változik. A mechanikai energia megmaradása miatt a helyzeti energia csökkenése teljes egészében hővé alakul: $$ Q = \\\\Delta E_p = m \\\\cdot g \\\\cdot h $$.<br>A süllyedés mértéke ($$h$$) a lejtőn megtett út ($$s$$) és a lejtőszög ($$\\\\alpha$$) segítségével felírva: $$ h = s \\\\cdot \\\\sin\\\\alpha $$.<br>Ezt behelyettesítve a hőmennyiség: $$ Q = m \\\\cdot g \\\\cdot s \\\\cdot \\\\sin\\\\alpha $$.<br>Ugyanez a hőmennyiség felel a rézlap felmelegítéséért a kalorimetria egyenlete szerint: $$ Q = c \\\\cdot m \\\\cdot \\\\Delta T $$.<br>A két egyenletet egyenlővé téve a tömeg kiesik: $$ m \\\\cdot g \\\\cdot s \\\\cdot \\\\sin\\\\alpha = c \\\\cdot m \\\\cdot \\\\Delta T $$.<br>A hőmérsékletváltozást kifejezve: $$ \\\\Delta T = \\\\frac{g \\\\cdot s \\\\cdot \\\\sin\\\\alpha}{c} $$."
+  },
+  {
+    "examId": "vizsga-24-4",
+    "examTitle": "4. Vizsga",
+    "label": "Zárt síp",
+    "derivation": "Egyik végén zárt csőben állóhullámok alakulnak ki. A zárt végen csomópont, a nyitott végen duzzadóhely van.<br>Az első felharmonikus (a nyitott végen kívül még egy duzzadóhely) esetén a cső hosszában a hullámhossz háromnegyede fér el: $$ L = \\\\frac{3\\\\lambda}{4} $$.<br>Szorozzunk 4-gyel és osszunk 3-mal a hullámhossz kifejezéséhez: $$ \\\\lambda = \\\\frac{4L}{3} $$.<br>A hang terjedési sebessége a frekvencia és a hullámhossz szorzata: $$ v = f \\\\cdot \\\\lambda $$.<br>Behelyettesítve a hullámhosszt: $$ v = f \\\\cdot \\\\frac{4L}{3} $$."
+  },
+  {
+    "examId": "vizsga-24-4",
+    "examTitle": "4. Vizsga",
+    "label": "Korong és lógó teher",
+    "derivation": "Írjuk fel Newton második törvényét a lógó testre: $$ m \\\\cdot g - K = m \\\\cdot a $$.<br>A forgó korongra a nyomatékegyenlet: $$ K \\\\cdot R = \\\\Theta \\\\cdot \\\\beta $$.<br>Tömör korongra $$ \\\\Theta = \\\\frac{1}{2} M R^2 $$, a szöggyorsulás pedig $$ \\\\beta = \\\\frac{a}{R} $$.<br>Ezt behelyettesítve: $$ K \\\\cdot R = \\\\left(\\\\frac{1}{2} M R^2\\\\right) \\\\cdot \\\\frac{a}{R} $$. Az $$R$$-ek kiesnek: $$ K = \\\\frac{1}{2} M a $$.<br>A gyorsulást kifejezve: $$ a = \\\\frac{2K}{M} $$.<br>Helyettesítsük be ezt a haladó mozgás egyenletébe: $$ m \\\\cdot g - K = m \\\\cdot \\\\frac{2K}{M} $$.<br>Rendezzük a $$K$$-t tartalmazó tagokat: $$ m \\\\cdot g = K \\\\left(1 + \\\\frac{2m}{M}\\\\right) $$.<br>Leosztva megkapjuk a kötélerőt: $$ K = \\\\frac{m \\\\cdot g}{1 + \\\\frac{2m}{M}} $$."
+  },
+  {
+    "examId": "vizsga-24-4",
+    "examTitle": "4. Vizsga",
+    "label": "Négyzetes töltésrendszer",
+    "derivation": "Vizsgáljuk a négyzet egyik csúcsában lévő töltést! A két szomszédos csúcsban lévő töltés egyenként $$ F_1 = k \\\\frac{Q^2}{a^2} $$ taszítóerőt fejt ki rá.<br>Mivel ezek merőlegesek egymásra, az eredőjük a Pitagorasz-tétel alapján az átló irányába mutat: $$ F_{1,2} = \\\\sqrt{2} \\\\cdot F_1 $$.<br>A negyedik töltés a négyzet átellenes csúcsában van, távolsága $$ a\\\\sqrt{2} $$.<br>Az általa kifejtett taszítóerő: $$ F_3 = k \\\\frac{Q^2}{(a\\\\sqrt{2})^2} = \\\\frac{1}{2} F_1 $$.<br>Mivel $$F_{1,2}$$ és $$F_3$$ iránya megegyezik, a teljes eredő erő: $$ F = \\\\sqrt{2} F_1 + \\\\frac{1}{2} F_1 $$.<br>Kiemelve $$F_1$$-et: $$ F = k \\\\frac{Q^2}{a^2} \\\\left(\\\\sqrt{2} + \\\\frac{1}{2}\\\\right) $$."
+  },
+  {
+    "examId": "vizsga-24-4",
+    "examTitle": "4. Vizsga",
+    "label": "Töltés kondenzátoron",
+    "derivation": "Egyenfeszültségű áramkörben stacionárius állapotban a kondenzátor ágában nem folyik áram ($$ I_C = 0 $$).<br>Emiatt a kondenzátorral sorba kötött ellenálláson nem esik feszültség.<br>A kör többi része egy egyszerű feszültségosztót alkot az $$R_1$$ és $$R_2$$ ellenállásokkal.<br>A kondenzátorral párhuzamos ág feszültsége ($$ U_C $$) az $$R_2$$ ellenálláson eső feszültséggel lesz egyenlő.<br>A feszültségosztó szabálya alapján: $$ U_C = U_{telep} \\\\cdot \\\\frac{R_2}{R_1 + R_2} $$.<br>Végül a tárolt töltést kiszámíthatjuk a kapacitás és a feszültség szorzataként: $$ Q = C \\\\cdot U_C $$."
+  }
+]

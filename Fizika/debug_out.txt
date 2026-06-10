@@ -1,0 +1,124 @@
+
+=== vizsga-3-2023 ===
+
+[FELADAT 1: Vezetőre ható Lorentz-erő]
+SELECTED EQUATIONS:
+$$ F = I \cdot L \cdot B \cdot \sin(\alpha) $$
+$$ F = I \cdot L \cdot B $$
+$$ B = \frac{F}{I \cdot L} $$
+
+[FELADAT 2: Szolenoid mágneses tere]
+SELECTED EQUATIONS:
+$$ B = \mu_0 \cdot \frac{N}{L} \cdot I $$
+
+[FELADAT 3: Félig nyitott síp hossza]
+SELECTED EQUATIONS:
+$$ L = \frac{\lambda}{4} $$
+$$ \lambda = \frac{v}{f} $$
+$$ L = \frac{v}{4f} $$
+
+[FELADAT 4: Kondenzátor töltésének kiszámítása]
+SELECTED EQUATIONS:
+$$ C = \frac{Q}{U} $$
+$$ Q = C \cdot U $$
+
+[FELADAT 5: Feszültség kiszámítása Ohm-törvénnyel]
+SELECTED EQUATIONS:
+$$ U = I \cdot R $$
+
+[FELADAT 6: Rezgő lapon pattogó test]
+SELECTED EQUATIONS:
+$$ a_{\max} = g $$
+$$ a_{\max} = A \cdot \omega^2 = A \cdot (2\pi f)^2 = A \cdot 4\pi^2 f^2 $$
+$$ g = A \cdot 4\pi^2 f^2 $$
+$$ A = \frac{g}{4\pi^2 f^2} $$
+
+[FELADAT 7: Hővezetés üvegfalon át]
+SELECTED EQUATIONS:
+$$ P = \lambda \cdot A_{össz} \cdot \frac{\Delta T}{d} $$
+$$ A_{össz} = 4 \cdot a^2 $$
+$$ P = \lambda \cdot (4 \cdot a^2) \cdot \frac{\Delta T}{d} $$
+
+[FELADAT 8: Állócsigára tekert fonál gyorsulása]
+SELECTED EQUATIONS:
+$$ M \cdot g - K = M \cdot a $$
+$$ K \cdot R = \Theta \cdot \beta $$
+$$ a = \frac{4}{5} g $$
+
+[FELADAT 9: Kinetikus gázelmélet nyomása]
+SELECTED EQUATIONS:
+$$ p = \frac{F}{A} $$
+$$ F = n \cdot 2 \cdot m \cdot v_x $$
+$$ F = n \cdot 2 \cdot \frac{M}{N_A} \cdot v_x $$
+$$ p = \frac{2 \cdot n \cdot M \cdot v_x}{N_A \cdot A} $$
+
+[FELADAT 10: Változó fluxus Joule-hője]
+SELECTED EQUATIONS:
+$$ U_e(t) = -\frac{\mathrm{d}\Phi}{\mathrm{d}t} $$
+$$ U_e(t) = 2at - a\tau $$
+$$ W = \frac{1}{R} \left( \frac{4}{3} a^2 \tau^3 - 2 a^2 \tau^3 + a^2 \tau^3 \right) = \frac{a^2 \tau^3}{3R} $$
+
+=== vizsga-24-3 ===
+
+[FELADAT 1: Rezgés amplitúdója]
+SELECTED EQUATIONS:
+$$ \frac{1}{2} D x^2 + \frac{1}{2} m v^2 = \frac{1}{2} D A^2 $$
+$$ D x^2 + m v^2 = D A^2 $$
+$$ x^2 + \frac{m v^2}{D} = A^2 $$
+$$ A = \sqrt{x^2 + \frac{m v^2}{D}} $$
+
+[FELADAT 2: Lorentz-erő vektoros]
+SELECTED EQUATIONS:
+$$ \mathbf{F} = q \cdot (\mathbf{v} \times \mathbf{B}) $$
+$$ \mathbf{v} = (v_x, 0, 0) $$
+$$ F = q \cdot v_x \cdot \sqrt{B_z^2 + B_y^2} $$
+
+[FELADAT 3: Hengeres vezető mágneses tere]
+SELECTED EQUATIONS:
+$$ \oint \mathbf{H} \cdot \mathrm{d}\mathbf{l} = I_{bezárt} $$
+$$ I_{bezárt} = j \cdot \pi r^2 $$
+$$ H = \frac{j \cdot r}{2} $$
+
+[FELADAT 4: Akkumulátor lemerülése]
+SELECTED EQUATIONS:
+$$ P_{össz} = N \cdot P_1 $$
+$$ I = \frac{P_{össz}}{U} $$
+$$ t = \frac{\Delta Q \cdot U}{P_{össz}} $$
+
+[FELADAT 5: Szauna fűtése]
+SELECTED EQUATIONS:
+$$ P = k \cdot \Delta T $$
+$$ P_1 = k \cdot \Delta T_1 $$
+$$ P_2 = P_1 \cdot \frac{\Delta T_2}{\Delta T_1} $$
+
+[FELADAT 6: Ceruzaelem belső ellenállása]
+SELECTED EQUATIONS:
+$$ I_1 = \frac{U_0}{R + r} $$
+$$ I_2 = \frac{2U_0}{R + 2r} $$
+$$ r = R \frac{2 - k}{2k - 2} $$
+
+[FELADAT 7: Zárt síp]
+SELECTED EQUATIONS:
+$$ L = \frac{3\lambda}{4} $$
+$$ \lambda = \frac{4L}{3} $$
+$$ v = f \cdot \lambda $$
+$$ v = f \cdot \frac{4L}{3} $$
+
+[FELADAT 8: Korong és lógó teher]
+SELECTED EQUATIONS:
+$$ m \cdot g - K = m \cdot a $$
+$$ K \cdot R = \Theta \cdot \beta $$
+$$ K = \frac{m \cdot g}{1 + \frac{2m}{M}} $$
+
+[FELADAT 9: Kondenzátor lemezek között mozgó töltés]
+SELECTED EQUATIONS:
+$$ E = \frac{U}{d} $$
+$$ F_e = q \cdot E = q \cdot \frac{U}{d} $$
+$$ \alpha = \arctan\left(\frac{m \cdot g \cdot d}{q \cdot U}\right) $$
+
+[FELADAT 10: Áramkör Thevenin]
+SELECTED EQUATIONS:
+$$ V_{ref} = 0 \text{ V} $$
+$$ V_A = \frac{\sum \frac{U_i}{R_i}}{\sum \frac{1}{R_i}} $$
+$$ V_B = \frac{\sum \frac{U_j}{R_j}}{\sum \frac{1}{R_j}} $$
+$$ U_{AB} = |V_A - V_B| $$
