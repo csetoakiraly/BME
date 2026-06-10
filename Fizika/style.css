@@ -265,6 +265,7 @@ h1 {
 @media screen and (max-width: 768px) {
     body {
         display: block;
+        overflow-x: hidden; /* Prevent horizontal scrolling */
     }
     
     .sidebar {
@@ -274,12 +275,15 @@ h1 {
         border-right: none;
         border-bottom: 1px solid var(--glass-border);
         padding: 20px 15px;
+        box-sizing: border-box;
     }
     
     .main-content {
         margin-left: 0;
         padding: 20px 15px;
         width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
     }
     
     h1 {
@@ -293,6 +297,13 @@ h1 {
     .card {
         padding: 20px 15px;
         margin-bottom: 25px;
+        box-sizing: border-box;
+        overflow-x: auto; /* Allow internal scrolling if formula is too wide */
+    }
+    
+    .question-text, .formula-box, .explanation-text {
+        overflow-x: auto; /* Scroll long formulas internally */
+        -webkit-overflow-scrolling: touch;
     }
     
     .options-grid {
