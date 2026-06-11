@@ -290,6 +290,7 @@ h1 {
         margin-left: 0;
         padding: 20px 15px;
         width: 100%;
+        max-width: 100%; /* Override the global calc(100vw - 280px) */
         box-sizing: border-box;
         overflow-x: hidden;
     }
