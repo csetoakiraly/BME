@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2023. Tavasz II. Vizsga Megoldások (Alfa)</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7;
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        h1 { 
+            color: white; 
+            font-weight: 800; 
+            font-size: 2.8rem; 
+            text-align: center; 
+            margin-bottom: 50px; 
+            letter-spacing: -0.5px;
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            margin-top: 0; 
+            border-bottom: 1px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .task-description {
+            background: var(--task-bg);
+            border-left: 5px solid var(--task-color);
+            padding: 25px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 35px;
+            font-size: 1.25rem;
+            color: #e0f2fe;
+            line-height: 1.7;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .task-description strong {
+            color: var(--task-color);
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .formula-box {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 4px solid var(--secondary);
+            padding: 20px 25px;
+            border-radius: 0 16px 16px 0;
+            margin: 25px 0;
+            font-size: 1.25rem;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        .formula-box b {
+            color: var(--secondary);
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .calc-step {
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 3px solid rgba(255,255,255,0.15);
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            line-height: 2;
+        }
+
+        .math-block {
+            margin: 15px 0;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .result {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+            padding: 20px 25px;
+            border-radius: 16px;
+            display: block;
+            font-weight: 700;
+            margin-top: 30px;
+            font-size: 1.4rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);
+        }
+
+        .mjx-chtml { color: white !important; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 30px 15px; }
+            .card { padding: 25px 20px; }
+            h1 { font-size: 2.2rem; }
+            .task-description, .calc-step { font-size: 1.1rem; }
+            .result { font-size: 1.2rem; }
+            mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+        }
+        
+        .section-title {
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-align: center;
+            margin: 60px 0 30px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed var(--glass-border);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Vissza az Összefoglalóhoz
+        </a>
+
+        <h1>2023. Tavasz II. Vizsga Megoldások (Alfa)</h1>
+
+        <div class="section-title">Teszt rész (50 pont)</div>
+
+        <!-- Teszt 1 -->
+        <div class="card">
+            <h2>Teszt 1. Differenciálegyenlet rendje</h2>
+            
+            <div class="task-description">
+                <strong>1. Feladat (4 pont)</strong>
+                A legalacsonyabbrendű homogén, állandó együtthatós, lineáris differenciálegyenlet rendje, melynek az $y = 2x \sin x - 1$ függvény megoldása:
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $2$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $3$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $4$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $5$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $6$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más.</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Alkalmazott Elmélet:</b> 
+                Egy $e^{\alpha x} (P(x) \cos(\beta x) + Q(x) \sin(\beta x))$ alakú megoldásból kiolvashatók a karakterisztikus egyenlet komplex gyökei: $\lambda = \alpha \pm i\beta$. A gyök multiplicitása (szorossága) legalább annyi, mint a $P(x)$ és $Q(x)$ polinomok maximális fokszáma plusz egy.
+            </div>
+
+            <div class="calc-step">
+                Bontsuk fel az $y = 2x \sin x - 1$ megoldást két részre:
+                <div class="math-block">
+                    - <b>Konstans tag ($y_1 = -1$):</b> Ezt úgy is írhatjuk, hogy $-1 \cdot e^{0 \cdot x}$. Ebből adódik a $\lambda_1 = 0$ valós gyök. Mivel a polinom foka 0, ez a gyök egyszeres. Ez <b>1. fokot</b> jelent.
+                </div>
+                <div class="math-block">
+                    - <b>Trigonometrikus tag ($y_2 = 2x \sin x$):</b> Mivel a $\sin(1 \cdot x)$ szerepel $\alpha=0$ mellett, a gyökök $\lambda = \pm i$. A mellette lévő polinom ($2x$) elsőfokú, így a $\pm i$ gyökpár legalább 2-szeres. A multiplicitás 2, tehát a gyökök: $i, i, -i, -i$. Ez összesen <b>4 gyököt</b> jelent.
+                </div>
+                A minimális rendszám ezen gyökök darabszámának összege: $1 + 4 = 5$.
+            </div>
+
+            <div class="result">
+                Eredmény: 5.
+            </div>
+        </div>
+
+        <!-- Teszt 2 -->
+        <div class="card">
+            <h2>Teszt 2. Külső rezonancia</h2>
+            <div class="task-description">
+                <strong>2. Feladat (4 pont)</strong>
+                Ha az $y'' + 4y' + 4y = e^{ax}$ differenciálegyenletben külső rezonancia van, akkor $a = ?$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $a = -2;$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $a = 2;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $a = -1;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $a = 1;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $a = 0;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más.</li>
+                </ul>
+            </div>
+            <div class="formula-box">
+                <b>Külső rezonancia feltétele:</b> 
+                Akkor lép fel külső rezonancia, ha a zavaró függvényből (az inhomogén tagból) leolvasható paraméter megegyezik a homogén differenciálegyenlet karakterisztikus egyenletének valamelyik gyökével.
+            </div>
+            <div class="calc-step">
+                1. Oldjuk meg a homogén egyenlet karakterisztikus egyenletét:
+                <div class="math-block">
+                    $$ \lambda^2 + 4\lambda + 4 = 0 \implies (\lambda + 2)^2 = 0 \implies \lambda_{1,2} = -2 $$
+                </div>
+                A karakterisztikus gyök tehát a $-2$.
+            </div>
+            <div class="calc-step">
+                2. Vizsgáljuk az inhomogén tagot:
+                <div class="math-block">
+                    A zavaró függvény $f(x) = e^{ax}$. Ebből a próbafüggvény módszer alapján leolvasható $\alpha = a$ érték. Rezonancia esetén ez egybeesik a karakterisztikus gyökkel, azaz $a = -2$.
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: $a = -2$.
+            </div>
+        </div>
+
+        <!-- Teszt 3 -->
+        <div class="card">
+            <h2>Teszt 3. Rekurzió korlátos megoldásai</h2>
+            <div class="task-description">
+                <strong>3. Feladat (4 pont)</strong>
+                Határozza meg az $x_{n+1} = -2x_n + 3x_{n-1}$ rekurzió korlátos megoldásait! ($A, B \in \mathbb{R}$)
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $A (-1)^n + B 3^n;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $A (-3)^n + B;$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $A$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $A 3^n$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $A (-3)^n$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más.</li>
+                </ul>
+            </div>
+            <div class="formula-box">
+                <b>Lineáris rekurzió karakterisztikus egyenlete:</b>
+                Egy másodrendű rekurzióból az $x_n = q^n$ helyettesítéssel kapunk egyenletet. Ha valamelyik gyökre $|q| > 1$, akkor a $q^n$ tag végtelenbe tart, így a megoldás nem korlátos.
+            </div>
+            <div class="calc-step">
+                1. Rendezzük nullára az egyenletet és írjuk fel a karakterisztikus egyenletet:
+                <div class="math-block">
+                    $x_{n+1} + 2x_n - 3x_{n-1} = 0 \implies q^2 + 2q - 3 = 0$
+                </div>
+                Ennek gyökei: $q_1 = 1$, $q_2 = -3$.
+            </div>
+            <div class="calc-step">
+                2. Az általános megoldás alakja:
+                <div class="math-block">
+                    $$ x_n = A(1)^n + B(-3)^n = A + B(-3)^n $$
+                </div>
+                Ahhoz, hogy a sorozat korlátos maradjon, a végtelenbe tartó $(-3)^n$ tagot ki kell ejtenünk, azaz $B = 0$ szükséges. Így csak az $A(1)^n$ rész marad.
+            </div>
+            <div class="result">
+                Eredmény: $A$.
+            </div>
+        </div>
+
+        <!-- Teszt 4 -->
+        <div class="card">
+            <h2>Teszt 4. Geometriai sor</h2>
+            <div class="task-description">
+                <strong>4. Feladat (4 pont)</strong>
+                Számítsa ki a következőt: $\displaystyle \sum_{n=2}^\infty 3^{n-1} = ?$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $1;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $\frac{1}{2};$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $\infty;$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $2;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> nem létezik;</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más.</li>
+                </ul>
+            </div>
+            <div class="formula-box">
+                <b>Sorok konvergenciájának szükséges feltétele:</b><br>
+                Egy sor csak akkor lehet konvergens (az összege véges), ha az általános tagja nullához tart: $\lim_{n\to\infty} a_n = 0$.
+            </div>
+            <div class="calc-step">
+                Vizsgáljuk meg a sor tagjait:
+                <div class="math-block">
+                    $a_n = 3^{n-1}$.<br>
+                    $\lim_{n \to \infty} 3^{n-1} = \infty$.
+                </div>
+                Mivel a tagok nem tartanak nullához (sőt a végtelenbe tartanak), a sor divergens. Ráadásul a tagok pozitívak, így a sorösszeg a pozitív végtelenbe divergál.
+            </div>
+            <div class="result">
+                Eredmény: $\infty$.
+            </div>
+        </div>
+
+        <!-- Teszt 5 -->
+        <div class="card">
+            <h2>Teszt 5. Taylor-sor felismerése</h2>
+            <div class="task-description">
+                <strong>5. Feladat (4 pont)</strong>
+                Melyik függvény Taylor-sora a következő? $\displaystyle \sum_{n=0}^\infty \frac{-2}{(2n+1)!} x^{2n+2} = ?$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $x \sin(2x);$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $-2x \operatorname{sh} x;$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $\operatorname{ch}(2x) + 2;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $\sin(2x) - 2x;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $-x \operatorname{sh}(2x);$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más.</li>
+                </ul>
+            </div>
+            <div class="formula-box">
+                <b>Szinusz hiperbolikusz (sinh) sorfejtése:</b><br>
+                $$ \sinh(x) = \sum_{n=0}^\infty \frac{x^{2n+1}}{(2n+1)!} $$
+            </div>
+            <div class="calc-step">
+                Alakítsuk át az összeget úgy, hogy kiemelünk egy megfelelő szorzót, amellyel egy nevezetes sort kapunk:
+                <div class="math-block">
+                    $$ \sum_{n=0}^\infty \frac{-2}{(2n+1)!} x^{2n+2} = -2x \sum_{n=0}^\infty \frac{x^{2n+1}}{(2n+1)!} $$
+                </div>
+                A szummán belül lévő rész pontosan a $\sinh(x)$ függvény sorfejtése.
+            </div>
+            <div class="result">
+                Eredmény: $-2x \sinh x$.
+            </div>
+        </div>
+
+        <!-- Teszt 6 -->
+        <div class="card">
+            <h2>Teszt 6. Szeparábilis differenciálegyenlet (Igaz/Hamis)</h2>
+            <div class="task-description">
+                <strong>6. Feladat (6 pont)</strong>
+                Tekintsük az $y' = \cos^2(y) \cdot \arctan(x)$ differenciálegyenletet. Döntse el az állításokról, hogy igazak vagy hamisak!
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li style="margin-bottom: 10px;">
+                        Az egyenletnek egyetlen konstans ($x$-től független) megoldása van.<br>
+                        <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong>
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        A $(0, 1)$ ponton átmenő megoldás meredeksége ebben a pontban pozitív.<br>
+                        <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong>
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        A differenciálegyenlet szeparábilis.<br>
+                        <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong> &nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H
+                    </li>
+                </ul>
+            </div>
+            <div class="calc-step">
+                <b>1. Az egyenletnek egyetlen konstans (x-től független) megoldása van.</b>
+                <div class="math-block">
+                    A konstans megoldások a $\cos^2(y) = 0$ egyenletből adódnak. Ennek gyökei $y = \frac{\pi}{2} + k\pi \quad (k \in \mathbb{Z})$, tehát végtelen sok konstans megoldás van. <b>Hamis.</b>
+                </div>
+            </div>
+            <div class="calc-step">
+                <b>2. A $(0, 1)$ ponton átmenő megoldás meredeksége ebben a pontban pozitív.</b>
+                <div class="math-block">
+                    A meredekséget az $y'$ értéke adja a pontban: $y'(0) = \cos^2(1) \cdot \arctan(0) = \cos^2(1) \cdot 0 = 0$. Tehát a meredekség nulla, nem pozitív. <b>Hamis.</b>
+                </div>
+            </div>
+            <div class="calc-step">
+                <b>3. A differenciálegyenlet szeparábilis.</b>
+                <div class="math-block">
+                    Az egyenlet felírható $y' = g(y)h(x)$ alakban, ahol $g(y) = \cos^2(y)$ és $h(x) = \arctan(x)$. Tehát szétválasztható változójú. <b>Igaz.</b>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teszt 7 -->
+        <div class="card">
+            <h2>Teszt 7. Hatványsor tulajdonságai (Igaz/Hamis)</h2>
+            <div class="task-description">
+                <strong>7. Feladat (8 pont)</strong>
+                Tekintsük a $\displaystyle \sum_{n=1}^\infty \frac{x^{2n-1}}{(n+2)^3}$ sort. Döntse el az állításokról, hogy igazak vagy hamisak!
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li style="margin-bottom: 10px;">
+                        A sor konvergenciatartománya nyílt.<br>
+                        <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong>
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        A sor a konvergenciatartományán egyenletesen konvergens.<br>
+                        <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong> &nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        Az összegfüggvény páros.<br>
+                        <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong>
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        A sor konvergenciasugarának kiszámítására használható a gyökkritérium.<br>
+                        <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong> &nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H
+                    </li>
+                </ul>
+            </div>
+            <div class="formula-box">
+                <b>Konvergenciatartomány meghatározása:</b><br>
+                Gyökkritériummal a konvergenciasugár: $\lim_{n \to \infty} \sqrt[n]{\frac{1}{(n+2)^3}} = 1 \implies R = 1$. A végpontokban ($x=1$ és $x=-1$) a sor numerikus alakja $\pm \sum \frac{1}{(n+2)^3}$, mely abszolút konvergens (mert $3 > 1$). Tehát a konvergenciatartomány a zárt $[-1, 1]$ intervallum.
+            </div>
+            <div class="calc-step">
+                <b>1. A sor konvergenciatartománya nyílt.</b>
+                <div class="math-block">
+                    Mint láttuk, a tartomány a zárt $[-1, 1]$ intervallum, tehát nem nyílt. <b>Hamis.</b>
+                </div>
+            </div>
+            <div class="calc-step">
+                <b>2. A sor a konvergenciatartományán egyenletesen konvergens.</b>
+                <div class="math-block">
+                    A Weierstrass-kritérium értelmében, mivel $\left| \frac{x^{2n-1}}{(n+2)^3} \right| \le \frac{1}{(n+2)^3}$ minden $x \in [-1, 1]$ esetén, és a $\sum \frac{1}{(n+2)^3}$ sor konvergens, a sor egyenletesen konvergens. <b>Igaz.</b>
+                </div>
+            </div>
+            <div class="calc-step">
+                <b>3. Az összegfüggvény páros.</b>
+                <div class="math-block">
+                    A sor csak páratlan kitevőjű tagokat tartalmaz ($x, x^3, x^5 \dots$), ezért az összegfüggvény is páratlan lesz, nem páros. <b>Hamis.</b>
+                </div>
+            </div>
+            <div class="calc-step">
+                <b>4. A sor konvergenciasugarának kiszámítására használható a gyökkritérium.</b>
+                <div class="math-block">
+                    Ahogy az elején levezettük, a gyökkritérium limitje létezik és érvényes, a konvergenciasugár könnyen számolható vele. <b>Igaz.</b>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teszt 8 -->
+        <div class="card">
+            <h2>Teszt 8. Kétváltozós függvény (Igaz/Hamis)</h2>
+            <div class="task-description">
+                <strong>8. Feladat (8 pont)</strong>
+                Tekintsük az $f(x, y) = x^2 - 4xy^2 - 2y^2 + 5$ függvényt. Döntse el az állításokról, hogy igazak vagy hamisak!
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li style="margin-bottom: 10px;">
+                        A függvény minden pontban totálisan differenciálható.<br>
+                        <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong> &nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        A függvény $(0, 0)$ pontbeli érintősíkja párhuzamos a $z = 0$ síkkal.<br>
+                        <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong> &nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        Az $(1, 1)$ pontbeli iránymenti derivált az $(1, 1)$ irányban maximális.<br>
+                        <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong>
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        A függvénynek az origóban lokális szélsőértékhelye van.<br>
+                        <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong>
+                    </li>
+                </ul>
+            </div>
+            <div class="calc-step">
+                <b>1. A függvény minden pontban totálisan differenciálható.</b>
+                <div class="math-block">
+                    A függvény egy polinom, melynek parciális deriváltjai folytonosak mindenütt. Így minden pontban totálisan differenciálható. <b>Igaz.</b>
+                </div>
+            </div>
+            <div class="calc-step">
+                <b>2. A függvény $(0, 0)$ pontbeli érintősíkja párhuzamos a $z = 0$ síkkal.</b>
+                <div class="math-block">
+                    A parciális deriváltak: $\partial_x f = 2x - 4y^2$, $\partial_y f = -8xy - 4y$. Az origóban mindkettő értéke $0$. Mivel a deriváltak nullák, az érintősík vízszintes (párhuzamos a $z=0$ síkkal). <b>Igaz.</b>
+                </div>
+            </div>
+            <div class="calc-step">
+                <b>3. Az $(1, 1)$ pontbeli iránymenti derivált az $(1, 1)$ irányban maximális.</b>
+                <div class="math-block">
+                    A maximális iránymenti derivált mindig a gradiens vektor irányába mutat. $\text{grad} f(1,1) = (2(1) - 4(1)^2, -8(1)(1) - 4(1)) = (-2, -12)$. Mivel ez nem párhuzamos az $(1,1)$ iránnyal, az állítás <b>Hamis.</b>
+                </div>
+            </div>
+            <div class="calc-step">
+                <b>4. A függvénynek az origóban lokális szélsőértékhelye van.</b>
+                <div class="math-block">
+                    A másodrendű deriváltak az origóban: $\partial_{xx} f(0,0) = 2$, $\partial_{yy} f(0,0) = -4$, $\partial_{xy} f(0,0) = 0$. A Hesse-determináns: $\det H(0,0) = 2 \cdot (-4) - 0^2 = -8$. Mivel ez negatív, az origóban nyeregpont van, nem szélsőérték. <b>Hamis.</b>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teszt 9 -->
+        <div class="card">
+            <h2>Teszt 9. Normáltartomány (Igaz/Hamis)</h2>
+            <div class="task-description">
+                <strong>9. Feladat (8 pont)</strong>
+                Döntse el, hogy az $y = x^2$ és az $y = -2x$ vonalak által határolt korlátos tartomány melyik formában írható fel helyesen normáltartományként!
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li style="margin-bottom: 10px;">
+                        $\{x \in [0, 2], y \in [-2x, x^2]\}$<br>
+                        <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong>
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        $\{x \in [-2, 0], y \in [x^2, -2x]\}$<br>
+                        <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong> &nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        $\{y \in [0, 4], x \in [-\sqrt{y}, -y/2]\}$<br>
+                        <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong> &nbsp;&nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        $\{y \in [-4, 0], x \in [-y/2, \sqrt{-y}]\}$<br>
+                        <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp;&nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong>
+                    </li>
+                </ul>
+            </div>
+            <div class="formula-box">
+                <b>Metszéspontok meghatározása:</b><br>
+                $x^2 = -2x \implies x^2 + 2x = 0 \implies x(x+2) = 0$. Két metszéspont van: $x = 0$ ($y=0$) és $x = -2$ ($y=4$).<br>
+                Ezen az intervallumon ($x \in [-2, 0]$) az egyenes van felül ($-2x \ge 0$), és a parabola alul ($x^2 \ge 0$).
+            </div>
+            <div class="calc-step">
+                <b>Normáltartomány X szerint felírva:</b>
+                <div class="math-block">
+                    Az $x$ változó a $[-2, 0]$ intervallumon mozog. Adott $x$ mellett $y$ a parabola (alsó) és az egyenes (felső) között változik: $x^2 \le y \le -2x$.
+                    <br>Ebből következik, hogy az $\{x \in [-2, 0], y \in [x^2, -2x]\}$ alak a helyes.
+                </div>
+            </div>
+            <div class="calc-step">
+                <b>Normáltartomány Y szerint felírva:</b>
+                <div class="math-block">
+                    Az $y$ változó a $[0, 4]$ intervallumon mozog. Adott $y$ mellett az $x$ határait a görbék inverzei adják (mivel a tartomány az $x \le 0$ félsíkban van): 
+                    <br>Bal oldal (parabola): $x = -\sqrt{y}$
+                    <br>Jobb oldal (egyenes): $x = -y/2$
+                    <br>Tehát az y szerinti tartomány: $\{y \in [0, 4], x \in [-\sqrt{y}, -y/2]\}$.
+                </div>
+            </div>
+            <div class="result">
+                Ezek alapján a helyes állítások:
+                <br>1. $\{x \in [0, 2], y \in [-2x, x^2]\}$ <b>Hamis.</b>
+                <br>2. $\{x \in [-2, 0], y \in [x^2, -2x]\}$ <b>Igaz.</b>
+                <br>3. $\{y \in [0, 4], x \in [-\sqrt{y}, -y/2]\}$ <b>Igaz.</b>
+                <br>4. $\{y \in [-4, 0], x \in [-y/2, \sqrt{-y}]\}$ <b>Hamis.</b>
+            </div>
+        </div>
+
+        <div class="section-title">Kifejtős rész (50 pont)</div>
+
+        <!-- Kifejtős 1 -->
+        <div class="card">
+            <h2>Kifejtős 1. Minoráns kritérium és konvergencia</h2>
+            
+            <div class="task-description">
+                <strong>1. Feladat (20 pont)</strong>
+                a) Mondja ki, és igazolja a minoráns kritériumot!<br>
+                b) Abszolút konvergens, feltételesen konvergens, vagy divergens a $\displaystyle \sum_{n=1}^\infty (-1)^n \frac{n + 3}{n^2 - 2n + 3}$ sor?
+            </div>
+
+            <div class="formula-box">
+                <b>a) Minoráns kritérium:</b> 
+                Ha $\sum b_n$ pozitív tagú divergens sor, és valamilyen $N$-től kezdve minden $n > N$ esetén $0 \le b_n \le a_n$, akkor a $\sum a_n$ sor is divergens.
+            </div>
+
+            <div class="calc-step">
+                <b>A minoráns kritérium bizonyítása:</b>
+                <div class="math-block">
+                    Legyen $s_n = \sum_{k=1}^n a_k$ és $t_n = \sum_{k=1}^n b_k$. A $0 \le b_n \le a_n$ feltétel miatt a részletösszegekre is igaz, hogy $t_n \le s_n$.<br>
+                    Mivel $\sum b_n$ pozitív tagú és divergens, a $t_n$ sorozat szigorúan monoton nő és felülről nem korlátos, azaz $\lim_{n\to\infty} t_n = \infty$.<br>
+                    Mivel $s_n \ge t_n$, így $s_n$ is a végtelenbe tart ($\lim_{n\to\infty} s_n = \infty$), tehát a $\sum a_n$ sor divergens.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>b) rész:</b> Vizsgáljuk a $\sum_{n=1}^\infty (-1)^n \frac{n + 3}{n^2 - 2n + 3}$ sort.
+                <div class="math-block">
+                    Ez egy alternáló sor. Vizsgáljuk a Leibniz-kritérium feltételeit az $a_n = \frac{n+3}{n^2-2n+3}$ sorozatra:
+                    <br>1. <b>Határérték:</b> $\lim_{n \to \infty} \frac{n+3}{n^2-2n+3} = \lim_{n \to \infty} \frac{n(1+3/n)}{n^2(1-2/n+3/n^2)} = 0$.
+                    <br>2. <b>Monoton csökkenés:</b> $a_n - a_{n+1} = \frac{n+3}{n^2-2n+3} - \frac{n+4}{(n+1)^2-2(n+1)+3} = \frac{n^2+n-6}{(n^2-2n+3)(n^2+2)}$.
+                    Mivel $n \ge 2$ esetén $n^2+n-6 \ge 0$, a sorozat $n \ge 2$-től monoton csökken.
+                    <br>Tehát a sor a Leibniz-kritérium alapján <b>konvergens</b>.
+                </div>
+            </div>
+
+            <div class="calc-step">
+                Abszolút konvergencia vizsgálata (minoráns kritériummal):
+                <div class="math-block">
+                    Vizsgáljuk a tagok abszolút értékéből képzett sort: $\sum_{n=1}^\infty \frac{n+3}{n^2-2n+3}$.
+                    <br>Becsüljük alulról a tagokat ($n \ge 1$):
+                    $$ \frac{n+3}{n^2-2n+3} \ge \frac{n}{n^2+3n^2} = \frac{n}{4n^2} = \frac{1}{4n} $$
+                    A $\sum \frac{1}{4n} = \frac{1}{4} \sum \frac{1}{n}$ egy divergens harmonikus sor. A minoráns kritérium alapján az eredeti sor <b>nem abszolút konvergens</b>.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: A sor feltételesen konvergens.
+            </div>
+        </div>
+
+        <!-- Kifejtős 2 -->
+        <div class="card">
+            <h2>Kifejtős 2. Polárkoordináták és integrálás</h2>
+            <div class="task-description">
+                <strong>2. Feladat (15 pont)</strong>
+                a) Ismertesse a síkbeli polárkoordinátákat, adja meg a kapcsolatot a Descartes-koordinátákkal, és az áttérés Jacobi determinánsát!<br>
+                b) Számolja ki az $\displaystyle f(x, y) = \frac{1}{x^2 + y^2}$ függvény integrálját az $1 \le x^2 + y^2 \le 9, y \ge 0, x \le 0$ halmazon!
+            </div>
+            
+            <div class="calc-step">
+                <b>a) rész: Polárkoordináták</b>
+                <div class="math-block">
+                    Egy $P(x,y)$ pont helyzetét megadhatjuk az origótól mért távolságával ($r \ge 0$) és az x-tengely pozitív felével bezárt szögével ($\varphi \in [0, 2\pi)$).<br>
+                    A kapcsolat: 
+                    $$ x = r \cos \varphi, \quad y = r \sin \varphi $$
+                    Az áttérés Jacobi determinánsa, melyet integráláshoz használunk:
+                    $$ J = \det \begin{pmatrix} \frac{\partial x}{\partial r} & \frac{\partial x}{\partial \varphi} \\ \frac{\partial y}{\partial r} & \frac{\partial y}{\partial \varphi} \end{pmatrix} = \det \begin{pmatrix} \cos \varphi & -r \sin \varphi \\ \sin \varphi & r \cos \varphi \end{pmatrix} = r(\cos^2 \varphi + \sin^2 \varphi) = r $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                <b>b) rész: Integrálás</b>
+                <div class="math-block">
+                    A halmaz egy körgyűrű cikkelye. Az $1 \le x^2 + y^2 \le 9$ sugárfeltétel alapján az $r$ határai: $1 \le r \le 3$.<br>
+                    Mivel $x \le 0$ és $y \ge 0$, a terület a második síknegyedben helyezkedik el, így a szög határai: $\varphi \in [\frac{\pi}{2}, \pi]$.
+                </div>
+                Írjuk fel a kettősintegrált polárkoordinátákkal (ne felejtsük el a Jacobi determinánssal szorozni!):
+                <div class="math-block">
+                    $$ \iint_T \frac{1}{x^2+y^2} dT = \int_{\pi/2}^{\pi} \int_{1}^{3} \frac{1}{r^2} \cdot r \, dr \, d\varphi = \int_{\pi/2}^{\pi} d\varphi \cdot \int_{1}^{3} \frac{1}{r} \, dr $$
+                </div>
+                Számítsuk ki külön az integrálokat:
+                <div class="math-block">
+                    $$ \int_{\pi/2}^{\pi} 1 \, d\varphi = \pi - \frac{\pi}{2} = \frac{\pi}{2} $$
+                    $$ \int_{1}^{3} \frac{1}{r} \, dr = \Big[\ln r\Big]_1^3 = \ln 3 - \ln 1 = \ln 3 $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: A szorzatuk alapján az integrál értéke $\frac{\pi \ln 3}{2}$.
+            </div>
+        </div>
+
+        <!-- Kifejtős 3 -->
+        <div class="card">
+            <h2>Kifejtős 3. Fourier-transzformáció</h2>
+            <div class="task-description">
+                <strong>3. Feladat (15 pont)</strong>
+                a) Hogyan fejezhető ki az $f$ függvény Fourier-transzformáltjából az $x \mapsto f(x+a)$ függvény Fourier-transzformáltja?<br>
+                b) Számolja ki az $\displaystyle f(x) = \begin{cases} 2, & \text{ha } x \in [2, 3] \\ 0, & \text{egyébként} \end{cases}$ függvény Fourier-transzformáltját!
+            </div>
+            
+            <div class="calc-step">
+                <b>a) rész: Eltolási tétel</b>
+                <div class="math-block">
+                    Induljunk ki a Fourier-transzformáció definíciójából és alkalmazzunk egy $y = x + a$ helyettesítést (melyből $x = y - a$, $dx = dy$):
+                    $$ (\mathcal{F}\{f(x+a)\})(\omega) = \int_{-\infty}^{\infty} e^{-i\omega x} f(x+a) dx = \int_{-\infty}^{\infty} e^{-i\omega (y-a)} f(y) dy $$
+                    A konstans szorzót kiemelhetjük:
+                    $$ = e^{ia\omega} \int_{-\infty}^{\infty} e^{-i\omega y} f(y) dy = e^{ia\omega} (\mathcal{F}\{f\})(\omega) $$
+                </div>
+                Tehát az $a$-val történő eltolás (balra tolás a függvényben) a frekvenciatartományban egy $e^{ia\omega}$ szorzót eredményez.
+            </div>
+
+            <div class="calc-step">
+                <b>b) rész: Függvény transzformáltja</b>
+                <div class="math-block">
+                    A függvényt felfoghatjuk úgy, mint egy origó körüli szimmetrikus négyszögjel eltolt és skálázott változatát.
+                    Egy általános $g(x)$ szimmetrikus négyszögjel, amely a $[-c, c]$ intervallumon $1$, transzformáltja: $\frac{2 \sin(c\omega)}{\omega}$.<br>
+                    Esetünkben az intervallum hossza $1$, így $c = 0.5$. A négyszögjelünk amplitúdója $2$, ezért a lineáris tulajdonság miatt beszorzunk $2$-vel:
+                    $$ (\mathcal{F}\{h\})(\omega) = 2 \cdot \frac{2 \sin(0.5\omega)}{\omega} = 4 \frac{\sin(\omega/2)}{\omega} $$
+                    Ez az origó körüli $h(x)$ függvény (amely a $[-0.5, 0.5]$ intervallumon $2$).
+                </div>
+                <div class="math-block">
+                    Az eredeti $f(x)$ függvény a $[2, 3]$ intervallumon vesz fel értéket, vagyis a $h(x)$ függvény jobbra eltoltja $2.5$ egységgel. Azaz $f(x) = h(x - 2.5)$.<br>
+                    Használjuk az a) pontbeli eltolási tételt egy $a = -2.5$ eltolással (mivel a tétel szerint $f(x+a)$ kap $e^{ia\omega}$ szorzót, itt a mi $a$-nk $-2.5$):
+                    $$ (\mathcal{F}\{f\})(\omega) = e^{-2.5 i \omega} (\mathcal{F}\{h\})(\omega) $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: $(\mathcal{F}f)(\omega) = 4 e^{-2.5 i \omega} \frac{\sin(\omega/2)}{\omega}$.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

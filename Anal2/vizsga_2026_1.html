@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026. Vizsga 1 Megoldások</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7;
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        h1 { 
+            color: white; 
+            font-weight: 800; 
+            font-size: 2.8rem; 
+            text-align: center; 
+            margin-bottom: 50px; 
+            letter-spacing: -0.5px;
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            margin-top: 0; 
+            border-bottom: 1px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .task-description {
+            background: var(--task-bg);
+            border-left: 5px solid var(--task-color);
+            padding: 25px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 35px;
+            font-size: 1.25rem;
+            color: #e0f2fe;
+            line-height: 1.7;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .task-description strong {
+            color: var(--task-color);
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .formula-box {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 4px solid var(--secondary);
+            padding: 20px 25px;
+            border-radius: 0 16px 16px 0;
+            margin: 25px 0;
+            font-size: 1.25rem;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        .formula-box b {
+            color: var(--secondary);
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .calc-step {
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 3px solid rgba(255,255,255,0.15);
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            line-height: 2;
+        }
+
+        .math-block {
+            margin: 15px 0;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .result {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+            padding: 20px 25px;
+            border-radius: 16px;
+            display: block;
+            font-weight: 700;
+            margin-top: 30px;
+            font-size: 1.4rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);
+        }
+
+        .mjx-chtml { color: white !important; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 30px 15px; }
+            .card { padding: 25px 20px; }
+            h1 { font-size: 2.2rem; }
+            .task-description, .calc-step { font-size: 1.1rem; }
+            .result { font-size: 1.2rem; }
+            mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Vissza az Összefoglalóhoz
+        </a>
+
+        <h1>2026. Június 9. Vizsga Megoldások</h1>
+
+        <h2 style="text-align: center; color: white; border: none; margin-bottom: 40px; margin-top: 60px; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px;">Teszt rész</h2>
+
+        <div class="card">
+            <h2>1. Kétváltozós függvény határértéke</h2>
+            
+            <div class="task-description">
+                <strong>1. Feladat (5 pont)</strong>
+                Határozza meg az alábbi határértéket!
+                $$ \lim_{(x,y)\to(0,0)} \frac{\sin(xy)}{|xy|} = ? $$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $0;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $1;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $-1;$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> nem létezik; <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz.</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Kétirányú közelítés (Ha különböző irányokból más a limesz, akkor nem létezik):</b><br>
+                Vizsgáljuk a határértéket $x = y$ és $x = -y$ irányokból!
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    1. Ha $x = y$, akkor $xy = x^2$. A limesz:
+                    $$ \lim_{x\to 0} \frac{\sin(x^2)}{|x^2|} = \lim_{x\to 0} \frac{\sin(x^2)}{x^2} = 1 $$
+                </div>
+                <div class="math-block">
+                    2. Ha $x = -y$, akkor $xy = -x^2$. A limesz:
+                    $$ \lim_{x\to 0} \frac{\sin(-x^2)}{|-x^2|} = \lim_{x\to 0} \frac{-\sin(x^2)}{x^2} = -1 $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: Mivel a két irányból kapott határérték különböző ($1 \neq -1$), a határérték <b>nem létezik</b>.
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>2. Inhomogén lineáris differenciálegyenlet próbafüggvénye</h2>
+            
+            <div class="task-description">
+                <strong>2. Feladat (5 pont)</strong>
+                Az $y''(x) - 2y'(x) + y(x) = e^{-x}$ differenciálegyenlet megoldásakor milyen alakban keressük a próbafüggvényt ($y(x) = \dots$)?
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $Ae^x;$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $Ae^{-x};$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $Axe^x;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $Ax^2e^x;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $Ax^2e^{-x};$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz.</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Rezonancia vizsgálat:</b><br>
+                Ha a külső zavaró függvény $e^{\alpha x}$, és $\alpha$ nem gyöke a karakterisztikus egyenletnek (nincs rezonancia), akkor a próbafüggvény $A e^{\alpha x}$ alakú.
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    1. Írjuk fel a homogén egyenlet karakterisztikus egyenletét:
+                    $$ \lambda^2 - 2\lambda + 1 = 0 \implies (\lambda - 1)^2 = 0 \implies \lambda_{1,2} = 1 $$
+                </div>
+                <div class="math-block">
+                    2. A jobb oldalon lévő zavaró függvény $e^{-x}$, így az exponensben lévő együttható $\alpha = -1$.<br>
+                    Mivel $\alpha = -1 \neq 1$, nincs külső rezonancia.
+                </div>
+                Így a próbafüggvény alakja: $y_{I,p}(x) = A e^{-x}$.
+            </div>
+
+            <div class="result">
+                Eredmény: $A e^{-x}$
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>3. Hatványsor konvergenciatartománya</h2>
+            
+            <div class="task-description">
+                <strong>3. Feladat (5 pont)</strong>
+                Tudjuk, hogy a $\sum_{n \in \mathbb{N}} a_n(x + 2)^n$ hatványsor $x = 1$ esetén konvergens. Ekkor $x = -3$ esetén a hatványsor konvergens vagy divergens?
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> az $(a_n)_{n \in \mathbb{N}}$ együttható-sorozat választásától függetlenül konvergens; <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> az $(a_n)_{n \in \mathbb{N}}$ együttható-sorozat választásától függően lehet konvergens és divergens;</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> az $(a_n)_{n \in \mathbb{N}}$ együttható-sorozat választásától függetlenül divergens.</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Konvergenciasugár és tartomány:</b><br>
+                Egy $\sum a_n (x - x_0)^n$ hatványsor a konvergenciaintervallum belsejében (azaz $|x - x_0| < R$ esetén) mindig abszolút konvergens. Ha egy $x_1$ pontban konvergens, akkor $R \ge |x_1 - x_0|$.
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    1. A hatványsor középpontja (ahol az alap $0$ lesz): $x_0 = -2$.
+                </div>
+                <div class="math-block">
+                    2. Tudjuk, hogy $x = 1$-ben konvergens. A távolság a középponttól: $|1 - (-2)| = 3$. Ebből következik, hogy a konvergenciasugár $R \ge 3$.
+                </div>
+                <div class="math-block">
+                    3. Vizsgáljuk az $x = -3$ pontot! Ennek távolsága a középponttól: $|-3 - (-2)| = |-1| = 1$.<br>
+                    Mivel $1 < 3 \le R$, a pont biztosan a konvergenciaintervallum belsejében van.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: Az együttható-sorozat választásától függetlenül <b>konvergens</b>.
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>4. Végtelen sor összegének kiszámítása</h2>
+            
+            <div class="task-description">
+                <strong>4. Feladat (5 pont)</strong>
+                $$ \sum_{n=0}^\infty \frac{2^{n+1} + 3^n}{2^{2n+1}} = ? $$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $0;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $1;$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $4;$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $+\infty;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más válasz.</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Mértani sor összegképlete:</b>
+                $$ \sum_{n=0}^\infty q^n = \frac{1}{1-q} \quad (\text{ha } |q| < 1) $$
+            </div>
+
+            <div class="calc-step">
+                Bontsuk két részre a szummát a számláló alapján, és egyszerűsítsünk az alapokkal ($2^{2n+1} = 2 \cdot 4^n$):
+                <div class="math-block">
+                    $$ \sum_{n=0}^\infty \frac{2^{n+1}}{2^{2n+1}} + \sum_{n=0}^\infty \frac{3^n}{2^{2n+1}} = \sum_{n=0}^\infty \frac{2 \cdot 2^n}{2 \cdot 4^n} + \sum_{n=0}^\infty \frac{3^n}{2 \cdot 4^n} $$
+                    $$ = \sum_{n=0}^\infty \left(\frac{1}{2}\right)^n + \frac{1}{2}\sum_{n=0}^\infty \left(\frac{3}{4}\right)^n $$
+                </div>
+            </div>
+
+            <div class="calc-step">
+                Alkalmazzuk a mértani sorok összegképletét ($q_1 = 1/2$, $q_2 = 3/4$):
+                <div class="math-block">
+                    $$ = \frac{1}{1 - 1/2} + \frac{1}{2} \cdot \frac{1}{1 - 3/4} = 2 + \frac{1}{2} \cdot 4 = 2 + 2 = 4 $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: $4$
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>5. Sorok konvergenciája és majoráns kritérium</h2>
+            
+            <div class="task-description">
+                <strong>5. Feladat (10 pont)</strong>
+                Döntse el, igaz vagy hamis! Adottak $(a_n)_{n \in \mathbb{N}}$ és $(b_n)_{n \in \mathbb{N}}$ számsorozatok, $\sum b_n$ konvergens, és létezik $N$, hogy $n \ge N$ esetén $|a_n| \le b_n$.
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li>a) $\sum a_n$ konvergens. <span style="margin-left: 10px;"><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong> &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</span></li>
+                    <li>b) $\lim_{n \to \infty} a_n = 0$. <span style="margin-left: 10px;"><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong> &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</span></li>
+                    <li>c) $\sum b_n$ abszolút konvergens. <span style="margin-left: 10px;"><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong> &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</span></li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Majoráns kritérium:</b> Ha $|a_n| \le b_n$ (tehát $b_n \ge 0$) minden kellően nagy $n$-re, és $\sum b_n$ konvergens, akkor $\sum a_n$ abszolút konvergens (így simán konvergens is).
+            </div>
+
+            <div class="calc-step">
+                Mivel $|a_n| \ge 0$, az egyenlőtlenségből azonnal következik, hogy $b_n \ge 0$ minden $n \ge N$ esetén.
+                <div class="math-block">
+                    - <b>a) állítás:</b> A majoráns kritérium alapján $\sum a_n$ abszolút konvergens, tehát simán konvergens is. <b>(Igaz)</b><br>
+                    - <b>b) állítás:</b> Mivel a $\sum a_n$ sor konvergens, a tagjainak a végtelenben nullához kell tartaniuk (ez a konvergencia szükséges feltétele). <b>(Igaz)</b><br>
+                    - <b>c) állítás:</b> Mivel $n \ge N$ esetén $b_n \ge 0$, ezért $b_n = |b_n|$ ezektől az indexektől kezdve. Mivel $\sum b_n$ konvergens volt, a $\sum |b_n|$ is az lesz. <b>(Igaz)</b>
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: a) Igaz, b) Igaz, c) Igaz.
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>6. Kétváltozós folytonos függvények tulajdonságai</h2>
+            
+            <div class="task-description">
+                <strong>6. Feladat (10 pont)</strong>
+                Döntse el, igaz vagy hamis! $f: \mathbb{R}^2 \to \mathbb{R}_+$ folytonos függvény, $f(0,0)=0$.
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li>a) $f$-nek lokális szélsőértéke van az origóban. <span style="margin-left: 10px;"><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong> &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</span></li>
+                    <li>b) $\lim_{(x,y)\to(0,0)} f(x,y) = 0$. <span style="margin-left: 10px;"><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong> &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</span></li>
+                    <li>c) $f$-nek létezik maximuma az $\{(x,y) \in \mathbb{R}^2 \mid x^2+y^2 \le 1\}$ halmazon. <span style="margin-left: 10px;"><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong> &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</span></li>
+                    <li>d) $\int_0^1 \int_0^x f(x,y) \,dy \,dx = \int_0^x \int_0^1 f(x,y) \,dx \,dy$. <span style="margin-left: 10px;"><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></span></li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Weierstrass II. tétele:</b> Korlátos és zárt (kompakt) halmazon egy folytonos függvény mindig felveszi a minimumát és maximumát.<br>
+                <b>Integrálási határok cseréje:</b> A külső integrál határa sosem függhet az integrálási változóktól.
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    - <b>a) állítás:</b> Mivel a függvény értékkészlete $\mathbb{R}_+$ (azaz nemnegatív értékeket vesz fel), és az origóban az értéke $0$, ez a létező legkisebb érték. Ez egyértelműen globális (és így lokális) minimum. <b>(Igaz)</b><br><br>
+                    - <b>b) állítás:</b> Mivel $f$ folytonos az origóban is, a határértéke ott megegyezik a helyettesítési értékével, azaz $f(0,0)=0$. <b>(Igaz)</b><br><br>
+                    - <b>c) állítás:</b> A megadott halmaz egy zárt origó közepű egységkörlemez. Mivel zárt és korlátos halmazon keressük egy folytonos függvény maximumát, a Weierstrass-tétel szerint azt garantáltan felveszi. <b>(Igaz)</b><br><br>
+                    - <b>d) állítás:</b> Az integrálások sorrendjének felcserélése így nem működik; ráadásul a külső integrál felső határa nem lehet egy változó (jelen esetben $x$). <b>(Hamis)</b>
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: a) Igaz, b) Igaz, c) Igaz, d) Hamis.
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>7. Differenciálegyenletek osztályozása</h2>
+            
+            <div class="task-description">
+                <strong>7. Feladat (10 pont)</strong>
+                Döntse el, hogy igaz vagy hamis! Az $y'(x) = \sinh(x)(y(x) - 1)$ differenciálegyenlet:
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li>- elsőrendű <span style="margin-left: 10px;"><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong> &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</span></li>
+                    <li>- homogén lineáris <span style="margin-left: 10px;"><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> I &nbsp; <input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> H <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></span></li>
+                    <li>- szeparálható <span style="margin-left: 10px;"><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> I <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong> &nbsp; <input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> H</span></li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Alapfogalmak:</b><br>
+                - <b>Szeparálható:</b> $y' = f(x)g(y)$ alakba írható, tehát a változók szorzattá bonthatók.<br>
+                - <b>Homogén lineáris:</b> $y' + p(x)y = 0$ alakú (nincs konstans vagy csak $x$-től függő önálló tag).
+            </div>
+
+            <div class="calc-step">
+                Vizsgáljuk meg az $y' = \sinh(x)(y - 1)$ egyenletet:
+                <div class="math-block">
+                    - <b>Elsőrendű:</b> Csak az első derivált ($y'$) szerepel benne, magasabb nem. <b>(Igaz)</b><br><br>
+                    - <b>Homogén lineáris:</b> Bontsuk fel a zárójelet és rendezzük át: $y' - \sinh(x)y = -\sinh(x)$. Ez egy inhomogén lineáris egyenlet, mert a jobb oldalon szereplő zavaró függvény ($-\sinh(x)$) nem nulla. Tehát nem homogén. <b>(Hamis)</b><br><br>
+                    - <b>Szeparálható:</b> A jobb oldal $f(x) \cdot g(y)$ alakú, ahol $f(x) = \sinh(x)$ és $g(y) = y-1$. <b>(Igaz)</b>
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: elsőrendű: Igaz, homogén lineáris: Hamis, szeparálható: Igaz.
+            </div>
+        </div>
+
+        <h2 style="text-align: center; color: white; border: none; margin-bottom: 40px; margin-top: 60px; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px;">Kifejtős rész</h2>
+
+        <div class="card">
+            <h2>1. Kettős és Hármas integrál</h2>
+            
+            <div class="task-description">
+                <strong>1. Feladat (12+12=24 pont)</strong>
+                a) Számítsa ki az alábbi integrált!
+                $$ \int_0^1 \int_y^1 \sinh(x^2) \,dx\,dy = ? $$
+                b) Számítsuk ki az $\int_H f$ integrál értékét, ahol
+                $$ f(x,y,z) := \frac{2}{\sqrt{x^2+y^2+z^2}} $$
+                $$ H := \{(x,y,z) \in \mathbb{R}^3 \mid 1 \le x^2+y^2+z^2 \le 9, \, z \ge 0\} $$
+            </div>
+
+            <div class="formula-box">
+                <b>Integrálási sorrend felcserélése (a részhez):</b><br>
+                Ha a belső integrál nehezen vagy nem integrálható analitikusan (pl. $\sinh(x^2)$), érdemes felcserélni az integrálási határokat az integrálási tartomány átírásával.
+            </div>
+
+            <div class="calc-step">
+                <b>a) rész:</b>
+                <div class="math-block">
+                    Az eredeti tartomány határai: $0 \le y \le 1$ és $y \le x \le 1$. Ez a tartomány $x$ szerint külső integrállal kifejezve: $0 \le x \le 1$ és $0 \le y \le x$.<br>
+                    Cseréljük fel a sorrendet:
+                    $$ \int_0^1 \int_y^1 \sinh(x^2) \,dx\,dy = \int_0^1 \int_0^x \sinh(x^2) \,dy\,dx $$
+                    $$ = \int_0^1 \sinh(x^2) \Big[y\Big]_0^x \,dx = \int_0^1 x \sinh(x^2) \,dx $$
+                </div>
+                <div class="math-block">
+                    Mivel a belső függvény deriváltja $(x^2)' = 2x$, könnyen integrálhatunk:
+                    $$ = \frac{1}{2} \int_0^1 2x \sinh(x^2) \,dx = \frac{1}{2} \Big[\cosh(x^2)\Big]_0^1 = \frac{1}{2}(\cosh(1) - \cosh(0)) $$
+                    Tudva, hogy $\cosh(0) = 1$ és $\cosh(1) = \frac{e + e^{-1}}{2}$:
+                    $$ = \frac{1}{2} \left( \frac{e + 1/e}{2} - 1 \right) = \frac{1}{4} \left( e + \frac{1}{e} - 2 \right) $$
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <b>Gömbi koordináták (b részhez):</b><br>
+                A Jacobi-determináns (Térfogati elem): $dV = r^2 \sin(\theta) \,dr\,d\theta\,d\varphi$. Ahol a sugár $r = \sqrt{x^2+y^2+z^2}$.
+            </div>
+
+            <div class="calc-step">
+                <b>b) rész:</b>
+                <div class="math-block">
+                    A megadott $H$ halmaz egy origó körüli gömbhéj északi fele ($z \ge 0$). A határok:<br>
+                    - Sugár: $1 \le r^2 \le 9 \implies 1 \le r \le 3$<br>
+                    - Vízszintes szög: $0 \le \varphi \le 2\pi$<br>
+                    - Függőleges szög ($z \ge 0$ miatt): $0 \le \theta \le \pi/2$
+                </div>
+                <div class="math-block">
+                    A függvény $f = \frac{2}{r}$. Az integrált felírva és szétválasztva (mivel a határok konstansok):
+                    $$ \int_0^{2\pi} \int_0^{\pi/2} \int_1^3 \frac{2}{r} \cdot r^2 \sin(\theta) \,dr\,d\theta\,d\varphi = \left( \int_0^{2\pi} 1 \,d\varphi \right) \cdot \left( \int_0^{\pi/2} \sin(\theta) \,d\theta \right) \cdot \left( \int_1^3 2r \,dr \right) $$
+                    $$ = \Big[ \varphi \Big]_0^{2\pi} \cdot \Big[-\cos(\theta)\Big]_0^{\pi/2} \cdot \Big[r^2\Big]_1^3 = 2\pi \cdot (-\cos(\pi/2) - (-\cos(0))) \cdot (3^2 - 1^2) $$
+                    $$ = 2\pi \cdot (0 - (-1)) \cdot 8 = 16\pi $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: a) $\frac{1}{4}\left(e + \frac{1}{e} - 2\right)$, b) $16\pi$
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>2. Fourier-transzformáció</h2>
+            
+            <div class="task-description">
+                <strong>2. Feladat (12 pont)</strong>
+                Legyen $f: \mathbb{R} \to \mathbb{R}$ abszolút integrálható függvény. Fejezze ki az
+                $$ \mathcal{F}(x \mapsto f'(2x + 3)) $$
+                Fourier-transzformáltat az $f$ függvény Fourier-transzformáltjának segítségével!
+            </div>
+
+            <div class="formula-box">
+                <b>Fourier-transzformáció tulajdonságai:</b><br>
+                1. Derivált: $\mathcal{F}(f'(x))(\omega) = i\omega \mathcal{F}(f)(\omega)$<br>
+                2. Eltolás: $\mathcal{F}(f(x+a))(\omega) = e^{ia\omega} \mathcal{F}(f)(\omega)$<br>
+                3. Skálázás: $\mathcal{F}(f(cx))(\omega) = \frac{1}{|c|} \mathcal{F}(f)\left(\frac{\omega}{c}\right)$
+            </div>
+
+            <div class="calc-step">
+                Alkalmazzuk a szabályokat a belső argumentumból kifelé haladva:
+                <div class="math-block">
+                    1. Skálázás alkalmazása ($c = 2$):
+                    $$ \mathcal{F}(x \mapsto f'(2x + 3))(\omega) = \frac{1}{2} \mathcal{F}(y \mapsto f'(y + 3))\left(\frac{\omega}{2}\right) $$
+                </div>
+                <div class="math-block">
+                    2. Eltolás alkalmazása ($a = 3$), ügyelve arra, hogy a frekvenciaváltozó most $\frac{\omega}{2}$:
+                    $$ \mathcal{F}(y \mapsto f'(y + 3))\left(\frac{\omega}{2}\right) = e^{3i\frac{\omega}{2}} \mathcal{F}(y \mapsto f'(y))\left(\frac{\omega}{2}\right) $$
+                </div>
+                <div class="math-block">
+                    3. Derivált alkalmazása (a deriválási szabállyal is az $\frac{\omega}{2}$ helyen dolgozunk):
+                    $$ \mathcal{F}(f')\left(\frac{\omega}{2}\right) = i\left(\frac{\omega}{2}\right) \mathcal{F}(f)\left(\frac{\omega}{2}\right) $$
+                </div>
+                <div class="math-block">
+                    A darabokat összeszorozva megkapjuk a végeredményt:
+                    $$ \mathcal{F}(x \mapsto f'(2x + 3))(\omega) = \frac{1}{2} e^{3i\frac{\omega}{2}} \cdot i\frac{\omega}{2} \mathcal{F}(f)\left(\frac{\omega}{2}\right) = \frac{i\omega}{4} e^{i \frac{3\omega}{2}} \mathcal{F}(f)\left(\frac{\omega}{2}\right) $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: $\frac{i\omega}{4} e^{i \frac{3\omega}{2}} \mathcal{F}(f)\left(\frac{\omega}{2}\right)$
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>3. Lokális szélsőérték szükséges feltétele (Tétel)</h2>
+            
+            <div class="task-description">
+                <strong>3. Feladat (14 pont)</strong>
+                Mondjuk ki és bizonyítsuk a lokális szélsőértékek létezésének szükséges feltételéről szóló tételt (az $\mathbb{R}^n \to \mathbb{R}$ függvény esetére)!
+            </div>
+
+            <div class="formula-box">
+                <b>Tétel kimondása:</b><br>
+                Legyen $f: \mathbb{R}^n \to \mathbb{R}$, és az $a$ pont belső pontja az értelmezési tartománynak ($a \in \text{int}(\text{Dom}(f))$). Ha $f$ totálisan differenciálható az $a$ pontban, és $f$-nek ott lokális szélsőértéke van, akkor a gradiens a pontban nulla, azaz $\text{grad} f(a) = \mathbf{0}$.
+            </div>
+
+            <div class="calc-step">
+                <b>Bizonyítás lépései:</b>
+                <div class="math-block">
+                    1. Válasszunk ki egy tetszőleges $i \in \{1, 2, \dots, n\}$ koordinátát, és legyen $e_i$ az $i$-edik standard bázisvektor $\mathbb{R}^n$-ben.
+                </div>
+                <div class="math-block">
+                    2. Definiáljunk egy egyváltozós $\varphi$ függvényt, amely a függvény viselkedését írja le az $i$-edik irányra fókuszálva az $a$ pont körül:
+                    $$ \text{Dom}(\varphi) := \{t \in \mathbb{R} \mid a + t e_i \in \text{Dom}(f)\} \quad \text{és} \quad \varphi(t) := f(a + t e_i) $$
+                </div>
+                <div class="math-block">
+                    3. Mivel tudjuk, hogy az $f$-nek $a$-ban lokális szélsőértéke van, ezért a felírt $\varphi(t)$ egyváltozós függvénynek is lokális szélsőértéke lesz a $t = 0$ pontban.
+                </div>
+                <div class="math-block">
+                    4. Továbbá, mivel az $f$ differenciálható $a$-ban, a $\varphi$ függvény is differenciálható $t=0$-ban. Az egyváltozós függvények lokális szélsőértékének szükséges feltétele alapján ekkor a deriváltja nulla kell legyen:
+                    $$ \varphi'(0) = 0 $$
+                </div>
+                <div class="math-block">
+                    5. Másrészt az iránymenti (itt: parciális) derivált definíciója szerint $\varphi'(0)$ pontosan az $f$ függvény $i$-edik parciális deriváltja az $a$ pontban:
+                    $$ \varphi'(0) = \partial_i f(a) $$
+                </div>
+                Tehát $\partial_i f(a) = 0$. Mivel az $i$-t teljesen tetszőlegesen választottuk meg, ez a megállapítás minden parciális deriváltra igaz. Így a parciális deriváltakból álló gradiens vektor minden komponense nulla, azaz $\text{grad} f(a) = \mathbf{0}$. Ezzel a tételt bizonyítottuk.
+            </div>
+
+            <div class="result">
+                Eredmény: A tétel kimondása és a fenti egyváltozós visszavezetésre alapozott bizonyítás adja a megoldást.
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>4. Sorok abszolút konvergenciája</h2>
+            
+            <div class="task-description">
+                <strong>4. Feladat (Plusz 10 pontért)</strong>
+                Legyen $(a_n)_{n \in \mathbb{N}}$ korlátos számsorozat és $\sum b_n$ abszolút konvergens numerikus sor. Bizonyítsuk be, hogy ekkor a $\sum a_n b_n$ numerikus sor is abszolút konvergens!
+            </div>
+
+            <div class="formula-box">
+                <b>Alapfogalmak és Tételek:</b><br>
+                - <b>Korlátosság:</b> Ha az $(a_n)$ sorozat korlátos, akkor létezik olyan véges $K > 0$ valós szám, amelyre minden $n \in \mathbb{N}$ esetén $|a_n| \le K$.<br>
+                - <b>Majoráns kritérium:</b> Ha $0 \le x_n \le y_n$ és az $\sum y_n$ (majoráló) sor konvergens, akkor az $\sum x_n$ sor is konvergens.
+            </div>
+
+            <div class="calc-step">
+                <b>Bizonyítás lépései:</b>
+                <div class="math-block">
+                    1. A $\sum a_n b_n$ sor abszolút konvergenciájának bizonyításához meg kell vizsgálnunk a tagok abszolút értékéből álló $\sum |a_n b_n|$ sort.
+                </div>
+                <div class="math-block">
+                    2. Alkalmazzuk az abszolút érték szorzatszabályát és az $(a_n)$ sorozat korlátosságát felíró összefüggést:
+                    $$ |a_n b_n| = |a_n| \cdot |b_n| \le K \cdot |b_n| $$
+                </div>
+                <div class="math-block">
+                    3. Tudjuk a feladat alapján, hogy $\sum b_n$ abszolút konvergens, ami azt jelenti, hogy a $\sum |b_n|$ sor konvergens véges összeg.
+                </div>
+                <div class="math-block">
+                    4. Egy konvergens sor tagjait konstanssal szorozva a sor konvergens marad, ebből kifolyólag a $\sum K |b_n| = K \sum |b_n|$ sor is biztosan konvergens.
+                </div>
+                <div class="math-block">
+                    5. A Majoráns kritérium alapján, mivel minden $n$-re teljesül az $|a_n b_n| \le K |b_n|$ egyenlőtlenség, és a felső becslést adó $\sum K |b_n|$ sor konvergens, ebből egyenesen következik, hogy a vizsgált $\sum |a_n b_n|$ sor is konvergens.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: Mivel bebizonyítottuk, hogy a $\sum |a_n b_n|$ sor konvergens, ez pontosan azt jelenti definíció szerint, hogy a $\sum a_n b_n$ sor abszolút konvergens.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

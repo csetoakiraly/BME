@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2023. Tavaszi Vizsga 1 Megoldások</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7;
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        h1 { 
+            color: white; 
+            font-weight: 800; 
+            font-size: 2.8rem; 
+            text-align: center; 
+            margin-bottom: 50px; 
+            letter-spacing: -0.5px;
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            margin-top: 0; 
+            border-bottom: 1px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .task-description {
+            background: var(--task-bg);
+            border-left: 5px solid var(--task-color);
+            padding: 25px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 35px;
+            font-size: 1.25rem;
+            color: #e0f2fe;
+            line-height: 1.7;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .task-description strong {
+            color: var(--task-color);
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .formula-box {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 4px solid var(--secondary);
+            padding: 20px 25px;
+            border-radius: 0 16px 16px 0;
+            margin: 25px 0;
+            font-size: 1.25rem;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        .formula-box b {
+            color: var(--secondary);
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .calc-step {
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 3px solid rgba(255,255,255,0.15);
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            line-height: 2;
+        }
+
+        .math-block {
+            margin: 15px 0;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .result {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+            padding: 20px 25px;
+            border-radius: 16px;
+            display: block;
+            font-weight: 700;
+            margin-top: 30px;
+            font-size: 1.4rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);
+        }
+
+        .mjx-chtml { color: white !important; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 30px 15px; }
+            .card { padding: 25px 20px; }
+            h1 { font-size: 2.2rem; }
+            .task-description, .calc-step { font-size: 1.1rem; }
+            .result { font-size: 1.2rem; }
+            mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Vissza az Összefoglalóhoz
+        </a>
+
+        <h1>2023. Tavaszi Vizsga 1 (Alfa) Megoldások</h1>
+
+        <h1 style="font-size: 2rem; margin-bottom: 30px;">Teszt rész</h1>
+
+        <!-- 1. Kérdés -->
+        <div class="card">
+            <h2>1. Differenciálegyenlet általános megoldása</h2>
+            <div class="task-description">
+                <strong>1. Kérdés</strong>
+                Az $y'(x) = y(x) + 1$ differenciálegyenlet általános megoldása: (A \in \mathbb{R})
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $Ae^x - x$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $Ae^x + x$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $Ae^x + 1$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $A(e^x - 1)$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $Ae^x - 1$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más.</li>
+                </ul>
+            </div>
+            <div class="calc-step">
+                <div class="math-block">
+                    Megoldhatjuk szeparábilisként:
+                    $$ y' = y + 1 \implies \int \frac{dy}{y+1} = \int 1 dx \implies \ln|y+1| = x + C $$
+                    Kifejezve $y$-t:
+                    $$ y+1 = e^{x+C} = e^C \cdot e^x \implies y(x) = A e^x - 1 \quad (A \in \mathbb{R}) $$
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: $A e^x - 1$
+            </div>
+        </div>
+
+        <!-- 2. Kérdés -->
+        <div class="card">
+            <h2>2. Lineáris rekurzió megoldása</h2>
+            <div class="task-description">
+                <strong>2. Kérdés</strong>
+                Az $x_{n+1} = 3x_n - 2x_{n-1}$ rekurzió általános megoldása: (A, B \in \mathbb{R})
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $A2^{-n} + B2^n$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $A3^n - B2^n$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $A2^n + B$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $A + B(-2)^n$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $A3^n + B(-2)^{-n}$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más.</li>
+                </ul>
+            </div>
+            <div class="calc-step">
+                A karakterisztikus egyenlet felírása és megoldása:
+                <div class="math-block">
+                    $$ q^2 = 3q - 2 \implies q^2 - 3q + 2 = 0 $$
+                    $$ (q-1)(q-2) = 0 \implies q_1 = 1, \quad q_2 = 2 $$
+                </div>
+                Az általános megoldás alakja: $x_n = A \cdot q_1^n + B \cdot q_2^n$.
+                <div class="math-block">
+                    $$ x_n = A \cdot 1^n + B \cdot 2^n = A + B 2^n $$
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: $A 2^n + B$ (vagy ekvivalens alak)
+            </div>
+        </div>
+
+        <!-- 3. Kérdés -->
+        <div class="card">
+            <h2>3. Numerikus sor összege</h2>
+            <div class="task-description">
+                <strong>3. Kérdés</strong>
+                Mennyi a $\displaystyle \sum_{n=2}^\infty \frac{1}{n(n+1)}$ sor összege?
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $1$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $\frac{1}{2}$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $\infty$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $2$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> nem létezik</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más.</li>
+                </ul>
+            </div>
+            <div class="formula-box">
+                <b>Teleszkópösszeg trükk:</b>
+                $$ \frac{1}{n(n+1)} = \frac{1}{n} - \frac{1}{n+1} $$
+            </div>
+            <div class="calc-step">
+                Felírjuk a részletösszeget:
+                <div class="math-block">
+                    $$ S_N = \sum_{n=2}^N \left(\frac{1}{n} - \frac{1}{n+1}\right) = \left(\frac{1}{2} - \frac{1}{3}\right) + \left(\frac{1}{3} - \frac{1}{4}\right) + \dots + \left(\frac{1}{N} - \frac{1}{N+1}\right) $$
+                </div>
+                A belső tagok kiesnek (teleszkópos összeg), így:
+                <div class="math-block">
+                    $$ S_N = \frac{1}{2} - \frac{1}{N+1} $$
+                </div>
+                A sor összege a részletösszeg határértéke, ha $N \to \infty$:
+                <div class="math-block">
+                    $$ \lim_{N \to \infty} \left( \frac{1}{2} - \frac{1}{N+1} \right) = \frac{1}{2} $$
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: $\frac{1}{2}$
+            </div>
+        </div>
+
+        <!-- 4. Kérdés -->
+        <div class="card">
+            <h2>4. Hatványsor konvergenciatartománya</h2>
+            <div class="task-description">
+                <strong>4. Kérdés</strong>
+                A $\displaystyle \sum_{n=0}^\infty \frac{(-2)^n}{\sqrt{n+1}} x^n$ sor konvergenciatartománya:
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $[-\frac{1}{2}, +\frac{1}{2}]$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $[-\frac{1}{2}, +\frac{1}{2})$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $(-2, +2]$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $(-\frac{1}{2}, +\frac{1}{2}]$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $(-2, +2)$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más.</li>
+                </ul>
+            </div>
+            <div class="calc-step">
+                1. Konvergenciasugár meghatározása Cauchy-gyökkritériummal:
+                <div class="math-block">
+                    $$ \frac{1}{R} = \lim_{n \to \infty} \sqrt[n]{|a_n|} = \lim_{n \to \infty} \frac{2}{\sqrt[2n]{n+1}} = 2 \implies R = \frac{1}{2} $$
+                </div>
+                A nyílt konvergenciaintervallum tehát $(-\frac{1}{2}, \frac{1}{2})$.
+            </div>
+            <div class="calc-step">
+                2. Végpontok vizsgálata:
+                <div class="math-block">
+                    - Ha $x = -\frac{1}{2}$: $\displaystyle \sum_{n=0}^\infty \frac{(-2)^n}{\sqrt{n+1}} \left(-\frac{1}{2}\right)^n = \sum_{n=0}^\infty \frac{1}{\sqrt{n+1}}$. Ez divergens, mert $\alpha = 1/2 \le 1$.
+                    <br>- Ha $x = \frac{1}{2}$: $\displaystyle \sum_{n=0}^\infty \frac{(-2)^n}{\sqrt{n+1}} \left(\frac{1}{2}\right)^n = \sum_{n=0}^\infty \frac{(-1)^n}{\sqrt{n+1}}$. Ez Leibniz-típusú alternáló sor (tagok abszolút értéke monoton csökken 0-hoz), így konvergens.
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: $\left(-\frac{1}{2}, +\frac{1}{2}\right]$
+            </div>
+        </div>
+
+        <!-- 5. Kérdés -->
+        <div class="card">
+            <h2>5. Hatványsor összegfüggvénye</h2>
+            <div class="task-description">
+                <strong>5. Kérdés</strong>
+                $\displaystyle \sum_{n=0}^\infty \frac{(-2)^n}{(2n)!} x^{2n+1} = ?$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $x \sin(2x)$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $x \text{ch}(\sqrt{2}x)$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $x \cos(\sqrt{2}x)$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $\sin(2x)$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $-\text{sh}(2x)$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más.</li>
+                </ul>
+            </div>
+            <div class="formula-box">
+                <b>Nevezetes Taylor-sor:</b>
+                $$ \cos(z) = \sum_{n=0}^\infty \frac{(-1)^n}{(2n)!} z^{2n} $$
+            </div>
+            <div class="calc-step">
+                Alakítsuk át az általános tagot, hogy felismerjünk egy nevezetes hatványsort:
+                <div class="math-block">
+                    $$ \sum_{n=0}^\infty \frac{(-1)^n \cdot 2^n}{(2n)!} x^{2n+1} = x \sum_{n=0}^\infty \frac{(-1)^n}{(2n)!} (\sqrt{2} x)^{2n} $$
+                </div>
+                A szummán belüli rész pontosan a $\cos(z)$ Taylor-sora, ahol $z = \sqrt{2}x$.
+                <div class="math-block">
+                    $$ x \cos(\sqrt{2}x) $$
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: $x \cos(\sqrt{2}x)$
+            </div>
+        </div>
+
+        <!-- 6. Kérdés -->
+        <div class="card">
+            <h2>6. Igaz vagy Hamis: Differenciálegyenlet</h2>
+            <div class="task-description">
+                <strong>6. Kérdés</strong>
+                Minden állításról döntse el, hogy igaz (I) vagy hamis (H)!<br>
+                Egyenlet: $y'''(x) - 2y''(x) + y'(x) = x e^{-x}$
+            </div>
+            <div class="calc-step">
+                <b>Állítások vizsgálata:</b>
+                <div class="math-block">
+                    1. <i>Az egyenlet állandó együtthatós, lineáris.</i><br>
+                    Az együtthatók konstansok (1, -2, 1), a deriváltak lineárisan szerepelnek. <b>Igaz (I)</b>.
+                </div>
+                <div class="math-block">
+                    2. <i>Az egyenletben van belső rezonancia.</i><br>
+                    Karakterisztikus egyenlet: $\lambda^3 - 2\lambda^2 + \lambda = \lambda(\lambda-1)^2 = 0 \implies \lambda_1=0, \lambda_{2,3}=1$. Mivel az 1 kétszeres gyök, van belső rezonancia. <b>Igaz (I)</b>.
+                </div>
+                <div class="math-block">
+                    3. <i>Az egyenletben van külső rezonancia.</i><br>
+                    A zavaró függvényből leolvasható $\alpha \pm i\beta = -1 \pm 0i = -1$. Ez nem gyöke a karakterisztikus egyenletnek. Nincs külső rezonancia. <b>Hamis (H)</b>.
+                </div>
+                <div class="math-block">
+                    4. <i>$y(x) = 2x(e^x + 3)$ megoldása a homogén résznek.</i><br>
+                    A homogén megoldás alakja $y_h = C_1 + C_2 e^x + C_3 x e^x$. A megadott függvény kibontva $2x e^x + 6x$. A $6x$ tag nem állítható elő a $C_1$ konstansból. <b>Hamis (H)</b>.
+                </div>
+                <div class="math-block">
+                    5. <i>Az inhomogén partikuláris megoldását $y_{ip}(x) = Ax e^{-x}$ alakban keressük.</i><br>
+                    Mivel nincs külső rezonancia, és a zavaró függvény elsőfokú polinom ($x$) szorozva exponenciálissal ($e^{-x}$), a próbafüggvény alakja $(Ax + B)e^{-x}$ lenne. <b>Hamis (H)</b>.
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Kérdés -->
+        <div class="card">
+            <h2>7. Igaz vagy Hamis: Numerikus sorok tulajdonságai</h2>
+            <div class="task-description">
+                <strong>7. Kérdés</strong>
+                Sor: $\displaystyle \sum_{n=0}^\infty \frac{(-n+3)^2}{(n+2)^3}$
+            </div>
+            <div class="calc-step">
+                <b>Állítások vizsgálata:</b>
+                <div class="math-block">
+                    1. <i>A sor egy küszöbindextől kezdve kielégíti a Leibniz-kritériumot.</i><br>
+                    A számláló $(-n+3)^2$ mindig nemnegatív, a nevező pozitív. Ez egy pozitív tagú sor (nem alternáló). <b>Hamis (H)</b>.
+                </div>
+                <div class="math-block">
+                    2. <i>A sor konvergens.</i><br>
+                    Aszimptotikusan $a_n \approx \frac{n^2}{n^3} = \frac{1}{n}$. Mivel a harmonikus sor divergens, a limeszkritérium alapján ez a sor is divergens. <b>Hamis (H)</b>.
+                </div>
+                <div class="math-block">
+                    3. <i>A sor abszolút konvergens.</i><br>
+                    Mivel a sor pozitív tagú és divergens, nem lehet abszolút konvergens. <b>Hamis (H)</b>.
+                </div>
+                <div class="math-block">
+                    4. <i>A sor konvergenciájának eldöntésére használható a hányados-kritérium.</i><br>
+                    $\lim_{n \to \infty} \frac{a_{n+1}}{a_n} = 1$, ilyenkor a hányados-kritérium nem ad döntést. <b>Hamis (H)</b>.
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. Kérdés -->
+        <div class="card">
+            <h2>8. Igaz vagy Hamis: Binomiális sorfejtés</h2>
+            <div class="task-description">
+                <strong>8. Kérdés</strong>
+                Függvény: $f(x) = \sqrt[4]{1+2x^3}$
+            </div>
+            <div class="calc-step">
+                Írjuk fel a binomiális sorát: $f(x) = (1+2x^3)^{1/4} = \sum_{n=0}^\infty \binom{1/4}{n} (2x^3)^n$.
+                <div class="math-block">
+                    A sor első néhány tagja: $1 + \binom{1/4}{1}(2x^3) + \binom{1/4}{2}(2x^3)^2 + \dots$<br>
+                    Azaz: $1 + \frac{1}{2}x^3 - \frac{3}{32}x^6 + \dots$
+                </div>
+                <b>Állítások vizsgálata:</b>
+                <div class="math-block">
+                    1. <i>A függvény 0 középpontú, nyolcadfokú Taylor-polinomja 3 tagot tartalmaz.</i><br>
+                    A tagok $x^0$, $x^3$, $x^6$ fokszámúak. A következő tag $x^9$, ami már túllép a 8-adfokon. Így pontosan 3 tag alkotja. <b>Igaz (I)</b>.
+                </div>
+                <div class="math-block">
+                    2. <i>A függvény 0 középpontú Taylor-polinomja mindenütt előállítja $f$-et.</i><br>
+                    A konvergenciasugár $|2x^3| < 1 \implies |x| < \frac{1}{\sqrt[3]{2}}$, tehát nem minden valós $x$-re állítja elő. <b>Hamis (H)</b>.
+                </div>
+                <div class="math-block">
+                    3. <i>A 0 középpontú Taylor-polinomban $x^3$ együtthatója $\frac{3}{8}$.</i><br>
+                    Ahogy fent látható, az együttható $\binom{1/4}{1} \cdot 2 = \frac{1}{4} \cdot 2 = \frac{1}{2}$. <b>Hamis (H)</b>.
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. Kérdés -->
+        <div class="card">
+            <h2>9. Igaz vagy Hamis: Többváltozós függvények</h2>
+            <div class="task-description">
+                <strong>9. Kérdés</strong>
+                $f(x, y) = \frac{x^3 + |y|^{5/2}}{x^2 + 2y^2}$, ha $(x, y) \neq (0, 0)$, és $f(0, 0) = 0$
+            </div>
+            <div class="calc-step">
+                <b>Állítások vizsgálata:</b>
+                <div class="math-block">
+                    1. <i>A függvény mindenütt folytonos.</i><br>
+                    Polárkoordinátákra térve ($x=r\cos\varphi, y=r\sin\varphi$): $\frac{r^3 \cos^3 \varphi + r^{5/2} |\sin \varphi|^{5/2}}{r^2(\cos^2 \varphi + 2\sin^2 \varphi)} = \frac{r \cos^3 \varphi + r^{1/2} |\sin \varphi|^{5/2}}{\cos^2 \varphi + 2\sin^2 \varphi}$.
+                    Ahogy $r \to 0$, a számláló tart nullához, a nevező legalább 1, így a határérték 0, ami megegyezik a függvényértékkel. <b>Igaz (I)</b>.
+                </div>
+                <div class="math-block">
+                    2. <i>A függvény parciális deriváltjai az origóban léteznek.</i><br>
+                    Vizsgáljuk meg definíció szerint az $y$ szerinti deriváltat:
+                    $$ f'_y(0,0) = \lim_{y \to 0} \frac{f(0,y)-f(0,0)}{y} = \lim_{y \to 0} \frac{|y|^{5/2}/(2y^2)}{y} = \lim_{y \to 0} \frac{|y|^{5/2}}{2y^3} $$
+                    Ez a határérték nem létezik (kifejezés $\sim y^{-1/2}$). <b>Hamis (H)</b>.
+                </div>
+                <div class="math-block">
+                    3. <i>A függvény az origóban totálisan deriválható.</i><br>
+                    Mivel nem létezik mindkét parciális deriváltja, a függvény nem lehet totálisan deriválható. <b>Hamis (H)</b>.
+                </div>
+            </div>
+        </div>
+
+        <h1 style="font-size: 2rem; margin-top: 60px; margin-bottom: 30px;">Kifejtős rész</h1>
+
+        <!-- Kifejtős 1. -->
+        <div class="card">
+            <h2>1. Totális differenciálhatóság és iránymenti derivált</h2>
+            <div class="task-description">
+                <strong>1. Feladat (20 pont)</strong>
+                a) Ismertesse, és bizonyítsa be a totális differenciálhatóság egy tanult szükséges feltételét!<br>
+                b) Számolja ki az $f(x, y, z) = \frac{e^{xy^2}}{\sqrt{z^2 + 3}}$ függvény $(1, -2, 2)$ irányú iránymenti deriváltját a $(0, 2, -1)$ pontban!
+            </div>
+            <div class="calc-step">
+                <b>a) rész:</b> Szükséges feltételek a totális differenciálhatósághoz
+                <div class="math-block">
+                    Két szükséges feltételt tanultunk. Ha $f$ egy adott pontban totálisan differenciálható, akkor abban a pontban:
+                    <br>1. $f$ <b>folytonos</b>.
+                    <br>2. Az összes <b>parciális deriváltja létezik</b>.
+                    <br><i>Bizonyítás vázlata (parciális deriváltak létezésére):</i> A totális deriválhatóság definíciójából következik, hogy a függvény megváltozása lineárisan közelíthető. Ha az elmozdulásvektort csak egyetlen tengely (pl. $x$) mentén vesszük, akkor a határérték definíció pontosan visszaadja a parciális derivált definícióját, és garantálja annak létezését, értéke pedig a gradiens vektor adott koordinátája lesz.
+                </div>
+            </div>
+            <div class="calc-step">
+                <b>b) rész:</b> Iránymenti derivált kiszámítása
+                <div class="math-block">
+                    1. Számítsuk ki a parciális deriváltakat:
+                    $$ \partial_x f(x,y,z) = \frac{y^2 e^{xy^2}}{\sqrt{z^2 + 3}} $$
+                    $$ \partial_y f(x,y,z) = \frac{2xy e^{xy^2}}{\sqrt{z^2 + 3}} $$
+                    $$ \partial_z f(x,y,z) = e^{xy^2} \cdot \left(-\frac{1}{2}\right) (z^2+3)^{-3/2} \cdot 2z = \frac{-z e^{xy^2}}{(z^2+3)^{3/2}} $$
+                </div>
+                <div class="math-block">
+                    2. Helyettesítsük be a $P(0, 2, -1)$ pontot:
+                    $$ e^{0 \cdot 2^2} = 1, \quad \sqrt{(-1)^2 + 3} = 2, \quad ((-1)^2+3)^{3/2} = 8 $$
+                    $$ \partial_x f = \frac{4 \cdot 1}{2} = 2, \quad \partial_y f = \frac{0 \cdot 1}{2} = 0, \quad \partial_z f = \frac{-(-1) \cdot 1}{8} = \frac{1}{8} $$
+                    Így a gradiens vektor: $\text{grad} f(P) = \left(2, 0, \frac{1}{8}\right)$.
+                </div>
+                <div class="math-block">
+                    3. Irányvektor normálása: $\mathbf{v} = (1, -2, 2)$. A hossza $\|\mathbf{v}\| = \sqrt{1 + 4 + 4} = 3$.
+                    Az egységvektor: $\mathbf{e} = \left(\frac{1}{3}, -\frac{2}{3}, \frac{2}{3}\right)$.
+                </div>
+                <div class="math-block">
+                    4. Iránymenti derivált (skaláris szorzat):
+                    $$ f'_{\mathbf{e}}(P) = \text{grad} f(P) \cdot \mathbf{e} = 2 \cdot \frac{1}{3} + 0 \cdot \left(-\frac{2}{3}\right) + \frac{1}{8} \cdot \frac{2}{3} = \frac{2}{3} + \frac{2}{24} = \frac{8}{12} + \frac{1}{12} = \frac{9}{12} = \frac{3}{4} $$
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: $\frac{3}{4}$
+            </div>
+        </div>
+
+        <!-- Kifejtős 2. -->
+        <div class="card">
+            <h2>2. Hármas integrál és hengerkoordináták</h2>
+            <div class="task-description">
+                <strong>2. Feladat (15 pont)</strong>
+                a) Ismertesse a hengerkoordinátákat, a Descartes-koordinátákkal való kapcsolatot, és a Jacobi-determinánst!<br>
+                b) Számolja ki az $f(x, y, z) = x^2 z$ integrálját az $1 \le x^2 + y^2 \le 9$, $-1 \le z \le 2$ halmazon!
+            </div>
+            <div class="calc-step">
+                <b>a) rész:</b> Hengerkoordináták
+                <div class="math-block">
+                    A hengerkoordináták $(r, \varphi, z)$ segítségével írják le a tér egy pontját:
+                    <br>- $r$: a pont z-tengelytől vett távolsága ($x-y$ síkra eső vetületének origótól való távolsága)
+                    <br>- $\varphi$: az $x-y$ síkra eső vetület irányszöge (az x-tengelytől számítva)
+                    <br>- $z$: a pont z-koordinátája (magassága).
+                    $$ x = r \cos \varphi, \quad y = r \sin \varphi, \quad z = z $$
+                    Az áttérés Jacobi-determinánsa: $J = r$.
+                </div>
+            </div>
+            <div class="calc-step">
+                <b>b) rész:</b> Hármas integrál
+                <div class="math-block">
+                    Az integrálási tartomány paraméterei hengerkoordinátákban:
+                    $$ 1 \le r \le 3, \quad 0 \le \varphi \le 2\pi, \quad -1 \le z \le 2 $$
+                </div>
+                <div class="math-block">
+                    Az integrál felírása:
+                    $$ \iiint_V x^2 z dV = \int_{-1}^2 \int_0^{2\pi} \int_1^3 (r \cos \varphi)^2 z \cdot r dr d\varphi dz $$
+                    A változókat szétválaszthatjuk (mivel a tartomány téglatest és a függvény szorzat alakú):
+                    $$ = \left( \int_1^3 r^3 dr \right) \cdot \left( \int_0^{2\pi} \cos^2 \varphi d\varphi \right) \cdot \left( \int_{-1}^2 z dz \right) $$
+                </div>
+                <div class="math-block">
+                    Számoljuk ki az integrálokat külön-külön:
+                    $$ \int_1^3 r^3 dr = \left[ \frac{r^4}{4} \right]_1^3 = \frac{81 - 1}{4} = 20 $$
+                    $$ \int_0^{2\pi} \cos^2 \varphi d\varphi = \int_0^{2\pi} \frac{1 + \cos(2\varphi)}{2} d\varphi = \left[ \frac{\varphi}{2} + \frac{\sin(2\varphi)}{4} \right]_0^{2\pi} = \pi $$
+                    $$ \int_{-1}^2 z dz = \left[ \frac{z^2}{2} \right]_{-1}^2 = \frac{4 - 1}{2} = \frac{3}{2} $$
+                </div>
+                <div class="math-block">
+                    A három részeredmény szorzata:
+                    $$ 20 \cdot \pi \cdot \frac{3}{2} = 30\pi $$
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: $30\pi$
+            </div>
+        </div>
+
+        <!-- Kifejtős 3. -->
+        <div class="card">
+            <h2>3. Fourier-sorok</h2>
+            <div class="task-description">
+                <strong>3. Feladat (15 pont)</strong>
+                a) Mit tudunk páros, illetve páratlan függvények Fourier-együtthatóiról?<br>
+                b) Írja fel a $2\pi$ szerint periodikus, a $(-\pi, \pi]$ intervallumon az $f(x) = 2x - 3$ formulával definiált függvény Fourier-sorát!
+            </div>
+            <div class="calc-step">
+                <b>a) rész:</b> Szimmetria tulajdonságok
+                <div class="math-block">
+                    - <b>Páratlan függvény</b> Fourier-sorában minden $a_n = 0$ ($n \ge 0$), tehát a sor csak szinuszos tagokat tartalmaz.<br>
+                    - <b>Páros függvény</b> Fourier-sorában minden $b_n = 0$ ($n \ge 1$), tehát a sor csak konstans és koszinuszos tagokat tartalmaz.
+                </div>
+            </div>
+            <div class="calc-step">
+                <b>b) rész:</b> Fourier-sor felírása
+                <div class="math-block">
+                    Vegyük észre, hogy $f(x) = 2x - 3$ előáll egy páratlan ($2x$) és egy páros ($-3$) függvény összegeként. Így $a_0$ a páros részből jön, míg a $b_n$ a páratlanból. A koszinuszos tagok együtthatója $a_n = 0$ ($n \ge 1$).
+                </div>
+                <div class="math-block">
+                    1. A konstans tag ($a_0/2$):
+                    $$ a_0 = \frac{1}{\pi} \int_{-\pi}^\pi (2x - 3) dx = \frac{1}{\pi} \left[ x^2 - 3x \right]_{-\pi}^\pi = \frac{1}{\pi} \left( (\pi^2 - 3\pi) - (\pi^2 + 3\pi) \right) = -6 $$
+                    Így a sor konstans tagja: $\frac{a_0}{2} = -3$.
+                </div>
+                <div class="math-block">
+                    2. A szinuszos együtthatók ($b_n$):
+                    $$ b_n = \frac{1}{\pi} \int_{-\pi}^\pi (2x - 3) \sin(nx) dx = \frac{1}{\pi} \int_{-\pi}^\pi 2x \sin(nx) dx $$
+                    <i>(A $-3 \sin(nx)$ páratlan függvény szimmetrikus intervallumon vett integrálja 0.)</i>
+                    Parciális integrálással: $u = 2x, v' = \sin(nx) \implies u' = 2, v = -\frac{\cos(nx)}{n}$
+                    $$ b_n = \frac{1}{\pi} \left[ -2x \frac{\cos(nx)}{n} \right]_{-\pi}^\pi - \frac{1}{\pi} \int_{-\pi}^\pi 2 \left( -\frac{\cos(nx)}{n} \right) dx $$
+                    A második tag szinusz integrálja egy teljes periódusra, ami 0.
+                    $$ b_n = \frac{1}{\pi} \left( -2\pi \frac{\cos(n\pi)}{n} - 2\pi \frac{\cos(-n\pi)}{n} \right) = \frac{-4\pi \cos(n\pi)}{\pi n} = \frac{-4 (-1)^n}{n} = \frac{4(-1)^{n+1}}{n} $$
+                </div>
+                <div class="math-block">
+                    A keresett Fourier-sor:
+                    $$ \Phi(x) = -3 + \sum_{n=1}^\infty \frac{4(-1)^{n+1}}{n} \sin(nx) $$
+                </div>
+            </div>
+            <div class="result">
+                Eredmény: $\Phi(x) = -3 + \sum_{n=1}^\infty \frac{4(-1)^{n+1}}{n} \sin(nx)$
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
