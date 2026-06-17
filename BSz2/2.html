@@ -485,25 +485,6 @@ const graphKB = [
         ref: "2.5", target: "section-2-5-ex", color: "emerald" 
     },
 
-    // --- 2.6-2.7 MINIMÁLIS FESZÍTŐFA ÉS KRUSKAL ---
-    { 
-        title: "Minimális összsúlyú feszítőfa (MST)", 
-        keys: ["minimális", "legkisebb súlyú", "mst"], 
-        ans: "Súlyozott gráfban az a feszítőfa, amelynek az élsúly-összege a lehető legkisebb.", 
-        ref: "2.6", target: "section-2-6", color: "emerald" 
-    },
-    { 
-        title: "Kruskal-algoritmus (Mohó módszer)", 
-        keys: ["kruskal", "mohó algoritmus", "moho", "algoritmus leírása"], 
-        ans: "Építsük a fát a legkisebb súlyú élekkel: 1. Rendezés súly szerint, 2. Beválogatás, ha az él nem zár be kört az eddigiekkel.", 
-        ref: "2.7", target: "section-2-7", color: "emerald" 
-    },
-    { 
-        title: "Kruskal algoritmus leállása", 
-        keys: ["mikor áll meg", "leállás"], 
-        ans: "Az algoritmus akkor áll meg, amikor pontosan $n-1$ élet válogattunk be, hiszen ekkor jön létre a feszítőfa.", 
-        ref: "2.7", target: "section-2-7", color: "emerald" 
-    },
     // --- 2.5 BIZONYÍTÁS ÉS KONSTRUKCIÓ ---
     { 
         title: "Feszítőfa építése (Bizonyítási eljárás)", 
@@ -512,19 +493,11 @@ const graphKB = [
         ref: "2.5", target: "section-2-5", color: "emerald" 
     },
 
-    // --- 2.6 A MOHÓ STRATÉGIA BIZONYÍTÁSA ---
-    { 
-        title: "Miért működik a mohó algoritmus? (Bizonyítás)", 
-        keys: ["indirekt bizonyítás", "élcsere", "miért minimális"], 
-        ans: "A bizonyítás indirekt: ha lenne jobb megoldás a mohónál, egy élcserével (az első eltérő élnél) mutatható egy olyan fa, amely nem nehezebb, de közelebb áll a mohó választáshoz. Ez ellentmondáshoz vezet. [ref: 2.6]", 
-        ref: "2.6", target: "section-2-6", color: "emerald" 
-    },
-
     // --- 2.8 ÖSSZEFOGLALÓ KVÍZ ---
     { 
         title: "Fák elmélete kvíz", 
         keys: ["kvíz", "teszt", "ismétlés", "ellenőrzés"], 
-        ans: "A 2. fejezet végén található összefoglaló kvíz segítségével letesztelheted a tudásodat a fák definíciójáról, a levelekről és a Kruskal-algoritmusról. [ref: 2.8]", 
+        ans: "A 2. fejezet végén található összefoglaló kvíz segítségével letesztelheted a tudásodat a fák definíciójáról és a levelekről. [ref: 2.8]", 
         ref: "2.8", target: "section-2-8", color: "emerald" 
     },
     // --- 3.1-3.2 EULER-VONALAK ---
@@ -2436,13 +2409,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
 
-                <div class="bg-slate-800/50 p-6 rounded-2xl border border-white/10 hover:bg-slate-800/80 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#04 Kruskal-elv</p>
-                    <p class="text-white font-bold italic leading-relaxed">Melyik élt utasítja el a Kruskal-algoritmus a válogatás során?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-emerald-400 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity text-balance">
-                        Válasz: Azt az élt, aminek a végpontjai **már azonos komponensben** vannak, mivel az kör bezárását okozná.
-                    </div>
-                </div>
+                
 
             </div>
         </div>
@@ -2526,193 +2493,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .edge-label { font-size: 10px; font-weight: black; fill: #10b981; }
 </style>
 
-<script>
-    const kSvg = document.getElementById('kruskal-svg');
-    const kLog = document.getElementById('kruskal-log');
-    const weightPopup = document.getElementById('weight-popup');
-    const weightInput = document.getElementById('edge-weight-input');
-    
-    let kNodes = [];
-    let kEdges = [];
-    let tempNode = null;
-    let isRunning = false;
 
-    // Eseménykezelők
-    kSvg.addEventListener('click', (e) => {
-        if(isRunning) return;
-        const rect = kSvg.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        // Csúcsra kattintottunk?
-        const targetNode = kNodes.find(n => Math.hypot(n.x - x, n.y - y) < 15);
-
-        if (targetNode) {
-            if (tempNode === null) {
-                tempNode = targetNode;
-                renderKruskal();
-            } else {
-                if (tempNode !== targetNode) {
-                    // Élkészítés kezdete
-                    weightPopup.style.left = `${x}px`;
-                    weightPopup.style.top = `${y}px`;
-                    weightPopup.classList.remove('hidden');
-                    weightInput.focus();
-                    window.pendingEdge = { u: tempNode.id, v: targetNode.id };
-                }
-                tempNode = null;
-                renderKruskal();
-            }
-        } else {
-            // Új csúcs
-            kNodes.push({ id: kNodes.length, x, y });
-            tempNode = null;
-            renderKruskal();
-        }
-    });
-
-    function confirmEdge() {
-        const weight = parseInt(weightInput.value) || 1;
-        // Ellenőrizzük, van-e már ilyen él
-        const exists = kEdges.some(e => 
-            (e.u === window.pendingEdge.u && e.v === window.pendingEdge.v) ||
-            (e.u === window.pendingEdge.v && e.v === window.pendingEdge.u)
-        );
-        
-        if(!exists) {
-            kEdges.push({ ...window.pendingEdge, weight, inMST: false, active: true });
-        }
-        weightPopup.classList.add('hidden');
-        renderKruskal();
-    }
-
-    function runKruskal() {
-        if (kNodes.length < 2 || kEdges.length < 1) return;
-        isRunning = true;
-        document.getElementById('run-kruskal-btn').disabled = true;
-        
-        // 1. RENDEZZÜK AZ ÉLEKET
-        let sortedEdges = [...kEdges].sort((a, b) => a.weight - b.weight);
-        kEdges.forEach(e => e.inMST = false);
-        
-        kLog.innerHTML = `<p class="text-emerald-400">> Élek sorbarendezése súly szerint...</p>`;
-        
-        // Union-Find (DSU) struktúra a komponensekhez
-        let parent = kNodes.map((_, i) => i);
-        function find(i) {
-            while(parent[i] !== i) i = parent[i];
-            return i;
-        }
-        function union(i, j) {
-            let rootI = find(i);
-            let rootJ = find(j);
-            if(rootI !== rootJ) {
-                parent[rootI] = rootJ;
-                return true;
-            }
-            return false;
-        }
-
-        let mstWeight = 0;
-        let mstCount = 0;
-        let step = 0;
-
-        function nextStep() {
-            if (step >= sortedEdges.length || mstCount === kNodes.length - 1) {
-                kLog.innerHTML += `<p class="text-emerald-400 font-bold">> KÉSZ! Minimális feszítőfa előállítva.</p>`;
-                isRunning = false;
-                document.getElementById('run-kruskal-btn').disabled = false;
-                return;
-            }
-
-            let edge = sortedEdges[step];
-            // 4. VIZSGÁLJUK MEG A KOMPONENSEKET
-            if (union(edge.u, edge.v)) {
-                edge.inMST = true;
-                mstWeight += edge.weight;
-                mstCount++;
-                kLog.innerHTML += `<p class="text-emerald-500">> [OK] ${edge.u}-${edge.v} (Súly: ${edge.weight}) hozzáadva.</p>`;
-            } else {
-                kLog.innerHTML += `<p class="text-rose-500">> [KIHAGYVA] ${edge.u}-${edge.v} kört alkotna.</p>`;
-            }
-
-            document.getElementById('total-weight').innerText = mstWeight;
-            document.getElementById('mst-edge-count').innerText = mstCount;
-            renderKruskal();
-            kLog.scrollTop = kLog.scrollHeight;
-            
-            step++;
-            setTimeout(nextStep, 800);
-        }
-
-        nextStep();
-    }
-
-    function renderKruskal() {
-        kSvg.innerHTML = '';
-        
-        // Élek
-        kEdges.forEach(edge => {
-            const u = kNodes[edge.u];
-            const v = kNodes[edge.v];
-            const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-            line.setAttribute("x1", u.x); line.setAttribute("y1", u.y);
-            line.setAttribute("x2", v.x); line.setAttribute("y2", v.y);
-            
-            if (edge.inMST) {
-                line.setAttribute("stroke", "#10b981");
-                line.setAttribute("stroke-width", "5");
-            } else {
-                line.setAttribute("stroke", isRunning ? "#1e293b" : "#334155");
-                line.setAttribute("stroke-width", "2");
-            }
-            line.setAttribute("class", "transition-all duration-500");
-            kSvg.appendChild(line);
-
-            // Súly jelzése
-            const midX = (u.x + v.x) / 2;
-            const midY = (u.y + v.y) / 2;
-            const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            text.setAttribute("x", midX); text.setAttribute("y", midY - 5);
-            text.setAttribute("class", "edge-label");
-            text.setAttribute("text-anchor", "middle");
-            text.textContent = edge.weight;
-            kSvg.appendChild(text);
-        });
-
-        // Csúcsok
-        kNodes.forEach(node => {
-            const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-            const circ = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-            circ.setAttribute("cx", node.x); circ.setAttribute("cy", node.y);
-            circ.setAttribute("r", tempNode && tempNode.id === node.id ? "14" : "10");
-            circ.setAttribute("fill", tempNode && tempNode.id === node.id ? "#fbbf24" : "#1e293b");
-            circ.setAttribute("stroke", "#10b981");
-            circ.setAttribute("stroke-width", "2");
-            
-            const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            label.setAttribute("x", node.x); label.setAttribute("y", node.y + 4);
-            label.setAttribute("text-anchor", "middle");
-            label.setAttribute("class", "node-label fill-white");
-            label.textContent = node.id;
-
-            g.appendChild(circ);
-            g.appendChild(label);
-            kSvg.appendChild(g);
-        });
-    }
-
-    function clearKruskal() {
-        kNodes = []; kEdges = []; tempNode = null; isRunning = false;
-        kLog.innerHTML = `<p class="text-slate-500">> Gráf törölve. Kezdj újat!</p>`;
-        document.getElementById('total-weight').innerText = "0";
-        document.getElementById('mst-edge-count').innerText = "0";
-        document.getElementById('run-kruskal-btn').disabled = false;
-        renderKruskal();
-    }
-
-    renderKruskal();
-</script>
 
 <script>
     const aSvg = document.getElementById('algo-svg');
