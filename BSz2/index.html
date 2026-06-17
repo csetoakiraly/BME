@@ -1683,9 +1683,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </h1>
     </header>
     <div class="bg-indigo-50 dark:bg-indigo-900/10 border-l-4 border-indigo-500 p-6 rounded-r-2xl">
-        <h3 class="text-indigo-700 dark:text-indigo-400 mb-2">Gráfelméleti alapfogalmak: <b>gráf, egyszerű gráf,</b> komplementer gráf, <b>izomorfia, részgráf,</b>
-        feszített részgráf, élsorozat, séta, <b>út, kör, összefüggő gráf,</b> (összefüggő) komponens.
-        <b>Szélességi bejárás (BFS),</b> annak lépésszáma.</h3>
+        <h3 class="text-indigo-700 dark:text-indigo-400 mb-2">Gráfelméleti alapfogalmak: <b>gráf, egyszerű gráf,</b> komplementer gráf, <b>izomorfia, részgráf,</b> feszített részgráf, élsorozat, séta, <b>út, kör, összefüggő gráf,</b> (összefüggő) komponens. A legrövidebb út feladat nemnegatív élsúlyokkal, <b>Dijkstra algoritmusa</b>.</h3>
     </div>
 
     
@@ -3029,7 +3027,49 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 </math-lab>
 
-<math-trivia id="section-1-15">
+<math-header>
+    <div class="num-badge">1.15</div>
+    <h2>Dijkstra algoritmusa</h2>
+</math-header>
+
+<math-def id="section-1-15">
+    <div class="space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+        <p>
+            Dijkstra algoritmusa a <strong class="text-slate-900 dark:text-white">legrövidebb út problémát</strong> oldja meg olyan irányított gráfokban, ahol <strong class="text-rose-500">nincsenek negatív élsúlyok</strong>. Az algoritmus folyamatosan karbantart egy $K$ halmazt (a "kész" csúcsok halmazát, amikre a legrövidebb út már megvan), és kiszámítja a táv($v$) távolságokat a többi csúcsra.
+        </p>
+    </div>
+</math-def>
+
+<div class="bg-indigo-50 dark:bg-indigo-900/10 border border-indigo-200 dark:border-indigo-800 p-6 rounded-2xl mb-8">
+    <h3 class="text-indigo-600 dark:text-indigo-400 font-black uppercase tracking-widest text-sm mb-4">Dijkstra Algoritmusa</h3>
+    <div class="font-mono text-sm text-slate-800 dark:text-slate-300 space-y-2">
+        <p><span class="text-slate-500 font-bold">Bemenet:</span> Egy $n$ csúcsú $G = (V,E)$ irányított gráf, egy $w : E \to \mathbb{R}^+ \cup \{0\}$ nemnegatív súlyfüggvény és egy $s \in V$ csúcs</p>
+        <hr class="border-indigo-200 dark:border-indigo-800 my-3">
+        <p>1: táv($s$) $\leftarrow 0$; minden $v \in V, v \neq s$-re táv($v$) $\leftarrow \infty$</p>
+        <p>2: minden $v \in V, v \neq s$-re előző($v$) $\leftarrow *$</p>
+        <p>3: $K \leftarrow \{s\}$; $a \leftarrow s$</p>
+        <p>4: <strong class="text-indigo-600 dark:text-indigo-400">ciklus:</strong> amíg $K \neq V$</p>
+        <p class="pl-4">5: <strong class="text-indigo-600 dark:text-indigo-400">ciklus:</strong> $e$ végigfut az $e = (a, v), v \notin K$ éleken</p>
+        <p class="pl-8">6: <strong>ha</strong> táv($v$) $>$ táv($a$) + $w(e)$, <strong>akkor:</strong></p>
+        <p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">7: táv($v$) $\leftarrow$ táv($a$) + $w(e)$</p>
+        <p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">8: előző($v$) $\leftarrow a$</p>
+        <p class="pl-4">9: <strong>ciklus vége</strong></p>
+        <p class="pl-4">10: $a$ legyen egy olyan $a \notin K$ csúcs, amire táv($a$) = $\min\{$táv($v$) : $v \notin K\}$</p>
+        <p class="pl-4">11: $K \leftarrow K \cup \{a\}$</p>
+        <p>12: <strong>ciklus vége</strong></p>
+    </div>
+</div>
+
+<math-theorem id="section-1-16">
+    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4 italic text-center md:text-left">
+        Dijkstra algoritmusának lépésszáma
+    </h3>
+    <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
+        Az algoritmus 10. sorában a minimumkeresés minden lépésben egyre kisebb halmazon fut le. Ha egyszerű tömböt használunk, a keresések száma $n$-nel arányos minden külső ciklusban, így az eljárás teljes lépésszáma <strong class="text-indigo-600 dark:text-indigo-400">$\mathcal{O}(n^2)$</strong>, ahol $n$ a csúcsok száma.
+    </p>
+</math-theorem>
+
+<math-trivia id="section-1-17">
 <div class="flex items-center gap-4 mb-8">
         <div class="p-3 bg-amber-400 rounded-2xl shadow-lg shadow-amber-400/20">
             <span class="text-2xl">💡</span>

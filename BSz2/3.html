@@ -1682,9 +1682,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </header>
 
     <div class="bg-blue-50 dark:bg-blue-900/10 border-l-4 border-blue-500 p-6 rounded-r-2xl text-blue-700 dark:text-blue-400">
-        <b>Hamilton-körök és -utak.</b> szükséges feltétel Hamilton-kör/-út létezésére. Elégséges
-feltételek: Dirac és Ore tétele. <b>Euler-séták és -körséták,</b> ezek létezésének szükséges és
-elégséges feltétele.
+        <b>Hamilton-körök és -utak</b>, ezek kapcsolatának eldönthetősége (Nincs biz.). Dirac és Ore tétele (mindkettőnél csak az utakra vonatkozó tétel biz., körökre csak kimondani). <b>Euler-séták és -körséták</b>, Euler-séták és -körséták létezésére vonatkozó Euler tételek.
     </div>
 
     <math-header>
@@ -2580,7 +2578,7 @@ elégséges feltétele.
                 <span class="font-bold italic text-sm">Gabriel Andrew Dirac (1952)</span>
             </div>
             <p class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
-                Ha az $n \geq 3$ csúcsú $G$ egyszerű gráfban minden csúcs foka legalább $\frac{n}{2}$, akkor $G$-ben van <span class="text-blue-600">Hamilton-kör</span>.
+                Ha az $n \geq 3$ csúcsú $G$ egyszerű gráfban minden csúcs foka legalább $n/2$, akkor $G$-ben van <span class="text-blue-600">Hamilton-kör</span>.
             </p>
         </div>
     </math-theorem>
@@ -2657,7 +2655,7 @@ elégséges feltétele.
             <span class="font-bold italic text-sm">Ore tétele</span>
         </div>
         <p class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
-            Tegyük fel, hogy az $n \geq 3$ csúcsú $G$ egyszerű gráfra teljesül: minden $u, v \in V(G), \{u, v\} \notin E(G)$ esetén $d(u) + d(v) \geq n$. Ekkor $G$-ben van **Hamilton-kör**.
+            Tegyük fel, hogy az $n \geq 3$ csúcsú $G$ egyszerű gráfra teljesül a következő feltétel: minden $u, v \in V(G), \{u, v\} \notin E(G)$ esetén $d(u) + d(v) \geq n$; vagyis bármely két nemszomszédos csúcs fokszámának az összege legalább $G$ csúcsainak a száma. Ekkor $G$-ben van <span class="text-blue-600">Hamilton-kör</span>.
         </p>
     </math-theorem>
 

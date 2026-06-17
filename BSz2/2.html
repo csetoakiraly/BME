@@ -1682,8 +1682,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </header>
 
     <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-6 rounded-r-2xl">
-        <h3 class="text-emerald-700 dark:text-emerald-400 mb-2"><b>Fa fogalma,</b> fák egyszerű tulajdonságai. <b>Feszítőfa fogalma,</b> annak létezése. Minimális
-összsúlyú feszítőfa, <b>Kruskal algoritmusa.</b></h3>
+        <h3 class="text-emerald-700 dark:text-emerald-400 mb-2">Becslés összefüggő gráf, illetve körmentes gráf éleinek számára. <b>Fa fogalma</b>, fák egyszerű tulajdonságai. <b>Feszítőfa fogalma</b>, annak létezése. <b>Szélességi bejárás (BFS)</b>, annak lépésszáma, BFS-fa.</h3>
     </div>
 
 <math-header>
@@ -2346,152 +2345,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <math-header>
     <div class="num-badge">2.7</div>
-    <h2 class="text-balance">Kruskal algoritmusa</h2>
+    <h2>Szélességi bejárás (BFS)</h2>
 </math-header>
 
 <section id="section-2-7" class="mb-16 space-y-8">
-    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
-        <div class="absolute top-0 right-0 p-6 opacity-5 pointer-events-none">
-            <svg class="w-24 h-24 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>
+    <math-def id="section-2-7-def">
+        <div class="text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic border-l-4 border-emerald-500/20 pl-6">
+            A <strong class="text-slate-900 dark:text-white not-italic">szélességi bejárás (Breadth-First Search, BFS)</strong> egy algoritmus, amely a gráf csúcsait egy $s$ kezdőponttól mért távolságuk alapján szintekre (rétegekre) osztva járja be.
         </div>
+    </math-def>
 
-        <div class="flex items-center mb-6">
-            <span class="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md mr-3 text-xs">Pszeudokód</span>
-        </div>
-
-        <div class="space-y-6">
-            <div class="bg-slate-50 dark:bg-slate-900/50 p-5 rounded-xl border border-slate-100 dark:border-slate-800">
-                <p class="text-sm font-bold text-slate-700 dark:text-slate-300">
-                    <span class="text-emerald-600 dark:text-emerald-400 uppercase mr-2 tracking-tighter">Bemenet:</span> 
-                    Egy $n$ csúcsú és $m$ élű $G = (V,E)$ összefüggő gráf és egy $w: E \to \mathbb{R}$ súlyfüggvény.
-                </p>
-            </div>
-
-            <div class="font-mono text-sm md:text-base space-y-2 bg-slate-900 text-slate-300 p-6 md:p-8 rounded-2xl shadow-2xl border border-slate-800">
-                <div class="flex gap-4">
-                    <span class="text-slate-600 shrink-0">1</span>
-                    <p><span class="text-emerald-400 font-bold">RENDEZZÜK AZ ÉLEKET</span> a $w(e)$ súlyok szerinti növekvő sorrendbe: $w(e_1) \leq w(e_2) \leq \dots \leq w(e_m)$</p>
-                </div>
-                <div class="flex gap-4">
-                    <span class="text-slate-600 shrink-0">2</span>
-                    <p>$k \leftarrow 0$; $j \leftarrow 1$; $E(F) \leftarrow \emptyset$</p>
-                </div>
-                <div class="flex gap-4">
-                    <span class="text-slate-600 shrink-0">3</span>
-                    <p><span class="text-indigo-400 font-bold uppercase text-xs">ciklus:</span> amíg $k < n - 1$</p>
-                </div>
-                <div class="flex gap-4 ml-6">
-                    <span class="text-slate-600 shrink-0">4</span>
-                    <p class="text-slate-400 font-medium">VIZSGÁLJUK MEG, HOGY $e_j$ VÉGPONTJAI KÜLÖNBÖZŐ KOMPONENSBEN VANNAK-E</p>
-                </div>
-                <div class="flex gap-4 ml-6">
-                    <span class="text-slate-600 shrink-0">5</span>
-                    <p><span class="text-indigo-400 font-bold uppercase text-xs">ha</span> igen, <span class="text-indigo-400 font-bold uppercase text-xs">akkor:</span></p>
-                </div>
-                <div class="flex gap-4 ml-12 border-l border-slate-700 pl-4">
-                    <span class="text-slate-600 shrink-0">6</span>
-                    <p>$E(F) \leftarrow E(F) \cup \{e_j\}$ <span class="text-slate-600 ml-2 italic">// Él beválogatása</span></p>
-                </div>
-                <div class="flex gap-4 ml-12 border-l border-slate-700 pl-4">
-                    <span class="text-slate-600 shrink-0">7</span>
-                    <p>$k \leftarrow k + 1$</p>
-                </div>
-                <div class="flex gap-4 ml-6">
-                    <span class="text-slate-600 shrink-0">8</span>
-                    <p>$j \leftarrow j + 1$</p>
-                </div>
-                <div class="flex gap-4">
-                    <span class="text-slate-600 shrink-0">9</span>
-                    <p><span class="text-indigo-400 font-bold uppercase text-xs">ciklus vége</span></p>
-                </div>
-            </div>
+    <div class="bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-200 dark:border-emerald-800 p-6 rounded-2xl mb-8">
+        <h3 class="text-emerald-600 dark:text-emerald-400 font-black uppercase tracking-widest text-sm mb-4">BFS Algoritmus</h3>
+        <div class="font-mono text-sm text-slate-800 dark:text-slate-300 space-y-2">
+            <p><span class="text-slate-500 font-bold">Bemenet:</span> Egy $n$ csúcsú $G = (V,E)$ gráf és egy $s \in V$ kezdőcsúcs</p>
+            <hr class="border-emerald-200 dark:border-emerald-800 my-3">
+            <p>1: minden $v \in V$-re táv($v$) $\leftarrow \infty$; előző($v$) $\leftarrow *$</p>
+            <p>2: táv($s$) $\leftarrow 0$; $i \leftarrow 0$; $L_0 \leftarrow \{s\}$</p>
+            <p>3: <strong class="text-emerald-600 dark:text-emerald-400">ciklus:</strong> amíg $L_i \neq \emptyset$</p>
+            <p class="pl-4">4: $L_{i+1} \leftarrow \emptyset$</p>
+            <p class="pl-4">5: <strong class="text-emerald-600 dark:text-emerald-400">ciklus:</strong> minden $u \in L_i$ csúcsra és minden $\{u, v\} \in E$ élre:</p>
+            <p class="pl-8">6: <strong>ha</strong> táv($v$) = $\infty$, <strong>akkor:</strong></p>
+            <p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">7: táv($v$) $\leftarrow i + 1$</p>
+            <p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">8: előző($v$) $\leftarrow u$</p>
+            <p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">9: $L_{i+1} \leftarrow L_{i+1} \cup \{v\}$</p>
+            <p class="pl-4">10: <strong>ciklus vége</strong></p>
+            <p class="pl-4">11: $i \leftarrow i + 1$</p>
+            <p>12: <strong>ciklus vége</strong></p>
         </div>
     </div>
 
-    
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-emerald-50 dark:bg-emerald-900/10 p-6 rounded-2xl border border-emerald-100 dark:border-emerald-900/30 shadow-sm">
-            <h4 class="text-emerald-700 dark:text-emerald-400 font-black mb-3 text-[10px] uppercase tracking-widest">Leállási feltétel</h4>
-            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed italic">
-                Az algoritmus pontosan $n-1$ él beválogatása után áll meg. Mivel egy $n$ csúcsú fa élszáma mindig ennyi (lásd a korábbi **2.3-as tételt**), ekkorra garantáltan egy összefüggő feszítőfát kapunk.
-            </p>
-        </div>
-        <div class="bg-indigo-50 dark:bg-indigo-900/10 p-6 rounded-2xl border border-indigo-100 dark:border-indigo-900/30 shadow-sm">
-            <h4 class="text-indigo-700 dark:text-indigo-400 font-black mb-3 text-[10px] uppercase tracking-widest">Komponens vizsgálat</h4>
-            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed italic">
-                A 4. lépés a „lelke” a körmentességnek: ha két pont már azonos komponensben van, egy új él kört zárna be közöttük. Ezt elkerülve az algoritmus végig erdő struktúrát tart fenn.
-            </p>
-        </div>
-    </div>
+    <math-theorem id="section-2-7-theorem">
+        <p class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed mb-4">
+            BFS-fa és Lépésszám
+        </p>
+        <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+            Ha $G$ összefüggő, akkor a BFS által definiált előző($v$) mutatók (ahol $v \neq s$) élei egy <strong class="text-emerald-600 dark:text-emerald-400">feszítőfát (BFS-fát)</strong> alkotnak.
+        </p>
+        <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
+            Mivel minden csúcsot egyszer teszünk be egy $L_i$ listába és minden élet legfeljebb kétszer vizsgálunk meg (irányítatlan esetben), a bejárás teljes lépésszáma <strong class="text-emerald-600 dark:text-emerald-400">$\mathcal{O}(n + m)$</strong>.
+        </p>
+    </math-theorem>
 </section>
-
-<math-header>
-    <h2 class="text-balance">Kruskal-algoritmus: Interaktív szimuláció</h2>
-</math-header>
-
-<math-lab id="section-2-7-ex">
-    <div class="relative z-10">
-        <div class="flex flex-col lg:flex-row gap-8">
-            
-            <div class="flex-grow space-y-6">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h3 class="text-emerald-400 font-black italic uppercase text-xs tracking-widest">Gráfépítő vászon</h3>
-                        <p class="text-slate-400 text-[10px] mt-1">Kattints a vászonra csúcsokhoz, kösd össze őket az élekért!</p>
-                    </div>
-                    <div class="flex gap-2">
-                        <button onclick="clearKruskal()" class="p-2.5 bg-slate-800 hover:bg-rose-600 rounded-xl transition-all shadow-lg active:scale-95" title="Minden törlése">
-                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="relative bg-slate-800/80 rounded-3xl border border-slate-700 aspect-video lg:aspect-square overflow-hidden group shadow-inner">
-                    <svg id="kruskal-svg" width="100%" height="100%" class="cursor-crosshair overflow-visible"></svg>
-                    
-                    <div id="weight-popup" class="absolute hidden bg-slate-900/95 p-4 rounded-2xl border-2 border-emerald-500 shadow-2xl scale-90 transition-transform backdrop-blur-sm z-50">
-                        <label class="block text-[8px] font-black uppercase text-slate-500 mb-2 tracking-widest">Él súlya</label>
-                        <div class="flex items-center gap-2">
-                            <input type="number" id="edge-weight-input" class="w-20 bg-slate-800 text-white p-2 rounded-lg border border-slate-600 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 font-mono" value="1">
-                            <button onclick="confirmEdge()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest transition-colors shadow-lg">OK</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-wrap gap-4">
-                    <button id="run-kruskal-btn" onclick="runKruskal()" class="flex-grow py-4 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-30 disabled:cursor-not-allowed text-white font-black uppercase tracking-widest text-[10px] rounded-2xl transition-all shadow-xl shadow-emerald-900/40 active:scale-[0.98]">
-                        Algoritmus futtatása ⚡
-                    </button>
-                </div>
-            </div>
-
-            <div class="w-full lg:w-80 flex flex-col gap-6">
-                <div class="bg-slate-800/50 rounded-3xl p-6 border border-slate-700 shadow-xl">
-                    <h4 class="text-[10px] font-black uppercase text-emerald-500 mb-4 tracking-widest flex items-center">
-                        <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-2 animate-pulse"></span>
-                        Algoritmus lépései
-                    </h4>
-                    <div id="kruskal-log" class="text-[11px] space-y-3 h-72 overflow-y-auto font-mono text-slate-400 pr-3 custom-scrollbar leading-relaxed">
-                        <p class="text-slate-500 italic">> Rendszer készenlétben.</p>
-                        <p class="text-slate-500 italic">> Adj hozzá legalább 3 csúcsot és néhány élt!</p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-4 text-center">
-                    <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700 shadow-lg">
-                        <div class="text-[9px] uppercase text-slate-500 font-black tracking-widest mb-1">Összsúly</div>
-                        <div id="total-weight" class="text-2xl font-black text-emerald-400">0</div>
-                    </div>
-                    <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700 shadow-lg">
-                        <div class="text-[9px] uppercase text-slate-500 font-black tracking-widest mb-1">MST Élek</div>
-                        <div id="mst-edge-count" class="text-2xl font-black text-indigo-400">0</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</math-lab>
 
 <math-header>
     <div class="num-badge">2.8</div>

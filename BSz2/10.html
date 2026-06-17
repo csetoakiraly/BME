@@ -1694,10 +1694,8 @@ document.addEventListener('DOMContentLoaded', () => {
     </header>
 
     <div class="bg-theme-soft border-l-4 border-theme p-8 rounded-r-[2rem] text-slate-800 dark:text-slate-200 shadow-sm">
-        <p class="font-medium leading-relaxed italic">
-            10. <b>Többszörös összefüggőség és élösszefüggőség</b>, illetve <b>κ(G) és λ(G)</b>
-fogalma, Menger ezekre vonatkozó tételei (a pontösszefüggőség és κ(G) esetében bizonyítás nélkül). A legrövidebb út feladat, <b>konzervatív súlyfüggvény
-fogalma. A Bellman-Ford algoritmus.</b>
+        <p class="font-medium">
+            <b>Többszörös összefüggőség és élösszefüggőség</b>, illetve <b>$\kappa(G)$ és $\lambda(G)$</b> fogalma, Menger ezekre vonatkozó tételei (a pontösszefüggőség és $\kappa(G)$ esetében bizonyítás nélkül). Minimális összsúlyú feszítőfa, <b>Kruskal algoritmusa</b>.
         </p>
     </div>
 
@@ -2419,6 +2417,92 @@ fogalma. A Bellman-Ford algoritmus.</b>
             </div>
         </div>
     </math-proof>
+</section>
+
+<math-header>
+    <div class="flex items-center gap-4 mb-6 mt-12">
+        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+            10.14
+        </div>
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+            Kruskal algoritmusa
+        </h2>
+    </div>
+</math-header>
+
+<section id="section-10-14" class="mb-16 space-y-8">
+    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
+        <div class="absolute top-0 right-0 p-6 opacity-5 pointer-events-none">
+            <svg class="w-24 h-24 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>
+        </div>
+
+        <div class="flex items-center mb-6">
+            <span class="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md mr-3 text-xs">Pszeudokód</span>
+        </div>
+
+        <div class="space-y-6">
+            <div class="bg-slate-50 dark:bg-slate-900/50 p-5 rounded-xl border border-slate-100 dark:border-slate-800">
+                <p class="text-sm font-bold text-slate-700 dark:text-slate-300">
+                    <span class="text-emerald-600 dark:text-emerald-400 uppercase mr-2 tracking-tighter">Bemenet:</span> 
+                    Egy $n$ csúcsú és $m$ élű $G = (V,E)$ összefüggő gráf és egy $w: E \to \mathbb{R}$ súlyfüggvény.
+                </p>
+            </div>
+
+            <div class="font-mono text-sm md:text-base space-y-2 bg-slate-900 text-slate-300 p-6 md:p-8 rounded-2xl shadow-2xl border border-slate-800">
+                <div class="flex gap-4">
+                    <span class="text-slate-600 shrink-0">1</span>
+                    <p><span class="text-emerald-400 font-bold">RENDEZZÜK AZ ÉLEKET</span> a $w(e)$ súlyok szerinti növekvő sorrendbe: $w(e_1) \leq w(e_2) \leq \dots \leq w(e_m)$</p>
+                </div>
+                <div class="flex gap-4">
+                    <span class="text-slate-600 shrink-0">2</span>
+                    <p>$k \leftarrow 0$; $j \leftarrow 1$; $E(F) \leftarrow \emptyset$</p>
+                </div>
+                <div class="flex gap-4">
+                    <span class="text-slate-600 shrink-0">3</span>
+                    <p><span class="text-indigo-400 font-bold uppercase text-xs">ciklus:</span> amíg $k < n - 1$</p>
+                </div>
+                <div class="flex gap-4 ml-6">
+                    <span class="text-slate-600 shrink-0">4</span>
+                    <p class="text-slate-400 font-medium">VIZSGÁLJUK MEG, HOGY $e_j$ VÉGPONTJAI KÜLÖNBÖZŐ KOMPONENSBEN VANNAK-E</p>
+                </div>
+                <div class="flex gap-4 ml-6">
+                    <span class="text-slate-600 shrink-0">5</span>
+                    <p><span class="text-indigo-400 font-bold uppercase text-xs">ha</span> igen, <span class="text-indigo-400 font-bold uppercase text-xs">akkor:</span></p>
+                </div>
+                <div class="flex gap-4 ml-12 border-l border-slate-700 pl-4">
+                    <span class="text-slate-600 shrink-0">6</span>
+                    <p>$E(F) \leftarrow E(F) \cup \{e_j\}$ <span class="text-slate-600 ml-2 italic">// Él beválogatása</span></p>
+                </div>
+                <div class="flex gap-4 ml-12 border-l border-slate-700 pl-4">
+                    <span class="text-slate-600 shrink-0">7</span>
+                    <p>$k \leftarrow k + 1$</p>
+                </div>
+                <div class="flex gap-4 ml-6">
+                    <span class="text-slate-600 shrink-0">8</span>
+                    <p>$j \leftarrow j + 1$</p>
+                </div>
+                <div class="flex gap-4">
+                    <span class="text-slate-600 shrink-0">9</span>
+                    <p><span class="text-indigo-400 font-bold uppercase text-xs">ciklus vége</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <div class="bg-emerald-50 dark:bg-emerald-900/10 p-6 rounded-2xl border border-emerald-100 dark:border-emerald-900/30 shadow-sm">
+            <h4 class="text-emerald-700 dark:text-emerald-400 font-black mb-3 text-[10px] uppercase tracking-widest">Leállási feltétel</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed italic">
+                Az algoritmus pontosan $n-1$ él beválogatása után áll meg. Ekkorra garantáltan egy minimális súlyú összefüggő feszítőfát kapunk.
+            </p>
+        </div>
+        <div class="bg-indigo-50 dark:bg-indigo-900/10 p-6 rounded-2xl border border-indigo-100 dark:border-indigo-900/30 shadow-sm">
+            <h4 class="text-indigo-700 dark:text-indigo-400 font-black mb-3 text-[10px] uppercase tracking-widest">Komponens vizsgálat</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed italic">
+                A 4. lépés a „lelke” a körmentességnek: ha két pont már azonos komponensben van, egy új él kört zárna be közöttük.
+            </p>
+        </div>
+    </div>
 </section>
 
 <math-header>
