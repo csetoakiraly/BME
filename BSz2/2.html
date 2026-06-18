@@ -1670,41 +1670,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 </math-def>
 
-<math-lab>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-slate-800/50 p-6 rounded-2xl border border-emerald-500/30 flex flex-col items-center shadow-inner">
-            <span class="text-[10px] font-black text-emerald-400 uppercase mb-6 tracking-widest">Példa: Fa</span>
-            <svg width="140" height="100" viewBox="0 0 140 100" class="drop-shadow-lg overflow-visible">
-                <line x1="70" y1="20" x2="30" y2="50" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
-                <line x1="70" y1="20" x2="110" y2="50" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
-                <line x1="30" y1="50" x2="30" y2="85" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
-                <circle cx="70" cy="20" r="6" fill="white" />
-                <circle cx="30" cy="50" r="6" fill="white" />
-                <circle cx="110" cy="50" r="6" fill="white" />
-                <circle cx="30" cy="85" r="6" fill="white" />
-            </svg>
-            <div class="mt-8 flex gap-2">
-                <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-[9px] font-black rounded-lg uppercase tracking-tighter">Összefüggő</span>
-                <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-[9px] font-black rounded-lg uppercase tracking-tighter">Nincs kör</span>
-            </div>
-        </div>
-
-        <div class="bg-slate-800/50 p-6 rounded-2xl border border-rose-500/30 flex flex-col items-center shadow-inner">
-            <span class="text-[10px] font-black text-rose-400 uppercase mb-6 tracking-widest">Példa: Nem fa (Kör)</span>
-            <svg width="140" height="100" viewBox="0 0 140 100" class="drop-shadow-lg opacity-80 overflow-visible">
-                <path d="M 70 20 L 110 60 L 30 60 Z" fill="none" stroke="#f43f5e" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" />
-                <circle cx="70" cy="20" r="6" fill="white" />
-                <circle cx="110" cy="60" r="6" fill="white" />
-                <circle cx="30" cy="60" r="6" fill="white" />
-            </svg>
-            <div class="mt-8 flex gap-2">
-                <span class="px-3 py-1 bg-emerald-500/10 text-emerald-500/60 text-[9px] font-black rounded-lg uppercase tracking-tighter">Összefüggő</span>
-                <span class="px-3 py-1 bg-rose-500/20 text-rose-400 text-[9px] font-black rounded-lg uppercase tracking-tighter">Tartalmaz kört</span>
-            </div>
-        </div>
-    </div>
-</math-lab>
 <math-header>
     <div class="num-badge">2.2</div>
     <h2>Levelek létezése fákban</h2>
@@ -1754,49 +1720,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
 
-    <math-lab>
-        <h3 class="text-xl font-bold mb-4 italic text-white">Vizuális ellentmondás-detektor</h3>
-        <p class="text-slate-400 text-sm mb-8 leading-relaxed">Próbálj meg egy új szomszédot ($x$) adni a végponthoz!</p>
-        
-        <div class="flex flex-col items-center">
-            <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700 w-full max-w-lg aspect-video flex justify-center items-center relative shadow-inner">
-                <svg width="340" height="120" viewBox="0 0 340 120" class="overflow-visible">
-                    <path d="M 40 60 L 100 60 L 160 60 L 220 60 L 280 60" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
-                    
-                    <circle cx="40" cy="60" r="5" fill="white" />
-                    <circle cx="100" cy="60" r="5" fill="white" />
-                    <circle cx="160" cy="60" r="5" fill="white" />
-                    <circle cx="220" cy="60" r="5" fill="white" />
-                    <circle cx="280" cy="60" r="8" fill="#fbbf24" id="v-node" /> 
-                    <text x="280" y="90" fill="#fbbf24" font-size="12" font-weight="black" text-anchor="middle">v</text>
-                    <text x="220" y="85" fill="#94a3b8" font-size="10" text-anchor="middle" font-weight="bold">u</text>
-                    <text x="40" y="45" fill="#10b981" font-size="12" font-weight="black" italic>P (Leghosszabb út)</text>
-
-                    <g id="case-1-visual" class="opacity-0 transition-opacity duration-500">
-                        <line x1="280" y1="60" x2="320" y2="30" stroke="#f43f5e" stroke-width="3" stroke-dasharray="4" />
-                        <circle cx="320" cy="30" r="6" fill="#f43f5e" />
-                        <text x="325" y="25" fill="#f43f5e" font-size="10" font-weight="bold">x (Hosszabb lenne!)</text>
-                    </g>
-
-                    <g id="case-2-visual" class="opacity-0 transition-opacity duration-500">
-                        <path d="M 280 60 Q 190 10 100 60" fill="none" stroke="#f43f5e" stroke-width="3" stroke-dasharray="4" />
-                        <circle cx="100" cy="60" r="6" stroke="#f43f5e" stroke-width="3" fill="none" />
-                        <text x="100" y="85" fill="#f43f5e" font-size="10" text-anchor="middle" font-weight="bold">x (Kör keletkezik!)</text>
-                    </g>
-                </svg>
-            </div>
-
-            <div class="mt-8 flex flex-wrap justify-center gap-4">
-                <button onmouseover="showCase(1)" onmouseout="hideCases()" class="bg-slate-700 hover:bg-rose-600 text-white text-[10px] font-black py-3 px-6 rounded-xl uppercase tracking-widest transition-all shadow-lg active:scale-95">
-                    1. Eset: Túl hosszú út
-                </button>
-                <button onmouseover="showCase(2)" onmouseout="hideCases()" class="bg-slate-700 hover:bg-rose-600 text-white text-[10px] font-black py-3 px-6 rounded-xl uppercase tracking-widest transition-all shadow-lg active:scale-95">
-                    2. Eset: Kör keletkezik
-                </button>
-            </div>
-            <p id="case-desc" class="mt-6 text-xs text-slate-500 italic h-4 font-medium uppercase tracking-tighter">Húzd az egeret a gombok fölé a szemléltetéshez!</p>
-        </div>
-    </math-lab>
+    
 </section>
 
 <math-header>
@@ -1857,36 +1781,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </math-proof>
 
-    <math-lab>
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-            <div>
-                <h3 class="text-xl font-bold italic text-white">Komponens-építő Labor</h3>
-                <p class="text-slate-400 text-sm">Adj hozzá éleket és figyeld, hogyan csökken a komponensek száma!</p>
-            </div>
-            <div class="flex gap-4">
-                <div class="bg-slate-800 px-5 py-3 rounded-2xl border border-slate-700 shadow-xl">
-                    <div class="text-[9px] uppercase text-slate-500 font-black tracking-widest mb-1">Komponensek</div>
-                    <div id="comp-val" class="text-2xl font-black text-emerald-400">6</div>
-                </div>
-                <div class="bg-slate-800 px-5 py-3 rounded-2xl border border-slate-700 shadow-xl">
-                    <div class="text-[9px] uppercase text-slate-500 font-black tracking-widest mb-1">Élek (m)</div>
-                    <div id="edge-val" class="text-2xl font-black text-indigo-400">0</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="flex flex-col items-center">
-            <div class="bg-slate-800/50 rounded-3xl p-6 border border-slate-700 w-full max-w-lg aspect-square flex justify-center items-center shadow-inner relative overflow-hidden">
-                <svg id="build-svg" width="300" height="300" viewBox="0 0 300 300" class="cursor-pointer overflow-visible z-10"></svg>
-                <div class="absolute inset-0 opacity-5 pointer-events-none">
-                    <svg width="100%" height="100%" fill="currentColor"><rect width="100%" height="100%" fill="url(#grid)" /></svg>
-                </div>
-            </div>
-            <button onclick="resetBuilder()" class="mt-10 text-[10px] bg-slate-700 hover:bg-rose-600 text-white font-black py-3 px-10 rounded-xl transition-all uppercase tracking-widest shadow-lg active:scale-95">
-                Visszaállítás (n=6) 🔄
-            </button>
-        </div>
-    </math-lab>
+    
 </section>
 
 
@@ -1904,39 +1799,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </math-def>
 
-    <math-lab>
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-            <div>
-                <h3 class="text-xl font-bold italic text-emerald-400">Feszítőfa-építő labor</h3>
-                <p class="text-slate-400 text-sm">Kattints az élekre, hogy kiválaszd őket az $F$ részgráfba!</p>
-            </div>
-            <div id="spanning-status" class="px-6 py-2 rounded-full font-black uppercase tracking-widest text-xs border-2 bg-slate-800 border-slate-700 text-slate-500 transition-all duration-500">
-                Építés alatt...
-            </div>
-        </div>
-
-        <div class="flex flex-col items-center">
-            <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700 w-full max-w-lg aspect-square flex justify-center items-center shadow-inner">
-                <svg id="spanning-svg" width="300" height="300" viewBox="0 0 300 300" class="cursor-pointer overflow-visible"></svg>
-            </div>
-            
-            <div class="mt-8 grid grid-cols-2 md:grid-cols-3 gap-4 w-full max-w-lg">
-                <div class="p-4 bg-slate-800/80 rounded-xl border border-slate-700 text-center shadow-lg">
-                    <div class="text-[8px] uppercase text-slate-500 font-black tracking-widest mb-1">Kiválasztott élek</div>
-                    <div id="span-edge-count" class="text-xl font-black text-white">0</div>
-                </div>
-                <div class="p-4 bg-slate-800/80 rounded-xl border border-slate-700 text-center shadow-lg">
-                    <div class="text-[8px] uppercase text-slate-500 font-black tracking-widest mb-1">Ciklus-mentes</div>
-                    <div id="span-cycle-check" class="text-xl font-black text-emerald-500 uppercase">Igen</div>
-                </div>
-                <div class="p-4 bg-slate-800/80 rounded-xl border border-slate-700 text-center col-span-2 md:col-span-1 shadow-lg group">
-                    <button onclick="resetSpanning()" class="w-full h-full text-[10px] font-black uppercase tracking-widest text-rose-400 group-hover:text-rose-300 transition-colors active:scale-95">
-                        Visszaállítás 🔄
-                    </button>
-                </div>
-            </div>
-        </div>
-    </math-lab>
+    
 </section>
 
 <math-header>
@@ -1986,44 +1849,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </math-proof>
 
-    <math-lab>
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-            <div>
-                <h3 class="text-xl font-bold italic text-emerald-400">Algoritmus-szemléltető</h3>
-                <p class="text-slate-400 text-sm">
-                    Építs feszítőfát: adj hozzá olyan éleket, amelyek különböző komponenseket kötnek össze!
-                </p>
-            </div>
-        </div>
-
-        <div class="flex flex-col lg:flex-row gap-12 items-center justify-center">
-            <div class="bg-slate-800/50 rounded-3xl p-6 border border-slate-700 w-full max-w-sm aspect-square flex justify-center items-center relative shadow-inner">
-                <svg id="algo-svg" width="280" height="280" viewBox="0 0 280 280" class="cursor-pointer overflow-visible z-10"></svg>
-            </div>
-
-            <div class="flex flex-col gap-4 w-full max-w-xs">
-                <div id="algo-step-card" class="bg-slate-800 p-5 rounded-2xl border border-slate-700 shadow-xl">
-                    <div class="text-[10px] uppercase font-black text-emerald-500 mb-2 tracking-[0.1em]">Aktuális állapot</div>
-                    <div id="algo-message" class="text-sm italic text-slate-300 leading-relaxed">Kattints egy szürke élre a kezdéshez!</div>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-slate-800 p-4 rounded-2xl border border-slate-700 text-center shadow-lg">
-                        <div class="text-[8px] uppercase text-slate-500 font-black mb-1">Komponensek</div>
-                        <div id="algo-comp-count" class="text-xl font-black text-white">5</div>
-                    </div>
-                    <div class="bg-slate-800 p-4 rounded-2xl border border-slate-700 text-center shadow-lg">
-                        <div class="text-[8px] uppercase text-slate-500 font-black mb-1">Élek száma</div>
-                        <div id="algo-edge-count" class="text-xl font-black text-white">0</div>
-                    </div>
-                </div>
-                
-                <button onclick="resetAlgo()" class="w-full py-4 bg-slate-700 hover:bg-rose-600 transition-all rounded-xl font-black text-[10px] uppercase tracking-widest shadow-lg active:scale-95">
-                    Visszaállítás 🔄
-                </button>
-            </div>
-        </div>
-    </math-lab>
+    
 </section>
 
 <div class="flex items-center gap-4 mb-6 mt-12">
@@ -2033,15 +1859,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <math-example id="section-2-5-ex">
-    <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 md:p-8 rounded-2xl shadow-sm relative overflow-hidden mb-6">
-        <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none text-emerald-600">
-            <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7 15h-2v-2h2v2m0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
-        </div>
-        <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-3 uppercase tracking-widest text-xs">Feladat</h4>
-        <p class="text-slate-700 dark:text-slate-300 leading-relaxed italic text-lg">
-            Létezik-e olyan (legalább két csúcsú) összefüggő gráf, aminek bármelyik csúcsát törölve (az éleivel együtt) a kapott gráf már nem összefüggő?
-        </p>
-    </div>
+    
 
     <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md mb-8">
         <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
@@ -2072,48 +1890,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 
-    <math-lab>
-        <h3 class="text-xl font-bold mb-4 italic text-emerald-400 text-center md:text-left">Vizuális bizonyítás segédlet</h3>
-        <p class="text-slate-400 text-sm mb-10 leading-relaxed text-balance">
-            Ha egy „levelet” törölsz, a gráf egyben marad. Ha egy belső csúcsot, a gráf széteshet. A feszítőfa létezése garantálja, hogy bármely összefüggő gráfban van legalább két „biztonságos” pont.
-        </p>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-slate-800/50 p-6 rounded-2xl border border-emerald-500/20 flex flex-col items-center shadow-inner">
-                <span class="text-[10px] font-black text-emerald-400 uppercase mb-6 tracking-widest">Levél törlése (Biztonságos)</span>
-                
-                
-                
-                <svg width="140" height="100" viewBox="0 0 140 100" class="overflow-visible">
-                    <line x1="70" y1="20" x2="30" y2="60" stroke="#475569" stroke-width="2" />
-                    <line x1="70" y1="20" x2="110" y2="60" stroke="#475569" stroke-width="2" />
-                    <circle cx="70" cy="20" r="5" fill="#475569" />
-                    <circle cx="30" cy="60" r="5" fill="#475569" />
-                    <circle cx="110" cy="60" r="6" fill="#f43f5e" class="animate-pulse" />
-                    <line x1="105" y1="55" x2="115" y2="65" stroke="white" stroke-width="2" />
-                    <line x1="115" y1="55" x2="105" y2="65" stroke="white" stroke-width="2" />
-                </svg>
-                <p class="mt-6 text-[10px] text-slate-500 italic text-center">A levél nem „tart össze” más pontokat.</p>
-            </div>
-
-            <div class="bg-slate-800/50 p-6 rounded-2xl border border-rose-500/20 flex flex-col items-center shadow-inner">
-                <span class="text-[10px] font-black text-rose-400 uppercase mb-6 tracking-widest">Belső csúcs törlése (Veszélyes)</span>
-                
-                
-                
-                <svg width="140" height="100" viewBox="0 0 140 100" class="overflow-visible">
-                    <line x1="70" y1="50" x2="30" y2="20" stroke="#475569" stroke-width="2" />
-                    <line x1="70" y1="50" x2="110" y2="20" stroke="#475569" stroke-width="2" />
-                    <line x1="70" y1="50" x2="70" y2="85" stroke="#475569" stroke-width="2" />
-                    <circle cx="70" cy="50" r="7" fill="#f43f5e" class="animate-pulse" />
-                    <circle cx="30" cy="20" r="5" fill="#475569" />
-                    <circle cx="110" cy="20" r="5" fill="#475569" />
-                    <circle cx="70" cy="85" r="5" fill="#475569" />
-                </svg>
-                <p class="mt-6 text-[10px] text-slate-500 italic text-center">A központi „csuklópont” törlése szétválasztja a gráfot.</p>
-            </div>
-        </div>
-    </math-lab>
+    
 </math-example>
 
 <math-header>
@@ -2180,32 +1957,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </math-proof>
 
-    <math-lab>
-        <h3 class="text-xl font-bold mb-4 italic text-emerald-400">A Mohó Stratégia Működése</h3>
-        <p class="text-slate-400 text-sm mb-8 leading-relaxed">
-            Az algoritmus "vak" bizalma a legolcsóbb élben kifizetődő: a lokális döntések sorozata garantáltan a globális minimumhoz vezet.
-        </p>
-
-        
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-            <div class="p-5 rounded-2xl bg-slate-800/80 border border-slate-700 text-center shadow-lg group hover:border-emerald-500/50 transition-colors">
-                <div class="text-emerald-500 text-3xl font-black mb-2 opacity-50 group-hover:opacity-100">1.</div>
-                <div class="text-[10px] uppercase font-black text-slate-400 tracking-widest mb-2">Rendezés</div>
-                <div class="text-xs italic text-slate-500 leading-relaxed text-balance">Élek sorba állítása súly szerint növekvő rendbe.</div>
-            </div>
-            <div class="p-5 rounded-2xl bg-slate-800/80 border border-slate-700 text-center shadow-lg group hover:border-emerald-500/50 transition-colors">
-                <div class="text-emerald-500 text-3xl font-black mb-2 opacity-50 group-hover:opacity-100">2.</div>
-                <div class="text-[10px] uppercase font-black text-slate-400 tracking-widest mb-2">Szűrés</div>
-                <div class="text-xs italic text-slate-500 leading-relaxed text-balance">Az él elvetése, ha a végpontjai már egy komponensben vannak.</div>
-            </div>
-            <div class="p-5 rounded-2xl bg-slate-800/80 border border-slate-700 text-center shadow-lg group hover:border-emerald-500/50 transition-colors">
-                <div class="text-emerald-500 text-3xl font-black mb-2 opacity-50 group-hover:opacity-100">3.</div>
-                <div class="text-[10px] uppercase font-black text-slate-400 tracking-widest mb-2">Bővítés</div>
-                <div class="text-xs italic text-slate-500 leading-relaxed text-balance">Az él hozzáadása a fához és a komponensek egyesítése.</div>
-            </div>
-        </div>
-    </math-lab>
+    
 </section>
 
 <math-header>
@@ -2259,245 +2011,14 @@ document.addEventListener('DOMContentLoaded', () => {
 </math-header>
 
 <section id="section-2-8" class="mb-16 animate-fade-in">
-    <math-lab>
-        <div class="relative z-10 p-4 md:p-8">
-            <div class="flex items-center gap-4 mb-10">
-                <div class="p-3 bg-emerald-500 rounded-2xl shadow-lg shadow-emerald-500/40">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                    </svg>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-black text-white italic tracking-tight text-balance">Mennyire vágod a fák elméletét?</h3>
-                    <p class="text-emerald-300 text-sm italic">Vidd fölé az egeret vagy kattints a válasz felfedéséhez!</p>
-                </div>
-            </div>
-
-            
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
-                <div class="bg-slate-800/50 p-6 rounded-2xl border border-white/10 hover:bg-slate-800/80 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#01 Fa definíciója</p>
-                    <p class="text-white font-bold italic leading-relaxed text-balance">Melyik az a két kritérium, aminek egy gráfnak meg kell felelnie, hogy fa legyen?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-emerald-400 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
-                        Válasz: Legyen **összefüggő** és **körmentes**.
-                    </div>
-                </div>
-
-                <div class="bg-slate-800/50 p-6 rounded-2xl border border-white/10 hover:bg-slate-800/80 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#02 Élszám számítás</p>
-                    <p class="text-white font-bold italic leading-relaxed">Ha egy fa 20 csúccsal rendelkezik, pontosan hány éle van?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-emerald-400 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
-                        Válasz: **19 él**. A tétel szerint minden $n$ csúcsú fa élszáma $m = n - 1$.
-                    </div>
-                </div>
-
-                <div class="bg-slate-800/50 p-6 rounded-2xl border border-white/10 hover:bg-slate-800/80 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#03 Levelek</p>
-                    <p class="text-white font-bold italic leading-relaxed">Minimum hány levél (elsőfokú csúcs) található egy legalább két csúcsú fában?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-emerald-400 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
-                        Válasz: **Legalább kettő**. (A leghosszabb út végpontjai mindig ilyenek).
-                    </div>
-                </div>
-
-                <div class="bg-slate-800/50 p-6 rounded-2xl border border-white/10 hover:bg-slate-800/80 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#04 Szélességi bejárás (BFS)</p>
-                    <p class="text-white font-bold italic leading-relaxed">Hogyan halad a BFS egy összefüggő gráf bejárása során?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-emerald-400 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
-                        Válasz: Szinteken haladva (koncentrikus körökben). A kiindulópontból először az $1$ távolságra lévő csúcsokat, majd a $2$ távolságra lévőket fedezi fel.
-                    </div>
-                </div>
-
-                
-
-            </div>
-        </div>
-    </math-lab>
+    
 </section>
 
 
-<math-trivia id="section-2-9">
-    <div class="flex items-center gap-4 mb-8">
-        <div class="p-3 bg-amber-400 rounded-2xl shadow-lg shadow-amber-400/20">
-            <span class="text-2xl">💡</span>
-        </div>
-        <div>
-            <h3 class="text-xl font-black text-slate-800 dark:text-white italic">Tudtad-e?</h3>
-        </div>
-    </div>
-
-    <div class="trivia-grid">
-        
-        <div class="trivia-card border-t-4 border-amber-400">
-            <h4 class="text-amber-600 dark:text-amber-400 font-black uppercase text-[10px] tracking-widest mb-3 flex items-center">
-                Cayley bűvös száma
-            </h4>
-            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
-                Tudtad, hogy pontosan $n^{n-2}$ különböző, címkézett fát lehet rajzolni $n$ darab csúccsal? Ez a <strong>Cayley-formula</strong>. Ha csak 10 csúcsunk van, már **100 000 000** különböző fát alkothatunk!
-            </p>
-            
-        </div>
-
-        <div class="trivia-card border-t-4 border-emerald-400">
-            <h4 class="text-emerald-600 dark:text-emerald-400 font-black uppercase text-[10px] tracking-widest mb-3 flex items-center">
-                Algoritmus a sötétség ellen
-            </h4>
-            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
-                A minimális feszítőfát először <strong>Otakar Borůvka</strong> kereste 1926-ban. Célja nem matematikai bravúr volt: Morvaország elektromos hálózatát akarta a lehető legolcsóbban kiépíteni.
-            </p>
-        </div>
-
-        <div class="trivia-card border-t-4 border-indigo-400">
-            <h4 class="text-indigo-600 dark:text-indigo-400 font-black uppercase text-[10px] tracking-widest mb-3 flex items-center">
-                Miért fér el a zenéd a mobilodon?
-            </h4>
-            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
-                Az adatömörítés (mint a .zip vagy az .mp3) lelke gyakran egy fa. A <strong>Huffman-kódolás</strong> során a leggyakoribb karakterek a fa „tetején” rövid utat kapnak, így spórolva a tárhellyel.
-            </p>
-            
-        </div>
-
-        <div class="trivia-card border-t-4 border-rose-400">
-            <h4 class="text-rose-600 dark:text-rose-400 font-black uppercase text-[10px] tracking-widest mb-3 flex items-center">
-                Az élet fája
-            </h4>
-            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
-                A biológusok a fajok evolúcióját <strong>filogenetikai fákkal</strong> modellezik. A levelek a mai fajok, az elágazások pedig a közös ősök, ahol az evolúció útja kettévált.
-            </p>
-            
-        </div>
-
-    </div>
-</math-trivia>
 
 
-<div class="mt-12 w-full animate-fade-in">
-    <details class="group bg-slate-800/30 border border-slate-700/50 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-        <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-800/50 transition-colors">
-            <div class="flex items-center gap-4">
-                <div class="p-3 bg-indigo-500/20 rounded-xl">
-                    <span class="text-xl">📝</span>
-                </div>
-                <h3 class="text-lg font-black text-indigo-400 uppercase tracking-widest">Gyakorló feladatok és példák</h3>
-            </div>
-            <div class="text-indigo-400 transition-transform duration-300 group-open:rotate-180">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-            </div>
-        </summary>
-        <div class="p-8 border-t border-slate-700/50 bg-slate-900/50 space-y-12">
-            <math-header>
-    <h2 class="text-balance">Kidolgozott feladat: Fa keresése fokszámok alapján</h2>
-</math-header>
 
-<section id="section-2-3-ex" class="mb-16 space-y-6">
-    <math-example>
-        <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 md:p-8 rounded-2xl shadow-sm relative overflow-hidden mb-6">
-            <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none text-emerald-600">
-                <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7 15h-2v-2h2v2m0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
-            </div>
-            <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-3 uppercase tracking-widest text-xs">Feladat</h4>
-            <p class="text-slate-700 dark:text-slate-300 leading-relaxed italic text-lg">
-                Egy $F$ fa csúcsainak fokszámai között pontosan kétféle érték fordul elő és mindkettő pontosan ugyanannyiszor. Adjuk meg $F$-et.
-            </p>
-        </div>
 
-        <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-md mb-8">
-            <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
-                <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
-                Megoldás levezetése
-            </h4>
-            <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
-                <p>
-                    Mivel a kétféle fokszám ugyanannyiszor fordul elő, ezért $F$ csúcsainak száma páros. Legyen a csúcsok száma <strong class="text-slate-900 dark:text-white">$n = 2k$</strong>. Mivel minden fának van levele, az egyik fokszám biztosan az <strong class="text-emerald-600 font-bold">1</strong>, a másikat jelölje $d$.
-                </p>
-
-                
-
-                <div class="bg-slate-900 rounded-xl p-8 text-center shadow-inner space-y-4">
-                    <p class="text-emerald-400 font-black text-[10px] uppercase tracking-widest">Egyenletek felírása</p>
-                    <div class="space-y-2">
-                        <p class="text-indigo-300 font-mono text-xl">
-                            $\sum d(v) = k \cdot d + k \cdot 1 = k(d + 1)$
-                        </p>
-                        <p class="text-slate-500 text-xs italic">A csúcsok fokszámösszege</p>
-                    </div>
-                    <div class="h-px bg-slate-800 w-1/4 mx-auto my-4"></div>
-                    <div class="space-y-2">
-                        <p class="text-indigo-300 font-mono text-xl">
-                            $2m = 2(n - 1) = 2(2k - 1) = 4k - 2$
-                        </p>
-                        <p class="text-slate-500 text-xs italic">Az élszám kétszerese a fa tulajdonsága ($m = n - 1$) alapján</p>
-                    </div>
-                </div>
-
-                <p>
-                    Ezeket egyenlővé téve: <strong class="text-slate-900 dark:text-white">$k(d + 1) = 4k - 2$</strong>. Ezt $d$-re rendezve:
-                </p>
-                
-                <div class="flex justify-center py-2">
-                    <div class="bg-slate-50 dark:bg-slate-900/50 px-8 py-4 rounded-xl border border-slate-100 dark:border-slate-800 font-mono text-2xl text-emerald-600 shadow-sm">
-                        $d = 3 - \frac{2}{k}$
-                    </div>
-                </div>
-
-                <p>
-                    Mivel $d$ és $k$ is pozitív egész, ezért csak a <strong class="text-slate-900 dark:text-white">$k = 1$</strong> vagy <strong class="text-slate-900 dark:text-white">$k = 2$</strong> eset lehetséges:
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="p-4 rounded-xl bg-rose-500/5 border border-rose-500/20">
-                        <span class="text-rose-500 font-black text-xs block mb-1 uppercase tracking-tighter">k = 1</span>
-                        <p class="text-xs italic text-slate-500">$d = 3 - 2 = 1$ adódna, de ekkor nem volna kétféle fokszám.</p>
-                    </div>
-                    <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
-                        <span class="text-emerald-500 font-black text-xs block mb-1 uppercase tracking-tighter">k = 2</span>
-                        <p class="text-xs italic text-slate-500">Ekkor $d = 3 - 1 = 2$, ami egy érvényes megoldás.</p>
-                    </div>
-                </div>
-
-                <div class="bg-emerald-600 text-white p-6 rounded-2xl shadow-xl shadow-emerald-500/20 transform hover:scale-[1.01] transition-transform">
-                    <p class="font-black mb-2 uppercase tracking-widest text-[10px] opacity-80">Konklúzió</p>
-                    <p class="italic text-lg leading-relaxed">
-                        A keresett $F$ fa tehát $n = 4$ csúcsú, két darab elsőfokú és két darab másodfokú csúccsal rendelkezik. Ez egyedül a **három hosszúságú út** ($P_4$).
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <math-lab>
-            <h3 class="text-xl font-bold mb-4 italic text-white text-center">A végeredmény: $P_4$</h3>
-            
-            <div class="flex flex-col items-center">
-                <div class="bg-slate-800/50 rounded-2xl p-10 border border-slate-700 w-full max-w-md flex justify-center items-center shadow-inner">
-                    <svg width="280" height="60" viewBox="0 0 280 60" class="overflow-visible">
-                        <line x1="20" y1="30" x2="100" y2="30" stroke="#10b981" stroke-width="5" stroke-linecap="round" />
-                        <line x1="100" y1="30" x2="180" y2="30" stroke="#10b981" stroke-width="5" stroke-linecap="round" />
-                        <line x1="180" y1="30" x2="260" y2="30" stroke="#10b981" stroke-width="5" stroke-linecap="round" />
-                        
-                        <circle cx="20" cy="30" r="8" fill="white" class="shadow-sm" />
-                        <text x="20" y="55" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">d=1</text>
-                        
-                        <circle cx="100" cy="30" r="8" fill="white" class="shadow-sm" />
-                        <text x="100" y="55" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">d=2</text>
-                        
-                        <circle cx="180" cy="30" r="8" fill="white" class="shadow-sm" />
-                        <text x="180" y="55" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">d=2</text>
-                        
-                        <circle cx="260" cy="30" r="8" fill="white" class="shadow-sm" />
-                        <text x="260" y="55" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">d=1</text>
-                    </svg>
-                </div>
-                <p class="mt-6 text-[10px] text-slate-500 uppercase font-black tracking-widest text-center">
-                    A fokszámok listája: (1, 2, 2, 1) — mindkét érték pontosan kétszer szerepel.
-                </p>
-            </div>
-        </math-lab>
-    </math-example>
-</section>
-        </div>
-    </details>
-</div>
 <div id="complete-section-2" 
      class="mt-12 p-8 bg-emerald-500/10 border-2 border-dashed border-emerald-500/30 rounded-[2.5rem] text-center transition-all">
     
