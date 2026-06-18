@@ -2383,284 +2383,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </p>
         </div>
     </math-trivia>
-<div class="mt-12 w-full animate-fade-in">
-    <details class="group bg-slate-800/30 border border-slate-700/50 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-        <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-800/50 transition-colors">
-            <div class="flex items-center gap-4">
-                <div class="p-3 bg-indigo-500/20 rounded-xl">
-                    <span class="text-xl">📝</span>
-                </div>
-                <h3 class="text-lg font-black text-indigo-400 uppercase tracking-widest">Gyakorló feladatok és példák</h3>
-            </div>
-            <div class="text-indigo-400 transition-transform duration-300 group-open:rotate-180">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-            </div>
-        </summary>
-        <div class="p-8 border-t border-slate-700/50 bg-slate-900/50 space-y-12">
-            <math-header>
-    <h2>Kidolgozott feladat: Euler-vonalak vizsgálata</h2>
-</math-header>
-
-<section id="section-3-4-ex-2" class="mb-16 space-y-8">
-    
-    <math-example title="Euler-vonalak létezése">
-        <div class="text-slate-700 dark:text-slate-300 leading-relaxed italic text-lg space-y-4">
-            <p>a) Tartalmaz-e az alábbi $G$ gráf Euler-sétát, illetve Euler-körsétát? Ha a válasz igen, akkor adjunk meg egyet!</p>
-            <p>b) Adjuk hozzá a gráfhoz a $\{p,x\}$ élet és oldjuk meg a feladatot az így kapott gráfra is!</p>
-        </div>
-    </math-example>
-
-    <div class="bg-slate-900 rounded-3xl p-8 text-white border border-slate-700/50 shadow-xl">
-        <h3 class="text-xl font-bold mb-6 italic text-blue-400 text-center">A vizsgált gráf ($G$)</h3>
-        <div class="flex justify-center">
-            <svg width="400" height="200" viewBox="0 0 400 200" class="overflow-visible">
-                <g stroke="#475569" stroke-width="2">
-                    <line x1="40" y1="100" x2="80" y2="40" /> <line x1="40" y1="100" x2="80" y2="160" /> <line x1="80" y1="40" x2="80" y2="160" /> <line x1="40" y1="100" x2="360" y2="100" stroke="#f43f5e" stroke-dasharray="4" /> <line x1="360" y1="100" x2="320" y2="40" /> <line x1="360" y1="100" x2="320" y2="160" /> <line x1="320" y1="40" x2="320" y2="160" /> 
-                </g>
-                <g stroke="#475569" stroke-width="2">
-                    <line x1="160" y1="60" x2="240" y2="60" /> <line x1="240" y1="60" x2="240" y2="140" /> <line x1="240" y1="140" x2="160" y2="140" /> <line x1="160" y1="140" x2="160" y2="60" /> <path d="M 160 60 Q 200 100 240 140" fill="none" /> <path d="M 160 60 Q 200 100 240 140" fill="none" transform="rotate(180, 200, 100)" /> 
-                </g>
-                <line x1="40" y1="100" x2="160" y2="140" stroke="#3b82f6" stroke-width="4" stroke-dasharray="8" class="animate-pulse" />
-                <g fill="#1e293b" stroke="#3b82f6" stroke-width="2">
-                    <circle cx="40" cy="100" r="8" /><text x="30" y="105" fill="white" font-size="12" stroke="none">p</text>
-                    <circle cx="80" cy="40" r="8" /><text x="75" y="30" fill="white" font-size="12" stroke="none">q</text>
-                    <circle cx="80" cy="160" r="8" /><text x="75" y="180" fill="white" font-size="12" stroke="none">w</text>
-                    <circle cx="160" cy="60" r="8" /><text x="150" y="55" fill="white" font-size="12" stroke="none">r</text>
-                    <circle cx="240" cy="60" r="8" /><text x="245" y="55" fill="white" font-size="12" stroke="none">s</text>
-                    <circle cx="160" cy="140" r="8" /><text x="150" y="155" fill="white" font-size="12" stroke="none">x</text>
-                    <circle cx="240" cy="140" r="8" /><text x="245" y="155" fill="white" font-size="12" stroke="none">y</text>
-                    <circle cx="320" cy="40" r="8" /><text x="315" y="30" fill="white" font-size="12" stroke="none">t</text>
-                    <circle cx="320" cy="160" r="8" /><text x="315" y="180" fill="white" font-size="12" stroke="none">z</text>
-                    <circle cx="360" cy="100" r="8" /><text x="375" y="105" fill="white" font-size="12" stroke="none">u</text>
-                </g>
-            </svg>
-        </div>
-        <p class="mt-6 text-[10px] text-slate-500 uppercase font-black tracking-widest text-center">
-            A kék szaggatott vonal jelöli a b) részben hozzáadott $\{p, x\}$ élet.
-        </p>
-    </div>
-
-    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md">
-        <h4 class="text-blue-600 dark:text-blue-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
-            <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-            Megoldás
-        </h4>
-        
-        <div class="space-y-8 text-sm md:text-base text-slate-600 dark:text-slate-300">
-            <div class="space-y-3">
-                <h5 class="text-slate-900 dark:text-white font-black uppercase text-xs tracking-wider flex items-center gap-2">
-                    <span class="w-4 h-px bg-slate-300"></span> a) rész: Alapállapot elemzése
-                </h5>
-                <p>
-                    A gráfban a $p$ és $u$ csúcsok foka 3, az összes többi csúcs foka páros. Mivel vannak páratlan fokú csúcsok, a gráf <strong>nem tartalmaz Euler-körsétát</strong>. Továbbá a gráf két külön komponenst alkot, így <strong>Euler-sétát sem tartalmaz</strong>.
-                </p>
-            </div>
-
-            <div class="space-y-4 border-t border-slate-100 dark:border-slate-700 pt-6">
-                <h5 class="text-slate-900 dark:text-white font-black uppercase text-xs tracking-wider flex items-center gap-2">
-                    <span class="w-4 h-px bg-slate-300"></span> b) rész: A $\{p, x\}$ él hozzáadása után
-                </h5>
-                <p>
-                    Az új éllel a gráf összefüggővé válik. $p$ foka páros (4), $x$ foka páratlan (3) lesz. Mivel pontosan két páratlan fokú csúcs marad ($x$ és $u$), a gráfban <strong>létezik Euler-séta</strong>.
-                </p>
-                
-                <div class="bg-blue-50 dark:bg-blue-900/10 p-4 rounded-xl border border-blue-100 dark:border-blue-900/30 font-mono text-xs text-blue-600 dark:text-blue-300 break-all">
-                    Konstrukció: (u, t, z, u, p, w, q, p, x, y, r, y, s, r, x)
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-blue-500/30 decoration-4 underline-offset-8 text-balance">
-            Kidolgozott feladat: Salsa és az Euler-vonalak
-        </h2>
-    </div>
-</math-header>
-
-<section id="section-3-4-ex-3" class="mb-16 space-y-8">
-    <math-example>
-        <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 md:p-8 rounded-2xl shadow-sm relative overflow-hidden">
-            <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none text-blue-600">
-                <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7 15h-2v-2h2v2m0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
-            </div>
-            <h4 class="text-blue-600 dark:text-blue-400 font-bold mb-3 uppercase tracking-widest text-xs">Feladat</h4>
-            <div class="text-slate-700 dark:text-slate-300 leading-relaxed italic text-lg">
-                Egy salsa találkozón 10 fiú és 10 lány vesz részt, mindenki pontosan 6 embert ismer az ellenkező neműek közül (az ismeretségek kölcsönösek). A résztvevők egy játékot játszanak: aki salsázott, az felkéri egy ismerősét az ellenkező neműek közül, akivel még nem táncolt. Mutassuk meg, hogy mindenki minden ismerősével pontosan egyszer tud salsázni!
-            </div>
-        </div>
-    </math-example>
-
-    <div class="bg-slate-900 rounded-3xl p-8 text-white border border-slate-700/50">
-        <h3 class="text-xl font-bold mb-6 italic text-blue-400 text-center">Összefüggőség vizualizálása</h3>
-        <p class="text-slate-400 text-sm mb-10 text-center max-w-2xl mx-auto">
-            A bizonyítás kulcsa: Ha egy komponens tartalmaz egy fiút, akkor tartalmaznia kell mind a 6 lányismerősét is, azoknak pedig mind a 6 fiúismerősüket.
-        </p>
-        
-        <div class="flex justify-center">
-            <svg width="360" height="180" viewBox="0 0 360 180" class="overflow-visible">
-                <text x="40" y="20" fill="#3b82f6" font-size="10" font-weight="bold" text-anchor="middle">FIÚK (10)</text>
-                <circle cx="40" cy="50" r="8" fill="#3b82f6" stroke="white" stroke-width="2" />
-                <circle cx="40" cy="80" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" />
-                <circle cx="40" cy="110" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" />
-                <circle cx="40" cy="140" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" />
-                
-                <g stroke="#3b82f6" stroke-width="1.5" opacity="0.4">
-                    <line x1="40" y1="50" x2="320" y2="40" />
-                    <line x1="40" y1="50" x2="320" y2="60" />
-                    <line x1="40" y1="50" x2="320" y2="80" />
-                    <line x1="40" y1="50" x2="320" y2="100" />
-                    <line x1="40" y1="50" x2="320" y2="120" />
-                    <line x1="40" y1="50" x2="320" y2="140" />
-                </g>
-
-                <text x="320" y="20" fill="#f43f5e" font-size="10" font-weight="bold" text-anchor="middle">LÁNYOK (10)</text>
-                <g fill="#1e293b" stroke="#f43f5e" stroke-width="2">
-                    <circle cx="320" cy="40" r="6" />
-                    <circle cx="320" cy="60" r="6" />
-                    <circle cx="320" cy="80" r="6" />
-                    <circle cx="320" cy="100" r="6" />
-                    <circle cx="320" cy="120" r="6" />
-                    <circle cx="320" cy="140" r="6" />
-                </g>
-
-                <rect x="90" y="155" width="180" height="25" rx="12" fill="#1e293b" stroke="#334155" />
-                <text x="180" y="172" fill="#94a3b8" font-size="9" text-anchor="middle" font-style="italic">Komponens mérete ≥ 1 fiú + 6 lány + ... = min. 12 csúcs</text>
-            </svg>
-        </div>
-    </div>
-
-    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md">
-        <h4 class="text-blue-600 dark:text-blue-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
-            <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-            Megoldás levezetése
-        </h4>
-        
-        <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
-            <p>
-                Alkossák a résztvevők a $G$ gráf csúcshalmazát. Két csúcs akkor szomszédos, ha a táncosok ellenkező neműek és ismerik egymást. A feladat állítása ekvivalens azzal, hogy <strong class="text-blue-600">létezik-e a gráfban Euler-vonal</strong>.
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="p-5 bg-blue-50/50 dark:bg-blue-900/10 rounded-2xl border border-blue-100 dark:border-blue-900/30">
-                    <span class="block font-black text-blue-600 text-[10px] uppercase mb-2">1. Feltétel: Páros fokszámok</span>
-                    <p class="text-sm">
-                        Mindenki pontosan 6 ismerőst jelölt meg, így minden csúcs foka 6. Mivel a 6 páros szám, ez a feltétel teljesül.
-                    </p>
-                </div>
-                <div class="p-5 bg-blue-50/50 dark:bg-blue-900/10 rounded-2xl border border-blue-100 dark:border-blue-900/30">
-                    <span class="block font-black text-blue-600 text-[10px] uppercase mb-2">2. Feltétel: Összefüggőség</span>
-                    <p class="text-sm">
-                        Legyen $K$ egy komponens. Ha $K$ tartalmaz egy fiút, akkor annak 6 lányismerősét is tartalmaznia kell, azoknak pedig mind a 6 fiúismerősüket.
-                    </p>
-                </div>
-            </div>
-
-            <div class="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 italic text-center">
-                Így egy komponensben legalább $1 + 6 + 5 = 12$ csúcsnak kell lennie. Mivel a gráf összesen 20 csúcsú ($10+10$), nem létezhet két különálló, legalább 12 csúcsú komponens. Ebből következik, hogy a gráf <strong class="text-blue-600 font-black">összefüggő</strong>.
-            </div>
-
-            <p class="font-bold text-slate-800 dark:text-slate-200 border-t border-slate-100 dark:border-slate-700 pt-6">
-                Mivel $G$ összefüggő és minden csúcsának foka páros, a 3.2. Tétel szerint létezik benne Euler-körséta, tehát a cél megvalósítható.
-            </p>
-        </div>
-    </div>
-</section>
-
-<math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-blue-500/30 decoration-4 underline-offset-8 text-balance">
-            Hamilton-vonalak vizsgálata feladatokon keresztül
-        </h2>
-    </div>
-</math-header>
-
-<section id="section-3-5-ex" class="mb-16 space-y-8">
-    <math-example>
-        <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 md:p-8 rounded-2xl shadow-sm relative overflow-hidden">
-            <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none text-blue-600">
-                <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7 15h-2v-2h2v2m0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
-            </div>
-            <h4 class="text-blue-600 dark:text-blue-400 font-bold mb-3 uppercase tracking-widest text-xs">Feladat</h4>
-            <div class="text-slate-700 dark:text-slate-300 leading-relaxed italic text-lg space-y-4">
-                <p>a) Van-e Hamilton-kör, illetve Hamilton-út az alábbi $G$ gráfban?</p>
-                <p>b) Töröljük $G$-ből a $\{c,g\}$ élet és oldjuk meg a feladatot az így kapott gráfra is!</p>
-            </div>
-        </div>
-    </math-example>
-
-    
-
-    <div class="bg-slate-900 rounded-3xl p-8 text-white border border-slate-700/50">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div class="flex justify-center">
-                <svg width="220" height="220" viewBox="0 0 220 220" class="overflow-visible">
-                    <circle cx="110" cy="30" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" id="node-a" /><text x="110" y="20" fill="white" font-size="12" text-anchor="middle">a</text>
-                    <circle cx="170" cy="50" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" id="node-b" /><text x="185" y="55" fill="white" font-size="12">b</text>
-                    <circle cx="190" cy="110" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" id="node-d" /><text x="205" y="115" fill="white" font-size="12">d</text>
-                    <circle cx="170" cy="170" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" id="node-f" /><text x="185" y="175" fill="white" font-size="12">f</text>
-                    <circle cx="110" cy="190" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" id="node-h" /><text x="110" y="210" fill="white" font-size="12" text-anchor="middle">h</text>
-                    <circle cx="50" cy="170" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" id="node-g" /><text x="35" y="175" fill="white" font-size="12" text-anchor="end">g</text>
-                    <circle cx="30" cy="110" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" id="node-e" /><text x="15" y="115" fill="white" font-size="12" text-anchor="end">e</text>
-                    <circle cx="50" cy="50" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" id="node-c" /><text x="35" y="55" fill="white" font-size="12" text-anchor="end">c</text>
-                    
-                    <g stroke="#334155" stroke-width="1.5">
-                        <line x1="110" y1="30" x2="50" y2="50" /> <line x1="110" y1="30" x2="170" y2="170" /> <line x1="170" y1="50" x2="30" y2="110" /> <line x1="170" y1="50" x2="110" y2="190" /> <line x1="50" y1="50" x2="50" y2="170" stroke="#f43f5e" stroke-dasharray="4" /> <line x1="50" y1="50" x2="170" y2="170" /> <line x1="190" y1="110" x2="170" y2="170" /> <line x1="190" y1="110" x2="30" y2="110" /> <line x1="30" y1="110" x2="50" y2="170" /> <line x1="50" y1="170" x2="110" y2="190" /> </g>
-                </svg>
-            </div>
-            <div class="space-y-4">
-                <div class="bg-blue-500/10 p-4 rounded-xl border border-blue-500/20">
-                    <span class="text-blue-400 font-bold text-xs uppercase tracking-widest block mb-2">Hamilton-kör a)</span>
-                    <p class="text-slate-300 text-sm font-mono">(c, a, f, d, e, b, h, g, c)</p>
-                </div>
-                <div class="bg-rose-500/10 p-4 rounded-xl border border-rose-500/20">
-                    <span class="text-rose-400 font-bold text-xs uppercase tracking-widest block mb-2">Csúcstörési ellenőrzés</span>
-                    <p class="text-slate-400 text-xs italic">
-                        Az "e" csúcs törlése után a gráf szétesik: {a,c,d,f} és {b,g,h} komponensekre.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    
-
-    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md">
-        <h4 class="text-blue-600 dark:text-blue-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
-            <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-            Részletes levezetés
-        </h4>
-        
-        <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
-            <p>
-                <strong>a) rész:</strong> Némi kísérletezés után találhatunk $G$-ben Hamilton-kört. Például a csúcsokat az alábbi sorrendben járva be: <strong class="text-blue-600 font-bold">(c, a, f, d, e, b, h, g, c)</strong>. Mivel van Hamilton-kör, és bármely élét elhagyva Hamilton-utat kapunk, a gráf Hamilton-utat is tartalmaz.
-            </p>
-
-            <div class="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-2xl border border-blue-100 dark:border-blue-900/30">
-                <h5 class="text-slate-900 dark:text-white font-black uppercase text-xs mb-3">b) rész: A {c, g} él elhagyása után</h5>
-                <p>
-                    A $\{c,g\}$ él törlésével kapott gráf továbbra is tartalmaz <strong class="text-blue-600">Hamilton-utat</strong> (mivel a fenti körből ezt az élet elhagyva éppen egy Hamilton-utat kapunk).
-                </p>
-                <p class="mt-4 border-l-4 border-rose-500 pl-4 font-bold text-slate-800 dark:text-slate-200">
-                    Hamilton-kört azonban ez a gráf már nem tartalmaz!
-                </p>
-                <p class="mt-2 italic text-sm">
-                    Ennek igazolásához használjuk a 3.7-es tétel ötletét: ha töröljük a gráfból az <strong class="text-rose-500">e</strong> csúcsot, a maradék gráf már nem összefüggő: az $\{a, c, d, f\}$ és a $\{b, g, h\}$ csúcsok két külön komponenst alkotnak.
-                </p>
-            </div>
-
-            <p class="text-center font-bold text-blue-600 pt-4 uppercase tracking-tighter">
-                Mivel egyetlen csúcs ($k=1$) törlésével több komponens ($2$) keletkezett, a gráfban nem lehet Hamilton-kör.
-            </p>
-        </div>
-    </div>
-</section>
-        </div>
-    </details>
-</div>
-
 </section>
 
 <math-header>
@@ -3100,6 +2822,284 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 </math-trivia>
 
+
+<div class="mt-12 w-full animate-fade-in">
+    <details class="group bg-slate-800/30 border border-slate-700/50 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+        <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-800/50 transition-colors">
+            <div class="flex items-center gap-4">
+                <div class="p-3 bg-indigo-500/20 rounded-xl">
+                    <span class="text-xl">📝</span>
+                </div>
+                <h3 class="text-lg font-black text-indigo-400 uppercase tracking-widest">Gyakorló feladatok és példák</h3>
+            </div>
+            <div class="text-indigo-400 transition-transform duration-300 group-open:rotate-180">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </div>
+        </summary>
+        <div class="p-8 border-t border-slate-700/50 bg-slate-900/50 space-y-12">
+            <math-header>
+    <h2>Kidolgozott feladat: Euler-vonalak vizsgálata</h2>
+</math-header>
+
+<section id="section-3-4-ex-2" class="mb-16 space-y-8">
+    
+    <math-example title="Euler-vonalak létezése">
+        <div class="text-slate-700 dark:text-slate-300 leading-relaxed italic text-lg space-y-4">
+            <p>a) Tartalmaz-e az alábbi $G$ gráf Euler-sétát, illetve Euler-körsétát? Ha a válasz igen, akkor adjunk meg egyet!</p>
+            <p>b) Adjuk hozzá a gráfhoz a $\{p,x\}$ élet és oldjuk meg a feladatot az így kapott gráfra is!</p>
+        </div>
+    </math-example>
+
+    <div class="bg-slate-900 rounded-3xl p-8 text-white border border-slate-700/50 shadow-xl">
+        <h3 class="text-xl font-bold mb-6 italic text-blue-400 text-center">A vizsgált gráf ($G$)</h3>
+        <div class="flex justify-center">
+            <svg width="400" height="200" viewBox="0 0 400 200" class="overflow-visible">
+                <g stroke="#475569" stroke-width="2">
+                    <line x1="40" y1="100" x2="80" y2="40" /> <line x1="40" y1="100" x2="80" y2="160" /> <line x1="80" y1="40" x2="80" y2="160" /> <line x1="40" y1="100" x2="360" y2="100" stroke="#f43f5e" stroke-dasharray="4" /> <line x1="360" y1="100" x2="320" y2="40" /> <line x1="360" y1="100" x2="320" y2="160" /> <line x1="320" y1="40" x2="320" y2="160" /> 
+                </g>
+                <g stroke="#475569" stroke-width="2">
+                    <line x1="160" y1="60" x2="240" y2="60" /> <line x1="240" y1="60" x2="240" y2="140" /> <line x1="240" y1="140" x2="160" y2="140" /> <line x1="160" y1="140" x2="160" y2="60" /> <path d="M 160 60 Q 200 100 240 140" fill="none" /> <path d="M 160 60 Q 200 100 240 140" fill="none" transform="rotate(180, 200, 100)" /> 
+                </g>
+                <line x1="40" y1="100" x2="160" y2="140" stroke="#3b82f6" stroke-width="4" stroke-dasharray="8" class="animate-pulse" />
+                <g fill="#1e293b" stroke="#3b82f6" stroke-width="2">
+                    <circle cx="40" cy="100" r="8" /><text x="30" y="105" fill="white" font-size="12" stroke="none">p</text>
+                    <circle cx="80" cy="40" r="8" /><text x="75" y="30" fill="white" font-size="12" stroke="none">q</text>
+                    <circle cx="80" cy="160" r="8" /><text x="75" y="180" fill="white" font-size="12" stroke="none">w</text>
+                    <circle cx="160" cy="60" r="8" /><text x="150" y="55" fill="white" font-size="12" stroke="none">r</text>
+                    <circle cx="240" cy="60" r="8" /><text x="245" y="55" fill="white" font-size="12" stroke="none">s</text>
+                    <circle cx="160" cy="140" r="8" /><text x="150" y="155" fill="white" font-size="12" stroke="none">x</text>
+                    <circle cx="240" cy="140" r="8" /><text x="245" y="155" fill="white" font-size="12" stroke="none">y</text>
+                    <circle cx="320" cy="40" r="8" /><text x="315" y="30" fill="white" font-size="12" stroke="none">t</text>
+                    <circle cx="320" cy="160" r="8" /><text x="315" y="180" fill="white" font-size="12" stroke="none">z</text>
+                    <circle cx="360" cy="100" r="8" /><text x="375" y="105" fill="white" font-size="12" stroke="none">u</text>
+                </g>
+            </svg>
+        </div>
+        <p class="mt-6 text-[10px] text-slate-500 uppercase font-black tracking-widest text-center">
+            A kék szaggatott vonal jelöli a b) részben hozzáadott $\{p, x\}$ élet.
+        </p>
+    </div>
+
+    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md">
+        <h4 class="text-blue-600 dark:text-blue-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
+            <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+            Megoldás
+        </h4>
+        
+        <div class="space-y-8 text-sm md:text-base text-slate-600 dark:text-slate-300">
+            <div class="space-y-3">
+                <h5 class="text-slate-900 dark:text-white font-black uppercase text-xs tracking-wider flex items-center gap-2">
+                    <span class="w-4 h-px bg-slate-300"></span> a) rész: Alapállapot elemzése
+                </h5>
+                <p>
+                    A gráfban a $p$ és $u$ csúcsok foka 3, az összes többi csúcs foka páros. Mivel vannak páratlan fokú csúcsok, a gráf <strong>nem tartalmaz Euler-körsétát</strong>. Továbbá a gráf két külön komponenst alkot, így <strong>Euler-sétát sem tartalmaz</strong>.
+                </p>
+            </div>
+
+            <div class="space-y-4 border-t border-slate-100 dark:border-slate-700 pt-6">
+                <h5 class="text-slate-900 dark:text-white font-black uppercase text-xs tracking-wider flex items-center gap-2">
+                    <span class="w-4 h-px bg-slate-300"></span> b) rész: A $\{p, x\}$ él hozzáadása után
+                </h5>
+                <p>
+                    Az új éllel a gráf összefüggővé válik. $p$ foka páros (4), $x$ foka páratlan (3) lesz. Mivel pontosan két páratlan fokú csúcs marad ($x$ és $u$), a gráfban <strong>létezik Euler-séta</strong>.
+                </p>
+                
+                <div class="bg-blue-50 dark:bg-blue-900/10 p-4 rounded-xl border border-blue-100 dark:border-blue-900/30 font-mono text-xs text-blue-600 dark:text-blue-300 break-all">
+                    Konstrukció: (u, t, z, u, p, w, q, p, x, y, r, y, s, r, x)
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<math-header>
+    <div class="flex items-center gap-4 mb-6 mt-12">
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-blue-500/30 decoration-4 underline-offset-8 text-balance">
+            Kidolgozott feladat: Salsa és az Euler-vonalak
+        </h2>
+    </div>
+</math-header>
+
+<section id="section-3-4-ex-3" class="mb-16 space-y-8">
+    <math-example>
+        <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 md:p-8 rounded-2xl shadow-sm relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none text-blue-600">
+                <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7 15h-2v-2h2v2m0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
+            </div>
+            <h4 class="text-blue-600 dark:text-blue-400 font-bold mb-3 uppercase tracking-widest text-xs">Feladat</h4>
+            <div class="text-slate-700 dark:text-slate-300 leading-relaxed italic text-lg">
+                Egy salsa találkozón 10 fiú és 10 lány vesz részt, mindenki pontosan 6 embert ismer az ellenkező neműek közül (az ismeretségek kölcsönösek). A résztvevők egy játékot játszanak: aki salsázott, az felkéri egy ismerősét az ellenkező neműek közül, akivel még nem táncolt. Mutassuk meg, hogy mindenki minden ismerősével pontosan egyszer tud salsázni!
+            </div>
+        </div>
+    </math-example>
+
+    <div class="bg-slate-900 rounded-3xl p-8 text-white border border-slate-700/50">
+        <h3 class="text-xl font-bold mb-6 italic text-blue-400 text-center">Összefüggőség vizualizálása</h3>
+        <p class="text-slate-400 text-sm mb-10 text-center max-w-2xl mx-auto">
+            A bizonyítás kulcsa: Ha egy komponens tartalmaz egy fiút, akkor tartalmaznia kell mind a 6 lányismerősét is, azoknak pedig mind a 6 fiúismerősüket.
+        </p>
+        
+        <div class="flex justify-center">
+            <svg width="360" height="180" viewBox="0 0 360 180" class="overflow-visible">
+                <text x="40" y="20" fill="#3b82f6" font-size="10" font-weight="bold" text-anchor="middle">FIÚK (10)</text>
+                <circle cx="40" cy="50" r="8" fill="#3b82f6" stroke="white" stroke-width="2" />
+                <circle cx="40" cy="80" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" />
+                <circle cx="40" cy="110" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" />
+                <circle cx="40" cy="140" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" />
+                
+                <g stroke="#3b82f6" stroke-width="1.5" opacity="0.4">
+                    <line x1="40" y1="50" x2="320" y2="40" />
+                    <line x1="40" y1="50" x2="320" y2="60" />
+                    <line x1="40" y1="50" x2="320" y2="80" />
+                    <line x1="40" y1="50" x2="320" y2="100" />
+                    <line x1="40" y1="50" x2="320" y2="120" />
+                    <line x1="40" y1="50" x2="320" y2="140" />
+                </g>
+
+                <text x="320" y="20" fill="#f43f5e" font-size="10" font-weight="bold" text-anchor="middle">LÁNYOK (10)</text>
+                <g fill="#1e293b" stroke="#f43f5e" stroke-width="2">
+                    <circle cx="320" cy="40" r="6" />
+                    <circle cx="320" cy="60" r="6" />
+                    <circle cx="320" cy="80" r="6" />
+                    <circle cx="320" cy="100" r="6" />
+                    <circle cx="320" cy="120" r="6" />
+                    <circle cx="320" cy="140" r="6" />
+                </g>
+
+                <rect x="90" y="155" width="180" height="25" rx="12" fill="#1e293b" stroke="#334155" />
+                <text x="180" y="172" fill="#94a3b8" font-size="9" text-anchor="middle" font-style="italic">Komponens mérete ≥ 1 fiú + 6 lány + ... = min. 12 csúcs</text>
+            </svg>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md">
+        <h4 class="text-blue-600 dark:text-blue-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
+            <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+            Megoldás levezetése
+        </h4>
+        
+        <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
+            <p>
+                Alkossák a résztvevők a $G$ gráf csúcshalmazát. Két csúcs akkor szomszédos, ha a táncosok ellenkező neműek és ismerik egymást. A feladat állítása ekvivalens azzal, hogy <strong class="text-blue-600">létezik-e a gráfban Euler-vonal</strong>.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-5 bg-blue-50/50 dark:bg-blue-900/10 rounded-2xl border border-blue-100 dark:border-blue-900/30">
+                    <span class="block font-black text-blue-600 text-[10px] uppercase mb-2">1. Feltétel: Páros fokszámok</span>
+                    <p class="text-sm">
+                        Mindenki pontosan 6 ismerőst jelölt meg, így minden csúcs foka 6. Mivel a 6 páros szám, ez a feltétel teljesül.
+                    </p>
+                </div>
+                <div class="p-5 bg-blue-50/50 dark:bg-blue-900/10 rounded-2xl border border-blue-100 dark:border-blue-900/30">
+                    <span class="block font-black text-blue-600 text-[10px] uppercase mb-2">2. Feltétel: Összefüggőség</span>
+                    <p class="text-sm">
+                        Legyen $K$ egy komponens. Ha $K$ tartalmaz egy fiút, akkor annak 6 lányismerősét is tartalmaznia kell, azoknak pedig mind a 6 fiúismerősüket.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 italic text-center">
+                Így egy komponensben legalább $1 + 6 + 5 = 12$ csúcsnak kell lennie. Mivel a gráf összesen 20 csúcsú ($10+10$), nem létezhet két különálló, legalább 12 csúcsú komponens. Ebből következik, hogy a gráf <strong class="text-blue-600 font-black">összefüggő</strong>.
+            </div>
+
+            <p class="font-bold text-slate-800 dark:text-slate-200 border-t border-slate-100 dark:border-slate-700 pt-6">
+                Mivel $G$ összefüggő és minden csúcsának foka páros, a 3.2. Tétel szerint létezik benne Euler-körséta, tehát a cél megvalósítható.
+            </p>
+        </div>
+    </div>
+</section>
+
+<math-header>
+    <div class="flex items-center gap-4 mb-6 mt-12">
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-blue-500/30 decoration-4 underline-offset-8 text-balance">
+            Hamilton-vonalak vizsgálata feladatokon keresztül
+        </h2>
+    </div>
+</math-header>
+
+<section id="section-3-5-ex" class="mb-16 space-y-8">
+    <math-example>
+        <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 md:p-8 rounded-2xl shadow-sm relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none text-blue-600">
+                <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7 15h-2v-2h2v2m0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
+            </div>
+            <h4 class="text-blue-600 dark:text-blue-400 font-bold mb-3 uppercase tracking-widest text-xs">Feladat</h4>
+            <div class="text-slate-700 dark:text-slate-300 leading-relaxed italic text-lg space-y-4">
+                <p>a) Van-e Hamilton-kör, illetve Hamilton-út az alábbi $G$ gráfban?</p>
+                <p>b) Töröljük $G$-ből a $\{c,g\}$ élet és oldjuk meg a feladatot az így kapott gráfra is!</p>
+            </div>
+        </div>
+    </math-example>
+
+    
+
+    <div class="bg-slate-900 rounded-3xl p-8 text-white border border-slate-700/50">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="flex justify-center">
+                <svg width="220" height="220" viewBox="0 0 220 220" class="overflow-visible">
+                    <circle cx="110" cy="30" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" id="node-a" /><text x="110" y="20" fill="white" font-size="12" text-anchor="middle">a</text>
+                    <circle cx="170" cy="50" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" id="node-b" /><text x="185" y="55" fill="white" font-size="12">b</text>
+                    <circle cx="190" cy="110" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" id="node-d" /><text x="205" y="115" fill="white" font-size="12">d</text>
+                    <circle cx="170" cy="170" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" id="node-f" /><text x="185" y="175" fill="white" font-size="12">f</text>
+                    <circle cx="110" cy="190" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" id="node-h" /><text x="110" y="210" fill="white" font-size="12" text-anchor="middle">h</text>
+                    <circle cx="50" cy="170" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" id="node-g" /><text x="35" y="175" fill="white" font-size="12" text-anchor="end">g</text>
+                    <circle cx="30" cy="110" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" id="node-e" /><text x="15" y="115" fill="white" font-size="12" text-anchor="end">e</text>
+                    <circle cx="50" cy="50" r="8" fill="#1e293b" stroke="#3b82f6" stroke-width="2" id="node-c" /><text x="35" y="55" fill="white" font-size="12" text-anchor="end">c</text>
+                    
+                    <g stroke="#334155" stroke-width="1.5">
+                        <line x1="110" y1="30" x2="50" y2="50" /> <line x1="110" y1="30" x2="170" y2="170" /> <line x1="170" y1="50" x2="30" y2="110" /> <line x1="170" y1="50" x2="110" y2="190" /> <line x1="50" y1="50" x2="50" y2="170" stroke="#f43f5e" stroke-dasharray="4" /> <line x1="50" y1="50" x2="170" y2="170" /> <line x1="190" y1="110" x2="170" y2="170" /> <line x1="190" y1="110" x2="30" y2="110" /> <line x1="30" y1="110" x2="50" y2="170" /> <line x1="50" y1="170" x2="110" y2="190" /> </g>
+                </svg>
+            </div>
+            <div class="space-y-4">
+                <div class="bg-blue-500/10 p-4 rounded-xl border border-blue-500/20">
+                    <span class="text-blue-400 font-bold text-xs uppercase tracking-widest block mb-2">Hamilton-kör a)</span>
+                    <p class="text-slate-300 text-sm font-mono">(c, a, f, d, e, b, h, g, c)</p>
+                </div>
+                <div class="bg-rose-500/10 p-4 rounded-xl border border-rose-500/20">
+                    <span class="text-rose-400 font-bold text-xs uppercase tracking-widest block mb-2">Csúcstörési ellenőrzés</span>
+                    <p class="text-slate-400 text-xs italic">
+                        Az "e" csúcs törlése után a gráf szétesik: {a,c,d,f} és {b,g,h} komponensekre.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md">
+        <h4 class="text-blue-600 dark:text-blue-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
+            <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+            Részletes levezetés
+        </h4>
+        
+        <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
+            <p>
+                <strong>a) rész:</strong> Némi kísérletezés után találhatunk $G$-ben Hamilton-kört. Például a csúcsokat az alábbi sorrendben járva be: <strong class="text-blue-600 font-bold">(c, a, f, d, e, b, h, g, c)</strong>. Mivel van Hamilton-kör, és bármely élét elhagyva Hamilton-utat kapunk, a gráf Hamilton-utat is tartalmaz.
+            </p>
+
+            <div class="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-2xl border border-blue-100 dark:border-blue-900/30">
+                <h5 class="text-slate-900 dark:text-white font-black uppercase text-xs mb-3">b) rész: A {c, g} él elhagyása után</h5>
+                <p>
+                    A $\{c,g\}$ él törlésével kapott gráf továbbra is tartalmaz <strong class="text-blue-600">Hamilton-utat</strong> (mivel a fenti körből ezt az élet elhagyva éppen egy Hamilton-utat kapunk).
+                </p>
+                <p class="mt-4 border-l-4 border-rose-500 pl-4 font-bold text-slate-800 dark:text-slate-200">
+                    Hamilton-kört azonban ez a gráf már nem tartalmaz!
+                </p>
+                <p class="mt-2 italic text-sm">
+                    Ennek igazolásához használjuk a 3.7-es tétel ötletét: ha töröljük a gráfból az <strong class="text-rose-500">e</strong> csúcsot, a maradék gráf már nem összefüggő: az $\{a, c, d, f\}$ és a $\{b, g, h\}$ csúcsok két külön komponenst alkotnak.
+                </p>
+            </div>
+
+            <p class="text-center font-bold text-blue-600 pt-4 uppercase tracking-tighter">
+                Mivel egyetlen csúcs ($k=1$) törlésével több komponens ($2$) keletkezett, a gráfban nem lehet Hamilton-kör.
+            </p>
+        </div>
+    </div>
+</section>
+        </div>
+    </details>
+</div>
 <div id="complete-section-3" 
      class="mt-12 p-8 bg-blue-500/10 border-2 border-dashed border-blue-500/30 rounded-[2.5rem] text-center transition-all">
     

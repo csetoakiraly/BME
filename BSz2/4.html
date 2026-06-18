@@ -1749,226 +1749,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </p>
         </div>
     </math-trivia>
-<div class="mt-12 w-full animate-fade-in">
-    <details class="group bg-slate-800/30 border border-slate-700/50 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-        <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-800/50 transition-colors">
-            <div class="flex items-center gap-4">
-                <div class="p-3 bg-indigo-500/20 rounded-xl">
-                    <span class="text-xl">📝</span>
-                </div>
-                <h3 class="text-lg font-black text-indigo-400 uppercase tracking-widest">Gyakorló feladatok és példák</h3>
-            </div>
-            <div class="text-indigo-400 transition-transform duration-300 group-open:rotate-180">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-            </div>
-        </summary>
-        <div class="p-8 border-t border-slate-700/50 bg-slate-900/50 space-y-12">
-            <math-header>
-    <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
-        Példafeladat: Kromatikus szám
-    </h2>
-</math-header>
-
-<section id="section-4-3-ex" class="mb-16 space-y-8 animate-fade-in">
-    <math-example>
-        <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 md:p-8 rounded-3xl shadow-sm relative overflow-hidden">
-            <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none text-yellow-600">
-                <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-            </div>
-            
-            <h4 class="text-yellow-600 dark:text-yellow-500 font-bold mb-3 uppercase tracking-widest text-[10px]">6.2. Feladat</h4>
-            <p class="text-slate-700 dark:text-slate-200 leading-relaxed italic text-lg pr-12">
-                Határozzuk meg az alábbi $G$ gráf kromatikus számát, $\chi(G)$-t!
-            </p>
-
-            <div class="flex justify-center my-8">
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-inner">
-                    <svg width="260" height="140" viewBox="0 0 260 140" class="overflow-visible">
-                        <g stroke="currentColor" stroke-width="1.5" class="text-slate-400">
-                            <line x1="80" y1="30" x2="140" y2="30" /> <line x1="140" y1="30" x2="200" y2="30" />
-                            <line x1="20" y1="110" x2="80" y2="110" /> <line x1="80" y1="110" x2="140" y2="110" /> <line x1="140" y1="110" x2="200" y2="110" />
-                            <line x1="80" y1="30" x2="20" y2="110" /> <line x1="80" y1="30" x2="80" y2="110" /> <line x1="80" y1="30" x2="140" y2="110" />
-                            <line x1="140" y1="30" x2="80" y2="110" /> <line x1="140" y1="30" x2="140" y2="110" /> <line x1="140" y1="30" x2="200" y2="110" />
-                            <line x1="200" y1="30" x2="140" y2="110" /> <line x1="200" y1="30" x2="200" y2="110" />
-                        </g>
-                        <g fill="currentColor" class="text-slate-800 dark:text-white">
-                            <circle cx="80" cy="30" r="6" /> <text x="80" y="20" text-anchor="middle" font-size="10">a</text>
-                            <circle cx="140" cy="30" r="6" /> <text x="140" y="20" text-anchor="middle" font-size="10">b</text>
-                            <circle cx="200" cy="30" r="6" /> <text x="200" y="20" text-anchor="middle" font-size="10">c</text>
-                            <circle cx="20" cy="110" r="6" /> <text x="20" y="125" text-anchor="middle" font-size="10">d</text>
-                            <circle cx="80" cy="110" r="6" /> <text x="80" y="125" text-anchor="middle" font-size="10">e</text>
-                            <circle cx="140" cy="110" r="6" /> <text x="140" y="125" text-anchor="middle" font-size="10">f</text>
-                            <circle cx="200" cy="110" r="6" /> <text x="200" y="125" text-anchor="middle" font-size="10">g</text>
-                        </g>
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </math-example>
-
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md space-y-6">
-            <h4 class="text-yellow-600 font-bold uppercase tracking-widest text-xs flex items-center">
-                <span class="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
-                Megoldás
-            </h4>
-            
-            <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
-                <p>
-                    Három színnel könnyen megszínezhetők a gráf csúcsai például úgy, ahogyan a 6.1. ábrán látható.
-                </p>
-
-                <div class="p-5 bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl border-l-4 border-yellow-500 italic">
-                    <p class="text-slate-900 dark:text-white font-bold mb-2">Miért nem elegendő két szín?</p>
-                    Két szín viszont biztosan nem volna elegendő: mivel (például) az $a, d$ és $e$ csúcsok közül bármely kettő szomszédos, ezért már ezekre is három különböző színt kell használnunk.
-                </div>
-
-                <div class="pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
-                    <span class="text-sm font-black uppercase tracking-widest text-slate-400">Konklúzió:</span>
-                    <span class="text-3xl font-black text-yellow-600">$\chi(G) = 3$</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="bg-slate-900 rounded-3xl p-8 flex flex-col items-center justify-center border border-slate-700/50 shadow-xl">
-            <h5 class="text-[10px] font-black uppercase text-slate-500 mb-8 tracking-[0.2em]">6.1. ábra: Érvényes 3-színezés</h5>
-            
-            <svg width="260" height="140" viewBox="0 0 260 140" class="overflow-visible">
-                <g stroke="white" stroke-width="1.5" opacity="0.2">
-                    <line x1="80" y1="30" x2="140" y2="30" /> <line x1="140" y1="30" x2="200" y2="30" />
-                    <line x1="20" y1="110" x2="80" y2="110" /> <line x1="80" y1="110" x2="140" y2="110" /> <line x1="140" y1="110" x2="200" y2="110" />
-                    <line x1="80" y1="30" x2="20" y2="110" /> <line x1="80" y1="30" x2="80" y2="110" /> <line x1="80" y1="30" x2="140" y2="110" />
-                    <line x1="140" y1="30" x2="80" y2="110" /> <line x1="140" y1="30" x2="140" y2="110" /> <line x1="140" y1="30" x2="200" y2="110" />
-                    <line x1="200" y1="30" x2="140" y2="110" /> <line x1="200" y1="30" x2="200" y2="110" />
-                </g>
-
-                <circle cx="80" cy="30" r="8" fill="#3b82f6" stroke="white" stroke-width="1" /> <text x="80" y="18" fill="white" font-size="9" text-anchor="middle" font-weight="bold">a</text>
-                <circle cx="200" cy="110" r="8" fill="#3b82f6" stroke="white" stroke-width="1" /> <text x="200" y="125" fill="white" font-size="9" text-anchor="middle" font-weight="bold">g</text>
-                
-                <circle cx="140" cy="30" r="8" fill="#10b981" stroke="white" stroke-width="1" /> <text x="140" y="18" fill="white" font-size="9" text-anchor="middle" font-weight="bold">b</text>
-                <circle cx="80" cy="110" r="8" fill="#10b981" stroke="white" stroke-width="1" /> <text x="80" y="125" fill="white" font-size="9" text-anchor="middle" font-weight="bold">e</text>
-                
-                <circle cx="200" cy="30" r="8" fill="#f43f5e" stroke="white" stroke-width="1" /> <text x="200" y="18" fill="white" font-size="9" text-anchor="middle" font-weight="bold">c</text>
-                <circle cx="20" cy="110" r="8" fill="#f43f5e" stroke="white" stroke-width="1" /> <text x="20" y="125" fill="white" font-size="9" text-anchor="middle" font-weight="bold">d</text>
-                <circle cx="140" cy="110" r="8" fill="#f43f5e" stroke="white" stroke-width="1" /> <text x="140" y="125" fill="white" font-size="9" text-anchor="middle" font-weight="bold">f</text>
-            </svg>
-
-            <div class="mt-8 grid grid-cols-3 gap-4 border-t border-slate-800 pt-6">
-                <div class="flex items-center gap-2 text-[9px] uppercase tracking-tighter text-slate-500 font-bold">
-                    <div class="w-2 h-2 rounded-full bg-[#3b82f6]"></div> Szín 1
-                </div>
-                <div class="flex items-center gap-2 text-[9px] uppercase tracking-tighter text-slate-500 font-bold">
-                    <div class="w-2 h-2 rounded-full bg-[#10b981]"></div> Szín 2
-                </div>
-                <div class="flex items-center gap-2 text-[9px] uppercase tracking-tighter text-slate-500 font-bold">
-                    <div class="w-2 h-2 rounded-full bg-[#f43f5e]"></div> Szín 3
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<math-header>
-    <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
-        Gyakorló feladat: $\omega(G)$ és $\chi(G)$ vizsgálata
-    </h2>
-</math-header>
-
-<math-example>
-    <section id="section-4-7-ex" class="mb-16 space-y-12 animate-fade-in">
-        <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 md:p-8 rounded-3xl shadow-sm relative overflow-hidden text-center">
-            <h4 class="text-yellow-600 dark:text-yellow-500 font-bold mb-3 uppercase tracking-widest text-[10px]">6.12. Feladat</h4>
-            <p class="text-slate-700 dark:text-slate-200 leading-relaxed italic text-lg">
-                Határozzuk meg az alábbi $G$ gráfok $\omega(G)$ klikkszámát és $\chi(G)$ kromatikus számát!
-            </p>
-        </div>
-
-        <div class="bg-white dark:bg-slate-800 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-700 shadow-md">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <h3 class="text-xl font-black text-slate-900 dark:text-white flex items-center gap-3">
-                        <span class="w-8 h-8 rounded-full bg-yellow-500/10 text-yellow-600 flex items-center justify-center text-sm font-bold">1</span>
-                        Bal oldali gráf elemzése
-                    </h3>
-                    
-                    <div class="space-y-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        <p>
-                            <strong>Klikkszám:</strong> Könnyű találni négy csúcsot, amik közül bármely kettő szomszédos: például $\{a, b, e, f\}$. Ebből $\omega(G) \geq 4$ következik. Öt méretű klikk ($K_5$) már nem található a gráfban.
-                        </p>
-                        <p>
-                            <strong>Kromatikus szám:</strong> A gráf kiszínezhető négy színnel (pl. $a, c$ piros; $b, d$ kék; $e, g$ zöld; $f, h$ sárga). Mivel találtunk benne 4-es klikket, 4-nél kevesebb szín biztosan nem elég.
-                        </p>
-                        <div class="p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl border-l-4 border-yellow-500 font-bold text-slate-900 dark:text-white">
-                            Eredmény: $\omega(G) = \chi(G) = 4$.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-slate-900 p-8 rounded-3xl flex justify-center border border-slate-700">
-                    <svg width="240" height="120" viewBox="0 0 240 120" class="overflow-visible">
-                        <g stroke="white" stroke-width="1.5" opacity="0.3">
-                            <line x1="20" y1="20" x2="220" y2="20" />
-                            <line x1="20" y1="100" x2="220" y2="100" />
-                            <line x1="20" y1="20" x2="20" y2="100" /> <line x1="20" y1="20" x2="80" y2="100" />
-                            <line x1="80" y1="20" x2="20" y2="100" /> <line x1="80" y1="20" x2="80" y2="100" /> <line x1="80" y1="20" x2="150" y2="100" />
-                            <line x1="150" y1="20" x2="80" y2="100" /> <line x1="150" y1="20" x2="150" y2="100" /> <line x1="150" y1="20" x2="220" y2="100" />
-                            <line x1="220" y1="20" x2="150" y2="100" /> <line x1="220" y1="20" x2="220" y2="100" />
-                        </g>
-                        <g fill="#eab308">
-                            <circle cx="20" cy="20" r="5" /> <circle cx="80" cy="20" r="5" /> <circle cx="150" cy="20" r="5" /> <circle cx="220" cy="20" r="5" />
-                            <circle cx="20" cy="100" r="5" /> <circle cx="80" cy="100" r="5" /> <circle cx="150" cy="100" r="5" /> <circle cx="220" cy="100" r="5" />
-                        </g>
-                    </svg>
-                </div>
-            </div>
-        </div>
-
-        
-
-        <div class="bg-white dark:bg-slate-800 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-700 shadow-md">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="order-2 lg:order-1 bg-slate-900 p-8 rounded-3xl flex justify-center border border-slate-700">
-                    <svg width="200" height="150" viewBox="0 0 200 150" class="overflow-visible">
-                        <g stroke="white" stroke-width="1.5" opacity="0.3">
-                            <line x1="30" y1="30" x2="80" y2="30" /> <line x1="30" y1="30" x2="30" y2="110" />
-                            <line x1="80" y1="30" x2="80" y2="110" /> <line x1="30" y1="110" x2="80" y2="110" />
-                            <line x1="80" y1="30" x2="130" y2="10" /> <line x1="130" y1="10" x2="180" y2="70" />
-                            <line x1="180" y1="70" x2="130" y2="130" /> <line x1="130" y1="130" x2="80" y2="110" />
-                        </g>
-                        <g fill="#eab308">
-                            <circle cx="30" cy="30" r="5" /> <circle cx="80" cy="30" r="5" /> <circle cx="130" cy="10" r="5" />
-                            <circle cx="180" cy="70" r="5" /> <circle cx="130" cy="130" r="5" /> <circle cx="80" cy="110" r="5" />
-                            <circle cx="30" cy="110" r="5" />
-                        </g>
-                    </svg>
-                </div>
-
-                <div class="order-1 lg:order-2 space-y-6">
-                    <h3 class="text-xl font-black text-slate-900 dark:text-white flex items-center gap-3">
-                        <span class="w-8 h-8 rounded-full bg-yellow-500/10 text-yellow-600 flex items-center justify-center text-sm font-bold">2</span>
-                        Jobb oldali gráf elemzése
-                    </h3>
-                    
-                    <div class="space-y-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        <p>
-                            <strong>Kromatikus szám:</strong> A gráf tartalmaz egy 5 hosszúságú kört ($C_5$). Mivel a páratlan körök nem 2-színezhetőek, $\chi(G) \geq 3$. Három színnel a gráf már kiszínezhető, tehát $\chi(G) = 3$.
-                        </p>
-                        <p>
-                            <strong>Klikkszám:</strong> Ebben a gráfban nincsenek háromszögek, így a legnagyobb teljes részgráf mérete 2 (maguk az élek).
-                        </p>
-                        <div class="p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl border-l-4 border-yellow-500 font-bold text-slate-900 dark:text-white">
-                            Eredmény: $\omega(G) = 2$ és $\chi(G) = 3$. Itt szigorú az egyenlőtlenség: $\omega(G) < \chi(G)$.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</math-example>
-        </div>
-    </details>
-</div>
-
 </section>
 
 <math-header>
@@ -3158,6 +2938,226 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 </math-trivia>
 
+
+<div class="mt-12 w-full animate-fade-in">
+    <details class="group bg-slate-800/30 border border-slate-700/50 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+        <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-800/50 transition-colors">
+            <div class="flex items-center gap-4">
+                <div class="p-3 bg-indigo-500/20 rounded-xl">
+                    <span class="text-xl">📝</span>
+                </div>
+                <h3 class="text-lg font-black text-indigo-400 uppercase tracking-widest">Gyakorló feladatok és példák</h3>
+            </div>
+            <div class="text-indigo-400 transition-transform duration-300 group-open:rotate-180">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </div>
+        </summary>
+        <div class="p-8 border-t border-slate-700/50 bg-slate-900/50 space-y-12">
+            <math-header>
+    <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
+        Példafeladat: Kromatikus szám
+    </h2>
+</math-header>
+
+<section id="section-4-3-ex" class="mb-16 space-y-8 animate-fade-in">
+    <math-example>
+        <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 md:p-8 rounded-3xl shadow-sm relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none text-yellow-600">
+                <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+            </div>
+            
+            <h4 class="text-yellow-600 dark:text-yellow-500 font-bold mb-3 uppercase tracking-widest text-[10px]">6.2. Feladat</h4>
+            <p class="text-slate-700 dark:text-slate-200 leading-relaxed italic text-lg pr-12">
+                Határozzuk meg az alábbi $G$ gráf kromatikus számát, $\chi(G)$-t!
+            </p>
+
+            <div class="flex justify-center my-8">
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-inner">
+                    <svg width="260" height="140" viewBox="0 0 260 140" class="overflow-visible">
+                        <g stroke="currentColor" stroke-width="1.5" class="text-slate-400">
+                            <line x1="80" y1="30" x2="140" y2="30" /> <line x1="140" y1="30" x2="200" y2="30" />
+                            <line x1="20" y1="110" x2="80" y2="110" /> <line x1="80" y1="110" x2="140" y2="110" /> <line x1="140" y1="110" x2="200" y2="110" />
+                            <line x1="80" y1="30" x2="20" y2="110" /> <line x1="80" y1="30" x2="80" y2="110" /> <line x1="80" y1="30" x2="140" y2="110" />
+                            <line x1="140" y1="30" x2="80" y2="110" /> <line x1="140" y1="30" x2="140" y2="110" /> <line x1="140" y1="30" x2="200" y2="110" />
+                            <line x1="200" y1="30" x2="140" y2="110" /> <line x1="200" y1="30" x2="200" y2="110" />
+                        </g>
+                        <g fill="currentColor" class="text-slate-800 dark:text-white">
+                            <circle cx="80" cy="30" r="6" /> <text x="80" y="20" text-anchor="middle" font-size="10">a</text>
+                            <circle cx="140" cy="30" r="6" /> <text x="140" y="20" text-anchor="middle" font-size="10">b</text>
+                            <circle cx="200" cy="30" r="6" /> <text x="200" y="20" text-anchor="middle" font-size="10">c</text>
+                            <circle cx="20" cy="110" r="6" /> <text x="20" y="125" text-anchor="middle" font-size="10">d</text>
+                            <circle cx="80" cy="110" r="6" /> <text x="80" y="125" text-anchor="middle" font-size="10">e</text>
+                            <circle cx="140" cy="110" r="6" /> <text x="140" y="125" text-anchor="middle" font-size="10">f</text>
+                            <circle cx="200" cy="110" r="6" /> <text x="200" y="125" text-anchor="middle" font-size="10">g</text>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </math-example>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md space-y-6">
+            <h4 class="text-yellow-600 font-bold uppercase tracking-widest text-xs flex items-center">
+                <span class="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
+                Megoldás
+            </h4>
+            
+            <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p>
+                    Három színnel könnyen megszínezhetők a gráf csúcsai például úgy, ahogyan a 6.1. ábrán látható.
+                </p>
+
+                <div class="p-5 bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl border-l-4 border-yellow-500 italic">
+                    <p class="text-slate-900 dark:text-white font-bold mb-2">Miért nem elegendő két szín?</p>
+                    Két szín viszont biztosan nem volna elegendő: mivel (például) az $a, d$ és $e$ csúcsok közül bármely kettő szomszédos, ezért már ezekre is három különböző színt kell használnunk.
+                </div>
+
+                <div class="pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
+                    <span class="text-sm font-black uppercase tracking-widest text-slate-400">Konklúzió:</span>
+                    <span class="text-3xl font-black text-yellow-600">$\chi(G) = 3$</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-slate-900 rounded-3xl p-8 flex flex-col items-center justify-center border border-slate-700/50 shadow-xl">
+            <h5 class="text-[10px] font-black uppercase text-slate-500 mb-8 tracking-[0.2em]">6.1. ábra: Érvényes 3-színezés</h5>
+            
+            <svg width="260" height="140" viewBox="0 0 260 140" class="overflow-visible">
+                <g stroke="white" stroke-width="1.5" opacity="0.2">
+                    <line x1="80" y1="30" x2="140" y2="30" /> <line x1="140" y1="30" x2="200" y2="30" />
+                    <line x1="20" y1="110" x2="80" y2="110" /> <line x1="80" y1="110" x2="140" y2="110" /> <line x1="140" y1="110" x2="200" y2="110" />
+                    <line x1="80" y1="30" x2="20" y2="110" /> <line x1="80" y1="30" x2="80" y2="110" /> <line x1="80" y1="30" x2="140" y2="110" />
+                    <line x1="140" y1="30" x2="80" y2="110" /> <line x1="140" y1="30" x2="140" y2="110" /> <line x1="140" y1="30" x2="200" y2="110" />
+                    <line x1="200" y1="30" x2="140" y2="110" /> <line x1="200" y1="30" x2="200" y2="110" />
+                </g>
+
+                <circle cx="80" cy="30" r="8" fill="#3b82f6" stroke="white" stroke-width="1" /> <text x="80" y="18" fill="white" font-size="9" text-anchor="middle" font-weight="bold">a</text>
+                <circle cx="200" cy="110" r="8" fill="#3b82f6" stroke="white" stroke-width="1" /> <text x="200" y="125" fill="white" font-size="9" text-anchor="middle" font-weight="bold">g</text>
+                
+                <circle cx="140" cy="30" r="8" fill="#10b981" stroke="white" stroke-width="1" /> <text x="140" y="18" fill="white" font-size="9" text-anchor="middle" font-weight="bold">b</text>
+                <circle cx="80" cy="110" r="8" fill="#10b981" stroke="white" stroke-width="1" /> <text x="80" y="125" fill="white" font-size="9" text-anchor="middle" font-weight="bold">e</text>
+                
+                <circle cx="200" cy="30" r="8" fill="#f43f5e" stroke="white" stroke-width="1" /> <text x="200" y="18" fill="white" font-size="9" text-anchor="middle" font-weight="bold">c</text>
+                <circle cx="20" cy="110" r="8" fill="#f43f5e" stroke="white" stroke-width="1" /> <text x="20" y="125" fill="white" font-size="9" text-anchor="middle" font-weight="bold">d</text>
+                <circle cx="140" cy="110" r="8" fill="#f43f5e" stroke="white" stroke-width="1" /> <text x="140" y="125" fill="white" font-size="9" text-anchor="middle" font-weight="bold">f</text>
+            </svg>
+
+            <div class="mt-8 grid grid-cols-3 gap-4 border-t border-slate-800 pt-6">
+                <div class="flex items-center gap-2 text-[9px] uppercase tracking-tighter text-slate-500 font-bold">
+                    <div class="w-2 h-2 rounded-full bg-[#3b82f6]"></div> Szín 1
+                </div>
+                <div class="flex items-center gap-2 text-[9px] uppercase tracking-tighter text-slate-500 font-bold">
+                    <div class="w-2 h-2 rounded-full bg-[#10b981]"></div> Szín 2
+                </div>
+                <div class="flex items-center gap-2 text-[9px] uppercase tracking-tighter text-slate-500 font-bold">
+                    <div class="w-2 h-2 rounded-full bg-[#f43f5e]"></div> Szín 3
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<math-header>
+    <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
+        Gyakorló feladat: $\omega(G)$ és $\chi(G)$ vizsgálata
+    </h2>
+</math-header>
+
+<math-example>
+    <section id="section-4-7-ex" class="mb-16 space-y-12 animate-fade-in">
+        <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 md:p-8 rounded-3xl shadow-sm relative overflow-hidden text-center">
+            <h4 class="text-yellow-600 dark:text-yellow-500 font-bold mb-3 uppercase tracking-widest text-[10px]">6.12. Feladat</h4>
+            <p class="text-slate-700 dark:text-slate-200 leading-relaxed italic text-lg">
+                Határozzuk meg az alábbi $G$ gráfok $\omega(G)$ klikkszámát és $\chi(G)$ kromatikus számát!
+            </p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-700 shadow-md">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h3 class="text-xl font-black text-slate-900 dark:text-white flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-full bg-yellow-500/10 text-yellow-600 flex items-center justify-center text-sm font-bold">1</span>
+                        Bal oldali gráf elemzése
+                    </h3>
+                    
+                    <div class="space-y-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        <p>
+                            <strong>Klikkszám:</strong> Könnyű találni négy csúcsot, amik közül bármely kettő szomszédos: például $\{a, b, e, f\}$. Ebből $\omega(G) \geq 4$ következik. Öt méretű klikk ($K_5$) már nem található a gráfban.
+                        </p>
+                        <p>
+                            <strong>Kromatikus szám:</strong> A gráf kiszínezhető négy színnel (pl. $a, c$ piros; $b, d$ kék; $e, g$ zöld; $f, h$ sárga). Mivel találtunk benne 4-es klikket, 4-nél kevesebb szín biztosan nem elég.
+                        </p>
+                        <div class="p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl border-l-4 border-yellow-500 font-bold text-slate-900 dark:text-white">
+                            Eredmény: $\omega(G) = \chi(G) = 4$.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 p-8 rounded-3xl flex justify-center border border-slate-700">
+                    <svg width="240" height="120" viewBox="0 0 240 120" class="overflow-visible">
+                        <g stroke="white" stroke-width="1.5" opacity="0.3">
+                            <line x1="20" y1="20" x2="220" y2="20" />
+                            <line x1="20" y1="100" x2="220" y2="100" />
+                            <line x1="20" y1="20" x2="20" y2="100" /> <line x1="20" y1="20" x2="80" y2="100" />
+                            <line x1="80" y1="20" x2="20" y2="100" /> <line x1="80" y1="20" x2="80" y2="100" /> <line x1="80" y1="20" x2="150" y2="100" />
+                            <line x1="150" y1="20" x2="80" y2="100" /> <line x1="150" y1="20" x2="150" y2="100" /> <line x1="150" y1="20" x2="220" y2="100" />
+                            <line x1="220" y1="20" x2="150" y2="100" /> <line x1="220" y1="20" x2="220" y2="100" />
+                        </g>
+                        <g fill="#eab308">
+                            <circle cx="20" cy="20" r="5" /> <circle cx="80" cy="20" r="5" /> <circle cx="150" cy="20" r="5" /> <circle cx="220" cy="20" r="5" />
+                            <circle cx="20" cy="100" r="5" /> <circle cx="80" cy="100" r="5" /> <circle cx="150" cy="100" r="5" /> <circle cx="220" cy="100" r="5" />
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="bg-white dark:bg-slate-800 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-700 shadow-md">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1 bg-slate-900 p-8 rounded-3xl flex justify-center border border-slate-700">
+                    <svg width="200" height="150" viewBox="0 0 200 150" class="overflow-visible">
+                        <g stroke="white" stroke-width="1.5" opacity="0.3">
+                            <line x1="30" y1="30" x2="80" y2="30" /> <line x1="30" y1="30" x2="30" y2="110" />
+                            <line x1="80" y1="30" x2="80" y2="110" /> <line x1="30" y1="110" x2="80" y2="110" />
+                            <line x1="80" y1="30" x2="130" y2="10" /> <line x1="130" y1="10" x2="180" y2="70" />
+                            <line x1="180" y1="70" x2="130" y2="130" /> <line x1="130" y1="130" x2="80" y2="110" />
+                        </g>
+                        <g fill="#eab308">
+                            <circle cx="30" cy="30" r="5" /> <circle cx="80" cy="30" r="5" /> <circle cx="130" cy="10" r="5" />
+                            <circle cx="180" cy="70" r="5" /> <circle cx="130" cy="130" r="5" /> <circle cx="80" cy="110" r="5" />
+                            <circle cx="30" cy="110" r="5" />
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="order-1 lg:order-2 space-y-6">
+                    <h3 class="text-xl font-black text-slate-900 dark:text-white flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-full bg-yellow-500/10 text-yellow-600 flex items-center justify-center text-sm font-bold">2</span>
+                        Jobb oldali gráf elemzése
+                    </h3>
+                    
+                    <div class="space-y-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        <p>
+                            <strong>Kromatikus szám:</strong> A gráf tartalmaz egy 5 hosszúságú kört ($C_5$). Mivel a páratlan körök nem 2-színezhetőek, $\chi(G) \geq 3$. Három színnel a gráf már kiszínezhető, tehát $\chi(G) = 3$.
+                        </p>
+                        <p>
+                            <strong>Klikkszám:</strong> Ebben a gráfban nincsenek háromszögek, így a legnagyobb teljes részgráf mérete 2 (maguk az élek).
+                        </p>
+                        <div class="p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl border-l-4 border-yellow-500 font-bold text-slate-900 dark:text-white">
+                            Eredmény: $\omega(G) = 2$ és $\chi(G) = 3$. Itt szigorú az egyenlőtlenség: $\omega(G) < \chi(G)$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</math-example>
+        </div>
+    </details>
+</div>
 <div id="complete-section-4" 
      class="mt-12 p-8 bg-yellow-500/10 border-2 border-dashed border-yellow-500/30 rounded-[2.5rem] text-center transition-all">
     
