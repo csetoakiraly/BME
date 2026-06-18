@@ -1689,7 +1689,271 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
 
+
+
+<script>
+    function checkDegrees() {
+        const input = document.getElementById('degree-input').value;
+        const status = document.getElementById('calc-status');
+        const sumDisplay = document.getElementById('calc-sum');
+        
+        const nums = input.split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n));
+        const sum = nums.reduce((a, b) => a + b, 0);
+        
+        sumDisplay.innerText = sum;
+        
+        if (sum % 2 === 0) {
+            status.innerText = "Páros (Lehetséges)";
+            status.className = "px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest bg-emerald-500/20 text-emerald-500 border border-emerald-500/50";
+        } else {
+            status.innerText = "Páratlan (Lehetetlen)";
+            status.className = "px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest bg-rose-500/20 text-rose-500 border border-rose-500/50";
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <math-header>
+    <div class="num-badge">1.13</div>
+    <h2>Körséta és Kör</h2>
+</math-header>
+
+<math-def id="section-1-13">
+    
+    <div class="space-y-6 text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic">
+        <p>A $G$ gráfban a $P = (v_0, e_1, v_1, e_2, v_2, \dots, e_k, v_k)$ élsorozatot:</p>
+        
+        <ul class="space-y-4 not-italic">
+            <li class="flex items-start gap-4 p-4 bg-white/50 dark:bg-slate-900/40 rounded-xl border border-emerald-100 dark:border-emerald-900/30">
+                <div class="w-1.5 h-1.5 mt-2 rounded-full bg-indigo-500 flex-none shadow-[0_0_8px_rgba(99,102,241,0.4)]"></div>
+                <p class="text-sm md:text-base italic">
+                    <strong class="text-slate-900 dark:text-white not-italic uppercase tracking-tighter">Körsétának</strong> nevezzük, ha $P$ séta és $v_0 = v_k$;
+                </p>
+            </li>
+            <li class="flex items-start gap-4 p-4 bg-emerald-50/50 dark:bg-emerald-900/20 rounded-xl border border-emerald-200 dark:border-emerald-800/50 shadow-sm">
+                <div class="w-1.5 h-1.5 mt-2 rounded-full bg-emerald-500 flex-none shadow-[0_0_8px_rgba(16,185,129,0.4)]"></div>
+                <p class="text-sm md:text-base italic">
+                    <strong class="text-emerald-600 dark:text-emerald-400 not-italic uppercase tracking-tighter">Körnek</strong> nevezzük, ha $P$ egy pozitív hosszúságú körséta és a $v_0, v_1, \dots, v_{k-1}$ csúcsok mind különbözők.
+                </p>
+            </li>
+        </ul>
+    </div>
+</math-def>
+
+<math-lab>
+    <h3 class="text-xl font-bold mb-4 italic text-white text-center md:text-left">Vizuális különbség</h3>
+    <p class="text-slate-400 text-sm mb-8 leading-relaxed max-w-2xl">
+        A körséta visszatér a kiindulópontba, de közben érinthet többször is egy csúcsot. A kör ezzel szemben "tiszta": a kezdő és végponton kívül minden csúcsot pontosan egyszer érint.
+    </p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 flex flex-col items-center shadow-inner">
+            <span class="text-[10px] font-black text-indigo-400 uppercase mb-6 tracking-widest">Körséta (visszatérő)</span>
+            <svg width="120" height="120" viewBox="0 0 100 100" class="overflow-visible">
+                <path d="M 20 50 L 50 20 L 80 50 L 50 80 L 50 20 L 20 50" fill="none" stroke="#6366f1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" />
+                <circle cx="20" cy="50" r="5" fill="white" />
+                <circle cx="50" cy="20" r="7" fill="#fbbf24" class="animate-pulse" /> <circle cx="80" cy="50" r="5" fill="white" />
+                <circle cx="50" cy="80" r="5" fill="white" />
+            </svg>
+            <p class="mt-6 text-[10px] text-slate-500 text-center italic font-medium">
+                Az ábrán a <span class="text-amber-400 font-bold uppercase">sárga csúcsot</span> kétszer érintjük.
+            </p>
+        </div>
+
+        <div class="bg-slate-800/50 p-6 rounded-2xl border border-emerald-500/20 flex flex-col items-center shadow-inner">
+            <span class="text-[10px] font-black text-emerald-400 uppercase mb-6 tracking-widest">Kör (egyszerű)</span>
+            <svg width="120" height="120" viewBox="0 0 100 100" class="overflow-visible">
+                <polygon points="20,50 50,20 80,50 50,80" fill="none" stroke="#10b981" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" />
+                <circle cx="20" cy="50" r="5" fill="white" />
+                <circle cx="50" cy="20" r="5" fill="white" />
+                <circle cx="80" cy="50" r="5" fill="white" />
+                <circle cx="50" cy="80" r="5" fill="white" />
+            </svg>
+            <p class="mt-6 text-[10px] text-slate-500 text-center italic font-medium">Minden érintett csúcs különböző.</p>
+        </div>
+    </div>
+</math-lab>
+
+<math-header>
+    <div class="num-badge">1.15</div>
+    <h2>Dijkstra algoritmusa</h2>
+</math-header>
+
+<math-def id="section-1-15">
+    <div class="space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+        <p>
+            Dijkstra algoritmusa a <strong class="text-slate-900 dark:text-white">legrövidebb út problémát</strong> oldja meg olyan irányított gráfokban, ahol <strong class="text-rose-500">nincsenek negatív élsúlyok</strong>. Az algoritmus folyamatosan karbantart egy $K$ halmazt (a "kész" csúcsok halmazát, amikre a legrövidebb út már megvan), és kiszámítja a táv($v$) távolságokat a többi csúcsra.
+        </p>
+    </div>
+</math-def>
+
+<div class="bg-indigo-50 dark:bg-indigo-900/10 border border-indigo-200 dark:border-indigo-800 p-6 rounded-2xl mb-8">
+    <h3 class="text-indigo-600 dark:text-indigo-400 font-black uppercase tracking-widest text-sm mb-4">Dijkstra Algoritmusa</h3>
+    <div class="font-mono text-sm text-slate-800 dark:text-slate-300 space-y-2">
+        <p><span class="text-slate-500 font-bold">Bemenet:</span> Egy $n$ csúcsú $G = (V,E)$ irányított gráf, egy $w : E \to \mathbb{R}^+ \cup \{0\}$ nemnegatív súlyfüggvény és egy $s \in V$ csúcs</p>
+        <hr class="border-indigo-200 dark:border-indigo-800 my-3">
+        <p>1: táv($s$) $\leftarrow 0$; minden $v \in V, v \neq s$-re táv($v$) $\leftarrow \infty$</p>
+        <p>2: minden $v \in V, v \neq s$-re előző($v$) $\leftarrow *$</p>
+        <p>3: $K \leftarrow \{s\}$; $a \leftarrow s$</p>
+        <p>4: <strong class="text-indigo-600 dark:text-indigo-400">ciklus:</strong> amíg $K \neq V$</p>
+        <p class="pl-4">5: <strong class="text-indigo-600 dark:text-indigo-400">ciklus:</strong> $e$ végigfut az $e = (a, v), v \notin K$ éleken</p>
+        <p class="pl-8">6: <strong>ha</strong> táv($v$) $>$ táv($a$) + $w(e)$, <strong>akkor:</strong></p>
+        <p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">7: táv($v$) $\leftarrow$ táv($a$) + $w(e)$</p>
+        <p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">8: előző($v$) $\leftarrow a$</p>
+        <p class="pl-4">9: <strong>ciklus vége</strong></p>
+        <p class="pl-4">10: $a$ legyen egy olyan $a \notin K$ csúcs, amire táv($a$) = $\min\{$táv($v$) : $v \notin K\}$</p>
+        <p class="pl-4">11: $K \leftarrow K \cup \{a\}$</p>
+        <p>12: <strong>ciklus vége</strong></p>
+    </div>
+</div>
+
+<math-theorem id="section-1-16">
+    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4 italic text-center md:text-left">
+        Dijkstra algoritmusának lépésszáma
+    </h3>
+    <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
+        Az algoritmus 10. sorában a minimumkeresés minden lépésben egyre kisebb halmazon fut le. Ha egyszerű tömböt használunk, a keresések száma $n$-nel arányos minden külső ciklusban, így az eljárás teljes lépésszáma <strong class="text-indigo-600 dark:text-indigo-400">$\mathcal{O}(n^2)$</strong>, ahol $n$ a csúcsok száma.
+    </p>
+</math-theorem>
+
+<math-header>
+    <div class="num-badge">1.14</div>
+    <h2>Összefoglaló Kvíz</h2>
+</math-header>
+
+<math-lab id="section-1-14">
+    <div class="relative z-10 p-4 md:p-8">
+        <div class="flex items-center gap-4 mb-10">
+            <div class="p-3 bg-indigo-500 rounded-2xl shadow-lg shadow-indigo-500/40">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+            </div>
+            <div>
+                <h3 class="text-2xl font-black text-white italic tracking-tight text-balance">Milyen jól ismered a gráfokat?</h3>
+                <p class="text-indigo-300 text-sm italic">Vidd fölé az egeret vagy kattints a válasz felfedéséhez!</p>
+            </div>
+        </div>
+
+        
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <div class="bg-slate-800/50 p-6 rounded-2xl border border-white/10 hover:bg-slate-800/80 transition-all cursor-help group/q shadow-sm">
+                <p class="text-indigo-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#01 Fokszámösszeg</p>
+                <p class="text-white font-bold italic leading-relaxed">Ha egy gráf 15 éllel rendelkezik, mennyi a csúcsainak fokszámösszege?</p>
+                <div class="mt-4 pt-4 border-t border-white/10 text-emerald-400 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+                    Válasz: 30. A tétel szerint a fokszámösszeg az élszám kétszerese ($\sum d(v) = 2 \cdot |E|$).
+                </div>
+            </div>
+
+            <div class="bg-slate-800/50 p-6 rounded-2xl border border-white/10 hover:bg-slate-800/80 transition-all cursor-help group/q shadow-sm">
+                <p class="text-indigo-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#02 Hierarchia</p>
+                <p class="text-white font-bold italic leading-relaxed">Minden séta egyben út is? Vagy fordítva?</p>
+                <div class="mt-4 pt-4 border-t border-white/10 text-emerald-400 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity text-balance">
+                    Válasz: Fordítva! Minden út egyben séta is, de nem minden séta út (a sétában lehet csúcsismétlés).
+                </div>
+            </div>
+
+            <div class="bg-slate-800/50 p-6 rounded-2xl border border-white/10 hover:bg-slate-800/80 transition-all cursor-help group/q shadow-sm">
+                <p class="text-indigo-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#03 Komplementer</p>
+                <p class="text-white font-bold italic leading-relaxed">Egy 10 csúcsú gráfban a $v$ csúcs foka 4. Mennyi lesz $v$ foka a komplementer gráfban?</p>
+                <div class="mt-4 pt-4 border-t border-white/10 text-emerald-400 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+                    Válasz: 5. Mivel egyszerű gráfban $d_G(v) + d_{\bar{G}}(v) = n-1$, így $4 + x = 9$.
+                </div>
+            </div>
+
+            <div class="bg-slate-800/50 p-6 rounded-2xl border border-white/10 hover:bg-slate-800/80 transition-all cursor-help group/q shadow-sm">
+                <p class="text-indigo-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#04 Komponensek</p>
+                <p class="text-white font-bold italic leading-relaxed">Lehet-e egy csúcs egyszerre két különböző összefüggő komponens tagja?</p>
+                <div class="mt-4 pt-4 border-t border-white/10 text-emerald-400 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+                    Válasz: Nem. A tétel szerint a komponensek a csúcshalmaz partícióját alkotják, tehát minden csúcs pontosan egyben van benne.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</math-lab>
+
+
+
+<math-trivia id="section-1-17">
+<div class="flex items-center gap-4 mb-8">
+        <div class="p-3 bg-amber-400 rounded-2xl shadow-lg shadow-amber-400/20">
+            <span class="text-2xl">💡</span>
+        </div>
+        <div>
+            <h3 class="text-xl font-black text-slate-800 dark:text-white italic">Tudtad-e?</h3>
+        </div>
+    </div>
+    <div class="trivia-grid">
+        
+        <div class="trivia-card border-t-4 border-indigo-400">
+            <h4 class="text-indigo-600 dark:text-indigo-400 font-black uppercase text-[10px] tracking-widest mb-3 flex items-center">
+                Minden egy sétával kezdődött
+            </h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                A gráfelmélet 1736-ban született meg, amikor <strong>Leonhard Euler</strong> bebizonyította, hogy Königsberg városában nem lehet úgy végigmenni a hét hídon, hogy mindegyiken pontosan egyszer haladjunk át. Ő volt az első, aki a hidakat élekként, a városrészeket pedig csúcsokként ábrázolta.
+            </p>
+            
+        </div>
+
+        <div class="trivia-card border-t-4 border-rose-400">
+            <h4 class="text-rose-600 dark:text-rose-400 font-black uppercase text-[10px] tracking-widest mb-3 flex items-center">
+                Hat lépés távolság
+            </h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                A koncepció, miszerint a Földön bárki elérhető bárki máson keresztül maximum 5-6 ismerősön át, először <strong>Karinthy Frigyes</strong> 1929-es, <em>Láncszemek</em> című novellájában jelent meg. Ez a társadalmi gráfok és az összefüggőség egyik leghíresebb példája.
+            </p>
+        </div>
+
+        <div class="trivia-card border-t-4 border-amber-400">
+            <h4 class="text-amber-600 dark:text-amber-400 font-black uppercase text-[10px] tracking-widest mb-3 flex items-center">
+                Honnan jön a "Gráf" név?
+            </h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                Bár Euler alapozta meg a tudományt, a "gráf" (graph) kifejezést csak 1878-ban használta először <strong>James Joseph Sylvester</strong>. Ő vette észre a hasonlóságot a kémiai molekulák szerkezeti ábrái és a matematikai csomópontok között.
+            </p>
+            
+        </div>
+
+        <div class="trivia-card border-t-4 border-emerald-400">
+            <h4 class="text-emerald-600 dark:text-emerald-400 font-black uppercase text-[10px] tracking-widest mb-3 flex items-center">
+                A zsebedben lévő gráf
+            </h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                Amikor a Google Térkép útvonalat tervez, valójában egy gigantikus gráfban keres élsorozatokat. Az útkereszteződések a csúcsok, az utcák pedig az élek. Egy-egy város térképe több millió csúcsból álló összefüggő komponenst alkot.
+            </p>
+        </div>
+
+    </div>
+</math-trivia>
+<div class="mt-12 w-full animate-fade-in">
+    <details class="group bg-slate-800/30 border border-slate-700/50 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+        <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-800/50 transition-colors">
+            <div class="flex items-center gap-4">
+                <div class="p-3 bg-indigo-500/20 rounded-xl">
+                    <span class="text-xl">📝</span>
+                </div>
+                <h3 class="text-lg font-black text-indigo-400 uppercase tracking-widest">Gyakorló feladatok és példák</h3>
+            </div>
+            <div class="text-indigo-400 transition-transform duration-300 group-open:rotate-180">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </div>
+        </summary>
+        <div class="p-8 border-t border-slate-700/50 bg-slate-900/50 space-y-12">
+            <math-header>
     <div class="num-badge">1.1</div>
     <h2>Alapfogalmak</h2>
 </math-header>
@@ -1846,28 +2110,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 </math-example>
-
-<script>
-    function checkDegrees() {
-        const input = document.getElementById('degree-input').value;
-        const status = document.getElementById('calc-status');
-        const sumDisplay = document.getElementById('calc-sum');
-        
-        const nums = input.split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n));
-        const sum = nums.reduce((a, b) => a + b, 0);
-        
-        sumDisplay.innerText = sum;
-        
-        if (sum % 2 === 0) {
-            status.innerText = "Páros (Lehetséges)";
-            status.className = "px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest bg-emerald-500/20 text-emerald-500 border border-emerald-500/50";
-        } else {
-            status.innerText = "Páratlan (Lehetetlen)";
-            status.className = "px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest bg-rose-500/20 text-rose-500 border border-rose-500/50";
-        }
-    }
-</script>
-
 <math-header>
     <div class="num-badge">1.3</div>
     <h2>Törlések és részgráfok</h2>
@@ -2100,7 +2342,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 </math-example>
-
 <math-header>
     <div class="num-badge">1.6</div>
     <h2>Izomorfia</h2>
@@ -2236,7 +2477,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 </math-example>
-
 <math-header>
     <div class="num-badge">1.7</div>
     <h2>Élsorozat, séta és út</h2>
@@ -2396,7 +2636,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </math-lab>
 </math-example>
-
 <math-header>
     <div class="num-badge">1.8</div>
     <h2>Út kinyerése élsorozatból</h2>
@@ -2657,7 +2896,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </p>
     </math-lab>
 </math-example>
-
 <math-header>
     <div class="num-badge">1.11</div>
     <h2>Összefüggő komponensek</h2>
@@ -2829,7 +3067,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 </math-example>
-
 <math-header>
     <h2 class="text-balance">Összefüggőség: Komponens-méret alapú bizonyítás</h2>
 </math-header>
@@ -2906,220 +3143,10 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </math-lab>
 </math-example>
-
-<math-header>
-    <div class="num-badge">1.13</div>
-    <h2>Körséta és Kör</h2>
-</math-header>
-
-<math-def id="section-1-13">
-    
-    <div class="space-y-6 text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic">
-        <p>A $G$ gráfban a $P = (v_0, e_1, v_1, e_2, v_2, \dots, e_k, v_k)$ élsorozatot:</p>
-        
-        <ul class="space-y-4 not-italic">
-            <li class="flex items-start gap-4 p-4 bg-white/50 dark:bg-slate-900/40 rounded-xl border border-emerald-100 dark:border-emerald-900/30">
-                <div class="w-1.5 h-1.5 mt-2 rounded-full bg-indigo-500 flex-none shadow-[0_0_8px_rgba(99,102,241,0.4)]"></div>
-                <p class="text-sm md:text-base italic">
-                    <strong class="text-slate-900 dark:text-white not-italic uppercase tracking-tighter">Körsétának</strong> nevezzük, ha $P$ séta és $v_0 = v_k$;
-                </p>
-            </li>
-            <li class="flex items-start gap-4 p-4 bg-emerald-50/50 dark:bg-emerald-900/20 rounded-xl border border-emerald-200 dark:border-emerald-800/50 shadow-sm">
-                <div class="w-1.5 h-1.5 mt-2 rounded-full bg-emerald-500 flex-none shadow-[0_0_8px_rgba(16,185,129,0.4)]"></div>
-                <p class="text-sm md:text-base italic">
-                    <strong class="text-emerald-600 dark:text-emerald-400 not-italic uppercase tracking-tighter">Körnek</strong> nevezzük, ha $P$ egy pozitív hosszúságú körséta és a $v_0, v_1, \dots, v_{k-1}$ csúcsok mind különbözők.
-                </p>
-            </li>
-        </ul>
-    </div>
-</math-def>
-
-<math-lab>
-    <h3 class="text-xl font-bold mb-4 italic text-white text-center md:text-left">Vizuális különbség</h3>
-    <p class="text-slate-400 text-sm mb-8 leading-relaxed max-w-2xl">
-        A körséta visszatér a kiindulópontba, de közben érinthet többször is egy csúcsot. A kör ezzel szemben "tiszta": a kezdő és végponton kívül minden csúcsot pontosan egyszer érint.
-    </p>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700 flex flex-col items-center shadow-inner">
-            <span class="text-[10px] font-black text-indigo-400 uppercase mb-6 tracking-widest">Körséta (visszatérő)</span>
-            <svg width="120" height="120" viewBox="0 0 100 100" class="overflow-visible">
-                <path d="M 20 50 L 50 20 L 80 50 L 50 80 L 50 20 L 20 50" fill="none" stroke="#6366f1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" />
-                <circle cx="20" cy="50" r="5" fill="white" />
-                <circle cx="50" cy="20" r="7" fill="#fbbf24" class="animate-pulse" /> <circle cx="80" cy="50" r="5" fill="white" />
-                <circle cx="50" cy="80" r="5" fill="white" />
-            </svg>
-            <p class="mt-6 text-[10px] text-slate-500 text-center italic font-medium">
-                Az ábrán a <span class="text-amber-400 font-bold uppercase">sárga csúcsot</span> kétszer érintjük.
-            </p>
         </div>
-
-        <div class="bg-slate-800/50 p-6 rounded-2xl border border-emerald-500/20 flex flex-col items-center shadow-inner">
-            <span class="text-[10px] font-black text-emerald-400 uppercase mb-6 tracking-widest">Kör (egyszerű)</span>
-            <svg width="120" height="120" viewBox="0 0 100 100" class="overflow-visible">
-                <polygon points="20,50 50,20 80,50 50,80" fill="none" stroke="#10b981" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" />
-                <circle cx="20" cy="50" r="5" fill="white" />
-                <circle cx="50" cy="20" r="5" fill="white" />
-                <circle cx="80" cy="50" r="5" fill="white" />
-                <circle cx="50" cy="80" r="5" fill="white" />
-            </svg>
-            <p class="mt-6 text-[10px] text-slate-500 text-center italic font-medium">Minden érintett csúcs különböző.</p>
-        </div>
-    </div>
-</math-lab>
-
-<math-header>
-    <div class="num-badge">1.14</div>
-    <h2>Összefoglaló Kvíz</h2>
-</math-header>
-
-<math-lab id="section-1-14">
-    <div class="relative z-10 p-4 md:p-8">
-        <div class="flex items-center gap-4 mb-10">
-            <div class="p-3 bg-indigo-500 rounded-2xl shadow-lg shadow-indigo-500/40">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                </svg>
-            </div>
-            <div>
-                <h3 class="text-2xl font-black text-white italic tracking-tight text-balance">Milyen jól ismered a gráfokat?</h3>
-                <p class="text-indigo-300 text-sm italic">Vidd fölé az egeret vagy kattints a válasz felfedéséhez!</p>
-            </div>
-        </div>
-
-        
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
-            <div class="bg-slate-800/50 p-6 rounded-2xl border border-white/10 hover:bg-slate-800/80 transition-all cursor-help group/q shadow-sm">
-                <p class="text-indigo-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#01 Fokszámösszeg</p>
-                <p class="text-white font-bold italic leading-relaxed">Ha egy gráf 15 éllel rendelkezik, mennyi a csúcsainak fokszámösszege?</p>
-                <div class="mt-4 pt-4 border-t border-white/10 text-emerald-400 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
-                    Válasz: 30. A tétel szerint a fokszámösszeg az élszám kétszerese ($\sum d(v) = 2 \cdot |E|$).
-                </div>
-            </div>
-
-            <div class="bg-slate-800/50 p-6 rounded-2xl border border-white/10 hover:bg-slate-800/80 transition-all cursor-help group/q shadow-sm">
-                <p class="text-indigo-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#02 Hierarchia</p>
-                <p class="text-white font-bold italic leading-relaxed">Minden séta egyben út is? Vagy fordítva?</p>
-                <div class="mt-4 pt-4 border-t border-white/10 text-emerald-400 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity text-balance">
-                    Válasz: Fordítva! Minden út egyben séta is, de nem minden séta út (a sétában lehet csúcsismétlés).
-                </div>
-            </div>
-
-            <div class="bg-slate-800/50 p-6 rounded-2xl border border-white/10 hover:bg-slate-800/80 transition-all cursor-help group/q shadow-sm">
-                <p class="text-indigo-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#03 Komplementer</p>
-                <p class="text-white font-bold italic leading-relaxed">Egy 10 csúcsú gráfban a $v$ csúcs foka 4. Mennyi lesz $v$ foka a komplementer gráfban?</p>
-                <div class="mt-4 pt-4 border-t border-white/10 text-emerald-400 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
-                    Válasz: 5. Mivel egyszerű gráfban $d_G(v) + d_{\bar{G}}(v) = n-1$, így $4 + x = 9$.
-                </div>
-            </div>
-
-            <div class="bg-slate-800/50 p-6 rounded-2xl border border-white/10 hover:bg-slate-800/80 transition-all cursor-help group/q shadow-sm">
-                <p class="text-indigo-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#04 Komponensek</p>
-                <p class="text-white font-bold italic leading-relaxed">Lehet-e egy csúcs egyszerre két különböző összefüggő komponens tagja?</p>
-                <div class="mt-4 pt-4 border-t border-white/10 text-emerald-400 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
-                    Válasz: Nem. A tétel szerint a komponensek a csúcshalmaz partícióját alkotják, tehát minden csúcs pontosan egyben van benne.
-                </div>
-            </div>
-
-        </div>
-    </div>
-</math-lab>
-
-<math-header>
-    <div class="num-badge">1.15</div>
-    <h2>Dijkstra algoritmusa</h2>
-</math-header>
-
-<math-def id="section-1-15">
-    <div class="space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-        <p>
-            Dijkstra algoritmusa a <strong class="text-slate-900 dark:text-white">legrövidebb út problémát</strong> oldja meg olyan irányított gráfokban, ahol <strong class="text-rose-500">nincsenek negatív élsúlyok</strong>. Az algoritmus folyamatosan karbantart egy $K$ halmazt (a "kész" csúcsok halmazát, amikre a legrövidebb út már megvan), és kiszámítja a táv($v$) távolságokat a többi csúcsra.
-        </p>
-    </div>
-</math-def>
-
-<div class="bg-indigo-50 dark:bg-indigo-900/10 border border-indigo-200 dark:border-indigo-800 p-6 rounded-2xl mb-8">
-    <h3 class="text-indigo-600 dark:text-indigo-400 font-black uppercase tracking-widest text-sm mb-4">Dijkstra Algoritmusa</h3>
-    <div class="font-mono text-sm text-slate-800 dark:text-slate-300 space-y-2">
-        <p><span class="text-slate-500 font-bold">Bemenet:</span> Egy $n$ csúcsú $G = (V,E)$ irányított gráf, egy $w : E \to \mathbb{R}^+ \cup \{0\}$ nemnegatív súlyfüggvény és egy $s \in V$ csúcs</p>
-        <hr class="border-indigo-200 dark:border-indigo-800 my-3">
-        <p>1: táv($s$) $\leftarrow 0$; minden $v \in V, v \neq s$-re táv($v$) $\leftarrow \infty$</p>
-        <p>2: minden $v \in V, v \neq s$-re előző($v$) $\leftarrow *$</p>
-        <p>3: $K \leftarrow \{s\}$; $a \leftarrow s$</p>
-        <p>4: <strong class="text-indigo-600 dark:text-indigo-400">ciklus:</strong> amíg $K \neq V$</p>
-        <p class="pl-4">5: <strong class="text-indigo-600 dark:text-indigo-400">ciklus:</strong> $e$ végigfut az $e = (a, v), v \notin K$ éleken</p>
-        <p class="pl-8">6: <strong>ha</strong> táv($v$) $>$ táv($a$) + $w(e)$, <strong>akkor:</strong></p>
-        <p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">7: táv($v$) $\leftarrow$ táv($a$) + $w(e)$</p>
-        <p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">8: előző($v$) $\leftarrow a$</p>
-        <p class="pl-4">9: <strong>ciklus vége</strong></p>
-        <p class="pl-4">10: $a$ legyen egy olyan $a \notin K$ csúcs, amire táv($a$) = $\min\{$táv($v$) : $v \notin K\}$</p>
-        <p class="pl-4">11: $K \leftarrow K \cup \{a\}$</p>
-        <p>12: <strong>ciklus vége</strong></p>
-    </div>
+    </details>
 </div>
 
-<math-theorem id="section-1-16">
-    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4 italic text-center md:text-left">
-        Dijkstra algoritmusának lépésszáma
-    </h3>
-    <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-        Az algoritmus 10. sorában a minimumkeresés minden lépésben egyre kisebb halmazon fut le. Ha egyszerű tömböt használunk, a keresések száma $n$-nel arányos minden külső ciklusban, így az eljárás teljes lépésszáma <strong class="text-indigo-600 dark:text-indigo-400">$\mathcal{O}(n^2)$</strong>, ahol $n$ a csúcsok száma.
-    </p>
-</math-theorem>
-
-<math-trivia id="section-1-17">
-<div class="flex items-center gap-4 mb-8">
-        <div class="p-3 bg-amber-400 rounded-2xl shadow-lg shadow-amber-400/20">
-            <span class="text-2xl">💡</span>
-        </div>
-        <div>
-            <h3 class="text-xl font-black text-slate-800 dark:text-white italic">Tudtad-e?</h3>
-        </div>
-    </div>
-    <div class="trivia-grid">
-        
-        <div class="trivia-card border-t-4 border-indigo-400">
-            <h4 class="text-indigo-600 dark:text-indigo-400 font-black uppercase text-[10px] tracking-widest mb-3 flex items-center">
-                Minden egy sétával kezdődött
-            </h4>
-            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
-                A gráfelmélet 1736-ban született meg, amikor <strong>Leonhard Euler</strong> bebizonyította, hogy Königsberg városában nem lehet úgy végigmenni a hét hídon, hogy mindegyiken pontosan egyszer haladjunk át. Ő volt az első, aki a hidakat élekként, a városrészeket pedig csúcsokként ábrázolta.
-            </p>
-            
-        </div>
-
-        <div class="trivia-card border-t-4 border-rose-400">
-            <h4 class="text-rose-600 dark:text-rose-400 font-black uppercase text-[10px] tracking-widest mb-3 flex items-center">
-                Hat lépés távolság
-            </h4>
-            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
-                A koncepció, miszerint a Földön bárki elérhető bárki máson keresztül maximum 5-6 ismerősön át, először <strong>Karinthy Frigyes</strong> 1929-es, <em>Láncszemek</em> című novellájában jelent meg. Ez a társadalmi gráfok és az összefüggőség egyik leghíresebb példája.
-            </p>
-        </div>
-
-        <div class="trivia-card border-t-4 border-amber-400">
-            <h4 class="text-amber-600 dark:text-amber-400 font-black uppercase text-[10px] tracking-widest mb-3 flex items-center">
-                Honnan jön a "Gráf" név?
-            </h4>
-            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
-                Bár Euler alapozta meg a tudományt, a "gráf" (graph) kifejezést csak 1878-ban használta először <strong>James Joseph Sylvester</strong>. Ő vette észre a hasonlóságot a kémiai molekulák szerkezeti ábrái és a matematikai csomópontok között.
-            </p>
-            
-        </div>
-
-        <div class="trivia-card border-t-4 border-emerald-400">
-            <h4 class="text-emerald-600 dark:text-emerald-400 font-black uppercase text-[10px] tracking-widest mb-3 flex items-center">
-                A zsebedben lévő gráf
-            </h4>
-            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic">
-                Amikor a Google Térkép útvonalat tervez, valójában egy gigantikus gráfban keres élsorozatokat. Az útkereszteződések a csúcsok, az utcák pedig az élek. Egy-egy város térképe több millió csúcsból álló összefüggő komponenst alkot.
-            </p>
-        </div>
-
-    </div>
-</math-trivia>
 
 <div id="complete-section-1" 
      class="mt-12 p-8 bg-indigo-500/10 border-2 border-dashed border-indigo-500/30 rounded-[2.5rem] text-center transition-all">

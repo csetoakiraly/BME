@@ -1817,55 +1817,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </math-proof>
 </section>
 
-<math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            10.4
-        </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            Kidolgozott feladat: Összefüggőségi számok meghatározása
-        </h2>
-    </div>
-</math-header>
 
-<section id="section-10-4" class="mb-16 animate-fade-in text-left">
-    <div class="p-8 bg-slate-50 dark:bg-slate-900/20 rounded-[3rem] border-2 border-theme/20 shadow-sm mb-12">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme mb-4">10.14. Feladat</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-            A $G$ gráf csúcshalmaza legyen $V(G) = \{10, 11, 12, \dots, 39\}$ és két csúcs akkor legyen szomszédos $G$-ben, ha a megfelelő számok első számjegye különböző. Határozzuk meg $\lambda(G)$ és $\kappa(G)$ értékét!
-        </p>
-    </div>
-
-    <div class="space-y-8">
-        <div class="relative p-8 md:p-12 bg-white dark:bg-slate-900/40 rounded-[3rem] border-2 border-theme/10 shadow-sm">
-            <h4 class="font-black text-theme uppercase text-xs tracking-[0.3em] mb-8 flex items-center gap-3">
-                <span class="w-8 h-[2px] bg-theme"></span>
-                Megoldás
-            </h4>
-
-            <div class="space-y-6 text-slate-700 dark:text-slate-300">
-                <p class="text-sm md:text-base leading-relaxed">
-                    Vezessük be a $V_1 = \{10, \dots, 19\}$, $V_2 = \{20, \dots, 29\}$ és $V_3 = \{30, \dots, 39\}$ jelöléseket. Ekkor két csúcs pontosan akkor szomszédos $G$-ben, ha $V_1, V_2$ és $V_3$ közül nem ugyanabba esnek. (Ez egy teljes 3-partit gráf, ahol minden osztály 10 elemű.)
-                </p>
-
-                
-                <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-theme">
-                    <h5 class="text-xs font-black text-theme uppercase mb-2">A pont-összefüggőség ($\kappa(G)$) vizsgálata</h5>
-                    <p class="text-sm leading-relaxed">
-                        $G$-ből el lehet hagyni 20 csúcsot úgy, hogy a kapott gráf ne legyen összefüggő: például $V_1 \cup V_2$ elhagyásával csak a $V_3$ csúcsaiból álló, él nélküli gráf marad. Így $G$ nem 21-szeresen összefüggő. Ha viszont legfeljebb 19 tetszőleges csúcsot hagyunk el, a gráf összefüggő marad, hiszen bármely két megmaradt csúcs vagy szomszédos, vagy van közös szomszédjuk. Ezért <b>$\kappa(G) = 20$</b>.
-                    </p>
-                </div>
-
-                <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-theme">
-                    <h5 class="text-xs font-black text-theme uppercase mb-2">Az él-összefüggőség ($\lambda(G)$) vizsgálata</h5>
-                    <p class="text-sm leading-relaxed">
-                        $G$-ben minden pont foka 20, hiszen minden $v \in V_i$ csúcs a $V_i$-n kívüli 20 csúccsal szomszédos. Ezért 20 él elhagyásával (egy csúcs összes élével) az összefüggőség megszüntethető, tehát $\lambda(G) \le 20$. A részletesebb elemzés megmutatja, hogy legfeljebb 19 él elhagyása után bármely két csúcs között marad út (akár 1, 2 vagy 3 hosszú). Így <b>$\lambda(G) = 20$</b>.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <math-header>
     <div class="flex items-center gap-4 mb-6 mt-12">
@@ -2209,6 +2161,73 @@ document.addEventListener('DOMContentLoaded', () => {
 
     </div>
 </math-trivia>
+<div class="mt-12 w-full animate-fade-in">
+    <details class="group bg-slate-800/30 border border-slate-700/50 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+        <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-800/50 transition-colors">
+            <div class="flex items-center gap-4">
+                <div class="p-3 bg-indigo-500/20 rounded-xl">
+                    <span class="text-xl">📝</span>
+                </div>
+                <h3 class="text-lg font-black text-indigo-400 uppercase tracking-widest">Gyakorló feladatok és példák</h3>
+            </div>
+            <div class="text-indigo-400 transition-transform duration-300 group-open:rotate-180">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </div>
+        </summary>
+        <div class="p-8 border-t border-slate-700/50 bg-slate-900/50 space-y-12">
+            <math-header>
+    <div class="flex items-center gap-4 mb-6 mt-12">
+        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+            10.4
+        </div>
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+            Kidolgozott feladat: Összefüggőségi számok meghatározása
+        </h2>
+    </div>
+</math-header>
+
+<section id="section-10-4" class="mb-16 animate-fade-in text-left">
+    <div class="p-8 bg-slate-50 dark:bg-slate-900/20 rounded-[3rem] border-2 border-theme/20 shadow-sm mb-12">
+        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme mb-4">10.14. Feladat</h4>
+        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
+            A $G$ gráf csúcshalmaza legyen $V(G) = \{10, 11, 12, \dots, 39\}$ és két csúcs akkor legyen szomszédos $G$-ben, ha a megfelelő számok első számjegye különböző. Határozzuk meg $\lambda(G)$ és $\kappa(G)$ értékét!
+        </p>
+    </div>
+
+    <div class="space-y-8">
+        <div class="relative p-8 md:p-12 bg-white dark:bg-slate-900/40 rounded-[3rem] border-2 border-theme/10 shadow-sm">
+            <h4 class="font-black text-theme uppercase text-xs tracking-[0.3em] mb-8 flex items-center gap-3">
+                <span class="w-8 h-[2px] bg-theme"></span>
+                Megoldás
+            </h4>
+
+            <div class="space-y-6 text-slate-700 dark:text-slate-300">
+                <p class="text-sm md:text-base leading-relaxed">
+                    Vezessük be a $V_1 = \{10, \dots, 19\}$, $V_2 = \{20, \dots, 29\}$ és $V_3 = \{30, \dots, 39\}$ jelöléseket. Ekkor két csúcs pontosan akkor szomszédos $G$-ben, ha $V_1, V_2$ és $V_3$ közül nem ugyanabba esnek. (Ez egy teljes 3-partit gráf, ahol minden osztály 10 elemű.)
+                </p>
+
+                
+                <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-theme">
+                    <h5 class="text-xs font-black text-theme uppercase mb-2">A pont-összefüggőség ($\kappa(G)$) vizsgálata</h5>
+                    <p class="text-sm leading-relaxed">
+                        $G$-ből el lehet hagyni 20 csúcsot úgy, hogy a kapott gráf ne legyen összefüggő: például $V_1 \cup V_2$ elhagyásával csak a $V_3$ csúcsaiból álló, él nélküli gráf marad. Így $G$ nem 21-szeresen összefüggő. Ha viszont legfeljebb 19 tetszőleges csúcsot hagyunk el, a gráf összefüggő marad, hiszen bármely két megmaradt csúcs vagy szomszédos, vagy van közös szomszédjuk. Ezért <b>$\kappa(G) = 20$</b>.
+                    </p>
+                </div>
+
+                <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-theme">
+                    <h5 class="text-xs font-black text-theme uppercase mb-2">Az él-összefüggőség ($\lambda(G)$) vizsgálata</h5>
+                    <p class="text-sm leading-relaxed">
+                        $G$-ben minden pont foka 20, hiszen minden $v \in V_i$ csúcs a $V_i$-n kívüli 20 csúccsal szomszédos. Ezért 20 él elhagyásával (egy csúcs összes élével) az összefüggőség megszüntethető, tehát $\lambda(G) \le 20$. A részletesebb elemzés megmutatja, hogy legfeljebb 19 él elhagyása után bármely két csúcs között marad út (akár 1, 2 vagy 3 hosszú). Így <b>$\lambda(G) = 20$</b>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        </div>
+    </details>
+</div>
+
 
 
 

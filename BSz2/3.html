@@ -1685,7 +1685,106 @@ document.addEventListener('DOMContentLoaded', () => {
         <b>Hamilton-körök és -utak</b>, ezek kapcsolatának eldönthetősége (Nincs biz.). Dirac és Ore tétele (mindkettőnél csak az utakra vonatkozó tétel biz., körökre csak kimondani). <b>Euler-séták és -körséták</b>, Euler-séták és -körséták létezésére vonatkozó Euler tételek.
     </div>
 
-    <math-header>
+    
+
+
+
+
+
+
+
+<math-header>
+    <div class="flex items-center gap-4 mb-6 mt-12">
+        <div class="num-badge">3.7</div>
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-blue-500/30 decoration-4 underline-offset-8 text-balance">
+            Dirac-tétel: Elégséges feltétel Hamilton-körre
+        </h2>
+    </div>
+</math-header>
+
+<section id="section-3-7" class="mb-16 space-y-8">
+    <math-theorem>
+        <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-800 p-6 md:p-8 rounded-2xl shadow-sm">
+            <div class="flex items-center mb-4 text-amber-600 dark:text-amber-400">
+                <span class="bg-amber-100 dark:bg-amber-900/40 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md mr-3">Tétel</span>
+                <span class="font-bold italic text-sm">Gabriel Andrew Dirac (1952)</span>
+            </div>
+            <p class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
+                Ha az $n \geq 3$ csúcsú $G$ egyszerű gráfban minden csúcs foka legalább $n/2$, akkor $G$-ben van <span class="text-blue-600">Hamilton-kör</span>.
+            </p>
+        </div>
+    </math-theorem>
+
+    
+
+    <math-proof>
+        <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md">
+            <h4 class="text-blue-600 dark:text-blue-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
+                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                Bizonyítási alapelv
+            </h4>
+            
+            <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
+                <p>
+                    A tétel bizonyításának kiindulópontja az a megfigyelés, hogy ha $G$-ben minden csúcs foka legalább $\frac{n}{2}$, akkor bármely nemszomszédos $\{u,v\}$ csúcspárra a fokszámok összege legalább $n$:
+                </p>
+
+                <div class="flex justify-center">
+                    <div class="bg-slate-50 dark:bg-slate-900/50 px-8 py-4 rounded-xl border border-blue-100 dark:border-blue-900/30 font-mono text-xl text-blue-600">
+                        $d(u) + d(v) \geq \frac{n}{2} + \frac{n}{2} = n$
+                    </div>
+                </div>
+
+                <p class="italic">
+                    Ez az összefüggés biztosítja, hogy a gráf "elég sűrű" ahhoz, hogy ne lehessenek benne olyan elszigetelt részek, amelyek megakadályoznák egy minden csúcsot érintő kör kialakulását.
+                </p>
+            </div>
+        </div>
+    </math-proof>
+
+    <math-trivia>
+        <div class="bg-slate-900 rounded-3xl p-8 text-white border border-slate-700/50 relative overflow-hidden">
+            <h3 class="text-xl font-bold mb-4 italic text-blue-400 text-center">A feltétel vizualizálása ($n=6$)</h3>
+            <p class="text-slate-400 text-sm mb-10 text-center">
+                Ha $n=6$, akkor minden csúcsnak legalább 3 szomszédja kell legyen ($d \geq 3$).
+            </p>
+
+            <div class="flex justify-center">
+                <svg width="200" height="200" viewBox="0 0 200 200" class="overflow-visible">
+                    <path d="M 100 20 L 170 60 L 170 140 L 100 180 L 30 140 L 30 60 Z" fill="none" stroke="#3b82f6" stroke-width="4" class="animate-pulse" />
+                    
+                    <line x1="100" y1="20" x2="100" y2="180" stroke="#334155" stroke-width="2" />
+                    <line x1="170" y1="60" x2="30" y2="140" stroke="#334155" stroke-width="2" />
+                    <line x1="170" y1="140" x2="30" y2="60" stroke="#334155" stroke-width="2" />
+
+                    <circle cx="100" cy="20" r="8" fill="#3b82f6" />
+                    <circle cx="170" cy="60" r="8" fill="#3b82f6" />
+                    <circle cx="170" cy="140" r="8" fill="#3b82f6" />
+                    <circle cx="100" cy="180" r="8" fill="#3b82f6" />
+                    <circle cx="30" cy="140" r="8" fill="#3b82f6" />
+                    <circle cx="30" cy="60" r="8" fill="#3b82f6" />
+                </svg>
+            </div>
+            <p class="mt-8 text-[10px] text-slate-500 uppercase font-black tracking-widest text-center text-balance px-4">
+                Megjegyzés: A Dirac-feltétel elégséges, de nem szükséges. Egy körgráf ($C_n$) esetén minden fok 2, ami kisebb mint $n/2$, mégis van benne Hamilton-kör.
+            </p>
+        </div>
+    </math-trivia>
+<div class="mt-12 w-full animate-fade-in">
+    <details class="group bg-slate-800/30 border border-slate-700/50 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+        <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-800/50 transition-colors">
+            <div class="flex items-center gap-4">
+                <div class="p-3 bg-indigo-500/20 rounded-xl">
+                    <span class="text-xl">📝</span>
+                </div>
+                <h3 class="text-lg font-black text-indigo-400 uppercase tracking-widest">Gyakorló feladatok és példák</h3>
+            </div>
+            <div class="text-indigo-400 transition-transform duration-300 group-open:rotate-180">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </div>
+        </summary>
+        <div class="p-8 border-t border-slate-700/50 bg-slate-900/50 space-y-12">
+            <math-header>
     <div class="num-badge">3.1</div>
     <h2>Alapfogalmak</h2>
 </math-header>
@@ -2124,7 +2223,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 </section>
-
 <math-header>
     <div class="flex items-center gap-4 mb-6 mt-12">
         <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-blue-500/30 decoration-4 underline-offset-8 text-balance">
@@ -2221,7 +2319,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 </section>
-
 <math-header>
     <div class="flex items-center gap-4 mb-6 mt-12">
         <div class="num-badge">3.5</div>
@@ -2374,7 +2471,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 </section>
-
 <math-header>
     <div class="flex items-center gap-4 mb-6 mt-12">
         <div class="num-badge">3.6</div>
@@ -2560,84 +2656,10 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 </section>
-
-<math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="num-badge">3.7</div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-blue-500/30 decoration-4 underline-offset-8 text-balance">
-            Dirac-tétel: Elégséges feltétel Hamilton-körre
-        </h2>
-    </div>
-</math-header>
-
-<section id="section-3-7" class="mb-16 space-y-8">
-    <math-theorem>
-        <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-800 p-6 md:p-8 rounded-2xl shadow-sm">
-            <div class="flex items-center mb-4 text-amber-600 dark:text-amber-400">
-                <span class="bg-amber-100 dark:bg-amber-900/40 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md mr-3">Tétel</span>
-                <span class="font-bold italic text-sm">Gabriel Andrew Dirac (1952)</span>
-            </div>
-            <p class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
-                Ha az $n \geq 3$ csúcsú $G$ egyszerű gráfban minden csúcs foka legalább $n/2$, akkor $G$-ben van <span class="text-blue-600">Hamilton-kör</span>.
-            </p>
         </div>
-    </math-theorem>
+    </details>
+</div>
 
-    
-
-    <math-proof>
-        <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md">
-            <h4 class="text-blue-600 dark:text-blue-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
-                <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                Bizonyítási alapelv
-            </h4>
-            
-            <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
-                <p>
-                    A tétel bizonyításának kiindulópontja az a megfigyelés, hogy ha $G$-ben minden csúcs foka legalább $\frac{n}{2}$, akkor bármely nemszomszédos $\{u,v\}$ csúcspárra a fokszámok összege legalább $n$:
-                </p>
-
-                <div class="flex justify-center">
-                    <div class="bg-slate-50 dark:bg-slate-900/50 px-8 py-4 rounded-xl border border-blue-100 dark:border-blue-900/30 font-mono text-xl text-blue-600">
-                        $d(u) + d(v) \geq \frac{n}{2} + \frac{n}{2} = n$
-                    </div>
-                </div>
-
-                <p class="italic">
-                    Ez az összefüggés biztosítja, hogy a gráf "elég sűrű" ahhoz, hogy ne lehessenek benne olyan elszigetelt részek, amelyek megakadályoznák egy minden csúcsot érintő kör kialakulását.
-                </p>
-            </div>
-        </div>
-    </math-proof>
-
-    <math-trivia>
-        <div class="bg-slate-900 rounded-3xl p-8 text-white border border-slate-700/50 relative overflow-hidden">
-            <h3 class="text-xl font-bold mb-4 italic text-blue-400 text-center">A feltétel vizualizálása ($n=6$)</h3>
-            <p class="text-slate-400 text-sm mb-10 text-center">
-                Ha $n=6$, akkor minden csúcsnak legalább 3 szomszédja kell legyen ($d \geq 3$).
-            </p>
-
-            <div class="flex justify-center">
-                <svg width="200" height="200" viewBox="0 0 200 200" class="overflow-visible">
-                    <path d="M 100 20 L 170 60 L 170 140 L 100 180 L 30 140 L 30 60 Z" fill="none" stroke="#3b82f6" stroke-width="4" class="animate-pulse" />
-                    
-                    <line x1="100" y1="20" x2="100" y2="180" stroke="#334155" stroke-width="2" />
-                    <line x1="170" y1="60" x2="30" y2="140" stroke="#334155" stroke-width="2" />
-                    <line x1="170" y1="140" x2="30" y2="60" stroke="#334155" stroke-width="2" />
-
-                    <circle cx="100" cy="20" r="8" fill="#3b82f6" />
-                    <circle cx="170" cy="60" r="8" fill="#3b82f6" />
-                    <circle cx="170" cy="140" r="8" fill="#3b82f6" />
-                    <circle cx="100" cy="180" r="8" fill="#3b82f6" />
-                    <circle cx="30" cy="140" r="8" fill="#3b82f6" />
-                    <circle cx="30" cy="60" r="8" fill="#3b82f6" />
-                </svg>
-            </div>
-            <p class="mt-8 text-[10px] text-slate-500 uppercase font-black tracking-widest text-center text-balance px-4">
-                Megjegyzés: A Dirac-feltétel elégséges, de nem szükséges. Egy körgráf ($C_n$) esetén minden fok 2, ami kisebb mint $n/2$, mégis van benne Hamilton-kör.
-            </p>
-        </div>
-    </math-trivia>
 </section>
 
 <math-header>
