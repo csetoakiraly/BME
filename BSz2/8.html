@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="hu">
 
+<html lang="hu">
 <!-- Mirrored from bsz2jegyzet.hu/bsz2/8.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:49:12 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<!-- Added by HTTrack --><meta content="text/html;charset=utf-8" http-equiv="content-type"/><!-- /Added by HTTrack -->
 <head>
-    <style>
+<style>
 /* ============================================================
    1. ALAPOK ÉS GLOBÁLIS BEÁLLÍTÁSOK
    ============================================================ */
@@ -264,8 +264,7 @@ html.dark math-example { background: rgba(255,255,255,0.02); border-color: #3341
     #sidebar.open { transform: translateX(0); }
     main { padding-top: 80px !important; }
 }
-</style>    
-
+</style>
 <script>
     const themeColor = 'orange';
 // TUDÁSBÁZIS (Már az eddigi 5.1-5.3 tartalommal is kiegészítve)
@@ -1516,21 +1515,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-</script>    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>8. Hálózat, folyam, vágás - Bsz2 Jegyzet</title>
-
-    <script src="https://cdn.tailwindcss.com/"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
+</script> <meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>8. Hálózat, folyam, vágás - Bsz2 Jegyzet</title>
+<script src="https://cdn.tailwindcss.com/"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
         tailwind.config = { darkMode: 'class' }
         window.MathJax = {
             tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
             options: { enableMenu: false }
         };
     </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
     /**
      * MATEMATIKAI KOMPONENSEK REGISZTRÁLÁSA
      * Létrehozunk egy közös osztályt, hogy később könnyen bővíthessük őket.
@@ -1559,114 +1557,105 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </head>
 <body class="flex flex-col md:flex-row min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
-
-    <div class="md:hidden fixed top-0 left-0 right-0 bg-white border-b border-slate-200 p-4 z-[60] flex justify-between items-center shadow-sm dark:bg-slate-900 dark:border-slate-800">
-        <h1 class="text-xl font-black text-indigo-600 italic">Bsz2 Jegyzet</h1>
-        <div class="flex items-center space-x-2">
-            <button onclick="toggleNightMode()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 border dark:border-slate-700">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-            </button>
-            <button onclick="toggleMenu()" class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-bold text-xs uppercase shadow-md active:scale-95 transition-transform">Tételek</button>
-        </div>
-    </div>
-
-    <aside id="sidebar" class="fixed md:sticky top-0 left-0 w-[85%] md:w-80 bg-white border-r border-slate-200 flex flex-col h-screen z-50 overflow-y-auto closed md:translate-x-0 shadow-2xl md:shadow-none dark:bg-slate-900 dark:border-slate-800 transition-transform duration-300">
-        <div class="p-6 border-b border-slate-100 hidden md:block dark:border-slate-800">
-            <h1 class="text-2xl font-extrabold text-indigo-600 italic">Bsz2 Jegyzet</h1>
-            <p class="text-slate-400 text-[10px] uppercase tracking-widest mt-1 font-bold">Vizsgafelkészítő</p>
-        </div>
-
-        <div class="px-8 py-4 border-b border-slate-100 flex items-center justify-between dark:border-slate-800">
-            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Éjszakai mód</span>
-            <button onclick="toggleNightMode()" class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 border dark:border-slate-700 transition-all active:scale-90 shadow-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-            </button>
-        </div>
-
-        <nav id="main-nav" class="flex flex-col p-4 space-y-2 pb-24 md:pb-4">
-            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">Összefoglaló</div>
-            <a href="puska.html" class="nav-item"><span class="font-bold text-sm">Puska (Képletek, Tételek)</span></a>
-
-            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2">Gráfelmélet</div>
-            
-                                            <a href="index.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<div class="md:hidden fixed top-0 left-0 right-0 bg-white border-b border-slate-200 p-4 z-[60] flex justify-between items-center shadow-sm dark:bg-slate-900 dark:border-slate-800">
+<h1 class="text-xl font-black text-indigo-600 italic">Bsz2 Jegyzet</h1>
+<div class="flex items-center space-x-2">
+<button class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 border dark:border-slate-700" onclick="toggleNightMode()">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<button class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-bold text-xs uppercase shadow-md active:scale-95 transition-transform" onclick="toggleMenu()">Tételek</button>
+</div>
+</div>
+<aside class="fixed md:sticky top-0 left-0 w-[85%] md:w-80 bg-white border-r border-slate-200 flex flex-col h-screen z-50 overflow-y-auto closed md:translate-x-0 shadow-2xl md:shadow-none dark:bg-slate-900 dark:border-slate-800 transition-transform duration-300" id="sidebar">
+<div class="p-6 border-b border-slate-100 hidden md:block dark:border-slate-800">
+<h1 class="text-2xl font-extrabold text-indigo-600 italic">Bsz2 Jegyzet</h1>
+<p class="text-slate-400 text-[10px] uppercase tracking-widest mt-1 font-bold">Vizsgafelkészítő</p>
+</div>
+<div class="px-8 py-4 border-b border-slate-100 flex items-center justify-between dark:border-slate-800">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Éjszakai mód</span>
+<button class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 border dark:border-slate-700 transition-all active:scale-90 shadow-sm" onclick="toggleNightMode()">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<nav class="flex flex-col p-4 space-y-2 pb-24 md:pb-4" id="main-nav">
+<div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">Összefoglaló</div>
+<a class="nav-item" href="puska.html"><span class="font-bold text-sm">Puska (Képletek, Tételek)</span></a>
+<div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2">Gráfelmélet</div>
+<a class="nav-item" href="index.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         1. Tétel
                     </span>
-                    <span class="font-bold text-sm">Gráfelméleti alapfogalmak</span>
-                    </a>
-                                            <a href="2.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Gráfelméleti alapfogalmak</span>
+</a>
+<a class="nav-item" href="2.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         2. Tétel
                     </span>
-                    <span class="font-bold text-sm">Fák tulajdonságai</span>
-                    </a>
-                                            <a href="3.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Fák tulajdonságai</span>
+</a>
+<a class="nav-item" href="3.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         3. Tétel
                     </span>
-                    <span class="font-bold text-sm">Hamilton-körök és -utak</span>
-                    </a>
-                                            <a href="4.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Hamilton-körök és -utak</span>
+</a>
+<a class="nav-item" href="4.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         4. Tétel
                     </span>
-                    <span class="font-bold text-sm">Gráfok színezése (χ, ω)</span>
-                    </a>
-                                            <a href="5.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Gráfok színezése (χ, ω)</span>
+</a>
+<a class="nav-item" href="5.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         5. Tétel
                     </span>
-                    <span class="font-bold text-sm">Párosítás fogalma</span>
-                    </a>
-                                            <a href="6.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Párosítás fogalma</span>
+</a>
+<a class="nav-item" href="6.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         6. Tétel
                     </span>
-                    <span class="font-bold text-sm">Párosítás páros gráfban</span>
-                    </a>
-                                            <a href="7.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Párosítás páros gráfban</span>
+</a>
+<a class="nav-item" href="7.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         7. Tétel
                     </span>
-                    <span class="font-bold text-sm">Teljes párosítás (Reguláris)</span>
-                    </a>
-                                            <a href="8.html" class="nav-item active">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Teljes párosítás (Reguláris)</span>
+</a>
+<a class="nav-item active" href="8.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         8. Tétel
                     </span>
-                    <span class="font-bold text-sm">Hálózat, folyam, vágás</span>
-                    </a>
-                                            <a href="9.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Hálózat, folyam, vágás</span>
+</a>
+<a class="nav-item" href="9.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         9. Tétel
                     </span>
-                    <span class="font-bold text-sm">Folyam általánosításai</span>
-                    </a>
-                                            <a href="10.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Folyam általánosításai</span>
+</a>
+<a class="nav-item" href="10.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         10. Tétel
                     </span>
-                    <span class="font-bold text-sm">Összefüggőség</span>
-                    </a>
-
-            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">ZH-k és Megoldások</div>
-            <a href="zh_2025.html" class="nav-item"><span class="font-bold text-sm">2025 Tavasz Zárthelyi</span></a>
-            <a href="zh_2024.html" class="nav-item"><span class="font-bold text-sm">2024 Tavasz Zárthelyi</span></a>
-            <a href="zh_2023.html" class="nav-item"><span class="font-bold text-sm">2023 Tavasz Zárthelyi</span></a>
-            <a href="zh_2022.html" class="nav-item"><span class="font-bold text-sm">2022 Tavasz Zárthelyi</span></a>
-            <a href="zh_2021.html" class="nav-item"><span class="font-bold text-sm">2021 Tavasz Zárthelyi</span></a>
-        </nav>
-    </aside>
-
-    <div id="overlay" onclick="toggleMenu()" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"></div>
-
-    <main class="flex-grow p-4 md:p-12 pt-24 md:pt-12">
-        <div class="max-w-4xl mx-auto">
+<span class="font-bold text-sm">Összefüggőség</span>
+</a>
+<div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">ZH-k és Megoldások</div>
+<a class="nav-item" href="zh_2025.html"><span class="font-bold text-sm">2025 Tavasz Zárthelyi</span></a>
+<a class="nav-item" href="zh_2024.html"><span class="font-bold text-sm">2024 Tavasz Zárthelyi</span></a>
+<a class="nav-item" href="zh_2023.html"><span class="font-bold text-sm">2023 Tavasz Zárthelyi</span></a>
+<a class="nav-item" href="zh_2022.html"><span class="font-bold text-sm">2022 Tavasz Zárthelyi</span></a>
+<a class="nav-item" href="zh_2021.html"><span class="font-bold text-sm">2021 Tavasz Zárthelyi</span></a>
+</nav>
+</aside>
+<div class="fixed inset-0 bg-black/50 z-40 hidden md:hidden" id="overlay" onclick="toggleMenu()"></div>
+<main class="flex-grow p-4 md:p-12 pt-24 md:pt-12">
+<div class="max-w-4xl mx-auto">
 <style>
     :root { 
         --theme-color: #f97316; 
@@ -1677,775 +1666,623 @@ document.addEventListener('DOMContentLoaded', () => {
     .bg-theme-soft { background-color: var(--theme-bg-soft); }
     .border-theme { border-color: var(--theme-color); }
 </style>
-
 <script>
     // Átadjuk a PHP-ból a Tailwind szín nevét a JS-nek
     window.themeColor = "orange"; 
 </script>
-
 <article class="space-y-8 animate-fade-in">
-    <header class="mb-12">
-        <div class="relative w-fit">
-            <h1 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
-                <span class="text-theme">8. Hálózat, folyam, vágás</span>
-            </h1>
-            <div class="absolute -bottom-4 left-0 w-full h-2 bg-theme opacity-20 rounded-full"></div>
-        </div>
-    </header>
-
-    <div class="bg-theme-soft border-l-4 border-theme p-8 rounded-r-[2rem] text-slate-800 dark:text-slate-200 shadow-sm">
-        <p class="font-medium">
+<header class="mb-12">
+<div class="relative w-fit">
+<h1 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
+<span class="text-theme">8. Hálózat, folyam, vágás</span>
+</h1>
+<div class="absolute -bottom-4 left-0 w-full h-2 bg-theme opacity-20 rounded-full"></div>
+</div>
+</header>
+<div class="bg-theme-soft border-l-4 border-theme p-8 rounded-r-[2rem] text-slate-800 dark:text-slate-200 shadow-sm">
+<p class="font-medium">
             Hálózat, <b>folyam és st-vágás fogalma, folyam értéke, vágás kapacitása. Algoritmus maximális folyam és minimális vágás megkeresésére, Ford-Fulkerson tétel</b>, Edmonds-Karp tétel (biz. nélkül). Egészértékűségi lemma.
         </p>
-    </div>
-
-    <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+</div>
+<math-header>
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             8.1
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             A hálózat fogalma
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-8-1" class="mb-16 animate-fade-in text-left">
-    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<section class="mb-16 animate-fade-in text-left" id="section-8-1">
+<div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
             Legyen adott a $G = (V,E)$ irányított gráf, annak az $s, t \in V(G)$ egymástól különböző csúcsai és a $c : E \to \mathbb{R}^+ \cup \{0\}$ kapacitás függvény. Ez a függvény minden $e \in E$ élhez egy nemnegatív $c(e)$ kapacitás értéket rendel. Ekkor a **$(G,s,t,c)$ négyest hálózatnak nevezzük**.
         </p>
-    </div>
-
-    <div class="px-4 space-y-6 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
-        <p>
+</div>
+<div class="px-4 space-y-6 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
+<p>
             A hálózat elméleti modellje lehetővé teszi a különböző áramlási problémák (pl. adatforgalom, szállítás) matematikai vizsgálatát. A **forrás ($s$)** az a pont, ahonnan az áramlás indul, a **nyelő ($t$)** pedig az, ahol végződik.
         </p>
-    </div>
+</div>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             8.2
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             A folyam fogalma
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-8-2" class="mb-16 animate-fade-in text-left">
-    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<section class="mb-16 animate-fade-in text-left" id="section-8-2">
+<div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
             Egy adott $(G,s,t,c)$ hálózat esetén <b>folyamnak</b> nevezzük az $f : E \to \mathbb{R}^+ \cup \{0\}$ függvényt, ha rá az alábbi feltételek teljesülnek:
         </p>
-        <ul class="mt-6 space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-200">
-            <li class="flex items-start gap-3">
-                <span class="flex-none w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full flex items-center justify-center text-xs font-bold">1</span>
-                <span>$0 \le f(e) \le c(e)$ minden $e \in E(G)$ él esetén;</span>
-            </li>
-            <li class="flex items-start gap-3">
-                <span class="flex-none w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full flex items-center justify-center text-xs font-bold">2</span>
-                <span class="leading-relaxed">
+<ul class="mt-6 space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-200">
+<li class="flex items-start gap-3">
+<span class="flex-none w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+<span>$0 \le f(e) \le c(e)$ minden $e \in E(G)$ él esetén;</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="flex-none w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+<span class="leading-relaxed">
                     $\sum_{e:v \to \bullet} f(e) = \sum_{e:\bullet \to v} f(e)$ minden $v \in V(G), v \neq s,t$ csúcs esetén.
                 </span>
-            </li>
-        </ul>
-    </div>
-
-    <div class="px-4 space-y-6 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
-        <p>
+</li>
+</ul>
+</div>
+<div class="px-4 space-y-6 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
+<p>
             Az (1) feltétel a <b>kapacitáskorlát</b>: egy élen nem folyhat át több, mint annak a teherbírása. 
         </p>
-        <p>
+<p>
             A (2) feltétel a <b>konzervációs szabály</b> (vagy Kirchhoff-törvény): minden belső csúcsra igaz, hogy a befolyó éleken érkező folyam összege megegyezik a kifolyó éleken távozó folyam összegével. Vagyis a folyam nem „veszhet el” és nem „keletkezhet” a belső csúcsokban.
         </p>
-    </div>
+</div>
 </section>
-
-
-
-
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             8.3
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             A folyam értéke
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-8-3" class="mb-16 animate-fade-in text-left">
-    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<section class="mb-16 animate-fade-in text-left" id="section-8-3">
+<div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
             A $(G,s,t,c)$ hálózatban adott $f$ folyam **$m_f$-fel jelölt értéke**:
         </p>
-        
-        <div class="mt-6 bg-white/50 dark:bg-slate-800/50 p-6 rounded-2xl text-center border border-emerald-100 dark:border-emerald-800/30 overflow-x-auto">
+<div class="mt-6 bg-white/50 dark:bg-slate-800/50 p-6 rounded-2xl text-center border border-emerald-100 dark:border-emerald-800/30 overflow-x-auto">
             $$m_f = \sum_{e:s \to \bullet} f(e) - \sum_{e:\bullet \to s} f(e)$$
         </div>
-    </div>
-
-    <div class="px-4 space-y-4 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
-        <p>
+</div>
+<div class="px-4 space-y-4 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
+<p>
             A folyam értéke tehát megmutatja a hálózaton keresztül áramló <b>nettó mennyiséget</b>. Ezt úgy számoljuk ki, hogy a forrásból ($s$) kimenő élek folyamértékeinek összegéből kivonjuk a forrásba esetlegesen visszatérő élek folyamértékeit.
         </p>
-        <p>
+<p>
             Érdekesség, hogy a belső csúcsokra vonatkozó konzervációs szabály miatt belátható, hogy ugyanez az érték jelenik meg a nyelőnél ($t$) is, csak fordított előjellel: a nyelőbe befolyó és onnan kifolyó mennyiségek különbsége pontosan $m_f$ lesz.
         </p>
-    </div>
+</div>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             8.4
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             A segédgráf fogalma
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-8-4" class="mb-16 animate-fade-in text-left">
-    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<section class="mb-16 animate-fade-in text-left" id="section-8-4">
+<div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
             Legyen $f$ folyam a $(G,s,t,c)$ hálózatban. Ekkor az $f$-hez tartozó **$H_f$ segédgráfot** a következőképpen definiáljuk:
         </p>
-        <p class="mt-4 text-sm md:text-base text-slate-700 dark:text-slate-200">
+<p class="mt-4 text-sm md:text-base text-slate-700 dark:text-slate-200">
             $H_f$ egy olyan irányított gráf, amelyre $V(H_f) = V(G)$, azaz csúcshalmaza azonos az eredeti gráféval. Élkészletébe az alábbi két típusú él kerül:
         </p>
-        <ul class="mt-6 space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-200">
-            <li class="flex items-start gap-3">
-                <span class="flex-none w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full flex items-center justify-center text-xs font-bold">1</span>
-                <span><b>Előre él:</b> Ha $e = (u,v)$ olyan éle $G$-nek, amelyre $f(e) < c(e)$, akkor $e = (u,v)$ bekerül $H_f$-be.</span>
-            </li>
-            <li class="flex items-start gap-3">
-                <span class="flex-none w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full flex items-center justify-center text-xs font-bold">2</span>
-                <span><b>Visszaél:</b> Ha $e = (u,v)$ olyan éle $G$-nek, amelyre $f(e) > 0$, akkor $e$ megfordítása, az $e' = (v,u)$ él kerül be $H_f$-be.</span>
-            </li>
-        </ul>
-    </div>
-
-    <div class="px-4 space-y-6 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
-        <p>
+<ul class="mt-6 space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-200">
+<li class="flex items-start gap-3">
+<span class="flex-none w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+<span><b>Előre él:</b> Ha $e = (u,v)$ olyan éle $G$-nek, amelyre $f(e) &lt; c(e)$, akkor $e = (u,v)$ bekerül $H_f$-be.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="flex-none w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+<span><b>Visszaél:</b> Ha $e = (u,v)$ olyan éle $G$-nek, amelyre $f(e) &gt; 0$, akkor $e$ megfordítása, az $e' = (v,u)$ él kerül be $H_f$-be.</span>
+</li>
+</ul>
+</div>
+<div class="px-4 space-y-6 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
+<p>
             A segédgráf lényege, hogy megmutassa, hol és milyen irányban lehet még változtatni a folyam értékén. Az <b>előre élek</b> azt jelzik, hogy az adott élen még van szabad kapacitás, tehát növelhető rajta az átfolyás. A <b>visszaélek</b> pedig azt mutatják meg, hogy egy élen már van valamekkora folyam, amit szükség esetén "visszaküldhetünk" vagy csökkenthetünk, hogy más utakon több férjen el.
         </p>
-    </div>
-    
+</div>
 </section>
-
-
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             8.5
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             A javítóút fogalma
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-8-5" class="mb-16 animate-fade-in text-left">
-    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<section class="mb-16 animate-fade-in text-left" id="section-8-5">
+<div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
             Legyen $f$ folyam a $(G,s,t,c)$ hálózatban. Ekkor a **$H_f$ segédgráfbeli, $s$-ből $t$-be vezető irányított utakat** javítóútnak nevezzük $f$-re nézve.
         </p>
-    </div>
-
-    <div class="px-4 space-y-6 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
-        <p>
+</div>
+<div class="px-4 space-y-6 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
+<p>
             A javítóút létezése kritikus fontosságú: ha találunk ilyen utat a segédgráfban, az azt jelenti, hogy a folyam értéke ($m_f$) még növelhető. Az út mentén található élek (legyenek azok előre vagy visszaélek) mentén egy meghatározott mennyiséggel módosíthatjuk az áramlást anélkül, hogy megsértenénk a kapacitáskorlátokat vagy a konzervációs szabályt.
         </p>
-        <p>
+<p>
             Amikor a segédgráfban már <b>nem létezik</b> $s \to t$ irányított út, akkor a folyam értéke elérte a maximumát. Ez vezet el minket a Ford-Fulkerson tételhez.
         </p>
-    </div>
+</div>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             8.6
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             A javítóutas algoritmus
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-8-6" class="mb-16 animate-fade-in text-left">
-    <div class="bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme-500 mb-6">Algoritmus (Maximális folyam keresésére)</h4>
-        
-        <div class="space-y-6">
-            <div class="flex items-center gap-4">
-                <span class="text-xs font-black text-slate-400">BEMENET:</span>
-                <span class="text-sm font-bold text-slate-700 dark:text-slate-200">Egy $(G,s,t,c)$ hálózat.</span>
-            </div>
-
-            <ol class="space-y-4">
-                <li class="flex gap-4 p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
-                    <span class="font-black text-theme-500">1.</span>
-                    <p class="text-sm text-slate-600 dark:text-slate-300">Induljunk ki egy kezdeti folyamból (például minden élre $f(e) = 0$).</p>
-                </li>
-                <li class="flex gap-4 p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
-                    <span class="font-black text-theme-500">2.</span>
-                    <div class="space-y-2">
-                        <p class="text-sm font-bold text-slate-800 dark:text-slate-100">CIKLUS:</p>
-                        <ul class="list-disc pl-5 text-sm text-slate-600 dark:text-slate-300 space-y-2">
-                            <li>Készítsük el az aktuális $f$-hez tartozó $H_f$ segédgráfot.</li>
-                            <li>Keressünk egy $P$ javítóutat $H_f$-ben $s$-ből $t$-be (például BFS algoritmussal).</li>
-                            <li><b>Ha nincs ilyen út:</b> Álljunk le, a folyam maximális.</li>
-                        </ul>
-                    </div>
-                </li>
-            </ol>
-        </div>
-    </div>
-
-    <math-proof>
-        <div class="p-2 space-y-6">
-            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme-500 mb-4">A folyam módosítása</h4>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<section class="mb-16 animate-fade-in text-left" id="section-8-6">
+<div class="bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme-500 mb-6">Algoritmus (Maximális folyam keresésére)</h4>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<span class="text-xs font-black text-slate-400">BEMENET:</span>
+<span class="text-sm font-bold text-slate-700 dark:text-slate-200">Egy $(G,s,t,c)$ hálózat.</span>
+</div>
+<ol class="space-y-4">
+<li class="flex gap-4 p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
+<span class="font-black text-theme-500">1.</span>
+<p class="text-sm text-slate-600 dark:text-slate-300">Induljunk ki egy kezdeti folyamból (például minden élre $f(e) = 0$).</p>
+</li>
+<li class="flex gap-4 p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
+<span class="font-black text-theme-500">2.</span>
+<div class="space-y-2">
+<p class="text-sm font-bold text-slate-800 dark:text-slate-100">CIKLUS:</p>
+<ul class="list-disc pl-5 text-sm text-slate-600 dark:text-slate-300 space-y-2">
+<li>Készítsük el az aktuális $f$-hez tartozó $H_f$ segédgráfot.</li>
+<li>Keressünk egy $P$ javítóutat $H_f$-ben $s$-ből $t$-be (például BFS algoritmussal).</li>
+<li><b>Ha nincs ilyen út:</b> Álljunk le, a folyam maximális.</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<math-proof>
+<div class="p-2 space-y-6">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme-500 mb-4">A folyam módosítása</h4>
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Ha találtunk javítóutat, határozzuk meg a javítás $\delta$ mértékét:
             </p>
-            <div class="bg-slate-100 dark:bg-slate-800/50 p-4 rounded-xl font-mono text-xs overflow-x-auto">
-                $\delta_1 = \min\{c(e) - f(e) : e \text{ előre éle } P\text{-nek}\}$<br>
-                $\delta_2 = \min\{f(e) : e \text{ megfordítottja visszaéle } P\text{-nek}\}$<br>
+<div class="bg-slate-100 dark:bg-slate-800/50 p-4 rounded-xl font-mono text-xs overflow-x-auto">
+                $\delta_1 = \min\{c(e) - f(e) : e \text{ előre éle } P\text{-nek}\}$<br/>
+                $\delta_2 = \min\{f(e) : e \text{ megfordítottja visszaéle } P\text{-nek}\}$<br/>
                 $\delta = \min\{\delta_1, \delta_2\}$
             </div>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Minden élre frissítsük a folyamot:
                 <ul class="list-disc pl-5 mt-2 space-y-1">
-                    <li>$f(e) + \delta$, ha $e$ előre éle $P$-nek</li>
-                    <li>$f(e) - \delta$, ha $e$ megfordítottja visszaéle $P$-nek</li>
-                    <li>$f(e)$ változatlan marad egyébként.</li>
-                </ul>
-            </p>
-        </div>
-    </math-proof>
+<li>$f(e) + \delta$, ha $e$ előre éle $P$-nek</li>
+<li>$f(e) - \delta$, ha $e$ megfordítottja visszaéle $P$-nek</li>
+<li>$f(e)$ változatlan marad egyébként.</li>
+</ul>
+</p>
+</div>
+</math-proof>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             8.7
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             Az algoritmus helyessége és a folyam növekedése
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-8-7" class="mb-16 animate-fade-in text-left">
-    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Állítás</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<section class="mb-16 animate-fade-in text-left" id="section-8-7">
+<div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Állítás</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
             Ha $f$ folyam, akkor a javítóutas algoritmus 8. sorában végrehajtott változtatások után is az marad, és $m_f$ értéke $\delta$-val nő.
         </p>
-    </div>
-
-    <math-proof>
-        <div class="p-2 space-y-6">
-            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme-500 mb-4">A bizonyítás vázlata</h4>
-            
-            <div class="space-y-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                <p>
-                    <b>1. Kapacitáskorlát:</b> Az előre éleknél $\delta \le c(e) - f(e)$, a visszaéleknél pedig $\delta \le f(e)$, így a módosított folyamértékek $0$ és $c(e)$ között maradnak.
+</div>
+<math-proof>
+<div class="p-2 space-y-6">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme-500 mb-4">A bizonyítás vázlata</h4>
+<div class="space-y-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<p>
+<b>1. Kapacitáskorlát:</b> Az előre éleknél $\delta \le c(e) - f(e)$, a visszaéleknél pedig $\delta \le f(e)$, így a módosított folyamértékek $0$ és $c(e)$ között maradnak.
                 </p>
-                
-                <p>
-                    <b>2. Konzervációs feltétel:</b> Ha a javítóút $P$ áthalad egy belső $v$ csúcson, négy esetet vizsgálhatunk az érkező ($e_1$) és távozó ($e_2$) élek típusa alapján:
+<p>
+<b>2. Konzervációs feltétel:</b> Ha a javítóút $P$ áthalad egy belső $v$ csúcson, négy esetet vizsgálhatunk az érkező ($e_1$) és távozó ($e_2$) élek típusa alapján:
                 </p>
-                <ul class="list-disc pl-5 space-y-2">
-                    <li><b>Mindkettő előre él:</b> Mindkét élen $\delta$-val nő a folyam, így az egyenleg változatlan.</li>
-                    <li><b>Mindkettő visszaél:</b> Mindkét élen $\delta$-val csökken a folyam, az egyenleg itt is megmarad.</li>
-                    <li><b>Vegyes esetek:</b> Az egyik élen történő növekedés és a másikon történő csökkenés kiejti egymást a csúcs egyenlegében.</li>
-                </ul>
-
-                <p>
-                    <b>3. A folyamérték növekedése:</b> A forrásból ($s$) kilépő első él mentén a nettó kiáramlás pontosan $\delta$-val nő (akár előre élről, akár visszaélről van szó), így $m_f$ értéke is $\delta$-val emelkedik.
+<ul class="list-disc pl-5 space-y-2">
+<li><b>Mindkettő előre él:</b> Mindkét élen $\delta$-val nő a folyam, így az egyenleg változatlan.</li>
+<li><b>Mindkettő visszaél:</b> Mindkét élen $\delta$-val csökken a folyam, az egyenleg itt is megmarad.</li>
+<li><b>Vegyes esetek:</b> Az egyik élen történő növekedés és a másikon történő csökkenés kiejti egymást a csúcs egyenlegében.</li>
+</ul>
+<p>
+<b>3. A folyamérték növekedése:</b> A forrásból ($s$) kilépő első él mentén a nettó kiáramlás pontosan $\delta$-val nő (akár előre élről, akár visszaélről van szó), így $m_f$ értéke is $\delta$-val emelkedik.
                 </p>
-            </div>
-        </div>
-    </math-proof>
+</div>
+</div>
+</math-proof>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             8.8
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             Az st-vágás fogalma
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-8-8" class="mb-16 animate-fade-in text-left">
-    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<section class="mb-16 animate-fade-in text-left" id="section-8-8">
+<div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
             A $(G,s,t,c)$ hálózatban **st-vágásnak** nevezzük az $X \subseteq V(G)$ csúcshalmazt, ha rá $s \in X$ és $t \notin X$ teljesül. Ha a szövegkörnyezetből $s$ és $t$ szerepe egyértelmű, akkor $X$-et st-vágás helyett röviden **vágásnak** is hívjuk.
         </p>
-    </div>
-
-    <div class="px-4 space-y-6 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
-        <p>
+</div>
+<div class="px-4 space-y-6 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
+<p>
             A vágás vizuálisan úgy képzelhető el, mint egy határvonal, amely két részre osztja a hálózat csúcsait: az egyik oldalon marad a forrás ($s$), a másik oldalon pedig a nyelő ($t$).
         </p>
-        <p>
+<p>
             A hálózati folyamok elméletében a vágás azért fontos, mert minden folyamnak, ami $s$-ből $t$-be tart, előbb-utóbb "át kell kelnie" ezen a határon. A vágás korlátozza a hálózat áteresztőképességét, hasonlóan ahhoz, ahogy egy csővezeték legszűkebb keresztmetszete meghatározza a maximális átfolyást.
         </p>
-    </div>
+</div>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             8.9
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             A folyamérték és a vágások kapcsolata
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-8-9-detailed" class="mb-16 animate-fade-in text-left">
-    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Állítás</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<section class="mb-16 animate-fade-in text-left" id="section-8-9-detailed">
+<div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Állítás</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
             Ha $f$ tetszőleges folyam, $X$ pedig tetszőleges vágás a $(G,s,t,c)$ hálózatban, akkor:
         </p>
-        <div class="mt-6 bg-white/80 dark:bg-slate-800/80 p-6 rounded-2xl text-center border border-amber-200 dark:border-amber-800/30 overflow-x-auto">
+<div class="mt-6 bg-white/80 dark:bg-slate-800/80 p-6 rounded-2xl text-center border border-amber-200 dark:border-amber-800/30 overflow-x-auto">
             $$m_f = \sum \{f(e) : e \text{ kilép } X\text{-ből}\} - \sum \{f(e) : e \text{ belép } X\text{-be}\}$$
         </div>
-    </div>
-
-    <div class="relative p-8 md:p-12 bg-white dark:bg-slate-900/40 rounded-[3rem] border-2 border-rose-100 dark:border-rose-900/30 shadow-sm overflow-hidden">
-        <div class="absolute top-0 right-0 p-8 opacity-5">
-            <svg class="w-24 h-24 text-rose-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-        </div>
-
-        <h4 class="font-black text-rose-600 dark:text-rose-400 uppercase text-xs tracking-[0.3em] mb-8 flex items-center gap-3">
-            <span class="w-8 h-[2px] bg-rose-500"></span>
+</div>
+<div class="relative p-8 md:p-12 bg-white dark:bg-slate-900/40 rounded-[3rem] border-2 border-rose-100 dark:border-rose-900/30 shadow-sm overflow-hidden">
+<div class="absolute top-0 right-0 p-8 opacity-5">
+<svg class="w-24 h-24 text-rose-500" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
+</div>
+<h4 class="font-black text-rose-600 dark:text-rose-400 uppercase text-xs tracking-[0.3em] mb-8 flex items-center gap-3">
+<span class="w-8 h-[2px] bg-rose-500"></span>
             Bizonyítás
         </h4>
-
-        <div class="space-y-6 text-slate-700 dark:text-slate-300">
-            <p class="text-sm md:text-base leading-relaxed">
+<div class="space-y-6 text-slate-700 dark:text-slate-300">
+<p class="text-sm md:text-base leading-relaxed">
                 Írjunk fel $X$ minden csúcsára egy-egy egyenletet:
             </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-                <div class="p-6 bg-rose-50/50 dark:bg-rose-950/10 rounded-2xl border border-rose-100/50 dark:border-rose-900/20">
-                    <p class="text-[10px] font-black text-rose-500 uppercase mb-3 tracking-widest">$s$ forrásra:</p>
-                    <p class="font-mono text-sm md:text-base">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+<div class="p-6 bg-rose-50/50 dark:bg-rose-950/10 rounded-2xl border border-rose-100/50 dark:border-rose-900/20">
+<p class="text-[10px] font-black text-rose-500 uppercase mb-3 tracking-widest">$s$ forrásra:</p>
+<p class="font-mono text-sm md:text-base">
                         $$m_f = \sum_{e:s\bullet\to} f(e) - \sum_{e:s\bullet\leftarrow} f(e)$$
                     </p>
-                </div>
-                <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
-                    <p class="text-[10px] font-black text-slate-400 uppercase mb-3 tracking-widest">minden $x \in X, x \neq s$ csúcsra:</p>
-                    <p class="font-mono text-sm md:text-base">
+</div>
+<div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
+<p class="text-[10px] font-black text-slate-400 uppercase mb-3 tracking-widest">minden $x \in X, x \neq s$ csúcsra:</p>
+<p class="font-mono text-sm md:text-base">
                         $$0 = \sum_{e:x\bullet\to} f(e) - \sum_{e:x\bullet\leftarrow} f(e)$$
                     </p>
-                </div>
-            </div>
-
-            <p class="text-sm md:text-base leading-relaxed">
+</div>
+</div>
+<p class="text-sm md:text-base leading-relaxed">
                 Ezek az egyenletek persze mind igazak: az első a folyamérték definíciója, a többi pedig a folyam definíciójának folyammegmaradási követelményéből fakad (átrendezés után). 
             </p>
-            
-            <p class="text-sm md:text-base leading-relaxed">
+<p class="text-sm md:text-base leading-relaxed">
                 Adjuk most össze ezt az $|X|$ darab egyenletet és vizsgáljuk meg, hogy mit kapunk! A bal oldalon persze $m_f$ áll (hiszen ehhez $(|X|-1)$-szer nullát adtunk). Az összeg jobb oldalát pedig úgy tekinthetjük át, ha minden $e$ élre megnézzük, hogy $f(e)$ hányszor és milyen előjellel jelenik ott meg. Válasszunk ezért egy tetszőleges $e = (u,v)$ élet! Mivel $u$ és $v$ is lehet $X$-ben vagy azon kívül, ezért négy esetet kell megvizsgálnunk:
             </p>
-
-            <div class="space-y-4 mt-8">
-                <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-rose-400">
-                    <p class="text-sm md:text-base leading-relaxed">
-                        <strong class="text-rose-600 mr-2">1.</strong> Ha $u \in X$ és $v \in X$, vagyis $e$ $X$-en belül halad, akkor $f(e)$ kétszer is megjelenik az összeg egyenlet jobb oldalán: egyszer az $x = u$ csúcsra felírt egyenletből pozitív előjellel (hiszen $e$ kilép $u$-ból) és egyszer az $x = v$-re felírt egyenletből negatív előjellel (hiszen $e$ belép $v$-be); így ebben az esetben végül is $f(e)$ nem járul hozzá az összeg jobb oldalához, mert a két elfordulása kiejti egymást.
+<div class="space-y-4 mt-8">
+<div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-rose-400">
+<p class="text-sm md:text-base leading-relaxed">
+<strong class="text-rose-600 mr-2">1.</strong> Ha $u \in X$ és $v \in X$, vagyis $e$ $X$-en belül halad, akkor $f(e)$ kétszer is megjelenik az összeg egyenlet jobb oldalán: egyszer az $x = u$ csúcsra felírt egyenletből pozitív előjellel (hiszen $e$ kilép $u$-ból) és egyszer az $x = v$-re felírt egyenletből negatív előjellel (hiszen $e$ belép $v$-be); így ebben az esetben végül is $f(e)$ nem járul hozzá az összeg jobb oldalához, mert a két elfordulása kiejti egymást.
                     </p>
-                </div>
-                <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-rose-400">
-                    <p class="text-sm md:text-base leading-relaxed">
-                        <strong class="text-rose-600 mr-2">2.</strong> Ha $u \in X$ és $v \notin X$, vagyis $e$ kilép $X$-ből, akkor $f(e)$ egyszer, az $x = u$ csúcsra felírt egyenlet jobb oldalán jelenik meg, mégpedig pozitív előjellel (mert $e$ kilép $u$-ból). Így $f(e)$ az összeg jobb oldalán is megjelenik.
+</div>
+<div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-rose-400">
+<p class="text-sm md:text-base leading-relaxed">
+<strong class="text-rose-600 mr-2">2.</strong> Ha $u \in X$ és $v \notin X$, vagyis $e$ kilép $X$-ből, akkor $f(e)$ egyszer, az $x = u$ csúcsra felírt egyenlet jobb oldalán jelenik meg, mégpedig pozitív előjellel (mert $e$ kilép $u$-ból). Így $f(e)$ az összeg jobb oldalán is megjelenik.
                     </p>
-                </div>
-                <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-rose-400">
-                    <p class="text-sm md:text-base leading-relaxed">
-                        <strong class="text-rose-600 mr-2">3.</strong> Ha $u \notin X$ és $v \in X$, vagyis $e$ belép $X$-be, akkor $f(e)$ szintén egyszer jelenik meg az összeg jobb oldalán, de negatív előjellel: az $x = v$-re felírt egyenletből (mert $e$ belép $v$-be).
+</div>
+<div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-rose-400">
+<p class="text-sm md:text-base leading-relaxed">
+<strong class="text-rose-600 mr-2">3.</strong> Ha $u \notin X$ és $v \in X$, vagyis $e$ belép $X$-be, akkor $f(e)$ szintén egyszer jelenik meg az összeg jobb oldalán, de negatív előjellel: az $x = v$-re felírt egyenletből (mert $e$ belép $v$-be).
                     </p>
-                </div>
-                <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-rose-400">
-                    <p class="text-sm md:text-base leading-relaxed">
-                        <strong class="text-rose-600 mr-2">4.</strong> Végül az $u \notin X, v \notin X$ esetben $f(e)$ egyáltalán nem jelenik meg az egyenletek jobb oldalán (és így persze az összegben sem).
+</div>
+<div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-rose-400">
+<p class="text-sm md:text-base leading-relaxed">
+<strong class="text-rose-600 mr-2">4.</strong> Végül az $u \notin X, v \notin X$ esetben $f(e)$ egyáltalán nem jelenik meg az egyenletek jobb oldalán (és így persze az összegben sem).
                     </p>
-                </div>
-            </div>
-
-            <p class="text-sm md:text-base leading-relaxed font-bold mt-8">
+</div>
+</div>
+<p class="text-sm md:text-base leading-relaxed font-bold mt-8">
                 Összefoglalva a fentieket: az összeg egyenlet jobb oldalán az $X$-ből kilépő élekre az $f(e)$ 1-szeres szorzóval, az $X$-be belépőkre pedig (-1)-szeres szorzóval jelenik meg. Más szóval: a felírt $|X|$ darab egyenlet összege éppen az állításbeli egyenlet, ami így nyilván szintén igaz.
             </p>
-        </div>
-    </div>
+</div>
+</div>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             8.10
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             A maximális folyam tételének bizonyítása
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-8-10-detailed" class="mb-16 animate-fade-in text-left">
-    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<section class="mb-16 animate-fade-in text-left" id="section-8-10-detailed">
+<div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
             Ha a $(G,s,t,c)$ hálózatban az $f$ folyamra nézve nincs javítóút, akkor $f$ maximális folyam (vagyis nincs $m_f$-nél nagyobb értékű folyam).
         </p>
-    </div>
-
-    <div class="relative p-8 md:p-12 bg-white dark:bg-slate-900/40 rounded-[3rem] border-2 border-rose-100 dark:border-rose-900/30 shadow-sm overflow-hidden">
-        <div class="absolute top-0 right-0 p-8 opacity-5">
-            <svg class="w-24 h-24 text-rose-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-        </div>
-
-        <h4 class="font-black text-rose-600 dark:text-rose-400 uppercase text-xs tracking-[0.3em] mb-8 flex items-center gap-3">
-            <span class="w-8 h-[2px] bg-rose-500"></span>
+</div>
+<div class="relative p-8 md:p-12 bg-white dark:bg-slate-900/40 rounded-[3rem] border-2 border-rose-100 dark:border-rose-900/30 shadow-sm overflow-hidden">
+<div class="absolute top-0 right-0 p-8 opacity-5">
+<svg class="w-24 h-24 text-rose-500" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
+</div>
+<h4 class="font-black text-rose-600 dark:text-rose-400 uppercase text-xs tracking-[0.3em] mb-8 flex items-center gap-3">
+<span class="w-8 h-[2px] bg-rose-500"></span>
             Bizonyítás
         </h4>
-
-        <div class="space-y-6 text-slate-700 dark:text-slate-300">
-            <p class="text-sm md:text-base leading-relaxed">
+<div class="space-y-6 text-slate-700 dark:text-slate-300">
+<p class="text-sm md:text-base leading-relaxed">
                 Megmutatjuk, hogy létezik olyan $X$ $st$-vágás, aminek a kapacitása $c(X) = m_f$. Ebből az állítás szerint következni fog, hogy minden $f'$ folyamra $m_{f'} \le c(X) = m_f$ teljesül, és ezért $f$ értéke valóban maximális.
             </p>
-
-            <p class="text-sm md:text-base leading-relaxed">
+<p class="text-sm md:text-base leading-relaxed">
                 Álljon $X$ azokból a $v$ csúcsokból, amikre létezik $s$-ből $v$-be vezető irányított út a $H_f$ segédgráfban. Ekkor $t \notin X$, mert $f$-re nézve nem létezik javítóút. Másrészt $s \in X$ világos, így $X$ valóban $st$-vágás.
             </p>
-
-            <div class="space-y-4">
-                <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-rose-400">
-                    <p class="text-sm md:text-base leading-relaxed">
-                        Azt állítjuk, hogy ha $e = (u,v)$ tetszőleges, $X$-ből kilépő él, akkor rá $f(e) = c(e)$ teljesül. Ha ez nem volna igaz, akkor $f(e) < c(e)$ miatt $e$ bekerülne $H_f$ élhalmazába (előre élként). Így egy $H_f$-ben $s$-ből $u$-ba vezető irányított út (ami $u \in X$ miatt létezik) megtoldható volna az $e = (u,v)$ éllel $v$-ig, és így egy $s$-ből $v$-be vezető irányított utat kapnánk; ez azonban ellentmond annak, hogy $v \notin X$.
+<div class="space-y-4">
+<div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-rose-400">
+<p class="text-sm md:text-base leading-relaxed">
+                        Azt állítjuk, hogy ha $e = (u,v)$ tetszőleges, $X$-ből kilépő él, akkor rá $f(e) = c(e)$ teljesül. Ha ez nem volna igaz, akkor $f(e) &lt; c(e)$ miatt $e$ bekerülne $H_f$ élhalmazába (előre élként). Így egy $H_f$-ben $s$-ből $u$-ba vezető irányított út (ami $u \in X$ miatt létezik) megtoldható volna az $e = (u,v)$ éllel $v$-ig, és így egy $s$-ből $v$-be vezető irányított utat kapnánk; ez azonban ellentmond annak, hogy $v \notin X$.
                     </p>
-                </div>
-
-                <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-rose-400">
-                    <p class="text-sm md:text-base leading-relaxed">
-                        Megmutatjuk azt is, hogy ha $e = (u,v)$ $X$-be belépő él, akkor rá $f(e) = 0$ teljesül. Ha ez nem volna igaz, akkor $f(e) > 0$ miatt $e' = (v,u)$, az $e$ megfordítottja bekerülne $H_f$ élhalmazába visszaélként. Így egy $H_f$-ben $s$-ből $v$-be vezető irányított út (ami $v \in X$ miatt létezik) megtoldható volna $e'$-vel $u$-ig, és így egy $s$-ből $u$-ba vezető irányított utat kapnánk; ez is ellentmondás, hiszen $u \notin X$.
+</div>
+<div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border-l-4 border-rose-400">
+<p class="text-sm md:text-base leading-relaxed">
+                        Megmutatjuk azt is, hogy ha $e = (u,v)$ $X$-be belépő él, akkor rá $f(e) = 0$ teljesül. Ha ez nem volna igaz, akkor $f(e) &gt; 0$ miatt $e' = (v,u)$, az $e$ megfordítottja bekerülne $H_f$ élhalmazába visszaélként. Így egy $H_f$-ben $s$-ből $v$-be vezető irányított út (ami $v \in X$ miatt létezik) megtoldható volna $e'$-vel $u$-ig, és így egy $s$-ből $u$-ba vezető irányított utat kapnánk; ez is ellentmondás, hiszen $u \notin X$.
                     </p>
-                </div>
-            </div>
-
-            <p class="text-sm md:text-base leading-relaxed">
+</div>
+</div>
+<p class="text-sm md:text-base leading-relaxed">
                 Mindezekből az következik, hogy $f$-re és $X$-re megismételhető az állítás bizonyításának a számolása – azzal a lényeges különbséggel, hogy egyenlőtlenség helyett egyenlőséget írhatunk:
             </p>
-
-            <div class="bg-slate-50 dark:bg-slate-800/80 p-6 rounded-2xl text-center font-bold overflow-x-auto">
+<div class="bg-slate-50 dark:bg-slate-800/80 p-6 rounded-2xl text-center font-bold overflow-x-auto">
                 $$m_f = \sum \{f(e) : e \text{ kilép } X\text{-ből}\} - \sum \{f(e) : e \text{ belép } X\text{-be}\} = \sum \{c(e) : e \text{ kilép } X\text{-ből}\} - 0 = c(X)$$
             </div>
-
-            <p class="text-sm md:text-base leading-relaxed italic pt-4">
+<p class="text-sm md:text-base leading-relaxed italic pt-4">
                 Valóban: a fentiek szerint az $X$-ből kilépő, illetve az $X$-be belépő élekre $f(e) = c(e)$, illetve $f(e) = 0$ teljesül (ezeken kívül pedig ismét csak az állítást és a definíciót alkalmaztuk).
             </p>
-        </div>
-    </div>
+</div>
+</div>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             8.11
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             Az Edmonds-Karp tétel
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-8-11-detailed" class="mb-16 animate-fade-in text-left">
-    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel (Edmonds-Karp)</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<section class="mb-16 animate-fade-in text-left" id="section-8-11-detailed">
+<div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel (Edmonds-Karp)</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
             Ha a $G$ gráf $n$ csúcsú és $m$ élű és a $(G,s,t,c)$ hálózatban a maximális folyam keresésére szolgáló javítóutas algoritmus futása során $H_f$-ben mindig az egyik legrövidebb (vagyis legkevesebb élű) $s$-ből $t$-be vezető irányított utat választjuk javítóútnak, akkor az eljárás legföljebb $n \cdot m$ javító lépés után megáll.
         </p>
-    </div>
-
-    <div class="px-4 space-y-6 text-slate-700 dark:text-slate-300">
-        <p class="text-sm md:text-base leading-relaxed">
+</div>
+<div class="px-4 space-y-6 text-slate-700 dark:text-slate-300">
+<p class="text-sm md:text-base leading-relaxed">
             Ez a tétel alapvető fontosságú a hálózati folyamok algoritmikus kezelésében, mivel garantálja, hogy a javítóutas módszer — a legrövidebb utak szisztematikus kiválasztásával — polinomiális időben véget ér, függetlenül az élek kapacitásától.
         </p>
-    </div>
+</div>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             8.12
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             A Ford-Fulkerson tétel
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-8-12" class="mb-16 animate-fade-in text-left">
-    <math-theorem>
-        <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
-            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel (Ford-Fulkerson tétel)</h4>
-            <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
+<section class="mb-16 animate-fade-in text-left" id="section-8-12">
+<math-theorem>
+<div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel (Ford-Fulkerson tétel)</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
                 Bármely $(G,s,t,c)$ hálózatra $\max\{m_f : f \text{ folyam}\} = \min\{c(X) : X \text{ st-vágás}\}$, vagyis a hálózatbéli maximális folyam értéke megegyezik az st-vágások kapacitásának minimumával.
             </p>
-        </div>
-    </math-theorem>
-
-    <math-proof>
-        <div class="relative p-8 md:p-12 bg-white dark:bg-slate-900/40 rounded-[3rem] border-2 border-rose-100 dark:border-rose-900/30 shadow-sm overflow-hidden">
-            <div class="absolute top-0 right-0 p-8 opacity-5">
-                <svg class="w-24 h-24 text-rose-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-            </div>
-
-            <h4 class="font-black text-rose-600 dark:text-rose-400 uppercase text-xs tracking-[0.3em] mb-8 flex items-center gap-3">
-                <span class="w-8 h-[2px] bg-rose-500"></span>
+</div>
+</math-theorem>
+<math-proof>
+<div class="relative p-8 md:p-12 bg-white dark:bg-slate-900/40 rounded-[3rem] border-2 border-rose-100 dark:border-rose-900/30 shadow-sm overflow-hidden">
+<div class="absolute top-0 right-0 p-8 opacity-5">
+<svg class="w-24 h-24 text-rose-500" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
+</div>
+<h4 class="font-black text-rose-600 dark:text-rose-400 uppercase text-xs tracking-[0.3em] mb-8 flex items-center gap-3">
+<span class="w-8 h-[2px] bg-rose-500"></span>
                 Bizonyítás
             </h4>
-
-            <div class="space-y-6 text-slate-700 dark:text-slate-300">
-                <p class="text-sm md:text-base leading-relaxed">
+<div class="space-y-6 text-slate-700 dark:text-slate-300">
+<p class="text-sm md:text-base leading-relaxed">
                     Futtassuk a $(G,s,t,c)$ hálózatban a javítóutas algoritmust (például az azonosan nulla folyamból indítva) leállásig – ami a Tétel szerint véges sok javító lépés után bekövetkezik; a kapott folyamot jelölje $f$.
                 </p>
-
-                <p class="text-sm md:text-base leading-relaxed">
+<p class="text-sm md:text-base leading-relaxed">
                     A Tétel bizonyításában láttuk, hogy ekkor a $H_f$-ben $s$-ből irányított úton elérhető csúcsok alkotta $X$ vágásra $m_f = c(X)$ teljesül; jelölje ezt a közös értéket $d$.
                 </p>
-
-                <div class="bg-slate-50 dark:bg-slate-800/80 p-6 rounded-2xl text-center font-bold overflow-x-auto my-6 border border-slate-200 dark:border-slate-700">
+<div class="bg-slate-50 dark:bg-slate-800/80 p-6 rounded-2xl text-center font-bold overflow-x-auto my-6 border border-slate-200 dark:border-slate-700">
                     $$d \le \max\{m_f : f \text{ folyam}\} \le \min\{c(X) : X \text{ st-vágás}\} \le d$$
                 </div>
-
-                <p class="text-sm md:text-base leading-relaxed font-bold">
+<p class="text-sm md:text-base leading-relaxed font-bold">
                     Ebből tehát $\max \{m_f : f \text{ folyam}\} = d = \min \{c(X) : X \text{ st-vágás}\}$ valóban adódik.
                 </p>
-            </div>
-        </div>
-    </math-proof>
+</div>
+</div>
+</math-proof>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             8.13
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             Az egész értékűségi lemma
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-8-13" class="mb-16 animate-fade-in text-left">
-    <math-theorem>
-        <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
-            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Lemma (Egész értékűségi lemma)</h4>
-            <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
+<section class="mb-16 animate-fade-in text-left" id="section-8-13">
+<math-theorem>
+<div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Lemma (Egész értékűségi lemma)</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
                 Tegyük fel, hogy a $(G,s,t,c)$ hálózatban minden $e \in E(G)$ élre $c(e) \in \mathbb{Z}$. Ekkor:
             </p>
-            <ul class="mt-4 space-y-2 text-slate-800 dark:text-slate-100 italic text-sm md:text-base list-none pl-4">
-                <li>(i) létezik olyan $f$ maximális folyam a hálózatban, amelyre $f(e) \in \mathbb{Z}$ minden $e \in E(G)$ élre és</li>
-                <li>(ii) ilyen egész értékű maximális folyam a javítóutas algoritmussal található.</li>
-            </ul>
-        </div>
-    </math-theorem>
-
-    <math-proof>
-        <div class="relative p-8 md:p-12 bg-white dark:bg-slate-900/40 rounded-[3rem] border-2 border-rose-100 dark:border-rose-900/30 shadow-sm overflow-hidden">
-            <div class="absolute top-0 right-0 p-8 opacity-5">
-                <svg class="w-24 h-24 text-rose-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-            </div>
-
-            <h4 class="font-black text-rose-600 dark:text-rose-400 uppercase text-xs tracking-[0.3em] mb-8 flex items-center gap-3">
-                <span class="w-8 h-[2px] bg-rose-500"></span>
+<ul class="mt-4 space-y-2 text-slate-800 dark:text-slate-100 italic text-sm md:text-base list-none pl-4">
+<li>(i) létezik olyan $f$ maximális folyam a hálózatban, amelyre $f(e) \in \mathbb{Z}$ minden $e \in E(G)$ élre és</li>
+<li>(ii) ilyen egész értékű maximális folyam a javítóutas algoritmussal található.</li>
+</ul>
+</div>
+</math-theorem>
+<math-proof>
+<div class="relative p-8 md:p-12 bg-white dark:bg-slate-900/40 rounded-[3rem] border-2 border-rose-100 dark:border-rose-900/30 shadow-sm overflow-hidden">
+<div class="absolute top-0 right-0 p-8 opacity-5">
+<svg class="w-24 h-24 text-rose-500" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
+</div>
+<h4 class="font-black text-rose-600 dark:text-rose-400 uppercase text-xs tracking-[0.3em] mb-8 flex items-center gap-3">
+<span class="w-8 h-[2px] bg-rose-500"></span>
                 Bizonyítás
             </h4>
-
-            <div class="space-y-6 text-slate-700 dark:text-slate-300">
-                <p class="text-sm md:text-base leading-relaxed">
+<div class="space-y-6 text-slate-700 dark:text-slate-300">
+<p class="text-sm md:text-base leading-relaxed">
                     Indítsuk a javítóutas algoritmust egy tetszőleges egész értékű $f$ folyamtól, például az azonosan nullától. Ekkor az algoritmus a működése során végig fenntartja $f$ egész értékűségét.
                 </p>
-
-                <p class="text-sm md:text-base leading-relaxed">
+<p class="text-sm md:text-base leading-relaxed">
                     Valóban, ha az aktuális $f$ folyamra $f(e) \in \mathbb{Z}$ minden $e$ élre, akkor az algoritmus pszeudokódjának 7. sorában $\delta_1$ és $\delta_2$ számításakor is egész számok minimumát vesszük. Mivel a $c(e)$ kapacitásokról feltettük az egész értékűséget, és $f(e)$ is egész, így $c(e) - f(e)$ és maga $f(e)$ is egész lesz minden élre. Ebből következően $\delta$ is egész marad, így a folyam módosítása után is igaz marad az egész értékűség.
                 </p>
-
-                <p class="text-sm md:text-base leading-relaxed font-bold">
+<p class="text-sm md:text-base leading-relaxed font-bold">
                     Következik, hogy $f$ az algoritmus leállásakor is egész értékű marad; azt pedig a tételből tudjuk, hogy ekkor $f$ maximális folyam.
                 </p>
-            </div>
-        </div>
-    </math-proof>
+</div>
+</div>
+</math-proof>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-24">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
+<div class="flex items-center gap-4 mb-6 mt-24">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
             8.14
         </div>
-        
-        <div class="relative w-fit">
-            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
-                Összefoglaló Kvíz
-            </h2>
-            <div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
-        </div>
-    </div>
+<div class="relative w-fit">
+
+<div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
+</div>
+</div>
 </math-header>
-
-<section id="section-8-14" class="mb-16 animate-fade-in text-left">
-    <div class="bg-[#f97316] rounded-[3rem] p-8 md:p-12 border border-theme/30 shadow-2xl relative overflow-hidden group">
-        <div class="absolute -right-20 -bottom-20 opacity-10 pointer-events-none group-hover:scale-110 transition-transform duration-700 text-white">
-            <svg width="400" height="400" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2zm-4 11a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-            </svg>
-        </div>
-
-        <div class="relative z-10 text-left">
-            <div class="flex items-center gap-4 mb-10">
-                <div class="p-3 bg-theme rounded-2xl shadow-lg shadow-theme/40 text-white">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                    </svg>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-black text-white italic tracking-tight">Hálózati folyamok és vágások</h3>
-                    <p class="text-amber-200/60 text-sm italic">Vidd az egeret a kártyák fölé a helyes válaszért!</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#01 Konzervációs szabály</p>
-                    <p class="text-white font-bold italic leading-relaxed text-balance">Mit ír elő a folyam definíciója a hálózat belső csúcsaira vonatkozóan?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+<section class="mb-16 animate-fade-in text-left" id="section-8-14">
+<div class="bg-[#f97316] rounded-[3rem] p-8 md:p-12 border border-theme/30 shadow-2xl relative overflow-hidden group">
+<div class="absolute -right-20 -bottom-20 opacity-10 pointer-events-none group-hover:scale-110 transition-transform duration-700 text-white">
+<svg fill="currentColor" height="400" viewbox="0 0 24 24" width="400">
+<path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2zm-4 11a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
+</svg>
+</div>
+<div class="relative z-10 text-left">
+<div class="flex items-center gap-4 mb-10">
+<div class="p-3 bg-theme rounded-2xl shadow-lg shadow-theme/40 text-white">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<h3 class="text-2xl font-black text-white italic tracking-tight">Hálózati folyamok és vágások</h3>
+<p class="text-amber-200/60 text-sm italic">Vidd az egeret a kártyák fölé a helyes válaszért!</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
+<p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#01 Konzervációs szabály</p>
+<p class="text-white font-bold italic leading-relaxed text-balance">Mit ír elő a folyam definíciója a hálózat belső csúcsaira vonatkozóan?</p>
+<div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
                         Válasz: Minden belső csúcsra ($v \neq s, t$) a befolyó folyamok összege megegyezik a kifolyó folyamok összegével.
                     </div>
-                </div>
-
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#02 Segédgráf élei</p>
-                    <p class="text-white font-bold italic leading-relaxed">Mikor kerül be egy visszaél a $H_f$ segédgráfba egy eredeti $e=(u,v)$ él esetén?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
-                        Válasz: Ha az eredeti élen pozitív a folyam ($f(e) > 0$), ekkor egy $(v,u)$ irányú visszaél keletkezik a segédgráfban.
+</div>
+<div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
+<p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#02 Segédgráf élei</p>
+<p class="text-white font-bold italic leading-relaxed">Mikor kerül be egy visszaél a $H_f$ segédgráfba egy eredeti $e=(u,v)$ él esetén?</p>
+<div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+                        Válasz: Ha az eredeti élen pozitív a folyam ($f(e) &gt; 0$), ekkor egy $(v,u)$ irányú visszaél keletkezik a segédgráfban.
                     </div>
-                </div>
-
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#03 Ford-Fulkerson tétel</p>
-                    <p class="text-white font-bold italic leading-relaxed text-balance">Milyen kapcsolat van a maximális folyam és a minimális vágás között?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+</div>
+<div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
+<p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#03 Ford-Fulkerson tétel</p>
+<p class="text-white font-bold italic leading-relaxed text-balance">Milyen kapcsolat van a maximális folyam és a minimális vágás között?</p>
+<div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
                         Válasz: Értékük megegyezik: $\max m_f = \min c(X)$.
                     </div>
-                </div>
-
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#04 Egészértékűségi lemma</p>
-                    <p class="text-white font-bold italic leading-relaxed text-balance">Mikor garantálható az egész értékű maximális folyam létezése?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+</div>
+<div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
+<p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#04 Egészértékűségi lemma</p>
+<p class="text-white font-bold italic leading-relaxed text-balance">Mikor garantálható az egész értékű maximális folyam létezése?</p>
+<div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
                         Válasz: Ha a hálózatban minden él kapacitása egész szám ($c(e) \in \mathbb{Z}$).
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</div>
+</div>
 </section>
 
-<section id="section-8-14" class="mb-16 animate-fade-in text-left">
-    <div class="bg-slate-50/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800">
-        
-        <div class="flex items-center gap-4 mb-10">
-            <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-2xl flex items-center justify-center text-orange-500 shadow-sm">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7zM9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1z"/>
-                </svg>
-            </div>
-            <div>
-                <h3 class="text-xl font-black text-slate-800 dark:text-white italic">Tudtad-e?</h3>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-orange-400 transition-transform hover:-translate-y-1">
-                <h4 class="text-orange-600 text-[10px] font-black uppercase tracking-widest mb-4">EGÉSZÉRTÉKŰSÉGI LEMMA</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                    Ha egy hálózatban minden kapacitás <b>egész szám</b>, akkor a javítóutas algoritmussal talált maximális folyam minden élen egész értékű lesz. Ez elengedhetetlen a logisztikai feladatoknál, ahol nem küldhetünk "fél kamiont".
-                </p>
-            </div>
-
-            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-blue-400 transition-transform hover:-translate-y-1">
-                <h4 class="text-blue-600 text-[10px] font-black uppercase tracking-widest mb-4">EDMONDS-KARP HATÉKONYSÁG</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                    Míg az alap Ford-Fulkerson algoritmus lassú lehet, az <b>Edmonds-Karp tétel</b> kimondja: ha mindig a legrövidebb javítóutat választjuk, legfeljebb $n \cdot m$ lépésben célhoz érünk.
-                </p>
-            </div>
-
-            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-emerald-400 transition-transform hover:-translate-y-1">
-                <h4 class="text-emerald-600 text-[10px] font-black uppercase tracking-widest mb-4) ">MIN-CUT JELENTŐSÉGE</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic text-balance">
-                    A minimális vágás nemcsak matematikai korlát, hanem a hálózat <b>legsebezhetőbb pontja</b>. A Max-flow Min-cut tétel szerint itt dől el, mennyi adat vagy víz juthat át a rendszeren.
-                </p>
-            </div>
-
-            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-rose-400 transition-transform hover:-translate-y-1">
-                <h4 class="text-rose-600 text-[10px] font-black uppercase tracking-widest mb-4">INTERNET ÉS FORGALOM</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic text-balance">
-                    Az internetes csomagküldés vagy a városi forgalomirányítás mind <b>folyamoptimalizálás</b>. A szoftverek folyamatosan "javítóutakat" keresnek a hálózatban, hogy elkerüljék a túlterhelt csomópontokat.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-
-
-    <div id="complete-section-8" 
-         class="mt-24 p-12 border-2 border-dashed border-orange-500/30 rounded-[3rem] text-center transition-all bg-theme/5">
-        
-        <h3 id="complete-text-8" class="text-xl font-black text-theme mb-6 uppercase tracking-widest">
+<div class="mt-24 p-12 border-2 border-dashed border-orange-500/30 rounded-[3rem] text-center transition-all bg-theme/5" id="complete-section-8">
+<h3 class="text-xl font-black text-theme mb-6 uppercase tracking-widest" id="complete-text-8">
             Mindent megtanultál?
         </h3>
-        
-        <button onclick="toggleChapterComplete(8)" 
-                id="complete-btn-8" 
-                data-theme-color="orange"
-                class="px-10 py-4 bg-orange-600 hover:bg-orange-500 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl transition-all active:scale-95">
+<button class="px-10 py-4 bg-orange-600 hover:bg-orange-500 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl transition-all active:scale-95" data-theme-color="orange" id="complete-btn-8" onclick="toggleChapterComplete(8)">
             Igen! ✅
         </button>
-    </div>
+</div>
 </article>
-
-
-
-
-
-
-
 <script>
     function toggleBeadoModal() {
         const modal = document.getElementById('beadoModal');
@@ -2460,12 +2297,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 </script>
 
-
-
-</footer>
-</main>
-
-    <script>
+</div></main>
+<script>
         // --- GLOBÁLIS FUNKCIÓK ---
 
         // 1. Menükezelés mobilra
@@ -2509,132 +2342,111 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.MathJax) MathJax.typesetPromise();
         });
     </script>
-
-
-<div id="beadoModal" class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
-    <div id="beadoPanel" class="bg-white dark:bg-slate-800 w-full max-w-md rounded-[2.5rem] shadow-2xl transform scale-90 transition-transform duration-500 ease-out overflow-hidden border border-slate-100 dark:border-slate-700">
-        <div class="p-10 text-center space-y-8">
-            <div class="space-y-4">
-                <div class="w-20 h-20 bg-rose-500 rounded-3xl rotate-12 mx-auto flex items-center justify-center shadow-lg shadow-rose-500/30">
-                    <svg class="w-10 h-10 text-white -rotate-12" fill="currentColor" viewBox="0 0 24 24"><path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" /></svg>
-                </div>
-                <h3 class="text-3xl font-black text-slate-800 dark:text-white leading-tight">Ne add fel bro,<br>van remény!</h3>
-            </div>
-            <button onclick="toggleBeadoModal()" class="w-full py-5 bg-orange-500 hover:bg-orange-400 text-white font-black uppercase tracking-widest text-sm rounded-2xl transition-all shadow-xl shadow-orange-500/20">Nyomom! 💪</button>
-        </div>
-    </div>
+<div class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300" id="beadoModal">
+<div class="bg-white dark:bg-slate-800 w-full max-w-md rounded-[2.5rem] shadow-2xl transform scale-90 transition-transform duration-500 ease-out overflow-hidden border border-slate-100 dark:border-slate-700" id="beadoPanel">
+<div class="p-10 text-center space-y-8">
+<div class="space-y-4">
+<div class="w-20 h-20 bg-rose-500 rounded-3xl rotate-12 mx-auto flex items-center justify-center shadow-lg shadow-rose-500/30">
+<svg class="w-10 h-10 text-white -rotate-12" fill="currentColor" viewbox="0 0 24 24"><path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z"></path></svg>
 </div>
-
-<div id="assistant-window" class="fixed inset-0 md:inset-auto md:bottom-24 md:right-6 z-50 w-full h-full md:w-[450px] md:h-[80vh] bg-orange-600 glass-effect rounded-none md:rounded-[2.5rem] shadow-2xl border-none md:border md:border-white/20 overflow-hidden hidden transform transition-all duration-300 origin-bottom-right opacity-0 scale-95 flex flex-col">    <div class="p-6 pb-4 bg-orange-600 text-white flex-none">
-        <div class="flex justify-between items-start">
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center text-2xl shadow-inner text-left">🤖</div>
-                <div class="text-left">
-                    <h3 class="font-black text-lg uppercase tracking-tight leading-none">Szeszlér-Bot</h3>
-                    <p class="text-[11px] text-orange-100 font-medium mt-1.5 flex items-center gap-1.5">
-                        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span> Online segítő
+<h3 class="text-3xl font-black text-slate-800 dark:text-white leading-tight">Ne add fel bro,<br/>van remény!</h3>
+</div>
+<button class="w-full py-5 bg-orange-500 hover:bg-orange-400 text-white font-black uppercase tracking-widest text-sm rounded-2xl transition-all shadow-xl shadow-orange-500/20" onclick="toggleBeadoModal()">Nyomom! 💪</button>
+</div>
+</div>
+</div>
+<div class="fixed inset-0 md:inset-auto md:bottom-24 md:right-6 z-50 w-full h-full md:w-[450px] md:h-[80vh] bg-orange-600 glass-effect rounded-none md:rounded-[2.5rem] shadow-2xl border-none md:border md:border-white/20 overflow-hidden hidden transform transition-all duration-300 origin-bottom-right opacity-0 scale-95 flex flex-col" id="assistant-window"> <div class="p-6 pb-4 bg-orange-600 text-white flex-none">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center text-2xl shadow-inner text-left">🤖</div>
+<div class="text-left">
+<h3 class="font-black text-lg uppercase tracking-tight leading-none">Szeszlér-Bot</h3>
+<p class="text-[11px] text-orange-100 font-medium mt-1.5 flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span> Online segítő
                     </p>
-                </div>
-            </div>
-            <button onclick="toggleAssistant()" class="p-2 hover:bg-white/10 rounded-full transition-colors">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2.5" stroke-linecap="round"/></svg>
-            </button>
-        </div>
-        
-        <div class="flex mt-6 bg-black/10 p-1 rounded-2xl border border-white/10 text-white">
-    <button onclick="switchTab('search')" id="tab-search" class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl bg-white text-orange-600 shadow-sm transition-all">Fogalomtár</button>
-    
-    <button onclick="switchTab('ask')" id="tab-ask" class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl hover:text-white transition-all opacity-70">Kérdezz</button>
-
-    <button onclick="switchTab('exam')" id="tab-exam" class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl hover:text-white transition-all opacity-70">Vakvizsga</button>
 </div>
-
-<div id="panel-exam" class="hidden flex flex-col flex-grow overflow-hidden p-6 bg-transparent">
-        <div class="flex-grow flex flex-col items-center justify-center p-6 space-y-6 text-center overflow-y-auto">
-        
-        <div id="exam-card" class="w-full p-8 rounded-[2.5rem] bg-white dark:bg-slate-800 border-none flex flex-col items-center justify-center min-h-[250px] transition-all shadow-2xl">
-            <div id="exam-prompt" class="text-slate-400 italic text-sm">
+</div>
+<button class="p-2 hover:bg-white/10 rounded-full transition-colors" onclick="toggleAssistant()">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-width="2.5"></path></svg>
+</button>
+</div>
+<div class="flex mt-6 bg-black/10 p-1 rounded-2xl border border-white/10 text-white">
+<button class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl bg-white text-orange-600 shadow-sm transition-all" id="tab-search" onclick="switchTab('search')">Fogalomtár</button>
+<button class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl hover:text-white transition-all opacity-70" id="tab-ask" onclick="switchTab('ask')">Kérdezz</button>
+<button class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl hover:text-white transition-all opacity-70" id="tab-exam" onclick="switchTab('exam')">Vakvizsga</button>
+</div>
+<div class="hidden flex flex-col flex-grow overflow-hidden p-6 bg-transparent" id="panel-exam">
+<div class="flex-grow flex flex-col items-center justify-center p-6 space-y-6 text-center overflow-y-auto">
+<div class="w-full p-8 rounded-[2.5rem] bg-white dark:bg-slate-800 border-none flex flex-col items-center justify-center min-h-[250px] transition-all shadow-2xl" id="exam-card">
+<div class="text-slate-400 italic text-sm" id="exam-prompt">
                 Jöhetnek a kérdések?
             </div>
-            <div id="exam-content" class="hidden w-full space-y-4 text-left">
-                <span id="exam-ref" class="px-2 py-0.5 rounded-md bg-orange-50 text-orange-600 text-[8px] font-black uppercase tracking-widest"></span>
-                <h4 id="exam-title" class="font-black text-slate-900 dark:text-white uppercase text-sm tracking-tight leading-tight"></h4>
-                <div id="exam-answer" class="hidden p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-orange-100 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-300 italic leading-relaxed shadow-inner"></div>
-            </div>
-        </div>
-
-        <div class="w-full space-y-4 pb-4">
-            <button id="exam-main-btn" onclick="drawExamCard()" class="w-full py-4 bg-white text-orange-600 hover:bg-slate-50 font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl active:scale-95 transition-all">
+<div class="hidden w-full space-y-4 text-left" id="exam-content">
+<span class="px-2 py-0.5 rounded-md bg-orange-50 text-orange-600 text-[8px] font-black uppercase tracking-widest" id="exam-ref"></span>
+<h4 class="font-black text-slate-900 dark:text-white uppercase text-sm tracking-tight leading-tight" id="exam-title"></h4>
+<div class="hidden p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-orange-100 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-300 italic leading-relaxed shadow-inner" id="exam-answer"></div>
+</div>
+</div>
+<div class="w-full space-y-4 pb-4">
+<button class="w-full py-4 bg-white text-orange-600 hover:bg-slate-50 font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl active:scale-95 transition-all" id="exam-main-btn" onclick="drawExamCard()">
                 Új tétel húzása 🃏
             </button>
-
-            <button id="exam-reveal-btn" onclick="revealExamAnswer()" class="hidden w-full py-4 bg-white text-orange-600 hover:bg-slate-50 font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl active:scale-95 transition-all">
+<button class="hidden w-full py-4 bg-white text-orange-600 hover:bg-slate-50 font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl active:scale-95 transition-all" id="exam-reveal-btn" onclick="revealExamAnswer()">
                 Válasz mutatása ✨
             </button>
-        </div>
-    </div>
 </div>
 </div>
-
-<div id="panel-search" class="flex flex-col flex-grow overflow-hidden bg-white dark:bg-slate-900">
-            <div class="p-5 border-b dark:border-slate-800 text-left flex-none">
-            <input type="text" id="search-input" placeholder="Mit keresel?..." class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 text-sm focus:ring-2 focus:ring-orange-500 transition-all dark:text-white shadow-inner">
-        </div>
-        <div id="search-results" class="p-6 flex-grow overflow-y-auto bg-white/50 dark:bg-transparent text-left custom-scrollbar">
-            <div class="text-center py-12 opacity-30">
-                <svg class="w-12 h-12 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-width="2"/></svg>
-                <p class="text-[10px] font-bold uppercase tracking-widest text-center">Kezdj el gépelni...</p>
-            </div>
-        </div>
-    </div>
-
-<div id="panel-ask" class="hidden flex flex-col flex-grow overflow-hidden bg-white dark:bg-slate-900">
-            <div id="ask-results" class="p-6 flex-grow overflow-y-auto space-y-4 bg-slate-50/50 dark:bg-transparent text-left custom-scrollbar">
-            <div class="flex gap-3 animate-fade-in text-left">
-        <div class="w-8 h-8 rounded-xl bg-orange-600 flex items-center justify-center text-xs shadow-md flex-none text-white">🤖</div>
-        
-        <div class="bot-bubble p-4 text-xs italic text-slate-600 dark:text-slate-300 shadow-sm leading-relaxed max-w-[85%] border border-orange-100 dark:border-orange-900/30"">
+</div>
+</div>
+<div class="flex flex-col flex-grow overflow-hidden bg-white dark:bg-slate-900" id="panel-search">
+<div class="p-5 border-b dark:border-slate-800 text-left flex-none">
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 text-sm focus:ring-2 focus:ring-orange-500 transition-all dark:text-white shadow-inner" id="search-input" placeholder="Mit keresel?..." type="text"/>
+</div>
+<div class="p-6 flex-grow overflow-y-auto bg-white/50 dark:bg-transparent text-left custom-scrollbar" id="search-results">
+<div class="text-center py-12 opacity-30">
+<svg class="w-12 h-12 mx-auto mb-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-width="2"></path></svg>
+<p class="text-[10px] font-bold uppercase tracking-widest text-center">Kezdj el gépelni...</p>
+</div>
+</div>
+</div>
+<div class="hidden flex flex-col flex-grow overflow-hidden bg-white dark:bg-slate-900" id="panel-ask">
+<div class="p-6 flex-grow overflow-y-auto space-y-4 bg-slate-50/50 dark:bg-transparent text-left custom-scrollbar" id="ask-results">
+<div class="flex gap-3 animate-fade-in text-left">
+<div class="w-8 h-8 rounded-xl bg-orange-600 flex items-center justify-center text-xs shadow-md flex-none text-white">🤖</div>
+<div "="" class="bot-bubble p-4 text-xs italic text-slate-600 dark:text-slate-300 shadow-sm leading-relaxed max-w-[85%] border border-orange-100 dark:border-orange-900/30">
             Szia! Szeszlér-Bot vagyok. Kérdezz bármit az anyaggal kapcsolatban!
         </div>
-    </div>
-        </div>
-        
-        <div class="p-5 border-t dark:border-slate-800 bg-white dark:bg-slate-900 flex-none text-left">
-            <div class="relative flex items-center gap-2">
-                <input type="text" id="ask-input" placeholder="Írd ide a kérdésed..." class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 text-sm focus:ring-2 focus:ring-orange-500 transition-all dark:text-white shadow-inner">
-                <button onclick="handleAsk()" class="p-4 bg-orange-600 text-white rounded-2xl shadow-lg hover:bg-orange-500 transition-all active:scale-90 flex-none">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-            </div>
-        </div>
-    </div>
 </div>
-
-
-
-
-
-
+</div>
+<div class="p-5 border-t dark:border-slate-800 bg-white dark:bg-slate-900 flex-none text-left">
+<div class="relative flex items-center gap-2">
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 text-sm focus:ring-2 focus:ring-orange-500 transition-all dark:text-white shadow-inner" id="ask-input" placeholder="Írd ide a kérdésed..." type="text"/>
+<button class="p-4 bg-orange-600 text-white rounded-2xl shadow-lg hover:bg-orange-500 transition-all active:scale-90 flex-none" onclick="handleAsk()">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</div>
 <div class="fixed-btn-container left-4 bottom-[84px] md:left-auto md:right-6 md:bottom-[100px]">
-    <button onclick="toggleAssistant()" class="flex items-center justify-center w-11 h-11 md:w-16 md:h-16 bg-orange-600 text-white rounded-full shadow-2xl transition-transform active:scale-95">
-        <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-    </button>
+<button class="flex items-center justify-center w-11 h-11 md:w-16 md:h-16 bg-orange-600 text-white rounded-full shadow-2xl transition-transform active:scale-95" onclick="toggleAssistant()">
+<svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
 </div>
-
 <div class="fixed-btn-container left-4 bottom-6 md:left-auto md:right-6 md:bottom-6">
-    <button onclick="toggleBeadoModal()" class="flex items-center gap-2 bg-orange-500 hover:bg-orange-400 text-white px-3 py-2.5 md:px-6 md:py-4 rounded-xl md:rounded-2xl shadow-2xl border border-white/20">
-        <span class="font-black text-[10px] md:text-sm tracking-widest uppercase">
-            <span class="md:hidden">032</span>
-            <span class="hidden md:inline">032 beadó</span>
-        </span>
-        <div class="bg-white/20 p-1 rounded-md text-white">
-            <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10h.01M15 10h.01M9.5 15.5a5 5 0 015 0M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-        </div>
-    </button>
+<button class="flex items-center gap-2 bg-orange-500 hover:bg-orange-400 text-white px-3 py-2.5 md:px-6 md:py-4 rounded-xl md:rounded-2xl shadow-2xl border border-white/20" onclick="toggleBeadoModal()">
+<span class="font-black text-[10px] md:text-sm tracking-widest uppercase">
+<span class="md:hidden">032</span>
+<span class="hidden md:inline">032 beadó</span>
+</span>
+<div class="bg-white/20 p-1 rounded-md text-white">
+<svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 10h.01M15 10h.01M9.5 15.5a5 5 0 015 0M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</button>
 </div>
 <script>
     window.addEventListener('load', () => {
@@ -2717,8 +2529,6 @@ function switchTab(tab) {
     activeTab.className = `flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl bg-white text-${themeColor}-600 shadow-sm transition-all`;
 }
 </script>
-
-
 <script>
     function markChapterComplete(num) {
     let progress = JSON.parse(localStorage.getItem('graphProgress') || '{}');
@@ -2848,7 +2658,6 @@ function updateProgressUI() {
 // Oldalbetöltéskor inicializáljuk
 document.addEventListener('DOMContentLoaded', updateProgressUI);
 </script>
-
 <script>
 function initGlossaryTooltips() {
     const article = document.querySelector('article');
@@ -2973,6 +2782,5 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <div id="global-glossary-tooltip"></div>
 </body>
-
 <!-- Mirrored from bsz2jegyzet.hu/bsz2/8.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:49:12 GMT -->
 </html>

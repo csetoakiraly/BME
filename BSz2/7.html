@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="hu">
 
+<html lang="hu">
 <!-- Mirrored from bsz2jegyzet.hu/bsz2/7.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:49:12 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<!-- Added by HTTrack --><meta content="text/html;charset=utf-8" http-equiv="content-type"/><!-- /Added by HTTrack -->
 <head>
-    <style>
+<style>
 /* ============================================================
    1. ALAPOK ÉS GLOBÁLIS BEÁLLÍTÁSOK
    ============================================================ */
@@ -264,8 +264,7 @@ html.dark math-example { background: rgba(255,255,255,0.02); border-color: #3341
     #sidebar.open { transform: translateX(0); }
     main { padding-top: 80px !important; }
 }
-</style>    
-
+</style>
 <script>
     const themeColor = 'violet';
 // TUDÁSBÁZIS (Már az eddigi 5.1-5.3 tartalommal is kiegészítve)
@@ -1516,21 +1515,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-</script>    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>7. Gráfok élszínezése - Bsz2 Jegyzet</title>
-
-    <script src="https://cdn.tailwindcss.com/"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
+</script> <meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>7. Gráfok élszínezése - Bsz2 Jegyzet</title>
+<script src="https://cdn.tailwindcss.com/"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
         tailwind.config = { darkMode: 'class' }
         window.MathJax = {
             tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
             options: { enableMenu: false }
         };
     </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
     /**
      * MATEMATIKAI KOMPONENSEK REGISZTRÁLÁSA
      * Létrehozunk egy közös osztályt, hogy később könnyen bővíthessük őket.
@@ -1559,114 +1557,105 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </head>
 <body class="flex flex-col md:flex-row min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
-
-    <div class="md:hidden fixed top-0 left-0 right-0 bg-white border-b border-slate-200 p-4 z-[60] flex justify-between items-center shadow-sm dark:bg-slate-900 dark:border-slate-800">
-        <h1 class="text-xl font-black text-indigo-600 italic">Bsz2 Jegyzet</h1>
-        <div class="flex items-center space-x-2">
-            <button onclick="toggleNightMode()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 border dark:border-slate-700">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-            </button>
-            <button onclick="toggleMenu()" class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-bold text-xs uppercase shadow-md active:scale-95 transition-transform">Tételek</button>
-        </div>
-    </div>
-
-    <aside id="sidebar" class="fixed md:sticky top-0 left-0 w-[85%] md:w-80 bg-white border-r border-slate-200 flex flex-col h-screen z-50 overflow-y-auto closed md:translate-x-0 shadow-2xl md:shadow-none dark:bg-slate-900 dark:border-slate-800 transition-transform duration-300">
-        <div class="p-6 border-b border-slate-100 hidden md:block dark:border-slate-800">
-            <h1 class="text-2xl font-extrabold text-indigo-600 italic">Bsz2 Jegyzet</h1>
-            <p class="text-slate-400 text-[10px] uppercase tracking-widest mt-1 font-bold">Vizsgafelkészítő</p>
-        </div>
-
-        <div class="px-8 py-4 border-b border-slate-100 flex items-center justify-between dark:border-slate-800">
-            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Éjszakai mód</span>
-            <button onclick="toggleNightMode()" class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 border dark:border-slate-700 transition-all active:scale-90 shadow-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-            </button>
-        </div>
-
-        <nav id="main-nav" class="flex flex-col p-4 space-y-2 pb-24 md:pb-4">
-            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">Összefoglaló</div>
-            <a href="puska.html" class="nav-item"><span class="font-bold text-sm">Puska (Képletek, Tételek)</span></a>
-
-            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2">Gráfelmélet</div>
-            
-                                            <a href="index.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<div class="md:hidden fixed top-0 left-0 right-0 bg-white border-b border-slate-200 p-4 z-[60] flex justify-between items-center shadow-sm dark:bg-slate-900 dark:border-slate-800">
+<h1 class="text-xl font-black text-indigo-600 italic">Bsz2 Jegyzet</h1>
+<div class="flex items-center space-x-2">
+<button class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 border dark:border-slate-700" onclick="toggleNightMode()">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<button class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-bold text-xs uppercase shadow-md active:scale-95 transition-transform" onclick="toggleMenu()">Tételek</button>
+</div>
+</div>
+<aside class="fixed md:sticky top-0 left-0 w-[85%] md:w-80 bg-white border-r border-slate-200 flex flex-col h-screen z-50 overflow-y-auto closed md:translate-x-0 shadow-2xl md:shadow-none dark:bg-slate-900 dark:border-slate-800 transition-transform duration-300" id="sidebar">
+<div class="p-6 border-b border-slate-100 hidden md:block dark:border-slate-800">
+<h1 class="text-2xl font-extrabold text-indigo-600 italic">Bsz2 Jegyzet</h1>
+<p class="text-slate-400 text-[10px] uppercase tracking-widest mt-1 font-bold">Vizsgafelkészítő</p>
+</div>
+<div class="px-8 py-4 border-b border-slate-100 flex items-center justify-between dark:border-slate-800">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Éjszakai mód</span>
+<button class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 border dark:border-slate-700 transition-all active:scale-90 shadow-sm" onclick="toggleNightMode()">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<nav class="flex flex-col p-4 space-y-2 pb-24 md:pb-4" id="main-nav">
+<div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">Összefoglaló</div>
+<a class="nav-item" href="puska.html"><span class="font-bold text-sm">Puska (Képletek, Tételek)</span></a>
+<div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2">Gráfelmélet</div>
+<a class="nav-item" href="index.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         1. Tétel
                     </span>
-                    <span class="font-bold text-sm">Gráfelméleti alapfogalmak</span>
-                    </a>
-                                            <a href="2.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Gráfelméleti alapfogalmak</span>
+</a>
+<a class="nav-item" href="2.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         2. Tétel
                     </span>
-                    <span class="font-bold text-sm">Fák tulajdonságai</span>
-                    </a>
-                                            <a href="3.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Fák tulajdonságai</span>
+</a>
+<a class="nav-item" href="3.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         3. Tétel
                     </span>
-                    <span class="font-bold text-sm">Hamilton-körök és -utak</span>
-                    </a>
-                                            <a href="4.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Hamilton-körök és -utak</span>
+</a>
+<a class="nav-item" href="4.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         4. Tétel
                     </span>
-                    <span class="font-bold text-sm">Gráfok színezése (χ, ω)</span>
-                    </a>
-                                            <a href="5.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Gráfok színezése (χ, ω)</span>
+</a>
+<a class="nav-item" href="5.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         5. Tétel
                     </span>
-                    <span class="font-bold text-sm">Párosítás fogalma</span>
-                    </a>
-                                            <a href="6.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Párosítás fogalma</span>
+</a>
+<a class="nav-item" href="6.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         6. Tétel
                     </span>
-                    <span class="font-bold text-sm">Párosítás páros gráfban</span>
-                    </a>
-                                            <a href="7.html" class="nav-item active">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Párosítás páros gráfban</span>
+</a>
+<a class="nav-item active" href="7.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         7. Tétel
                     </span>
-                    <span class="font-bold text-sm">Teljes párosítás (Reguláris)</span>
-                    </a>
-                                            <a href="8.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Teljes párosítás (Reguláris)</span>
+</a>
+<a class="nav-item" href="8.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         8. Tétel
                     </span>
-                    <span class="font-bold text-sm">Hálózat, folyam, vágás</span>
-                    </a>
-                                            <a href="9.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Hálózat, folyam, vágás</span>
+</a>
+<a class="nav-item" href="9.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         9. Tétel
                     </span>
-                    <span class="font-bold text-sm">Folyam általánosításai</span>
-                    </a>
-                                            <a href="10.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Folyam általánosításai</span>
+</a>
+<a class="nav-item" href="10.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         10. Tétel
                     </span>
-                    <span class="font-bold text-sm">Összefüggőség</span>
-                    </a>
-
-            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">ZH-k és Megoldások</div>
-            <a href="zh_2025.html" class="nav-item"><span class="font-bold text-sm">2025 Tavasz Zárthelyi</span></a>
-            <a href="zh_2024.html" class="nav-item"><span class="font-bold text-sm">2024 Tavasz Zárthelyi</span></a>
-            <a href="zh_2023.html" class="nav-item"><span class="font-bold text-sm">2023 Tavasz Zárthelyi</span></a>
-            <a href="zh_2022.html" class="nav-item"><span class="font-bold text-sm">2022 Tavasz Zárthelyi</span></a>
-            <a href="zh_2021.html" class="nav-item"><span class="font-bold text-sm">2021 Tavasz Zárthelyi</span></a>
-        </nav>
-    </aside>
-
-    <div id="overlay" onclick="toggleMenu()" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"></div>
-
-    <main class="flex-grow p-4 md:p-12 pt-24 md:pt-12">
-        <div class="max-w-4xl mx-auto">
+<span class="font-bold text-sm">Összefüggőség</span>
+</a>
+<div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">ZH-k és Megoldások</div>
+<a class="nav-item" href="zh_2025.html"><span class="font-bold text-sm">2025 Tavasz Zárthelyi</span></a>
+<a class="nav-item" href="zh_2024.html"><span class="font-bold text-sm">2024 Tavasz Zárthelyi</span></a>
+<a class="nav-item" href="zh_2023.html"><span class="font-bold text-sm">2023 Tavasz Zárthelyi</span></a>
+<a class="nav-item" href="zh_2022.html"><span class="font-bold text-sm">2022 Tavasz Zárthelyi</span></a>
+<a class="nav-item" href="zh_2021.html"><span class="font-bold text-sm">2021 Tavasz Zárthelyi</span></a>
+</nav>
+</aside>
+<div class="fixed inset-0 bg-black/50 z-40 hidden md:hidden" id="overlay" onclick="toggleMenu()"></div>
+<main class="flex-grow p-4 md:p-12 pt-24 md:pt-12">
+<div class="max-w-4xl mx-auto">
 <style>
     :root { 
         --theme-color: #7C3AED; 
@@ -1677,247 +1666,209 @@ document.addEventListener('DOMContentLoaded', () => {
     .bg-theme-soft { background-color: var(--theme-bg-soft); }
     .border-theme { border-color: var(--theme-color); }
 </style>
-
 <script>
     // Átadjuk a PHP-ból a Tailwind szín nevét a JS-nek
     window.themeColor = "violet"; 
 </script>
-
 <article class="space-y-8 animate-fade-in">
-    <header class="mb-12">
-        <div class="relative w-fit">
-            <h1 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
-                <span class="text-theme">7. Gráfok élszínezése</span>
-            </h1>
-            <div class="absolute -bottom-4 left-0 w-full h-2 bg-theme opacity-20 rounded-full"></div>
-        </div>
-    </header>
-
-    <div class="bg-theme-soft border-l-4 border-theme p-8 rounded-r-[2rem] text-slate-800 dark:text-slate-200 shadow-sm">
-        <p class="font-medium">
+<header class="mb-12">
+<div class="relative w-fit">
+<h1 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
+<span class="text-theme">7. Gráfok élszínezése</span>
+</h1>
+<div class="absolute -bottom-4 left-0 w-full h-2 bg-theme opacity-20 rounded-full"></div>
+</div>
+</header>
+<div class="bg-theme-soft border-l-4 border-theme p-8 rounded-r-[2rem] text-slate-800 dark:text-slate-200 shadow-sm">
+<p class="font-medium">
             Teljes párosítás létezése reguláris páros gráfban. Gráfok élszínezése, <b>$\chi_e(G)$ fogalma és viszonya $\Delta(G)$-hez.</b> Vizing-tétel (biz. nélkül), Kőnig tétele a páros gráfok élkromatikus számáról.
         </p>
-    </div>
-
+</div>
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             7.1
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             Reguláris páros gráfok
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-7-1" class="mb-16 animate-fade-in text-left">
-    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
+<section class="mb-16 animate-fade-in text-left" id="section-7-1">
+<div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
             Ha a $G = (A,B;E)$ páros gráf $d$-reguláris, ahol $d \geq 1$ tetszőleges egész, akkor $G$-ben van teljes párosítás.
         </p>
-    </div>
-
-    <math-proof>
-        <div class="p-2 space-y-6">
-            
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+</div>
+<math-proof>
+<div class="p-2 space-y-6">
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Mivel $G$ minden élének pontosan az egyik végpontja $A$-béli és minden $A$-béli csúcsra $d$ él illeszkedik, ezért $G$ élszámára $|E| = d \cdot |A|$ adódik. Hasonlóan kapjuk, hogy $|E| = d \cdot |B|$. Ezekből tehát $d \cdot |A| = d \cdot |B|$ és így $|A| = |B|$ adódik.
             </p>
-
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Legyen $X \subseteq A$ tetszőleges és jelölje $E_X$ az $X$ csúcsaira illeszkedő élek halmazát; ezeknek a $B$-béli végpontja tehát $N(X)$-béli. Hasonlóan a fentiekhez, mivel minden $X$-béli csúcsra pontosan $d$ darab $E_X$-béli él illeszkedik, ezért $|E_X| = d \cdot |X|$. 
             </p>
-            
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 $N(X)$ csúcsaira nem csak $E_X$-béli élek illeszkedhetnek, de annyi ezekről is elmondható, hogy mindegyikre legföljebb $d$ darab $E_X$-béli él illeszkedik; így $|E_X| \leq d \cdot |N(X)|$. Ezek összevetéséből $d \cdot |X| \leq d \cdot |N(X)|$ és így $|X| \leq |N(X)|$ adódik. Ezzel beláttuk, hogy a gráf teljesíti a Frobenius-tétel feltételeit.
             </p>
-        </div>
-    </math-proof>
+</div>
+</math-proof>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             7.2
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             Élszínezések és élkromatikus szám
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-7-2" class="mb-16 animate-fade-in text-left">
-    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
-            <b>Definíció.</b> Legyen $G$ egy gráf és $k \geq 1$ egész szám. A $G$ gráf $k$ színnel <b>él színezhető</b>, ha $G$ minden éle kiszínezhető $k$ adott (tetszőleges) színnel úgy, hogy $G$ bármely két szomszédos (vagyis közös csúcsra illeszkedő) élének a színe különböző. A $G$ <b>élkromatikus száma</b> $k$ (gyakori jelölése: $\chi'(G)$), ha $G$ $k$ színnel él színezhető, de $(k-1)$-gyel már nem.
+<section class="mb-16 animate-fade-in text-left" id="section-7-2">
+<div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<b>Definíció.</b> Legyen $G$ egy gráf és $k \geq 1$ egész szám. A $G$ gráf $k$ színnel <b>él színezhető</b>, ha $G$ minden éle kiszínezhető $k$ adott (tetszőleges) színnel úgy, hogy $G$ bármely két szomszédos (vagyis közös csúcsra illeszkedő) élének a színe különböző. A $G$ <b>élkromatikus száma</b> $k$ (gyakori jelölése: $\chi'(G)$), ha $G$ $k$ színnel él színezhető, de $(k-1)$-gyel már nem.
         </p>
-    </div>
-
-    <div class="px-4 space-y-4 text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-        <p>
+</div>
+<div class="px-4 space-y-4 text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+<p>
             Az élszínezés lényege tehát az, hogy az azonos csúcsból induló éleknek mindenképpen különböző színt kell kapniuk. Ebből azonnal következik egy alsó becslés: az élkromatikus szám nem lehet kisebb a gráf maximális fokszámánál ($\Delta(G)$), hiszen a maximális fokszámú csúcsból induló élek mind különböző színt igényelnek.
         </p>
-    </div>
+</div>
 </section>
-
-
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             7.4
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             Az élkromatikus szám alsó becslése
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-7-4" class="mb-16 animate-fade-in text-left">
-    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Állítás</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
-            <b>Állítás.</b> Minden (hurokélmentes) $G$ gráfra $\Delta(G) \leq \chi_e(G)$ teljesül.
+<section class="mb-16 animate-fade-in text-left" id="section-7-4">
+<div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Állítás</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<b>Állítás.</b> Minden (hurokélmentes) $G$ gráfra $\Delta(G) \leq \chi_e(G)$ teljesül.
         </p>
-    </div>
-
-    <math-proof>
-        <div class="p-2 space-y-6">
-            
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+</div>
+<math-proof>
+<div class="p-2 space-y-6">
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Legyen $v$ egy $\Delta(G)$ fokú csúcs $G$-ben. Ekkor a $v$-re illeszkedő $\Delta(G)$ darab élnek $G$ tetszőleges élszínezésében csupa különböző színt kell kapnia, hiszen bármely kettő szomszédos a $v$ csúcson keresztül. Így $G$ minden élszínezése legalább $\Delta(G)$ színt használ, amiből $\Delta(G) \leq \chi_e(G)$ valóban következik.
             </p>
-        </div>
-    </math-proof>
+</div>
+</math-proof>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             7.5
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             Vizing tétele
         </h2>
-    </div>
+</div>
 </math-header>
-
-
-<section id="section-7-5" class="mb-16 animate-fade-in text-left">
-    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">8.4. Tétel</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
-            <b>Tétel. (Vizing tétele)</b> Minden $G$ egyszerű gráfra $\chi_e(G) \leq \Delta(G) + 1$ teljesül.
+<section class="mb-16 animate-fade-in text-left" id="section-7-5">
+<div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">8.4. Tétel</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<b>Tétel. (Vizing tétele)</b> Minden $G$ egyszerű gráfra $\chi_e(G) \leq \Delta(G) + 1$ teljesül.
         </p>
-    </div>
-
-    <div class="px-4 space-y-6 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
-        <p>
+</div>
+<div class="px-4 space-y-6 text-slate-600 dark:text-slate-300 text-sm leading-relaxed text-left">
+<p>
             Vizing tétele szerint egy egyszerű gráf élkromatikus száma csak kétféle értéket vehet fel: vagy pontosan a maximális fokszámmal egyenlő ($\Delta(G)$), vagy eggyel nagyobb annál ($\Delta(G) + 1$).
         </p>
-        <p>
+<p>
             Ez az eredmény rendkívül mély, hiszen azt mondja ki, hogy az élszínezés hatékonysága szinte kizárólag a legzsúfoltabb csúcstól függ, és legfeljebb csak egyetlen "plusz" színre lehet szükség a konfliktusok feloldásához.
         </p>
-    </div>
+</div>
 </section>
-
-
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             7.7
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             Kőnig élszínezési tétele
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-7-7" class="mb-16 animate-fade-in text-left">
-    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
-            <b>(Kőnig élszínezési tétele)</b> Minden $G = (A,B;E)$ páros gráfra $\chi_e(G) = \Delta(G)$ teljesül.
+<section class="mb-16 animate-fade-in text-left" id="section-7-7">
+<div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<b>(Kőnig élszínezési tétele)</b> Minden $G = (A,B;E)$ páros gráfra $\chi_e(G) = \Delta(G)$ teljesül.
         </p>
-    </div>
-
-    <math-proof>
-        <div class="p-2 space-y-6">
-            
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+</div>
+<math-proof>
+<div class="p-2 space-y-6">
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Legyen $d = \Delta(G)$. A tételt először abban az esetben bizonyítjuk be, ha $G$ <b>$d$-reguláris</b>. Ha $d \geq 1$, a korábbi következmény szerint $G$-ben létezik egy $M_1$ teljes párosítás. Szímezzük ki $M_1$ éleit 1-es színnel, majd hagyjuk el őket $G$-ből. A kapott $G_1$ gráf nyilván $(d-1)$-reguláris lesz, így az eljárás $d$-szeri megismétlésével egy helyes, $d$ színnel való élszínezést kapunk.
             </p>
-
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Ha $G$ <b>nem reguláris</b>, akkor kiegészítjük további élekkel (és szükség esetén csúcsokkal) úgy, hogy egy $d$-reguláris $G'$ gráfot kapjunk. 
             </p>
-
-            <ul class="list-disc pl-5 space-y-2 text-sm text-slate-600 dark:text-slate-300">
-                <li>Ha $|A| \neq |B|$, adjunk a kisebbik osztályhoz annyi új csúcsot, hogy azonos méretűek legyenek.</li>
-                <li>Húzzunk be új éleket tetszőleges olyan $a \in A, b \in B$ csúcspár közé, ahol $d(a) < d$ és $d(b) < d$.</li>
-            </ul>
-
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<ul class="list-disc pl-5 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+<li>Ha $|A| \neq |B|$, adjunk a kisebbik osztályhoz annyi új csúcsot, hogy azonos méretűek legyenek.</li>
+<li>Húzzunk be új éleket tetszőleges olyan $a \in A, b \in B$ csúcspár közé, ahol $d(a) &lt; d$ és $d(b) &lt; d$.</li>
+</ul>
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Az eljárás végén kapott $G'$ gráf már $d$-reguláris, így az első bekezdés szerint $d$ színnel él-színezhető. Mivel azonban $G$ minden éle szerepel $G'$-ben is, ezzel $G$-nek is megadtunk egy helyes élszínezését $d = \Delta(G)$ színnel. Ebből $\chi_e(G) = \Delta(G)$ valóban következik.
             </p>
-        </div>
-    </math-proof>
+</div>
+</math-proof>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             7.8
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
             Interaktív Élszínező Labor
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-7-8-interactive" class="mb-16 animate-fade-in">
-    <div class="flex flex-col lg:flex-row gap-8 bg-white dark:bg-slate-900/50 p-8 rounded-[3rem] border border-slate-200 dark:border-slate-800 shadow-xl relative overflow-hidden">
-        
-        <div class="flex-1 bg-slate-50 dark:bg-slate-800/50 rounded-[2rem] p-4 relative min-h-[400px] flex items-center justify-center border border-slate-100 dark:border-slate-700">
-            <svg id="edge-coloring-svg" viewBox="0 0 500 300" class="w-full h-full max-w-lg drop-shadow-md">
-                <g id="graph-edges"></g>
-                <g id="graph-nodes"></g>
-            </svg>
-        </div>
-
-        <div class="w-full lg:w-72 space-y-6">
-            <div class="bg-[#7C3AED]/5 p-6 rounded-3xl border border-[#7C3AED]/10 text-center">
-                <div class="text-[10px] uppercase font-black text-[#7C3AED] mb-2 tracking-widest">Aktuális szín</div>
-                <div class="flex justify-center gap-2 mb-4">
-                    <button onclick="setSelectedColor(1)" class="w-8 h-8 rounded-full bg-rose-500 border-2 border-white ring-2 ring-transparent transition-all" id="color-btn-1"></button>
-                    <button onclick="setSelectedColor(2)" class="w-8 h-8 rounded-full bg-blue-500 border-2 border-white ring-2 ring-transparent transition-all" id="color-btn-2"></button>
-                    <button onclick="setSelectedColor(3)" class="w-8 h-8 rounded-full bg-amber-500 border-2 border-white ring-2 ring-transparent transition-all" id="color-btn-3"></button>
-                    <button onclick="setSelectedColor(4)" class="w-8 h-8 rounded-full bg-emerald-500 border-2 border-white ring-2 ring-transparent transition-all" id="color-btn-4"></button>
-                </div>
-                <div id="coloring-status" class="text-xs font-bold text-slate-500 italic">Kattints egy élre a színezéshez!</div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-3">
-                <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-2xl text-center">
-                    <div id="used-colors-count" class="text-2xl font-black text-slate-800 dark:text-white">0</div>
-                    <div class="text-[9px] uppercase font-bold text-slate-400">Használt szín</div>
-                </div>
-                <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-2xl text-center border border-indigo-100 dark:border-indigo-800/30">
-                    <div class="text-2xl font-black text-indigo-600">4</div>
-                    <div class="text-[9px] uppercase font-bold text-indigo-400 text-center">Cél ($\Delta$)</div>
-                </div>
-            </div>
-
-            <button onclick="resetEdgeColoring()" class="w-full py-4 bg-slate-800 text-white font-black uppercase text-[10px] tracking-widest rounded-2xl hover:bg-black transition-all">
+<section class="mb-16 animate-fade-in" id="section-7-8-interactive">
+<div class="flex flex-col lg:flex-row gap-8 bg-white dark:bg-slate-900/50 p-8 rounded-[3rem] border border-slate-200 dark:border-slate-800 shadow-xl relative overflow-hidden">
+<div class="flex-1 bg-slate-50 dark:bg-slate-800/50 rounded-[2rem] p-4 relative min-h-[400px] flex items-center justify-center border border-slate-100 dark:border-slate-700">
+<svg class="w-full h-full max-w-lg drop-shadow-md" id="edge-coloring-svg" viewbox="0 0 500 300">
+<g id="graph-edges"></g>
+<g id="graph-nodes"></g>
+</svg>
+</div>
+<div class="w-full lg:w-72 space-y-6">
+<div class="bg-[#7C3AED]/5 p-6 rounded-3xl border border-[#7C3AED]/10 text-center">
+<div class="text-[10px] uppercase font-black text-[#7C3AED] mb-2 tracking-widest">Aktuális szín</div>
+<div class="flex justify-center gap-2 mb-4">
+<button class="w-8 h-8 rounded-full bg-rose-500 border-2 border-white ring-2 ring-transparent transition-all" id="color-btn-1" onclick="setSelectedColor(1)"></button>
+<button class="w-8 h-8 rounded-full bg-blue-500 border-2 border-white ring-2 ring-transparent transition-all" id="color-btn-2" onclick="setSelectedColor(2)"></button>
+<button class="w-8 h-8 rounded-full bg-amber-500 border-2 border-white ring-2 ring-transparent transition-all" id="color-btn-3" onclick="setSelectedColor(3)"></button>
+<button class="w-8 h-8 rounded-full bg-emerald-500 border-2 border-white ring-2 ring-transparent transition-all" id="color-btn-4" onclick="setSelectedColor(4)"></button>
+</div>
+<div class="text-xs font-bold text-slate-500 italic" id="coloring-status">Kattints egy élre a színezéshez!</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-2xl text-center">
+<div class="text-2xl font-black text-slate-800 dark:text-white" id="used-colors-count">0</div>
+<div class="text-[9px] uppercase font-bold text-slate-400">Használt szín</div>
+</div>
+<div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-2xl text-center border border-indigo-100 dark:border-indigo-800/30">
+<div class="text-2xl font-black text-indigo-600">4</div>
+<div class="text-[9px] uppercase font-bold text-indigo-400 text-center">Cél ($\Delta$)</div>
+</div>
+</div>
+<button class="w-full py-4 bg-slate-800 text-white font-black uppercase text-[10px] tracking-widest rounded-2xl hover:bg-black transition-all" onclick="resetEdgeColoring()">
                 Alaphelyzet
             </button>
-        </div>
-    </div>
+</div>
+</div>
 </section>
-
 <script>
 const graphData = {
     nodes: [
@@ -2011,149 +1962,76 @@ function resetEdgeColoring() {
 
 initGraph();
 </script>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
             7.9
         </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            Összefoglaló Kvíz
-        </h2>
-    </div>
+
+</div>
 </math-header>
-
-<section id="section-7-9" class="mb-16 animate-fade-in">
-    <div class="bg-[#1E0E3D] rounded-[3rem] p-8 md:p-12 border border-[#7C3AED]/30 shadow-2xl relative overflow-hidden group">
-        <div class="absolute -right-20 -bottom-20 opacity-10 pointer-events-none group-hover:scale-110 transition-transform duration-700 text-white">
-            <svg width="400" height="400" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2zm-4 11a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-            </svg>
-        </div>
-
-        <div class="relative z-10 text-left">
-            <div class="flex items-center gap-4 mb-10">
-                <div class="p-3 bg-[#7C3AED] rounded-2xl shadow-lg shadow-[#7C3AED]/40 text-white">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                    </svg>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-black text-white italic tracking-tight">Kromatikus Összefüggések</h3>
-                    <p class="text-violet-300/60 text-sm italic">Vidd az egeret a kártyák fölé a helyes válaszért!</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-violet-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#01 Alsó becslés</p>
-                    <p class="text-white font-bold italic leading-relaxed text-balance">Milyen univerzális alsó korlát adható az élkromatikus számra a fokszám alapján?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-violet-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+<section class="mb-16 animate-fade-in" id="section-7-9">
+<div class="bg-[#1E0E3D] rounded-[3rem] p-8 md:p-12 border border-[#7C3AED]/30 shadow-2xl relative overflow-hidden group">
+<div class="absolute -right-20 -bottom-20 opacity-10 pointer-events-none group-hover:scale-110 transition-transform duration-700 text-white">
+<svg fill="currentColor" height="400" viewbox="0 0 24 24" width="400">
+<path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2zm-4 11a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
+</svg>
+</div>
+<div class="relative z-10 text-left">
+<div class="flex items-center gap-4 mb-10">
+<div class="p-3 bg-[#7C3AED] rounded-2xl shadow-lg shadow-[#7C3AED]/40 text-white">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<h3 class="text-2xl font-black text-white italic tracking-tight">Kromatikus Összefüggések</h3>
+<p class="text-violet-300/60 text-sm italic">Vidd az egeret a kártyák fölé a helyes válaszért!</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
+<p class="text-violet-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#01 Alsó becslés</p>
+<p class="text-white font-bold italic leading-relaxed text-balance">Milyen univerzális alsó korlát adható az élkromatikus számra a fokszám alapján?</p>
+<div class="mt-4 pt-4 border-t border-white/10 text-violet-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
                         Válasz: Minden hurokélmentes gráfra $\Delta(G) \leq \chi_e(G)$ teljesül, mivel a maximális fokszámú csúcs élei mind különböző színt igényelnek.
                     </div>
-                </div>
-
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-violet-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#02 Vizing-tétel</p>
-                    <p class="text-white font-bold italic leading-relaxed">Hányféle értéket vehet fel egy egyszerű gráf élkromatikus száma a maximális fokszám függvényében?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-violet-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+</div>
+<div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
+<p class="text-violet-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#02 Vizing-tétel</p>
+<p class="text-white font-bold italic leading-relaxed">Hányféle értéket vehet fel egy egyszerű gráf élkromatikus száma a maximális fokszám függvényében?</p>
+<div class="mt-4 pt-4 border-t border-white/10 text-violet-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
                         Válasz: Legfeljebb kétfélét: vagy $\Delta(G)$, vagy $\Delta(G) + 1$. Ez Vizing tételének közvetlen következménye.
                     </div>
-                </div>
-
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-violet-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#03 Páros gráfok</p>
-                    <p class="text-white font-bold italic leading-relaxed">Mennyi a páros gráfok élkromatikus száma?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-violet-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+</div>
+<div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
+<p class="text-violet-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#03 Páros gráfok</p>
+<p class="text-white font-bold italic leading-relaxed">Mennyi a páros gráfok élkromatikus száma?</p>
+<div class="mt-4 pt-4 border-t border-white/10 text-violet-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
                         Válasz: Kőnig tétele szerint páros gráfok esetén az alsó becslés pontos: $\chi_e(G) = \Delta(G)$.
                     </div>
-                </div>
-
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-violet-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#04 Teljes párosítás</p>
-                    <p class="text-white font-bold italic leading-relaxed text-balance">Milyen garanciát ad a regularitás a párosításokra nézve?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-violet-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+</div>
+<div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
+<p class="text-violet-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#04 Teljes párosítás</p>
+<p class="text-white font-bold italic leading-relaxed text-balance">Milyen garanciát ad a regularitás a párosításokra nézve?</p>
+<div class="mt-4 pt-4 border-t border-white/10 text-violet-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
                         Válasz: Minden $d \geq 1$ reguláris páros gráfban biztosan létezik teljes párosítás.
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</div>
+</div>
 </section>
 
-<section id="section-7-10" class="mb-16 animate-fade-in text-left">
-    <div class="bg-slate-50/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800">
-        
-        <div class="flex items-center gap-4 mb-10">
-            <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center text-amber-500 shadow-sm">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7zM9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1z"/>
-                </svg>
-            </div>
-            <div>
-                <h3 class="text-xl font-black text-slate-800 dark:text-white italic">Tudtad-e?</h3>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
-            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-amber-400 transition-transform hover:-translate-y-1">
-                <h4 class="text-amber-600 text-[10px] font-black uppercase tracking-widest mb-4">ÓRARENDKÉSZÍTÉS</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                    Az iskolai órarendek készítése valójában egy <b>élszínezési probléma</b>. Ha a tanárok és osztályok közötti órákat élekként ábrázoljuk, az élkromatikus szám megadja a minimális számú idősávot, amely alatt az összes óra konfliktusmentesen megtartható.
-                </p>
-            </div>
-
-            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-emerald-400 transition-transform hover:-translate-y-1">
-                <h4 class="text-emerald-600 text-[10px] font-black uppercase tracking-widest mb-4">PÁROS GRÁFOK ELŐNYE</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                    Páros gráfoknál az élszínezés <b>mindig optimális</b>, hiszen $\chi_e(G) = \Delta(G)$. Ez azt jelenti, hogy sosem kell "pazarolnunk" extra színt (vagy idősávot) a maximális fokszámon felül, köszönhetően Kőnig tételének.
-                </p>
-            </div>
-
-            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-indigo-400 transition-transform hover:-translate-y-1">
-                <h4 class="text-indigo-600 text-[10px] font-black uppercase tracking-widest mb-4">A VIZING-KÜLÖNBSÉG</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                    Vizing tétele szerint az általános gráfoknál is <b>legfeljebb csak egyetlen</b> extra színre lehet szükség a maximális fokszám felett. Ez a "plusz egy" szín választja el a viszonylag egyszerűen színezhető gráfokat a strukturálisan bonyolultabbaktól.
-                </p>
-            </div>
-
-            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-rose-400 transition-transform hover:-translate-y-1">
-                <h4 class="text-rose-600 text-[10px] font-black uppercase tracking-widest mb-4">KÖRMÉRKŐZÉSEK</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                    Egy bajnokság fordulóinak beosztása egy teljes gráf élszínezése. Ha a csapatok száma páratlan (pl. $K_{11}$), akkor matematikailag bizonyítható, hogy <b>több forduló kell</b>, mint ahány meccse van egy csapatnak, mert minden körben valaki kénytelen pihenni.
-                </p>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-
-
-    <div id="complete-section-7" 
-         class="mt-24 p-12 border-2 border-dashed border-violet-500/30 rounded-[3rem] text-center transition-all bg-theme/5">
-        
-        <h3 id="complete-text-7" class="text-xl font-black text-theme mb-6 uppercase tracking-widest">
+<div class="mt-24 p-12 border-2 border-dashed border-violet-500/30 rounded-[3rem] text-center transition-all bg-theme/5" id="complete-section-7">
+<h3 class="text-xl font-black text-theme mb-6 uppercase tracking-widest" id="complete-text-7">
             Mindent megtanultál?
         </h3>
-        
-        <button onclick="toggleChapterComplete(7)" 
-                id="complete-btn-7" 
-                data-theme-color="violet"
-                class="px-10 py-4 bg-violet-600 hover:bg-violet-500 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl transition-all active:scale-95">
+<button class="px-10 py-4 bg-violet-600 hover:bg-violet-500 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl transition-all active:scale-95" data-theme-color="violet" id="complete-btn-7" onclick="toggleChapterComplete(7)">
             Igen! ✅
         </button>
-    </div>
+</div>
 </article>
-
-
-
-
-
-
-
 <script>
     function toggleBeadoModal() {
         const modal = document.getElementById('beadoModal');
@@ -2168,12 +2046,8 @@ initGraph();
     }
 </script>
 
-
-
-</footer>
-</main>
-
-    <script>
+</div></main>
+<script>
         // --- GLOBÁLIS FUNKCIÓK ---
 
         // 1. Menükezelés mobilra
@@ -2217,132 +2091,111 @@ initGraph();
             if (window.MathJax) MathJax.typesetPromise();
         });
     </script>
-
-
-<div id="beadoModal" class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
-    <div id="beadoPanel" class="bg-white dark:bg-slate-800 w-full max-w-md rounded-[2.5rem] shadow-2xl transform scale-90 transition-transform duration-500 ease-out overflow-hidden border border-slate-100 dark:border-slate-700">
-        <div class="p-10 text-center space-y-8">
-            <div class="space-y-4">
-                <div class="w-20 h-20 bg-rose-500 rounded-3xl rotate-12 mx-auto flex items-center justify-center shadow-lg shadow-rose-500/30">
-                    <svg class="w-10 h-10 text-white -rotate-12" fill="currentColor" viewBox="0 0 24 24"><path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" /></svg>
-                </div>
-                <h3 class="text-3xl font-black text-slate-800 dark:text-white leading-tight">Ne add fel bro,<br>van remény!</h3>
-            </div>
-            <button onclick="toggleBeadoModal()" class="w-full py-5 bg-violet-500 hover:bg-violet-400 text-white font-black uppercase tracking-widest text-sm rounded-2xl transition-all shadow-xl shadow-violet-500/20">Nyomom! 💪</button>
-        </div>
-    </div>
+<div class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300" id="beadoModal">
+<div class="bg-white dark:bg-slate-800 w-full max-w-md rounded-[2.5rem] shadow-2xl transform scale-90 transition-transform duration-500 ease-out overflow-hidden border border-slate-100 dark:border-slate-700" id="beadoPanel">
+<div class="p-10 text-center space-y-8">
+<div class="space-y-4">
+<div class="w-20 h-20 bg-rose-500 rounded-3xl rotate-12 mx-auto flex items-center justify-center shadow-lg shadow-rose-500/30">
+<svg class="w-10 h-10 text-white -rotate-12" fill="currentColor" viewbox="0 0 24 24"><path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z"></path></svg>
 </div>
-
-<div id="assistant-window" class="fixed inset-0 md:inset-auto md:bottom-24 md:right-6 z-50 w-full h-full md:w-[450px] md:h-[80vh] bg-violet-600 glass-effect rounded-none md:rounded-[2.5rem] shadow-2xl border-none md:border md:border-white/20 overflow-hidden hidden transform transition-all duration-300 origin-bottom-right opacity-0 scale-95 flex flex-col">    <div class="p-6 pb-4 bg-violet-600 text-white flex-none">
-        <div class="flex justify-between items-start">
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center text-2xl shadow-inner text-left">🤖</div>
-                <div class="text-left">
-                    <h3 class="font-black text-lg uppercase tracking-tight leading-none">Szeszlér-Bot</h3>
-                    <p class="text-[11px] text-violet-100 font-medium mt-1.5 flex items-center gap-1.5">
-                        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span> Online segítő
+<h3 class="text-3xl font-black text-slate-800 dark:text-white leading-tight">Ne add fel bro,<br/>van remény!</h3>
+</div>
+<button class="w-full py-5 bg-violet-500 hover:bg-violet-400 text-white font-black uppercase tracking-widest text-sm rounded-2xl transition-all shadow-xl shadow-violet-500/20" onclick="toggleBeadoModal()">Nyomom! 💪</button>
+</div>
+</div>
+</div>
+<div class="fixed inset-0 md:inset-auto md:bottom-24 md:right-6 z-50 w-full h-full md:w-[450px] md:h-[80vh] bg-violet-600 glass-effect rounded-none md:rounded-[2.5rem] shadow-2xl border-none md:border md:border-white/20 overflow-hidden hidden transform transition-all duration-300 origin-bottom-right opacity-0 scale-95 flex flex-col" id="assistant-window"> <div class="p-6 pb-4 bg-violet-600 text-white flex-none">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center text-2xl shadow-inner text-left">🤖</div>
+<div class="text-left">
+<h3 class="font-black text-lg uppercase tracking-tight leading-none">Szeszlér-Bot</h3>
+<p class="text-[11px] text-violet-100 font-medium mt-1.5 flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span> Online segítő
                     </p>
-                </div>
-            </div>
-            <button onclick="toggleAssistant()" class="p-2 hover:bg-white/10 rounded-full transition-colors">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2.5" stroke-linecap="round"/></svg>
-            </button>
-        </div>
-        
-        <div class="flex mt-6 bg-black/10 p-1 rounded-2xl border border-white/10 text-white">
-    <button onclick="switchTab('search')" id="tab-search" class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl bg-white text-violet-600 shadow-sm transition-all">Fogalomtár</button>
-    
-    <button onclick="switchTab('ask')" id="tab-ask" class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl hover:text-white transition-all opacity-70">Kérdezz</button>
-
-    <button onclick="switchTab('exam')" id="tab-exam" class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl hover:text-white transition-all opacity-70">Vakvizsga</button>
 </div>
-
-<div id="panel-exam" class="hidden flex flex-col flex-grow overflow-hidden p-6 bg-transparent">
-        <div class="flex-grow flex flex-col items-center justify-center p-6 space-y-6 text-center overflow-y-auto">
-        
-        <div id="exam-card" class="w-full p-8 rounded-[2.5rem] bg-white dark:bg-slate-800 border-none flex flex-col items-center justify-center min-h-[250px] transition-all shadow-2xl">
-            <div id="exam-prompt" class="text-slate-400 italic text-sm">
+</div>
+<button class="p-2 hover:bg-white/10 rounded-full transition-colors" onclick="toggleAssistant()">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-width="2.5"></path></svg>
+</button>
+</div>
+<div class="flex mt-6 bg-black/10 p-1 rounded-2xl border border-white/10 text-white">
+<button class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl bg-white text-violet-600 shadow-sm transition-all" id="tab-search" onclick="switchTab('search')">Fogalomtár</button>
+<button class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl hover:text-white transition-all opacity-70" id="tab-ask" onclick="switchTab('ask')">Kérdezz</button>
+<button class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl hover:text-white transition-all opacity-70" id="tab-exam" onclick="switchTab('exam')">Vakvizsga</button>
+</div>
+<div class="hidden flex flex-col flex-grow overflow-hidden p-6 bg-transparent" id="panel-exam">
+<div class="flex-grow flex flex-col items-center justify-center p-6 space-y-6 text-center overflow-y-auto">
+<div class="w-full p-8 rounded-[2.5rem] bg-white dark:bg-slate-800 border-none flex flex-col items-center justify-center min-h-[250px] transition-all shadow-2xl" id="exam-card">
+<div class="text-slate-400 italic text-sm" id="exam-prompt">
                 Jöhetnek a kérdések?
             </div>
-            <div id="exam-content" class="hidden w-full space-y-4 text-left">
-                <span id="exam-ref" class="px-2 py-0.5 rounded-md bg-violet-50 text-violet-600 text-[8px] font-black uppercase tracking-widest"></span>
-                <h4 id="exam-title" class="font-black text-slate-900 dark:text-white uppercase text-sm tracking-tight leading-tight"></h4>
-                <div id="exam-answer" class="hidden p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-violet-100 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-300 italic leading-relaxed shadow-inner"></div>
-            </div>
-        </div>
-
-        <div class="w-full space-y-4 pb-4">
-            <button id="exam-main-btn" onclick="drawExamCard()" class="w-full py-4 bg-white text-violet-600 hover:bg-slate-50 font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl active:scale-95 transition-all">
+<div class="hidden w-full space-y-4 text-left" id="exam-content">
+<span class="px-2 py-0.5 rounded-md bg-violet-50 text-violet-600 text-[8px] font-black uppercase tracking-widest" id="exam-ref"></span>
+<h4 class="font-black text-slate-900 dark:text-white uppercase text-sm tracking-tight leading-tight" id="exam-title"></h4>
+<div class="hidden p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-violet-100 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-300 italic leading-relaxed shadow-inner" id="exam-answer"></div>
+</div>
+</div>
+<div class="w-full space-y-4 pb-4">
+<button class="w-full py-4 bg-white text-violet-600 hover:bg-slate-50 font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl active:scale-95 transition-all" id="exam-main-btn" onclick="drawExamCard()">
                 Új tétel húzása 🃏
             </button>
-
-            <button id="exam-reveal-btn" onclick="revealExamAnswer()" class="hidden w-full py-4 bg-white text-violet-600 hover:bg-slate-50 font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl active:scale-95 transition-all">
+<button class="hidden w-full py-4 bg-white text-violet-600 hover:bg-slate-50 font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl active:scale-95 transition-all" id="exam-reveal-btn" onclick="revealExamAnswer()">
                 Válasz mutatása ✨
             </button>
-        </div>
-    </div>
 </div>
 </div>
-
-<div id="panel-search" class="flex flex-col flex-grow overflow-hidden bg-white dark:bg-slate-900">
-            <div class="p-5 border-b dark:border-slate-800 text-left flex-none">
-            <input type="text" id="search-input" placeholder="Mit keresel?..." class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 text-sm focus:ring-2 focus:ring-violet-500 transition-all dark:text-white shadow-inner">
-        </div>
-        <div id="search-results" class="p-6 flex-grow overflow-y-auto bg-white/50 dark:bg-transparent text-left custom-scrollbar">
-            <div class="text-center py-12 opacity-30">
-                <svg class="w-12 h-12 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-width="2"/></svg>
-                <p class="text-[10px] font-bold uppercase tracking-widest text-center">Kezdj el gépelni...</p>
-            </div>
-        </div>
-    </div>
-
-<div id="panel-ask" class="hidden flex flex-col flex-grow overflow-hidden bg-white dark:bg-slate-900">
-            <div id="ask-results" class="p-6 flex-grow overflow-y-auto space-y-4 bg-slate-50/50 dark:bg-transparent text-left custom-scrollbar">
-            <div class="flex gap-3 animate-fade-in text-left">
-        <div class="w-8 h-8 rounded-xl bg-violet-600 flex items-center justify-center text-xs shadow-md flex-none text-white">🤖</div>
-        
-        <div class="bot-bubble p-4 text-xs italic text-slate-600 dark:text-slate-300 shadow-sm leading-relaxed max-w-[85%] border border-violet-100 dark:border-violet-900/30"">
+</div>
+</div>
+<div class="flex flex-col flex-grow overflow-hidden bg-white dark:bg-slate-900" id="panel-search">
+<div class="p-5 border-b dark:border-slate-800 text-left flex-none">
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 text-sm focus:ring-2 focus:ring-violet-500 transition-all dark:text-white shadow-inner" id="search-input" placeholder="Mit keresel?..." type="text"/>
+</div>
+<div class="p-6 flex-grow overflow-y-auto bg-white/50 dark:bg-transparent text-left custom-scrollbar" id="search-results">
+<div class="text-center py-12 opacity-30">
+<svg class="w-12 h-12 mx-auto mb-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-width="2"></path></svg>
+<p class="text-[10px] font-bold uppercase tracking-widest text-center">Kezdj el gépelni...</p>
+</div>
+</div>
+</div>
+<div class="hidden flex flex-col flex-grow overflow-hidden bg-white dark:bg-slate-900" id="panel-ask">
+<div class="p-6 flex-grow overflow-y-auto space-y-4 bg-slate-50/50 dark:bg-transparent text-left custom-scrollbar" id="ask-results">
+<div class="flex gap-3 animate-fade-in text-left">
+<div class="w-8 h-8 rounded-xl bg-violet-600 flex items-center justify-center text-xs shadow-md flex-none text-white">🤖</div>
+<div "="" class="bot-bubble p-4 text-xs italic text-slate-600 dark:text-slate-300 shadow-sm leading-relaxed max-w-[85%] border border-violet-100 dark:border-violet-900/30">
             Szia! Szeszlér-Bot vagyok. Kérdezz bármit az anyaggal kapcsolatban!
         </div>
-    </div>
-        </div>
-        
-        <div class="p-5 border-t dark:border-slate-800 bg-white dark:bg-slate-900 flex-none text-left">
-            <div class="relative flex items-center gap-2">
-                <input type="text" id="ask-input" placeholder="Írd ide a kérdésed..." class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 text-sm focus:ring-2 focus:ring-violet-500 transition-all dark:text-white shadow-inner">
-                <button onclick="handleAsk()" class="p-4 bg-violet-600 text-white rounded-2xl shadow-lg hover:bg-violet-500 transition-all active:scale-90 flex-none">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-            </div>
-        </div>
-    </div>
 </div>
-
-
-
-
-
-
+</div>
+<div class="p-5 border-t dark:border-slate-800 bg-white dark:bg-slate-900 flex-none text-left">
+<div class="relative flex items-center gap-2">
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 text-sm focus:ring-2 focus:ring-violet-500 transition-all dark:text-white shadow-inner" id="ask-input" placeholder="Írd ide a kérdésed..." type="text"/>
+<button class="p-4 bg-violet-600 text-white rounded-2xl shadow-lg hover:bg-violet-500 transition-all active:scale-90 flex-none" onclick="handleAsk()">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</div>
 <div class="fixed-btn-container left-4 bottom-[84px] md:left-auto md:right-6 md:bottom-[100px]">
-    <button onclick="toggleAssistant()" class="flex items-center justify-center w-11 h-11 md:w-16 md:h-16 bg-violet-600 text-white rounded-full shadow-2xl transition-transform active:scale-95">
-        <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-    </button>
+<button class="flex items-center justify-center w-11 h-11 md:w-16 md:h-16 bg-violet-600 text-white rounded-full shadow-2xl transition-transform active:scale-95" onclick="toggleAssistant()">
+<svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
 </div>
-
 <div class="fixed-btn-container left-4 bottom-6 md:left-auto md:right-6 md:bottom-6">
-    <button onclick="toggleBeadoModal()" class="flex items-center gap-2 bg-violet-500 hover:bg-violet-400 text-white px-3 py-2.5 md:px-6 md:py-4 rounded-xl md:rounded-2xl shadow-2xl border border-white/20">
-        <span class="font-black text-[10px] md:text-sm tracking-widest uppercase">
-            <span class="md:hidden">032</span>
-            <span class="hidden md:inline">032 beadó</span>
-        </span>
-        <div class="bg-white/20 p-1 rounded-md text-white">
-            <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10h.01M15 10h.01M9.5 15.5a5 5 0 015 0M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-        </div>
-    </button>
+<button class="flex items-center gap-2 bg-violet-500 hover:bg-violet-400 text-white px-3 py-2.5 md:px-6 md:py-4 rounded-xl md:rounded-2xl shadow-2xl border border-white/20" onclick="toggleBeadoModal()">
+<span class="font-black text-[10px] md:text-sm tracking-widest uppercase">
+<span class="md:hidden">032</span>
+<span class="hidden md:inline">032 beadó</span>
+</span>
+<div class="bg-white/20 p-1 rounded-md text-white">
+<svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 10h.01M15 10h.01M9.5 15.5a5 5 0 015 0M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</button>
 </div>
 <script>
     window.addEventListener('load', () => {
@@ -2425,8 +2278,6 @@ function switchTab(tab) {
     activeTab.className = `flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl bg-white text-${themeColor}-600 shadow-sm transition-all`;
 }
 </script>
-
-
 <script>
     function markChapterComplete(num) {
     let progress = JSON.parse(localStorage.getItem('graphProgress') || '{}');
@@ -2556,7 +2407,6 @@ function updateProgressUI() {
 // Oldalbetöltéskor inicializáljuk
 document.addEventListener('DOMContentLoaded', updateProgressUI);
 </script>
-
 <script>
 function initGlossaryTooltips() {
     const article = document.querySelector('article');
@@ -2681,6 +2531,5 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <div id="global-glossary-tooltip"></div>
 </body>
-
 <!-- Mirrored from bsz2jegyzet.hu/bsz2/7.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:49:12 GMT -->
 </html>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="hu">
 
+<html lang="hu">
 <!-- Mirrored from bsz2jegyzet.hu/bsz2/6.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:49:12 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<!-- Added by HTTrack --><meta content="text/html;charset=utf-8" http-equiv="content-type"/><!-- /Added by HTTrack -->
 <head>
-    <style>
+<style>
 /* ============================================================
    1. ALAPOK ÉS GLOBÁLIS BEÁLLÍTÁSOK
    ============================================================ */
@@ -264,8 +264,7 @@ html.dark math-example { background: rgba(255,255,255,0.02); border-color: #3341
     #sidebar.open { transform: translateX(0); }
     main { padding-top: 80px !important; }
 }
-</style>    
-
+</style>
 <script>
     const themeColor = 'stone';
 // TUDÁSBÁZIS (Már az eddigi 5.1-5.3 tartalommal is kiegészítve)
@@ -1516,21 +1515,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-</script>    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>6. Párosítások páros gráfban - Bsz2 Jegyzet</title>
-
-    <script src="https://cdn.tailwindcss.com/"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
+</script> <meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>6. Párosítások páros gráfban - Bsz2 Jegyzet</title>
+<script src="https://cdn.tailwindcss.com/"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
         tailwind.config = { darkMode: 'class' }
         window.MathJax = {
             tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
             options: { enableMenu: false }
         };
     </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
     /**
      * MATEMATIKAI KOMPONENSEK REGISZTRÁLÁSA
      * Létrehozunk egy közös osztályt, hogy később könnyen bővíthessük őket.
@@ -1559,114 +1557,105 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </head>
 <body class="flex flex-col md:flex-row min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
-
-    <div class="md:hidden fixed top-0 left-0 right-0 bg-white border-b border-slate-200 p-4 z-[60] flex justify-between items-center shadow-sm dark:bg-slate-900 dark:border-slate-800">
-        <h1 class="text-xl font-black text-indigo-600 italic">Bsz2 Jegyzet</h1>
-        <div class="flex items-center space-x-2">
-            <button onclick="toggleNightMode()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 border dark:border-slate-700">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-            </button>
-            <button onclick="toggleMenu()" class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-bold text-xs uppercase shadow-md active:scale-95 transition-transform">Tételek</button>
-        </div>
-    </div>
-
-    <aside id="sidebar" class="fixed md:sticky top-0 left-0 w-[85%] md:w-80 bg-white border-r border-slate-200 flex flex-col h-screen z-50 overflow-y-auto closed md:translate-x-0 shadow-2xl md:shadow-none dark:bg-slate-900 dark:border-slate-800 transition-transform duration-300">
-        <div class="p-6 border-b border-slate-100 hidden md:block dark:border-slate-800">
-            <h1 class="text-2xl font-extrabold text-indigo-600 italic">Bsz2 Jegyzet</h1>
-            <p class="text-slate-400 text-[10px] uppercase tracking-widest mt-1 font-bold">Vizsgafelkészítő</p>
-        </div>
-
-        <div class="px-8 py-4 border-b border-slate-100 flex items-center justify-between dark:border-slate-800">
-            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Éjszakai mód</span>
-            <button onclick="toggleNightMode()" class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 border dark:border-slate-700 transition-all active:scale-90 shadow-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-            </button>
-        </div>
-
-        <nav id="main-nav" class="flex flex-col p-4 space-y-2 pb-24 md:pb-4">
-            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">Összefoglaló</div>
-            <a href="puska.html" class="nav-item"><span class="font-bold text-sm">Puska (Képletek, Tételek)</span></a>
-
-            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2">Gráfelmélet</div>
-            
-                                            <a href="index.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<div class="md:hidden fixed top-0 left-0 right-0 bg-white border-b border-slate-200 p-4 z-[60] flex justify-between items-center shadow-sm dark:bg-slate-900 dark:border-slate-800">
+<h1 class="text-xl font-black text-indigo-600 italic">Bsz2 Jegyzet</h1>
+<div class="flex items-center space-x-2">
+<button class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 border dark:border-slate-700" onclick="toggleNightMode()">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<button class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-bold text-xs uppercase shadow-md active:scale-95 transition-transform" onclick="toggleMenu()">Tételek</button>
+</div>
+</div>
+<aside class="fixed md:sticky top-0 left-0 w-[85%] md:w-80 bg-white border-r border-slate-200 flex flex-col h-screen z-50 overflow-y-auto closed md:translate-x-0 shadow-2xl md:shadow-none dark:bg-slate-900 dark:border-slate-800 transition-transform duration-300" id="sidebar">
+<div class="p-6 border-b border-slate-100 hidden md:block dark:border-slate-800">
+<h1 class="text-2xl font-extrabold text-indigo-600 italic">Bsz2 Jegyzet</h1>
+<p class="text-slate-400 text-[10px] uppercase tracking-widest mt-1 font-bold">Vizsgafelkészítő</p>
+</div>
+<div class="px-8 py-4 border-b border-slate-100 flex items-center justify-between dark:border-slate-800">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Éjszakai mód</span>
+<button class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-yellow-400 border dark:border-slate-700 transition-all active:scale-90 shadow-sm" onclick="toggleNightMode()">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<nav class="flex flex-col p-4 space-y-2 pb-24 md:pb-4" id="main-nav">
+<div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">Összefoglaló</div>
+<a class="nav-item" href="puska.html"><span class="font-bold text-sm">Puska (Képletek, Tételek)</span></a>
+<div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2">Gráfelmélet</div>
+<a class="nav-item" href="index.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         1. Tétel
                     </span>
-                    <span class="font-bold text-sm">Gráfelméleti alapfogalmak</span>
-                    </a>
-                                            <a href="2.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Gráfelméleti alapfogalmak</span>
+</a>
+<a class="nav-item" href="2.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         2. Tétel
                     </span>
-                    <span class="font-bold text-sm">Fák tulajdonságai</span>
-                    </a>
-                                            <a href="3.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Fák tulajdonságai</span>
+</a>
+<a class="nav-item" href="3.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         3. Tétel
                     </span>
-                    <span class="font-bold text-sm">Hamilton-körök és -utak</span>
-                    </a>
-                                            <a href="4.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Hamilton-körök és -utak</span>
+</a>
+<a class="nav-item" href="4.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         4. Tétel
                     </span>
-                    <span class="font-bold text-sm">Gráfok színezése (χ, ω)</span>
-                    </a>
-                                            <a href="5.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Gráfok színezése (χ, ω)</span>
+</a>
+<a class="nav-item" href="5.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         5. Tétel
                     </span>
-                    <span class="font-bold text-sm">Párosítás fogalma</span>
-                    </a>
-                                            <a href="6.html" class="nav-item active">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Párosítás fogalma</span>
+</a>
+<a class="nav-item active" href="6.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         6. Tétel
                     </span>
-                    <span class="font-bold text-sm">Párosítás páros gráfban</span>
-                    </a>
-                                            <a href="7.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Párosítás páros gráfban</span>
+</a>
+<a class="nav-item" href="7.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         7. Tétel
                     </span>
-                    <span class="font-bold text-sm">Teljes párosítás (Reguláris)</span>
-                    </a>
-                                            <a href="8.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Teljes párosítás (Reguláris)</span>
+</a>
+<a class="nav-item" href="8.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         8. Tétel
                     </span>
-                    <span class="font-bold text-sm">Hálózat, folyam, vágás</span>
-                    </a>
-                                            <a href="9.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Hálózat, folyam, vágás</span>
+</a>
+<a class="nav-item" href="9.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         9. Tétel
                     </span>
-                    <span class="font-bold text-sm">Folyam általánosításai</span>
-                    </a>
-                                            <a href="10.html" class="nav-item ">
-                    <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+<span class="font-bold text-sm">Folyam általánosításai</span>
+</a>
+<a class="nav-item" href="10.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
                         10. Tétel
                     </span>
-                    <span class="font-bold text-sm">Összefüggőség</span>
-                    </a>
-
-            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">ZH-k és Megoldások</div>
-            <a href="zh_2025.html" class="nav-item"><span class="font-bold text-sm">2025 Tavasz Zárthelyi</span></a>
-            <a href="zh_2024.html" class="nav-item"><span class="font-bold text-sm">2024 Tavasz Zárthelyi</span></a>
-            <a href="zh_2023.html" class="nav-item"><span class="font-bold text-sm">2023 Tavasz Zárthelyi</span></a>
-            <a href="zh_2022.html" class="nav-item"><span class="font-bold text-sm">2022 Tavasz Zárthelyi</span></a>
-            <a href="zh_2021.html" class="nav-item"><span class="font-bold text-sm">2021 Tavasz Zárthelyi</span></a>
-        </nav>
-    </aside>
-
-    <div id="overlay" onclick="toggleMenu()" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"></div>
-
-    <main class="flex-grow p-4 md:p-12 pt-24 md:pt-12">
-        <div class="max-w-4xl mx-auto">
+<span class="font-bold text-sm">Összefüggőség</span>
+</a>
+<div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">ZH-k és Megoldások</div>
+<a class="nav-item" href="zh_2025.html"><span class="font-bold text-sm">2025 Tavasz Zárthelyi</span></a>
+<a class="nav-item" href="zh_2024.html"><span class="font-bold text-sm">2024 Tavasz Zárthelyi</span></a>
+<a class="nav-item" href="zh_2023.html"><span class="font-bold text-sm">2023 Tavasz Zárthelyi</span></a>
+<a class="nav-item" href="zh_2022.html"><span class="font-bold text-sm">2022 Tavasz Zárthelyi</span></a>
+<a class="nav-item" href="zh_2021.html"><span class="font-bold text-sm">2021 Tavasz Zárthelyi</span></a>
+</nav>
+</aside>
+<div class="fixed inset-0 bg-black/50 z-40 hidden md:hidden" id="overlay" onclick="toggleMenu()"></div>
+<main class="flex-grow p-4 md:p-12 pt-24 md:pt-12">
+<div class="max-w-4xl mx-auto">
 <style>
     :root { 
         --theme-color: #5E270B; 
@@ -1678,178 +1667,156 @@ document.addEventListener('DOMContentLoaded', () => {
     .bg-theme-soft { background-color: var(--theme-bg-soft); }
     .border-theme { border-color: var(--theme-color); }
 </style>
-
 <script>
     // Átadjuk a PHP-ból a Tailwind szín nevét a JS-nek
     window.themeColor = "stone"; 
 </script>
-
 <article class="space-y-8 animate-fade-in">
-    <header class="mb-12">
-        <div class="relative w-fit">
-            <h1 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
-                <span class="text-theme">6. Párosítások páros gráfban</span>
-            </h1>
-            <div class="absolute -bottom-4 left-0 w-full h-2 bg-theme opacity-20 rounded-full"></div>
-        </div>
-    </header>
-
-    <div class="bg-theme-soft border-l-4 border-theme p-8 rounded-r-[2rem] text-slate-800 dark:text-slate-200 shadow-sm">
-        <p class="font-medium">
+<header class="mb-12">
+<div class="relative w-fit">
+<h1 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
+<span class="text-theme">6. Párosítások páros gráfban</span>
+</h1>
+<div class="absolute -bottom-4 left-0 w-full h-2 bg-theme opacity-20 rounded-full"></div>
+</div>
+</header>
+<div class="bg-theme-soft border-l-4 border-theme p-8 rounded-r-[2rem] text-slate-800 dark:text-slate-200 shadow-sm">
+<p class="font-medium">
             Párosítások páros gráfban, <b>a javítóutas algoritmus, Kőnig, Hall</b> és Frobenius tételei.
         </p>
-    </div>
-
+</div>
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-24">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
+<div class="flex items-center gap-4 mb-6 mt-24">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
             6.1
         </div>
-        
-        <div class="relative w-fit">
-            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
+<div class="relative w-fit">
+<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
                 Javítóutak páros gráfban
             </h2>
-            <div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
-        </div>
-    </div>
+<div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
+</div>
+</div>
 </math-header>
-
-<section id="section-6-1" class="mb-16 animate-fade-in text-left">
-    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
-        
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic mb-6">
+<section class="mb-16 animate-fade-in text-left" id="section-6-1">
+<div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic mb-6">
             Legyen $G = (A, B; E)$ páros gráf és $M$ egy párosítás $G$-ben. Ekkor egy $G$-béli $P$ út <b>javítóút</b> $M$-re nézve, ha rá az alábbiak teljesülnek:
         </p>
-
-        <div class="space-y-4 ml-4">
-            <div class="flex gap-4">
-                <span class="font-black text-emerald-600">(1)</span>
-                <p class="text-slate-600 dark:text-slate-300">$P$ egy $M$ által nem fedett $A$-béli csúcsból indul;</p>
-            </div>
-            <div class="flex gap-4">
-                <span class="font-black text-emerald-600">(2)</span>
-                <p class="text-slate-600 dark:text-slate-300">$P$ egy $M$ által nem fedett $B$-béli csúcsban ér véget;</p>
-            </div>
-            <div class="flex gap-4">
-                <span class="font-black text-emerald-600">(3)</span>
-                <p class="text-slate-600 dark:text-slate-300">$P$-nek minden páros sorszámú éle (tehát a második, negyedik stb.) $M$-béli.</p>
-            </div>
-        </div>
-    </div>
+<div class="space-y-4 ml-4">
+<div class="flex gap-4">
+<span class="font-black text-emerald-600">(1)</span>
+<p class="text-slate-600 dark:text-slate-300">$P$ egy $M$ által nem fedett $A$-béli csúcsból indul;</p>
+</div>
+<div class="flex gap-4">
+<span class="font-black text-emerald-600">(2)</span>
+<p class="text-slate-600 dark:text-slate-300">$P$ egy $M$ által nem fedett $B$-béli csúcsban ér véget;</p>
+</div>
+<div class="flex gap-4">
+<span class="font-black text-emerald-600">(3)</span>
+<p class="text-slate-600 dark:text-slate-300">$P$-nek minden páros sorszámú éle (tehát a második, negyedik stb.) $M$-béli.</p>
+</div>
+</div>
+</div>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
             6.2
         </div>
-
-        <div class="relative w-fit">
-            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
+<div class="relative w-fit">
+<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
                 Javítóutas algoritmus
             </h2>
-            <div class="absolute -bottom-2 left-0 w-full h-1.5 bg-theme opacity-20 rounded-full"></div>
-        </div>
-    </div>
+<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-theme opacity-20 rounded-full"></div>
+</div>
+</div>
 </math-header>
-
-<section id="section-6-2" class="mb-16 animate-fade-in text-left">
-    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Algoritmus</h4>
-
-        <p class="text-slate-800 dark:text-white font-bold mb-4 uppercase text-sm tracking-tight">
+<section class="mb-16 animate-fade-in text-left" id="section-6-2">
+<div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Algoritmus</h4>
+<p class="text-slate-800 dark:text-white font-bold mb-4 uppercase text-sm tracking-tight">
             JAVÍTÓUTAS ALGORITMUS (MAXIMÁLIS PÁROSÍTÁS KERESÉSÉRE PÁROS GRÁFBAN)
         </p>
-
-        <p class="text-slate-700 dark:text-slate-300 mb-6 font-medium">
-            <b>Bemenet:</b> Egy $G = (A,B;E)$ páros gráf
+<p class="text-slate-700 dark:text-slate-300 mb-6 font-medium">
+<b>Bemenet:</b> Egy $G = (A,B;E)$ páros gráf
         </p>
-
-        <div class="space-y-3 font-mono text-sm sm:text-base text-slate-800 dark:text-slate-200 ml-2">
-            <div class="flex gap-4">
-                <span class="text-amber-600/50 font-black w-4">1</span>
-                <p>$M \leftarrow \emptyset$ (vagy ehelyett $M$ lehet tetszőleges kezdeti párosítás is)</p>
-            </div>
-            <div class="flex gap-4">
-                <span class="text-amber-600/50 font-black w-4">2</span>
-                <p><b>ciklus</b></p>
-            </div>
-            <div class="flex gap-4 ml-6 md:ml-10">
-                <span class="text-amber-600/50 font-black w-4">3</span>
-                <p>KERESSÜNK EGY $P$ JAVÍTÓUTAT az $M$ párosításra nézve</p>
-            </div>
-            <div class="flex gap-4 ml-6 md:ml-10">
-                <span class="text-amber-600/50 font-black w-4">4</span>
-                <p><b>ha</b> nem létezik $M$-re nézve javítóút, <b>akkor: stop</b></p>
-            </div>
-            <div class="flex gap-4 ml-6 md:ml-10">
-                <span class="text-amber-600/50 font-black w-4">5</span>
-                <p><b>különben:</b></p>
-            </div>
-            <div class="flex gap-4 ml-12 md:ml-20">
-                <span class="text-amber-600/50 font-black w-4">6</span>
-                <p>$M \leftarrow M \setminus \{P \text{ páros sorszámú élei}\} \cup \{P \text{ páratlan sorszámú élei}\}$</p>
-            </div>
-            <div class="flex gap-4">
-                <span class="text-amber-600/50 font-black w-4">7</span>
-                <p><b>ciklus vége</b></p>
-            </div>
-        </div>
-    </div>
+<div class="space-y-3 font-mono text-sm sm:text-base text-slate-800 dark:text-slate-200 ml-2">
+<div class="flex gap-4">
+<span class="text-amber-600/50 font-black w-4">1</span>
+<p>$M \leftarrow \emptyset$ (vagy ehelyett $M$ lehet tetszőleges kezdeti párosítás is)</p>
+</div>
+<div class="flex gap-4">
+<span class="text-amber-600/50 font-black w-4">2</span>
+<p><b>ciklus</b></p>
+</div>
+<div class="flex gap-4 ml-6 md:ml-10">
+<span class="text-amber-600/50 font-black w-4">3</span>
+<p>KERESSÜNK EGY $P$ JAVÍTÓUTAT az $M$ párosításra nézve</p>
+</div>
+<div class="flex gap-4 ml-6 md:ml-10">
+<span class="text-amber-600/50 font-black w-4">4</span>
+<p><b>ha</b> nem létezik $M$-re nézve javítóút, <b>akkor: stop</b></p>
+</div>
+<div class="flex gap-4 ml-6 md:ml-10">
+<span class="text-amber-600/50 font-black w-4">5</span>
+<p><b>különben:</b></p>
+</div>
+<div class="flex gap-4 ml-12 md:ml-20">
+<span class="text-amber-600/50 font-black w-4">6</span>
+<p>$M \leftarrow M \setminus \{P \text{ páros sorszámú élei}\} \cup \{P \text{ páratlan sorszámú élei}\}$</p>
+</div>
+<div class="flex gap-4">
+<span class="text-amber-600/50 font-black w-4">7</span>
+<p><b>ciklus vége</b></p>
+</div>
+</div>
+</div>
 </section>
-
 <math-header>
-    <div class="mb-12 mt-16">
-        <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
+<div class="mb-12 mt-16">
+<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
             Interaktív: Augmentálás szimuláció
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-6-2-interactive" class="mb-16 animate-fade-in text-left">
-    <div class="bg-white/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800 relative">
-        
-        <p class="text-slate-600 dark:text-slate-400 mb-8 text-sm italic">
+<section class="mb-16 animate-fade-in text-left" id="section-6-2-interactive">
+<div class="bg-white/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800 relative">
+<p class="text-slate-600 dark:text-slate-400 mb-8 text-sm italic">
             A gráfban egy $M$ párosítást látsz (vastag élek). A kék szaggatott vonal egy <b>javítóutat ($P$)</b> jelöl, amely szabad csúcsból indul és szabadban végződik. Kattints az augmentálásra az élcseréhez!
         </p>
-
-        <div class="flex flex-col lg:flex-row gap-12 items-center justify-center">
-            <div class="relative bg-slate-50 dark:bg-slate-800/50 p-6 rounded-[2rem] shadow-inner">
-                <svg id="augment-svg" width="400" height="300" viewBox="0 0 400 300" class="overflow-visible">
-                    <g id="aug-static-edges" stroke="#cbd5e1" stroke-width="1" opacity="0.3"></g>
-                    <g id="aug-path-edges"></g>
-                    <g id="aug-nodes"></g>
-                </svg>
-            </div>
-
-            <div class="w-full lg:w-64 space-y-6">
-                <div class="bg-theme/5 p-6 rounded-3xl border border-theme/10">
-                    <h4 class="text-[10px] font-black uppercase text-theme mb-4 tracking-widest text-center">Párosítás mérete</h4>
-                    <div class="text-center">
-                        <div id="aug-size" class="text-5xl font-black text-theme">2</div>
-                        <div class="text-[10px] uppercase font-bold text-slate-400 mt-2">$|M|$ értéke</div>
-                    </div>
-                </div>
-
-                <div class="space-y-3">
-                    <button id="btn-augment" onclick="runAugmentation()" class="w-full py-4 bg-theme text-white font-black uppercase text-xs tracking-widest rounded-2xl shadow-lg shadow-theme/20 hover:scale-[1.02] transition-all active:scale-95">
+<div class="flex flex-col lg:flex-row gap-12 items-center justify-center">
+<div class="relative bg-slate-50 dark:bg-slate-800/50 p-6 rounded-[2rem] shadow-inner">
+<svg class="overflow-visible" height="300" id="augment-svg" viewbox="0 0 400 300" width="400">
+<g id="aug-static-edges" opacity="0.3" stroke="#cbd5e1" stroke-width="1"></g>
+<g id="aug-path-edges"></g>
+<g id="aug-nodes"></g>
+</svg>
+</div>
+<div class="w-full lg:w-64 space-y-6">
+<div class="bg-theme/5 p-6 rounded-3xl border border-theme/10">
+<h4 class="text-[10px] font-black uppercase text-theme mb-4 tracking-widest text-center">Párosítás mérete</h4>
+<div class="text-center">
+<div class="text-5xl font-black text-theme" id="aug-size">2</div>
+<div class="text-[10px] uppercase font-bold text-slate-400 mt-2">$|M|$ értéke</div>
+</div>
+</div>
+<div class="space-y-3">
+<button class="w-full py-4 bg-theme text-white font-black uppercase text-xs tracking-widest rounded-2xl shadow-lg shadow-theme/20 hover:scale-[1.02] transition-all active:scale-95" id="btn-augment" onclick="runAugmentation()">
                         Augmentálás ⚡
                     </button>
-                    <button onclick="resetAugment()" class="w-full py-3 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-200 font-bold uppercase text-[10px] tracking-widest rounded-xl transition-colors">
+<button class="w-full py-3 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-200 font-bold uppercase text-[10px] tracking-widest rounded-xl transition-colors" onclick="resetAugment()">
                         Visszaállítás
                     </button>
-                </div>
-
-                <div id="aug-msg" class="text-[11px] text-slate-500 text-center leading-relaxed">
+</div>
+<div class="text-[11px] text-slate-500 text-center leading-relaxed" id="aug-msg">
                     Készen áll az élcserére: $M \leftarrow M \oplus P$
                 </div>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</div>
 </section>
-
 <script>
 // Gráf adatok: A=0,1,2,3  B=0,1,2,3
 const augState = {
@@ -1957,212 +1924,181 @@ function resetAugment() {
 
 document.addEventListener('DOMContentLoaded', initAugment);
 </script>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
             6.3
         </div>
-
-        <div class="relative w-fit">
-            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
+<div class="relative w-fit">
+<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
                 Alternáló utak
             </h2>
-            <div class="absolute -bottom-2 left-0 w-full h-1.5 bg-theme opacity-20 rounded-full"></div>
-        </div>
-    </div>
+<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-theme opacity-20 rounded-full"></div>
+</div>
+</div>
 </math-header>
-
-<section id="section-6-3" class="mb-16 animate-fade-in text-left">
-    <div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
-        
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic mb-6">
+<section class="mb-16 animate-fade-in text-left" id="section-6-3">
+<div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic mb-6">
             Definíció. Legyen $G = (A,B;E)$ páros gráf és $M$ egy párosítás $G$-ben. A $G$-béli $P$ utat <b>alternáló útnak</b> hívjuk, ha rá a definíció (1) és (3) követelményei teljesülnek (de a (2) nem feltétlenül).
         </p>
-
-        <p class="text-slate-700 dark:text-slate-300 leading-relaxed italic">
+<p class="text-slate-700 dark:text-slate-300 leading-relaxed italic">
             Más szóval: alternáló útnak az olyan utakat nevezzük, amik párosítás által nem fedett $A$-béli csúcsból indulnak és minden második élük $M$-béli.
         </p>
-    </div>
+</div>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-24">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
+<div class="flex items-center gap-4 mb-6 mt-24">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
             6.4
         </div>
-        
-        <div class="relative w-fit">
-            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
+<div class="relative w-fit">
+<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
                 Alternáló utak
             </h2>
-            <div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
-        </div>
-    </div>
+<div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
+</div>
+</div>
 </math-header>
-
-<section id="section-6-4" class="mb-16 animate-fade-in text-left">
-    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Lemma</h4>
-        
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic mb-6">
+<section class="mb-16 animate-fade-in text-left" id="section-6-4">
+<div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Lemma</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic mb-6">
             Tegyük fel, hogy a $G = (A,B;E)$ páros gráf $M$ párosítására nézve nincs javítóút $G$-ben. Vezessük be az alábbi jelöléseket:
         </p>
-
-        <div class="space-y-4 ml-4 mb-8">
-            <div class="flex gap-4">
-                <span class="font-black text-amber-600">(1)</span>
-                <p class="text-slate-600 dark:text-slate-300">jelölje $A_1$, illetve $B_1$ az $M$ által nem fedett $A$, illetve $B$-béli csúcsok halmazát;</p>
-            </div>
-            <div class="flex gap-4">
-                <span class="font-black text-amber-600">(2)</span>
-                <p class="text-slate-600 dark:text-slate-300">jelölje $A_2$ azoknak az ($M$ által fedett) $A$-béli csúcsoknak a halmazát, amikbe vezet alternáló út;</p>
-            </div>
-            <div class="flex gap-4">
-                <span class="font-black text-amber-600">(3)</span>
-                <p class="text-slate-600 dark:text-slate-300">jelölje $A_3$ a maradék $A$-béli csúcsoknak a halmazát (amik tehát $M$ által lefedettek, de nem vezet hozzájuk alternáló út);</p>
-            </div>
-            <div class="flex gap-4">
-                <span class="font-black text-amber-600">(4)</span>
-                <p class="text-slate-600 dark:text-slate-300">Jelölje $B_2$, illetve $B_3$ az $A_2$, illetve $A_3$ csúcsainak $M$ szerinti párjaiból álló $B$-béli csúcsok halmazait.</p>
-            </div>
-        </div>
-
-        <p class="text-slate-800 dark:text-slate-100 font-bold border-t border-amber-200 dark:border-amber-800 pt-4">
+<div class="space-y-4 ml-4 mb-8">
+<div class="flex gap-4">
+<span class="font-black text-amber-600">(1)</span>
+<p class="text-slate-600 dark:text-slate-300">jelölje $A_1$, illetve $B_1$ az $M$ által nem fedett $A$, illetve $B$-béli csúcsok halmazát;</p>
+</div>
+<div class="flex gap-4">
+<span class="font-black text-amber-600">(2)</span>
+<p class="text-slate-600 dark:text-slate-300">jelölje $A_2$ azoknak az ($M$ által fedett) $A$-béli csúcsoknak a halmazát, amikbe vezet alternáló út;</p>
+</div>
+<div class="flex gap-4">
+<span class="font-black text-amber-600">(3)</span>
+<p class="text-slate-600 dark:text-slate-300">jelölje $A_3$ a maradék $A$-béli csúcsoknak a halmazát (amik tehát $M$ által lefedettek, de nem vezet hozzájuk alternáló út);</p>
+</div>
+<div class="flex gap-4">
+<span class="font-black text-amber-600">(4)</span>
+<p class="text-slate-600 dark:text-slate-300">Jelölje $B_2$, illetve $B_3$ az $A_2$, illetve $A_3$ csúcsainak $M$ szerinti párjaiból álló $B$-béli csúcsok halmazait.</p>
+</div>
+</div>
+<p class="text-slate-800 dark:text-slate-100 font-bold border-t border-amber-200 dark:border-amber-800 pt-4">
             Ekkor $G$-nek nincs olyan éle, ami $A_1 \cup A_2$ és $B_1 \cup B_3$ között vezet.
         </p>
-    </div>
-
-    <math-proof>
-        <div class="p-2 space-y-6">
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+</div>
+<math-proof>
+<div class="p-2 space-y-6">
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Tegyük fel indirekt, hogy $G$-nek mégis létezik egy olyan $e = \{a, b\}$ éle, amire $a \in A_1 \cup A_2$ és $b \in B_1 \cup B_3$. Ez összesen négy esetet jelent, amiket sorban kizárunk:
             </p>
-
-            <div class="space-y-6 ml-4 text-sm">
-                <p>
-                    <b class="text-theme">1. eset:</b> Ha $a \in A_1$ és $b \in B_1$, akkor $a$-ból $b$-be egyetlen élű <b>javítóút</b> vezetne; ez lehetetlen, hiszen feltettük, hogy $G$-ben nincs javítóút.
+<div class="space-y-6 ml-4 text-sm">
+<p>
+<b class="text-theme">1. eset:</b> Ha $a \in A_1$ és $b \in B_1$, akkor $a$-ból $b$-be egyetlen élű <b>javítóút</b> vezetne; ez lehetetlen, hiszen feltettük, hogy $G$-ben nincs javítóút.
                 </p>
-                <p>
-                    <b class="text-theme">2. eset:</b> Ha $a \in A_1$ és $b \in B_3$, akkor $a$-ból $e$-n át $b$-be, majd onnan a $b$-re illeszkedő $M$-béli élen át tovább lépve egy $A_3$-béli csúcsba jutnánk egy két élű <b>alternáló úton</b>. Ez lehetetlen, mert $A_3$-ba épp az alternáló úton nem elérhető $A$-béli csúcsok kerültek.
+<p>
+<b class="text-theme">2. eset:</b> Ha $a \in A_1$ és $b \in B_3$, akkor $a$-ból $e$-n át $b$-be, majd onnan a $b$-re illeszkedő $M$-béli élen át tovább lépve egy $A_3$-béli csúcsba jutnánk egy két élű <b>alternáló úton</b>. Ez lehetetlen, mert $A_3$-ba épp az alternáló úton nem elérhető $A$-béli csúcsok kerültek.
                 </p>
-                
-                                <p class="text-center text-[10px] text-slate-400 italic mb-6">7.14. ábra</p>
-
-                <p>
-                    <b class="text-theme">3. eset:</b> Tegyük most fel, hogy $a \in A_2$ és $b \in B_1$. Ekkor $a$-ba vezet egy $P$ alternáló út. Ennek az utolsó éle nyilván $M$-béli, hiszen $P$ $A$-ból indul és $A$-ba is érkezik, így páros sok éle van. Mivel $b$ biztosan nincs rajta $P$-n (mert $b \in B_1$ szabad csúcs), $P$-t folytathatjuk az $e$ élen át $b$-ig, amivel egy <b>javítóutat</b> kapunk. Ez ellentmondás.
+<p class="text-center text-[10px] text-slate-400 italic mb-6">7.14. ábra</p>
+<p>
+<b class="text-theme">3. eset:</b> Tegyük most fel, hogy $a \in A_2$ és $b \in B_1$. Ekkor $a$-ba vezet egy $P$ alternáló út. Ennek az utolsó éle nyilván $M$-béli, hiszen $P$ $A$-ból indul és $A$-ba is érkezik, így páros sok éle van. Mivel $b$ biztosan nincs rajta $P$-n (mert $b \in B_1$ szabad csúcs), $P$-t folytathatjuk az $e$ élen át $b$-ig, amivel egy <b>javítóutat</b> kapunk. Ez ellentmondás.
                 </p>
-                <p>
-                    <b class="text-theme">4. eset:</b> Végül tegyük fel, hogy $a \in A_2$ és $b \in B_3$. Ekkor az $a$-ig vezető $P$ alternáló utat először $e$-n át $b$-ig, majd a $b$-re illeszkedő $M$-béli éllel tovább hosszabbítva egy $P$-nél kettővel hosszabb $P'$ alternáló utat kapunk. Mivel azonban $b \in B_3$, ezért a $P'$ út vége $A_3$-béli. Ez ellentmondás, mert $A_3$-béli csúcsba nem vezethet alternáló út.
+<p>
+<b class="text-theme">4. eset:</b> Végül tegyük fel, hogy $a \in A_2$ és $b \in B_3$. Ekkor az $a$-ig vezető $P$ alternáló utat először $e$-n át $b$-ig, majd a $b$-re illeszkedő $M$-béli éllel tovább hosszabbítva egy $P$-nél kettővel hosszabb $P'$ alternáló utat kapunk. Mivel azonban $b \in B_3$, ezért a $P'$ út vége $A_3$-béli. Ez ellentmondás, mert $A_3$-béli csúcsba nem vezethet alternáló út.
                 </p>
-            </div>
-        </div>
-    </math-proof>
+</div>
+</div>
+</math-proof>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-24">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
+<div class="flex items-center gap-4 mb-6 mt-24">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
             6.5
         </div>
-        
-        <div class="relative w-fit">
-            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
+<div class="relative w-fit">
+<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
                 Kőnig tétele
             </h2>
-            <div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
-        </div>
-    </div>
+<div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
+</div>
+</div>
 </math-header>
-
-<section id="section-6-5" class="mb-16 animate-fade-in text-left">
-    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
-            <b>Kőnig tétele</b> Ha a $G = (A,B;E)$ páros gráf $M$ párosítására nézve nincs javítóút, akkor $M$ maximális párosítás $G$-ben.
+<section class="mb-16 animate-fade-in text-left" id="section-6-5">
+<div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
+<b>Kőnig tétele</b> Ha a $G = (A,B;E)$ páros gráf $M$ párosítására nézve nincs javítóút, akkor $M$ maximális párosítás $G$-ben.
         </p>
-    </div>
-
-    <math-proof>
-        <div class="p-2 space-y-6">
-            
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+</div>
+<math-proof>
+<div class="p-2 space-y-6">
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Jelölje $M$ élszámát $|M| = k$. Annak bizonyításához, hogy $M$ maximális, a lefogó ponthalmaz fogalmát hívjuk segítségül: meg fogjuk mutatni, hogy létezik $G$-ben $k$ pontú lefogó ponthalmaz. Ebből a korábban már látott gondolatmenet szerint valóban következni fog, hogy $M$ maximális: a $k$ méretű $M$ párosítás létezéséből $\nu(G) \geq k$, a $k$ pontú lefogó ponthalmaz létezéséből $\tau(G) \leq k$, ezekből az állításokból együtt pedig $k \leq \nu(G) \leq \tau(G) \leq k$ adódik. Következik, hogy $\nu(G) = k$, ami valóban azt jelenti, hogy $M$ maximális párosítás.
             </p>
-
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Azt állítjuk, hogy a Lemma jelöléseit használva $X = A_3 \cup B_2$ lefogó ponthalmaz $G$-ben. Legyen ugyanis $e = \{a, b\}$ tetszőleges éle $G$-nek, amire $a \in A$ és $b \in B$. Ha $a \in A_3$, akkor $e$-nek az $A$-béli végpontja $X$-béli, így $e$-t $X$ lefogja. Ha viszont $a \in A_1 \cup A_2$, akkor a Lemmából következik, hogy $b \in B_2$; így $X$ ebben az esetben is lefogja $e$-t.
             </p>
-
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Megmutatjuk még, hogy $|X| = k$. Ez abból adódik, hogy $X$ minden $M$-béli élnek pontosan az egyik végpontját tartalmazza: az $A_2$ és $B_2$ között futóknak a $B$-béli végpontját, az $A_3$ és $B_3$ között futóknak pedig az $A$-béli végpontját. Mivel $|M| = k$ és $X$ minden $M$-béli élnek egy végpontját tartalmazza, ezért $|X| = k$ is igaz.
             </p>
-        </div>
-    </math-proof>
+</div>
+</math-proof>
 </section>
-
 <math-header>
-    <div class="mb-12 mt-16">
-        <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
+<div class="mb-12 mt-16">
+<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
             Interaktív: Lefogó pontok vadászata
         </h2>
-    </div>
+</div>
 </math-header>
-
-<section id="section-6-5-interactive" class="mb-16 animate-fade-in text-left">
-    <div class="bg-white/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800 relative">
-        
-        <p class="text-slate-600 dark:text-slate-400 mb-8 text-sm italic">
+<section class="mb-16 animate-fade-in text-left" id="section-6-5-interactive">
+<div class="bg-white/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800 relative">
+<p class="text-slate-600 dark:text-slate-400 mb-8 text-sm italic">
             Válaszd ki a gráf csúcsait úgy, hogy <b>minden élet lefedj</b>! Próbáld meg ezt pontosan annyi ponttal megtenni, amennyi a maximális párosítás mérete ($|M|=k$).
         </p>
-
-    <div class="flex flex-col lg:flex-row gap-12 items-center justify-center">
-        <div class="relative bg-slate-50 dark:bg-slate-800/50 p-6 rounded-[2rem] shadow-inner">
-            <svg id="konig-svg" width="360" height="400" viewBox="0 0 360 400" class="cursor-pointer overflow-visible">
-                <g id="konig-edges"></g>
-                <g id="konig-nodes"></g>
-            </svg>
-        </div>
-
-        <div class="w-full lg:w-72 space-y-6">
-    <div class="grid grid-cols-2 gap-4">
-        <div class="bg-theme/5 p-4 rounded-2xl border border-theme/10 text-center">
-            <div id="user-vc-size" class="text-3xl font-black text-slate-800 dark:text-white">0</div>
-            <div class="text-[9px] uppercase font-bold text-slate-400">Pontjaid</div>
-        </div>
-        <div class="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-2xl border border-emerald-100 dark:border-emerald-800/30 text-center">
-            <div class="text-3xl font-black text-emerald-600">4</div>
-            <div class="text-[9px] uppercase font-bold text-emerald-400">Cél ($k$)</div>
-        </div>
-    </div>
-
-    <div id="konig-help-box" class="hidden animate-fade-in">
-        <div class="bg-rose-50 dark:bg-rose-900/20 border border-rose-100 dark:border-rose-800/50 rounded-[2rem] p-6 text-center shadow-sm">
-            <p class="text-rose-700 dark:text-rose-400 text-sm leading-relaxed">
-                <span class="font-black uppercase tracking-widest text-[10px] mr-2">Segítség:</span>
+<div class="flex flex-col lg:flex-row gap-12 items-center justify-center">
+<div class="relative bg-slate-50 dark:bg-slate-800/50 p-6 rounded-[2rem] shadow-inner">
+<svg class="cursor-pointer overflow-visible" height="400" id="konig-svg" viewbox="0 0 360 400" width="360">
+<g id="konig-edges"></g>
+<g id="konig-nodes"></g>
+</svg>
+</div>
+<div class="w-full lg:w-72 space-y-6">
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-theme/5 p-4 rounded-2xl border border-theme/10 text-center">
+<div class="text-3xl font-black text-slate-800 dark:text-white" id="user-vc-size">0</div>
+<div class="text-[9px] uppercase font-bold text-slate-400">Pontjaid</div>
+</div>
+<div class="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-2xl border border-emerald-100 dark:border-emerald-800/30 text-center">
+<div class="text-3xl font-black text-emerald-600">4</div>
+<div class="text-[9px] uppercase font-bold text-emerald-400">Cél ($k$)</div>
+</div>
+</div>
+<div class="hidden animate-fade-in" id="konig-help-box">
+<div class="bg-rose-50 dark:bg-rose-900/20 border border-rose-100 dark:border-rose-800/50 rounded-[2rem] p-6 text-center shadow-sm">
+<p class="text-rose-700 dark:text-rose-400 text-sm leading-relaxed">
+<span class="font-black uppercase tracking-widest text-[10px] mr-2">Segítség:</span>
                 A Kőnig-tétel bizonyítása szerint az $X = A_3 \cup B_2$ választás mindig minimális lefogó ponthalmazt ad!
             </p>
-        </div>
-    </div>
-
-    <div id="konig-feedback" class="p-6 rounded-3xl text-xs font-medium leading-relaxed bg-slate-100 text-slate-500 text-center transition-all">
+</div>
+</div>
+<div class="p-6 rounded-3xl text-xs font-medium leading-relaxed bg-slate-100 text-slate-500 text-center transition-all" id="konig-feedback">
         Kattints a csúcsokra a kijelöléshez!
     </div>
-
-    <div class="space-y-3">
-        <button id="btn-konig-help" onclick="showKonigHelp()" class="w-full py-3 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 font-bold uppercase text-[10px] tracking-widest rounded-xl hover:bg-amber-200 transition-colors">
+<div class="space-y-3">
+<button class="w-full py-3 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 font-bold uppercase text-[10px] tracking-widest rounded-xl hover:bg-amber-200 transition-colors" id="btn-konig-help" onclick="showKonigHelp()">
             Segítség a Lemmából 💡
         </button>
-        <button onclick="resetKonigGame()" class="w-full py-3 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-200 font-bold uppercase text-[10px] tracking-widest rounded-xl transition-colors">
+<button class="w-full py-3 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-200 font-bold uppercase text-[10px] tracking-widest rounded-xl transition-colors" onclick="resetKonigGame()">
             Újrakezdés
         </button>
-    </div>
 </div>
-    </div>
-    </div>
+</div>
+</div>
+</div>
 </section>
-
 <script>
 const konigData = {
     nodes: [
@@ -2304,105 +2240,88 @@ function resetKonigGame() {
 
 document.addEventListener('DOMContentLoaded', initKonigGame);
 </script>
-
-
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-24">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
+<div class="flex items-center gap-4 mb-6 mt-24">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
             6.6
         </div>
-        
-        <div class="relative w-fit">
-            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
+<div class="relative w-fit">
+<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
                 Hall-tétel (Házasítási tétel)
             </h2>
-            <div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
-        </div>
-    </div>
+<div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
+</div>
+</div>
 </math-header>
-
-<section id="section-6-6" class="mb-16 animate-fade-in text-left">
-    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
-            <b>Tétel. (Hall tétele)</b> A $G = (A,B;E)$ páros gráfban akkor és csak akkor létezik $A$-t lefedő párosítás, ha minden $X \subseteq A$ részhalmazra $|N(X)| \geq |X|$ teljesül.
+<section class="mb-16 animate-fade-in text-left" id="section-6-6">
+<div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
+<b>Tétel. (Hall tétele)</b> A $G = (A,B;E)$ páros gráfban akkor és csak akkor létezik $A$-t lefedő párosítás, ha minden $X \subseteq A$ részhalmazra $|N(X)| \geq |X|$ teljesül.
         </p>
-    </div>
-
-    <math-proof>
-        <div class="p-2 space-y-6">
-            
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                <b>A feltétel szükségessége nyilvánvaló:</b> ha létezik $A$-t lefedő párosítás, akkor $|N(X)| \geq |X|$ minden $X \subseteq A$ esetén. Valóban, ha $M$ egy $A$-t lefedő párosítás, akkor az $X$ elemeinek $M$ szerinti szomszédjai mind $N(X)$-ben vannak és páronként különbözők, így $N(X)$-nek legalább $|X|$ eleme van. (Vagy ugyanez más megfogalmazásban: ha egy $X \subseteq A$ részhalmazra $|N(X)| < |X|$ teljesülne, akkor – ahogyan azt a tétel kimondása előtti példában is láttuk – nem juthatna már az $X$ minden elemének sem csupa különböző pár, így nem létezhetne $A$-t lefedő párosítás.)
+</div>
+<math-proof>
+<div class="p-2 space-y-6">
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<b>A feltétel szükségessége nyilvánvaló:</b> ha létezik $A$-t lefedő párosítás, akkor $|N(X)| \geq |X|$ minden $X \subseteq A$ esetén. Valóban, ha $M$ egy $A$-t lefedő párosítás, akkor az $X$ elemeinek $M$ szerinti szomszédjai mind $N(X)$-ben vannak és páronként különbözők, így $N(X)$-nek legalább $|X|$ eleme van. (Vagy ugyanez más megfogalmazásban: ha egy $X \subseteq A$ részhalmazra $|N(X)| &lt; |X|$ teljesülne, akkor – ahogyan azt a tétel kimondása előtti példában is láttuk – nem juthatna már az $X$ minden elemének sem csupa különböző pár, így nem létezhetne $A$-t lefedő párosítás.)
             </p>
-
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                <b>Most belátjuk a feltétel elégségességét:</b> ha $|N(X)| \geq |X|$ minden $X \subseteq A$ részhalmazra teljesül, akkor van $A$-t lefedő párosítás $G$-ben. Futtassuk ugyanis a javítóutas algoritmust a $G$ gráfra (tetszőleges párosításból indítva). Megmutatjuk, hogy az algoritmus leállásakor kapott $M$ párosítás lefedi $A$-t. Tegyük fel ugyanis indirekt, hogy nem ez a helyzet. 
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<b>Most belátjuk a feltétel elégségességét:</b> ha $|N(X)| \geq |X|$ minden $X \subseteq A$ részhalmazra teljesül, akkor van $A$-t lefedő párosítás $G$-ben. Futtassuk ugyanis a javítóutas algoritmust a $G$ gráfra (tetszőleges párosításból indítva). Megmutatjuk, hogy az algoritmus leállásakor kapott $M$ párosítás lefedi $A$-t. Tegyük fel ugyanis indirekt, hogy nem ez a helyzet. 
             </p>
-
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Lemma jelöléseit használva $N(A_1 \cup A_2) = B_2$ következik; valóban, a lemma állítása szerint $A_1 \cup A_2$ és $B_1 \cup B_3$ között nincs éle $G$-nek, ezért az $(A_1 \cup A_2)$-béliek minden szomszédja $B_2$-béli. Továbbá mivel $|A_2| = |B_2|$ (hiszen $A_2$ és $B_2$ elemeit az $M$ megfelelő élei párba állítják) és $A_1 \neq \emptyset$ (mert az $M$ nem fedi le $A$-t), ezért $|A_1 \cup A_2| > |B_2|$. Következik, hogy az $X = A_1 \cup A_2$ esetében sérül az $|N(X)| \geq |X|$ feltétel; ez az ellentmondás pedig bizonyítja a tétel állítását.
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Lemma jelöléseit használva $N(A_1 \cup A_2) = B_2$ következik; valóban, a lemma állítása szerint $A_1 \cup A_2$ és $B_1 \cup B_3$ között nincs éle $G$-nek, ezért az $(A_1 \cup A_2)$-béliek minden szomszédja $B_2$-béli. Továbbá mivel $|A_2| = |B_2|$ (hiszen $A_2$ és $B_2$ elemeit az $M$ megfelelő élei párba állítják) és $A_1 \neq \emptyset$ (mert az $M$ nem fedi le $A$-t), ezért $|A_1 \cup A_2| &gt; |B_2|$. Következik, hogy az $X = A_1 \cup A_2$ esetében sérül az $|N(X)| \geq |X|$ feltétel; ez az ellentmondás pedig bizonyítja a tétel állítását.
             </p>
-        </div>
-    </math-proof>
+</div>
+</math-proof>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="relative w-fit">
-            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="relative w-fit">
+<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
                 Interaktív: Hall-feltétel ellenőrző
             </h2>
-            <div class="absolute -bottom-2 left-0 w-full h-1.5 bg-theme rounded-full"></div>
-        </div>
-    </div>
+<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-theme rounded-full"></div>
+</div>
+</div>
 </math-header>
-
-<section id="section-6-6-interactive" class="mb-16 animate-fade-in text-left">
-    <div class="bg-white/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800 relative">
-        
-        <p class="text-slate-600 dark:text-slate-400 mb-8 text-sm italic">
-            Kattints az <b>A halmaz</b> csúcsaira a kijelöléshez! A rendszer automatikusan mutatja a <b>B halmazbeli</b> szomszédokat ($N(X)$). Találsz olyan halmazt, ahol $|N(X)| < |X|$?
+<section class="mb-16 animate-fade-in text-left" id="section-6-6-interactive">
+<div class="bg-white/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800 relative">
+<p class="text-slate-600 dark:text-slate-400 mb-8 text-sm italic">
+            Kattints az <b>A halmaz</b> csúcsaira a kijelöléshez! A rendszer automatikusan mutatja a <b>B halmazbeli</b> szomszédokat ($N(X)$). Találsz olyan halmazt, ahol $|N(X)| &lt; |X|$?
         </p>
-
-        <div class="flex flex-col lg:flex-row gap-12 items-center justify-center">
-            <div class="relative bg-slate-50 dark:bg-slate-800/50 p-6 rounded-[2rem] shadow-inner">
-                <svg id="hall-svg" width="300" height="400" viewBox="0 0 300 400" class="cursor-pointer">
-                    <g id="hall-edges" opacity="0.2"></g>
-                    <g id="hall-nodes-A"></g>
-                    <g id="hall-nodes-B"></g>
-                </svg>
-            </div>
-
-            <div class="w-full lg:w-64 space-y-6">
-                <div class="bg-theme/5 p-6 rounded-3xl border border-theme/10 text-center">
-                    <h4 class="text-[10px] font-black uppercase text-theme mb-4 tracking-widest">Állapot</h4>
-                    <div class="flex justify-around items-end gap-2">
-                        <div>
-                            <div id="count-X" class="text-3xl font-black text-slate-800 dark:text-white">0</div>
-                            <div class="text-[10px] uppercase font-bold text-slate-400">$|X|$</div>
-                        </div>
-                        <div class="text-xl font-bold text-slate-300 pb-1">vs</div>
-                        <div>
-                            <div id="count-NX" class="text-3xl font-black text-theme">0</div>
-                            <div class="text-[10px] uppercase font-bold text-slate-400">$|N(X)|$</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="hall-feedback" class="p-6 rounded-3xl text-xs font-medium leading-relaxed transition-all duration-300 bg-slate-100 text-slate-500 text-center">
+<div class="flex flex-col lg:flex-row gap-12 items-center justify-center">
+<div class="relative bg-slate-50 dark:bg-slate-800/50 p-6 rounded-[2rem] shadow-inner">
+<svg class="cursor-pointer" height="400" id="hall-svg" viewbox="0 0 300 400" width="300">
+<g id="hall-edges" opacity="0.2"></g>
+<g id="hall-nodes-A"></g>
+<g id="hall-nodes-B"></g>
+</svg>
+</div>
+<div class="w-full lg:w-64 space-y-6">
+<div class="bg-theme/5 p-6 rounded-3xl border border-theme/10 text-center">
+<h4 class="text-[10px] font-black uppercase text-theme mb-4 tracking-widest">Állapot</h4>
+<div class="flex justify-around items-end gap-2">
+<div>
+<div class="text-3xl font-black text-slate-800 dark:text-white" id="count-X">0</div>
+<div class="text-[10px] uppercase font-bold text-slate-400">$|X|$</div>
+</div>
+<div class="text-xl font-bold text-slate-300 pb-1">vs</div>
+<div>
+<div class="text-3xl font-black text-theme" id="count-NX">0</div>
+<div class="text-[10px] uppercase font-bold text-slate-400">$|N(X)|$</div>
+</div>
+</div>
+</div>
+<div class="p-6 rounded-3xl text-xs font-medium leading-relaxed transition-all duration-300 bg-slate-100 text-slate-500 text-center" id="hall-feedback">
                     Válassz ki legalább egy pontot az A oldalon!
                 </div>
-
-                <button onclick="resetHallInteractive()" class="w-full py-3 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-200 font-bold uppercase text-[10px] tracking-widest rounded-xl transition-colors">
+<button class="w-full py-3 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-200 font-bold uppercase text-[10px] tracking-widest rounded-xl transition-colors" onclick="resetHallInteractive()">
                     Reset
                 </button>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</div>
 </section>
-
 <script>
 const hallData = {
     A: [0, 1, 2, 3],
@@ -2522,189 +2441,110 @@ function resetHallInteractive() {
 
 document.addEventListener('DOMContentLoaded', initHallInteractive);
 </script>
-
-
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-24">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
+<div class="flex items-center gap-4 mb-6 mt-24">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
             6.7
         </div>
-        
-        <div class="relative w-fit">
-            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
+<div class="relative w-fit">
+<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
                 Frobenius-tétel
             </h2>
-            <div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
-        </div>
-    </div>
+<div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
+</div>
+</div>
 </math-header>
-
-<section id="section-6-7" class="mb-16 animate-fade-in text-left">
-    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Következmény</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
-            <b>Következmény. (Frobenius tétele)</b> A $G = (A,B;E)$ páros gráfban akkor és csak akkor létezik teljes párosítás, ha $|A| = |B|$ és minden $X \subseteq A$ részhalmazra $|N(X)| \geq |X|$ teljesül.
+<section class="mb-16 animate-fade-in text-left" id="section-6-7">
+<div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Következmény</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
+<b>Következmény. (Frobenius tétele)</b> A $G = (A,B;E)$ páros gráfban akkor és csak akkor létezik teljes párosítás, ha $|A| = |B|$ és minden $X \subseteq A$ részhalmazra $|N(X)| \geq |X|$ teljesül.
         </p>
-    </div>
-
-    <math-proof>
-        <div class="p-2 space-y-6">
-            
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                <b>A feltétel szükségessége ismét nyilvánvaló:</b> ha létezik $G$-ben teljes párosítás, akkor $|A| = |B|$ természetesen igaz és mivel egy teljes párosítás egyben $A$-t lefedő párosítás is, így azt már beláttuk, hogy $|N(X)| \geq |X|$ minden $X \subseteq A$ részhalmazra teljesül.
+</div>
+<math-proof>
+<div class="p-2 space-y-6">
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<b>A feltétel szükségessége ismét nyilvánvaló:</b> ha létezik $G$-ben teljes párosítás, akkor $|A| = |B|$ természetesen igaz és mivel egy teljes párosítás egyben $A$-t lefedő párosítás is, így azt már beláttuk, hogy $|N(X)| \geq |X|$ minden $X \subseteq A$ részhalmazra teljesül.
             </p>
-
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                <b>Megfordítva:</b> ha $|N(X)| \geq |X|$ minden $X \subseteq A$ részhalmazra teljesül, akkor Hall Tétele miatt $G$-ben van $A$-t lefedő párosítás. De mivel $|A| = |B|$, ezért egy ilyen párosításnak nyilván $B$-t is fednie kell, így az teljes párosítás. Ezzel tehát a feltétel elégségességét is beláttuk.
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<b>Megfordítva:</b> ha $|N(X)| \geq |X|$ minden $X \subseteq A$ részhalmazra teljesül, akkor Hall Tétele miatt $G$-ben van $A$-t lefedő párosítás. De mivel $|A| = |B|$, ezért egy ilyen párosításnak nyilván $B$-t is fednie kell, így az teljes párosítás. Ezzel tehát a feltétel elégségességét is beláttuk.
             </p>
-        </div>
-    </math-proof>
+</div>
+</math-proof>
 </section>
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-24">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
+<div class="flex items-center gap-4 mb-6 mt-24">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
             6.8
         </div>
-        
-        <div class="relative w-fit">
-            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
-                Összefoglaló Kvíz
-            </h2>
-            <div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
-        </div>
-    </div>
+<div class="relative w-fit">
+
+<div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
+</div>
+</div>
 </math-header>
-
-<section id="section-6-8" class="mb-16 animate-fade-in">
-    <div class="bg-[#2D1305] rounded-[3rem] p-8 md:p-12 border border-theme/30 shadow-2xl relative overflow-hidden group">
-        <div class="absolute -right-20 -bottom-20 opacity-10 pointer-events-none group-hover:scale-110 transition-transform duration-700 text-white">
-            <svg width="400" height="400" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2zm-4 11a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-            </svg>
-        </div>
-
-        <div class="relative z-10 text-left">
-            <div class="flex items-center gap-4 mb-10">
-                <div class="p-3 bg-theme rounded-2xl shadow-lg shadow-theme/40 text-white">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                    </svg>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-black text-white italic tracking-tight">Párosítási Algoritmusok</h3>
-                    <p class="text-amber-200/60 text-sm italic">Vidd az egeret a kártyák fölé a helyes válaszért!</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#01 Javítóút definíciója</p>
-                    <p class="text-white font-bold italic leading-relaxed text-balance">Milyen csúcsok között fut egy javítóút, és mi jellemzi az éleit?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+<section class="mb-16 animate-fade-in" id="section-6-8">
+<div class="bg-[#2D1305] rounded-[3rem] p-8 md:p-12 border border-theme/30 shadow-2xl relative overflow-hidden group">
+<div class="absolute -right-20 -bottom-20 opacity-10 pointer-events-none group-hover:scale-110 transition-transform duration-700 text-white">
+<svg fill="currentColor" height="400" viewbox="0 0 24 24" width="400">
+<path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2zm-4 11a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
+</svg>
+</div>
+<div class="relative z-10 text-left">
+<div class="flex items-center gap-4 mb-10">
+<div class="p-3 bg-theme rounded-2xl shadow-lg shadow-theme/40 text-white">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<h3 class="text-2xl font-black text-white italic tracking-tight">Párosítási Algoritmusok</h3>
+<p class="text-amber-200/60 text-sm italic">Vidd az egeret a kártyák fölé a helyes válaszért!</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
+<p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#01 Javítóút definíciója</p>
+<p class="text-white font-bold italic leading-relaxed text-balance">Milyen csúcsok között fut egy javítóút, és mi jellemzi az éleit?</p>
+<div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
                         Válasz: Két szabad (párosítás által nem fedett) csúcs között fut, és az élei felváltva $M$-en kívüliek és $M$-beliek.
                     </div>
-                </div>
-
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#02 Kőnig-tétel</p>
-                    <p class="text-white font-bold italic leading-relaxed">Milyen kapcsolat van páros gráfokban $\nu(G)$ és $\tau(G)$ között?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+</div>
+<div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
+<p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#02 Kőnig-tétel</p>
+<p class="text-white font-bold italic leading-relaxed">Milyen kapcsolat van páros gráfokban $\nu(G)$ és $\tau(G)$ között?</p>
+<div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
                         Válasz: Páros gráfban $\nu(G) = \tau(G)$, azaz a maximális párosítás mérete egyenlő a minimális lefogó ponthalmaz méretével.
                     </div>
-                </div>
-
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#03 Hall-feltétel</p>
-                    <p class="text-white font-bold italic leading-relaxed">Mikor létezik egy páros gráfban az $A$ pontosztályt lefedő párosítás?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+</div>
+<div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
+<p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#03 Hall-feltétel</p>
+<p class="text-white font-bold italic leading-relaxed">Mikor létezik egy páros gráfban az $A$ pontosztályt lefedő párosítás?</p>
+<div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
                         Válasz: Pontosan akkor, ha minden $X \subseteq A$ részhalmazra teljesül, hogy $|N(X)| \geq |X|$.
                     </div>
-                </div>
-
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#04 Teljes párosítás</p>
-                    <p class="text-white font-bold italic leading-relaxed text-balance">Mi a Frobenius-tétel szerinti feltétele a teljes párosítás létezésének?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+</div>
+<div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
+<p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#04 Teljes párosítás</p>
+<p class="text-white font-bold italic leading-relaxed text-balance">Mi a Frobenius-tétel szerinti feltétele a teljes párosítás létezésének?</p>
+<div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
                         Válasz: Ha $|A| = |B|$, és minden $X \subseteq A$ részhalmazra $|N(X)| \geq |X|$ teljesül.
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</div>
+</div>
 </section>
 
-<section id="section-6-9" class="mb-16 animate-fade-in text-left">
-    <div class="bg-slate-50/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800">
-        
-        <div class="flex items-center gap-4 mb-10">
-            <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center text-amber-500 shadow-sm">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7zM9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1z"/>
-                </svg>
-            </div>
-            <div>
-                <h3 class="text-xl font-black text-slate-800 dark:text-white italic">Tudtad-e?</h3>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
-            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-amber-400 transition-transform hover:-translate-y-1">
-                <h4 class="text-amber-600 text-[10px] font-black uppercase tracking-widest mb-4">A JAVÍTÓUTAK EREJE</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                    Ahelyett, hogy az összes lehetséges párosítást végigpróbálnánk, a <strong>javítóutas algoritmus</strong> polinomidőben megtalálja az optimumot. Ez teszi lehetővé, hogy a modern keresőmotorok és adatbázisok villámgyorsan kezeljenek hatalmas adathalmazokat.
-                </p>
-            </div>
-
-            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-emerald-400 transition-transform hover:-translate-y-1">
-                <h4 class="text-emerald-600 text-[10px] font-black uppercase tracking-widest mb-4">A HÁZASÍTÁSI TÉTEL</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                    A <strong>Hall-tételt</strong> a szakirodalom gyakran "Házasítási tételnek" nevezi. A tétel alapjául szolgáló matematikai modell azt vizsgálja, hogyan lehet egy közösség tagjait optimálisan párba állítani a saját preferencialistáik alapján.
-                </p>
-            </div>
-
-            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-indigo-400 transition-transform hover:-translate-y-1">
-                <h4 class="text-indigo-600 text-[10px] font-black uppercase tracking-widest mb-4">KŐNIG ÉS A DUALITÁS</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                    A <strong>$\nu(G) = \tau(G)$</strong> összefüggés a Kőnig-tételben a matematikai dualitás egyik legszebb példája. Azt bizonyítja, hogy egy "maximális" keresési és egy "minimális" lefogási probléma ugyanazt az eredményt adja.
-                </p>
-            </div>
-
-            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-rose-400 transition-transform hover:-translate-y-1">
-                <h4 class="text-rose-600 text-[10px] font-black uppercase tracking-widest mb-4">SZOFTVER-ÜTEMEZÉS</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                    A modern operációs rendszerek <strong>párosítási algoritmusokat</strong> használnak a feladatok processzormagokhoz rendeléséhez. Ez garantálja, hogy a hardver ne maradjon szabadon, amíg van elvégezhető számítási munka.
-                </p>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-    <div id="complete-section-6" 
-         class="mt-24 p-12 border-2 border-dashed border-stone-500/30 rounded-[3rem] text-center transition-all bg-theme/5">
-        
-        <h3 id="complete-text-6" class="text-xl font-black text-theme mb-6 uppercase tracking-widest">
+<div class="mt-24 p-12 border-2 border-dashed border-stone-500/30 rounded-[3rem] text-center transition-all bg-theme/5" id="complete-section-6">
+<h3 class="text-xl font-black text-theme mb-6 uppercase tracking-widest" id="complete-text-6">
             Mindent megtanultál?
         </h3>
-        
-        <button onclick="toggleChapterComplete(6)" 
-                id="complete-btn-6" 
-                data-theme-color="stone"
-                class="px-10 py-4 bg-stone-600 hover:bg-stone-500 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl transition-all active:scale-95">
+<button class="px-10 py-4 bg-stone-600 hover:bg-stone-500 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl transition-all active:scale-95" data-theme-color="stone" id="complete-btn-6" onclick="toggleChapterComplete(6)">
             Igen! ✅
         </button>
-    </div>
+</div>
 </article>
-
-
-
-
-
-
-
 <script>
     function toggleBeadoModal() {
         const modal = document.getElementById('beadoModal');
@@ -2719,12 +2559,8 @@ document.addEventListener('DOMContentLoaded', initHallInteractive);
     }
 </script>
 
-
-
-</footer>
-</main>
-
-    <script>
+</div></main>
+<script>
         // --- GLOBÁLIS FUNKCIÓK ---
 
         // 1. Menükezelés mobilra
@@ -2768,132 +2604,111 @@ document.addEventListener('DOMContentLoaded', initHallInteractive);
             if (window.MathJax) MathJax.typesetPromise();
         });
     </script>
-
-
-<div id="beadoModal" class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
-    <div id="beadoPanel" class="bg-white dark:bg-slate-800 w-full max-w-md rounded-[2.5rem] shadow-2xl transform scale-90 transition-transform duration-500 ease-out overflow-hidden border border-slate-100 dark:border-slate-700">
-        <div class="p-10 text-center space-y-8">
-            <div class="space-y-4">
-                <div class="w-20 h-20 bg-rose-500 rounded-3xl rotate-12 mx-auto flex items-center justify-center shadow-lg shadow-rose-500/30">
-                    <svg class="w-10 h-10 text-white -rotate-12" fill="currentColor" viewBox="0 0 24 24"><path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" /></svg>
-                </div>
-                <h3 class="text-3xl font-black text-slate-800 dark:text-white leading-tight">Ne add fel bro,<br>van remény!</h3>
-            </div>
-            <button onclick="toggleBeadoModal()" class="w-full py-5 bg-stone-500 hover:bg-stone-400 text-white font-black uppercase tracking-widest text-sm rounded-2xl transition-all shadow-xl shadow-stone-500/20">Nyomom! 💪</button>
-        </div>
-    </div>
+<div class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300" id="beadoModal">
+<div class="bg-white dark:bg-slate-800 w-full max-w-md rounded-[2.5rem] shadow-2xl transform scale-90 transition-transform duration-500 ease-out overflow-hidden border border-slate-100 dark:border-slate-700" id="beadoPanel">
+<div class="p-10 text-center space-y-8">
+<div class="space-y-4">
+<div class="w-20 h-20 bg-rose-500 rounded-3xl rotate-12 mx-auto flex items-center justify-center shadow-lg shadow-rose-500/30">
+<svg class="w-10 h-10 text-white -rotate-12" fill="currentColor" viewbox="0 0 24 24"><path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z"></path></svg>
 </div>
-
-<div id="assistant-window" class="fixed inset-0 md:inset-auto md:bottom-24 md:right-6 z-50 w-full h-full md:w-[450px] md:h-[80vh] bg-stone-600 glass-effect rounded-none md:rounded-[2.5rem] shadow-2xl border-none md:border md:border-white/20 overflow-hidden hidden transform transition-all duration-300 origin-bottom-right opacity-0 scale-95 flex flex-col">    <div class="p-6 pb-4 bg-stone-600 text-white flex-none">
-        <div class="flex justify-between items-start">
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center text-2xl shadow-inner text-left">🤖</div>
-                <div class="text-left">
-                    <h3 class="font-black text-lg uppercase tracking-tight leading-none">Szeszlér-Bot</h3>
-                    <p class="text-[11px] text-stone-100 font-medium mt-1.5 flex items-center gap-1.5">
-                        <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span> Online segítő
+<h3 class="text-3xl font-black text-slate-800 dark:text-white leading-tight">Ne add fel bro,<br/>van remény!</h3>
+</div>
+<button class="w-full py-5 bg-stone-500 hover:bg-stone-400 text-white font-black uppercase tracking-widest text-sm rounded-2xl transition-all shadow-xl shadow-stone-500/20" onclick="toggleBeadoModal()">Nyomom! 💪</button>
+</div>
+</div>
+</div>
+<div class="fixed inset-0 md:inset-auto md:bottom-24 md:right-6 z-50 w-full h-full md:w-[450px] md:h-[80vh] bg-stone-600 glass-effect rounded-none md:rounded-[2.5rem] shadow-2xl border-none md:border md:border-white/20 overflow-hidden hidden transform transition-all duration-300 origin-bottom-right opacity-0 scale-95 flex flex-col" id="assistant-window"> <div class="p-6 pb-4 bg-stone-600 text-white flex-none">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center text-2xl shadow-inner text-left">🤖</div>
+<div class="text-left">
+<h3 class="font-black text-lg uppercase tracking-tight leading-none">Szeszlér-Bot</h3>
+<p class="text-[11px] text-stone-100 font-medium mt-1.5 flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span> Online segítő
                     </p>
-                </div>
-            </div>
-            <button onclick="toggleAssistant()" class="p-2 hover:bg-white/10 rounded-full transition-colors">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2.5" stroke-linecap="round"/></svg>
-            </button>
-        </div>
-        
-        <div class="flex mt-6 bg-black/10 p-1 rounded-2xl border border-white/10 text-white">
-    <button onclick="switchTab('search')" id="tab-search" class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl bg-white text-stone-600 shadow-sm transition-all">Fogalomtár</button>
-    
-    <button onclick="switchTab('ask')" id="tab-ask" class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl hover:text-white transition-all opacity-70">Kérdezz</button>
-
-    <button onclick="switchTab('exam')" id="tab-exam" class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl hover:text-white transition-all opacity-70">Vakvizsga</button>
 </div>
-
-<div id="panel-exam" class="hidden flex flex-col flex-grow overflow-hidden p-6 bg-transparent">
-        <div class="flex-grow flex flex-col items-center justify-center p-6 space-y-6 text-center overflow-y-auto">
-        
-        <div id="exam-card" class="w-full p-8 rounded-[2.5rem] bg-white dark:bg-slate-800 border-none flex flex-col items-center justify-center min-h-[250px] transition-all shadow-2xl">
-            <div id="exam-prompt" class="text-slate-400 italic text-sm">
+</div>
+<button class="p-2 hover:bg-white/10 rounded-full transition-colors" onclick="toggleAssistant()">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-width="2.5"></path></svg>
+</button>
+</div>
+<div class="flex mt-6 bg-black/10 p-1 rounded-2xl border border-white/10 text-white">
+<button class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl bg-white text-stone-600 shadow-sm transition-all" id="tab-search" onclick="switchTab('search')">Fogalomtár</button>
+<button class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl hover:text-white transition-all opacity-70" id="tab-ask" onclick="switchTab('ask')">Kérdezz</button>
+<button class="flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl hover:text-white transition-all opacity-70" id="tab-exam" onclick="switchTab('exam')">Vakvizsga</button>
+</div>
+<div class="hidden flex flex-col flex-grow overflow-hidden p-6 bg-transparent" id="panel-exam">
+<div class="flex-grow flex flex-col items-center justify-center p-6 space-y-6 text-center overflow-y-auto">
+<div class="w-full p-8 rounded-[2.5rem] bg-white dark:bg-slate-800 border-none flex flex-col items-center justify-center min-h-[250px] transition-all shadow-2xl" id="exam-card">
+<div class="text-slate-400 italic text-sm" id="exam-prompt">
                 Jöhetnek a kérdések?
             </div>
-            <div id="exam-content" class="hidden w-full space-y-4 text-left">
-                <span id="exam-ref" class="px-2 py-0.5 rounded-md bg-stone-50 text-stone-600 text-[8px] font-black uppercase tracking-widest"></span>
-                <h4 id="exam-title" class="font-black text-slate-900 dark:text-white uppercase text-sm tracking-tight leading-tight"></h4>
-                <div id="exam-answer" class="hidden p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-stone-100 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-300 italic leading-relaxed shadow-inner"></div>
-            </div>
-        </div>
-
-        <div class="w-full space-y-4 pb-4">
-            <button id="exam-main-btn" onclick="drawExamCard()" class="w-full py-4 bg-white text-stone-600 hover:bg-slate-50 font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl active:scale-95 transition-all">
+<div class="hidden w-full space-y-4 text-left" id="exam-content">
+<span class="px-2 py-0.5 rounded-md bg-stone-50 text-stone-600 text-[8px] font-black uppercase tracking-widest" id="exam-ref"></span>
+<h4 class="font-black text-slate-900 dark:text-white uppercase text-sm tracking-tight leading-tight" id="exam-title"></h4>
+<div class="hidden p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-stone-100 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-300 italic leading-relaxed shadow-inner" id="exam-answer"></div>
+</div>
+</div>
+<div class="w-full space-y-4 pb-4">
+<button class="w-full py-4 bg-white text-stone-600 hover:bg-slate-50 font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl active:scale-95 transition-all" id="exam-main-btn" onclick="drawExamCard()">
                 Új tétel húzása 🃏
             </button>
-
-            <button id="exam-reveal-btn" onclick="revealExamAnswer()" class="hidden w-full py-4 bg-white text-stone-600 hover:bg-slate-50 font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl active:scale-95 transition-all">
+<button class="hidden w-full py-4 bg-white text-stone-600 hover:bg-slate-50 font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl active:scale-95 transition-all" id="exam-reveal-btn" onclick="revealExamAnswer()">
                 Válasz mutatása ✨
             </button>
-        </div>
-    </div>
 </div>
 </div>
-
-<div id="panel-search" class="flex flex-col flex-grow overflow-hidden bg-white dark:bg-slate-900">
-            <div class="p-5 border-b dark:border-slate-800 text-left flex-none">
-            <input type="text" id="search-input" placeholder="Mit keresel?..." class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 text-sm focus:ring-2 focus:ring-stone-500 transition-all dark:text-white shadow-inner">
-        </div>
-        <div id="search-results" class="p-6 flex-grow overflow-y-auto bg-white/50 dark:bg-transparent text-left custom-scrollbar">
-            <div class="text-center py-12 opacity-30">
-                <svg class="w-12 h-12 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-width="2"/></svg>
-                <p class="text-[10px] font-bold uppercase tracking-widest text-center">Kezdj el gépelni...</p>
-            </div>
-        </div>
-    </div>
-
-<div id="panel-ask" class="hidden flex flex-col flex-grow overflow-hidden bg-white dark:bg-slate-900">
-            <div id="ask-results" class="p-6 flex-grow overflow-y-auto space-y-4 bg-slate-50/50 dark:bg-transparent text-left custom-scrollbar">
-            <div class="flex gap-3 animate-fade-in text-left">
-        <div class="w-8 h-8 rounded-xl bg-stone-600 flex items-center justify-center text-xs shadow-md flex-none text-white">🤖</div>
-        
-        <div class="bot-bubble p-4 text-xs italic text-slate-600 dark:text-slate-300 shadow-sm leading-relaxed max-w-[85%] border border-stone-100 dark:border-stone-900/30"">
+</div>
+</div>
+<div class="flex flex-col flex-grow overflow-hidden bg-white dark:bg-slate-900" id="panel-search">
+<div class="p-5 border-b dark:border-slate-800 text-left flex-none">
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 text-sm focus:ring-2 focus:ring-stone-500 transition-all dark:text-white shadow-inner" id="search-input" placeholder="Mit keresel?..." type="text"/>
+</div>
+<div class="p-6 flex-grow overflow-y-auto bg-white/50 dark:bg-transparent text-left custom-scrollbar" id="search-results">
+<div class="text-center py-12 opacity-30">
+<svg class="w-12 h-12 mx-auto mb-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-width="2"></path></svg>
+<p class="text-[10px] font-bold uppercase tracking-widest text-center">Kezdj el gépelni...</p>
+</div>
+</div>
+</div>
+<div class="hidden flex flex-col flex-grow overflow-hidden bg-white dark:bg-slate-900" id="panel-ask">
+<div class="p-6 flex-grow overflow-y-auto space-y-4 bg-slate-50/50 dark:bg-transparent text-left custom-scrollbar" id="ask-results">
+<div class="flex gap-3 animate-fade-in text-left">
+<div class="w-8 h-8 rounded-xl bg-stone-600 flex items-center justify-center text-xs shadow-md flex-none text-white">🤖</div>
+<div "="" class="bot-bubble p-4 text-xs italic text-slate-600 dark:text-slate-300 shadow-sm leading-relaxed max-w-[85%] border border-stone-100 dark:border-stone-900/30">
             Szia! Szeszlér-Bot vagyok. Kérdezz bármit az anyaggal kapcsolatban!
         </div>
-    </div>
-        </div>
-        
-        <div class="p-5 border-t dark:border-slate-800 bg-white dark:bg-slate-900 flex-none text-left">
-            <div class="relative flex items-center gap-2">
-                <input type="text" id="ask-input" placeholder="Írd ide a kérdésed..." class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 text-sm focus:ring-2 focus:ring-stone-500 transition-all dark:text-white shadow-inner">
-                <button onclick="handleAsk()" class="p-4 bg-stone-600 text-white rounded-2xl shadow-lg hover:bg-stone-500 transition-all active:scale-90 flex-none">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-            </div>
-        </div>
-    </div>
 </div>
-
-
-
-
-
-
+</div>
+<div class="p-5 border-t dark:border-slate-800 bg-white dark:bg-slate-900 flex-none text-left">
+<div class="relative flex items-center gap-2">
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-2xl px-5 py-4 text-sm focus:ring-2 focus:ring-stone-500 transition-all dark:text-white shadow-inner" id="ask-input" placeholder="Írd ide a kérdésed..." type="text"/>
+<button class="p-4 bg-stone-600 text-white rounded-2xl shadow-lg hover:bg-stone-500 transition-all active:scale-90 flex-none" onclick="handleAsk()">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</div>
 <div class="fixed-btn-container left-4 bottom-[84px] md:left-auto md:right-6 md:bottom-[100px]">
-    <button onclick="toggleAssistant()" class="flex items-center justify-center w-11 h-11 md:w-16 md:h-16 bg-stone-600 text-white rounded-full shadow-2xl transition-transform active:scale-95">
-        <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-    </button>
+<button class="flex items-center justify-center w-11 h-11 md:w-16 md:h-16 bg-stone-600 text-white rounded-full shadow-2xl transition-transform active:scale-95" onclick="toggleAssistant()">
+<svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</button>
 </div>
-
 <div class="fixed-btn-container left-4 bottom-6 md:left-auto md:right-6 md:bottom-6">
-    <button onclick="toggleBeadoModal()" class="flex items-center gap-2 bg-stone-500 hover:bg-stone-400 text-white px-3 py-2.5 md:px-6 md:py-4 rounded-xl md:rounded-2xl shadow-2xl border border-white/20">
-        <span class="font-black text-[10px] md:text-sm tracking-widest uppercase">
-            <span class="md:hidden">032</span>
-            <span class="hidden md:inline">032 beadó</span>
-        </span>
-        <div class="bg-white/20 p-1 rounded-md text-white">
-            <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10h.01M15 10h.01M9.5 15.5a5 5 0 015 0M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-        </div>
-    </button>
+<button class="flex items-center gap-2 bg-stone-500 hover:bg-stone-400 text-white px-3 py-2.5 md:px-6 md:py-4 rounded-xl md:rounded-2xl shadow-2xl border border-white/20" onclick="toggleBeadoModal()">
+<span class="font-black text-[10px] md:text-sm tracking-widest uppercase">
+<span class="md:hidden">032</span>
+<span class="hidden md:inline">032 beadó</span>
+</span>
+<div class="bg-white/20 p-1 rounded-md text-white">
+<svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 10h.01M15 10h.01M9.5 15.5a5 5 0 015 0M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</button>
 </div>
 <script>
     window.addEventListener('load', () => {
@@ -2976,8 +2791,6 @@ function switchTab(tab) {
     activeTab.className = `flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-xl bg-white text-${themeColor}-600 shadow-sm transition-all`;
 }
 </script>
-
-
 <script>
     function markChapterComplete(num) {
     let progress = JSON.parse(localStorage.getItem('graphProgress') || '{}');
@@ -3107,7 +2920,6 @@ function updateProgressUI() {
 // Oldalbetöltéskor inicializáljuk
 document.addEventListener('DOMContentLoaded', updateProgressUI);
 </script>
-
 <script>
 function initGlossaryTooltips() {
     const article = document.querySelector('article');
@@ -3232,6 +3044,5 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <div id="global-glossary-tooltip"></div>
 </body>
-
 <!-- Mirrored from bsz2jegyzet.hu/bsz2/6.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 May 2026 09:49:12 GMT -->
 </html>
