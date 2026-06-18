@@ -1773,79 +1773,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 </math-lab>
 
-<math-header>
-    <h2 class="text-balance">Kidolgozott példa</h2>
-</math-header>
 
-<math-example id="section-1-2-ex-2">
-    <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 md:p-8 rounded-2xl relative overflow-hidden mb-6">
-        <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-            <svg class="w-20 h-20 text-indigo-600" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7 15h-2v-2h2v2m0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
-        </div>
-        <h4 class="text-indigo-600 dark:text-indigo-400 font-bold mb-3 uppercase tracking-widest text-xs">A feladat szövege</h4>
-        <p class="text-slate-700 dark:text-slate-300 leading-relaxed italic text-lg">
-            Egy sakk klubban tíz klubtag tartózkodott. Megkérdezték tőlük, hány partit játszottak aznap este. A válaszok: <span class="not-italic font-bold text-slate-900 dark:text-white">4, 2, 3, 4, 5, 6, 5, 4, 6, 4</span>. Holmes szerint valaki tévedett vagy hazudott. Miért?
-        </p>
-    </div>
-
-    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-md mb-6">
-        <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
-            <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
-            Megoldás levezetése
-        </h4>
-        <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
-            <p>Modellezzük a szituációt egy $G$ gráffal:</p>
-            <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-0">
-                <li class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-lg border border-slate-100 dark:border-slate-800">
-                    <strong class="text-slate-900 dark:text-white block text-xs uppercase mb-1 tracking-tighter">Csúcsok</strong>
-                    A klubban tartózkodó 10 vendég.
-                </li>
-                <li class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-lg border border-slate-100 dark:border-slate-800">
-                    <strong class="text-slate-900 dark:text-white block text-xs uppercase mb-1 tracking-tighter">Élek</strong>
-                    Két csúcs között fussun él, ha játszottak partit.
-                </li>
-            </ul>
-            <p>Ekkor a vendégek által mondott számok a gráf csúcsainak <strong>fokszámai</strong> ($d(v)$). A fokszámösszeg-tétel alapján:</p>
-            <div class="bg-slate-900 rounded-xl p-4 text-center my-6">
-                <p class="text-indigo-300 font-mono text-xl">$\sum_{v \in V(G)} d(v) = 2 \cdot |E(G)|$</p>
-            </div>
-            <p>Adjuk össze a Dr. Watson által gyűjtött számokat:</p>
-            <div class="flex justify-center items-center py-4">
-                <div class="bg-slate-100 dark:bg-slate-900/50 px-6 py-3 rounded-full border-2 border-dashed border-slate-200 dark:border-slate-700 font-bold text-slate-800 dark:text-slate-200">
-                    $4+2+3+4+5+6+5+4+6+4 =$ <span class="text-rose-500 text-2xl ml-2">43</span>
-                </div>
-            </div>
-            <p>
-                Mivel a gráf éleinek száma ($|E|$) csak egész lehet, az összegnek mindenképpen <strong>párosnak</strong> kellene lennie. A 43 páratlan, tehát Holmes tudta, hogy ilyen gráf nem létezhet.
-            </p>
-        </div>
-    </div>
-
-    <div class="bg-slate-900 rounded-3xl p-8 text-white">
-        <h3 class="text-xl font-bold mb-4 italic">Létezhet-e a gráf?</h3>
-        <p class="text-slate-400 text-sm mb-6 font-medium">Írd be a fokszámokat vesszővel elválasztva, és nézzük meg az összeget!</p>
-        
-        <div class="space-y-4">
-            <input type="text" id="degree-input" value="4, 2, 3, 4, 5, 6, 5, 4, 6, 4" 
-                class="w-full bg-slate-800 border border-slate-700 rounded-xl p-4 font-mono text-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all">
-            
-            <div class="flex flex-col md:flex-row gap-4">
-                <div id="calc-result-box" class="flex-grow p-4 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-between">
-                    <div>
-                        <div class="text-[10px] uppercase font-bold text-slate-500 tracking-widest">Összeg</div>
-                        <div id="calc-sum" class="text-2xl font-black">43</div>
-                    </div>
-                    <div id="calc-status" class="px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest bg-rose-500/20 text-rose-500 border border-rose-500/50">
-                        Páratlan (Lehetetlen)
-                    </div>
-                </div>
-                <button onclick="checkDegrees()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-8 py-4 rounded-xl transition-all active:scale-95 shadow-lg">
-                    Ellenőrzés
-                </button>
-            </div>
-        </div>
-    </div>
-</math-example>
 
 <script>
     function checkDegrees() {
@@ -2010,96 +1938,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 </math-lab>
 
-<math-header>
-    <h2 class="text-balance">Példa: Élszám számítása komplementerből</h2>
-</math-header>
 
-<math-example id="section-1-5-ex">
-    <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 md:p-8 rounded-2xl shadow-sm relative overflow-hidden mb-6">
-        <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-            <svg class="w-20 h-20 text-indigo-600" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7 15h-2v-2h2v2m0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
-        </div>
-        <h4 class="text-indigo-600 dark:text-indigo-400 font-bold mb-3 uppercase tracking-widest text-xs">Feladat</h4>
-        <p class="text-slate-700 dark:text-slate-300 leading-relaxed italic text-lg text-balance">
-            A 21 csúcsú $G$ egyszerű gráfról és annak $\bar{G}$ komplementeréről tudjuk, hogy mindkettőnek van 8 darab 4 fokú és 5 darab 10 fokú pontja. Hány éle van $G$-nek?
-        </p>
-    </div>
-
-    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-md mb-8">
-        <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
-            <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
-            Megoldás
-        </h4>
-        <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
-            <p>
-                Jelölje $d_G(v)$, illetve $d_{\bar{G}}(v)$ a $v$ csúcs fokát $G$-ben, illetve $\bar{G}$-ben. 
-                Mivel a gráfunk 21 csúcsú, tudjuk, hogy minden $v$ csúcsra igaz:
-            </p>
-            <div class="bg-slate-900 rounded-xl p-4 text-center my-4 shadow-inner">
-                <p class="text-indigo-300 font-mono text-xl">$d_G(v) + d_{\bar{G}}(v) = 20$</p>
-            </div>
-            
-            <p>
-                Ez azért van, mert $v$ bármely tőle különböző csúccsal $G$ és $\bar{G}$ közül pontosan az egyikben szomszédos. Ennek segítségével meghatározhatjuk az összes csúcs fokszámát $G$-ben:
-            </p>
-            <ul class="space-y-3 bg-slate-50 dark:bg-slate-900/40 p-5 rounded-xl border border-slate-100 dark:border-slate-800">
-                <li class="flex items-center gap-3">
-                    <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
-                    <span>$G$ eredeti pontjai: 8 darab 4 fokú és 5 darab 10 fokú csúcs.</span>
-                </li>
-                <li class="flex items-center gap-3">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                    <span>$\bar{G}$ 10 fokú pontjai $G$-ben: $20 - 10 = 10$ fokúak (ezek azonosak $G$ megadott 10 fokú pontjaival).</span>
-                </li>
-                <li class="flex items-center gap-3">
-                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
-                    <span>$\bar{G}$ 4 fokú pontjai $G$-ben: $20 - 4 = 16$ fokúak.</span>
-                </li>
-            </ul>
-            <p>
-                Ezek alapján $G$-ben minden csúcs fokát ismerjük már: van 8 darab 4 fokú, 5 darab 10 fokú és 8 darab 16 fokú csúcsa. Számoljuk ki a fokszámösszeget:
-            </p>
-            <div class="bg-slate-100 dark:bg-slate-900/50 p-4 rounded-xl text-center font-mono font-bold text-slate-800 dark:text-slate-200 shadow-inner">
-                $\sum d(v) = 8 \cdot 4 + 5 \cdot 10 + 8 \cdot 16 = 32 + 50 + 128 = 210$
-            </div>
-            <p>
-                A 1.3. Tétel (Fokszámösszeg-tétel) szerint $G$ éleinek száma a fokszámösszeg fele:
-            </p>
-            <div class="flex justify-center mt-6">
-                <div class="bg-indigo-600 text-white px-10 py-5 rounded-2xl shadow-xl shadow-indigo-500/20 transform hover:scale-105 transition-transform">
-                    <span class="text-xs uppercase font-black opacity-75 block mb-1 tracking-widest text-center">Végeredmény</span>
-                    <span class="text-3xl font-black italic">|E(G)| = 105</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden border border-slate-800">
-        <div class="relative z-10 flex flex-col md:flex-row items-center gap-8 text-balance">
-            <div class="flex-grow">
-                <h3 class="text-xl font-bold mb-2 italic">A "Kiegészítő" elv</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">
-                    Képzeld el a 21 csúcsú teljes gráfot ($K_{21}$). Ebben minden csúcsból 20 él indul ki. Amikor kettéválasztjuk $G$-re és $\bar{G}$-re, ezek az élek oszlanak meg: ami nincs az egyikben, az benne van a másikban.
-                </p>
-            </div>
-            <div class="flex-none bg-slate-800 p-6 rounded-2xl border border-slate-700 text-center min-w-[200px] shadow-2xl">
-                <div class="text-[10px] uppercase font-bold text-indigo-400 mb-2 tracking-widest">Egy adott csúcs esete</div>
-                <div class="flex items-center justify-center gap-2 font-mono text-xl">
-                    <span class="text-emerald-400 font-black">d(v)</span>
-                    <span class="text-slate-500">+</span>
-                    <span class="text-amber-400 font-black">d̄(v)</span>
-                    <span class="text-slate-500">=</span>
-                    <span class="text-white font-black">20</span>
-                </div>
-                <div class="mt-4 h-2.5 w-full bg-slate-700 rounded-full overflow-hidden flex shadow-inner">
-                    <div class="h-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" style="width: 20%"></div>
-                    <div class="h-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]" style="width: 80%"></div>
-                </div>
-                <div class="mt-2 text-[9px] text-slate-500 italic font-medium tracking-tight">4 él itt + 16 él ott</div>
-            </div>
-        </div>
-    </div>
-</math-example>
 
 <math-header>
     <div class="num-badge">1.6</div>
@@ -2169,73 +2008,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 </math-lab>
 
-<math-header>
-    <h2 class="text-balance">Izomorfia példafeladat</h2>
-</math-header>
 
-<math-example id="section-1-6-ex">
-    <div class="bg-slate-50 dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 p-6 md:p-8 rounded-2xl mb-8 relative overflow-hidden">
-        <h4 class="text-indigo-600 dark:text-indigo-400 font-bold mb-4 uppercase tracking-widest text-xs">Feladat</h4>
-        <p class="text-slate-700 dark:text-slate-300 leading-relaxed italic text-lg text-left">
-            Melyek izomorfak az alábbi gráfok közül?
-        </p>
-    </div>
-
-    <math-lab>
-        <div class="flex flex-col lg:flex-row justify-around items-center gap-12 py-4">
-            <div class="flex flex-col items-center gap-4">
-                <svg id="iso-1" width="180" height="180" viewBox="0 0 100 100" class="drop-shadow-md overflow-visible"></svg>
-                <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">A gráf</span>
-            </div>
-            <div class="flex flex-col items-center gap-4">
-                <svg id="iso-2" width="180" height="180" viewBox="0 0 100 100" class="drop-shadow-md overflow-visible"></svg>
-                <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">B gráf</span>
-            </div>
-            <div class="flex flex-col items-center gap-4">
-                <svg id="iso-3" width="180" height="180" viewBox="0 0 100 100" class="drop-shadow-md overflow-visible"></svg>
-                <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">C gráf</span>
-            </div>
-        </div>
-        
-        <div class="mt-10 flex flex-wrap justify-center gap-4">
-            <button onclick="highlightMapping()" class="text-[10px] bg-indigo-600 hover:bg-indigo-500 text-white font-black py-3 px-8 rounded-full transition-all uppercase tracking-widest shadow-lg shadow-indigo-500/20 active:scale-95">
-                Bijekció mutatása (A ≅ B)
-            </button>
-            <button onclick="highlightCycles()" class="text-[10px] bg-rose-600 hover:bg-rose-500 text-white font-black py-3 px-8 rounded-full transition-all uppercase tracking-widest shadow-lg shadow-rose-500/20 active:scale-95">
-                Négyszög keresése (C)
-            </button>
-        </div>
-    </math-lab>
-
-    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-md mt-8">
-        <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
-            <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
-            Megoldás levezetése
-        </h4>
-        
-        <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
-            <p>
-                Az első két gráf <span class="text-emerald-600 font-bold">izomorf</span>. Ezt például a csúcsok megfelelő betűzésével (bijekció megadásával) lehet igazolni: a bal oldali gráf bármely két csúcsa pontosan akkor szomszédos, ha a középső gráf azonosan betűzött két csúcsai szomszédosak.
-            </p>
-            
-            <div class="bg-rose-50 dark:bg-rose-900/10 border-l-4 border-rose-500 p-5 rounded-r-xl">
-                <p class="text-rose-800 dark:text-rose-300 font-medium">
-                    A jobb szélső gráf <span class="font-bold underline">nem izomorf</span> a másik kettővel.
-                </p>
-            </div>
-            
-            <div class="space-y-4">
-                <h5 class="text-xs font-black text-slate-900 dark:text-white uppercase tracking-widest">Strukturális indoklás:</h5>
-                <p>
-                    A harmadik gráfban található <strong class="text-rose-500 font-bold">négyszög</strong> (4 hosszú kör). Ha ez a gráf izomorf lenne a másik kettővel, akkor azokban is lennie kellene négyszögnek (mivel az izomorfia tartja a körök hosszát).
-                </p>
-                <p>
-                    Azonban az első gráfban bármely $v$ csúcsot is nézzük, annak szomszédai között nincs két olyan, amiknek $v$-n kívül is lenne közös szomszédja, így nem alkothatnak négyszöget.
-                </p>
-            </div>
-        </div>
-    </div>
-</math-example>
 
 <math-header>
     <div class="num-badge">1.7</div>
@@ -2969,6 +2742,48 @@ document.addEventListener('DOMContentLoaded', () => {
 </math-lab>
 
 <math-header>
+    <div class="num-badge">1.15</div>
+    <h2>Dijkstra algoritmusa</h2>
+</math-header>
+
+<math-def id="section-1-15">
+    <div class="space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
+        <p>
+            Dijkstra algoritmusa a <strong class="text-slate-900 dark:text-white">legrövidebb út problémát</strong> oldja meg olyan irányított gráfokban, ahol <strong class="text-rose-500">nincsenek negatív élsúlyok</strong>. Az algoritmus folyamatosan karbantart egy $K$ halmazt (a "kész" csúcsok halmazát, amikre a legrövidebb út már megvan), és kiszámítja a táv($v$) távolságokat a többi csúcsra.
+        </p>
+    </div>
+</math-def>
+
+<div class="bg-indigo-50 dark:bg-indigo-900/10 border border-indigo-200 dark:border-indigo-800 p-6 rounded-2xl mb-8">
+    <h3 class="text-indigo-600 dark:text-indigo-400 font-black uppercase tracking-widest text-sm mb-4">Dijkstra Algoritmusa</h3>
+    <div class="font-mono text-sm text-slate-800 dark:text-slate-300 space-y-2">
+        <p><span class="text-slate-500 font-bold">Bemenet:</span> Egy $n$ csúcsú $G = (V,E)$ irányított gráf, egy $w : E \to \mathbb{R}^+ \cup \{0\}$ nemnegatív súlyfüggvény és egy $s \in V$ csúcs</p>
+        <hr class="border-indigo-200 dark:border-indigo-800 my-3">
+        <p>1: táv($s$) $\leftarrow 0$; minden $v \in V, v \neq s$-re táv($v$) $\leftarrow \infty$</p>
+        <p>2: minden $v \in V, v \neq s$-re előző($v$) $\leftarrow *$</p>
+        <p>3: $K \leftarrow \{s\}$; $a \leftarrow s$</p>
+        <p>4: <strong class="text-indigo-600 dark:text-indigo-400">ciklus:</strong> amíg $K \neq V$</p>
+        <p class="pl-4">5: <strong class="text-indigo-600 dark:text-indigo-400">ciklus:</strong> $e$ végigfut az $e = (a, v), v \notin K$ éleken</p>
+        <p class="pl-8">6: <strong>ha</strong> táv($v$) $>$ táv($a$) + $w(e)$, <strong>akkor:</strong></p>
+        <p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">7: táv($v$) $\leftarrow$ táv($a$) + $w(e)$</p>
+        <p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">8: előző($v$) $\leftarrow a$</p>
+        <p class="pl-4">9: <strong>ciklus vége</strong></p>
+        <p class="pl-4">10: $a$ legyen egy olyan $a \notin K$ csúcs, amire táv($a$) = $\min\{$táv($v$) : $v \notin K\}$</p>
+        <p class="pl-4">11: $K \leftarrow K \cup \{a\}$</p>
+        <p>12: <strong>ciklus vége</strong></p>
+    </div>
+</div>
+
+<math-theorem id="section-1-16">
+    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4 italic text-center md:text-left">
+        Dijkstra algoritmusának lépésszáma
+    </h3>
+    <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
+        Az algoritmus 10. sorában a minimumkeresés minden lépésben egyre kisebb halmazon fut le. Ha egyszerű tömböt használunk, a keresések száma $n$-nel arányos minden külső ciklusban, így az eljárás teljes lépésszáma <strong class="text-indigo-600 dark:text-indigo-400">$\mathcal{O}(n^2)$</strong>, ahol $n$ a csúcsok száma.
+    </p>
+</math-theorem>
+
+<math-header>
     <div class="num-badge">1.14</div>
     <h2>Összefoglaló Kvíz</h2>
 </math-header>
@@ -3027,47 +2842,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 </math-lab>
 
-<math-header>
-    <div class="num-badge">1.15</div>
-    <h2>Dijkstra algoritmusa</h2>
-</math-header>
 
-<math-def id="section-1-15">
-    <div class="space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
-        <p>
-            Dijkstra algoritmusa a <strong class="text-slate-900 dark:text-white">legrövidebb út problémát</strong> oldja meg olyan irányított gráfokban, ahol <strong class="text-rose-500">nincsenek negatív élsúlyok</strong>. Az algoritmus folyamatosan karbantart egy $K$ halmazt (a "kész" csúcsok halmazát, amikre a legrövidebb út már megvan), és kiszámítja a táv($v$) távolságokat a többi csúcsra.
-        </p>
-    </div>
-</math-def>
-
-<div class="bg-indigo-50 dark:bg-indigo-900/10 border border-indigo-200 dark:border-indigo-800 p-6 rounded-2xl mb-8">
-    <h3 class="text-indigo-600 dark:text-indigo-400 font-black uppercase tracking-widest text-sm mb-4">Dijkstra Algoritmusa</h3>
-    <div class="font-mono text-sm text-slate-800 dark:text-slate-300 space-y-2">
-        <p><span class="text-slate-500 font-bold">Bemenet:</span> Egy $n$ csúcsú $G = (V,E)$ irányított gráf, egy $w : E \to \mathbb{R}^+ \cup \{0\}$ nemnegatív súlyfüggvény és egy $s \in V$ csúcs</p>
-        <hr class="border-indigo-200 dark:border-indigo-800 my-3">
-        <p>1: táv($s$) $\leftarrow 0$; minden $v \in V, v \neq s$-re táv($v$) $\leftarrow \infty$</p>
-        <p>2: minden $v \in V, v \neq s$-re előző($v$) $\leftarrow *$</p>
-        <p>3: $K \leftarrow \{s\}$; $a \leftarrow s$</p>
-        <p>4: <strong class="text-indigo-600 dark:text-indigo-400">ciklus:</strong> amíg $K \neq V$</p>
-        <p class="pl-4">5: <strong class="text-indigo-600 dark:text-indigo-400">ciklus:</strong> $e$ végigfut az $e = (a, v), v \notin K$ éleken</p>
-        <p class="pl-8">6: <strong>ha</strong> táv($v$) $>$ táv($a$) + $w(e)$, <strong>akkor:</strong></p>
-        <p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">7: táv($v$) $\leftarrow$ táv($a$) + $w(e)$</p>
-        <p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">8: előző($v$) $\leftarrow a$</p>
-        <p class="pl-4">9: <strong>ciklus vége</strong></p>
-        <p class="pl-4">10: $a$ legyen egy olyan $a \notin K$ csúcs, amire táv($a$) = $\min\{$táv($v$) : $v \notin K\}$</p>
-        <p class="pl-4">11: $K \leftarrow K \cup \{a\}$</p>
-        <p>12: <strong>ciklus vége</strong></p>
-    </div>
-</div>
-
-<math-theorem id="section-1-16">
-    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4 italic text-center md:text-left">
-        Dijkstra algoritmusának lépésszáma
-    </h3>
-    <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-        Az algoritmus 10. sorában a minimumkeresés minden lépésben egyre kisebb halmazon fut le. Ha egyszerű tömböt használunk, a keresések száma $n$-nel arányos minden külső ciklusban, így az eljárás teljes lépésszáma <strong class="text-indigo-600 dark:text-indigo-400">$\mathcal{O}(n^2)$</strong>, ahol $n$ a csúcsok száma.
-    </p>
-</math-theorem>
 
 <math-trivia id="section-1-17">
 <div class="flex items-center gap-4 mb-8">
@@ -3120,6 +2895,256 @@ document.addEventListener('DOMContentLoaded', () => {
 
     </div>
 </math-trivia>
+<div class="mt-12 w-full animate-fade-in">
+    <details class="group bg-slate-800/30 border border-slate-700/50 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+        <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-800/50 transition-colors">
+            <div class="flex items-center gap-4">
+                <div class="p-3 bg-indigo-500/20 rounded-xl">
+                    <span class="text-xl">📝</span>
+                </div>
+                <h3 class="text-lg font-black text-indigo-400 uppercase tracking-widest">Gyakorló feladatok és példák</h3>
+            </div>
+            <div class="text-indigo-400 transition-transform duration-300 group-open:rotate-180">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </div>
+        </summary>
+        <div class="p-8 border-t border-slate-700/50 bg-slate-900/50 space-y-12">
+            <math-header>
+    <h2 class="text-balance">Kidolgozott példa</h2>
+</math-header>
+
+<math-example id="section-1-2-ex-2">
+    <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 md:p-8 rounded-2xl relative overflow-hidden mb-6">
+        <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+            <svg class="w-20 h-20 text-indigo-600" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7 15h-2v-2h2v2m0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
+        </div>
+        <h4 class="text-indigo-600 dark:text-indigo-400 font-bold mb-3 uppercase tracking-widest text-xs">A feladat szövege</h4>
+        <p class="text-slate-700 dark:text-slate-300 leading-relaxed italic text-lg">
+            Egy sakk klubban tíz klubtag tartózkodott. Megkérdezték tőlük, hány partit játszottak aznap este. A válaszok: <span class="not-italic font-bold text-slate-900 dark:text-white">4, 2, 3, 4, 5, 6, 5, 4, 6, 4</span>. Holmes szerint valaki tévedett vagy hazudott. Miért?
+        </p>
+    </div>
+
+    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-md mb-6">
+        <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
+            <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
+            Megoldás levezetése
+        </h4>
+        <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+            <p>Modellezzük a szituációt egy $G$ gráffal:</p>
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-0">
+                <li class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-lg border border-slate-100 dark:border-slate-800">
+                    <strong class="text-slate-900 dark:text-white block text-xs uppercase mb-1 tracking-tighter">Csúcsok</strong>
+                    A klubban tartózkodó 10 vendég.
+                </li>
+                <li class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-lg border border-slate-100 dark:border-slate-800">
+                    <strong class="text-slate-900 dark:text-white block text-xs uppercase mb-1 tracking-tighter">Élek</strong>
+                    Két csúcs között fussun él, ha játszottak partit.
+                </li>
+            </ul>
+            <p>Ekkor a vendégek által mondott számok a gráf csúcsainak <strong>fokszámai</strong> ($d(v)$). A fokszámösszeg-tétel alapján:</p>
+            <div class="bg-slate-900 rounded-xl p-4 text-center my-6">
+                <p class="text-indigo-300 font-mono text-xl">$\sum_{v \in V(G)} d(v) = 2 \cdot |E(G)|$</p>
+            </div>
+            <p>Adjuk össze a Dr. Watson által gyűjtött számokat:</p>
+            <div class="flex justify-center items-center py-4">
+                <div class="bg-slate-100 dark:bg-slate-900/50 px-6 py-3 rounded-full border-2 border-dashed border-slate-200 dark:border-slate-700 font-bold text-slate-800 dark:text-slate-200">
+                    $4+2+3+4+5+6+5+4+6+4 =$ <span class="text-rose-500 text-2xl ml-2">43</span>
+                </div>
+            </div>
+            <p>
+                Mivel a gráf éleinek száma ($|E|$) csak egész lehet, az összegnek mindenképpen <strong>párosnak</strong> kellene lennie. A 43 páratlan, tehát Holmes tudta, hogy ilyen gráf nem létezhet.
+            </p>
+        </div>
+    </div>
+
+    <div class="bg-slate-900 rounded-3xl p-8 text-white">
+        <h3 class="text-xl font-bold mb-4 italic">Létezhet-e a gráf?</h3>
+        <p class="text-slate-400 text-sm mb-6 font-medium">Írd be a fokszámokat vesszővel elválasztva, és nézzük meg az összeget!</p>
+        
+        <div class="space-y-4">
+            <input type="text" id="degree-input" value="4, 2, 3, 4, 5, 6, 5, 4, 6, 4" 
+                class="w-full bg-slate-800 border border-slate-700 rounded-xl p-4 font-mono text-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all">
+            
+            <div class="flex flex-col md:flex-row gap-4">
+                <div id="calc-result-box" class="flex-grow p-4 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-between">
+                    <div>
+                        <div class="text-[10px] uppercase font-bold text-slate-500 tracking-widest">Összeg</div>
+                        <div id="calc-sum" class="text-2xl font-black">43</div>
+                    </div>
+                    <div id="calc-status" class="px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest bg-rose-500/20 text-rose-500 border border-rose-500/50">
+                        Páratlan (Lehetetlen)
+                    </div>
+                </div>
+                <button onclick="checkDegrees()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-8 py-4 rounded-xl transition-all active:scale-95 shadow-lg">
+                    Ellenőrzés
+                </button>
+            </div>
+        </div>
+    </div>
+</math-example>
+
+<math-header>
+    <h2 class="text-balance">Példa: Élszám számítása komplementerből</h2>
+</math-header>
+
+<math-example id="section-1-5-ex">
+    <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 md:p-8 rounded-2xl shadow-sm relative overflow-hidden mb-6">
+        <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+            <svg class="w-20 h-20 text-indigo-600" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7 15h-2v-2h2v2m0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
+        </div>
+        <h4 class="text-indigo-600 dark:text-indigo-400 font-bold mb-3 uppercase tracking-widest text-xs">Feladat</h4>
+        <p class="text-slate-700 dark:text-slate-300 leading-relaxed italic text-lg text-balance">
+            A 21 csúcsú $G$ egyszerű gráfról és annak $\bar{G}$ komplementeréről tudjuk, hogy mindkettőnek van 8 darab 4 fokú és 5 darab 10 fokú pontja. Hány éle van $G$-nek?
+        </p>
+    </div>
+
+    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-md mb-8">
+        <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
+            <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
+            Megoldás
+        </h4>
+        <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
+            <p>
+                Jelölje $d_G(v)$, illetve $d_{\bar{G}}(v)$ a $v$ csúcs fokát $G$-ben, illetve $\bar{G}$-ben. 
+                Mivel a gráfunk 21 csúcsú, tudjuk, hogy minden $v$ csúcsra igaz:
+            </p>
+            <div class="bg-slate-900 rounded-xl p-4 text-center my-4 shadow-inner">
+                <p class="text-indigo-300 font-mono text-xl">$d_G(v) + d_{\bar{G}}(v) = 20$</p>
+            </div>
+            
+            <p>
+                Ez azért van, mert $v$ bármely tőle különböző csúccsal $G$ és $\bar{G}$ közül pontosan az egyikben szomszédos. Ennek segítségével meghatározhatjuk az összes csúcs fokszámát $G$-ben:
+            </p>
+            <ul class="space-y-3 bg-slate-50 dark:bg-slate-900/40 p-5 rounded-xl border border-slate-100 dark:border-slate-800">
+                <li class="flex items-center gap-3">
+                    <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+                    <span>$G$ eredeti pontjai: 8 darab 4 fokú és 5 darab 10 fokú csúcs.</span>
+                </li>
+                <li class="flex items-center gap-3">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span>$\bar{G}$ 10 fokú pontjai $G$-ben: $20 - 10 = 10$ fokúak (ezek azonosak $G$ megadott 10 fokú pontjaival).</span>
+                </li>
+                <li class="flex items-center gap-3">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    <span>$\bar{G}$ 4 fokú pontjai $G$-ben: $20 - 4 = 16$ fokúak.</span>
+                </li>
+            </ul>
+            <p>
+                Ezek alapján $G$-ben minden csúcs fokát ismerjük már: van 8 darab 4 fokú, 5 darab 10 fokú és 8 darab 16 fokú csúcsa. Számoljuk ki a fokszámösszeget:
+            </p>
+            <div class="bg-slate-100 dark:bg-slate-900/50 p-4 rounded-xl text-center font-mono font-bold text-slate-800 dark:text-slate-200 shadow-inner">
+                $\sum d(v) = 8 \cdot 4 + 5 \cdot 10 + 8 \cdot 16 = 32 + 50 + 128 = 210$
+            </div>
+            <p>
+                A 1.3. Tétel (Fokszámösszeg-tétel) szerint $G$ éleinek száma a fokszámösszeg fele:
+            </p>
+            <div class="flex justify-center mt-6">
+                <div class="bg-indigo-600 text-white px-10 py-5 rounded-2xl shadow-xl shadow-indigo-500/20 transform hover:scale-105 transition-transform">
+                    <span class="text-xs uppercase font-black opacity-75 block mb-1 tracking-widest text-center">Végeredmény</span>
+                    <span class="text-3xl font-black italic">|E(G)| = 105</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden border border-slate-800">
+        <div class="relative z-10 flex flex-col md:flex-row items-center gap-8 text-balance">
+            <div class="flex-grow">
+                <h3 class="text-xl font-bold mb-2 italic">A "Kiegészítő" elv</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Képzeld el a 21 csúcsú teljes gráfot ($K_{21}$). Ebben minden csúcsból 20 él indul ki. Amikor kettéválasztjuk $G$-re és $\bar{G}$-re, ezek az élek oszlanak meg: ami nincs az egyikben, az benne van a másikban.
+                </p>
+            </div>
+            <div class="flex-none bg-slate-800 p-6 rounded-2xl border border-slate-700 text-center min-w-[200px] shadow-2xl">
+                <div class="text-[10px] uppercase font-bold text-indigo-400 mb-2 tracking-widest">Egy adott csúcs esete</div>
+                <div class="flex items-center justify-center gap-2 font-mono text-xl">
+                    <span class="text-emerald-400 font-black">d(v)</span>
+                    <span class="text-slate-500">+</span>
+                    <span class="text-amber-400 font-black">d̄(v)</span>
+                    <span class="text-slate-500">=</span>
+                    <span class="text-white font-black">20</span>
+                </div>
+                <div class="mt-4 h-2.5 w-full bg-slate-700 rounded-full overflow-hidden flex shadow-inner">
+                    <div class="h-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" style="width: 20%"></div>
+                    <div class="h-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]" style="width: 80%"></div>
+                </div>
+                <div class="mt-2 text-[9px] text-slate-500 italic font-medium tracking-tight">4 él itt + 16 él ott</div>
+            </div>
+        </div>
+    </div>
+</math-example>
+
+<math-header>
+    <h2 class="text-balance">Izomorfia példafeladat</h2>
+</math-header>
+
+<math-example id="section-1-6-ex">
+    <div class="bg-slate-50 dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 p-6 md:p-8 rounded-2xl mb-8 relative overflow-hidden">
+        <h4 class="text-indigo-600 dark:text-indigo-400 font-bold mb-4 uppercase tracking-widest text-xs">Feladat</h4>
+        <p class="text-slate-700 dark:text-slate-300 leading-relaxed italic text-lg text-left">
+            Melyek izomorfak az alábbi gráfok közül?
+        </p>
+    </div>
+
+    <math-lab>
+        <div class="flex flex-col lg:flex-row justify-around items-center gap-12 py-4">
+            <div class="flex flex-col items-center gap-4">
+                <svg id="iso-1" width="180" height="180" viewBox="0 0 100 100" class="drop-shadow-md overflow-visible"></svg>
+                <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">A gráf</span>
+            </div>
+            <div class="flex flex-col items-center gap-4">
+                <svg id="iso-2" width="180" height="180" viewBox="0 0 100 100" class="drop-shadow-md overflow-visible"></svg>
+                <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">B gráf</span>
+            </div>
+            <div class="flex flex-col items-center gap-4">
+                <svg id="iso-3" width="180" height="180" viewBox="0 0 100 100" class="drop-shadow-md overflow-visible"></svg>
+                <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest">C gráf</span>
+            </div>
+        </div>
+        
+        <div class="mt-10 flex flex-wrap justify-center gap-4">
+            <button onclick="highlightMapping()" class="text-[10px] bg-indigo-600 hover:bg-indigo-500 text-white font-black py-3 px-8 rounded-full transition-all uppercase tracking-widest shadow-lg shadow-indigo-500/20 active:scale-95">
+                Bijekció mutatása (A ≅ B)
+            </button>
+            <button onclick="highlightCycles()" class="text-[10px] bg-rose-600 hover:bg-rose-500 text-white font-black py-3 px-8 rounded-full transition-all uppercase tracking-widest shadow-lg shadow-rose-500/20 active:scale-95">
+                Négyszög keresése (C)
+            </button>
+        </div>
+    </math-lab>
+
+    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-md mt-8">
+        <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
+            <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
+            Megoldás levezetése
+        </h4>
+        
+        <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
+            <p>
+                Az első két gráf <span class="text-emerald-600 font-bold">izomorf</span>. Ezt például a csúcsok megfelelő betűzésével (bijekció megadásával) lehet igazolni: a bal oldali gráf bármely két csúcsa pontosan akkor szomszédos, ha a középső gráf azonosan betűzött két csúcsai szomszédosak.
+            </p>
+            
+            <div class="bg-rose-50 dark:bg-rose-900/10 border-l-4 border-rose-500 p-5 rounded-r-xl">
+                <p class="text-rose-800 dark:text-rose-300 font-medium">
+                    A jobb szélső gráf <span class="font-bold underline">nem izomorf</span> a másik kettővel.
+                </p>
+            </div>
+            
+            <div class="space-y-4">
+                <h5 class="text-xs font-black text-slate-900 dark:text-white uppercase tracking-widest">Strukturális indoklás:</h5>
+                <p>
+                    A harmadik gráfban található <strong class="text-rose-500 font-bold">négyszög</strong> (4 hosszú kör). Ha ez a gráf izomorf lenne a másik kettővel, akkor azokban is lennie kellene négyszögnek (mivel az izomorfia tartja a körök hosszát).
+                </p>
+                <p>
+                    Azonban az első gráfban bármely $v$ csúcsot is nézzük, annak szomszédai között nincs két olyan, amiknek $v$-n kívül is lenne közös szomszédja, így nem alkothatnak négyszöget.
+                </p>
+            </div>
+        </div>
+    </div>
+</math-example>
+        </div>
+    </details>
+</div>
+
 
 <div id="complete-section-1" 
      class="mt-12 p-8 bg-indigo-500/10 border-2 border-dashed border-indigo-500/30 rounded-[2.5rem] text-center transition-all">

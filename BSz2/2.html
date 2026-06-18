@@ -1889,115 +1889,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </math-lab>
 </section>
 
-<math-header>
-    <h2 class="text-balance">Kidolgozott feladat: Fa keresése fokszámok alapján</h2>
-</math-header>
 
-<section id="section-2-3-ex" class="mb-16 space-y-6">
-    <math-example>
-        <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 md:p-8 rounded-2xl shadow-sm relative overflow-hidden mb-6">
-            <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none text-emerald-600">
-                <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7 15h-2v-2h2v2m0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
-            </div>
-            <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-3 uppercase tracking-widest text-xs">Feladat</h4>
-            <p class="text-slate-700 dark:text-slate-300 leading-relaxed italic text-lg">
-                Egy $F$ fa csúcsainak fokszámai között pontosan kétféle érték fordul elő és mindkettő pontosan ugyanannyiszor. Adjuk meg $F$-et.
-            </p>
-        </div>
-
-        <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-md mb-8">
-            <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
-                <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
-                Megoldás levezetése
-            </h4>
-            <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
-                <p>
-                    Mivel a kétféle fokszám ugyanannyiszor fordul elő, ezért $F$ csúcsainak száma páros. Legyen a csúcsok száma <strong class="text-slate-900 dark:text-white">$n = 2k$</strong>. Mivel minden fának van levele, az egyik fokszám biztosan az <strong class="text-emerald-600 font-bold">1</strong>, a másikat jelölje $d$.
-                </p>
-
-                
-
-                <div class="bg-slate-900 rounded-xl p-8 text-center shadow-inner space-y-4">
-                    <p class="text-emerald-400 font-black text-[10px] uppercase tracking-widest">Egyenletek felírása</p>
-                    <div class="space-y-2">
-                        <p class="text-indigo-300 font-mono text-xl">
-                            $\sum d(v) = k \cdot d + k \cdot 1 = k(d + 1)$
-                        </p>
-                        <p class="text-slate-500 text-xs italic">A csúcsok fokszámösszege</p>
-                    </div>
-                    <div class="h-px bg-slate-800 w-1/4 mx-auto my-4"></div>
-                    <div class="space-y-2">
-                        <p class="text-indigo-300 font-mono text-xl">
-                            $2m = 2(n - 1) = 2(2k - 1) = 4k - 2$
-                        </p>
-                        <p class="text-slate-500 text-xs italic">Az élszám kétszerese a fa tulajdonsága ($m = n - 1$) alapján</p>
-                    </div>
-                </div>
-
-                <p>
-                    Ezeket egyenlővé téve: <strong class="text-slate-900 dark:text-white">$k(d + 1) = 4k - 2$</strong>. Ezt $d$-re rendezve:
-                </p>
-                
-                <div class="flex justify-center py-2">
-                    <div class="bg-slate-50 dark:bg-slate-900/50 px-8 py-4 rounded-xl border border-slate-100 dark:border-slate-800 font-mono text-2xl text-emerald-600 shadow-sm">
-                        $d = 3 - \frac{2}{k}$
-                    </div>
-                </div>
-
-                <p>
-                    Mivel $d$ és $k$ is pozitív egész, ezért csak a <strong class="text-slate-900 dark:text-white">$k = 1$</strong> vagy <strong class="text-slate-900 dark:text-white">$k = 2$</strong> eset lehetséges:
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="p-4 rounded-xl bg-rose-500/5 border border-rose-500/20">
-                        <span class="text-rose-500 font-black text-xs block mb-1 uppercase tracking-tighter">k = 1</span>
-                        <p class="text-xs italic text-slate-500">$d = 3 - 2 = 1$ adódna, de ekkor nem volna kétféle fokszám.</p>
-                    </div>
-                    <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
-                        <span class="text-emerald-500 font-black text-xs block mb-1 uppercase tracking-tighter">k = 2</span>
-                        <p class="text-xs italic text-slate-500">Ekkor $d = 3 - 1 = 2$, ami egy érvényes megoldás.</p>
-                    </div>
-                </div>
-
-                <div class="bg-emerald-600 text-white p-6 rounded-2xl shadow-xl shadow-emerald-500/20 transform hover:scale-[1.01] transition-transform">
-                    <p class="font-black mb-2 uppercase tracking-widest text-[10px] opacity-80">Konklúzió</p>
-                    <p class="italic text-lg leading-relaxed">
-                        A keresett $F$ fa tehát $n = 4$ csúcsú, két darab elsőfokú és két darab másodfokú csúccsal rendelkezik. Ez egyedül a **három hosszúságú út** ($P_4$).
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <math-lab>
-            <h3 class="text-xl font-bold mb-4 italic text-white text-center">A végeredmény: $P_4$</h3>
-            
-            <div class="flex flex-col items-center">
-                <div class="bg-slate-800/50 rounded-2xl p-10 border border-slate-700 w-full max-w-md flex justify-center items-center shadow-inner">
-                    <svg width="280" height="60" viewBox="0 0 280 60" class="overflow-visible">
-                        <line x1="20" y1="30" x2="100" y2="30" stroke="#10b981" stroke-width="5" stroke-linecap="round" />
-                        <line x1="100" y1="30" x2="180" y2="30" stroke="#10b981" stroke-width="5" stroke-linecap="round" />
-                        <line x1="180" y1="30" x2="260" y2="30" stroke="#10b981" stroke-width="5" stroke-linecap="round" />
-                        
-                        <circle cx="20" cy="30" r="8" fill="white" class="shadow-sm" />
-                        <text x="20" y="55" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">d=1</text>
-                        
-                        <circle cx="100" cy="30" r="8" fill="white" class="shadow-sm" />
-                        <text x="100" y="55" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">d=2</text>
-                        
-                        <circle cx="180" cy="30" r="8" fill="white" class="shadow-sm" />
-                        <text x="180" y="55" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">d=2</text>
-                        
-                        <circle cx="260" cy="30" r="8" fill="white" class="shadow-sm" />
-                        <text x="260" y="55" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">d=1</text>
-                    </svg>
-                </div>
-                <p class="mt-6 text-[10px] text-slate-500 uppercase font-black tracking-widest text-center">
-                    A fokszámok listája: (1, 2, 2, 1) — mindkét érték pontosan kétszer szerepel.
-                </p>
-            </div>
-        </math-lab>
-    </math-example>
-</section>
 
 <math-header>
     <div class="num-badge">2.4</div>
@@ -2478,6 +2370,133 @@ document.addEventListener('DOMContentLoaded', () => {
 
     </div>
 </math-trivia>
+<div class="mt-12 w-full animate-fade-in">
+    <details class="group bg-slate-800/30 border border-slate-700/50 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+        <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-800/50 transition-colors">
+            <div class="flex items-center gap-4">
+                <div class="p-3 bg-indigo-500/20 rounded-xl">
+                    <span class="text-xl">📝</span>
+                </div>
+                <h3 class="text-lg font-black text-indigo-400 uppercase tracking-widest">Gyakorló feladatok és példák</h3>
+            </div>
+            <div class="text-indigo-400 transition-transform duration-300 group-open:rotate-180">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </div>
+        </summary>
+        <div class="p-8 border-t border-slate-700/50 bg-slate-900/50 space-y-12">
+            <math-header>
+    <h2 class="text-balance">Kidolgozott feladat: Fa keresése fokszámok alapján</h2>
+</math-header>
+
+<section id="section-2-3-ex" class="mb-16 space-y-6">
+    <math-example>
+        <div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-6 md:p-8 rounded-2xl shadow-sm relative overflow-hidden mb-6">
+            <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none text-emerald-600">
+                <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7 15h-2v-2h2v2m0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
+            </div>
+            <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-3 uppercase tracking-widest text-xs">Feladat</h4>
+            <p class="text-slate-700 dark:text-slate-300 leading-relaxed italic text-lg">
+                Egy $F$ fa csúcsainak fokszámai között pontosan kétféle érték fordul elő és mindkettő pontosan ugyanannyiszor. Adjuk meg $F$-et.
+            </p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-md mb-8">
+            <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
+                <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
+                Megoldás levezetése
+            </h4>
+            <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
+                <p>
+                    Mivel a kétféle fokszám ugyanannyiszor fordul elő, ezért $F$ csúcsainak száma páros. Legyen a csúcsok száma <strong class="text-slate-900 dark:text-white">$n = 2k$</strong>. Mivel minden fának van levele, az egyik fokszám biztosan az <strong class="text-emerald-600 font-bold">1</strong>, a másikat jelölje $d$.
+                </p>
+
+                
+
+                <div class="bg-slate-900 rounded-xl p-8 text-center shadow-inner space-y-4">
+                    <p class="text-emerald-400 font-black text-[10px] uppercase tracking-widest">Egyenletek felírása</p>
+                    <div class="space-y-2">
+                        <p class="text-indigo-300 font-mono text-xl">
+                            $\sum d(v) = k \cdot d + k \cdot 1 = k(d + 1)$
+                        </p>
+                        <p class="text-slate-500 text-xs italic">A csúcsok fokszámösszege</p>
+                    </div>
+                    <div class="h-px bg-slate-800 w-1/4 mx-auto my-4"></div>
+                    <div class="space-y-2">
+                        <p class="text-indigo-300 font-mono text-xl">
+                            $2m = 2(n - 1) = 2(2k - 1) = 4k - 2$
+                        </p>
+                        <p class="text-slate-500 text-xs italic">Az élszám kétszerese a fa tulajdonsága ($m = n - 1$) alapján</p>
+                    </div>
+                </div>
+
+                <p>
+                    Ezeket egyenlővé téve: <strong class="text-slate-900 dark:text-white">$k(d + 1) = 4k - 2$</strong>. Ezt $d$-re rendezve:
+                </p>
+                
+                <div class="flex justify-center py-2">
+                    <div class="bg-slate-50 dark:bg-slate-900/50 px-8 py-4 rounded-xl border border-slate-100 dark:border-slate-800 font-mono text-2xl text-emerald-600 shadow-sm">
+                        $d = 3 - \frac{2}{k}$
+                    </div>
+                </div>
+
+                <p>
+                    Mivel $d$ és $k$ is pozitív egész, ezért csak a <strong class="text-slate-900 dark:text-white">$k = 1$</strong> vagy <strong class="text-slate-900 dark:text-white">$k = 2$</strong> eset lehetséges:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-4 rounded-xl bg-rose-500/5 border border-rose-500/20">
+                        <span class="text-rose-500 font-black text-xs block mb-1 uppercase tracking-tighter">k = 1</span>
+                        <p class="text-xs italic text-slate-500">$d = 3 - 2 = 1$ adódna, de ekkor nem volna kétféle fokszám.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
+                        <span class="text-emerald-500 font-black text-xs block mb-1 uppercase tracking-tighter">k = 2</span>
+                        <p class="text-xs italic text-slate-500">Ekkor $d = 3 - 1 = 2$, ami egy érvényes megoldás.</p>
+                    </div>
+                </div>
+
+                <div class="bg-emerald-600 text-white p-6 rounded-2xl shadow-xl shadow-emerald-500/20 transform hover:scale-[1.01] transition-transform">
+                    <p class="font-black mb-2 uppercase tracking-widest text-[10px] opacity-80">Konklúzió</p>
+                    <p class="italic text-lg leading-relaxed">
+                        A keresett $F$ fa tehát $n = 4$ csúcsú, két darab elsőfokú és két darab másodfokú csúccsal rendelkezik. Ez egyedül a **három hosszúságú út** ($P_4$).
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <math-lab>
+            <h3 class="text-xl font-bold mb-4 italic text-white text-center">A végeredmény: $P_4$</h3>
+            
+            <div class="flex flex-col items-center">
+                <div class="bg-slate-800/50 rounded-2xl p-10 border border-slate-700 w-full max-w-md flex justify-center items-center shadow-inner">
+                    <svg width="280" height="60" viewBox="0 0 280 60" class="overflow-visible">
+                        <line x1="20" y1="30" x2="100" y2="30" stroke="#10b981" stroke-width="5" stroke-linecap="round" />
+                        <line x1="100" y1="30" x2="180" y2="30" stroke="#10b981" stroke-width="5" stroke-linecap="round" />
+                        <line x1="180" y1="30" x2="260" y2="30" stroke="#10b981" stroke-width="5" stroke-linecap="round" />
+                        
+                        <circle cx="20" cy="30" r="8" fill="white" class="shadow-sm" />
+                        <text x="20" y="55" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">d=1</text>
+                        
+                        <circle cx="100" cy="30" r="8" fill="white" class="shadow-sm" />
+                        <text x="100" y="55" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">d=2</text>
+                        
+                        <circle cx="180" cy="30" r="8" fill="white" class="shadow-sm" />
+                        <text x="180" y="55" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">d=2</text>
+                        
+                        <circle cx="260" cy="30" r="8" fill="white" class="shadow-sm" />
+                        <text x="260" y="55" fill="#94a3b8" font-size="10" font-weight="bold" text-anchor="middle">d=1</text>
+                    </svg>
+                </div>
+                <p class="mt-6 text-[10px] text-slate-500 uppercase font-black tracking-widest text-center">
+                    A fokszámok listája: (1, 2, 2, 1) — mindkét érték pontosan kétszer szerepel.
+                </p>
+            </div>
+        </math-lab>
+    </math-example>
+</section>
+        </div>
+    </details>
+</div>
+
 
 <div id="complete-section-2" 
      class="mt-12 p-8 bg-emerald-500/10 border-2 border-dashed border-emerald-500/30 rounded-[2.5rem] text-center transition-all">

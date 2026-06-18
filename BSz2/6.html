@@ -2305,69 +2305,7 @@ function resetKonigGame() {
 document.addEventListener('DOMContentLoaded', initKonigGame);
 </script>
 
-<math-header>
-    <div class="flex items-center gap-4 mb-6 mt-24">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
-            ?
-        </div>
-        
-        <div class="relative w-fit">
-            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
-                Kidolgozott példa: $\nu, \tau, \alpha, \rho$ meghatározása
-            </h2>
-            <div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
-        </div>
-    </div>
-</math-header>
 
-<section id="section-6-5-ex" class="mb-16 animate-fade-in text-left">
-    <div class="bg-white/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800 relative overflow-hidden">
-        
-        <div class="mb-8">
-            <span class="bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-lg">
-                Példafeladat
-            </span>
-        </div>
-
-        <div class="mb-12 border-l-4 border-theme p-8 bg-theme/5 rounded-r-3xl">
-            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme/50 mb-4">A feladat szövege</h4>
-            <p class="text-slate-800 dark:text-slate-100 text-lg leading-relaxed italic">
-                Határozzuk meg a 7.14. Feladat b) részének páros gráfjában $\tau(G)$, $\alpha(G)$ és $\rho(G)$ értékét, valamint adjunk meg egy minimális lefogó ponthalmazt, egy maximális független ponthalmazt és egy minimális lefogó élhalmazt!
-            </p>
-        </div>
-
-        <div class="space-y-8">
-            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme mb-6">Megoldás levezetése</h4>
-            
-            <div class="space-y-6 text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-base">
-                <p>
-                    1. A korábbiak alapján $\nu(G) = 8$. Kőnig tételéből tudjuk, hogy páros gráfban $\tau(G) = \nu(G)$, tehát a minimális lefogó pontszám is **8**.
-                </p>
-
-                <div class="my-10 bg-theme/5 border border-theme/10 rounded-[2.5rem] p-8 md:p-12 text-center">
-                    <p class="text-theme/60 text-[10px] font-black uppercase tracking-widest mb-4 italic">A Gallai-tételeket ($n=19$) használva:</p>
-                    <div class="text-xl md:text-3xl font-black text-theme tracking-tight">
-                        $\alpha(G) = 19 - 8 = \mathbf{11}$ <span class="mx-4 opacity-20">|</span>
-                    </div>
-                </div>
-
-                <p>
-                    2. A csúcsok szétválogatásával ($A_3 \cup B_2$) kapjuk a minimális lefogó ponthalmazt: $X = \{a, c, d, f, 2, 3, 4, 5\}$.
-                </p>
-
-                <p>
-                    3. A maximális független ponthalmaz az $X$ komplementere: $Y = \{b, e, g, h, i, 1, 6, 7, 8, 9, 10\}$.
-                </p>
-
-                <div class="pt-8 mt-8 border-t border-slate-100 dark:border-slate-800">
-                    <p class="text-slate-900 dark:text-white font-black italic uppercase text-sm tracking-widest">
-                        Végeredmény: $\nu(G) = \tau(G) = 8$ és $\alpha(G) = \rho(G) = 11$.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <math-header>
     <div class="flex items-center gap-4 mb-6 mt-24">
@@ -2585,76 +2523,7 @@ function resetHallInteractive() {
 document.addEventListener('DOMContentLoaded', initHallInteractive);
 </script>
 
-<math-header>
-    <div class="flex items-center gap-4 mb-6 mt-24">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
-            ?
-        </div>
-        
-        <div class="relative w-fit">
-            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
-                Példa: Hall-tétel alkalmazása
-            </h2>
-            <div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
-        </div>
-    </div>
-</math-header>
 
-<section id="section-6-6-ex" class="mb-16 animate-fade-in text-left">
-    <div class="bg-white/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800 relative overflow-hidden">
-        
-        <div class="mb-8">
-            <span class="bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-lg">
-                Példafeladat
-            </span>
-        </div>
-
-        <div class="mb-12 border-l-4 border-theme p-8 bg-theme/5 rounded-r-3xl">
-            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme/50 mb-4">7.23. Feladat</h4>
-            <p class="text-slate-800 dark:text-slate-100 text-lg leading-relaxed italic">
-                Egy kiránduláson $n$ házaspár vesz részt. El kellene osztani közöttük $2n$ különböző fajta csokit úgy, hogy mindenki egyet kapjon. Tudjuk, hogy mindenki legalább $n$ fajtát szeret a csokik közül. Továbbá minden emberre teljesül, hogy ha valamelyik fajta csokit nem szereti, akkor a házastársa ezt a fajtát biztosan szeretni fogja. Bizonyítsuk be, hogy a csokik szétoszthatók úgy, hogy mindenki olyat kapjon, amit szeret!
-            </p>
-        </div>
-
-        <div class="space-y-8">
-            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme mb-6">Megoldás</h4>
-            
-            <div class="space-y-6 text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-base">
-                <p>
-                    A $G = (A, B; E)$ páros gráf $A$ pontosztályát alkossa a $2n$ résztvevő, a $B$-t pedig a $2n$ csoki; egy embert akkor kössünk össze egy csokival, ha az illető ezt a fajta csokit szereti. Azt kell megmutatnunk, hogy $G$-ben létezik $A$-t lefedő párosítás.
-                </p>
-
-                <p>
-                    Ezért Hall tételét hívjuk segítségül. Legyen $X \subseteq A$ egy tetszőleges részhalmaza $A$-nak. Két esetet vizsgálunk:
-                </p>
-
-                <div class="my-10 bg-theme/5 border border-theme/10 rounded-[2.5rem] p-8 md:p-12 space-y-6">
-                    <div>
-                        <p class="text-theme font-black uppercase text-xs mb-2">1. Eset: Van benne házaspár</p>
-                        <p>Ha van olyan házaspár, aminek $X$ mind a két tagját tartalmazza, akkor a feladat szövege szerint $N(X) = B$ (hiszen minden csoki szomszédos $G$-ben ennek a házaspárnak legalább az egyik tagjával). Így az ilyen $X$-ekre $2n = |N(X)| \geq |X|$ nyilván igaz.</p>
-                    </div>
-                    <div class="pt-6 border-t border-theme/10">
-                        <p class="text-theme font-black uppercase text-xs mb-2">2. Eset: Nincs benne teljes házaspár</p>
-                        <p>Ha viszont $X$ minden házaspárnak legfeljebb csak az egyik tagját tartalmazza, akkor $|X| \leq n$, hiszen csak $n$ házaspár van. De ha $X$ legalább egy embert tartalmaz, akkor $|N(X)| \geq n$ következik abból, hogy minden ember legalább $n$ csokit szeret. Így ilyenkor $|N(X)| \geq n \geq |X|$.</p>
-                    </div>
-                </div>
-
-                <p>
-                    Ha viszont $X = \emptyset$, akkor persze $N(X) = \emptyset$, így $0 = |N(X)| \geq |X| = 0$ ebben az esetben is igaz. Megmutattuk tehát, hogy $|N(X)| \geq |X|$ az $A$ minden $X$ részhalmazára teljesül, így Hall tétele szerint $G$-ben valóban létezik $A$-t lefedő párosítás.
-                </p>
-
-                <div class="pt-8 mt-8 border-t border-slate-100 dark:border-slate-800">
-                    <p class="text-slate-900 dark:text-white font-black italic mb-4">
-                        A csokik tehát mindenki számára kielégítően szétoszthatók.
-                    </p>
-                    <p class="text-[11px] text-slate-500 leading-tight">
-                        Hall tételéből könnyen választ kaphatunk arra a kérdésre is, hogy teljes párosítás létezése mitől függ egy páros gráfban. Ezt az állítást az alábbi formájában <b>Georg Frobenius (1849 – 1917)</b> német matematikusnak szokták tulajdonítani.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <math-header>
     <div class="flex items-center gap-4 mb-6 mt-24">
@@ -2814,7 +2683,159 @@ document.addEventListener('DOMContentLoaded', initHallInteractive);
     </div>
 </section>
 
-    <div id="complete-section-6" 
+    
+<div class="mt-12 w-full animate-fade-in">
+    <details class="group bg-slate-800/30 border border-slate-700/50 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+        <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-800/50 transition-colors">
+            <div class="flex items-center gap-4">
+                <div class="p-3 bg-indigo-500/20 rounded-xl">
+                    <span class="text-xl">📝</span>
+                </div>
+                <h3 class="text-lg font-black text-indigo-400 uppercase tracking-widest">Gyakorló feladatok és példák</h3>
+            </div>
+            <div class="text-indigo-400 transition-transform duration-300 group-open:rotate-180">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </div>
+        </summary>
+        <div class="p-8 border-t border-slate-700/50 bg-slate-900/50 space-y-12">
+            <math-header>
+    <div class="flex items-center gap-4 mb-6 mt-24">
+        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
+            ?
+        </div>
+        
+        <div class="relative w-fit">
+            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
+                Kidolgozott példa: $\nu, \tau, \alpha, \rho$ meghatározása
+            </h2>
+            <div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
+        </div>
+    </div>
+</math-header>
+
+<section id="section-6-5-ex" class="mb-16 animate-fade-in text-left">
+    <div class="bg-white/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800 relative overflow-hidden">
+        
+        <div class="mb-8">
+            <span class="bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-lg">
+                Példafeladat
+            </span>
+        </div>
+
+        <div class="mb-12 border-l-4 border-theme p-8 bg-theme/5 rounded-r-3xl">
+            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme/50 mb-4">A feladat szövege</h4>
+            <p class="text-slate-800 dark:text-slate-100 text-lg leading-relaxed italic">
+                Határozzuk meg a 7.14. Feladat b) részének páros gráfjában $\tau(G)$, $\alpha(G)$ és $\rho(G)$ értékét, valamint adjunk meg egy minimális lefogó ponthalmazt, egy maximális független ponthalmazt és egy minimális lefogó élhalmazt!
+            </p>
+        </div>
+
+        <div class="space-y-8">
+            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme mb-6">Megoldás levezetése</h4>
+            
+            <div class="space-y-6 text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-base">
+                <p>
+                    1. A korábbiak alapján $\nu(G) = 8$. Kőnig tételéből tudjuk, hogy páros gráfban $\tau(G) = \nu(G)$, tehát a minimális lefogó pontszám is **8**.
+                </p>
+
+                <div class="my-10 bg-theme/5 border border-theme/10 rounded-[2.5rem] p-8 md:p-12 text-center">
+                    <p class="text-theme/60 text-[10px] font-black uppercase tracking-widest mb-4 italic">A Gallai-tételeket ($n=19$) használva:</p>
+                    <div class="text-xl md:text-3xl font-black text-theme tracking-tight">
+                        $\alpha(G) = 19 - 8 = \mathbf{11}$ <span class="mx-4 opacity-20">|</span>
+                    </div>
+                </div>
+
+                <p>
+                    2. A csúcsok szétválogatásával ($A_3 \cup B_2$) kapjuk a minimális lefogó ponthalmazt: $X = \{a, c, d, f, 2, 3, 4, 5\}$.
+                </p>
+
+                <p>
+                    3. A maximális független ponthalmaz az $X$ komplementere: $Y = \{b, e, g, h, i, 1, 6, 7, 8, 9, 10\}$.
+                </p>
+
+                <div class="pt-8 mt-8 border-t border-slate-100 dark:border-slate-800">
+                    <p class="text-slate-900 dark:text-white font-black italic uppercase text-sm tracking-widest">
+                        Végeredmény: $\nu(G) = \tau(G) = 8$ és $\alpha(G) = \rho(G) = 11$.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<math-header>
+    <div class="flex items-center gap-4 mb-6 mt-24">
+        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
+            ?
+        </div>
+        
+        <div class="relative w-fit">
+            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
+                Példa: Hall-tétel alkalmazása
+            </h2>
+            <div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
+        </div>
+    </div>
+</math-header>
+
+<section id="section-6-6-ex" class="mb-16 animate-fade-in text-left">
+    <div class="bg-white/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800 relative overflow-hidden">
+        
+        <div class="mb-8">
+            <span class="bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-lg">
+                Példafeladat
+            </span>
+        </div>
+
+        <div class="mb-12 border-l-4 border-theme p-8 bg-theme/5 rounded-r-3xl">
+            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme/50 mb-4">7.23. Feladat</h4>
+            <p class="text-slate-800 dark:text-slate-100 text-lg leading-relaxed italic">
+                Egy kiránduláson $n$ házaspár vesz részt. El kellene osztani közöttük $2n$ különböző fajta csokit úgy, hogy mindenki egyet kapjon. Tudjuk, hogy mindenki legalább $n$ fajtát szeret a csokik közül. Továbbá minden emberre teljesül, hogy ha valamelyik fajta csokit nem szereti, akkor a házastársa ezt a fajtát biztosan szeretni fogja. Bizonyítsuk be, hogy a csokik szétoszthatók úgy, hogy mindenki olyat kapjon, amit szeret!
+            </p>
+        </div>
+
+        <div class="space-y-8">
+            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme mb-6">Megoldás</h4>
+            
+            <div class="space-y-6 text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-base">
+                <p>
+                    A $G = (A, B; E)$ páros gráf $A$ pontosztályát alkossa a $2n$ résztvevő, a $B$-t pedig a $2n$ csoki; egy embert akkor kössünk össze egy csokival, ha az illető ezt a fajta csokit szereti. Azt kell megmutatnunk, hogy $G$-ben létezik $A$-t lefedő párosítás.
+                </p>
+
+                <p>
+                    Ezért Hall tételét hívjuk segítségül. Legyen $X \subseteq A$ egy tetszőleges részhalmaza $A$-nak. Két esetet vizsgálunk:
+                </p>
+
+                <div class="my-10 bg-theme/5 border border-theme/10 rounded-[2.5rem] p-8 md:p-12 space-y-6">
+                    <div>
+                        <p class="text-theme font-black uppercase text-xs mb-2">1. Eset: Van benne házaspár</p>
+                        <p>Ha van olyan házaspár, aminek $X$ mind a két tagját tartalmazza, akkor a feladat szövege szerint $N(X) = B$ (hiszen minden csoki szomszédos $G$-ben ennek a házaspárnak legalább az egyik tagjával). Így az ilyen $X$-ekre $2n = |N(X)| \geq |X|$ nyilván igaz.</p>
+                    </div>
+                    <div class="pt-6 border-t border-theme/10">
+                        <p class="text-theme font-black uppercase text-xs mb-2">2. Eset: Nincs benne teljes házaspár</p>
+                        <p>Ha viszont $X$ minden házaspárnak legfeljebb csak az egyik tagját tartalmazza, akkor $|X| \leq n$, hiszen csak $n$ házaspár van. De ha $X$ legalább egy embert tartalmaz, akkor $|N(X)| \geq n$ következik abból, hogy minden ember legalább $n$ csokit szeret. Így ilyenkor $|N(X)| \geq n \geq |X|$.</p>
+                    </div>
+                </div>
+
+                <p>
+                    Ha viszont $X = \emptyset$, akkor persze $N(X) = \emptyset$, így $0 = |N(X)| \geq |X| = 0$ ebben az esetben is igaz. Megmutattuk tehát, hogy $|N(X)| \geq |X|$ az $A$ minden $X$ részhalmazára teljesül, így Hall tétele szerint $G$-ben valóban létezik $A$-t lefedő párosítás.
+                </p>
+
+                <div class="pt-8 mt-8 border-t border-slate-100 dark:border-slate-800">
+                    <p class="text-slate-900 dark:text-white font-black italic mb-4">
+                        A csokik tehát mindenki számára kielégítően szétoszthatók.
+                    </p>
+                    <p class="text-[11px] text-slate-500 leading-tight">
+                        Hall tételéből könnyen választ kaphatunk arra a kérdésre is, hogy teljes párosítás létezése mitől függ egy páros gráfban. Ezt az állítást az alábbi formájában <b>Georg Frobenius (1849 – 1917)</b> német matematikusnak szokták tulajdonítani.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        </div>
+    </details>
+</div>
+<div id="complete-section-6" 
          class="mt-24 p-12 border-2 border-dashed border-stone-500/30 rounded-[3rem] text-center transition-all bg-theme/5">
         
         <h3 id="complete-text-6" class="text-xl font-black text-theme mb-6 uppercase tracking-widest">

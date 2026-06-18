@@ -1768,9 +1768,21 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
     </math-trivia>
-</section>
-
-<math-header>
+<div class="mt-12 w-full animate-fade-in">
+    <details class="group bg-slate-800/30 border border-slate-700/50 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+        <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-800/50 transition-colors">
+            <div class="flex items-center gap-4">
+                <div class="p-3 bg-indigo-500/20 rounded-xl">
+                    <span class="text-xl">📝</span>
+                </div>
+                <h3 class="text-lg font-black text-indigo-400 uppercase tracking-widest">Gyakorló feladatok és példák</h3>
+            </div>
+            <div class="text-indigo-400 transition-transform duration-300 group-open:rotate-180">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </div>
+        </summary>
+        <div class="p-8 border-t border-slate-700/50 bg-slate-900/50 space-y-12">
+            <math-header>
     <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-rose-500/30 decoration-4 underline-offset-8 text-balance">
         Példafeladat: Független élek maximális száma
     </h2>
@@ -1865,6 +1877,146 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 </section>
+
+<math-header>
+    <div class="flex items-center gap-4 mb-6 mt-12">
+        <div class="flex-none w-10 h-10 bg-rose-500 text-white rounded-xl flex items-center justify-center font-black shadow-lg shadow-rose-500/20 italic">
+            ?
+        </div>
+        
+        <div class="relative w-fit text-left">
+            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
+                Kidolgozott példa: $\nu(G)$ és $\tau(G)$ meghatározása
+            </h2>
+            <div class="absolute -bottom-2 left-0 w-full h-1.5 bg-rose-500/20 rounded-full"></div>
+        </div>
+    </div>
+</math-header>
+
+<section id="section-5-3-ex" class="mb-12 animate-fade-in">
+    <math-example>
+        <div class="p-2 space-y-10">
+            <div>
+                <h4 class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 text-left">A feladat szövege</h4>
+                <p class="text-slate-700 dark:text-slate-200 leading-relaxed italic border-l-4 border-rose-500 pl-6 py-2 text-lg">
+                    Határozzuk meg egy adott $G$ gráfban a lefogó pontok minimális számát, azaz $\tau(G)$ értékét!
+                </p>
+            </div>
+
+            
+
+            <div class="space-y-6">
+                <h4 class="text-[10px] font-black uppercase tracking-widest text-rose-500 mb-3 text-left">Megoldás levezetése</h4>
+                
+                <div class="space-y-4 text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed text-left">
+                    <p>
+                        1. Tegyük fel, hogy találtunk a gráfban egy <strong class="text-slate-800 dark:text-white">négy élű párosítást</strong>. Ebből a definíció alapján következik, hogy a maximális párosítás mérete legalább 4: $\nu(G) \geq 4$.
+                    </p>
+                    
+                    <p>
+                        2. Tegyük fel továbbá, hogy sikerült mutatni egy <strong class="text-slate-800 dark:text-white">négy pontú lefogó ponthalmazt</strong> is. Ebből adódik, hogy a minimális lefogó pontszám legfeljebb 4: $\tau(G) \leq 4$.
+                    </p>
+
+                    <div class="my-8 p-6 bg-rose-50 dark:bg-rose-900/10 rounded-2xl border border-rose-100 dark:border-rose-900/30 text-center">
+                        <p class="text-slate-800 dark:text-slate-100 font-medium mb-3 italic">Az 5.3-as állítást ($\nu(G) \leq \tau(G)$) felhasználva:</p>
+                        <div class="text-3xl font-black text-rose-600 dark:text-rose-400 tracking-tighter">
+                            $4 \leq \nu(G) \leq \tau(G) \leq 4$
+                        </div>
+                    </div>
+
+                    <p class="font-bold text-slate-900 dark:text-white italic text-lg pt-4 border-t border-slate-100 dark:border-slate-700">
+                        Ebből adódik a végeredmény: $\nu(G) = \tau(G) = 4$.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </math-example>
+</section>
+
+<math-header>
+    <div class="flex items-center gap-4 mb-6 mt-12">
+        <div class="flex-none w-10 h-10 bg-rose-500 text-white rounded-xl flex items-center justify-center font-black shadow-lg shadow-rose-500/20 italic">
+            ?
+        </div>
+        
+        <div class="relative w-fit">
+            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
+                Példa: $\alpha(G)$ és $\rho(G)$ meghatározása
+            </h2>
+            <div class="absolute -bottom-2 left-0 w-full h-1.5 bg-rose-500/20 rounded-full"></div>
+        </div>
+    </div>
+</math-header>
+
+<section id="section-5-6-ex" class="mb-12 animate-fade-in text-left">
+    <math-example>
+        <div class="p-2 space-y-10">
+            <div class="relative z-10 text-left">
+                <h4 class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">Feladat kitűzése</h4>
+                <p class="text-slate-700 dark:text-slate-200 leading-relaxed italic border-l-4 border-rose-500 pl-6 py-2 mb-8 text-lg">
+                    Határozzuk meg a 7.5. ábrán látható gráfban a független pontok maximális számát ($\alpha(G)$) és a lefogó élek minimális számát ($\rho(G)$)!
+                </p>
+            </div>
+
+            
+
+            <div class="flex flex-col items-center">
+                <h4 class="text-[9px] font-black uppercase tracking-[0.3em] text-slate-400 mb-6">7.5. ábra: Független pontok (sárga) és lefogó élek (zöld)</h4>
+                <div class="w-full max-w-lg bg-white dark:bg-slate-900/50 p-6 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-inner">
+                    <svg viewBox="0 0 400 180" class="w-full h-auto">
+                        <g stroke-width="1.5" stroke="#cbd5e1" class="dark:stroke-slate-700">
+                            <line x1="40" y1="40" x2="120" y2="140" /> <line x1="40" y1="40" x2="60" y2="140" />  <line x1="120" y1="40" x2="120" y2="140" /> <line x1="200" y1="40" x2="200" y2="80" />  <line x1="200" y1="40" x2="280" y2="140" /> <line x1="280" y1="40" x2="200" y2="80" />  <line x1="360" y1="40" x2="340" y2="140" /> <line x1="60" y1="140" x2="280" y2="140" /> <line x1="120" y1="140" x2="200" y2="80" />  <line x1="280" y1="140" x2="340" y2="140" /> 
+                        </g>
+                        <g stroke="#10b981" stroke-width="5" stroke-linecap="round" opacity="0.8">
+                            <line x1="40" y1="40" x2="120" y2="40" />   <line x1="120" y1="40" x2="200" y2="80" />  <line x1="200" y1="40" x2="280" y2="40" />  <line x1="280" y1="40" x2="340" y2="140" /> <line x1="360" y1="40" x2="280" y2="140" /> <line x1="60" y1="140" x2="120" y2="140" /> 
+                        </g>
+                        <g font-family="serif" font-style="italic" font-size="12" class="fill-slate-600 dark:fill-slate-400">
+                            <circle cx="40" cy="40" r="7" fill="#facc15" stroke="#eab308" stroke-width="2" /> <text x="35" y="30">a</text>
+                            <circle cx="200" cy="40" r="7" fill="#facc15" stroke="#eab308" stroke-width="2" /> <text x="195" y="30">c</text>
+                            <circle cx="360" cy="40" r="7" fill="#facc15" stroke="#eab308" stroke-width="2" /> <text x="355" y="30">e</text>
+                            <circle cx="60" cy="140" r="7" fill="#facc15" stroke="#eab308" stroke-width="2" /> <text x="55" y="158">f</text>
+                            <circle cx="200" cy="80" r="7" fill="#facc15" stroke="#eab308" stroke-width="2" /> <text x="212" y="85">h</text>
+                            <circle cx="340" cy="140" r="7" fill="#facc15" stroke="#eab308" stroke-width="2" /> <text x="335" y="158">j</text>
+                            <circle cx="120" cy="40" r="7" fill="#1e293b" /> <text x="115" y="30">b</text>
+                            <circle cx="280" cy="40" r="7" fill="#1e293b" /> <text x="275" y="30">d</text>
+                            <circle cx="120" cy="140" r="7" fill="#1e293b" /> <text x="115" y="158">g</text>
+                            <circle cx="280" cy="140" r="7" fill="#1e293b" /> <text x="275" y="158">i</text>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <h4 class="text-[10px] font-black uppercase tracking-widest text-rose-500 mb-3">Megoldás levezetése</h4>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="p-5 bg-slate-50 dark:bg-slate-900/60 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                        <span class="block font-black text-[10px] uppercase text-emerald-500 mb-2">Független pontok (Y)</span>
+                        <p class="text-xs dark:text-slate-300">$Y = \{a, c, e, f, h, j\}$</p>
+                        <p class="mt-2 text-[11px] font-bold text-slate-800 dark:text-white">$\alpha(G) \geq 6$</p>
+                    </div>
+                    <div class="p-5 bg-slate-50 dark:bg-slate-900/60 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                        <span class="block font-black text-[10px] uppercase text-blue-500 mb-2">Lefogó élek (Z)</span>
+                        <p class="text-[10px] dark:text-slate-300 italic">$Z = \{\{a,b\}, \{b,h\}, \{c,d\}, \{d,j\}, \{e,i\}, \{f,g\}\}$</p>
+                        <p class="mt-2 text-[11px] font-bold text-slate-800 dark:text-white">$\rho(G) \leq 6$</p>
+                    </div>
+                </div>
+
+                <div class="p-6 bg-rose-50/50 dark:bg-rose-900/10 rounded-[2rem] border border-rose-100 dark:border-rose-900/30 text-center">
+                    <p class="text-sm text-slate-600 dark:text-slate-300 italic mb-4">Mivel korábbról tudjuk, hogy $\alpha(G) \leq \rho(G)$, a fenti konstrukciókból adódik:</p>
+                    <span class="text-2xl font-black text-rose-500 uppercase tracking-tighter">$\alpha(G) = \rho(G) = 6$</span>
+                </div>
+            </div>
+        </div>
+    </math-example>
+</section>
+        </div>
+    </details>
+</div>
+
+</section>
+
+
 
 <math-header>
     <div class="flex items-center gap-4 mb-6 mt-12">
@@ -1992,60 +2144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </math-proof>
 </section>
 
-<math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none w-10 h-10 bg-rose-500 text-white rounded-xl flex items-center justify-center font-black shadow-lg shadow-rose-500/20 italic">
-            ?
-        </div>
-        
-        <div class="relative w-fit text-left">
-            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                Kidolgozott példa: $\nu(G)$ és $\tau(G)$ meghatározása
-            </h2>
-            <div class="absolute -bottom-2 left-0 w-full h-1.5 bg-rose-500/20 rounded-full"></div>
-        </div>
-    </div>
-</math-header>
 
-<section id="section-5-3-ex" class="mb-12 animate-fade-in">
-    <math-example>
-        <div class="p-2 space-y-10">
-            <div>
-                <h4 class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 text-left">A feladat szövege</h4>
-                <p class="text-slate-700 dark:text-slate-200 leading-relaxed italic border-l-4 border-rose-500 pl-6 py-2 text-lg">
-                    Határozzuk meg egy adott $G$ gráfban a lefogó pontok minimális számát, azaz $\tau(G)$ értékét!
-                </p>
-            </div>
-
-            
-
-            <div class="space-y-6">
-                <h4 class="text-[10px] font-black uppercase tracking-widest text-rose-500 mb-3 text-left">Megoldás levezetése</h4>
-                
-                <div class="space-y-4 text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed text-left">
-                    <p>
-                        1. Tegyük fel, hogy találtunk a gráfban egy <strong class="text-slate-800 dark:text-white">négy élű párosítást</strong>. Ebből a definíció alapján következik, hogy a maximális párosítás mérete legalább 4: $\nu(G) \geq 4$.
-                    </p>
-                    
-                    <p>
-                        2. Tegyük fel továbbá, hogy sikerült mutatni egy <strong class="text-slate-800 dark:text-white">négy pontú lefogó ponthalmazt</strong> is. Ebből adódik, hogy a minimális lefogó pontszám legfeljebb 4: $\tau(G) \leq 4$.
-                    </p>
-
-                    <div class="my-8 p-6 bg-rose-50 dark:bg-rose-900/10 rounded-2xl border border-rose-100 dark:border-rose-900/30 text-center">
-                        <p class="text-slate-800 dark:text-slate-100 font-medium mb-3 italic">Az 5.3-as állítást ($\nu(G) \leq \tau(G)$) felhasználva:</p>
-                        <div class="text-3xl font-black text-rose-600 dark:text-rose-400 tracking-tighter">
-                            $4 \leq \nu(G) \leq \tau(G) \leq 4$
-                        </div>
-                    </div>
-
-                    <p class="font-bold text-slate-900 dark:text-white italic text-lg pt-4 border-t border-slate-100 dark:border-slate-700">
-                        Ebből adódik a végeredmény: $\nu(G) = \tau(G) = 4$.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </math-example>
-</section>
 
 <math-header>
     <div class="flex items-center gap-4 mb-6 mt-12">
@@ -2200,83 +2299,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </math-proof>
 </section>
 
-<math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none w-10 h-10 bg-rose-500 text-white rounded-xl flex items-center justify-center font-black shadow-lg shadow-rose-500/20 italic">
-            ?
-        </div>
-        
-        <div class="relative w-fit">
-            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                Példa: $\alpha(G)$ és $\rho(G)$ meghatározása
-            </h2>
-            <div class="absolute -bottom-2 left-0 w-full h-1.5 bg-rose-500/20 rounded-full"></div>
-        </div>
-    </div>
-</math-header>
 
-<section id="section-5-6-ex" class="mb-12 animate-fade-in text-left">
-    <math-example>
-        <div class="p-2 space-y-10">
-            <div class="relative z-10 text-left">
-                <h4 class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">Feladat kitűzése</h4>
-                <p class="text-slate-700 dark:text-slate-200 leading-relaxed italic border-l-4 border-rose-500 pl-6 py-2 mb-8 text-lg">
-                    Határozzuk meg a 7.5. ábrán látható gráfban a független pontok maximális számát ($\alpha(G)$) és a lefogó élek minimális számát ($\rho(G)$)!
-                </p>
-            </div>
-
-            
-
-            <div class="flex flex-col items-center">
-                <h4 class="text-[9px] font-black uppercase tracking-[0.3em] text-slate-400 mb-6">7.5. ábra: Független pontok (sárga) és lefogó élek (zöld)</h4>
-                <div class="w-full max-w-lg bg-white dark:bg-slate-900/50 p-6 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-inner">
-                    <svg viewBox="0 0 400 180" class="w-full h-auto">
-                        <g stroke-width="1.5" stroke="#cbd5e1" class="dark:stroke-slate-700">
-                            <line x1="40" y1="40" x2="120" y2="140" /> <line x1="40" y1="40" x2="60" y2="140" />  <line x1="120" y1="40" x2="120" y2="140" /> <line x1="200" y1="40" x2="200" y2="80" />  <line x1="200" y1="40" x2="280" y2="140" /> <line x1="280" y1="40" x2="200" y2="80" />  <line x1="360" y1="40" x2="340" y2="140" /> <line x1="60" y1="140" x2="280" y2="140" /> <line x1="120" y1="140" x2="200" y2="80" />  <line x1="280" y1="140" x2="340" y2="140" /> 
-                        </g>
-                        <g stroke="#10b981" stroke-width="5" stroke-linecap="round" opacity="0.8">
-                            <line x1="40" y1="40" x2="120" y2="40" />   <line x1="120" y1="40" x2="200" y2="80" />  <line x1="200" y1="40" x2="280" y2="40" />  <line x1="280" y1="40" x2="340" y2="140" /> <line x1="360" y1="40" x2="280" y2="140" /> <line x1="60" y1="140" x2="120" y2="140" /> 
-                        </g>
-                        <g font-family="serif" font-style="italic" font-size="12" class="fill-slate-600 dark:fill-slate-400">
-                            <circle cx="40" cy="40" r="7" fill="#facc15" stroke="#eab308" stroke-width="2" /> <text x="35" y="30">a</text>
-                            <circle cx="200" cy="40" r="7" fill="#facc15" stroke="#eab308" stroke-width="2" /> <text x="195" y="30">c</text>
-                            <circle cx="360" cy="40" r="7" fill="#facc15" stroke="#eab308" stroke-width="2" /> <text x="355" y="30">e</text>
-                            <circle cx="60" cy="140" r="7" fill="#facc15" stroke="#eab308" stroke-width="2" /> <text x="55" y="158">f</text>
-                            <circle cx="200" cy="80" r="7" fill="#facc15" stroke="#eab308" stroke-width="2" /> <text x="212" y="85">h</text>
-                            <circle cx="340" cy="140" r="7" fill="#facc15" stroke="#eab308" stroke-width="2" /> <text x="335" y="158">j</text>
-                            <circle cx="120" cy="40" r="7" fill="#1e293b" /> <text x="115" y="30">b</text>
-                            <circle cx="280" cy="40" r="7" fill="#1e293b" /> <text x="275" y="30">d</text>
-                            <circle cx="120" cy="140" r="7" fill="#1e293b" /> <text x="115" y="158">g</text>
-                            <circle cx="280" cy="140" r="7" fill="#1e293b" /> <text x="275" y="158">i</text>
-                        </g>
-                    </svg>
-                </div>
-            </div>
-
-            <div class="space-y-6">
-                <h4 class="text-[10px] font-black uppercase tracking-widest text-rose-500 mb-3">Megoldás levezetése</h4>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div class="p-5 bg-slate-50 dark:bg-slate-900/60 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
-                        <span class="block font-black text-[10px] uppercase text-emerald-500 mb-2">Független pontok (Y)</span>
-                        <p class="text-xs dark:text-slate-300">$Y = \{a, c, e, f, h, j\}$</p>
-                        <p class="mt-2 text-[11px] font-bold text-slate-800 dark:text-white">$\alpha(G) \geq 6$</p>
-                    </div>
-                    <div class="p-5 bg-slate-50 dark:bg-slate-900/60 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
-                        <span class="block font-black text-[10px] uppercase text-blue-500 mb-2">Lefogó élek (Z)</span>
-                        <p class="text-[10px] dark:text-slate-300 italic">$Z = \{\{a,b\}, \{b,h\}, \{c,d\}, \{d,j\}, \{e,i\}, \{f,g\}\}$</p>
-                        <p class="mt-2 text-[11px] font-bold text-slate-800 dark:text-white">$\rho(G) \leq 6$</p>
-                    </div>
-                </div>
-
-                <div class="p-6 bg-rose-50/50 dark:bg-rose-900/10 rounded-[2rem] border border-rose-100 dark:border-rose-900/30 text-center">
-                    <p class="text-sm text-slate-600 dark:text-slate-300 italic mb-4">Mivel korábbról tudjuk, hogy $\alpha(G) \leq \rho(G)$, a fenti konstrukciókból adódik:</p>
-                    <span class="text-2xl font-black text-rose-500 uppercase tracking-tighter">$\alpha(G) = \rho(G) = 6$</span>
-                </div>
-            </div>
-        </div>
-    </math-example>
-</section>
 
 <math-header>
     <div class="flex items-center gap-4 mb-6 mt-12">
