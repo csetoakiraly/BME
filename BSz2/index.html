@@ -1919,43 +1919,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<math-header>
-    <h2 class="text-balance">Páratlan fokszámú csúcsok kapcsolata</h2>
-</math-header>
 
-<math-example id="section-1-7-ex">
-    
-
-    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-md mb-8">
-        <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
-            <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
-            Megoldás levezetése
-        </h4>
-        <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
-            <p>
-                Induljunk el $v$-ből és járjunk be „vaktában” egy $P$ sétát $G$-ben – vagyis mindig csak arra vigyázzunk, hogy olyan élen lépjünk tovább, ami korábban még nem szerepelt $P$-ben.
-            </p>
-            
-            <div class="bg-slate-50 dark:bg-slate-900/50 p-5 rounded-xl border-l-4 border-indigo-500 italic">
-                Azt állítjuk, hogy ha $P$ a $w$ csúcsban akad el, akkor $w$ páratlan fokú és $w \neq v$.
-            </div>
-
-            <p>
-                A $P$ séta ugyanis párosával „fogyasztja” az általa érintett, $v$-től különböző csúcsok éleit: egy $u \neq v$ csúcson való áthaladás nyilván kettőt használ fel $u$ élei közül. Így $w$ valóban páratlan fokú kell legyen, különben $P$-nek az utolsó $w$-be való belépése után még volna olyan, $w$-re illeszkedő él, amit $P$ korábban nem érintett.
-            </p>
-
-            <p>
-                Ugyanez a gondolat mutatja azt is, hogy $w \neq v$; valóban, $P$ első, $v$-ből induló éle elhasznál egyet $v$ élei közül, így az ezután megmaradó, $v$-re illeszkedő élek száma már páros, vagyis $P$ $v$-ben sem akadhat el.
-            </p>
-
-            <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg text-indigo-800 dark:text-indigo-300 font-medium border border-indigo-100 dark:border-indigo-800">
-                Megmutattuk tehát, hogy létezik egy $v$-ből $w$-be vezető $P$ séta (ahol $w \neq v$ és $w$ páratlan fokú). Így $v$-ből $w$-be vezető út is van $G$-ben.
-            </div>
-        </div>
-    </div>
-
-    
-</math-example>
 
 <math-header>
     <div class="num-badge">1.8</div>
@@ -2053,53 +2017,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<math-header>
-    <h2 class="text-balance">Összefüggőség bizonyítása fokszámokból</h2>
-</math-header>
 
-<math-example id="section-1-10-ex">
-    
-
-    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-md mb-8">
-        <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
-            <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
-            Megoldás levezetése
-        </h4>
-        <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
-            <p>
-                Ha $w \neq v$ tetszőleges, $v$-vel nem szomszédos csúcs, akkor $v$-nek és $w$-nek kell legyen közös szomszédja. 
-            </p>
-
-            <div class="bg-slate-900 rounded-xl p-6 text-center shadow-inner space-y-2">
-                <p class="text-indigo-300 font-mono text-lg">
-                    $d(v) + d(w) \geq 66 + 33 = 99$
-                </p>
-                <p class="text-slate-400 text-[10px] uppercase tracking-widest font-bold">szomszédok együttes száma</p>
-            </div>
-
-            <p>
-                Mivel egyszerű gráfban a csúcsok fokszáma azonos a szomszédaik számával, $v$-nek és $w$-nek összesen legalább 99 szomszédja van. Azonban $v$-n és $w$-n kívül a gráfban összesen csak <strong class="text-slate-900 dark:text-white">$100 - 2 = 98$</strong> csúcs található. 
-            </p>
-
-            <div class="flex items-start gap-4 bg-emerald-50 dark:bg-emerald-900/10 p-5 rounded-xl border border-emerald-100 dark:border-emerald-900/30 shadow-sm">
-                <div class="flex-none bg-emerald-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs">!</div>
-                <p class="text-emerald-800 dark:text-emerald-300 italic">
-                    A <strong>skatulyaelv</strong> alapján lehetetlen, hogy ezek között ne legyen közös szomszéd, hiszen több szomszédsági kapcsolatunk van, mint ahány rendelkezésre álló csúcsunk.
-                </p>
-            </div>
-
-            <p>
-                Ezért $v$ és bármely $w \neq v$ csúcs között van $G$-ben (legföljebb kettő hosszúságú) út. Ebből következik, hogy bármely $x, y \in V(G)$ csúcsok között létezik élsorozat: ilyet kapunk, ha egy $x$-ből $v$-be vezető utat összekapcsolunk egy $v$-ből $y$-ba vezetővel. 
-            </p>
-
-            <p class="font-bold text-slate-800 dark:text-slate-200 pt-4 border-t border-slate-100 dark:border-slate-800 italic text-center md:text-left">
-                Így az korábbi állítás (rövidítési eljárás) szerint $x$-ből $y$-ba vezető út is van $G$-ben, vagyis $G$ valóban összefüggő.
-            </p>
-        </div>
-    </div>
-
-    
-</math-example>
 
 <math-header>
     <div class="num-badge">1.11</div>
@@ -2189,86 +2107,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<math-header>
-    <h2 class="text-balance">Alternatív bizonyítás: Páratlan fokszámok</h2>
-</math-header>
 
-<math-example id="section-1-12-ex">
-    
 
-    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-md">
-        <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
-            <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
-            Megoldás komponensekkel
-        </h4>
-        <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
-            <p>
-                Legyen $G$-ben a $v$ komponense $K$. Tudjuk, hogy egy gráf (vagy annak bármely komponense, mint önálló gráf) fokszámösszege páros.
-            </p>
 
-            
-
-            <div class="bg-slate-900 rounded-xl p-6 text-center my-6 border-l-4 border-amber-500 shadow-inner">
-                <p class="text-amber-200 text-[10px] uppercase font-black mb-2 tracking-widest">Logikai kényszer</p>
-                <p class="text-white italic text-balance">
-                    Ebben a $K$ komponensben kell lennie $v$-n kívül is legalább egy páratlan fokú csúcsnak, különben a $K$-beli csúcsok fokszámösszege páratlan volna (mivel csak egy páratlan tagunk lenne), ami ellentmondana a <strong>Fokszámösszeg-tételnek</strong>.
-                </p>
-            </div>
-            
-            <p>
-                Mivel találtunk egy másik páratlan fokú csúcsot ugyanabban a $K$ komponensben, a komponens definíciója szerint $v$ és ezen csúcs között vezet út.
-            </p>
-        </div>
-    </div>
-</math-example>
-
-<math-header>
-    <h2 class="text-balance">Összefüggőség: Komponens-méret alapú bizonyítás</h2>
-</math-header>
-
-<math-example id="section-1-12-ex-2">
-    
-
-    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-md mb-8">
-        <h4 class="text-emerald-600 dark:text-emerald-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
-            <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
-            Megoldás ellentmondással
-        </h4>
-        
-        <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-indigo-50 dark:bg-indigo-900/20 p-5 rounded-xl border border-indigo-100 dark:border-indigo-800 shadow-sm">
-                    <strong class="text-indigo-700 dark:text-indigo-300 block mb-2 text-xs uppercase font-black tracking-widest">K komponens ($v$-vel)</strong>
-                    A $v$ csúcs komponense ($K$) legalább **67 csúcsú**, hiszen $v$-n kívül tartalmaznia kell $v$ mind a 66 szomszédját is.
-                </div>
-                <div class="bg-rose-50 dark:bg-rose-900/20 p-5 rounded-xl border border-rose-100 dark:border-rose-800 shadow-sm text-balance">
-                    <strong class="text-rose-700 dark:text-rose-300 block mb-2 text-xs uppercase font-black tracking-widest">K' komponens (feltételezett)</strong>
-                    Ha létezne egy másik $K'$ komponens, annak legalább **34 csúcsúnak** kellene lennie, hiszen minden csúcsa legalább 33 fokú ($33 \text{ szomszéd} + 1 \text{ maga a csúcs}$).
-                </div>
-            </div>
-
-            <div class="bg-slate-900 text-white p-8 rounded-2xl text-center shadow-2xl relative overflow-hidden">
-                <div class="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center">
-                    <span class="text-9xl font-black">!</span>
-                </div>
-                <p class="text-[10px] uppercase font-black tracking-[0.2em] text-slate-500 mb-3">Méretvizsgálat</p>
-                <p class="text-3xl font-mono text-rose-400 font-black">
-                    $|V(K)| + |V(K')| \geq 67 + 34 = 101$
-                </p>
-                <div class="h-px bg-slate-800 my-5 w-1/2 mx-auto"></div>
-                <p class="text-sm italic text-slate-400">
-                    Ez lehetetlen, mivel a gráfban összesen csak 100 csúcs található ($n=100$).
-                </p>
-            </div>
-
-            <p class="font-bold text-slate-800 dark:text-white pt-4 border-t border-slate-100 dark:border-slate-700 italic text-center md:text-left">
-                Mivel két diszjunkt komponens nem létezhet, $G$-nek csak egyetlen komponense van, tehát a gráf összefüggő.
-            </p>
-        </div>
-    </div>
-
-    
-</math-example>
 
 <math-header>
     <div class="num-badge">1.13</div>
@@ -2296,13 +2137,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </ul>
     </div>
 </math-def>
-
-
-
-<math-header>
-    <div class="num-badge">1.14</div>
-    <h2>Összefoglaló Kvíz</h2>
-</math-header>
 
 
 
@@ -2347,6 +2181,13 @@ document.addEventListener('DOMContentLoaded', () => {
         Az algoritmus 10. sorában a minimumkeresés minden lépésben egyre kisebb halmazon fut le. Ha egyszerű tömböt használunk, a keresések száma $n$-nel arányos minden külső ciklusban, így az eljárás teljes lépésszáma <strong class="text-indigo-600 dark:text-indigo-400">$\mathcal{O}(n^2)$</strong>, ahol $n$ a csúcsok száma.
     </p>
 </math-theorem>
+
+<math-header>
+    <div class="num-badge">1.14</div>
+    <h2>Összefoglaló Kvíz</h2>
+</math-header>
+
+
 
 
 

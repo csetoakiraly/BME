@@ -2144,106 +2144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 </section>
 
-<math-header>
-    <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-blue-500/30 decoration-4 underline-offset-8 text-balance">
-        Lólépés bejárás vizsgálata
-    </h2>
-</math-header>
 
-<section id="section-3-6-ex" class="mb-16 space-y-8">
-    <math-example>
-        
-    </math-example>
-
-    
-
-    <div class="bg-slate-900 rounded-3xl p-8 text-white border border-slate-700/50">
-        <div class="flex flex-col lg:flex-row gap-12 items-center justify-center">
-            <div class="flex flex-col items-center gap-4">
-                <span class="text-[10px] font-black text-blue-400 uppercase tracking-widest">Gráfmodell (Lólépések)</span>
-                <div class="bg-white/10 p-2 rounded-lg border border-slate-700">
-                    <svg width="150" height="90" viewBox="0 0 150 90">
-                        <g fill="none" stroke="#334155" stroke-width="0.5">
-                            <rect x="0" y="0" width="150" height="90" />
-                            <line x1="30" y1="0" x2="30" y2="90" /> <line x1="60" y1="0" x2="60" y2="90" />
-                            <line x1="90" y1="0" x2="90" y2="90" /> <line x1="120" y1="0" x2="120" y2="90" />
-                            <line x1="0" y1="30" x2="150" y2="30" /> <line x1="0" y1="60" x2="150" y2="60" />
-                        </g>
-                        <path d="M15 15 L45 75 M15 15 L75 45 M45 15 L15 75" stroke="#3b82f6" stroke-width="1" opacity="0.5" />
-                        <g fill="white">
-                            <circle cx="15" cy="15" r="2"/> <circle cx="45" cy="15" r="2"/> <circle cx="75" cy="15" r="2"/>
-                            <circle cx="105" cy="15" r="2"/> <circle cx="135" cy="15" r="2"/>
-                            <circle cx="15" cy="45" r="2"/> <circle cx="45" cy="45" r="2"/> <circle cx="75" cy="45" r="2"/>
-                            <circle cx="105" cy="45" r="2"/> <circle cx="135" cy="45" r="2"/>
-                            <circle cx="15" cy="75" r="2"/> <circle cx="45" cy="75" r="2"/> <circle cx="75" cy="75" r="2"/>
-                            <circle cx="105" cy="75" r="2"/> <circle cx="135" cy="75" r="2"/>
-                        </g>
-                    </svg>
-                </div>
-            </div>
-
-            <div class="flex flex-col items-center gap-4">
-                <span class="text-[10px] font-black text-rose-400 uppercase tracking-widest">Törlés (k=5) & Komponensek</span>
-                <div class="bg-white/10 p-2 rounded-lg border border-slate-700">
-                    <svg width="150" height="90" viewBox="0 0 150 90">
-                        <g stroke="#f43f5e" stroke-width="2">
-                            <line x1="40" y1="10" x2="50" y2="20" /> <line x1="50" y1="10" x2="40" y2="20" />
-                            <line x1="100" y1="10" x2="110" y2="20" /> <line x1="110" y1="10" x2="100" y2="20" />
-                            <line x1="70" y1="40" x2="80" y2="50" /> <line x1="80" y1="40" x2="70" y2="50" />
-                            <line x1="40" y1="70" x2="50" y2="80" /> <line x1="50" y1="70" x2="40" y2="80" />
-                            <line x1="100" y1="70" x2="110" y2="80" /> <line x1="110" y1="70" x2="100" y2="80" />
-                        </g>
-                        <path d="M15 45 L75 15 L135 45 L75 75 Z" fill="none" stroke="#3b82f6" stroke-width="1.5" />
-                        <g fill="white">
-                            <circle cx="15" cy="15" r="3"/> <circle cx="135" cy="15" r="3"/>
-                            <circle cx="45" cy="45" r="3"/> <circle cx="105" cy="45" r="3"/>
-                            <circle cx="15" cy="75" r="3"/> <circle cx="135" cy="75" r="3"/>
-                        </g>
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    
-
-    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md">
-        <h4 class="text-blue-600 dark:text-blue-400 font-bold mb-6 uppercase tracking-widest text-xs flex items-center">
-            <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-            Logikai levezetés
-        </h4>
-        
-        <div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
-            <p>
-                A kérdés gráfelméleti megfogalmazása: <strong class="text-slate-900 dark:text-white">Van-e Hamilton-út</strong> a $3 \times 5$-ös lólépés-gráfban?
-            </p>
-
-            <div class="bg-blue-50/50 dark:bg-blue-900/10 p-6 rounded-2xl border border-blue-100 dark:border-blue-900/30 space-y-4">
-                <p>
-                    Alkalmazzuk a 3.6-os Tétel (ii) állítását: töröljünk ki $k=5$ alkalmasan választott csúcsot a gráfból (a vizualizáción piros X-szel jelölt mezők).
-                </p>
-                <p>
-                    A törlés után a megmaradó gráf <strong class="text-rose-500 font-bold">7 összefüggő komponensre</strong> esik szét:
-                </p>
-                <ul class="list-disc list-inside space-y-2 ml-4 italic">
-                    <li>Egy 4 csúcsból álló kör (a kék élek mentén);</li>
-                    <li>6 darab izolált pont (mező).</li>
-                </ul>
-            </div>
-
-            <p class="font-bold text-slate-800 dark:text-slate-200">
-                Az ellentmondás:
-            </p>
-            <p>
-                A 3.6-os tétel szerint, ha létezner Hamilton-út, akkor $k=5$ csúcs elhagyása után legföljebb <strong class="text-blue-600">k + 1 = 6</strong> komponens maradhatna. Mivel mi 7 komponenst kaptunk, a gráfban <strong class="text-rose-600 font-black">nem létezhet Hamilton-út</strong>.
-            </p>
-
-            <div class="bg-slate-900 text-white p-4 rounded-xl text-center shadow-lg shadow-blue-500/20">
-                Így a $3 \times 5$-ös táblát nem lehet lóval a kért módon bejárni.
-            </div>
-        </div>
-    </div>
-</section>
 
 <math-header>
     <div class="flex items-center gap-4 mb-6 mt-12">
@@ -2423,68 +2324,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </math-proof>
 </section>
 
-<math-header>
-    <div class="num-badge">3.9</div>
-    <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-blue-500/30 decoration-4 underline-offset-8 text-balance">
-        Alkalmazás: Az ötöslottó gráfmodellje
-    </h2>
-</math-header>
 
-<section id="section-3-9" class="mb-16 space-y-8">
-    <math-example>
-        
-    </math-example>
-
-    
-
-    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md">
-        <h4 class="text-blue-600 dark:text-blue-400 font-bold mb-8 uppercase tracking-widest text-xs flex items-center">
-            <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-            Modellezés és Bizonyítás
-        </h4>
-        
-        <div class="space-y-8 text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed">
-            <p>
-                A feladatot átfogalmazzuk gráfelméleti állítássá: a $G$ gráf csúcsai legyenek a lehetséges lottószelvények, és két csúcs akkor legyen szomszédos, ha a megfelelő szelvényeken <strong class="text-slate-900 dark:text-white">nincs közös szám</strong>. A feladat célja annak igazolása, hogy $G$-ben van <strong class="text-blue-600">Hamilton-út</strong>.
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
-                <div class="p-6 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-100 dark:border-slate-800">
-                    <p class="text-xs font-black uppercase text-slate-500 mb-4 tracking-wider">Csúcsok száma ($n$):</p>
-                    <div class="text-xl font-mono text-blue-600 text-center">
-                        $n = \binom{90}{5} = 43\,949\,268$
-                    </div>
-                    <p class="mt-2 text-[10px] text-slate-400 italic text-center">Az összes 5 elemű részhalmaz száma.</p>
-                </div>
-                <div class="p-6 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-100 dark:border-slate-800">
-                    <p class="text-xs font-black uppercase text-slate-500 mb-4 tracking-wider">Tetszőleges $v$ csúcs foka ($d(v)$):</p>
-                    <div class="text-xl font-mono text-blue-600 text-center">
-                        $d(v) = \binom{85}{5} = 32\,801\,517$
-                    </div>
-                    <p class="mt-2 text-[10px] text-slate-400 italic text-center text-balance">Ennyiféleképpen választható 5 szám a szelvényen nem szereplő 85-ből.</p>
-                </div>
-            </div>
-
-            <div class="bg-blue-600 text-white p-6 rounded-2xl shadow-lg shadow-blue-500/20">
-                <h5 class="font-black uppercase text-xs mb-4 tracking-widest opacity-80">Dirac-tétel feltételének ellenőrzése</h5>
-                <div class="flex flex-col md:flex-row items-center justify-around gap-6">
-                    <div class="text-center">
-                        <span class="block text-[10px] mb-1 uppercase tracking-tighter">Fokszám:</span>
-                        <span class="text-2xl font-bold">32 801 517</span>
-                    </div>
-                    <div class="text-3xl font-light opacity-50">&geq;</div>
-                    <div class="text-center">
-                        <span class="block text-[10px] mb-1 uppercase tracking-tighter">Küszöb ($n/2$):</span>
-                        <span class="text-2xl font-bold">21 974 634</span>
-                    </div>
-                </div>
-                <p class="mt-6 text-sm italic text-center border-t border-white/20 pt-4">
-                    Látható, hogy $d(v) \geq \frac{n}{2}$ minden csúcsra teljesül. Mivel $G$ egyszerű gráf, Dirac tétele szerint $G$-ben van Hamilton-kör (és így Hamilton-út is).
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
 
 
 <math-header>
@@ -2527,8 +2367,6 @@ document.addEventListener('DOMContentLoaded', () => {
 <section id="section-3-12" class="mb-16 animate-fade-in">
     
 </section>
-
-
 
 
 

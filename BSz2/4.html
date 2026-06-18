@@ -1905,110 +1905,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 </section>
 
-<math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
-            Vizuális algoritmus-elemzés
-        </h2>
-    </div>
-</math-header>
 
-<section id="section-4-5-ex" class="mb-16 space-y-12 animate-fade-in">
-    
-    
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="group bg-white dark:bg-slate-800 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-700 shadow-xl transition-all hover:border-yellow-500/50">
-            <div class="w-12 h-12 bg-yellow-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04m18.618 0c-.051.494-.12 1.054-.233 1.618a11.95 11.95 0 01-14.59 10.062L12 21l7.39-4.39a11.95 11.95 0 01-1.41-5.118" />
-                </svg>
-            </div>
-            <h3 class="text-xl font-black text-slate-900 dark:text-white mb-4 italic">Felső korlát</h3>
-            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">
-                Bármilyen sorrendet választunk, a mohó színezés sosem lépi át ezt az értéket:
-            </p>
-            <div class="text-3xl font-black text-yellow-600 bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-2xl text-center border border-yellow-100 dark:border-yellow-800">
-                $\chi(G) \leq \Delta(G) + 1$
-            </div>
-        </div>
-
-        <div class="group bg-slate-900 p-8 rounded-[2.5rem] border border-slate-700 shadow-xl transition-all hover:border-rose-500/50">
-            <div class="w-12 h-12 bg-rose-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <svg class="w-6 h-6 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                </svg>
-            </div>
-            <h3 class="text-xl font-black text-white mb-4 italic text-balance">Hatékonysági rés</h3>
-            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                A mohó algoritmus "rossz" sorrend esetén elpazarolhatja a színeket:
-            </p>
-            <div class="text-3xl font-black text-rose-500 bg-rose-500/10 p-4 rounded-2xl text-center border border-rose-500/20">
-                $\chi(G) = 2$ vs. $k$ szín
-            </div>
-        </div>
-    </div>
-
-    <math-example>
-        <div class="bg-white dark:bg-slate-800 rounded-[3rem] p-8 md:p-12 border border-slate-100 dark:border-slate-700 shadow-2xl relative overflow-hidden">
-            <div class="relative z-10">
-                <h3 class="text-2xl font-black text-slate-900 dark:text-white mb-8 text-center md:text-left">Hogyan téved a mohó algoritmus?</h3>
-                
-                <div class="space-y-6">
-                    <div class="flex gap-6 items-start group">
-                        <div class="flex-none w-10 h-10 rounded-full bg-yellow-500 text-slate-900 flex items-center justify-center font-black shadow-lg group-hover:scale-110 transition-transform">1</div>
-                        <div class="pt-2">
-                            <p class="text-slate-700 dark:text-slate-300 font-bold mb-1 italic">Kezdeti lépés ($a_1, b_1$)</p>
-                            <p class="text-sm text-slate-500">Mivel $a_1$ és $b_1$ nem szomszédosak, mindketten megkapják az <span class="text-yellow-600 font-bold">1. színt</span>.</p>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-6 items-start group">
-                        <div class="flex-none w-10 h-10 rounded-full bg-yellow-500 text-slate-900 flex items-center justify-center font-black shadow-lg group-hover:scale-110 transition-transform">2</div>
-                        <div class="pt-2">
-                            <p class="text-slate-700 dark:text-slate-300 font-bold mb-1 italic">Kényszerpálya ($a_2, b_2$)</p>
-                            <p class="text-sm text-slate-500">Szomszédosak az 1. színt kapott csúcsokkal, de egymással nem, így kénytelenek a <span class="text-yellow-600 font-bold">2. színt</span> felvenni.</p>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-6 items-start group">
-                        <div class="flex-none w-10 h-10 rounded-full bg-slate-900 text-yellow-500 flex items-center justify-center font-black shadow-lg group-hover:scale-110 transition-transform">k</div>
-                        <div class="pt-2">
-                            <p class="text-slate-900 dark:text-white font-black mb-1 italic uppercase tracking-widest text-xs">Végállapot</p>
-                            <p class="text-sm text-slate-500 italic">Minden újabb pár új színt követel, így az algoritmus <span class="underline decoration-yellow-500 decoration-2 font-bold text-slate-900 dark:text-white">$k$ színt</span> használ egy amúgy 2-színezhető gráfon.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="absolute -right-20 -bottom-20 opacity-5 pointer-events-none">
-                <svg width="400" height="400" viewBox="0 0 100 100" fill="currentColor" class="text-yellow-600">
-                    <circle cx="50" cy="50" r="40" />
-                </svg>
-            </div>
-        </div>
-    </math-example>
-
-    
-
-    <div class="bg-slate-900 rounded-3xl p-8 border border-yellow-500/30">
-        <div class="flex flex-col md:flex-row items-center gap-8">
-            <div class="flex-1 space-y-4">
-                <h4 class="text-yellow-500 font-black uppercase tracking-widest text-xs">A tanulság</h4>
-                <p class="text-white text-lg leading-relaxed">
-                    Bár a mohó algoritmus gyors, az eredménye <strong class="text-yellow-500">sorrendfüggő</strong>. A $\Delta(G)+1$ korlát biztonságot ad, de nem garantálja az optimális $\chi(G)$ értéket.
-                </p>
-            </div>
-            <div class="flex-none">
-                <div class="inline-block p-4 rounded-2xl bg-yellow-500/10 border border-yellow-500/20 text-yellow-500">
-                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <math-header>
     <div class="flex items-center gap-4 mb-6 mt-12">
@@ -2076,78 +1973,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<math-header>
-    <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
-        Számhalmazok kromatikus száma
-    </h2>
-</math-header>
 
-<section id="section-4-7-ex-2" class="mb-16 space-y-12 animate-fade-in">
-    <math-example>
-        
-    </math-example>
-
-    
-
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        
-        <div class="space-y-6">
-            <div class="flex items-center gap-3">
-                <span class="flex-none w-6 h-6 rounded-lg bg-yellow-500 text-slate-900 flex items-center justify-center text-xs font-black">1</span>
-                <h4 class="text-slate-900 dark:text-white font-bold uppercase tracking-widest text-xs">Felső korlát: 10-színezés</h4>
-            </div>
-            <div class="text-sm text-slate-600 dark:text-slate-400 space-y-4 leading-relaxed">
-                <p>
-                    Adjunk minden $n$ számhoz egy színt az utolsó számjegye alapján (maradékosztályok modulo $10$).
-                </p>
-                <div class="grid grid-cols-2 gap-2 font-mono text-[11px]">
-                    <div class="p-2 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">1, 11, 21... <span class="text-yellow-600">→ C₁</span></div>
-                    <div class="p-2 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">2, 12, 22... <span class="text-yellow-600">→ C₂</span></div>
-                    <div class="p-2 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">...</div>
-                    <div class="p-2 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">10, 20... <span class="text-yellow-600">→ C₁₀</span></div>
-                </div>
-                <p class="italic">
-                    Bármely két azonos színű szám különbsége legalább $10$, tehát nem szomszédosak. Ebből következik: <strong class="text-slate-900 dark:text-white">$\chi(G) \leq 10$</strong>.
-                </p>
-            </div>
-        </div>
-
-        <div class="space-y-6">
-            <div class="flex items-center gap-3">
-                <span class="flex-none w-6 h-6 rounded-lg bg-yellow-500 text-slate-900 flex items-center justify-center text-xs font-black">2</span>
-                <h4 class="text-slate-900 dark:text-white font-bold uppercase tracking-widest text-xs">Alsó korlát: A 10-es klikk</h4>
-            </div>
-            <div class="text-sm text-slate-600 dark:text-slate-400 space-y-4 leading-relaxed">
-                <p>
-                    Vizsgáljuk az $\{1, 2, \dots, 10\}$ részhalmazt. Itt bármely két szám különbsége legfeljebb $9$.
-                </p>
-                <div class="p-6 bg-slate-900 rounded-3xl border border-slate-800 flex flex-col items-center shadow-lg">
-                    <div class="flex gap-1.5 flex-wrap justify-center mb-4">
-                        <div class="w-7 h-7 rounded-lg bg-yellow-500 flex items-center justify-center text-[10px] text-slate-900 font-bold shadow-sm">1</div>
-                        <div class="w-7 h-7 rounded-lg bg-yellow-500 flex items-center justify-center text-[10px] text-slate-900 font-bold shadow-sm">2</div>
-                        <div class="w-7 h-7 rounded-lg bg-yellow-500 flex items-center justify-center text-[10px] text-slate-900 font-bold shadow-sm">3</div>
-                        <div class="w-7 h-7 rounded-lg bg-yellow-500 flex items-center justify-center text-[10px] text-slate-900 font-bold shadow-sm">...</div>
-                        <div class="w-7 h-7 rounded-lg bg-yellow-500 flex items-center justify-center text-[10px] text-slate-900 font-bold shadow-sm">10</div>
-                    </div>
-                    <span class="text-[10px] font-black text-yellow-500/40 uppercase tracking-[0.3em]">Teljes részgráf (K₁₀)</span>
-                </div>
-                <p class="italic">
-                    Mivel a gráfban van $10$-es klikk, a színezéshez legalább $10$ szín kell: <strong class="text-slate-900 dark:text-white">$\chi(G) \geq \omega(G) = 10$</strong>.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div class="bg-slate-900 rounded-[2rem] p-8 border border-yellow-500/20 text-center shadow-2xl">
-        <p class="text-slate-400 text-xs uppercase font-black tracking-widest mb-4">Konklúzió</p>
-        <div class="text-3xl md:text-4xl font-black text-white mb-2 tracking-tighter">
-            $10 \leq \omega(G) \leq \chi(G) \leq 10$
-        </div>
-        <p class="text-yellow-500 font-bold text-xl italic">
-            $\chi(G) = 10$
-        </p>
-    </div>
-</section>
 
 <math-header>
     <div class="flex items-center gap-4 mb-6 mt-12">
@@ -2179,106 +2005,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
 </section>
 
-<math-header>
-    <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
-        Gyakorlat: Intervallumgráf-e?
-    </h2>
-</math-header>
 
-<section id="section-4-8-ex" class="mb-16 space-y-12 animate-fade-in">
-    
-    <math-example>
-        
-    </math-example>
-
-    <div class="bg-white dark:bg-slate-800 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-700 shadow-md">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div class="space-y-6">
-                <div class="flex items-center gap-3">
-                    <span class="px-3 py-1 bg-emerald-500/10 text-emerald-600 text-xs font-black rounded-full uppercase">Igazolás</span>
-                    <h3 class="text-xl font-black text-slate-900 dark:text-white italic">A bal oldali gráf intervallumgráf</h3>
-                </div>
-                
-                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                    A bal oldali gráf intervallumgráf, mert reprezentálja (például) a következő intervallumrendszer:
-                </p>
-                
-                <ul class="grid grid-cols-2 gap-3 text-xs font-mono">
-                    <li class="p-2 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-100 dark:border-slate-800">$a = [0, 1]$</li>
-                    <li class="p-2 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-100 dark:border-slate-800">$b = [0, 3]$</li>
-                    <li class="p-2 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-100 dark:border-slate-800">$c = [4, 7]$</li>
-                    <li class="p-2 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-100 dark:border-slate-800">$d = [6, 7]$</li>
-                    <li class="p-2 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-100 dark:border-slate-800">$e = [0, 5]$</li>
-                    <li class="p-2 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-100 dark:border-slate-800">$f = [2, 7]$</li>
-                </ul>
-            </div>
-
-            <div class="bg-slate-900 p-8 rounded-3xl border border-slate-700 flex flex-col items-center">
-                <span class="text-[9px] font-black uppercase text-slate-500 mb-8 tracking-widest">6.7. ábra: Intervallumrendszer</span>
-                <div class="relative w-full max-w-xs h-40 flex flex-col justify-between py-2">
-                    <div class="absolute top-[85%] left-0 right-0 h-px bg-slate-700"></div>
-                    <div class="absolute top-[85%] left-0 right-0 flex justify-between px-1">
-                        <span class="text-[8px] text-slate-500 mt-2">0</span>
-                        <span class="text-[8px] text-slate-500 mt-2">1</span>
-                        <span class="text-[8px] text-slate-500 mt-2">2</span>
-                        <span class="text-[8px] text-slate-500 mt-2">3</span>
-                        <span class="text-[8px] text-slate-500 mt-2">4</span>
-                        <span class="text-[8px] text-slate-500 mt-2">5</span>
-                        <span class="text-[8px] text-slate-500 mt-2">6</span>
-                        <span class="text-[8px] text-slate-500 mt-2">7</span>
-                    </div>
-                    <div class="h-2 bg-yellow-500/60 rounded-full w-[14%] ml-0 border border-yellow-400/30"></div> 
-                    <div class="h-2 bg-yellow-500/60 rounded-full w-[42%] ml-0 border border-yellow-400/30"></div> 
-                    <div class="h-2 bg-yellow-500/60 rounded-full w-[42%] ml-[57%] border border-yellow-400/30"></div> 
-                    <div class="h-2 bg-yellow-500/60 rounded-full w-[14%] ml-[85%] border border-yellow-400/30"></div> 
-                    <div class="h-2 bg-yellow-500/60 rounded-full w-[71%] ml-0 border border-yellow-400/30"></div> 
-                    <div class="h-2 bg-yellow-500/60 rounded-full w-[71%] ml-[28%] border border-yellow-400/30"></div> 
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 text-white border border-slate-700 shadow-2xl relative overflow-hidden">
-        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
-            <div class="space-y-6">
-                <div class="flex items-center gap-3">
-                    <span class="px-3 py-1 bg-rose-500/10 text-rose-500 text-xs font-black rounded-full uppercase">Cáfolat</span>
-                    <h3 class="text-xl font-black text-white italic">A jobb oldali gráf nem intervallumgráf</h3>
-                </div>
-                
-                <p class="text-sm text-slate-400 leading-relaxed">
-                    Ennek oka a <strong class="text-yellow-500">$b, e, c$ és $f$</strong> csúcsok alkotta négy pontú körben rejlik. 
-                </p>
-
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 space-y-4">
-                    <p class="text-xs italic text-slate-300">
-                        Tegyük fel, hogy mégis intervallumgráf! Mivel $b$ és $f$ nem szomszédosak, $I_b$ és $I_f$ diszjunktak kell legyenek (legyen $b_2 < f_1$).
-                    </p>
-                    <p class="text-xs italic text-slate-300">
-                        Mivel $c$ szomszédos $b$-vel és $f$-fel is, $I_c$-nek metszenie kell mindkettőt $\implies [b_2, f_1] \subseteq I_c$. Ugyanez igaz $e$-re is $\implies [b_2, f_1] \subseteq I_e$.
-                    </p>
-                    <div class="pt-4 border-t border-white/10 font-bold text-rose-400 text-sm">
-                        Ebből következik, hogy $I_c$ és $I_e$ metszők, de $c$ és $e$ nem szomszédosak a gráfban. ELLENTMONDÁS!
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex justify-center">
-                <svg width="240" height="160" viewBox="0 0 240 160" class="overflow-visible">
-                    <g stroke="white" stroke-width="2" opacity="0.3">
-                        <line x1="40" y1="80" x2="100" y2="40" /> <line x1="40" y1="80" x2="100" y2="120" /> <line x1="100" y1="40" x2="160" y2="40" /> <line x1="100" y1="120" x2="160" y2="120" /> <line x1="100" y1="40" x2="100" y2="120" /> <line x1="160" y1="40" x2="160" y2="120" /> <line x1="160" y1="40" x2="220" y2="80" /> <line x1="160" y1="120" x2="220" y2="80" /> </g>
-                    <circle cx="100" cy="40" r="7" fill="#eab308" /> <text x="100" y="30" fill="white" font-size="10" text-anchor="middle">b</text>
-                    <circle cx="160" cy="40" r="7" fill="#eab308" /> <text x="160" y="30" fill="white" font-size="10" text-anchor="middle">c</text>
-                    <circle cx="100" cy="120" r="7" fill="#eab308" /> <text x="100" y="135" fill="white" font-size="10" text-anchor="middle">e</text>
-                    <circle cx="160" cy="120" r="7" fill="#eab308" /> <text x="160" y="135" fill="white" font-size="10" text-anchor="middle">f</text>
-                    <circle cx="40" cy="80" r="7" fill="#475569" /> <text x="30" y="85" fill="white" font-size="10">a</text>
-                    <circle cx="220" cy="80" r="7" fill="#475569" /> <text x="230" y="85" fill="white" font-size="10">d</text>
-                </svg>
-            </div>
-        </div>
-    </div>
-</section>
 
 <math-header>
     <div class="flex items-center gap-4 mb-6 mt-12">
@@ -2560,8 +2287,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 </section>
-
-
 
 
 
