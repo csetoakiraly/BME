@@ -1842,6 +1842,58 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 </math-proof>
 </section>
+
+<math-header>
+    <div class="num-badge">9.4b</div>
+    <h2>Menger tétele pontdiszjunkt utakra (pontváltozat)</h2>
+</math-header>
+
+<section id="section-9-4b" class="mb-16 space-y-8 animate-fade-in">
+    <math-theorem>
+        <div class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
+            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">Menger tétele pontdiszjunkt utakra</h4>
+            <p>
+                Legyen $G$ egy irányított vagy irányítatlan gráf, és $s, t \in V(G)$ két nem szomszédos csúcs. Ekkor a maximálisan megadható $s$-ből $t$-be vezető pontdiszjunkt utak száma megegyezik a minimális $s, t$ lefogó ponthalmaz méretével.
+            </p>
+        </div>
+    </math-theorem>
+
+    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md">
+        <h4 class="text-[#0d9488] font-bold mb-4 uppercase tracking-widest text-xs">A pontdiszjunkt utak fogalma ($\kappa_G(s,t)$)</h4>
+        <div class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed space-y-4">
+            <p>
+                Két út <strong>pontdiszjunkt</strong>, ha a végpontjaikat ($s$ és $t$) leszámítva egyetlen közös csúcsuk sincs. 
+            </p>
+            <p>
+                A gráfban az $s$ és $t$ közötti <em>maximális pontdiszjunkt utak számát</em> <strong class="text-slate-900 dark:text-white">$\kappa_G(s, t)$</strong> jelöli.
+                Menger tétele kimondja, hogy ez az érték pontosan megegyezik annak a minimális csúcshalmaznak a méretével, amelynek elhagyása után nem vezet több út $s$-ből $t$-be (ez a lefogó ponthalmaz).
+            </p>
+            <div class="p-4 bg-slate-50 dark:bg-slate-900/50 rounded-xl border-l-4 border-slate-300 dark:border-slate-600 italic">
+                A tételsor alapján a pontdiszjunkt esetekben <strong>nincs szükség a bizonyítás ismeretére</strong>. Azonban fontos megjegyezni, hogy az éldiszjunkt esetre a csúcsszéthúzás (vertex splitting) módszerével vezethető vissza.
+            </div>
+        </div>
+    </div>
+</section>
+
+<math-header>
+    <div class="num-badge">9.4c</div>
+    <h2>Éldiszjunkt utak létezésének eldöntése folyamok segítségével</h2>
+</math-header>
+
+<section id="section-9-4c" class="mb-16 space-y-8 animate-fade-in">
+    <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md">
+        <h4 class="text-[#0d9488] font-bold mb-4 uppercase tracking-widest text-xs">Az algoritmus lépései</h4>
+        <div class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed space-y-4">
+            <p>
+                Ha el akarjuk dönteni, hogy egy $G$ gráfban létezik-e $k$ darab éldiszjunkt út $s$-ből $t$-be, a problémát visszavezethetjük hálózati folyamokra.
+            </p>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+                <li><strong>Irányított gráf esetén:</strong> Tekintsük a gráfot egy hálózatnak, ahol minden él kapacitása pontosan $c(e) = 1$. Keressünk egy maximális folyamot az Edmonds-Karp (vagy Ford-Fulkerson) algoritmussal. Az <em>Egészértékűségi lemma</em> miatt a folyamérték egész lesz, és a <em>folyamfelbontási tétel</em> miatt ez pontosan megegyezik a hálózatban lévő $s 	o t$ éldiszjunkt utak számával. Ha a maximális folyam értéke eléri vagy meghaladja $k$-t, akkor a válasz IGEN.</li>
+                <li><strong>Irányítatlan gráf esetén:</strong> Cseréljük ki a gráf minden (irányítatlan) élét két ellentétes irányú, 1 kapacitású irányított élre. Ezen a módosított irányított hálózaton futtassuk le a maximális folyam algoritmust ugyanúgy. Belátható, hogy a kapott maximális folyam felbontható olyan irányított utakra, amelyek az eredeti gráfban éldiszjunkt $s-t$ utaknak felelnek meg.</li>
+            </ul>
+        </div>
+    </div>
+</section>
 <math-header>
 <div class="flex items-center gap-4 mb-6 mt-24">
 <div class="flex-none bg-[#0d9488] text-white font-black px-3 py-1 rounded-lg shadow-sm">
