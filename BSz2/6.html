@@ -1700,184 +1700,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </p>
     </div>
 
-
-
-
-
 <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-24">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
-            6.7
-        </div>
-        
-        <div class="relative w-fit">
-            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
-                Frobenius-tétel
-            </h2>
-            <div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
-        </div>
-    </div>
-</math-header>
-
-<section id="section-6-7" class="mb-16 animate-fade-in text-left">
-    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
-        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Következmény</h4>
-        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
-            <b>Következmény. (Frobenius tétele)</b> A $G = (A,B;E)$ páros gráfban akkor és csak akkor létezik teljes párosítás, ha $|A| = |B|$ és minden $X \subseteq A$ részhalmazra $|N(X)| \geq |X|$ teljesül.
-        </p>
-    </div>
-
-    <math-proof>
-        <div class="p-2 space-y-6">
-            
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                <b>A feltétel szükségessége ismét nyilvánvaló:</b> ha létezik $G$-ben teljes párosítás, akkor $|A| = |B|$ természetesen igaz és mivel egy teljes párosítás egyben $A$-t lefedő párosítás is, így azt már beláttuk, hogy $|N(X)| \geq |X|$ minden $X \subseteq A$ részhalmazra teljesül.
-            </p>
-
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                <b>Megfordítva:</b> ha $|N(X)| \geq |X|$ minden $X \subseteq A$ részhalmazra teljesül, akkor Hall Tétele miatt $G$-ben van $A$-t lefedő párosítás. De mivel $|A| = |B|$, ezért egy ilyen párosításnak nyilván $B$-t is fednie kell, így az teljes párosítás. Ezzel tehát a feltétel elégségességét is beláttuk.
-            </p>
-        </div>
-    </math-proof>
-</section>
-
-<math-header>
-    <div class="flex items-center gap-4 mb-6 mt-24">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
-            6.8
-        </div>
-        
-        <div class="relative w-fit">
-            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
-                Összefoglaló Kvíz
-            </h2>
-            <div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
-        </div>
-    </div>
-</math-header>
-
-<section id="section-6-8" class="mb-16 animate-fade-in">
-    <div class="bg-[#2D1305] rounded-[3rem] p-8 md:p-12 border border-theme/30 shadow-2xl relative overflow-hidden group">
-        <div class="absolute -right-20 -bottom-20 opacity-10 pointer-events-none group-hover:scale-110 transition-transform duration-700 text-white">
-            <svg width="400" height="400" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2zm-4 11a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-            </svg>
-        </div>
-
-        <div class="relative z-10 text-left">
-            <div class="flex items-center gap-4 mb-10">
-                <div class="p-3 bg-theme rounded-2xl shadow-lg shadow-theme/40 text-white">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                    </svg>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-black text-white italic tracking-tight">Párosítási Algoritmusok</h3>
-                    <p class="text-amber-200/60 text-sm italic">Vidd az egeret a kártyák fölé a helyes válaszért!</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#01 Javítóút definíciója</p>
-                    <p class="text-white font-bold italic leading-relaxed text-balance">Milyen csúcsok között fut egy javítóút, és mi jellemzi az éleit?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
-                        Válasz: Két szabad (párosítás által nem fedett) csúcs között fut, és az élei felváltva $M$-en kívüliek és $M$-beliek.
-                    </div>
-                </div>
-
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#02 Kőnig-tétel</p>
-                    <p class="text-white font-bold italic leading-relaxed">Milyen kapcsolat van páros gráfokban $\nu(G)$ és $\tau(G)$ között?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
-                        Válasz: Páros gráfban $\nu(G) = \tau(G)$, azaz a maximális párosítás mérete egyenlő a minimális lefogó ponthalmaz méretével.
-                    </div>
-                </div>
-
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#03 Hall-feltétel</p>
-                    <p class="text-white font-bold italic leading-relaxed">Mikor létezik egy páros gráfban az $A$ pontosztályt lefedő párosítás?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
-                        Válasz: Pontosan akkor, ha minden $X \subseteq A$ részhalmazra teljesül, hogy $|N(X)| \geq |X|$.
-                    </div>
-                </div>
-
-                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-                    <p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#04 Teljes párosítás</p>
-                    <p class="text-white font-bold italic leading-relaxed text-balance">Mi a Frobenius-tétel szerinti feltétele a teljes párosítás létezésének?</p>
-                    <div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
-                        Válasz: Ha $|A| = |B|$, és minden $X \subseteq A$ részhalmazra $|N(X)| \geq |X|$ teljesül.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="section-6-9" class="mb-16 animate-fade-in text-left">
-    <div class="bg-slate-50/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800">
-        
-        <div class="flex items-center gap-4 mb-10">
-            <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center text-amber-500 shadow-sm">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7zM9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1z"/>
-                </svg>
-            </div>
-            <div>
-                <h3 class="text-xl font-black text-slate-800 dark:text-white italic">Tudtad-e?</h3>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
-            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-amber-400 transition-transform hover:-translate-y-1">
-                <h4 class="text-amber-600 text-[10px] font-black uppercase tracking-widest mb-4">A JAVÍTÓUTAK EREJE</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                    Ahelyett, hogy az összes lehetséges párosítást végigpróbálnánk, a <strong>javítóutas algoritmus</strong> polinomidőben megtalálja az optimumot. Ez teszi lehetővé, hogy a modern keresőmotorok és adatbázisok villámgyorsan kezeljenek hatalmas adathalmazokat.
-                </p>
-            </div>
-
-            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-emerald-400 transition-transform hover:-translate-y-1">
-                <h4 class="text-emerald-600 text-[10px] font-black uppercase tracking-widest mb-4">A HÁZASÍTÁSI TÉTEL</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                    A <strong>Hall-tételt</strong> a szakirodalom gyakran "Házasítási tételnek" nevezi. A tétel alapjául szolgáló matematikai modell azt vizsgálja, hogyan lehet egy közösség tagjait optimálisan párba állítani a saját preferencialistáik alapján.
-                </p>
-            </div>
-
-            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-indigo-400 transition-transform hover:-translate-y-1">
-                <h4 class="text-indigo-600 text-[10px] font-black uppercase tracking-widest mb-4">KŐNIG ÉS A DUALITÁS</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                    A <strong>$\nu(G) = \tau(G)$</strong> összefüggés a Kőnig-tételben a matematikai dualitás egyik legszebb példája. Azt bizonyítja, hogy egy "maximális" keresési és egy "minimális" lefogási probléma ugyanazt az eredményt adja.
-                </p>
-            </div>
-
-            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-rose-400 transition-transform hover:-translate-y-1">
-                <h4 class="text-rose-600 text-[10px] font-black uppercase tracking-widest mb-4">SZOFTVER-ÜTEMEZÉS</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                    A modern operációs rendszerek <strong>párosítási algoritmusokat</strong> használnak a feladatok processzormagokhoz rendeléséhez. Ez garantálja, hogy a hardver ne maradjon szabadon, amíg van elvégezhető számítási munka.
-                </p>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-    
-<div class="mt-12 w-full animate-fade-in">
-    <details class="group bg-slate-800/30 border border-slate-700/50 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-        <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-800/50 transition-colors">
-            <div class="flex items-center gap-4">
-                <div class="p-3 bg-indigo-500/20 rounded-xl">
-                    <span class="text-xl">📝</span>
-                </div>
-                <h3 class="text-lg font-black text-indigo-400 uppercase tracking-widest">Gyakorló feladatok és példák</h3>
-            </div>
-            <div class="text-indigo-400 transition-transform duration-300 group-open:rotate-180">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-            </div>
-        </summary>
-        <div class="p-8 border-t border-slate-700/50 bg-slate-900/50 space-y-12">
-            <math-header>
     <div class="flex items-center gap-4 mb-6 mt-24">
         <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
             6.1
@@ -2545,6 +2368,7 @@ document.addEventListener('DOMContentLoaded', initKonigGame);
         </div>
     </div>
 </section>
+
 <math-header>
     <div class="flex items-center gap-4 mb-6 mt-24">
         <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
@@ -2831,10 +2655,166 @@ document.addEventListener('DOMContentLoaded', initHallInteractive);
         </div>
     </div>
 </section>
+
+<math-header>
+    <div class="flex items-center gap-4 mb-6 mt-24">
+        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
+            6.7
         </div>
-    </details>
-</div>
-<div id="complete-section-6" 
+        
+        <div class="relative w-fit">
+            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
+                Frobenius-tétel
+            </h2>
+            <div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
+        </div>
+    </div>
+</math-header>
+
+<section id="section-6-7" class="mb-16 animate-fade-in text-left">
+    <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+        <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Következmény</h4>
+        <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
+            <b>Következmény. (Frobenius tétele)</b> A $G = (A,B;E)$ páros gráfban akkor és csak akkor létezik teljes párosítás, ha $|A| = |B|$ és minden $X \subseteq A$ részhalmazra $|N(X)| \geq |X|$ teljesül.
+        </p>
+    </div>
+
+    <math-proof>
+        <div class="p-2 space-y-6">
+            
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <b>A feltétel szükségessége ismét nyilvánvaló:</b> ha létezik $G$-ben teljes párosítás, akkor $|A| = |B|$ természetesen igaz és mivel egy teljes párosítás egyben $A$-t lefedő párosítás is, így azt már beláttuk, hogy $|N(X)| \geq |X|$ minden $X \subseteq A$ részhalmazra teljesül.
+            </p>
+
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                <b>Megfordítva:</b> ha $|N(X)| \geq |X|$ minden $X \subseteq A$ részhalmazra teljesül, akkor Hall Tétele miatt $G$-ben van $A$-t lefedő párosítás. De mivel $|A| = |B|$, ezért egy ilyen párosításnak nyilván $B$-t is fednie kell, így az teljes párosítás. Ezzel tehát a feltétel elégségességét is beláttuk.
+            </p>
+        </div>
+    </math-proof>
+</section>
+
+<math-header>
+    <div class="flex items-center gap-4 mb-6 mt-24">
+        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
+            6.8
+        </div>
+        
+        <div class="relative w-fit">
+            <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
+                Összefoglaló Kvíz
+            </h2>
+            <div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
+        </div>
+    </div>
+</math-header>
+
+<section id="section-6-8" class="mb-16 animate-fade-in">
+    <div class="bg-[#2D1305] rounded-[3rem] p-8 md:p-12 border border-theme/30 shadow-2xl relative overflow-hidden group">
+        <div class="absolute -right-20 -bottom-20 opacity-10 pointer-events-none group-hover:scale-110 transition-transform duration-700 text-white">
+            <svg width="400" height="400" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2zm-4 11a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+            </svg>
+        </div>
+
+        <div class="relative z-10 text-left">
+            <div class="flex items-center gap-4 mb-10">
+                <div class="p-3 bg-theme rounded-2xl shadow-lg shadow-theme/40 text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-black text-white italic tracking-tight">Párosítási Algoritmusok</h3>
+                    <p class="text-amber-200/60 text-sm italic">Vidd az egeret a kártyák fölé a helyes válaszért!</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
+                    <p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#01 Javítóút definíciója</p>
+                    <p class="text-white font-bold italic leading-relaxed text-balance">Milyen csúcsok között fut egy javítóút, és mi jellemzi az éleit?</p>
+                    <div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+                        Válasz: Két szabad (párosítás által nem fedett) csúcs között fut, és az élei felváltva $M$-en kívüliek és $M$-beliek.
+                    </div>
+                </div>
+
+                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
+                    <p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#02 Kőnig-tétel</p>
+                    <p class="text-white font-bold italic leading-relaxed">Milyen kapcsolat van páros gráfokban $\nu(G)$ és $\tau(G)$ között?</p>
+                    <div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+                        Válasz: Páros gráfban $\nu(G) = \tau(G)$, azaz a maximális párosítás mérete egyenlő a minimális lefogó ponthalmaz méretével.
+                    </div>
+                </div>
+
+                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
+                    <p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#03 Hall-feltétel</p>
+                    <p class="text-white font-bold italic leading-relaxed">Mikor létezik egy páros gráfban az $A$ pontosztályt lefedő párosítás?</p>
+                    <div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+                        Válasz: Pontosan akkor, ha minden $X \subseteq A$ részhalmazra teljesül, hogy $|N(X)| \geq |X|$.
+                    </div>
+                </div>
+
+                <div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
+                    <p class="text-amber-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#04 Teljes párosítás</p>
+                    <p class="text-white font-bold italic leading-relaxed text-balance">Mi a Frobenius-tétel szerinti feltétele a teljes párosítás létezésének?</p>
+                    <div class="mt-4 pt-4 border-t border-white/10 text-amber-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
+                        Válasz: Ha $|A| = |B|$, és minden $X \subseteq A$ részhalmazra $|N(X)| \geq |X|$ teljesül.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="section-6-9" class="mb-16 animate-fade-in text-left">
+    <div class="bg-slate-50/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800">
+        
+        <div class="flex items-center gap-4 mb-10">
+            <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center text-amber-500 shadow-sm">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7zM9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1z"/>
+                </svg>
+            </div>
+            <div>
+                <h3 class="text-xl font-black text-slate-800 dark:text-white italic">Tudtad-e?</h3>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-amber-400 transition-transform hover:-translate-y-1">
+                <h4 class="text-amber-600 text-[10px] font-black uppercase tracking-widest mb-4">A JAVÍTÓUTAK EREJE</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
+                    Ahelyett, hogy az összes lehetséges párosítást végigpróbálnánk, a <strong>javítóutas algoritmus</strong> polinomidőben megtalálja az optimumot. Ez teszi lehetővé, hogy a modern keresőmotorok és adatbázisok villámgyorsan kezeljenek hatalmas adathalmazokat.
+                </p>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-emerald-400 transition-transform hover:-translate-y-1">
+                <h4 class="text-emerald-600 text-[10px] font-black uppercase tracking-widest mb-4">A HÁZASÍTÁSI TÉTEL</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
+                    A <strong>Hall-tételt</strong> a szakirodalom gyakran "Házasítási tételnek" nevezi. A tétel alapjául szolgáló matematikai modell azt vizsgálja, hogyan lehet egy közösség tagjait optimálisan párba állítani a saját preferencialistáik alapján.
+                </p>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-indigo-400 transition-transform hover:-translate-y-1">
+                <h4 class="text-indigo-600 text-[10px] font-black uppercase tracking-widest mb-4">KŐNIG ÉS A DUALITÁS</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
+                    A <strong>$\nu(G) = \tau(G)$</strong> összefüggés a Kőnig-tételben a matematikai dualitás egyik legszebb példája. Azt bizonyítja, hogy egy "maximális" keresési és egy "minimális" lefogási probléma ugyanazt az eredményt adja.
+                </p>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border-t-4 border-l-4 border-rose-400 transition-transform hover:-translate-y-1">
+                <h4 class="text-rose-600 text-[10px] font-black uppercase tracking-widest mb-4">SZOFTVER-ÜTEMEZÉS</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
+                    A modern operációs rendszerek <strong>párosítási algoritmusokat</strong> használnak a feladatok processzormagokhoz rendeléséhez. Ez garantálja, hogy a hardver ne maradjon szabadon, amíg van elvégezhető számítási munka.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <div id="complete-section-6" 
          class="mt-24 p-12 border-2 border-dashed border-stone-500/30 rounded-[3rem] text-center transition-all bg-theme/5">
         
         <h3 id="complete-text-6" class="text-xl font-black text-theme mb-6 uppercase tracking-widest">

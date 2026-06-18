@@ -1762,7 +1762,61 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 </section>
 
+<math-header>
+    <div class="flex items-center gap-4 mb-6 mt-12">
+        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+            7.3
+        </div>
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+            Kidolgozott példa: Él-színezés
+        </h2>
+    </div>
+</math-header>
 
+<section id="section-7-3" class="mb-16 animate-fade-in text-left">
+    <div class="bg-white/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800 relative overflow-hidden">
+        
+        <div class="mb-8">
+            <span class="bg-[#7C3AED]/10 text-[#7C3AED] text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-lg">
+                Példafeladat
+            </span>
+        </div>
+
+        <div class="mb-12 border-l-4 border-amber-400 p-8 bg-amber-50/50 dark:bg-amber-900/10 rounded-r-3xl shadow-sm">
+            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 mb-4">8.2. Feladat</h4>
+            <p class="text-slate-800 dark:text-slate-100 text-lg leading-relaxed italic">
+                Határozzuk meg az alábbi $G$ gráf élkromatikus számát, $\chi_e(G)$-t!
+            </p>
+        </div>
+
+        <div class="space-y-8">
+            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#7C3AED] mb-6">Megoldás levezetése</h4>
+            
+            <div class="space-y-6 text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-base">
+                <p>
+                    A gráf élei megszínezhetők négy színnel. Ezt bizonyítja az alábbi ábrán látható konstrukció, ahol minden csúcsra illeszkedő élek különböző színt kaptak:
+                </p>
+
+                
+
+                <div class="my-10 bg-[#7C3AED]/5 border border-[#7C3AED]/10 rounded-[2.5rem] p-8 md:p-12 shadow-sm">
+                    <p class="text-slate-700 dark:text-slate-300 text-sm italic mb-6">
+                        Annak indoklásához, hogy ennél kevesebb szín nem elég, tekintsük például a $b$ csúcsra illeszkedő négy élt: ezek közül bármely kettő szomszédos (hiszen a $b$ csúcson találkoznak), így közülük semelyik kettő nem színezhető azonos színűre.
+                    </p>
+                    <div class="text-center font-black text-[#7C3AED] text-lg uppercase tracking-widest">
+                        Ezért a színezéshez feltétlen szükség van legalább négy különböző színre.
+                    </div>
+                </div>
+
+                <div class="pt-8 mt-8 border-t border-slate-100 dark:border-slate-800">
+                    <p class="text-slate-900 dark:text-white font-black italic">
+                        Megmutattuk tehát, hogy $G$ élei megszínezhetők négy színnel, de hárommal nem, így a gráf élkromatikus száma: $\chi_e(G) = 4$.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <math-header>
     <div class="flex items-center gap-4 mb-6 mt-12">
@@ -1823,7 +1877,63 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 </section>
 
+<math-header>
+    <div class="flex items-center gap-4 mb-6 mt-12">
+        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
+            7.6
+        </div>
+        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
+            Példa: Teljes gráf élkromatikus száma
+        </h2>
+    </div>
+</math-header>
 
+<section id="section-7-6" class="mb-16 animate-fade-in text-left">
+    <div class="bg-white/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800 relative overflow-hidden">
+        
+        <div class="mb-8">
+            <span class="bg-[#7C3AED]/10 text-[#7C3AED] text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-lg">
+                Példafeladat
+            </span>
+        </div>
+
+        <div class="mb-12 border-l-4 border-amber-400 p-8 bg-amber-50/50 dark:bg-amber-900/10 rounded-r-3xl shadow-sm">
+            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 mb-4">8.5. Feladat</h4>
+            <p class="text-slate-800 dark:text-slate-100 text-lg leading-relaxed italic">
+                Határozzuk meg a tizenegy csúcsú teljes gráf élkromatikus számát, $\chi_e(K_{11})$-et!
+            </p>
+        </div>
+
+        <div class="space-y-8">
+            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#7C3AED] mb-6">Megoldás levezetése</h4>
+            
+            <div class="space-y-6 text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-base">
+                <p>
+                    $K_{11}$ minden csúcsának a foka tíz, így $\Delta(K_{11}) = 10$. Meg fogjuk mutatni, hogy $K_{11}$ élei nem színezhetők meg tíz színnel, vagyis $\chi_e(K_{11}) > 10$. Mivel Vizing 8.4. Tételéből $\chi_e(K_{11}) \leq 11$ következik, ezért ezekből $\chi_e(K_{11}) = 11$ adódni fog.
+                </p>
+
+                <div class="my-10 bg-[#7C3AED]/5 border border-[#7C3AED]/10 rounded-[2.5rem] p-8 md:p-12 shadow-sm">
+                    <p class="text-slate-700 dark:text-slate-300 text-sm italic mb-4">
+                        Tegyük fel indirekt, hogy $K_{11}$ éleit megszímeztük tíz színnel, legyen ezek közül egy a piros. 
+                    </p>
+                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                        Mivel minden csúcs foka tíz és a színek száma is tíz, ezért minden csúcsra kell illeszkedjen piros színű él. Mivel egynél több piros él persze egy csúcsra sem illeszkedhet, ezért ebből következik, hogy a piros élek <b>teljes párosítást</b> alkotnak $K_{11}$-ben.
+                    </p>
+                </div>
+
+                <p>
+                    Ez azonban nyilván lehetetlen: páratlan csúcsszámú gráfban nem létezhet teljes párosítás.
+                </p>
+
+                <div class="pt-8 mt-8 border-t border-slate-100 dark:border-slate-800">
+                    <p class="text-slate-900 dark:text-white font-black italic">
+                        Így tehát $K_{11}$ élei nem színezhetők meg tíz színnel, ezért $\chi_e(K_{11}) = 11$.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <math-header>
     <div class="flex items-center gap-4 mb-6 mt-12">
@@ -2132,137 +2242,7 @@ initGraph();
 
 
 
-    
-<div class="mt-12 w-full animate-fade-in">
-    <details class="group bg-slate-800/30 border border-slate-700/50 rounded-2xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-        <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-800/50 transition-colors">
-            <div class="flex items-center gap-4">
-                <div class="p-3 bg-indigo-500/20 rounded-xl">
-                    <span class="text-xl">📝</span>
-                </div>
-                <h3 class="text-lg font-black text-indigo-400 uppercase tracking-widest">Gyakorló feladatok és példák</h3>
-            </div>
-            <div class="text-indigo-400 transition-transform duration-300 group-open:rotate-180">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-            </div>
-        </summary>
-        <div class="p-8 border-t border-slate-700/50 bg-slate-900/50 space-y-12">
-            <math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            7.3
-        </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            Kidolgozott példa: Él-színezés
-        </h2>
-    </div>
-</math-header>
-
-<section id="section-7-3" class="mb-16 animate-fade-in text-left">
-    <div class="bg-white/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800 relative overflow-hidden">
-        
-        <div class="mb-8">
-            <span class="bg-[#7C3AED]/10 text-[#7C3AED] text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-lg">
-                Példafeladat
-            </span>
-        </div>
-
-        <div class="mb-12 border-l-4 border-amber-400 p-8 bg-amber-50/50 dark:bg-amber-900/10 rounded-r-3xl shadow-sm">
-            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 mb-4">8.2. Feladat</h4>
-            <p class="text-slate-800 dark:text-slate-100 text-lg leading-relaxed italic">
-                Határozzuk meg az alábbi $G$ gráf élkromatikus számát, $\chi_e(G)$-t!
-            </p>
-        </div>
-
-        <div class="space-y-8">
-            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#7C3AED] mb-6">Megoldás levezetése</h4>
-            
-            <div class="space-y-6 text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-base">
-                <p>
-                    A gráf élei megszínezhetők négy színnel. Ezt bizonyítja az alábbi ábrán látható konstrukció, ahol minden csúcsra illeszkedő élek különböző színt kaptak:
-                </p>
-
-                
-
-                <div class="my-10 bg-[#7C3AED]/5 border border-[#7C3AED]/10 rounded-[2.5rem] p-8 md:p-12 shadow-sm">
-                    <p class="text-slate-700 dark:text-slate-300 text-sm italic mb-6">
-                        Annak indoklásához, hogy ennél kevesebb szín nem elég, tekintsük például a $b$ csúcsra illeszkedő négy élt: ezek közül bármely kettő szomszédos (hiszen a $b$ csúcson találkoznak), így közülük semelyik kettő nem színezhető azonos színűre.
-                    </p>
-                    <div class="text-center font-black text-[#7C3AED] text-lg uppercase tracking-widest">
-                        Ezért a színezéshez feltétlen szükség van legalább négy különböző színre.
-                    </div>
-                </div>
-
-                <div class="pt-8 mt-8 border-t border-slate-100 dark:border-slate-800">
-                    <p class="text-slate-900 dark:text-white font-black italic">
-                        Megmutattuk tehát, hogy $G$ élei megszínezhetők négy színnel, de hárommal nem, így a gráf élkromatikus száma: $\chi_e(G) = 4$.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<math-header>
-    <div class="flex items-center gap-4 mb-6 mt-12">
-        <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            7.6
-        </div>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            Példa: Teljes gráf élkromatikus száma
-        </h2>
-    </div>
-</math-header>
-
-<section id="section-7-6" class="mb-16 animate-fade-in text-left">
-    <div class="bg-white/50 dark:bg-slate-900/20 rounded-[3rem] p-8 md:p-12 border-2 border-dashed border-slate-200 dark:border-slate-800 relative overflow-hidden">
-        
-        <div class="mb-8">
-            <span class="bg-[#7C3AED]/10 text-[#7C3AED] text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-lg">
-                Példafeladat
-            </span>
-        </div>
-
-        <div class="mb-12 border-l-4 border-amber-400 p-8 bg-amber-50/50 dark:bg-amber-900/10 rounded-r-3xl shadow-sm">
-            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 mb-4">8.5. Feladat</h4>
-            <p class="text-slate-800 dark:text-slate-100 text-lg leading-relaxed italic">
-                Határozzuk meg a tizenegy csúcsú teljes gráf élkromatikus számát, $\chi_e(K_{11})$-et!
-            </p>
-        </div>
-
-        <div class="space-y-8">
-            <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#7C3AED] mb-6">Megoldás levezetése</h4>
-            
-            <div class="space-y-6 text-slate-600 dark:text-slate-300 leading-relaxed text-sm md:text-base">
-                <p>
-                    $K_{11}$ minden csúcsának a foka tíz, így $\Delta(K_{11}) = 10$. Meg fogjuk mutatni, hogy $K_{11}$ élei nem színezhetők meg tíz színnel, vagyis $\chi_e(K_{11}) > 10$. Mivel Vizing 8.4. Tételéből $\chi_e(K_{11}) \leq 11$ következik, ezért ezekből $\chi_e(K_{11}) = 11$ adódni fog.
-                </p>
-
-                <div class="my-10 bg-[#7C3AED]/5 border border-[#7C3AED]/10 rounded-[2.5rem] p-8 md:p-12 shadow-sm">
-                    <p class="text-slate-700 dark:text-slate-300 text-sm italic mb-4">
-                        Tegyük fel indirekt, hogy $K_{11}$ éleit megszímeztük tíz színnel, legyen ezek közül egy a piros. 
-                    </p>
-                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
-                        Mivel minden csúcs foka tíz és a színek száma is tíz, ezért minden csúcsra kell illeszkedjen piros színű él. Mivel egynél több piros él persze egy csúcsra sem illeszkedhet, ezért ebből következik, hogy a piros élek <b>teljes párosítást</b> alkotnak $K_{11}$-ben.
-                    </p>
-                </div>
-
-                <p>
-                    Ez azonban nyilván lehetetlen: páratlan csúcsszámú gráfban nem létezhet teljes párosítás.
-                </p>
-
-                <div class="pt-8 mt-8 border-t border-slate-100 dark:border-slate-800">
-                    <p class="text-slate-900 dark:text-white font-black italic">
-                        Így tehát $K_{11}$ élei nem színezhetők meg tíz színnel, ezért $\chi_e(K_{11}) = 11$.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-        </div>
-    </details>
-</div>
-<div id="complete-section-7" 
+    <div id="complete-section-7" 
          class="mt-24 p-12 border-2 border-dashed border-violet-500/30 rounded-[3rem] text-center transition-all bg-theme/5">
         
         <h3 id="complete-text-7" class="text-xl font-black text-theme mb-6 uppercase tracking-widest">
