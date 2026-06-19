@@ -2091,15 +2091,74 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 </div>
 </math-header>
+
 <section class="mb-16 animate-fade-in text-left" id="section-summary-table">
+<div class="overflow-hidden rounded-[2rem] border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm md:text-base">
+<thead class="bg-rose-50 dark:bg-rose-900/20 text-rose-700 dark:text-rose-400">
+<tr>
+<th class="p-4 font-bold border-b border-slate-200 dark:border-slate-700">Jelölés</th>
+<th class="p-4 font-bold border-b border-slate-200 dark:border-slate-700">Elnevezés</th>
+<th class="p-4 font-bold border-b border-slate-200 dark:border-slate-700">Mit keresünk?</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 font-mono font-bold text-lg">$\nu(G)$</td>
+<td class="p-4 font-semibold">Párosítási szám</td>
+<td class="p-4">Független élek (Maximális méretű párosítás)</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 font-mono font-bold text-lg">$\rho(G)$</td>
+<td class="p-4 font-semibold">Lefogó élszám</td>
+<td class="p-4">Lefogó élhalmaz (Minimális méretű) <br/><span class="text-xs text-slate-400">*Csak izolált pont nélküli gráfokra</span></td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 font-mono font-bold text-lg">$\alpha(G)$</td>
+<td class="p-4 font-semibold">Függetlenségi szám</td>
+<td class="p-4">Független pontok (Maximális méretű ponthalmaz)</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 font-mono font-bold text-lg">$\tau(G)$</td>
+<td class="p-4 font-semibold">Lefogó pontszám</td>
+<td class="p-4">Lefogó ponthalmaz (Minimális méretű)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="bg-slate-50 dark:bg-slate-900/50 p-6 border-t border-slate-200 dark:border-slate-700">
+<h4 class="text-xs font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-4">Gallai-tételek (Összefüggések)</h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-4 shadow-sm border border-slate-100 dark:border-slate-700 flex items-center gap-4">
+<div class="bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shrink-0">
+                        =n
+                    </div>
+<div>
+<div class="font-mono font-bold text-lg text-slate-800 dark:text-slate-100">$\alpha(G) + \tau(G) = n$</div>
+<div class="text-xs text-slate-500">Minden gráfra érvényes</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 rounded-xl p-4 shadow-sm border border-slate-100 dark:border-slate-700 flex items-center gap-4">
+<div class="bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl shrink-0">
+                        =n
+                    </div>
+<div>
+<div class="font-mono font-bold text-lg text-slate-800 dark:text-slate-100">$\nu(G) + \rho(G) = n$</div>
+<div class="text-xs text-slate-500">Izolált pont nélküli gráfokra</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
+
 <math-header>
 <div class="flex items-center gap-4 mb-6 mt-24">
 <div class="flex-none bg-rose-500 text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-rose-500/20">
             5.10
         </div>
 <div class="relative w-fit">
-
 <div class="absolute -bottom-2 left-0 w-full h-1.5 bg-rose-500/20 rounded-full"></div>
 </div>
 </div>
@@ -2156,7 +2215,6 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 </div>
 </section>
-
 <div class="mt-12 p-8 bg-rose-500/10 border-2 border-dashed border-rose-500/30 rounded-[2.5rem] text-center transition-all" id="complete-section-5">
 <h3 class="text-xl font-black text-rose-600 dark:text-rose-400 mb-4 uppercase" id="complete-text-5">
         Mindent megtanultál?
@@ -2179,7 +2237,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 </script>
-
 </div></main>
 <script>
         // --- GLOBÁLIS FUNKCIÓK ---
