@@ -1870,30 +1870,27 @@ document.addEventListener('DOMContentLoaded', () => {
 </ul>
 </div>
 </li>
-</ol>
-</div>
-</div>
-<math-proof>
-<div class="p-2 space-y-6">
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme-500 mb-4">A folyam módosítása</h4>
-<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Ha találtunk javítóutat, határozzuk meg a javítás $\delta$ mértékét:
-            </p>
-<div class="bg-slate-100 dark:bg-slate-800/50 p-4 rounded-xl font-mono text-xs overflow-x-auto">
+<li class="flex gap-4 p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
+<span class="font-black text-theme-500">3.</span>
+<div class="space-y-2">
+<p class="text-sm font-bold text-slate-800 dark:text-slate-100">A FOLYAM MÓDOSÍTÁSA (7-8. sor):</p>
+<p class="text-sm text-slate-600 dark:text-slate-300">Ha találtunk javítóutat, határozzuk meg a javítás $\delta$ mértékét:</p>
+<div class="bg-slate-100 dark:bg-slate-800/50 p-4 rounded-xl font-mono text-xs overflow-x-auto text-slate-800 dark:text-slate-200">
                 $\delta_1 = \min\{c(e) - f(e) : e \text{ előre éle } P\text{-nek}\}$<br/>
                 $\delta_2 = \min\{f(e) : e \text{ megfordítottja visszaéle } P\text{-nek}\}$<br/>
                 $\delta = \min\{\delta_1, \delta_2\}$
             </div>
-<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Minden élre frissítsük a folyamot:
-                <ul class="list-disc pl-5 mt-2 space-y-1">
-<li>$f(e) + \delta$, ha $e$ előre éle $P$-nek</li>
-<li>$f(e) - \delta$, ha $e$ megfordítottja visszaéle $P$-nek</li>
+<p class="text-sm text-slate-600 dark:text-slate-300 mt-2">Minden élre frissítsük a folyamot:</p>
+<ul class="list-disc pl-5 text-sm text-slate-600 dark:text-slate-300 space-y-1">
+<li>$f(e) \leftarrow f(e) + \delta$, ha $e$ előre éle $P$-nek</li>
+<li>$f(e) \leftarrow f(e) - \delta$, ha $e$ megfordítottja visszaéle $P$-nek</li>
 <li>$f(e)$ változatlan marad egyébként.</li>
 </ul>
-</p>
 </div>
-</math-proof>
+</li>
+</ol>
+</div>
+</div>
 </section>
 <math-header>
 <div class="flex items-center gap-4 mb-6 mt-12">
