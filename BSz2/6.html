@@ -2094,7 +2094,6 @@ document.addEventListener('DOMContentLoaded', initAugment);
 <b>Bizonyítás:</b> Kőnig tételéből (7.18. Következmény) tudjuk, hogy $\nu(G) = \tau(G)$, hiszen $G$ páros gráf. Gallai tételéből pedig azt tudjuk, hogy $\alpha(G) + \tau(G) = n$ és $\nu(G) + \rho(G) = n$ igazak, ahol $n$ a $G$ csúcsainak a száma. Ezekből együtt tehát $\alpha(G) = n - \tau(G) = n - \nu(G) = \rho(G)$ valóban következik.
     </p>
 </div>
-
 </section>
 <math-header>
 <div class="mb-12 mt-16">
@@ -2313,7 +2312,6 @@ document.addEventListener('DOMContentLoaded', initKonigGame);
         $$N(X) = \{ b \in B : \exists a \in X, \{a,b\} \in E(G) \}$$
     </div>
 </div>
-
 <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
 <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
@@ -2594,6 +2592,43 @@ document.addEventListener('DOMContentLoaded', initHallInteractive);
 </div>
 </div>
 </section>
+<math-header>
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-indigo-500 text-white font-black px-3 py-1 rounded-xl shadow-sm text-sm">
+        EXTRA
+    </div>
+<div class="relative w-fit">
+<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
+            Kitekintés: Tutte tétele (Általános gráfok)
+        </h2>
+<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-indigo-500/20 rounded-full"></div>
+</div>
+</div>
+</math-header>
+<section class="mb-16 animate-fade-in text-left" id="section-tutte-extra">
+<div class="bg-indigo-50 dark:bg-indigo-900/10 border-l-4 border-indigo-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 mb-4">Gyakori vizsgakérdés (Szúrópróba)</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed mb-4">
+            A vizsgán a 6. tétel (páros gráfok) ismertetése után a vizsgáztató gyakran felteszi a kérdést: <i>"Rendben, ez volt a páros gráf. De mi a helyzet az általános gráfokkal? Ott mikor van teljes párosítás?"</i>
+            Erre a választ <b>Tutte tétele</b> adja meg. A teljes bizonyítást nem kérik, de a tétel kimondását és az elv megértését elvárhatják az ötöshöz!
+        </p>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/50 rounded-[2rem] p-8 border border-slate-200 dark:border-slate-700 mb-8">
+<p class="text-slate-800 dark:text-slate-100 font-bold leading-relaxed italic mb-4">
+<b>Tutte tétele (7.26. Tétel):</b> A $G$ gráfban akkor és csak akkor létezik teljes párosítás, ha a csúcsok minden $X \subseteq V(G)$ részhalmazára $c_p(G - X) \le |X|$ teljesül.
+        </p>
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+            Ahol $c_p(G - X)$ a gráf azon komponenseinek számát jelöli, amelyeknek <b>páratlan</b> sok csúcsa van, miután az $X$ halmaz csúcsait (és a hozzájuk tartozó éleket) letöröltük a gráfból.
+        </p>
+<div class="text-center my-4 font-mono text-lg text-slate-800 dark:text-slate-200">
+            $$c_p(G - X) \le |X|$$
+        </div>
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<b>A mögöttes józan paraszti logika:</b> Ha letörlünk $k$ darab csúcsot (ez az $X$ halmaz), és a gráf szétesik mondjuk $k+1$ darab páratlan csúcsszámú komponensre, akkor a teljes párosításhoz mind a $k+1$ páratlan komponensből legalább egy csúcsnak az $X$ halmazzal kellene párba állnia (hiszen a páratlan komponenseken belül legalább egy csúcs biztosan egyedül marad). De mivel $X$-ben csak $k$ csúcs van, a skatulya-elv miatt lehetetlen mind a $k+1$ csúcsnak párt találni $X$-ben. Ezért bukik el a teljes párosítás.
+        </p>
+</div>
+</section>
+
 <div class="mt-24 p-12 border-2 border-dashed border-stone-500/30 rounded-[3rem] text-center transition-all bg-theme/5" id="complete-section-6">
 <h3 class="text-xl font-black text-theme mb-6 uppercase tracking-widest" id="complete-text-6">
             Mindent megtanultál?
