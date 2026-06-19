@@ -1774,7 +1774,6 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 </div>
 </section>
-
 <math-header>
 <div class="flex items-center gap-4 mb-6 mt-12">
 <div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
@@ -1788,23 +1787,22 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 </div>
 </math-header>
-
 <section class="mb-16 animate-fade-in text-left" id="section-6-2b">
 <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-[2rem] border border-slate-100 dark:border-slate-700 shadow-md">
-    <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">Módosított szélességi bejárás</h4>
-    <div class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed space-y-4">
-        <p>
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">Módosított szélességi bejárás</h4>
+<div class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed space-y-4">
+<p>
             A fenti algoritmus 3. lépésében a javítóút tényleges megtalálása egy <strong>módosított szélességi bejárás (BFS)</strong> segítségével történik. Ez a módszer garantálja, hogy a keresés hatékony, polinomiális lépésszámú legyen.
         </p>
-        <ul class="list-disc list-inside space-y-2 ml-4">
-            <li><strong>Indítás:</strong> A keresés az $M$ párosítás által nem fedett, <strong>szabad $A$-béli csúcsok halmazából</strong> (0. szint) indul egyszerre.</li>
-            <li><strong>Páratlan szintek ($B$-be lépés):</strong> Az $A$-béli csúcsokból a gráf <strong>M-en kívüli</strong> élein lépünk át a szomszédos $B$-béli csúcsokba. (Ha egy elért $B$-béli csúcs szabad, megtaláltuk a javítóutat!)</li>
-            <li><strong>Páros szintek ($A$-ba lépés):</strong> A $B$-béli csúcsokból <strong>kizárólag a rájuk illeszkedő $M$-beli élen</strong> haladhatunk tovább vissza az $A$ halmazba (így garantálva a felváltva használt éleket).</li>
-        </ul>
-        <p class="mt-4 p-4 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-700 italic">
+<ul class="list-disc list-inside space-y-2 ml-4">
+<li><strong>Indítás:</strong> A keresés az $M$ párosítás által nem fedett, <strong>szabad $A$-béli csúcsok halmazából</strong> (0. szint) indul egyszerre.</li>
+<li><strong>Páratlan szintek ($B$-be lépés):</strong> Az $A$-béli csúcsokból a gráf <strong>M-en kívüli</strong> élein lépünk át a szomszédos $B$-béli csúcsokba. (Ha egy elért $B$-béli csúcs szabad, megtaláltuk a javítóutat!)</li>
+<li><strong>Páros szintek ($A$-ba lépés):</strong> A $B$-béli csúcsokból <strong>kizárólag a rájuk illeszkedő $M$-beli élen</strong> haladhatunk tovább vissza az $A$ halmazba (így garantálva a felváltva használt éleket).</li>
+</ul>
+<p class="mt-4 p-4 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-700 italic">
             Ha a bejárás elakad anélkül, hogy szabad $B$-béli csúcsot találna, akkor a gráfban <strong>nem létezik</strong> az adott $M$-re nézve javítóút. Ekkor a Kőnig-tétel bizonyítása során felhasznált $A_1, A_2, B_1, B_2$ stb. halmazokat pont ez a BFS bejárás szolgáltatja a már bejárt csúcsok alapján.
         </p>
-    </div>
+</div>
 </div>
 </section>
 <math-header>
@@ -2078,6 +2076,25 @@ document.addEventListener('DOMContentLoaded', initAugment);
             </p>
 </div>
 </math-proof>
+<div class="mt-8 bg-blue-50 dark:bg-blue-900/10 border-l-4 border-blue-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400 mb-4">7.18. Következmény</h4>
+<p class="text-slate-800 dark:text-slate-100 font-bold leading-relaxed italic mb-4">
+        (Kőnig tétele - Második alak) Minden $G$ páros gráfra $\nu(G) = \tau(G)$ teljesül.
+    </p>
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<b>Bizonyítás:</b> A fenti bizonyításban láttuk, hogy minden $G$ páros gráf esetén egy alkalmas $k$ pozitív egészre (a javítóutas algoritmus által talált párosítás élszámára) $k \le \nu(G) \le \tau(G) \le k$ teljesül. Ebből (a bizonyításban kihasznált $\nu(G) = k$ mellett) $\nu(G) = \tau(G)$ valóban következik.
+    </p>
+</div>
+<div class="mt-8 bg-purple-50 dark:bg-purple-900/10 border-l-4 border-purple-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-purple-600 dark:text-purple-400 mb-4">7.20. Következmény</h4>
+<p class="text-slate-800 dark:text-slate-100 font-bold leading-relaxed italic mb-4">
+        Ha a $G$ páros gráf nem tartalmaz izolált pontot, akkor rá $\alpha(G) = \rho(G)$ teljesül.
+    </p>
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<b>Bizonyítás:</b> Kőnig tételéből (7.18. Következmény) tudjuk, hogy $\nu(G) = \tau(G)$, hiszen $G$ páros gráf. Gallai tételéből pedig azt tudjuk, hogy $\alpha(G) + \tau(G) = n$ és $\nu(G) + \rho(G) = n$ igazak, ahol $n$ a $G$ csúcsainak a száma. Ezekből együtt tehát $\alpha(G) = n - \tau(G) = n - \nu(G) = \rho(G)$ valóban következik.
+    </p>
+</div>
+
 </section>
 <math-header>
 <div class="mb-12 mt-16">
@@ -2287,6 +2304,16 @@ document.addEventListener('DOMContentLoaded', initKonigGame);
 </div>
 </math-header>
 <section class="mb-16 animate-fade-in text-left" id="section-6-6">
+<div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">7.21. Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
+        Legyen $G = (A,B;E)$ páros gráf és $X \subseteq A$ egy tetszőleges részhalmaza $A$-nak. Ekkor az $X$ <b>szomszédságának</b> nevezzük és $N(X)$-szel jelöljük a $B$-nek azt a részhalmazát, ami azokból a $B$-beli csúcsokból áll, amiknek van (legalább egy) szomszédja $X$-ben. Képletben:
+    </p>
+<div class="text-center my-4 font-mono text-lg text-slate-800 dark:text-slate-200">
+        $$N(X) = \{ b \in B : \exists a \in X, \{a,b\} \in E(G) \}$$
+    </div>
+</div>
+
 <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
 <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
@@ -2511,7 +2538,6 @@ document.addEventListener('DOMContentLoaded', initHallInteractive);
             6.8
         </div>
 <div class="relative w-fit">
-
 <div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
 </div>
 </div>
@@ -2568,7 +2594,6 @@ document.addEventListener('DOMContentLoaded', initHallInteractive);
 </div>
 </div>
 </section>
-
 <div class="mt-24 p-12 border-2 border-dashed border-stone-500/30 rounded-[3rem] text-center transition-all bg-theme/5" id="complete-section-6">
 <h3 class="text-xl font-black text-theme mb-6 uppercase tracking-widest" id="complete-text-6">
             Mindent megtanultál?
@@ -2591,7 +2616,6 @@ document.addEventListener('DOMContentLoaded', initHallInteractive);
         }
     }
 </script>
-
 </div></main>
 <script>
         // --- GLOBÁLIS FUNKCIÓK ---
