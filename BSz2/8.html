@@ -1851,44 +1851,32 @@ document.addEventListener('DOMContentLoaded', () => {
 <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme-500 mb-6">Algoritmus (Maximális folyam keresésére)</h4>
 <div class="space-y-6">
 <div class="flex items-center gap-4">
-<span class="text-xs font-black text-slate-400">BEMENET:</span>
-<span class="text-sm font-bold text-slate-700 dark:text-slate-200">Egy $(G,s,t,c)$ hálózat.</span>
+<span class="text-xs font-black text-slate-400">Bemenet:</span>
+<span class="text-sm font-bold text-slate-700 dark:text-slate-200">egy $(G,s,t,c)$ hálózat.</span>
 </div>
-<ol class="space-y-4">
-<li class="flex gap-4 p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
-<span class="font-black text-theme-500">1.</span>
-<p class="text-sm text-slate-600 dark:text-slate-300">Induljunk ki egy kezdeti folyamból (például minden élre $f(e) = 0$).</p>
-</li>
-<li class="flex gap-4 p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
-<span class="font-black text-theme-500">2.</span>
-<div class="space-y-2">
-<p class="text-sm font-bold text-slate-800 dark:text-slate-100">CIKLUS:</p>
-<ul class="list-disc pl-5 text-sm text-slate-600 dark:text-slate-300 space-y-2">
-<li>Készítsük el az aktuális $f$-hez tartozó $H_f$ segédgráfot.</li>
-<li>Keressünk egy $P$ javítóutat $H_f$-ben $s$-ből $t$-be (például BFS algoritmussal).</li>
-<li><b>Ha nincs ilyen út:</b> Álljunk le, a folyam maximális.</li>
-</ul>
+
+<div class="font-mono text-sm text-slate-800 dark:text-slate-200 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+    <table class="w-full text-left border-collapse">
+        <tbody>
+            <tr class="align-top"><td class="w-8 font-black text-theme-500 select-none pb-2">1</td><td class="pb-2">Minden $e \in E(G)$-re $f(e) \leftarrow 0$ (vagy $f$ lehet tetszőleges kezdeti folyam).</td></tr>
+            <tr class="align-top"><td class="w-8 font-black text-theme-500 select-none pb-2">2</td><td class="pb-2 font-bold">ciklus</td></tr>
+            <tr class="align-top"><td class="w-8 font-black text-theme-500 select-none pb-2">3</td><td class="pb-2 pl-4">Készítsük el az $f$-hez tartozó $H_f$ segédgráfot a 9.4. Definíció szerint.</td></tr>
+            <tr class="align-top"><td class="w-8 font-black text-theme-500 select-none pb-2">4</td><td class="pb-2 pl-4">FUTTASSUK A BFS ALGORITMUST $P$ javítóút keresésére $f$-re nézve;<br>vagyis keressünk $H_f$-ben egy $P$ irányított utat $s$-ből $t$-be.</td></tr>
+            <tr class="align-top"><td class="w-8 font-black text-theme-500 select-none pb-2">5</td><td class="pb-2 pl-4 font-bold">ha <span class="font-normal">nem létezik $f$-re nézve javítóút,</span> akkor: <span class="text-rose-500">stop</span></td></tr>
+            <tr class="align-top"><td class="w-8 font-black text-theme-500 select-none pb-2">6</td><td class="pb-2 pl-4 font-bold">különben:</td></tr>
+            <tr class="align-top"><td class="w-8 font-black text-theme-500 select-none pb-2">7</td><td class="pb-2 pl-8">$\delta_1 \leftarrow \min\{c(e) - f(e) : e \text{ előreéle } P\text{-nek}\}$<br>$\delta_2 \leftarrow \min\{f(e) : e \text{ megfordítottja visszaéle } P\text{-nek}\}$<br>$\delta \leftarrow \min\{\delta_1, \delta_2\}$</td></tr>
+            <tr class="align-top"><td class="w-8 font-black text-theme-500 select-none pb-2">8</td><td class="pb-2 pl-8">Minden $e \in E(G)$-re<br>
+                $f(e) \leftarrow$<br>
+                <div class="pl-4 mt-1 border-l-2 border-slate-300 dark:border-slate-600">
+                    $f(e) + \delta$, ha $e$ előreéle $P$-nek;<br>
+                    $f(e) - \delta$, ha $e$ megfordítottja visszaéle $P$-nek;<br>
+                    $f(e)$, egyébként.
+                </div>
+            </td></tr>
+            <tr class="align-top"><td class="w-8 font-black text-theme-500 select-none">9</td><td class="font-bold">ciklus vége</td></tr>
+        </tbody>
+    </table>
 </div>
-</li>
-<li class="flex gap-4 p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
-<span class="font-black text-theme-500">3.</span>
-<div class="space-y-2">
-<p class="text-sm font-bold text-slate-800 dark:text-slate-100">A FOLYAM MÓDOSÍTÁSA (7-8. sor):</p>
-<p class="text-sm text-slate-600 dark:text-slate-300">Ha találtunk javítóutat, határozzuk meg a javítás $\delta$ mértékét:</p>
-<div class="bg-slate-100 dark:bg-slate-800/50 p-4 rounded-xl font-mono text-xs overflow-x-auto text-slate-800 dark:text-slate-200">
-                $\delta_1 = \min\{c(e) - f(e) : e \text{ előre éle } P\text{-nek}\}$<br/>
-                $\delta_2 = \min\{f(e) : e \text{ megfordítottja visszaéle } P\text{-nek}\}$<br/>
-                $\delta = \min\{\delta_1, \delta_2\}$
-            </div>
-<p class="text-sm text-slate-600 dark:text-slate-300 mt-2">Minden élre frissítsük a folyamot:</p>
-<ul class="list-disc pl-5 text-sm text-slate-600 dark:text-slate-300 space-y-1">
-<li>$f(e) \leftarrow f(e) + \delta$, ha $e$ előre éle $P$-nek</li>
-<li>$f(e) \leftarrow f(e) - \delta$, ha $e$ megfordítottja visszaéle $P$-nek</li>
-<li>$f(e)$ változatlan marad egyébként.</li>
-</ul>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </section>
