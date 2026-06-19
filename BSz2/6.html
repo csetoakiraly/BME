@@ -1774,6 +1774,39 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 </div>
 </section>
+
+<math-header>
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
+            6.2b
+        </div>
+<div class="relative w-fit">
+<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
+                Javítóút keresése (Módosított BFS)
+            </h2>
+<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-theme opacity-20 rounded-full"></div>
+</div>
+</div>
+</math-header>
+
+<section class="mb-16 animate-fade-in text-left" id="section-6-2b">
+<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-[2rem] border border-slate-100 dark:border-slate-700 shadow-md">
+    <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">Módosított szélességi bejárás</h4>
+    <div class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed space-y-4">
+        <p>
+            A fenti algoritmus 3. lépésében a javítóút tényleges megtalálása egy <strong>módosított szélességi bejárás (BFS)</strong> segítségével történik. Ez a módszer garantálja, hogy a keresés hatékony, polinomiális lépésszámú legyen.
+        </p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+            <li><strong>Indítás:</strong> A keresés az $M$ párosítás által nem fedett, <strong>szabad $A$-béli csúcsok halmazából</strong> (0. szint) indul egyszerre.</li>
+            <li><strong>Páratlan szintek ($B$-be lépés):</strong> Az $A$-béli csúcsokból a gráf <strong>M-en kívüli</strong> élein lépünk át a szomszédos $B$-béli csúcsokba. (Ha egy elért $B$-béli csúcs szabad, megtaláltuk a javítóutat!)</li>
+            <li><strong>Páros szintek ($A$-ba lépés):</strong> A $B$-béli csúcsokból <strong>kizárólag a rájuk illeszkedő $M$-beli élen</strong> haladhatunk tovább vissza az $A$ halmazba (így garantálva a felváltva használt éleket).</li>
+        </ul>
+        <p class="mt-4 p-4 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-700 italic">
+            Ha a bejárás elakad anélkül, hogy szabad $B$-béli csúcsot találna, akkor a gráfban <strong>nem létezik</strong> az adott $M$-re nézve javítóút. Ekkor a Kőnig-tétel bizonyítása során felhasznált $A_1, A_2, B_1, B_2$ stb. halmazokat pont ez a BFS bejárás szolgáltatja a már bejárt csúcsok alapján.
+        </p>
+    </div>
+</div>
+</section>
 <math-header>
 <div class="mb-12 mt-16">
 <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
