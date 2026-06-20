@@ -378,7 +378,9 @@ html.dark math-example { background: rgba(255,255,255,0.02); border-color: #3341
 </div>
 </div>
 </math-header>
-<div class="flex flex-col gap-6"><math-def id="section-1-1">
+<div class="flex flex-col gap-6"><div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-6 rounded-r-2xl">
+<h3 class="text-emerald-700 dark:text-emerald-400 mb-2"><b>Gráfelméleti alapfogalmak:</b> gráf, egyszerű gráf, komplementer gráf, izomorfia, részgráf, feszített részgráf, élsorozat, séta, út, kör, összefüggő gráf, komponens. <b>Legrövidebb út feladat:</b> Dijkstra algoritmusa (nemnegatív élsúlyok).</h3>
+</div><math-def id="section-1-1">
 <div class="text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic">
         Képzelj el egy $V \neq \emptyset$ halmazt, amiben csúcsok (pontok) vannak. Az $E$ pedig a köztük lévő élek (vonalak) halmaza, amik mindig pontosan két csúcsot kötnek össze. 
         Ezt a $G = (V, E)$ párost hívjuk <strong class="text-slate-900 dark:text-white not-italic border-b-2 border-emerald-200 dark:border-emerald-800">egyszerű gráfnak</strong>, ahol a csúcsok halmaza $V(G) = V$, az éleké pedig $E(G) = E$. (Nincsenek benne hurkok, sem többszörös élek, tök egyszerű az egész.)
