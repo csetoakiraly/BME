@@ -1704,8 +1704,8 @@ A hálózatokban fellépő bonyolultabb áramlási feladatokat rendre vissza tud
 </p>
 <ul class="list-disc ml-6 space-y-4 text-slate-700 dark:text-slate-300">
     <li><b>Több forrás és nyelő:</b> Ha több $s_1, \dots, s_k$ forrás és $t_1, \dots, t_l$ nyelő van, felveszünk egy fiktív $s^*$ szuper-forrást és $t^*$ szuper-nyelőt. $s^*$-ból húzzunk minden $s_i$-be végtelen (vagy nagyon nagy) kapacitású élt, és minden $t_j$-ből húzzunk $t^*$-ba egy ugyanilyen élt.</li>
-    <li><b>Irányítatlan élek:</b> Ha a hálózatban kétirányú (irányítatlan) élek vannak, minden $\{u, v\}$ irányítatlan élt cseréljünk ki két, ellentétes irányú $u 	o v$ és $v 	o u$ élre, mindkettőre az eredeti kapacitást beállítva. A kapott folyam szükség esetén javítható úgy, hogy az oda-vissza folyó mennyiségek kiegyenlítsék egymást.</li>
-    <li><b>Pontkapacitások:</b> Ha egy $v$ csúcson is van $c(v)$ áteresztőképességi korlát, akkor a $v$ csúcsot "széthúzzuk" két csúccsá: $v_{be}$ és $v_{ki}$. Minden eredetileg $v$-be futó élt $v_{be}$-be kötünk, minden $v$-ből induló élt $v_{ki}$-ből indítunk, majd behúzunk egy $v_{be} 	o v_{ki}$ irányított élt, melynek kapacitása pontosan $c(v)$ lesz.</li>
+    <li><b>Irányítatlan élek:</b> Ha a hálózatban kétirányú (irányítatlan) élek vannak, minden $\{u, v\}$ irányítatlan élt cseréljünk ki két, ellentétes irányú $u \to v$ és $v \to u$ élre, mindkettőre az eredeti kapacitást beállítva. A kapott folyam szükség esetén javítható úgy, hogy az oda-vissza folyó mennyiségek kiegyenlítsék egymást.</li>
+    <li><b>Pontkapacitások:</b> Ha egy $v$ csúcson is van $c(v)$ áteresztőképességi korlát, akkor a $v$ csúcsot "széthúzzuk" két csúccsá: $v_{be}$ és $v_{ki}$. Minden eredetileg $v$-be futó élt $v_{be}$-be kötünk, minden $v$-ből induló élt $v_{ki}$-ből indítunk, majd behúzunk egy $v_{be} \to v_{ki}$ irányított élt, melynek kapacitása pontosan $c(v)$ lesz.</li>
     <li><b>Alsó kapacitáskorlátok:</b> Amikor egy élen nemcsak felülről korlátos az áramlás, hanem minimálisan előírt mennyiségnek ($l(e)$) is át kell folynia ($l(e) \le f(e) \le c(e)$). Ez is visszavezethető egy módosított folyamproblémára segéd-forrás és segéd-nyelő bevezetésével.</li>
 </ul>
 </div>
@@ -1726,15 +1726,14 @@ A hálózatokban fellépő bonyolultabb áramlási feladatokat rendre vissza tud
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
                 Legyen $f$ olyan, $m_f = d$ értékű folyam a $G$ irányított gráfban az $s$ termelőből a $t$ fogyasztóba, amire $f(e) = 0$ vagy $f(e) = 1$ minden $e$ élre. Ekkor $G$-ben létezik $d$ olyan éldiszjunkt irányított út $s$-ből $t$-be, amiknek minden $e$ élére $f(e) = 1$.
 </p>
+</math-theorem>
 <math-proof>
 <p>
-Az állítást indukcióval bizonyítjuk $d$-re. Ha $d = 0$, az állítás üres. Ha $d > 0$, akkor a folyamérték definíciója szerint az $s$-ből több 1 értékű él lép ki, mint ahány lép be. Induljunk el egy ilyen élen egy $v_1$ csúcsba. Mivel $v_1 
-eq t$, a folyammegmaradás miatt $v_1$-ből is ki kell lépnie egy 1 értékű élnek. Így folytatva a sétát, előbb-utóbb eljutunk $t$-be (mivel a gráf véges és körmentesíthető a folyam).
+Az állítást indukcióval bizonyítjuk $d$-re. Ha $d = 0$, az állítás üres. Ha $d > 0$, akkor a folyamérték definíciója szerint az $s$-ből több 1 értékű él lép ki, mint ahány lép be. Induljunk el egy ilyen élen egy $v_1$ csúcsba. Mivel $v_1 \neq t$, a folyammegmaradás miatt $v_1$-ből is ki kell lépnie egy 1 értékű élnek. Így folytatva a sétát, előbb-utóbb eljutunk $t$-be (mivel a gráf véges és körmentesíthető a folyam).
 <br><br>
 Kaptunk egy $s$-ből $t$-be vezető $P$ irányított utat. Csökkentsük az $f(e)$ értékét 0-ra ezen az úton. Így a folyamérték $d-1$ lett, a folyammegmaradás továbbra is teljesül. Az indukciós feltevés szerint ebből a maradékból még $d-1$ éldiszjunkt utat tudunk "kiszálazni", amik a $P$-vel együtt pontosan $d$ éldiszjunkt utat adnak.
 </p>
 </math-proof>
-</math-theorem>
 </section>
 
 <math-header>
@@ -1778,6 +1777,7 @@ Legyen adott a $G$ irányított gráf, annak az $s, t \in V(G)$ különböző cs
     <li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(ii)</span> Nem létezik legföljebb $k-1$ méretű, az $s$-ből $t$-be vezető irányított utakat lefogó élhalmaz. ($\lambda'_G(s,t) \ge k$)</li>
     <li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(iii)</span> A $(G,s,t,c)$ hálózatban a maximális folyam értéke legalább $k$, ahol $c$ az azonosan $1$ kapacitásfüggvény.</li>
 </ul>
+</math-theorem>
 <math-proof>
 <p>
 A három állítás ekvivalenciáját ciklikusan bizonyítjuk:
@@ -1789,7 +1789,6 @@ A három állítás ekvivalenciáját ciklikusan bizonyítjuk:
 <b>(iii) $\Rightarrow$ (i):</b> Ha a maximális folyam legalább $k$, akkor választhatunk egy pontosan $k$ értékű <i>egészértékű</i> folyamot (az Egészértékűségi Lemma miatt). Mivel $c \equiv 1$, ez a folyam csak $0$ és $1$ értékeket vesz fel. Erre pontosan ráhúzható a 10.1. Lemma, ami biztosítja $k$ éldiszjunkt út létezését.
 </p>
 </math-proof>
-</math-theorem>
 </section>
 
 <math-header>
@@ -1812,13 +1811,13 @@ Legyen adott a $G$ irányítatlan gráf, annak az $s, t \in V(G)$ különböző 
     <li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(ii)</span> Nem létezik legföljebb $k-1$ méretű, az $s$ és $t$ közti irányítatlan utakat lefogó élhalmaz. ($\lambda'_G(s,t) \ge k$)</li>
     <li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(iii)</span> A $(H,s,t,c)$ hálózatban a maximális folyam értéke legalább $k$, ahol a $H$ irányított hálózatot úgy kapjuk, hogy $G$ minden irányítatlan élét kicseréljük két ellentétes irányított élre, és $c$ az azonosan $1$ kapacitásfüggvény.</li>
 </ul>
+</math-theorem>
 <math-proof>
 <p>
 Az irányítatlan esetet egyszerűen visszavezetjük az irányítottra (10.3. Tétel):
 Minden irányítatlan élt cseréljünk ki két ellentétes, 1 kapacitású irányított élre. Ezzel kapunk egy $H$ irányított gráfot. Az (i) $\Rightarrow$ (ii) lépés itt is triviális. A (ii) $\Rightarrow$ (iii) lépés ugyanúgy a Ford-Fulkerson tétel alkalmazása $H$-n. A (iii) $\Rightarrow$ (i) lépésben pedig a $H$-ban kapott éldiszjunkt irányított utakról könnyen belátható, hogy nem használják egyszerre ugyanannak az irányítatlan élnek a két irányát (mert az rontaná a folyamot), így az eredeti $G$-ben is éldiszjunkt utakat adnak.
 </p>
 </math-proof>
-</math-theorem>
 </section>
 
 
@@ -1835,14 +1834,13 @@ Minden irányítatlan élt cseréljünk ki két ellentétes, 1 kapacitású irá
 <section class="mb-16 animate-fade-in text-left" id="section-10-5">
 <math-theorem>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-Minden $G$ (irányított vagy irányítatlan) gráfra és annak az $s,t \in V(G)$, $s 
-eq t$ csúcsaira $\lambda_G(s,t) = \lambda'_G(s,t)$ teljesül. (Azaz a maximális éldiszjunkt utak száma megegyezik a minimális lefogó élhalmaz méretével).
+Minden $G$ (irányított vagy irányítatlan) gráfra és annak az $s,t \in V(G)$, $s \neq t$ csúcsaira $\lambda_G(s,t) = \lambda'_G(s,t)$ teljesül. (Azaz a maximális éldiszjunkt utak száma megegyezik a minimális lefogó élhalmaz méretével).
 </p>
 
+</math-theorem>
 <math-proof>
 <p>A tétel állítása egyenes következménye a 10.3. és 10.4. Tételeknek. Irányított esetben a 10.3. Tétel alapján a két mennyiség megegyezik. Irányítatlan esetben a 10.4. Tétel biztosítja az egyenlőséget.</p>
 </math-proof>
-</math-theorem>
 </section>
 <math-header>
 <div class="flex items-center gap-4 mb-6 mt-12">
@@ -1880,10 +1878,10 @@ otin Y$ és a gráf minden $s$-ből $t$-be vezető útja tartalmaz legalább egy
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-4">
 Legyen adott a $G$ irányított gráf, az $s, t \in V(G)$ különböző csúcsok, amikre nincs él $s$-ből $t$-be. Ekkor a maximálisan megadható $s$-ből $t$-be vezető <b>pontdiszjunkt utak</b> száma ($\kappa_G(s,t)$) megegyezik a minimális $s$-ből $t$-be vezető utakat lefogó ponthalmaz méretével.
 </p>
+</math-theorem>
 <div class="mt-4 bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded text-sm text-yellow-800 dark:text-yellow-200">
 <strong>💡 Megjegyzés a vizsgához:</strong> A hivatalos BME tételsor alapján a pontdiszjunkt esetekben (10.8. és 10.9. tételek) a bizonyítás <strong>nem kérhető számon</strong>, ezért itt nem szerepel!
 </div>
-</math-theorem>
 </section>
 
 <math-header>
@@ -1901,10 +1899,10 @@ Legyen adott a $G$ irányított gráf, az $s, t \in V(G)$ különböző csúcsok
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-4">
 Legyen adott a $G$ irányítatlan gráf, az $s, t \in V(G)$ különböző, nem szomszédos csúcsok. Ekkor a maximálisan megadható $s$ és $t$ közötti <b>pontdiszjunkt utak</b> száma ($\kappa_G(s,t)$) megegyezik a minimális $s,t$-utakat lefogó ponthalmaz méretével.
 </p>
+</math-theorem>
 <div class="mt-4 bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded text-sm text-yellow-800 dark:text-yellow-200">
 <strong>💡 Megjegyzés a vizsgához:</strong> A hivatalos BME tételsor alapján a pontdiszjunkt esetekben a bizonyítás <strong>nem kérhető számon</strong>, így a 10.9. tételhez sem kell!
 </div>
-</math-theorem>
 </section>
 
 <math-header>
@@ -1920,14 +1918,13 @@ Legyen adott a $G$ irányítatlan gráf, az $s, t \in V(G)$ különböző, nem s
 <section class="mb-16 animate-fade-in text-left" id="section-10-10">
 <math-theorem>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-Ha a $G$ (irányított vagy irányítatlan) gráfra és annak az $s,t \in V(G)$, $s 
-eq t$ csúcsaira nincs közvetlen összekötő él, akkor $\kappa_G(s,t) = \kappa'_G(s,t)$ teljesül. (Azaz a maximális pontdiszjunkt utak száma megegyezik a minimális lefogó ponthalmaz méretével).
+Ha a $G$ (irányított vagy irányítatlan) gráfra és annak az $s,t \in V(G)$, $s \neq t$ csúcsaira nincs közvetlen összekötő él, akkor $\kappa_G(s,t) = \kappa'_G(s,t)$ teljesül. (Azaz a maximális pontdiszjunkt utak száma megegyezik a minimális lefogó ponthalmaz méretével).
 </p>
 
+</math-theorem>
 <math-proof>
 <p>A tétel állítása közvetlenül adódik a 10.8. és 10.9. Tételekből. Mindkét esetben a pontdiszjunkt utak maximális száma pontosan megegyezik a lefogó ponthalmaz minimális méretével.</p>
 </math-proof>
-</math-theorem>
 </section>
 
 
@@ -1944,7 +1941,7 @@ eq t$ csúcsaira nincs közvetlen összekötő él, akkor $\kappa_G(s,t) = \kapp
                 Ha el akarjuk dönteni, hogy egy $G$ gráfban létezik-e $k$ darab éldiszjunkt út $s$-ből $t$-be, a problémát visszavezethetjük hálózati folyamokra.
             </p>
             <ul class="list-disc list-inside space-y-2 ml-4">
-                <li><strong>Irányított gráf esetén:</strong> Tekintsük a gráfot egy hálózatnak, ahol minden él kapacitása pontosan $c(e) = 1$. Keressünk egy maximális folyamot az Edmonds-Karp (vagy Ford-Fulkerson) algoritmussal. Az <em>Egészértékűségi lemma</em> miatt a folyamérték egész lesz, és a <em>folyamfelbontási tétel</em> miatt ez pontosan megegyezik a hálózatban lévő $s 	o t$ éldiszjunkt utak számával. Ha a maximális folyam értéke eléri vagy meghaladja $k$-t, akkor a válasz IGEN.</li>
+                <li><strong>Irányított gráf esetén:</strong> Tekintsük a gráfot egy hálózatnak, ahol minden él kapacitása pontosan $c(e) = 1$. Keressünk egy maximális folyamot az Edmonds-Karp (vagy Ford-Fulkerson) algoritmussal. Az <em>Egészértékűségi lemma</em> miatt a folyamérték egész lesz, és a <em>folyamfelbontási tétel</em> miatt ez pontosan megegyezik a hálózatban lévő $s \to t$ éldiszjunkt utak számával. Ha a maximális folyam értéke eléri vagy meghaladja $k$-t, akkor a válasz IGEN.</li>
                 <li><strong>Irányítatlan gráf esetén:</strong> Cseréljük ki a gráf minden (irányítatlan) élét két ellentétes irányú, 1 kapacitású irányított élre. Ezen a módosított irányított hálózaton futtassuk le a maximális folyam algoritmust ugyanúgy. Belátható, hogy a kapott maximális folyam felbontható olyan irányított utakra, amelyek az eredeti gráfban éldiszjunkt $s-t$ utaknak felelnek meg.</li>
             </ul>
         </div>
