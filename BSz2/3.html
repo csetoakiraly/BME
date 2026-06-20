@@ -1568,7 +1568,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-bold text-xs uppercase shadow-md active:scale-95 transition-transform" onclick="toggleMenu()">Tételek</button>
 </div>
 </div>
-<aside class="fixed md:sticky top-0 left-0 w-[85%] md:w-80 bg-white border-r border-slate-200 flex flex-col h-screen z-50 overflow-y-auto closed md:translate-x-0 shadow-2xl md:shadow-none dark:bg-slate-900 dark:border-slate-800 transition-transform duration-300" id="sidebar">
+<aside class="flex-none fixed md:sticky top-0 left-0 w-[85%] md:w-80 bg-white border-r border-slate-200 flex flex-col h-screen z-50 overflow-y-auto closed md:translate-x-0 shadow-2xl md:shadow-none dark:bg-slate-900 dark:border-slate-800 transition-transform duration-300" id="sidebar">
 <div class="p-6 border-b border-slate-100 hidden md:block dark:border-slate-800">
 <h1 class="text-2xl font-extrabold text-indigo-600 italic">Bsz2 Jegyzet</h1>
 <p class="text-slate-400 text-[10px] uppercase tracking-widest mt-1 font-bold">Vizsgafelkészítő</p>
@@ -1654,7 +1654,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </nav>
 </aside>
 <div class="fixed inset-0 bg-black/50 z-40 hidden md:hidden" id="overlay" onclick="toggleMenu()"></div>
-<main class="flex-grow p-4 md:p-12 pt-24 md:pt-12">
+<main class="flex-grow min-w-0 p-4 md:p-12 pt-24 md:pt-12">
 <div class="max-w-4xl mx-auto">
 <style>
     :root { --theme-color: #3b82f6; }
