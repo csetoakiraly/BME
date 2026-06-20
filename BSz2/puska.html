@@ -1820,6 +1820,17 @@ Ha van egy $G$ irányított gráfod, benne egy $s$ forrás (ahonnan indul az ár
 
 <math-def>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
+<b>10.1b. Definíció: Diszjunkt utak és lefogó halmazok jelölései</b><br>
+A vizsgán az alábbi jelöléseket fogják használni:<br>
+- <b>$\lambda_G(s,t)$</b>: A maximális éldiszjunkt utak száma (hány független drót van $s$ és $t$ között).<br>
+- <b>$\lambda'_G(s,t)$</b>: Az utakat lefogó minimális élhalmaz mérete (minimum hány drótot kell elvágni, hogy megszakadjon a kapcsolat).<br>
+- <b>$\kappa_G(s,t)$</b>: A maximális pontdiszjunkt utak száma (hány független útvonal van, amik még csomópontban sem találkoznak).<br>
+- <b>$\kappa'_G(s,t)$</b>: Az utakat lefogó minimális ponthalmaz mérete (minimum hány állomást kell felrobbantani a teljes blokádhoz).
+</p>
+</math-def>
+
+<math-def>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
 <b>10.2. Definíció: Lefogó élhalmaz</b><br>
 Az $s$ és $t$ pontokhoz tartozó <b>lefogó élhalmaznak</b> nevezünk egy olyan $X \subseteq E(G)$ élhalmazt (drótok egy csoportját), amiket ha egy kártékony hacker elvág (töröl a gráfból), akkor garantáltan nem fogsz tudni eljutni $s$-ből $t$-be egyetlen úton sem. Olyan, mint egy teljes útzár a két város között.
 </p>
