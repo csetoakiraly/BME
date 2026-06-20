@@ -313,17 +313,7 @@ html.dark math-example { background: rgba(255,255,255,0.02); border-color: #3341
 </nav>
 </aside>
 <main class="flex-grow min-w-0 p-4 md:p-12 pt-24 md:pt-12">
-<div class="mb-12">
-<div class="inline-block bg-emerald-100 text-emerald-800 font-black px-4 py-1.5 rounded-full text-xs uppercase tracking-widest mb-4 border border-emerald-200 shadow-sm">
-        Konyhanyelvi Puska (Megértéshez)
-    </div>
-<h1 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tighter mb-6 leading-tight">
-        Vizsga <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500">Konyhanyelven</span>
-</h1>
-<p class="text-slate-500 dark:text-slate-400 text-lg">
-        Az összes témakör definíciói, tételei, algoritmusai és képletei egy helyen, <b>józan paraszti logikával</b> elmagyarázva, hogy két kávé között is megértsd a vizsga előtt.
-    </p>
-</div>
+<div class="max-w-4xl mx-auto space-y-12">
 <div class="mb-20">
 <math-header>
 <div class="flex items-center gap-4 mb-8 mt-16">
@@ -332,29 +322,20 @@ html.dark math-example { background: rgba(255,255,255,0.02); border-color: #3341
                 </div>
 <div class="relative w-fit">
 <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                        Gráfelméleti alapok
+                        Gráfelméleti alapfogalmak
                     </h2>
 <div class="absolute -bottom-2 left-0 w-full h-1.5 bg-slate-800/20 dark:bg-slate-700/50 rounded-full"></div>
 </div>
 </div>
 </math-header>
-<div class="flex flex-col gap-6">
-<math-header>
-<div class="num-badge">1.1</div>
-<h2>Alapfogalmak</h2>
-</math-header>
-<math-def id="section-1-1">
+<div class="flex flex-col gap-6"><math-def id="section-1-1">
 <div class="text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic">
-        Képzelj el egy $V$ halmazt, ami tele van pöttyökkel (legalább egy van belőle). Az $E$ pedig egy olyan halmaz, ami megmondja, melyik két pöttyöt kötöttük össze egy vonallal. Ezt a $G = (V, E)$ párost hívjuk <strong class="text-slate-900 dark:text-white not-italic border-b-2 border-emerald-200 dark:border-emerald-800">egyszerű gráfnak</strong>. A pöttyök a csúcsok ($V(G)$), a vonalak meg az élek ($E(G)$). Fontos, hogy itt nincsenek duplavonalak vagy önmagukba visszatérő hurkok.
+        Képzelj el egy $V \neq \emptyset$ halmazt, amiben csúcsok (pontok) vannak. Az $E$ pedig a köztük lévő élek (vonalak) halmaza, amik mindig pontosan két csúcsot kötnek össze. 
+        Ezt a $G = (V, E)$ párost hívjuk <strong class="text-slate-900 dark:text-white not-italic border-b-2 border-emerald-200 dark:border-emerald-800">egyszerű gráfnak</strong>, ahol a csúcsok halmaza $V(G) = V$, az éleké pedig $E(G) = E$. (Nincsenek benne hurkok, sem többszörös élek, tök egyszerű az egész.)
     </div>
-</math-def>
-<math-header>
-<div class="num-badge">1.2</div>
-<h2>Fokszámösszeg-tétel</h2>
-</math-header>
-<math-theorem id="section-1-2">
+</math-def><math-theorem id="section-1-2">
 <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4 italic text-center md:text-left">
-        Ha van egy tetszőleges $G$ gráfunk (pöttyök és vonalak), akkor:
+        Bármilyen $G$ gráfra igaz:
     </h3>
 <div class="bg-white/80 dark:bg-slate-900/50 p-6 rounded-xl text-center mb-4 border border-amber-200/50 shadow-inner">
 <p class="text-2xl md:text-4xl font-mono text-indigo-600 dark:text-indigo-400">
@@ -362,246 +343,177 @@ html.dark math-example { background: rgba(255,255,255,0.02); border-color: #3341
         </p>
 </div>
 <p class="text-slate-700 dark:text-slate-300 text-center md:text-left font-medium">
-        Ha az összes pöttyből kiinduló vonalakat összeadod, az pont a vonalak számának a kétszerese lesz (hiszen minden vonal két pöttyöt köt össze, így kétszer számoltad bele).
+        magyarul: ha összeadod az összes csúcs fokszámát (hogy hány él fut be beléjük), az pont kétszerese lesz a gráfban lévő élek számának. Logikus, hiszen minden élnek két vége van!
     </p>
-</math-theorem>
-<math-header>
-<div class="num-badge">1.3</div>
-<h2>Törlések és részgráfok</h2>
-</math-header>
-<math-def>
+</math-theorem><math-def>
 <h4 class="text-xs font-black text-rose-500 uppercase tracking-tighter mb-2">Csúcstörlés</h4>
 <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-            Ha kiradírozol egy $v$ pöttyöt a gráfból, akkor vele együtt le kell radíroznod az <span class="text-rose-500 font-bold">összes vonalat is, ami hozzá volt kötve</span> (hiszen egy vonal nem lóghat csak úgy a levegőben a semmibe csatlakozva).
+            Ha kidobunk egy $v \in V(G)$ csúcsot a $G$ gráfból, azzal együtt könyörtelenül kitépjük a helyéről az <span class="text-rose-500 font-bold">összes olyan élt is, ami hozzá csatlakozott</span>. (Különben lógnának a levegőben.)
         </p>
-</math-def>
-<math-def>
+</math-def><math-def>
 <h4 class="text-xs font-black text-blue-500 uppercase tracking-tighter mb-2">Éltörlés</h4>
 <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-            Szimplán kiradírozol egy $e$ vonalat a gráfból. A jó hír, hogy ez <span class="text-blue-500 font-bold">a két végén lévő pöttyöt egyáltalán nem bántja</span>, azok ott maradnak a helyükön.
+            Ha kitörlünk egy $e \in E(G)$ élt, azt egyszerűen leradírozzuk a papírról, de <span class="text-blue-500 font-bold">a két végén lévő csúcs ott marad, azokat nem bántjuk</span>.
         </p>
-</math-def>
-<math-def>
+</math-def><math-def>
 <h4 class="text-xs font-black text-indigo-600 uppercase tracking-tighter mb-2">Részgráf</h4>
 <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed italic">
-            Ha fogod a $G$ gráfot, és elkezdesz belőle kiradírozni pöttyöket és vonalakat (vagy akár nem radírozol ki semmit), amit a végén meghagysz, azt nevezzük a <strong class="not-italic">G részgráfjának</strong>. Lényegében a gráf egy darabkája.
+            Ha fognál egy radírt, és a $G$ gráfból kigradíroznál pár csúcsot és/vagy élt (akár egyet sem), a maradékot hívjuk a <strong class="not-italic">G részgráfjának</strong>.
         </p>
-</math-def>
-<math-header>
-<div class="num-badge">1.4</div>
-<h2>Feszített részgráf</h2>
-</math-header>
-<math-def id="section-1-4">
+</math-def><math-def id="section-1-4">
 <div class="space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 <p>
-            Ez egy olyan $H$ részgráf, amit úgy kapsz meg, hogy kiradírozol pár pöttyöt, de utána <strong class="text-emerald-600 dark:text-emerald-400">feszített részgráfnak</strong> nevezzük, ha <span class="underline decoration-emerald-500/50">tilos további vonalakat letörölni!</span> Csak azokat a vonalakat veszed ki, amik a törölt pöttyökhöz tartoztak, a megmaradt pöttyök közötti összes eredeti vonalat meghagyod.
+            A $G$ gráf egy $H$ részgráfja <strong class="text-emerald-600 dark:text-emerald-400">feszített részgráf</strong>, ha úgy csináltuk, hogy CSAK csúcsokat töröltünk (a hozzájuk tapadó élekkel persze), de <span class="underline decoration-emerald-500/50">extra éleket nem radíroztunk ki szórakozásból</span>. Amelyik két megmaradt csúcs eredetileg össze volt kötve, az most is össze van!
         </p>
 <div class="bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border-l-4 border-emerald-500">
 <p class="text-sm italic">
-                Ha az $X$ pöttyök élték túl a radírozást, akkor ezt az egészet úgy hívjuk, hogy <strong class="text-slate-900 dark:text-white not-italic">az $X$ csúcshalmaz által feszített részgráf</strong>.
+                Ha kiválasztasz egy rakat csúcsot ($V(H) = X \subseteq V(G)$), és az összes többit kidobod, akkor a megmaradt csúcsokból és a köztük futó EREDETI élekből kapott gráfot hívjuk az <strong class="text-slate-900 dark:text-white not-italic">$X$ csúcshalmaz által feszített részgráfnak</strong>.
             </p>
 </div>
 </div>
-</math-def>
-<math-header>
-<div class="num-badge">1.5</div>
-<h2>Komplementer gráf</h2>
-</math-header>
-<math-def id="section-1-5">
+</math-def><math-def id="section-1-5">
 <div class="text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic space-y-6">
 <p>
-            A $G$ egyszerű gráf <strong class="text-slate-900 dark:text-white not-italic">komplementerének</strong> nevezzük és $\bar{G}$-vel jelöljük azt a gráfot, mire:
+            A $G$ egyszerű gráf <strong class="text-slate-900 dark:text-white not-italic">komplementere</strong> (jele: $\bar{G}$) kvázi a gráf "negatívja":
         </p>
 <div class="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 text-center not-italic font-mono text-indigo-600 dark:text-indigo-400 shadow-inner">
             $V(\bar{G}) = V(G)$ <br/>
             $E(\bar{G}) = \{\{u, v\} : u, v \in V(G), \{u, v\} \notin E(G)\}$
         </div>
 <p class="border-l-4 border-indigo-500 pl-6">
-            Konyhanyelven: Fogod az összes eredeti pöttyöt, és behúzod közéjük a vonalakat PONT ODA, ahol eddig nem volt. Ahol pedig eddig volt vonal, azt kiradírozod. Aki eddig barát volt, abból ellenség lesz, és fordítva.
+            Konyhanyelven: $\bar{G}$-ben ugyanazok a csúcsok vannak, de behúzzuk az összes OLYAN élt, ami eredetileg hiányzott, és kitöröljük azokat, amik eddig ott voltak. Ami szomszéd volt, már nem az, ami nem volt az, abból szomszéd lesz!
         </p>
 </div>
-</math-def>
-<math-header>
-<div class="num-badge">1.6</div>
-<h2>Izomorfia</h2>
-</math-header>
-<math-def id="section-1-6">
+</math-def><math-def id="section-1-6">
 <div class="text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic space-y-6">
 <p>
-            A $G$ és $H$ gráfok <strong class="text-slate-900 dark:text-white not-italic">izomorfak</strong>, ha létezik olyan $f: V(G) \to V(H)$ kölcsönösen egyértelmű függvény, amire a következő teljesül: 
+            A $G$ és $H$ gráfok <strong class="text-slate-900 dark:text-white not-italic">izomorfak</strong>, magyarul "lényegében ugyanazok, csak máshogy hívják a csúcsokat", ha a $G$ csúcsait át tudod úgy nevezni $H$ csúcsaira (ez az $f: V(G) \to V(H)$ kölcsönösen egyértelmű függvény), hogy:
         </p>
 <div class="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 text-center not-italic font-mono text-indigo-600 dark:text-indigo-400 shadow-inner">
-            Konyhanyelven: Ha lerajzolod a két gráfot, akkor az egyiket tudod úgy gyurmázni, rángatni a pöttyöket (anélkül, hogy elszakadnának a vonalak), hogy a végén pont úgy nézzen ki, mint a másik. A belső szerkezetük teljesen azonos.
+            bármely $u,v \in V(G)$ csúcs esetén az új nevükön (az $f(u)$ és $f(v)$ között) pont ugyanannyi él fut a $H$-ban, mint amennyi $u$ és $v$ között futott a $G$-ben.
         </div>
 <p class="flex items-center justify-center gap-4 not-italic font-bold text-2xl text-slate-900 dark:text-white mt-4">
             Ennek a jele: <span class="bg-slate-100 dark:bg-slate-700 px-4 py-1 rounded-xl">$G \cong H$</span>
 </p>
 </div>
-</math-def>
-<math-header>
-<div class="num-badge">1.7</div>
-<h2>Élsorozat, séta és út</h2>
-</math-header>
-<math-def id="section-1-7">
+</math-def><math-def id="section-1-7">
 <div class="space-y-6">
 <div class="bg-white/50 dark:bg-slate-900/50 p-6 rounded-2xl border border-emerald-100 dark:border-emerald-900/30">
 <p class="text-slate-700 dark:text-slate-200 leading-relaxed italic">
-                Egy $P = (v_0, e_1, \dots, v_k)$ útvonalat (ami pöttyökből és vonalakból áll) <strong class="text-slate-900 dark:text-white not-italic">élsorozatnak</strong> hívunk. Lényegében ezen sétálva bejárod a gráfot, pöttyről pöttyre haladva. Keresztül-kasul mehetsz rajta, akár ugyanazon a vonalon is többször.
+                A $P = (v_0, e_1, v_1, e_2, v_2, \dots, e_k, v_k)$ dolgot <strong class="text-slate-900 dark:text-white not-italic">élsorozatnak</strong> hívjuk a $G$ gráfban. Ez valójában csak annyi, hogy elindulsz egy $v_0$ csúcsból, végigmész egy $e_1$ élen a $v_1$ csúcsba, onnan az $e_2$ élen a $v_2$-be, és így tovább. Minden élnek egyeznie kell a két végén lévő csúccsal.
             </p>
 </div>
 <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
 <li class="p-4 bg-white/80 dark:bg-slate-800/80 rounded-xl border border-emerald-100 dark:border-emerald-900/20 shadow-sm">
 <span class="text-[10px] font-black text-indigo-500 uppercase block mb-1 tracking-widest">Végpontok</span>
 <p class="text-sm text-slate-600 dark:text-slate-400 italic">
-                    Ahonnan indultál ($v_0$) és ahova megérkeztél ($v_k$). Ha $u$-ból indultál és $v$-be értél, ez egy $u$-ból $v$-be vezető élsorozat.
+                    Ahol elindulsz ($v_0$) és ahova érkezel ($v_k$), azok a végpontok. Ha a $P$ élsorozat egy $u$ csúcsból indul és $v$-be érkezik, akkor azt mondjuk, ez egy $u$-ból $v$-be vezető élsorozat.
                 </p>
 </li>
 <li class="p-4 bg-white/80 dark:bg-slate-800/80 rounded-xl border border-emerald-100 dark:border-emerald-900/20 shadow-sm">
 <span class="text-[10px] font-black text-indigo-500 uppercase block mb-1 tracking-widest">Hossz</span>
 <p class="text-sm text-slate-600 dark:text-slate-400 italic">
-                    Annyi, ahány vonalon átsétáltál menet közben (ez a $k$).
+                    Az élsorozat hossza pofonegyszerű: összesen ennyi darab élen ($k$) sétáltál végig.
                 </p>
 </li>
 </ul>
 </div>
-</math-def>
-<math-def>
+</math-def><math-def>
 <h4 class="text-blue-700 dark:text-blue-400 font-bold mb-3 flex items-center uppercase text-xs tracking-widest">
 <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
             Séta
         </h4>
 <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed italic">
-            A <strong class="text-blue-600 dark:text-blue-400 not-italic uppercase">SÉTA</strong> egy olyan élsorozat, ahol egyetlen vonalon sem mész át kétszer. A pöttyöket érintheted többször is, de a vonalakat magad mögött "felégeted", mintha egy turista lennél, aki mindig új utakon akar haladni.
+            A $P$ élsorozatból akkor lesz <strong class="text-blue-600 dark:text-blue-400 not-italic uppercase">séta</strong>, ha útközben <span class="font-bold">egyetlen élen sem mész át kétszer</span>. Csúcsokat érinthetsz többször is, de az utakat (éleket) nem koptathatod ugyanott.
         </p>
-</math-def>
-<math-def>
+</math-def><math-def>
 <h4 class="text-emerald-700 dark:text-emerald-400 font-bold mb-3 flex items-center uppercase text-xs tracking-widest">
 <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 20l-5.447-2.724A2 2 0 013 15.487V5.487a2 2 0 011.132-1.803l6-3a2 2 0 011.736 0l6 3A2 2 0 0119 5.487v10a2 2 0 01-1.132 1.803L12 20z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
             Út
         </h4>
 <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed italic">
-Az <strong class="text-emerald-600 dark:text-emerald-400 not-italic uppercase">ÚT</strong> a legtisztább eset: itt sem a vonalakon, sem a pöttyökön nem mehetsz át többször. Minden teljesen új; sehol nem térsz vissza egy olyan csomópontra, ahol már jártál.
+<strong class="text-emerald-600 dark:text-emerald-400 not-italic uppercase">Útnak</strong> akkor hívjuk a dolgot, ha még szigorúbbak vagyunk: <span class="font-bold">egyetlen csúcsot sem érinthetsz kétszer</span>! Aki új utat tör, nem tér vissza a régi helyekre.
         </p>
-</math-def>
-<math-header>
-<div class="num-badge">1.8</div>
-<h2>Út kinyerése élsorozatból</h2>
-</math-header>
-<math-theorem id="section-1-8">
+</math-def><math-theorem id="section-1-8">
 <p class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
-        Ha a $G$ gráfban el tudsz jutni $u$-ból $v$-be úgy, hogy össze-vissza kóborolsz a vonalakon (akár többször is érintve ugyanazt a pöttyöt), akkor biztosan van olyan útvonal is, ahol nyílegyenesen odamész, és egyetlen pöttyöt sem érintesz kétszer (azaz létezik út is).
+        Józan paraszti logika: ha a $G$ gráfban el tudsz jutni $u$-ból $v$-be valahogy (kószálva összevissza), akkor el tudsz jutni felesleges körözések nélkül, egyenesen (egy úton) is!
     </p>
-</math-theorem>
-<math-header>
-<div class="num-badge">1.9</div>
-<h2>Utak tranzitivitása</h2>
-</math-header>
-<math-theorem id="section-1-9">
+</math-theorem><math-theorem id="section-1-9">
 <div class="flex items-center mb-4">
 <span class="bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md mr-3">Következmény</span>
 </div>
 <p class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
-        Tök logikus: ha $u$-ból el tudsz sétálni $v$-be egy úton, és $v$-ből el tudsz sétálni $w$-be egy úton, akkor $u$-ból is biztosan el tudsz jutni $w$-be (legfeljebb érinted $v$-t útközben).
+        Ha $u$-ból el tudsz menni $v$-be, és $v$-ből el tudsz menni $w$-be, akkor naná, hogy $u$-ból is el tudsz jutni $w$-be (tranzitivitás). Olyan ez, mint az átszállásos vonatjegy!
     </p>
-</math-theorem>
-<math-header>
-<div class="num-badge">1.10</div>
-<h2>Összefüggő gráf</h2>
-</math-header>
-<math-def id="section-1-10">
+</math-theorem><div class="flex-none bg-amber-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs">i</div><math-def id="section-1-10">
 <div class="text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic border-l-4 border-emerald-500/20 pl-6">
-        Egy $G$ gráf <strong class="text-slate-900 dark:text-white not-italic">összefüggő</strong>, ha teljesen egyben van. Magyarul: bárhova is bökünk le két pöttyöt a gráfban, az egyikből a másikba mindig el tudunk jutni a vonalak mentén. Nincsenek leszakadt, különálló "szigetek".
+        A $G$ gráf <strong class="text-slate-900 dark:text-white not-italic">összefüggő</strong>, ha a gráf egyetlen "nagy darabból" áll. Magyarán: bárhonnan el tudsz jutni bárhová éleken keresztül.
     </div>
-</math-def>
-<math-header>
-<div class="num-badge">1.11</div>
-<h2>Összefüggő komponensek</h2>
-</math-header>
-<math-def id="section-1-11">
+</math-def><math-def id="section-1-11">
 <div class="text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic space-y-6">
-<p class="not-italic font-medium">Képzelj el egy $G$ gráfot és benne egy $v$ pöttyöt.</p>
+<p class="not-italic font-medium">Nézzünk egy $v \in V(G)$ csúcsot a $G$ gráfban.</p>
 <ul class="space-y-6 not-italic">
 <li class="flex items-start gap-4">
 <div class="w-1.5 h-1.5 mt-2 rounded-full bg-indigo-500 flex-none shadow-[0_0_8px_rgba(99,102,241,0.5)]"></div>
 <p class="text-sm md:text-base">
-                    Egy másik $w$ pöttyöt <strong class="text-slate-900 dark:text-white">$v$-ből elérhetőnek</strong> mondunk, ha van a kettő között valamilyen útvonal a vonalak mentén.
+                    Egy másik $w$ csúcs <strong class="text-slate-900 dark:text-white">$v$-ből elérhető</strong>, ha egyszerűen át tudsz sétálni $v$-ből $w$-be az éleken keresztül.
                 </p>
 </li>
 <li class="flex items-start gap-4">
 <div class="w-1.5 h-1.5 mt-2 rounded-full bg-indigo-500 flex-none shadow-[0_0_8px_rgba(99,102,241,0.5)]"></div>
 <p class="text-sm md:text-base italic">
-                    Ha összegyűjtjük az összes olyan pöttyöt, ahova $v$-ből el lehet jutni (legyen ez az $X$), és meghagyjuk a köztük lévő összes vonalat is (ezt hívtuk <strong class="text-indigo-600 dark:text-indigo-400">feszített részgráfnak</strong>), akkor ezt az egybefüggő "szigetet" hívjuk a $v$ csúcs <strong class="text-slate-900 dark:text-white">komponensének</strong>.
+                    Ha összeszedjük azokat a srácokat (csúcsokat), akiket $v$-ből el lehet érni (legyen ez az $X$ halmaz), akkor az ő általuk <strong class="text-indigo-600 dark:text-indigo-400">feszített részgráfot</strong> hívjuk a $v$ csúcs <strong class="text-slate-900 dark:text-white">komponensének</strong>. (Olyan, mint egy szeparált klikk a buliban.)
                 </p>
 </li>
 <li class="flex items-start gap-4">
 <div class="w-1.5 h-1.5 mt-2 rounded-full bg-indigo-500 flex-none shadow-[0_0_8px_rgba(99,102,241,0.5)]"></div>
 <p class="text-sm md:text-base">
-                    A gráf egy $K$ darabkája akkor egy <strong class="text-slate-900 dark:text-white">összefüggő komponens</strong>, ha az egy ilyen teljes, önálló, a többitől elszigetelt "sziget" a gráfon belül.
+                    Egy $K$ részgráf akkor egy <strong class="text-slate-900 dark:text-white">összefüggő komponens</strong> a gráfban, ha a gráf egy maximális "egyben lévő" darabja (szigete).
                 </p>
 </li>
 </ul>
 </div>
-</math-def>
-<math-header>
-<div class="num-badge">1.12</div>
-<h2>A komponensek tulajdonságai</h2>
-</math-header>
-<math-theorem id="section-1-12">
+</math-def><math-theorem id="section-1-12">
 <div class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
-<p class="mb-4 text-sm md:text-xl font-medium not-italic">Bármely $G$ gráf esetén, ha a "józan paraszti logikát" használjuk:</p>
+<p class="mb-4 text-sm md:text-xl font-medium not-italic">Akármilyen $G$ gráfot nézel:</p>
 <ol class="list-[lower-roman] list-inside space-y-3 ml-4 text-sm md:text-xl">
-<li>A szigetek (komponensek), amikre a gráf szétesik, önmagukban teljesen egyben vannak (összefüggők);</li>
-<li>Minden egyes pötty (csúcs) pontosan egy ilyen szigethez tartozik (nem lehet két helyen egyszerre, és nem is lóghat a levegőben).</li>
+<li>A komponensek persze hogy összefüggők (hisz egy szigetet alkotnak);</li>
+<li>Minden csúcs pontosan egy sziget (komponens) lakója, senki sem lehet egyszerre két helyen, és senki sem maradhat ki.</li>
 </ol>
 </div>
-</math-theorem>
-<math-header>
-<div class="num-badge">1.13</div>
-<h2>Körséta és Kör</h2>
-</math-header>
-<math-def id="section-1-13">
+</math-theorem><math-def id="section-1-13">
 <div class="space-y-6 text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic">
-<p>Ha mész egy útvonalon a gráfban:</p>
+<p>Azt a bizonyos $P$ élsorozatot:</p>
 <ul class="space-y-4 not-italic">
 <li class="flex items-start gap-4 p-4 bg-white/50 dark:bg-slate-900/40 rounded-xl border border-emerald-100 dark:border-emerald-900/30">
 <div class="w-1.5 h-1.5 mt-2 rounded-full bg-indigo-500 flex-none shadow-[0_0_8px_rgba(99,102,241,0.4)]"></div>
 <p class="text-sm md:text-base italic">
-<strong class="text-slate-900 dark:text-white not-italic uppercase tracking-tighter">Körsétának</strong> nevezzük: Elindulsz valahonnan, sétálsz úgy, hogy egy vonalon sem mész át kétszer, és a végén pont oda érsz vissza, ahonnan indultál ($v_0 = v_k$).
+<strong class="text-slate-900 dark:text-white not-italic uppercase tracking-tighter">Körsétának</strong> hívjuk, ha séta (nincs ismétlődő él), de egy körutazás az egész: oda érkezel vissza ($v_k$), ahonnan elindultál ($v_0$);
                 </p>
 </li>
 <li class="flex items-start gap-4 p-4 bg-emerald-50/50 dark:bg-emerald-900/20 rounded-xl border border-emerald-200 dark:border-emerald-800/50 shadow-sm">
 <div class="w-1.5 h-1.5 mt-2 rounded-full bg-emerald-500 flex-none shadow-[0_0_8px_rgba(16,185,129,0.4)]"></div>
 <p class="text-sm md:text-base italic">
-<strong class="text-emerald-600 dark:text-emerald-400 not-italic uppercase tracking-tighter">Körnek</strong> nevezzük: Ugyanaz mint a körséta, de közben egyik pöttyöt sem érintheted kétszer (kivéve persze azt, ahonnan indultál és ahova a végén visszaértél). Egy igazi, szabályos hurok.
+<strong class="text-emerald-600 dark:text-emerald-400 not-italic uppercase tracking-tighter">Körnek</strong> pedig akkor mondjuk, ha ez egy rendes, legalább 1 hosszú körséta, és a kezdő/végpontot leszámítva minden csúcsot szigorúan CSAK EGYSZER érintettünk (nem kalandozunk feleslegesen).
                 </p>
 </li>
 </ul>
 </div>
-</math-def>
-<math-header>
-<div class="num-badge">1.15</div>
-<h2>Dijkstra algoritmusa</h2>
-</math-header>
-<math-def id="section-1-15">
+</math-def><math-def id="section-1-15">
 <div class="space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 <p>
-            Dijkstra algoritmusa arra való, hogy megtalálja a <strong class="text-slate-900 dark:text-white">legrövidebb utat</strong> (mint a GPS). Fontos: csak ott működik, ahol <strong class="text-rose-500">nincsenek negatív költségű ("időutazós") vonalak</strong> (mert attól összezavarodna). Úgy működik, hogy folyamatosan építi a biztosan megtalált, legrövidebb utakon elérhető pöttyök klubját (a "kész" $K$ halmazt), és ebből terjeszkedve frissíti a távolságokat a még felderítetlen területek felé.
+            Dijkstra algoritmusa a <strong class="text-slate-900 dark:text-white">legrövidebb út problémát</strong> találja meg (olyan, mint egy okos GPS) irányított gráfokban, de nagyon kényes rá, hogy <strong class="text-rose-500">ne legyenek negatív élsúlyok</strong> (nem kaphatsz benzint, ha mész egy úton). Lépésről lépésre bővít egy $K$ "kész" halmazt: azoknak a csúcsoknak a klubját, ahová már tuti megtalálta a leggyorsabb utat, és folyamatosan frissíti a többiekhez vezető becsült távolságokat.
         </p>
 </div>
-</math-def>
-<math-theorem id="section-1-16">
+</math-def><math-theorem id="section-1-16">
 <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4 italic text-center md:text-left">
         Dijkstra algoritmusának lépésszáma
     </h3>
 <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-        Amikor a legközelebbi csomópontot keressük, mindig egyre kevesebb elemet kell átnéznünk. Ha ezt egy mezei listában (tömbben) csináljuk, akkor a keresgélés nagyjából $n$-szer fut le, és minden körben legfeljebb $n$ elemet nézünk át. Így a végén összesen <strong class="text-indigo-600 dark:text-indigo-400">$\mathcal{O}(n^2)$</strong> lépést fogunk tenni (ahol $n$ a pöttyök/csúcsok száma).
+        Futási idő szempontjából: mivel minden iterációban keresni kell egy minimumot egy egyre fogyatkozó halmazból, ha csak egy sima buta tömböt használunk, a keresgélés nagyjából $n$-ig tart minden egyes csúcsnál. Így a teljes futási idő <strong class="text-indigo-600 dark:text-indigo-400">$\mathcal{O}(n^2)$</strong> lesz, ahol $n$ a csúcsok száma (dupla ciklusos életérzés).
     </p>
-</math-theorem>
-<math-header>
-<div class="num-badge">1.14</div>
-</math-header>
-</div>
-</div>
+</math-theorem></div></div>
+
 <div class="mb-20">
 <math-header>
 <div class="flex items-center gap-4 mb-8 mt-16">
@@ -610,100 +522,92 @@ Az <strong class="text-emerald-600 dark:text-emerald-400 not-italic uppercase">�
                 </div>
 <div class="relative w-fit">
 <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                        Fák és páros gráfok
+                        Fák tulajdonságai
                     </h2>
 <div class="absolute -bottom-2 left-0 w-full h-1.5 bg-slate-800/20 dark:bg-slate-700/50 rounded-full"></div>
 </div>
 </div>
 </math-header>
-<div class="flex flex-col gap-6">
-<math-header>
-<div class="num-badge">2.1</div>
-<h2>A fa definíciója</h2>
-</math-header>
-<math-def id="section-2-1">
+<div class="flex flex-col gap-6"><div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-6 rounded-r-2xl">
+<h3 class="text-emerald-700 dark:text-emerald-400 mb-2">Mennyi éle lehet egy összefüggő vagy körmentes gráfnak? <b>Mi az a fa?</b> A fák legfontosabb tulajdonságai. <b>Feszítőfa:</b> mi ez és mikor létezik? <b>Szélességi bejárás (BFS):</b> hogyan működik, mennyi ideig tart, és mi fán terem a BFS-fa.</h3>
+</div><math-def id="section-2-1">
 <div class="text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic">
-        A matekban akkor hívunk egy $F$ alakzatot <strong class="text-slate-900 dark:text-white not-italic border-b-2 border-emerald-200 dark:border-emerald-800">fának</strong>, ha egyben van (összefüggő), és nincsenek benne felesleges körutak vagy hurkok (körmentes).
+        Egy $F$ gráfot <strong class="text-slate-900 dark:text-white not-italic border-b-2 border-emerald-200 dark:border-emerald-800">fának</strong> hívunk, ha egy darabban van (összefüggő) és nincsenek benne körök (nem tudsz benne körbemenve visszajutni ugyanoda).
     </div>
-</math-def>
-<math-header>
-<div class="num-badge">2.2</div>
-<h2>Levelek létezése fákban</h2>
-</math-header>
-<math-theorem id="section-2-2">
+</math-def><math-theorem id="section-2-2">
 <p class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
-            Ha van egy $F$ fád, aminek van legalább két pötty csúcsa, akkor abban a fában tuti, hogy lennie kell legalább két levélnek is (olyan csúcsnak, amihez csak egyetlen vonal csatlakozik). Magyarul, minden többágú fának megvan legalább a két vége.
+            Ha egy $F$ fának van legalább két csúcsa, akkor tuti van benne legalább két "levél" (olyan csúcs, amiből csak egyetlen él megy ki). Gondolj bele: egy letört gally két végén is ott egy-egy levél!
         </p>
-</math-theorem>
-<math-header>
-<div class="num-badge">2.3</div>
-<h2>Csúcsok és élek kapcsolata</h2>
-</math-header>
-<math-theorem id="section-2-3-theorem">
+</math-theorem><math-theorem id="section-2-3-theorem">
 <div class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
-<p class="mb-4 not-italic font-medium">Képzelj el egy $G$ gráfot $n$ pöttyel és $m$ vonallal (éllel). Akkor a józan ész szerint:</p>
+<p class="mb-4 not-italic font-medium">Képzelj el egy $G$ gráfot, aminek $n$ csúcsa és $m$ éle van. Ekkor a következő ökölszabályok érvényesek:</p>
 <ol class="list-[lower-roman] list-inside space-y-3 ml-4">
-<li>ha minden pontból el lehet jutni mindenhova (vagyis <span class="text-emerald-600">összefüggő</span>), akkor biztosan legalább majdnem annyi vonal van, mint pötty ($m \geq n - 1$);</li>
-<li>ha nincsenek benne "hurkok" vagyis egyenes ágakból áll (<span class="text-emerald-600">körmentes</span>), akkor legfeljebb ennyi vonal lehet benne ($m \leq n - 1$);</li>
-<li>és ha ráadásul egy tökéletes <span class="text-emerald-600 font-black">fa</span> az egész, akkor pont annyi vonal van benne, mint pötty, mínusz egy ($m = n - 1$).</li>
+<li>ha $G$ <span class="text-emerald-600">összefüggő</span> (mindenhova el tudsz jutni), akkor viszonylag sok éle kell legyen: $m \geq n - 1$;</li>
+<li>ha $G$ <span class="text-emerald-600">körmentes</span> (nincs benne hurok, meg körbejárható rész), akkor meg nem lehet túl sok éle: $m \leq n - 1$;</li>
+<li>ha $G$ egy igazi <span class="text-emerald-600 font-black">fa</span> (összefüggő is és körmentes is), akkor pontosan ennyi éle van: $m = n - 1$. Se több, se kevesebb!</li>
 </ol>
 </div>
-</math-theorem>
-<math-header>
-<div class="num-badge">2.4</div>
-<h2 class="text-balance">Feszítőfa</h2>
-</math-header>
-<math-def id="section-2-4-def">
+</math-theorem><div class="p-5 bg-emerald-50/50 dark:bg-emerald-900/10 rounded-xl border border-emerald-100 dark:border-emerald-900/30 shadow-sm">
+<span class="text-[10px] font-black text-emerald-600 uppercase block mb-2 tracking-widest">2. Eset: u és v más-más "szigeten" (komponensben) van</span>
+<p class="italic text-xs leading-relaxed">
+                        Ha behúzod ezt az élt, a két különálló "sziget" összekapcsolódik egyetlen nagy szigetté, így a komponensek száma <strong class="text-emerald-600">pontosan eggyel csökken</strong>.
+                    </p>
+</div><math-def id="section-2-4-def">
 <div class="text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic border-l-4 border-emerald-500/20 pl-6">
-            Egy benga nagy gráfnak az a része egy <strong class="text-slate-900 dark:text-white not-italic">feszítőfa</strong>, ami megőrzi a fa formát, miközben minden egyes pöttyöt ($V(G) = V(F)$) tartalmaz, mintha ráhúznál a hálózatra egy minimál-kábelezést, amiben nincs felesleges kör.
+            A $G$ gráfnak az $F$ részgráfja egy <strong class="text-slate-900 dark:text-white not-italic">feszítőfa</strong>, ha $F$ maga is egy fa, és benne van a $G$ összes csúcsa ($V(G) = V(F)$). Lényegében: kidobálod az eredeti gráfból a felesleges éleket, amíg körmentes nem lesz, de úgy, hogy mindenki elérhető maradjon.
         </div>
-</math-def>
-<math-header>
-<div class="num-badge">2.5</div>
-<h2>Feszítőfa létezése</h2>
-</math-header>
-<math-theorem id="section-2-5-theorem">
+</math-def><math-theorem id="section-2-5-theorem">
 <p class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
-            Egy gráfra csak és kizárólag akkor tudsz egy mindent bejáró belső "csontvázat" (feszítőfát) húzni, ha eleve nem esik darabjaira, vagyis összefüggő az egész gráf.
+            Egy $G$ gráfnak pontosan akkor van feszítőfája, ha eredetileg is összefüggő volt. (Józan paraszti ésszel: ha két rész eleve le van szakadva egymásról, nem tudod őket összekötni egy fával).
         </p>
-</math-theorem>
-<math-header>
-<div class="num-badge">2.6</div>
-<h2 class="text-balance">Minimális feszítőfa és a mohó algoritmus</h2>
-</math-header>
-<math-theorem id="section-2-6-theorem">
+</math-theorem><math-theorem id="section-2-6-theorem">
 <div class="flex items-center mb-4 text-amber-600 dark:text-amber-400">
-<span class="bg-amber-100 dark:bg-amber-900/40 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md mr-3">Tétel</span>
+<span class="bg-amber-100 dark:bg-amber-900/40 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md mr-3">Mohó Algoritmus Tétel (Kruskal-szerű)</span>
 </div>
 <p class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
-            Ha a lehető legkisebb költségű "csontvázat" akarod összerakni (ez az $F_{mohó}$ feszítőfa), legyél kapzsi! Indulj a semmiből, és mindig a **legolcsóbb** kábellel kösd össze azokat a szigeteket, amik még nincsenek bekötve. Ezzel a mohó módszerrel tutira megkapod a **minimális összköltségű** favázat.
+            Ha egy $G$ összefüggő gráfban úgy akarsz feszítőfát építeni (hívjuk $F_{mohó}$-nak), hogy a semmiből indulva mindig a legkisebb súlyú (legolcsóbb) olyan élt veszed be, ami még nem kötött össze részeket (tehát nem zár be kört), akkor a végén egy garantáltan **minimális összsúlyú** feszítőfát fogsz kapni. A mohóság itt kifizetődik!
         </p>
-</math-theorem>
-<math-header>
-<div class="num-badge">2.7</div>
-<h2>Szélességi bejárás (BFS)</h2>
-</math-header>
-<math-def id="section-2-7-def">
+</math-theorem><math-def id="section-2-7-def">
 <div class="text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic border-l-4 border-emerald-500/20 pl-6">
-            A <strong class="text-slate-900 dark:text-white not-italic">szélességi bejárás (Breadth-First Search, BFS)</strong> olyan, mintha tintát csöpögtetnél egy pocsolyába egy $s$ ponton: hullámokban, távolság alapján, szépen rétegről rétegre haladva fedezi fel a szomszédos pöttyöket.
+            A <strong class="text-slate-900 dark:text-white not-italic">szélességi bejárás (Breadth-First Search, BFS)</strong> egy olyan algoritmus, ami hullámszerűen fedezi fel a gráfot. Egy $s$ startpontból kiindulva először a közvetlen szomszédokat nézi meg (ezek vannak 1 távolságra), aztán a szomszédok szomszédait, és így tovább szintről szintre.
         </div>
-</math-def>
-<math-theorem id="section-2-7-theorem">
+</math-def><div class="bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-200 dark:border-emerald-800 p-6 rounded-2xl mb-8">
+<h3 class="text-emerald-600 dark:text-emerald-400 font-black uppercase tracking-widest text-sm mb-4">A BFS Algoritmus Menete</h3>
+<div class="font-mono text-sm text-slate-800 dark:text-slate-300 space-y-2">
+<p><span class="text-slate-500 font-bold">Bemenet:</span> Egy $n$ csúcsú $G = (V,E)$ gráf és egy $s \in V$ kezdőcsúcs (ahonnan indítjuk a hullámot)</p>
+<hr class="border-emerald-200 dark:border-emerald-800 my-3"/>
+<p>1: Kezdetben mindenkit állítsunk felfedezetlenre: minden $v \in V$-re táv($v$) $\leftarrow \infty$; előző($v$) $\leftarrow *$ (üres)</p>
+<p>2: A startpont beállítása: táv($s$) $\leftarrow 0$; aktuális szint $i \leftarrow 0$; várólista a 0. szintre: $L_0 \leftarrow \{s\}$</p>
+<p>3: <strong class="text-emerald-600 dark:text-emerald-400">fő ciklus:</strong> amíg van csúcs az aktuális $L_i$ listában (amíg el nem fogy a lendület):</p>
+<p class="pl-4">4: Készítsünk be egy üres listát a következő szintnek: $L_{i+1} \leftarrow \emptyset$</p>
+<p class="pl-4">5: <strong class="text-emerald-600 dark:text-emerald-400">belső ciklus:</strong> vedd elő az összes $u$ csúcsot a mostani $L_i$ listából, és minden velük szomszédos $\{u, v\} \in E$ élre nézd meg:</p>
+<p class="pl-8">6: <strong>ha</strong> a $v$ szomszéd még szűz terület (táv($v$) = $\infty$), <strong>akkor:</strong></p>
+<p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">7: rögzítsük a távolságát: táv($v$) $\leftarrow i + 1$</p>
+<p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">8: jegyezzük fel, honnan jöttünk ide: előző($v$) $\leftarrow u$</p>
+<p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">9: dobjuk be a következő napi listába: $L_{i+1} \leftarrow L_{i+1} \cup \{v\}$</p>
+<p class="pl-4">10: <strong>belső ciklus vége</strong> (minden szomszédot leellenőriztünk)</p>
+<p class="pl-4">11: Lépjünk a következő szintre: $i \leftarrow i + 1$</p>
+<p>12: <strong>fő ciklus vége</strong></p>
+</div>
+</div><math-theorem id="section-2-7-theorem">
 <p class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed mb-4">
-            BFS-fa és Lépésszám
+            A BFS-fa és a Futási Idő (Lépésszám)
         </p>
 <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-            Ha a hálózatod összefüggő, és figyeled, hogy ki hívott meg kit először, akkor a "honnan jöttem" mutatókból automatikusan egy tökéletes "csontváz", azaz <strong class="text-emerald-600 dark:text-emerald-400">feszítőfa (BFS-fa)</strong> fog kirajzolódni.
+            Ha a $G$ gráf összefüggő, akkor a BFS során feljegyzett "előző($v$)" útvonalak (mindenkinél felírtuk, kinek a révén fedeztük fel, kivéve az $s$-et) pont egy <strong class="text-emerald-600 dark:text-emerald-400">feszítőfát fognak kiadni (ezt hívják BFS-fának)</strong>. Extraként ez a fa ráadásul a legkevesebb élből álló legrövidebb utakat is megadja a startpontból!
         </p>
 <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
-            Mivel a módszerrel minden pöttyöt csak egyszer rakunk listára, és a vonalakat is maximum kétszer (oda-vissza) csekkoljuk le, nem is fogunk sokat bénázni; az egész meló időigénye egyenesen arányos a mérettel, vagyis pikk-pakk <strong class="text-emerald-600 dark:text-emerald-400">$\mathcal{O}(n + m)$</strong> lépésből végezni is fogunk.
+            Mivel minden csúcsot pontosan egyszer rakunk be valamelyik $L_i$ listába, és minden élet legfeljebb kétszer vizsgálunk meg (egyszer az egyik, egyszer a másik végéről az irányítatlan gráfban), a bejárás összesített lépésszáma villámgyors: <strong class="text-emerald-600 dark:text-emerald-400">$\mathcal{O}(n + m)$</strong> (ahol $n$ a csúcsok, $m$ az élek száma).
         </p>
-</math-theorem>
-<math-header>
-<div class="num-badge">2.8</div>
-</math-header>
-</div>
-</div>
+</math-theorem><div class="mt-12 p-8 bg-emerald-500/10 border-2 border-dashed border-emerald-500/30 rounded-[2.5rem] text-center transition-all" id="complete-section-2">
+<h3 class="text-xl font-black text-emerald-600 dark:text-emerald-400 mb-4 uppercase" id="complete-text-2">
+        Vágod az egészet?
+    </h3>
+<button class="px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-lg transition-all active:scale-95" data-theme-color="emerald" id="complete-btn-2" onclick="toggleChapterComplete(2)">
+        Igen! ✅
+    </button>
+</div></div></div>
+
 <div class="mb-20">
 <math-header>
 <div class="flex items-center gap-4 mb-8 mt-16">
@@ -712,146 +616,88 @@ Az <strong class="text-emerald-600 dark:text-emerald-400 not-italic uppercase">�
                 </div>
 <div class="relative w-fit">
 <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                        Párosítások
+                        Hamilton-vonalak
                     </h2>
 <div class="absolute -bottom-2 left-0 w-full h-1.5 bg-slate-800/20 dark:bg-slate-700/50 rounded-full"></div>
 </div>
 </div>
 </math-header>
-<div class="flex flex-col gap-6">
-<math-header>
-<div class="num-badge">3.1</div>
-<h2>Alapfogalmak</h2>
-</math-header>
-<math-def title="Euler-séta és Euler-kör">
+<div class="flex flex-col gap-6"><div class="bg-blue-50 dark:bg-blue-900/10 border-l-4 border-blue-500 p-6 rounded-r-2xl text-blue-700 dark:text-blue-400">
+<b>Hamilton-körök és -utak. Mikor léteznek? (Szükséges feltételek). Elégséges feltételek: Dirac és Ore tétele (ha ezek teljesülnek, biztosan van). Euler-séták és körséták, és hogy mikor futhatunk bele ilyenekbe.</b>
+</div><math-def title="Euler-séta és Euler-kör">
 <p>
-            Ha egy $G$ gráfban teszel egy olyan $P$ sétát, ami a gráf összes létező élén pontosan egyszer megy végig, akkor ezt <strong>Euler-sétának</strong> hívjuk (tulajdonképpen megrajzolod a gráfot anélkül, hogy felemelnéd a ceruzát).
+            Egy $P$ sétát <strong>Euler-sétának</strong> hívunk, ha a gráf <i>összes</i> élén végigmegyünk, de szigorúan csak egyszer! (Mint amikor egy vonalat húzol a papíron anélkül, hogy felemelnéd a ceruzát).
         </p>
 <p class="border-l-4 border-blue-500/20 pl-6 mt-4">
-            Ha a séta végén még ugyanoda is érsz vissza, ahonnan elindultál (tehát egy kört teszel meg), akkor ez a $P$ séta egy <strong>Euler-körséta</strong> (vagy Euler-kör).
+            Ha a séta végén még oda is érsz vissza, ahonnan indultál, az az <strong>Euler-körséta</strong> (vagy Euler-kör).
         </p>
-</math-def>
-<math-header>
-<div class="num-badge">3.2</div>
-<h2>Az Euler-tétel</h2>
-</math-header>
-<math-theorem title="Euler-tétel (1736)">
-<p class="mb-4">Legyen $G$ egy egybefüggő gráf (vagyis nem esik szét darabokra). Ekkor:</p>
+</math-def><math-theorem title="Euler-tétel (1736)">
+<p class="mb-4">Ha van egy összefüggő gráfod (egy darabban van az egész):</p>
 <ol class="list-[lower-roman] list-inside space-y-3 ml-4">
-<li>$G$-ben pontosan akkor tudunk egy olyan kört menni, hogy minden élen pontosan egyszer megyünk végig és visszajutunk a kiindulóponthoz (ez az <strong>Euler-körséta</strong>), ha $G$ minden csomópontjába páros számú él fut be (vagyis ahányszor bemész, annyiszor ki is tudsz jönni);</li>
-<li>$G$-ben pontosan akkor tudunk egy olyan vonalat rajzolni a ceruza felemelése nélkül, ami minden élen pontosan egyszer megy végig (ez az <strong>Euler-séta</strong>), ha $G$-nek maximum két olyan csomópontja van, aminek a foka páratlan (ezek lesznek a séta kezdő- és végpontjai).</li>
+<li>Akkor tudsz <strong>Euler-körsétát</strong> tolni (minden élen egyszer végigmenni és visszatérni a kezdőpontba), ha <i>minden</i> csúcsból páros számú él indul ki;</li>
+<li>Akkor van sima <strong>Euler-séta</strong> (nem kell visszatérni a starthoz), ha legfeljebb két csúcsból indul ki páratlan számú él. (Ilyenkor az egyik páratlanból indulsz, és a másikba érkezel).</li>
 </ol>
-</math-theorem>
-<math-header>
-<div class="num-badge">3.3</div>
-<h2>Lemma a vaktában sétáláshoz</h2>
-</math-header>
-<math-theorem title="Vaktában sétálás lemmája">
+</math-theorem><div class="flex items-start gap-4 p-4 bg-blue-500/5 border border-blue-500/20 rounded-xl">
+<div class="flex-none bg-blue-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs">!</div>
+<p>
+<strong>A trükk:</strong> Indulj el egy $v$ csúcsból, és sétálj "vakon", amíg csak tudsz. Csak arra kell figyelned, hogy soha ne menj rá olyan élre, amin már jártál!
+                </p>
+</div><math-theorem title="Vaktában sétálás lemmája">
 <p class="text-xl italic leading-relaxed">
-            Képzeld el, hogy van egy $H$ gráfod, amiben minden csomópontba páros számú út vezet. Kiválasztasz egy tetszőleges $v \in V(H)$ kezdőpontot. Ha $v$-ből elindulsz és csak mész vakvilágba anélkül, hogy ugyanazon az úton kétszer mennél, egészen addig, amíg el nem akadsz, akkor az így kapott $Q$ séta végpontja tuti, hogy az eredeti $v$ csúcs lesz. (Hiszen máshol nem tudsz beragadni: ha bementél egy csúcsba, mindig van egy szabad út kifelé is!)
+            Ha egy gráfban minden csúcsnak páros a foka, és valahonnan (mondjuk $v$-ből) elindulsz vakon sétálni (amíg csak be nem halsz a zsákutcába), akkor garantáltan a kiindulóponton ($v$) fogsz kilyukadni. Logikus: ha bementél egy csúcsba, onnan ki is kell tudnod jönni (mivel páros az élek száma).
         </p>
-</math-theorem>
-<math-header>
-<div class="num-badge">3.4</div>
-<h2 class="text-balance">Euler-körséta kereső algoritmus</h2>
-</math-header>
-<math-header>
-<div class="num-badge">3.4.1</div>
-<h2 class="text-balance">Interaktív szimuláció</h2>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge">3.5</div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-blue-500/30 decoration-4 underline-offset-8 text-balance">
-            Hamilton-út és Hamilton-kör
-        </h2>
-</div>
-</math-header>
-<math-def>
+</math-theorem><div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 blur-3xl rounded-full"></div><div class="bg-blue-500/10 p-3 rounded-lg border border-blue-500/20 text-center">
+<span class="text-blue-400 font-bold">1. Bemész</span>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest mt-1">Eddig használt élek: Páratlan</p>
+</div><div class="bg-emerald-500/10 p-3 rounded-lg border border-emerald-500/20 text-center">
+<span class="text-emerald-400 font-bold">2. Kijössz</span>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest mt-1">Eddig használt élek: Páros</p>
+</div><math-def>
 <div class="text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic space-y-4">
 <p>
-                Ha egy $G$ gráfban találsz egy olyan $C$ kört, amivel a gráf összes létező csomópontját végiglátogatod pontosan egyszer, azt <strong class="text-slate-900 dark:text-white not-italic">Hamilton-körnek</strong> hívjuk.
+                Egy kört <strong class="text-slate-900 dark:text-white not-italic">Hamilton-körnek</strong> hívunk, ha a gráf összes <i>csúcsát</i> pontosan egyszer érinti.
             </p>
 <p>
-                Ugyanígy, ha egy $P$ útvonalon mész végig úgy, hogy minden csúcsot pontosan egyszer érintesz, de nem jutsz vissza az elejére, akkor azt <strong class="text-slate-900 dark:text-white not-italic">Hamilton-útnak</strong> nevezzük $G$-ben.
+                Hasonlóképp, a <strong class="text-slate-900 dark:text-white not-italic">Hamilton-út</strong> egy olyan út, amin végigmenve kipipálod az összes csúcsot (szintén csak egyszer).
             </p>
 </div>
-</math-def>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge">3.6</div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-blue-500/30 decoration-4 underline-offset-8 text-balance">
-            Szükséges feltétel Hamilton-vonalakra
-        </h2>
-</div>
-</math-header>
-<math-theorem>
+</math-def><math-theorem>
 <div class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
-<p class="mb-4">Vegyünk egy tetszőleges $G$ gráfot és egy $k \geq 1$ egész számot.</p>
+<p class="mb-4">Vegyünk egy tetszőleges $G$ gráfot és egy $k \geq 1$ darabszámot (amennyi csúcsot ki akarunk dobni).</p>
 <ol class="list-[lower-roman] list-inside space-y-3 ml-4">
-<li>Ha a gráfban van <span class="text-blue-600">Hamilton-kör</span> (egy olyan körgyűrű, ami minden csúcsot pontosan egyszer érint), akkor ha bárhogyan kidobsz $k$ darab csúcsot, a maradék gráf legfeljebb $k$ darab különálló részre eshet szét. (Olyan, mintha egy nyakláncot $k$ helyen elvágnál: maximum $k$ darabra hullik.)</li>
-<li>Ha a gráfban van <span class="text-blue-600">Hamilton-út</span> (ami minden csúcsot bejár, de nem ér körbe), akkor $k$ csúcs kitörlésével maximum $k+1$ darabra eshet szét a gráf. (Egy sima spárgát ha $k$ helyen elvágsz, $k+1$ darab lesz belőle.)</li>
+<li>Ha van a gráfban <span class="text-blue-600">Hamilton-kör</span>, és kitépsz belőle $k$ darab csúcsot, akkor a maradék gráf legfeljebb $k$ darab különálló részre (komponensre) fog esni.</li>
+<li>Ha csak <span class="text-blue-600">Hamilton-út</span> van, akkor ugyanez a helyzet, de itt max $k+1$ darabra eshet szét a gráf.</li>
 </ol>
 </div>
-</math-theorem>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge">3.7</div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-blue-500/30 decoration-4 underline-offset-8 text-balance">
-            Dirac-tétel: Elégséges feltétel Hamilton-körre
-        </h2>
-</div>
-</math-header>
-<math-theorem>
+</math-theorem><math-theorem>
 <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-800 p-6 md:p-8 rounded-2xl shadow-sm">
 <div class="flex items-center mb-4 text-amber-600 dark:text-amber-400">
 <span class="bg-amber-100 dark:bg-amber-900/40 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md mr-3">Tétel</span>
 <span class="font-bold italic text-sm">Gabriel Andrew Dirac (1952)</span>
 </div>
 <p class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
-                Ha van egy legalább 3 fős társaságod (azaz egy $n \geq 3$ csúcsú $G$ egyszerű gráf), és mindenki a társaság legalább felét ismeri (minden csúcs foka legalább $n/2$), akkor garantáltan le tudod ültetni őket egy kerekasztalhoz úgy, hogy mindenki a két barátja között üljön (tehát van benne <span class="text-blue-600">Hamilton-kör</span>).
+                Ha van legalább 3 csúcsod, és <i>minden egyes</i> csúcs össze van kötve legalább a többi csúcs felével (foka $\geq n/2$), akkor tuti, hogy van a gráfban <span class="text-blue-600">Hamilton-kör</span>.
             </p>
 </div>
-</math-theorem>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge">3.8</div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-blue-500/30 decoration-4 underline-offset-8 text-balance">
-            Ore tétele és a bizonyítási eljárás
-        </h2>
-</div>
-</math-header>
-<math-theorem>
+</math-theorem><math-theorem>
 <div class="flex items-center mb-4 text-amber-600 dark:text-amber-400">
 <span class="font-bold italic text-sm">Ore tétele</span>
 </div>
 <p class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
-            Képzelj el egy $n \geq 3$ csúcsú $G$ egyszerű gráfot. Ha kiválasztasz benne bármely két olyan csúcsot $u$-t és $v$-t, akik nincsenek összekötve ($\{u, v\} \notin E(G)$), és a fokszámukat összeadod ($d(u) + d(v)$), és ez az összeg mindig eléri legalább a csúcsok számát ($n$), akkor biztos lehetsz benne, hogy a gráfban van <span class="text-blue-600">Hamilton-kör</span> (egy nagy, mindenkit bejáró körutazás).
+            (Ore szerint:) Ha a gráfodban van legalább 3 csúcs ($n \geq 3$), és bárhogy bökünk rá két <i>olyan csúcsra, amik nincsenek összekötve</i>, és ezeknek a fokszámait összeadva legalább $n$-et kapunk ($d(u) + d(v) \geq n$), akkor is fixen van benne <span class="text-blue-600">Hamilton-kör</span>.
         </p>
-</math-theorem>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge">3.10</div>
-<h3 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-blue-500/30 decoration-4 underline-offset-8 text-balance italic">
-            Fejezeti összefoglaló: Euler vs. Hamilton
-        </h3>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge">3.11</div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-blue-500/30 decoration-4 underline-offset-8">
-            Hamilton-út Tervező: A Csúcsok Bejárása
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge">3.12</div>
-</div>
-</math-header>
-</div>
-</div>
+</math-theorem><div class="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-100 dark:border-blue-800">
+<p class="font-bold text-blue-600 mb-2">Új sorrend ($\pi'$):</p>
+<p class="font-mono text-xs">$(v_1, v_2, \dots, v_k, v_n, v_{n-1}, \dots, v_{k+1})$</p>
+</div><div class="mt-12 p-8 bg-blue-500/10 border-2 border-dashed border-blue-500/30 rounded-[2.5rem] text-center transition-all" id="complete-section-3">
+<h3 class="text-xl font-black text-blue-600 dark:text-blue-400 mb-4 uppercase" id="complete-text-3">
+        Vágod az egészet?
+    </h3>
+<button class="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-lg transition-all active:scale-95" data-theme-color="blue" id="complete-btn-3" onclick="toggleChapterComplete(3)">
+        Naná! ✅
+    </button>
+</div></div></div>
+
 <div class="mb-20">
 <math-header>
 <div class="flex items-center gap-4 mb-8 mt-16">
@@ -860,229 +706,102 @@ Az <strong class="text-emerald-600 dark:text-emerald-400 not-italic uppercase">�
                 </div>
 <div class="relative w-fit">
 <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                        Körök, Euler-séták és Hamilton-körök
+                        Gráfok színezése
                     </h2>
 <div class="absolute -bottom-2 left-0 w-full h-1.5 bg-slate-800/20 dark:bg-slate-700/50 rounded-full"></div>
 </div>
 </div>
 </math-header>
-<div class="flex flex-col gap-6">
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge bg-yellow-500 text-slate-900">4.1</div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
-            Páros gráfok definíciója
-        </h2>
-</div>
-</math-header>
-<math-def>
+<div class="flex flex-col gap-6"><math-def>
 <div class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
 <p>
-                Egy $G$ gráf <span class="text-yellow-600">páros gráf</span>, ha a pontjait el tudod osztani két külön táborra (mondjuk „Fiúk” ($A$) és „Lányok” ($B$)) úgy, hogy minden él szigorúan csak a két tábor között húzódik. (Nincs fiú-fiú vagy lány-lány barátság a gráfon belül.)
+                Egy $G$ gráfot akkor hívunk <span class="text-yellow-600">páros gráfnak</span>, ha a csúcsait két külön csapatra (mondjuk fiúkra, ez lesz az $A$, és lányokra, ez meg a $B$) tudjuk osztani úgy, hogy a gráfban csak és kizárólag fiúk és lányok fogják egymás kezét, azaz minden él egy $A$-beli és egy $B$-beli csúcsot köt össze. (Fiúk a fiúkkal, lányok a lányokkal nem barátkoznak.)
             </p>
 </div>
 <div class="mt-6 p-4 bg-white dark:bg-slate-800/50 rounded-2xl border border-yellow-100 dark:border-yellow-900/30">
 <p class="text-slate-600 dark:text-slate-400 text-sm flex items-center gap-2">
 <span class="font-mono text-yellow-600 font-bold">Jelölés:</span> 
-                Ilyenkor a megszokott $G = (V,E)$ helyett azt írjuk, hogy $G = (A,B;E)$, mutatva a két külön tábort.
+                Ha ezt akarjuk hangsúlyozni, a sima $G = (V,E)$ helyett a $G = (A,B;E)$ furcsaságot írjuk.
             </p>
 </div>
-</math-def>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge bg-yellow-500 text-slate-900">4.2</div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
-            Páratlan körök és párosság
-        </h2>
-</div>
-</math-header>
-<math-theorem>
+</math-def><math-theorem>
 <div class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
 <p>
-                Egy $G$ gráf pontosan akkor páros (két olyan táborra osztható, akik csak a másik tábor tagjaival barátkoznak, házon belül nem), ha nem tudsz benne páratlan számú lépésből visszajutni a kiindulópontba (vagyis nincsenek benne páratlan hosszú körök).
+                Egy $G$ gráf pontosan akkor páros gráf, ha nincs benne páratlan lépésből álló kör. (Gondolj bele: ha fiú-lány-fiú-lány alapon mész körbe, csak páros lépésszámmal érhetsz vissza ugyanahhoz a nemhez!)
             </p>
 </div>
-</math-theorem>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge bg-yellow-500 text-slate-900">4.3</div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
-            Gráfszínezés és kromatikus szám
-        </h2>
-</div>
-</math-header>
-<math-def>
+</math-theorem><math-def>
 <div class="text-slate-700 dark:text-slate-200 leading-relaxed italic space-y-6">
 <p>
-                Egy $G$ gráf <strong class="text-slate-900 dark:text-white not-italic">$k$ színnel színezhető</strong>, ha meg tudod úgy oldani a "színezős játékot" $k$ darab filctollal, hogy semelyik két összekötött csúcs ne legyen ugyanolyan színű (szomszédok nem egyezhetnek).
+                Azt mondjuk, hogy egy $G$ gráf <strong class="text-slate-900 dark:text-white not-italic">$k$ színnel színezhető</strong>, ha van hozzá $k$ darab filctollunk, és minden csúcsot ki tudunk színezni úgy, hogy az összekötött (szomszédos) haverok sosem kapják ugyanazt a színt.
             </p>
 <p class="border-l-4 border-yellow-500/20 pl-6">
-                A <strong class="text-slate-900 dark:text-white not-italic">kromatikus szám</strong> az a minimum színmennyiség ($k$), amennyiből éppen hogy ki tudod színezni a gráfot (de egyel kevesebb színből már elvéreznél). 
-                Jelölése ez a fura X betű: <span class="text-yellow-600 font-bold not-italic">$\chi(G)$</span>.
+                A $G$ <strong class="text-slate-900 dark:text-white not-italic">kromatikus száma</strong> pontosan $k$, ha ez a színezősdi sikerül $k$ darab filctollal, de eggyel kevesebbel már biztosan elakadnánk. 
+                $G$ kromatikus számának a jele, mint a "kromatikus" szónál a görög kh: <span class="text-yellow-600 font-bold not-italic">$\chi(G)$</span>.
             </p>
 </div>
-</math-def>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge bg-yellow-500 text-slate-900">4.4</div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
-            A mohó színezés korlátai
-        </h2>
-</div>
-</math-header>
-<math-theorem>
+</math-def><math-theorem>
 <div class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
 <p>
-                Bármilyen $k \geq 1$ számra tudunk mutatni egy olyan szívató gráfot és a rajta lévő csúcsoknak egy olyan szerencsétlen sorrendjét, ami bár igazából kiszínezhető lenne mindössze 2 színnel ($\chi(G) = 2$), a mohó színezés (ami mindig az első szabad színt választja) csúnyán elhasal ezen a sorrenden, és egészen $k$ darab színt elpazarol.
+                A mohó színezés eléggé béna tud lenni. Bármilyen $k \geq 1$-re létezik olyan gonoszul összerakott ($2k$ csúcsú) $G$ gráf, ami amúgy 2 színnel simán kiszínezhető ($\chi(G) = 2$), de ha pont egy direkt kiszúrt, peches sorrendben etetjük meg a csúcsokat a mohó algoritmussal, akkor az pazarolni fog, és indokolatlanul $k$ darab színt fog elhasználni.
             </p>
 </div>
-</math-theorem>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge bg-yellow-500 text-slate-900">4.5</div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
-            A maximális fokszám és a színezés kapcsolata
-        </h2>
-</div>
-</math-header>
-<math-theorem>
+</math-theorem><math-theorem>
 <div class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
 <p>
-                Ha van egy gráfunk hurokélek (önmagukba mutató élek) nélkül, és $\Delta(G)$ a legnépszerűbb csúcs barátainak száma (maximális fokszám), akkor a mohó algoritmus akárhogy is ügyetlenkedik (bármilyen sorrendben mész végig a csúcsokon), sosem fog több színt elhasználni, mint $\Delta(G) + 1$.
+                Jelölje $\Delta(G)$ a legnépszerűbb csúcs barátainak számát (maximális fokszám). Ha ráküldöd a mohó színezést a gráfra teljesen random sorrendben, az garantáltan nem fog $\Delta(G)+1$-nél több filctollat elhasználni. Ennyiből mindig megoldja, még a legrosszabb sorrendben is.
             </p>
 </div>
-</math-theorem>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge bg-yellow-500 text-slate-900">4.6</div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
-            A klikkszám fogalma
-        </h2>
-</div>
-</math-header>
-<math-def>
+</math-theorem><math-def>
 <div class="text-slate-700 dark:text-slate-200 leading-relaxed italic space-y-4">
 <p class="text-lg">
-                A gráf <strong class="text-slate-900 dark:text-white not-italic font-black">klikkszáma</strong> ($k$) azt mutatja meg, mekkora a legnagyobb "mindenki mindenkit ismer" baráti társaság (klikk) a hálózatban. Tehát van benne egy $k$ fős banda, ahol mindenki össze van kötve mindenkivel, de ennél nagyobb ilyen társaságot nem találsz.
+                A $G$ gráf <strong class="text-slate-900 dark:text-white not-italic font-black">klikkszáma</strong> $k$, ha rá tudsz mutatni egy $k$ fős klikkre (egy szorosan összetartó társaságra, ahol tényleg minden csúcs össze van kötve minden másikkal), de eggyel nagyobb, $k+1$ fős ilyen baráti kört már lehetetlen találni benne.
             </p>
 <div class="flex items-center gap-3 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl border border-yellow-100 dark:border-yellow-800/50">
 <span class="text-sm font-black uppercase tracking-widest text-yellow-600">Jelölése:</span>
 <span class="text-2xl font-black text-slate-900 dark:text-white">$\omega(G)$</span>
 </div>
 </div>
-</math-def>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge bg-yellow-500 text-slate-900">4.7</div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
-            Összefüggés a klikkszám és a színezhetőség között
-        </h2>
-</div>
-</math-header>
-<math-theorem>
+</math-def><math-theorem>
 <div class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
 <p>
-                Bármilyen gráfra igaz, hogy a klikkszám (a legnagyobb "mindenki mindenkit ismer" banda mérete) sosem lehet nagyobb, mint a kromatikus szám (a minimális színek száma). Röviden: $\omega(G) \leq \chi(G)$. Ez eléggé logikus: egy klikkben minden csúcsot más színnel kell színezni, mert mindegyik össze van kötve mindegyikkel.
+                Minden gráfra igaz, hogy $\omega(G) \leq \chi(G)$. Józan paraszti ésszel: ha van egy $\omega(G)$ fős klikked, ahol mindenki ismeri a másikat, nekik kapásból mind külön szín kell, hogy ne vesszenek össze. Tehát a szükséges filctollak száma minimum akkora, mint a legnagyobb klikk mérete.
             </p>
 </div>
-</math-theorem>
-<math-header>
-<div class="num-badge">4.7b</div>
-<h2>Háromszögmentes gráfok kromatikus száma</h2>
-</math-header>
-<math-theorem>
+</math-theorem><math-theorem>
 <div class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
 <p>
-                Meglepő, de igaz: bármekkora $k \geq 2$ színmennyiséghez tudunk rajzolni olyan szemetgráfot, amiben még egy nyomorult háromszög (3 fős klikk, vagyis $\omega(G_k)=2$) sincs, mégis rá vagy kényszerítve, hogy legalább $k$ darab különböző színt használj a kifestéséhez ($\chi(G_k) = k$).
+                Durva, de igaz: bármilyen nagy $k \geq 2$ számot is mondasz, lehet olyan nyakatekert $G_k$ gráfot építeni, amiben a legnagyobb klikk csak 2 fős (azaz még egy iciri-piciri háromszög sincs benne, $\omega(G_k) = 2$), mégis olyan agyafúrt a szerkezete, hogy kénytelen leszel elhasználni $k$ darab filctollat ($\chi(G_k) = k$), mire kiszínezed az egészet!
             </p>
 </div>
-</math-theorem>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge bg-yellow-500 text-slate-900">4.8</div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
-            Intervallumgráfok
-        </h2>
-</div>
-</math-header>
-<math-def>
+</math-theorem><math-def>
 <div class="text-slate-700 dark:text-slate-200 leading-relaxed italic space-y-4">
 <p>
-                Gondolj úgy egy <strong class="text-slate-900 dark:text-white not-italic underline decoration-yellow-500/30">intervallumgráfra</strong>, mint egy egyetemi órarendre vagy meeting naptárra! Akkor mondjuk egy gráfra, hogy intervallumgráf, ha az egészet fel tudjuk rajzolni a számegyenesre felvett szakaszokkal (intervallumokkal) a következőképpen:
+                Egy $G$ gráfot <strong class="text-slate-900 dark:text-white not-italic underline decoration-yellow-500/30">intervallumgráfnak</strong> hívunk, ha fel lehet úgy rajzolni, mintha egy naptárban lennének a megbeszéléseid ($I_1, I_2, \dots, I_n$ intervallumok a számegyenesen):
             </p>
 <ul class="list-disc list-inside space-y-2 ml-4">
-<li>A gráf csúcsai egy-egy időtartamot jelölnek (pl. egy sáv a naptárban);</li>
-<li>két csúcs között pontosan akkor húzunk élt, ha a két idősáv beleköt egymásba (azaz egyszerre lennének, átfedésben vannak).</li>
+<li>$G$ csúcsai maguk a megbeszélések (az intervallumok);</li>
+<li>két csúcs között pedig pontosan akkor húzunk élt (szomszédosak), ha a két megbeszélés időben átfedi egymást (van közös pontjuk).</li>
 </ul>
 <p class="pt-4 border-t border-slate-100 dark:border-slate-700/50">
-                A szakaszok seregét, amiből ezt meg tudtuk rajzolni, úgy hívjuk, hogy az intervallumrendszer <strong class="text-slate-900 dark:text-white not-italic">reprezentálja</strong> a gráfot (ő a mögöttes órarend).
+                Ilyenkor az $\{I_1, \dots, I_n\}$ beosztásra azt mondjuk, hogy <strong class="text-slate-900 dark:text-white not-italic">reprezentálja</strong> a $G$ intervallumgráfot.
             </p>
 </div>
-</math-def>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge bg-yellow-500 text-slate-900 font-black px-3 py-1 rounded-lg shadow-sm shadow-yellow-500/20">
-            4.9
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
-            Optimális színezési stratégia
-        </h2>
-</div>
-</math-header>
-<math-theorem>
+</math-def><math-theorem>
 <div class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
 <p>
-                Ha van egy intervallumgráfod (ami olyan, mint egy csomó idősáv a naptárban), akkor meg lehet hackelni a mohó algoritmust! Ha egyszerűen csak <span class="text-yellow-600">kezdési idő szerint (bal végpont) növekvő sorrendbe</span> rakod az intervallumokat, és úgy mész rajtuk végig, a mohó színezés egyből megadja a tökéletes, legkevesebb színt igénylő ($\chi(G)$) színezést.
+                Képzeld el az intervallumokat naptári eseményekként. Ha ezeket a <span class="text-yellow-600">kezdési idejük szerint sorba állítod</span> (bal végpont szerint növekvő sorrend), és így engeded rájuk a mohó színezést, akkor csoda történik: a mohó algoritmus egyáltalán nem fog pazarolni, és tökéletes, optimális $\chi(G)$ darab színnel fogja megoldani a feladatot!
             </p>
 </div>
-</math-theorem>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge bg-yellow-500 text-slate-900 font-black px-3 py-1 rounded-lg shadow-sm shadow-yellow-500/20">
-            4.10
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
-            Az intervallumgráfok tökéletessége
-        </h2>
-</div>
-</math-header>
-<math-theorem>
+</math-theorem><math-theorem>
 <div class="flex items-center mb-4">
 <span class="bg-slate-900 text-yellow-500 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md mr-3">Következmény</span>
 </div>
 <p class="text-2xl font-black mb-2 italic leading-tight text-slate-900 dark:text-white">
-            Intervallumgráfoknál az élet szép: a legnagyobb klikk mérete ($\omega(G)$) hajszálpontosan megegyezik a minimálisan szükséges színek számával ($\chi(G)$).
+            Intervallumgráfoknál az élet szép! Bármilyen ilyen gráfnál a szükséges színek száma pont annyi, mint a legnagyobb klikk mérete, azaz $\omega(G) = \chi(G)$.
         </p>
-</math-theorem>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge bg-yellow-500 text-slate-900 font-black px-3 py-1 rounded-lg shadow-sm shadow-yellow-500/20">
-            4.11
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
-            Színezési Kihívás: Találd meg a $\chi(G)$-t!
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge bg-yellow-500 text-slate-900 font-black px-3 py-1 rounded-lg shadow-sm">
-            4.12
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
-            Intervallumgráf-építő Labor
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-24">
-<div class="num-badge bg-yellow-500 text-slate-900 font-black px-3 py-1 rounded-lg shadow-sm shadow-yellow-500/20">
-            4.13
-        </div>
-</div>
-</math-header>
-</div>
-</div>
+</math-theorem></div></div>
+
 <div class="mb-20">
 <math-header>
 <div class="flex items-center gap-4 mb-8 mt-16">
@@ -1091,270 +810,130 @@ Az <strong class="text-emerald-600 dark:text-emerald-400 not-italic uppercase">�
                 </div>
 <div class="relative w-fit">
 <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                        Síkgráfok
+                        Párosítás fogalma
                     </h2>
 <div class="absolute -bottom-2 left-0 w-full h-1.5 bg-slate-800/20 dark:bg-slate-700/50 rounded-full"></div>
 </div>
 </div>
 </math-header>
-<div class="flex flex-col gap-6">
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-rose-500 text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-rose-500/20">
-            5.1
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-rose-500/30 decoration-4 underline-offset-8 text-balance">
-            Párosítások és független élhalmazok
-        </h2>
-</div>
-</math-header>
-<math-def>
+<div class="flex flex-col gap-6"><math-def>
 <div class="text-slate-700 dark:text-slate-200 leading-relaxed italic space-y-6">
 <ul class="space-y-4">
 <li class="flex items-start gap-3">
 <span class="mt-2 w-1.5 h-1.5 rounded-full bg-rose-500 flex-none"></span>
-<span>Azt mondjuk egy csokor élre ($M$), hogy ők egy <strong class="text-rose-600 not-italic font-bold">párosítás</strong> vagy <strong class="text-rose-600 not-italic font-bold">független élhalmaz</strong>, ha kvázi csupa monogám párból állnak: senki sem kavar egyszerre több emberrel (nincs közös végpontjuk, és saját magukkal sem randiznak, azaz nincs hurok).</span>
+<span>A $G$ gráfban kiválasztott élek egy $M$ halmazát <strong class="text-rose-600 not-italic font-bold">párosításnak</strong> (vagy <strong class="text-rose-600 not-italic font-bold">független élhalmaznak</strong>) hívjuk, ha az éleknek nincs közös csúcsuk. Mintha egy buliban mindenki maximum egy emberrel táncolna, senki nem fogja egyszerre két ember kezét (és önmagával sem táncol).</span>
 </li>
 <li class="flex items-start gap-3">
 <span class="mt-2 w-1.5 h-1.5 rounded-full bg-rose-500 flex-none"></span>
-<span>Egy párosítás <strong class="text-rose-600 not-italic font-bold">maximális</strong> (inkább "legnagyobb"), ha egész egyszerűen nem tudsz a hálózatban több embert rávenni arra, hogy függetlenül randizzon, mint amennyien most bent vannak $M$-ben.</span>
+<span>Az $M$ <strong class="text-rose-600 not-italic font-bold">maximális párosítás</strong>, ha ez a lehető legnagyobb létszámú táncoló pár a buliban, azaz ennél több párt már nem tudnál összerakni a társaságból.</span>
 </li>
 <li class="flex items-start gap-3">
 <span class="mt-2 w-1.5 h-1.5 rounded-full bg-rose-500 flex-none"></span>
-<span>A lehetséges legnagyobb párosítás méretét (tehát a maximum randizó párok számát) egy elegáns <strong class="text-slate-900 dark:text-white not-italic font-black">$\nu(G)$</strong> (ejtsd: nű) jelöli.</span>
+<span>A $G$-béli maximális párosítások méretét <strong class="text-slate-900 dark:text-white not-italic font-black">$\nu(G)$</strong> jelöli.</span>
 </li>
 <li class="flex items-start gap-3">
 <span class="mt-2 w-1.5 h-1.5 rounded-full bg-rose-500 flex-none"></span>
-<span>Egy élkupac <strong class="text-rose-600 not-italic font-bold">teljes párosítás</strong>, ha az egy igazi vakrandi-mennyország: $G$ minden egyes csúcsa talált párt magának, tehát mindenkit érint egy $M$-beli él.</span>
+<span>Az $M$ egy <strong class="text-rose-600 not-italic font-bold">teljes párosítás</strong>, ha senki sem maradt egyedül a sarokban, azaz a gráf minden egyes csúcsa kapott egy párt magának.</span>
 </li>
 </ul>
 </div>
-</math-def>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-rose-500 text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-rose-500/20">
-            5.2
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-rose-500/30 decoration-4 underline-offset-8 text-balance">
-            Lefogó ponthalmazok
-        </h2>
-</div>
-</math-header>
-<math-def>
+</math-def><math-def>
 <div class="text-slate-700 dark:text-slate-200 leading-relaxed italic space-y-6">
 <ul class="space-y-4">
 <li class="flex items-start gap-3">
 <span class="mt-2 w-1.5 h-1.5 rounded-full bg-rose-500 flex-none"></span>
-<span>Csúcsok egy kis csapatát ($X$) <strong class="text-rose-600 not-italic">lefogó ponthalmaznak</strong> hívjuk, ha a gráf *összes* kapcsolata (éle) beleütközik legalább az egyikükbe. Mint a biztonsági őrök: minden élt szemmel tartanak.</span>
+<span>A csúcsok egy $X$ halmazát <strong class="text-rose-600 not-italic">lefogó ponthalmaznak</strong> mondjuk, ha ezek a csúcsok úgy helyezkednek el, hogy a gráf minden egyes élének legalább az egyik végét megfogják. Képzeld el, hogy rendőrök (csúcsok) vigyáznak az utcákra (élek) – minden utcában állni kell legalább egy rendőrnek a sarkon.</span>
 </li>
 <li class="flex items-start gap-3">
 <span class="mt-2 w-1.5 h-1.5 rounded-full bg-rose-500 flex-none"></span>
-<span>Ez az őrcsapat <strong class="text-rose-600 not-italic font-bold">minimális</strong> (pontosabban "legkisebb"), ha kevesebb emberrel már esélytelen lennél megfigyelni az összes élet.</span>
+<span>Az $X$ egy <strong class="text-rose-600 not-italic font-bold">minimális lefogó ponthalmaz</strong>, ha megtaláltuk a lehető legkevesebb rendőrt, akivel az összes utca lefedhető.</span>
 </li>
 <li class="flex items-start gap-3">
 <span class="mt-2 w-1.5 h-1.5 rounded-full bg-rose-500 flex-none"></span>
 <span class="flex items-center gap-2">
-                        A legprofibb, azaz legkisebb létszámú őrcsapat méretét <strong class="text-slate-900 dark:text-white not-italic font-black text-lg">$\tau(G)$</strong> (ejtsd: tau) jelöli.
+                        A $G$-béli minimális lefogó ponthalmazok méretét <strong class="text-slate-900 dark:text-white not-italic font-black text-lg">$\tau(G)$</strong> jelöli.
                     </span>
 </li>
 </ul>
 </div>
-</math-def>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-rose-500 text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-rose-500/20">
-            5.3
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-rose-500/30 decoration-4 underline-offset-8 text-balance uppercase tracking-tight">
-            Párosítás és lefogó ponthalmaz kapcsolata
-        </h2>
-</div>
-</math-header>
-<math-theorem>
+</math-def><math-theorem>
 <div class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
 <p>
-                Gondolj bele: minden $G$ gráfra igaz, hogy $\nu(G) \leq \tau(G)$. Miért? Mert ha van egy rakás független éled (akik nem érnek össze), akkor mindegyik lefogásához kell legalább egy külön emberke (csúcs). Így a lefogó pontok száma sosem lehet kevesebb, mint a randizó élek száma!
+                Minden $G$ gráfra $\nu(G) \leq \tau(G)$ teljesül. Parasztlogikával: Ha van valahány táncoló párunk (ahol a kezek nem érnek össze), akkor legalább ennyi rendőr kell ahhoz, hogy mindegyik táncoló párt (élet) "lefogjuk", hiszen egy rendőr csak egy párhoz tud odaállni, ha nincs közös sarok!
             </p>
 </div>
-</math-theorem>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-rose-500 text-white font-black px-3 py-1 rounded-xl shadow-sm text-sm">
-            5.4
-        </div>
-<div class="relative w-fit">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                Független ponthalmaz
-            </h2>
-<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-rose-500/20 rounded-full"></div>
-</div>
-</div>
-</math-header>
-<math-def>
+</math-theorem><math-def>
 <div class="p-2">
 <p class="text-slate-800 dark:text-slate-200 leading-relaxed italic">
-<span class="font-bold text-emerald-700 dark:text-emerald-400 uppercase text-[10px] tracking-widest block mb-2 text-left not-italic">Definíció - A magányos farkasok</span> 
-                Csúcsok egy társaságát ($Y$) <span class="font-bold underline decoration-emerald-200 decoration-2 underline-offset-4 not-italic">független ponthalmaznak</span> hívjuk, ha a csapatból az égvilágon senki sem ismeri egymást. A gráfban egyetlen összekötő él sincs közöttük (még magukkal se, szóval hurokél sincs).
+<span class="font-bold text-emerald-700 dark:text-emerald-400 uppercase text-[10px] tracking-widest block mb-2 text-left not-italic">Definíció</span> 
+                A csúcsok egy $Y$ halmazát <span class="font-bold underline decoration-emerald-200 decoration-2 underline-offset-4 not-italic">független ponthalmaznak</span> hívjuk, ha a halmazban lévő srácok egyáltalán nem ismerik egymást – semelyik kettőjük között nem megy él a gráfban (és senki sem fogja a saját kezét).
             </p>
 </div>
-</math-def>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-rose-500 text-white font-black px-3 py-1 rounded-xl shadow-sm text-sm">
-            5.5
-        </div>
-<div class="relative w-fit">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                Lefogó élhalmaz
-            </h2>
-<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-rose-500/20 rounded-full"></div>
-</div>
-</div>
-</math-header>
-<math-def>
+</math-def><math-def>
 <div class="p-2">
 <p class="text-slate-800 dark:text-slate-200 leading-relaxed italic">
-<span class="font-bold text-emerald-700 dark:text-emerald-400 uppercase text-[10px] tracking-widest block mb-2 not-italic">Definíció - A mindent befonó háló</span> 
-                Élek egy pakkját ($Z$) <span class="font-bold underline decoration-emerald-200 decoration-2 underline-offset-4 not-italic">lefogó élhalmaznak</span> nevezzük, ha ezen élek mentén a gráf összes csúcsához el tudsz jutni. (Persze csak akkor van értelme erről beszélni, ha a gráfban nincsenek bekötetlen, magányos remeték!)
+<span class="font-bold text-emerald-700 dark:text-emerald-400 uppercase text-[10px] tracking-widest block mb-2 not-italic">Definíció</span> 
+                Ha a gráfban nincs olyan csúcs, ami egyedül lógna a levegőben (izolált pont), akkor élek egy $Z$ halmazát <span class="font-bold underline decoration-emerald-200 decoration-2 underline-offset-4 not-italic">lefogó élhalmaznak</span> hívjuk, ha a gráfban minden egyes embert legalább egy zsinórral (éllel) magunkhoz kötöttünk (vagyis minden csúcs be van vonva).
             </p>
 </div>
-</math-def>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-rose-500 text-white font-black px-3 py-1 rounded-xl shadow-sm text-sm">
-            5.6
-        </div>
-<div class="relative w-fit">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                Független pontok és lefogó élek
-            </h2>
-<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-rose-500/20 rounded-full"></div>
-</div>
-</div>
-</math-header>
-<math-theorem>
+</math-def><math-theorem>
 <div class="p-2">
 <p class="text-slate-800 dark:text-slate-200 leading-relaxed">
-<span class="font-bold text-yellow-700 dark:text-yellow-400 uppercase text-[10px] tracking-widest block mb-2">Állítás (Józan paraszti ésszel)</span> 
-                Minden (magányos remetéket nem tartalmazó) $G$ gráfra <span class="font-bold">$\alpha(G) \leq \rho(G)$</span> teljesül. Logikus: ha van egy csomó pontod, amik között nincs egyetlen kapcsolat (él) sem ($\alpha$), akkor minimum ugyanannyi élre lesz szükséged, hogy mindegyiküket elérd (lefedd) a gráfban ($\rho$).
+<span class="font-bold text-yellow-700 dark:text-yellow-400 uppercase text-[10px] tracking-widest block mb-2">Állítás</span> 
+                Bármely (magányos farkas, azaz izolált pont nélküli) $G$ gráfra <span class="font-bold">$\alpha(G) \leq \rho(G)$</span> mindig igaz. Józan ésszel: A maximálisan össze nem kötött srácok száma ($\alpha$) legfeljebb annyi lehet, mint a legkisebb zsinór-mennyiség, amivel mindenkit meglógatunk ($\rho$).
             </p>
 </div>
-</math-theorem>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-rose-500 text-white font-black px-3 py-1 rounded-xl shadow-sm text-sm">
-            5.7
-        </div>
-<div class="relative w-fit">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                Lefogó és független ponthalmaz kapcsolata
-            </h2>
-<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-rose-500/20 rounded-full"></div>
-</div>
-</div>
-</math-header>
-<math-theorem>
+</math-theorem><div class="p-5 bg-emerald-50 dark:bg-emerald-900/10 rounded-2xl border border-emerald-100 dark:border-emerald-900/30">
+<p class="font-bold text-emerald-600 dark:text-emerald-400 mb-2 text-xs uppercase">A függetlenség kényszere</p>
+                        Egyetlen $Z$-beli madzag nem foghat meg két embert is az $Y$-ból egyszerre, mert az $Y$ egy olyan haveri kör, ahol senki sem ismeri a másikat – szóval nem kötheti össze őket él!
+                    </div><math-theorem>
 <div class="p-2">
 <p class="text-slate-800 dark:text-slate-200 leading-relaxed italic">
-<span class="font-bold text-yellow-700 dark:text-yellow-400 uppercase text-[10px] tracking-widest block mb-2 not-italic">Állítás a felosztásról</span> 
-                Vedd a $G$ gráf csúcsait, és oszd két csapatra: $X$-re és az összes többire ($Y$). A nagy trükk: $X$ pontosan akkor lesz egy mindent látó <span class="font-bold not-italic">lefogó ponthalmaz</span> (vagyis az összes élt érintik), ha az $Y$ egy <span class="font-bold not-italic">független ponthalmaz</span> (az $Y$ emberei között zéró ismertség van). Ha az $X$ lefogta az összes élet a gráfban, akkor $Y$-on belülre már nyilvánvalóan egy sem maradt!
+<span class="font-bold text-yellow-700 dark:text-yellow-400 uppercase text-[10px] tracking-widest block mb-2 not-italic">Állítás</span> 
+                Képzelj el egy $G$ gráfot, és oszd két táborra a csúcsokat: az $X$ brigádra és az összes maradék emberből álló $Y$ brigádra. Az $X$ csapata pontosan akkor <span class="font-bold not-italic">lefogó ponthalmaz</span> (minden utca sarkán áll tőlük valaki), ha a maradék $Y$ csapat egy <span class="font-bold not-italic">független ponthalmaz</span> (senki nem ismeri a másikat a saját táborán belül). Ez egy igazi "vagy rendőrök vagytok, vagy egymást nem ismerő gyanúsítottak" felállás.
             </p>
 </div>
-</math-theorem>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-rose-500 text-white font-black px-3 py-1 rounded-xl shadow-sm text-sm">
-            5.8
-        </div>
-<div class="relative w-fit">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                Párosítások és lefogó élek kapcsolata
-            </h2>
-<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-rose-500/20 rounded-full"></div>
-</div>
-</div>
-</math-header>
-<math-theorem>
+</math-theorem><div class="w-3 h-3 rounded-full bg-emerald-500"></div><math-theorem>
 <div class="p-2">
-<span class="font-bold text-yellow-700 dark:text-yellow-400 uppercase text-[10px] tracking-widest block mb-2">Lemma (Kisebb megfigyelések)</span>
+<span class="font-bold text-yellow-700 dark:text-yellow-400 uppercase text-[10px] tracking-widest block mb-2">Lemma</span>
 <p class="text-slate-800 dark:text-slate-200 leading-relaxed italic">
-                Képzelj el egy $n$ fős társaságot (gráfot), ahol senki sincs teljesen egyedül (nincs izolált pont).
+                Vegyünk egy $n$ fős társaságot ($n$ csúcs), ahol nincsenek teljes remeték (izolált pont mentes $G$).
             </p>
 <ul class="list-none space-y-2 mt-4 text-slate-800 dark:text-slate-200 italic">
 <li class="flex gap-2">
 <span class="font-bold text-rose-500">(i)</span> 
-                    Ha találsz egy $k$ pár alkotta szeparált randit (párosítást), akkor az ő segítségükkel és legfeljebb a többiek bevonásával max $n-k$ éllel le tudod fogni az összes csúcsot.
+                    Ha van a buliban $k$ db táncoló pár (párosítás), akkor elég legfeljebb $n-k$ db kötelet hozni ahhoz, hogy mindenkit lekössünk (lefogó élhalmaz).
                 </li>
 <li class="flex gap-2">
 <span class="font-bold text-rose-500">(ii)</span> 
-                    Visszafelé: ha elég $k$ él, hogy eljuss mindenkihez (lefogó élhalmaz), akkor biztosan ki tudsz választani belőle legalább $n-k$ olyan élt, ami nem osztozik senkin (párosítás).
+                    Ha fel tudjuk kötözni a társaságot $k$ db kötéllel (lefogó élhalmaz), akkor ebből tuti ki lehet alakítani legalább $n-k$ táncoló párt (párosítás).
                 </li>
 </ul>
 </div>
-</math-theorem>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-rose-500 text-white font-black px-3 py-1 rounded-xl shadow-sm text-sm">
-            5.9
-        </div>
-<div class="relative w-fit">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                Gallai-tételek
-            </h2>
-<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-rose-500/20 rounded-full"></div>
-</div>
-</div>
-</math-header>
-<math-theorem>
+</math-theorem><math-theorem>
 <div class="p-2 space-y-6">
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-rose-600 dark:text-rose-400 mb-4">Tétel (A Nagy Gallai-Tétel, 1959)</h4>
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-rose-600 dark:text-rose-400 mb-4">Tétel (Gallai Tibor, 1959)</h4>
 <p class="text-slate-800 dark:text-slate-100 leading-relaxed font-medium text-lg">
-                Zseniális összefüggések, amik minden $n$ csúcsú $G$ gráfra igazak lesznek, mint az egyszeregy:
+                Gallai-tételek, a puska talán legfontosabb képletei! Parasztlogikával: a "max független" és a "min lefogó" cuccok összege mindig megadja a teljes létszámot ($n$). Bármely $n$ fős gráfra (társaságra) igaz:
             </p>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
 <div class="space-y-2">
-<span class="text-[10px] font-black text-rose-500 uppercase block">(i) Pontokra vonatkozóan (A társaság felosztása)</span>
+<span class="text-[10px] font-black text-rose-500 uppercase block">(i) Pontokra vonatkozóan</span>
 <div class="text-3xl font-black text-slate-900 dark:text-white">
                         $$\alpha(G) + \tau(G) = n$$
                     </div>
-<p class="text-sm text-slate-600 dark:text-slate-400 mt-2">A legnagyobb antiszociális csapat + a legkisebb őrcsapat kiadja az összes embert!</p>
 </div>
 <div class="space-y-2">
-<span class="text-[10px] font-black text-rose-500 uppercase block">(ii) Élekre vonatkozóan (Kapcsolatok leosztása)*</span>
+<span class="text-[10px] font-black text-rose-500 uppercase block">(ii) Élekre vonatkozóan*</span>
 <div class="text-3xl font-black text-slate-900 dark:text-white">
                         $$\nu(G) + \rho(G) = n$$
                     </div>
-<p class="text-sm text-slate-600 dark:text-slate-400 mt-2">A maximális randizó párok + a minimális "mindenkihez elérő" élek száma is pont $n$.</p>
-<p class="text-[10px] text-slate-400 italic mt-2">*Kivéve persze, ha van valaki, akit senki se ismer (nincs izolált pont).</p>
+<p class="text-[10px] text-slate-400 italic mt-2">*Ha $G$-nek nincs izolált pontja.</p>
 </div>
 </div>
 </div>
-</math-theorem>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-rose-500 text-white font-black px-3 py-1 rounded-xl shadow-sm text-sm">
-            Σ
-        </div>
-<div class="relative w-fit">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                Paraméterek Gyorsáttekintője
-            </h2>
-<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-rose-500/20 rounded-full"></div>
-</div>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-24">
-<div class="flex-none bg-rose-500 text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-rose-500/20">
-            5.10
-        </div>
-<div class="relative w-fit">
-<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-rose-500/20 rounded-full"></div>
-</div>
-</div>
-</math-header>
-</div>
-</div>
+</math-theorem></div></div>
+
 <div class="mb-20">
 <math-header>
 <div class="flex items-center gap-4 mb-8 mt-16">
@@ -1363,171 +942,193 @@ Az <strong class="text-emerald-600 dark:text-emerald-400 not-italic uppercase">�
                 </div>
 <div class="relative w-fit">
 <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                        Gráfok színezései
+                        Párosítás páros gráfban
                     </h2>
 <div class="absolute -bottom-2 left-0 w-full h-1.5 bg-slate-800/20 dark:bg-slate-700/50 rounded-full"></div>
 </div>
 </div>
 </math-header>
-<div class="flex flex-col gap-6">
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-24">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
-            6.1
-        </div>
-<div class="relative w-fit">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
-                Javítóutak páros gráfban
-            </h2>
-<div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
+<div class="flex flex-col gap-6"><div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic mb-6">
+            Képzelj el egy $G = (A, B; E)$ páros gráfot (mondjuk lányok és fiúk) és egy $M$ párosítást (az eddigi párokat). Egy $P$ út akkor <b>javítóút</b> az $M$-re nézve, ha a következő "józan paraszti" szabályok igazak rá:
+        </p>
+<div class="space-y-4 ml-4">
+<div class="flex gap-4">
+<span class="font-black text-emerald-600">(1)</span>
+<p class="text-slate-600 dark:text-slate-300">$P$ egy olyan $A$-beli csúcsból (pl. egy szingli lánytól) indul, akit az $M$ még nem fed le (nincs párja);</p>
+</div>
+<div class="flex gap-4">
+<span class="font-black text-emerald-600">(2)</span>
+<p class="text-slate-600 dark:text-slate-300">$P$ egy olyan $B$-beli csúcsban (pl. egy szingli fiúnál) végződik, akinek szintén nincs még párja az $M$-ben;</p>
+</div>
+<div class="flex gap-4">
+<span class="font-black text-emerald-600">(3)</span>
+<p class="text-slate-600 dark:text-slate-300">$P$-n végiglépkedve felváltva jönnek a "szabad" és a "foglalt" élek. Vagyis minden páros sorszámú lépésünk (a második, negyedik stb. él) a már meglévő $M$ párosításból való.</p>
 </div>
 </div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
-            6.2
-        </div>
-<div class="relative w-fit">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
-                Javítóutas algoritmus
-            </h2>
-<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-theme opacity-20 rounded-full"></div>
+</div><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Algoritmus</h4>
+<p class="text-slate-800 dark:text-white font-bold mb-4 uppercase text-sm tracking-tight">
+            JAVÍTÓUTAS ALGORITMUS (HOGYAN HOZZUK ÖSSZE A LEGTÖBB PÁRT PÁROS GRÁFBAN?)
+        </p>
+<p class="text-slate-700 dark:text-slate-300 mb-6 font-medium">
+<b>Bemenet:</b> Egy $G = (A,B;E)$ páros gráf (a "társkereső" hálózatunk)
+        </p>
+<div class="space-y-3 font-mono text-sm sm:text-base text-slate-800 dark:text-slate-200 ml-2">
+<div class="flex gap-4">
+<span class="text-amber-600/50 font-black w-4">1</span>
+<p>$M \leftarrow \emptyset$ (Kezdjük nulla párral, vagy választhatunk egy tetszőleges kezdeti $M$ párosítást is)</p>
+</div>
+<div class="flex gap-4">
+<span class="text-amber-600/50 font-black w-4">2</span>
+<p><b>ciklus</b> (Amíg csak tudunk, javítunk a helyzeten)</p>
+</div>
+<div class="flex gap-4 ml-6 md:ml-10">
+<span class="text-amber-600/50 font-black w-4">3</span>
+<p>KERESSÜNK EGY $P$ JAVÍTÓUTAT az aktuális $M$ párosításunkra nézve</p>
+</div>
+<div class="flex gap-4 ml-6 md:ml-10">
+<span class="text-amber-600/50 font-black w-4">4</span>
+<p><b>ha</b> már egyáltalán nem létezik ilyen javítóút, <b>akkor: stop</b> (Kész vagyunk, megvan a maximális párosítás!)</p>
+</div>
+<div class="flex gap-4 ml-6 md:ml-10">
+<span class="text-amber-600/50 font-black w-4">5</span>
+<p><b>különben:</b> (Ha találtunk javítóutat, akkor csereberélünk!)</p>
+</div>
+<div class="flex gap-4 ml-12 md:ml-20">
+<span class="text-amber-600/50 font-black w-4">6</span>
+<p>$M \leftarrow M \setminus \{P \text{ páros sorszámú élei}\} \cup \{P \text{ páratlan sorszámú élei}\}$ (A meglévő párokat az úton felbontjuk, és a szabad éleket párosítjuk. Így garantáltan +1-gyel több párunk lesz!)</p>
+</div>
+<div class="flex gap-4">
+<span class="text-amber-600/50 font-black w-4">7</span>
+<p><b>ciklus vége</b></p>
 </div>
 </div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
-            6.2b
-        </div>
-<div class="relative w-fit">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
-                Javítóút keresése (Módosított BFS)
-            </h2>
-<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-theme opacity-20 rounded-full"></div>
+</div><div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic mb-6">
+            Definíció. Tegyük fel, van egy $G = (A,B;E)$ páros gráfunk és benne egy $M$ párosítás. Egy $P$ utat <b>alternáló útnak</b> (váltakozó útnak) hívunk, ha a fenti definícióból az (1)-es és (3)-as szabály teljesül rá, de a (2)-es nem feltétlenül.
+        </p>
+<p class="text-slate-700 dark:text-slate-300 leading-relaxed italic">
+            Magyarán: ez egy olyan út, ami egy szingli (párosítatlan) $A$-beli csúcsból indul, és szépen felváltva lépked a szabad és a párosított éleken. A különbség a javítóúthoz képest csak annyi, hogy ennek nem muszáj egy szinglinél végződnie.
+        </p>
+</div><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Lemma</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic mb-6">
+            Tegyük fel, hogy a $G = (A,B;E)$ páros gráfunkban az $M$ párosítás már annyira jó, hogy egyetlen javítóutat sem találunk $G$-ben. Osszuk fel a "társaságot" a következő halmazokra:
+        </p>
+<div class="space-y-4 ml-4 mb-8">
+<div class="flex gap-4">
+<span class="font-black text-amber-600">(1)</span>
+<p class="text-slate-600 dark:text-slate-300">jelölje $A_1$ és $B_1$ a szingliket (akiket az $M$ egyáltalán nem fed le az $A$, illetve $B$ halmazból);</p>
+</div>
+<div class="flex gap-4">
+<span class="font-black text-amber-600">(2)</span>
+<p class="text-slate-600 dark:text-slate-300">jelölje $A_2$ azokat az $A$-beli csúcsokat (akiknek bár van párjuk), de el lehet hozzájuk jutni egy szinglitől induló, felváltva lépkedő (alternáló) úton;</p>
+</div>
+<div class="flex gap-4">
+<span class="font-black text-amber-600">(3)</span>
+<p class="text-slate-600 dark:text-slate-300">jelölje $A_3$ a maradék párosított $A$-beli csúcsok halmazát (akikhez esélytelen eljutni alternáló úton);</p>
+</div>
+<div class="flex gap-4">
+<span class="font-black text-amber-600">(4)</span>
+<p class="text-slate-600 dark:text-slate-300">Jelölje $B_2$, illetve $B_3$ egyszerűen az $A_2$ és az $A_3$ csúcsainak a párjait (az $M$ szerint) a $B$ halmazban.</p>
 </div>
 </div>
-</math-header>
-<math-header>
-<div class="mb-12 mt-16">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
-            Interaktív: Augmentálás szimuláció
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
-            6.3
-        </div>
-<div class="relative w-fit">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
-                Alternáló utak
-            </h2>
-<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-theme opacity-20 rounded-full"></div>
-</div>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-24">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
-            6.4
-        </div>
-<div class="relative w-fit">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
-                Alternáló utak
-            </h2>
-<div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
-</div>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-24">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
-            6.5
-        </div>
-<div class="relative w-fit">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
-                Kőnig tétele
-            </h2>
-<div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
-</div>
-</div>
-</math-header>
-<math-header>
-<div class="mb-12 mt-16">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
-            Interaktív: Lefogó pontok vadászata
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-24">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
-            6.6
-        </div>
-<div class="relative w-fit">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
-                Hall-tétel (Házasítási tétel)
-            </h2>
-<div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
-</div>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="relative w-fit">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                Interaktív: Hall-feltétel ellenőrző
-            </h2>
-<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-theme rounded-full"></div>
-</div>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-24">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
-            6.7
-        </div>
-<div class="relative w-fit">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none">
-                Frobenius-tétel
-            </h2>
-<div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
-</div>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-24">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
-            6.8
-        </div>
-<div class="relative w-fit">
-<div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
-</div>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-indigo-500 text-white font-black px-3 py-1 rounded-xl shadow-sm text-sm">
-        EXTRA
+<p class="text-slate-800 dark:text-slate-100 font-bold border-t border-amber-200 dark:border-amber-800 pt-4">
+            A trükk a végén: Ha ezeket a kategóriákat felállítjuk, akkor kiderül, hogy a gráfban egyáltalán nincs olyan él, ami az $A_1 \cup A_2$ (a szinglik és az alternáló úton elérhetők) csoportjából a $B_1 \cup B_3$ (a szinglik és a "maradék" párjai) csoportjába vezetne.
+        </p>
+</div><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
+<b>Kőnig tétele:</b> Nagyon logikus dolog: ha a $G = (A,B;E)$ páros gráfban az $M$ párosításodhoz már az istenért sem találsz javítóutat, akkor hátradőlhetsz, mert az $M$ bizonyítottan a lehető legnagyobb (maximális) párosítás $G$-ben. Többet már nem tudsz kihozni belőle!
+        </p>
+</div><div class="mt-8 bg-blue-50 dark:bg-blue-900/10 border-l-4 border-blue-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400 mb-4">7.18. Következmény</h4>
+<p class="text-slate-800 dark:text-slate-100 font-bold leading-relaxed italic mb-4">
+        (Kőnig tétele - Második alak) Minden $G$ páros gráfban a maximális független élek száma megegyezik a minimális lefogó ponthalmaz méretével, azaz $\nu(G) = \tau(G)$ teljesül.
+    </p>
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<b>Bizonyítás konyhanyelven:</b> A korábbiak alapján tudjuk, hogy a javítóutas algoritmussal találunk egy $k$ méretű (maximális) párosítást. Mivel a maximális párosítás mérete ($\nu(G)$) és a lefogó pontok száma ($\tau(G)$) is valahol ezen a skálán mozog (konkrétan a $k \le \nu(G) \le \tau(G) \le k$ egyenlőtlenség él), "satuba fogtuk" őket. Így nincs más lehetőség: $\nu(G)$ és $\tau(G)$ kénytelenek egyenlőek lenni, azaz $\nu(G) = \tau(G)$ valóban következik.
+    </p>
+</div><div class="mt-8 bg-purple-50 dark:bg-purple-900/10 border-l-4 border-purple-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-purple-600 dark:text-purple-400 mb-4">7.20. Következmény</h4>
+<p class="text-slate-800 dark:text-slate-100 font-bold leading-relaxed italic mb-4">
+        Ha egy $G$ páros gráfnak nincsenek magányos (izolált) csúcsai, akkor a független pontok maximális száma egyenlő az élleszorítás minimális számával, vagyis rá $\alpha(G) = \rho(G)$ teljesül.
+    </p>
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+<b>Bizonyítás a józan paraszti ésszel:</b> Kőnig tételéből (7.18. Következmény) már tudjuk, hogy $\nu(G) = \tau(G)$, hiszen $G$ páros gráf. Gallai mester tételéből pedig kimondta a tutit: a pontokból álló "max független" meg "min lefogó" cuccok összege, valamint az élekből állóak összege is pontosan a csúcsok számát adja ki ($n$). Vagyis $\alpha(G) + \tau(G) = n$ és $\nu(G) + \rho(G) = n$ igazak. Ha ezeket behelyettesítjük egymásba, azonnal kijön, hogy $\alpha(G) = n - \tau(G) = n - \nu(G) = \rho(G)$. Ennyi az egész!
+    </p>
+</div><div class="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-2xl border border-emerald-100 dark:border-emerald-800/30 text-center">
+<div class="text-3xl font-black text-emerald-600">4</div>
+<div class="text-[9px] uppercase font-bold text-emerald-400">Cél ($k$)</div>
+</div><div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">7.21. Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
+        Vegyünk egy $G = (A,B;E)$ páros gráfot (pl. fiúk és lányok) és egy kiszemelt $X$ csoportot az $A$-ból (pl. $X \subseteq A$ pár srác). Ekkor az $X$ <b>szomszédságának</b> (ismeretségi körének) nevezzük és $N(X)$-szel jelöljük a másik halmazban ($B$-ben) lévő azon pontok halmazát, akik legalább egy embert ismernek az $X$ csoportból (van legalább egy szomszédja $X$-ben). Képletben:
+    </p>
+<div class="text-center my-4 font-mono text-lg text-slate-800 dark:text-slate-200">
+        $$N(X) = \{ b \in B : \exists a \in X, \{a,b\} \in E(G) \}$$
     </div>
-<div class="relative w-fit">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-            Kitekintés: Tutte tétele (Általános gráfok)
-        </h2>
-<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-indigo-500/20 rounded-full"></div>
-</div>
-</div>
-</math-header>
-</div>
-</div>
+</div><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
+<b>Tétel. (Hall tétele avagy a "Házasság-tétel")</b> Egy $G = (A,B;E)$ páros gráfban pontosan akkor tudjuk a teljes $A$ halmazt (pl. az összes fiút) párosítani valakivel a $B$-ből ($A$-t lefedő párosítás), ha teljesül a <b>Hall-feltétel</b>: akármilyen $X \subseteq A$ srác-csoportot is választunk ki, az általuk ismert lányok száma ($|N(X)|$) legalább annyi kell legyen, ahányan a srácok vannak ($|X|$). Tehát minden $X \subseteq A$-ra $|N(X)| \geq |X|$ teljesül. (Ha 5 srác összesen csak 3 lányt ismer, tuti nem lesz meg a párosítás mindenkinek!)
+        </p>
+</div><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Következmény</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
+<b>Következmény. (Frobenius tétele)</b> Egy $G = (A,B;E)$ páros gráfban akkor és csak akkor lehet <b>mindenkit</b> hiánytalanul összepárosítani (létezik teljes párosítás), ha a két társaság létszáma egyezik ($|A| = |B|$), és emellett természetesen teljesül az előbbi Hall-feltétel is, azaz minden $X \subseteq A$ csoport legalább annyi ismerőssel rendelkezik a túloldalon, amekkora maga a csoport ($|N(X)| \geq |X|$).
+        </p>
+</div></div></div>
+
 <div class="mb-20">
 <math-header>
 <div class="flex items-center gap-4 mb-8 mt-16">
 <div class="flex-none bg-slate-800 dark:bg-slate-700 text-white font-black px-4 py-2 rounded-xl shadow-sm text-lg">
                     7. Tétel
+                </div>
+<div class="relative w-fit">
+<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
+                        Teljes párosítás
+                    </h2>
+<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-slate-800/20 dark:bg-slate-700/50 rounded-full"></div>
+</div>
+</div>
+</math-header>
+<div class="flex flex-col gap-6"><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
+            Ha a $G = (A,B;E)$ páros gráf (mondjuk a fiúk és lányok csoportja) $d$-reguláris, vagyis mindenki pont ugyanannyi $d$ embert ismer a másik csoportból (ahol $d \geq 1$), akkor $G$-ben fixen van teljes párosítás. Azaz mindenkinek jut egy egyedi pár, senki sem marad szingli.
+        </p>
+</div><div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<b>Definíció (Élszínezés és Élkromatikus szám).</b> Képzeld el, hogy a $G$ gráf élei mondjuk utak a városok (csúcsok) között. A gráf akkor <b>él színezhető</b> $k \geq 1$ színnel, ha ezeket az utakat be tudjuk úgy színezni, hogy egy városból kiinduló utak (közös csúcsra illeszkedő élek) sosem egyforma színűek. Azt a minimális $k$ színt, ami ehhez a művelethez feltétlenül szükséges, nevezzük a gráf <b>élkromatikus számának</b> (gyakori jelölése: $\chi'(G)$ vagy $\chi_e(G)$). Vagyis ennyi színnel még meg lehet oldani az összeütközés-mentes színezést, de $(k-1)$-gyel már tuti nem.
+        </p>
+</div><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Állítás</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<b>Állítás.</b> Józan paraszti ésszel: ha van egy olyan csúcsod, amiből a legtöbb, mondjuk $\Delta(G)$ darab él fut ki, akkor ezekhez az élekhez kapásból legalább ennyi különböző szín fog kelleni. Ezért a szükséges színek száma, $\chi_e(G)$ biztosan nem lehet kisebb, mint a gráf maximális fokszáma, vagyis $\Delta(G) \leq \chi_e(G)$ (feltéve, hogy a $G$ gráf hurokélmentes).
+        </p>
+</div><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">8.4. Tétel</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<b>Vizing tétele.</b> Ez egy elég menő dolog: bármilyen egyszerű $G$ gráf (ahol nincs többszörös él, se hurokél) élszínezéséhez elég vagy pont annyi szín, mint a max fokszám ($\Delta(G)$), vagy legfeljebb csak egyetlen plussz szín kell hozzá! Szóval a színek száma garantáltan $\chi_e(G) \leq \Delta(G) + 1$. Nem fognak elszállni a színek!
+        </p>
+</div><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<b>Kőnig élszínezési tétele.</b> Ha a $G = (A,B;E)$ egy páros gráf (tehát van egy bal meg egy jobb csoport), akkor a helyzet még jobb! Sosem kell az a +1 extra szín. Fixen meg tudod oldani az élek színezését pontosan a max fokszámnyi színnel. Tehát mindig igaz, hogy $\chi_e(G) = \Delta(G)$.
+        </p>
+</div></div></div>
+
+<div class="mb-20">
+<math-header>
+<div class="flex items-center gap-4 mb-8 mt-16">
+<div class="flex-none bg-slate-800 dark:bg-slate-700 text-white font-black px-4 py-2 rounded-xl shadow-sm text-lg">
+                    8. Tétel
                 </div>
 <div class="relative w-fit">
 <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
@@ -1537,253 +1138,107 @@ Az <strong class="text-emerald-600 dark:text-emerald-400 not-italic uppercase">�
 </div>
 </div>
 </math-header>
-<div class="flex flex-col gap-6">
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            7.1
+<div class="flex flex-col gap-6"><div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            Képzelj el egy $G = (V,E)$ csőhálózatot (egy irányított gráfot). Van egy kezdőpontunk, a forrás ($s$), ahonnan a cucc indul, és egy végpontunk, a nyelő ($t$), ahova minden folyik. Minden $e \in E$ csőnek van egy $c(e)$ maximális áteresztőképessége (kapacitása), ami nem negatív. Ezt az egész hóbelevancot együtt, tehát a **$(G,s,t,c)$ négyest hálózatnak hívjuk**.
+        </p>
+</div><div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            Egy $(G,s,t,c)$ hálózatban **folyamnak** (magának az áramlásnak, jele $f$) hívjuk azt, amikor kijelöljük, hogy melyik csőben mennyi áru/víz/akármi megy át. Erre két józan paraszti szabály vonatkozik:
+        </p>
+<ul class="mt-6 space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-200">
+<li class="flex items-start gap-3">
+<span class="flex-none w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+<span>Nem mehet a csőben mínusz mennyiség, és nem is préselhetsz át rajta többet a kapacitásánál: $0 \le f(e) \le c(e)$ minden $e \in E(G)$ cső esetén.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="flex-none w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+<span class="leading-relaxed">
+                    A csomópontokban nem tűnhet el és nem is keletkezhet semmi (kivéve persze az $s$ forrást és a $t$ nyelőt). Bármelyik "köztes" $v \in V(G)$ csúcsra: $\sum_{e:v \to \bullet} f(e) = \sum_{e:\bullet \to v} f(e)$, azaz ami befolyik, annak ki is kell folynia.
+                </span>
+</li>
+</ul>
+</div><div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            Mennyi hasznos cuccot juttatunk át a rendszeren? A $(G,s,t,c)$ hálózatban az $f$ folyam **$m_f$-fel jelölt értéke** megadja a forrásból nettó kiinduló mennyiséget:
+        </p>
+<div class="mt-6 bg-white/50 dark:bg-slate-800/50 p-6 rounded-2xl text-center border border-emerald-100 dark:border-emerald-800/30 overflow-x-auto">
+            $$m_f = \sum_{e:s \to \bullet} f(e) - \sum_{e:\bullet \to s} f(e)$$
         </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            Reguláris páros gráfok
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            7.2
+</div><div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            Ha van egy $f$ áramlásunk a $(G,s,t,c)$ hálózatban, rajzolhatunk hozzá egy **$H_f$ segédgráfot** (olyan, mint egy manőverezési térkép), ami megmutatja, hol tudunk még trükközni.
+        </p>
+<p class="mt-4 text-sm md:text-base text-slate-700 dark:text-slate-200">
+            A $H_f$ csomópontjai ugyanazok, mint az eredetinek, azaz $V(H_f) = V(G)$. Az éleket (lehetőségeket) pedig így húzzuk be:
+        </p>
+<ul class="mt-6 space-y-4 text-sm md:text-base text-slate-700 dark:text-slate-200">
+<li class="flex items-start gap-3">
+<span class="flex-none w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+<span><b>Előre él (Még fér bele):</b> Ha egy eredeti $e = (u,v)$ cső még nincs fullra járatva ($f(e) < c(e)$), akkor az $e = (u,v)$ él bekerül $H_f$-be, jelezve, hogy erre még küldhetünk anyagot.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="flex-none w-6 h-6 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full flex items-center justify-center text-xs font-bold">2</span>
+<span><b>Visszaél (Visszaszívás):</b> Ha egy $e = (u,v)$ csőben már megy valami ($f(e) > 0$), azt a mennyiséget "visszamondhatjuk", és elküldhetjük máshova. Ezt egy ellenkező irányú $e' = (v,u)$ éllel jelöljük $H_f$-ben.</span>
+</li>
+</ul>
+</div><div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            Ha sikerül a **$H_f$ segédgráfban egy $s$-ből $t$-be vezető utat** találni, azt **javítóútnak** hívjuk. Ez a Szent Grál: azt jelenti, hogy ezen az úton végigmenve (az előre éleken rátöltve, a visszaéleken visszaszívva) növelni tudjuk a teljes átfolyó mennyiséget!
+        </p>
+</div><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Állítás</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            Konyhanyelven: ha találsz egy javítóutat, és átküldesz rajta egy extra $\delta$ adagot, akkor az eredmény egy teljesen legális folyam marad (nem sért meg semmilyen szabályt), és az összeredmény ($m_f$) tutira megnő $\delta$-val.
+        </p>
+</div><div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            Képzeld el, hogy a csőhálózatot kettévágod úgy, hogy a forrás ($s$) nálad marad, a nyelő ($t$) meg a túloldalra kerül. Ezt a nálad maradó csúcshalmazt, az $X$-et hívjuk **st-vágásnak** (vagy simán **vágásnak**, ha amúgy is egyértelmű, miről van szó). Ezzel lehet megtalálni a rendszer szűk keresztmetszetét.
+        </p>
+</div><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Állítás</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            Bárhogyan is vágod ketté a $(G,s,t,c)$ hálózatot egy $X$ vágással, és bárhogy folyik az $f$ folyamod, a nálad lévő részből kifolyó cucc mínusz a visszacsorgó cucc mindig pontosan megadja az egész hálózaton átmenő teljes mennyiséget:
+        </p>
+<div class="mt-6 bg-white/80 dark:bg-slate-800/80 p-6 rounded-2xl text-center border border-amber-200 dark:border-amber-800/30 overflow-x-auto">
+            $$m_f = \sum \{f(e) : e \text{ kilép } X\text{-ből}\} - \sum \{f(e) : e \text{ belép } X\text{-be}\}$$
         </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            Élszínezések és élkromatikus szám
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            7.4
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            Az élkromatikus szám alsó becslése
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            7.5
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            Vizing tétele
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            7.7
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            Kőnig élszínezési tétele
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            7.8
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            Interaktív Élszínező Labor
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            7.9
-        </div>
-</div>
-</math-header>
-</div>
-</div>
-<div class="mb-20">
-<math-header>
-<div class="flex items-center gap-4 mb-8 mt-16">
-<div class="flex-none bg-slate-800 dark:bg-slate-700 text-white font-black px-4 py-2 rounded-xl shadow-sm text-lg">
-                    8. Tétel
-                </div>
-<div class="relative w-fit">
-<h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                        Maximális folyam algoritmus
-                    </h2>
-<div class="absolute -bottom-2 left-0 w-full h-1.5 bg-slate-800/20 dark:bg-slate-700/50 rounded-full"></div>
-</div>
-</div>
-</math-header>
-<div class="flex flex-col gap-6">
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            8.1
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            A hálózat fogalma
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            8.2
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            A folyam fogalma
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            8.3
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            A folyam értéke
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            8.4
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            A segédgráf fogalma
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            8.5
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            A javítóút fogalma
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            8.6
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            A javítóutas algoritmus
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            8.7
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            Az algoritmus helyessége és a folyam növekedése
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            8.8
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            Az st-vágás fogalma
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            8.9
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            A folyamérték és a vágások kapcsolata
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            8.10
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            A maximális folyam tételének bizonyítása
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            8.11
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            Az Edmonds-Karp tétel
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            8.12
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            A Ford-Fulkerson tétel
-        </h2>
-</div>
-</math-header>
-<math-theorem>
+</div><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            Ha addig trükköztél, amíg már egyszerűen nem találsz javítóutat a forrástól a nyelőig, akkor elérted a maximumot. Az $f$ folyamod csúcsra lett járatva, ennél többet fizikai képtelenség átvinni a rendszeren.
+        </p>
+</div><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel (Edmonds-Karp)</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            Ha nem csak vaktában lövöldözöl, hanem a javítóutas módszernél mindig a $H_f$ gráf **legrövidebb** (legkevesebb élből álló) $s \to t$ útját választod, akkor a folyamat nem tart a végtelenségig: maximum $n \cdot m$ lépés után garantáltan meglesz a maximális folyam (ahol $n$ a csúcsok, $m$ az élek száma).
+        </p>
+</div><math-theorem>
 <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
 <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel (Ford-Fulkerson tétel)</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-                Bármilyen $(G,s,t,c)$ hálózatban a legnagyobb lehetséges vízhozam (maximális folyam, $\max\{m_f : f \text{ folyam}\}$) pontosan akkora, mint a legszűkebb keresztmetszet kapacitása ($\min\{c(X) : X \text{ st-vágás}\}$). Magyarul: annyi vizet tudsz átnyomni a csöveken, amennyit a legkisebb áteresztőképességű rész enged.
+                Ez a "legszűkebb keresztmetszet" elve okosan leírva: Bármely $(G,s,t,c)$ hálózatra $\max\{m_f : f \text{ folyam}\} = \min\{c(X) : X \text{ st-vágás}\}$. Tehát a maximálisan átpréselhető cucc mennyisége pontosan megegyezik a legszűkebb "keresztmetszet" kapacitásával. Hiába van ezer vastag csöved az elején, ha a végén egy szívószálon kell átmennie mindennek.
             </p>
 </div>
-</math-theorem>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            8.13
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            Az egész értékűségi lemma
-        </h2>
-</div>
-</math-header>
-<math-theorem>
+</math-theorem><math-theorem>
 <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
 <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Lemma (Egész értékűségi lemma)</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-                Ha a $(G,s,t,c)$ hálózatban minden $e \in E(G)$ cső kapacitása ($c(e)$) egész szám (pl. hordókban mérve), akkor:
+                Ha egy $(G,s,t,c)$ hálózatban minden cső kapacitása szép kerek egész szám ($c(e) \in \mathbb{Z}$), akkor jó hírünk van:
             </p>
 <ul class="mt-4 space-y-2 text-slate-800 dark:text-slate-100 italic text-sm md:text-base list-none pl-4">
-<li>(i) biztosan van olyan $f$ maximális folyam is, ahol minden csőben egész számú cucc folyik ($f(e) \in \mathbb{Z}$), és</li>
-<li>(ii) ezt a szép, egész értékű megoldást a javítóutas algoritmussal simán meg is tudjuk találni.</li>
+<li>(i) a max folyam is kihozható úgy, hogy minden csőben csakis egész számú mennyiség megy át ($f(e) \in \mathbb{Z}$), nincsenek törtek, és</li>
+<li>(ii) ha a javítóutas algoritmussal indulsz el, az egyből egy ilyen tiszta, egész értékű max folyamot fog kiköpni neked.</li>
 </ul>
 </div>
-</math-theorem>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-24">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm">
-            8.14
-        </div>
-<div class="relative w-fit">
-<div class="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"></div>
-</div>
-</div>
-</math-header>
-</div>
-</div>
+</math-theorem></div></div>
+
 <div class="mb-20">
 <math-header>
 <div class="flex items-center gap-4 mb-8 mt-16">
@@ -1792,111 +1247,100 @@ Az <strong class="text-emerald-600 dark:text-emerald-400 not-italic uppercase">�
                 </div>
 <div class="relative w-fit">
 <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                        Menger-tételek
+                        Folyam általánosításai
                     </h2>
 <div class="absolute -bottom-2 left-0 w-full h-1.5 bg-slate-800/20 dark:bg-slate-700/50 rounded-full"></div>
 </div>
 </div>
 </math-header>
-<div class="flex flex-col gap-6">
-
-<math-def>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base mb-4">
-<b>9.0. A folyamprobléma általánosításai</b><br>
+<div class="flex flex-col gap-6"><math-def>
+<div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">A klasszikus folyamprobléma változatai (Konyhanyelven)</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic mb-4">
+A való életben a csőhálózatok sokszor bonyolultabbak annál, hogy csak egyetlen csap és egyetlen lefolyó legyen. Szerencsére ezeket a zűrös helyzeteket egy kis "józsi-féle" barkácsolással simán vissza tudjuk vezetni a jól ismert "egy csap, egy lefolyó" alapfeladatra:
 </p>
-<ul class="list-disc ml-6 space-y-4 text-slate-700 dark:text-slate-300 text-sm md:text-base">
-    <li><b>Több forrás és nyelő:</b> Felveszünk egy fiktív $s^*$ szuper-forrást és $t^*$ szuper-nyelőt végtelen kapacitású élekkel bekötve.</li>
-    <li><b>Irányítatlan élek:</b> Minden $\{u, v\}$ irányítatlan élt cseréljünk ki két, ellentétes irányú $u \to v$ és $v \to u$ élre az eredeti kapacitással.</li>
-    <li><b>Pontkapacitások (Csúcsszéthúzás):</b> Ha egy $v$ csúcson $c(v)$ a korlát, húzzuk szét két csúccsá: $v_{be}$ és $v_{ki}$. Húzzunk közéjük egy irányított élt, melynek kapacitása pontosan $c(v)$.</li>
+<ul class="list-disc ml-6 space-y-4 text-slate-700 dark:text-slate-300">
+<li><b>Több csap és lefolyó (Több forrás és nyelő):</b> Ha több $s_1, \dots, s_k$ forrásod és $t_1, \dots, t_l$ nyelőd van, ne ess pánikba! Képzelj el egy fiktív szuper-csapot ($s^*$) és egy szuper-lefolyót ($t^*$). A szuper-csapból köss be egy-egy végtelen vastag csövet az összes igazi csapba ($s_i$), a lefolyókból ($t_j$) pedig vezess végtelen vastag csöveket a szuper-lefolyóba. Így máris újra csak egy kezdő- és végpontunk van!</li>
+<li><b>Oda-vissza járható csövek (Irányítatlan élek):</b> Ha kétirányú utcák (irányítatlan élek) vannak a rendszerben, minden $\{u, v\}$ élt cserélj le két darab egyirányú ($u \to v$ és $v \to u$) csőre, amik ugyanannyit bírnak el. Ha a végén a matek szerint a víz oda-vissza folyna, azt a valóságban simán csak kivonjuk egymásból (hiszen a víz nem megy szembe magával).</li>
+<li><b>Szűk keresztmetszet a csomópontban (Pontkapacitások):</b> Mi van, ha a kereszteződés (egy $v$ csúcs) a szűk keresztmetszet és maximum $c(v)$ vizet bír el? Vágd ketté a csúcsot egy "bemeneti" ($v_{be}$) és egy "kimeneti" ($v_{ki}$) félre! Az érkező csövek menjenek a bemenetbe, az indulók jöjjenek a kimenetből, a kettő közé pedig húzz be egy $v_{be} \to v_{ki}$ irányított élt, aminek a kapacitása $c(v)$. A csúcs korlátjából így sima élkorlát lett!</li>
+<li><b>Kötelező minimum átfolyás (Alsó kapacitáskorlátok):</b> Ha a főnök azt mondja, hogy egy csövön (élen) *legalább* $l(e)$ vizet mindenképp át kell tolni ($l(e) \le f(e) \le c(e)$), az is megoldható! Pár extra segéd-csappal és segéd-lefolyóval simán rákényszerítjük a hálózatra a minimumot.</li>
 </ul>
-</math-def>
-
-<math-theorem>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-<b>10.1. Lemma: Folyamok felbontása utakra</b><br>
-Ha van egy $G$ irányított gráfod, benne egy $s$ forrás (ahonnan indul az áru) és egy $t$ nyelő (ahova érkezik), és beállítasz egy $f$ folyamot, aminek az értéke $m_f = d$, ráadásul minden élen (csövön) vagy semennyi, vagy pontosan $1$ egységnyi cucc folyik át (vagyis $f(e) = 0$ vagy $f(e) = 1$), akkor a csövek hálózatában garantáltan ki tudsz jelölni pontosan $d$ darab teljesen különálló (éldiszjunkt) útvonalat $s$-től $t$-ig, amelyeken ténylegesen áramlik a cucc ($f(e) = 1$). Vagyis a folyadék egyszerűen $d$ darab, egymást élben nem metsző "csővezetéken" csorog végig.
-</p>
-</math-theorem>
-
-<math-def>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-<b>10.1b. Definíció: Diszjunkt utak és lefogó halmazok jelölései</b><br>
-A vizsgán az alábbi jelöléseket fogják használni:<br>
-- <b>$\lambda_G(s,t)$</b>: A maximális éldiszjunkt utak száma (hány független drót van $s$ és $t$ között).<br>
-- <b>$\lambda'_G(s,t)$</b>: Az utakat lefogó minimális élhalmaz mérete (minimum hány drótot kell elvágni, hogy megszakadjon a kapcsolat).<br>
-- <b>$\kappa_G(s,t)$</b>: A maximális pontdiszjunkt utak száma (hány független útvonal van, amik még csomópontban sem találkoznak).<br>
-- <b>$\kappa'_G(s,t)$</b>: Az utakat lefogó minimális ponthalmaz mérete (minimum hány állomást kell felrobbantani a teljes blokádhoz).
-</p>
-</math-def>
-
-<math-def>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-<b>10.2. Definíció: Lefogó élhalmaz</b><br>
-Az $s$ és $t$ pontokhoz tartozó <b>lefogó élhalmaznak</b> nevezünk egy olyan $X \subseteq E(G)$ élhalmazt (drótok egy csoportját), amiket ha egy kártékony hacker elvág (töröl a gráfból), akkor garantáltan nem fogsz tudni eljutni $s$-ből $t$-be egyetlen úton sem. Olyan, mint egy teljes útzár a két város között.
-</p>
-</math-def>
-
-<math-theorem>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-<b>10.3. Tétel: Menger tétele (Irányított gráf, élváltozat)</b><br>
-Egyirányú utcákból álló (irányított) $G$ gráfban, bármely $s$ és $t$ csomópontra, a maximálisan felrajzolható egymástól független (csak a startnál és célnál találkozó) útvonalak száma pontosan megegyezik azzal, ahány minimálisan elvágandó utca (él) kell ahhoz, hogy teljesen elzárjuk $s$-t $t$-től (minimális lefogó élhalmaz mérete).
-</p>
-</math-theorem>
-
-<math-theorem>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-<b>10.4. Tétel: Menger tétele (Irányítatlan gráf, élváltozat)</b><br>
-Kétirányú utcákkal (irányítatlan) operáló $G$ gráfban is igaz ugyanez: a maximális független $s-t$ utak száma pontosan annyi, mint a legkisebb útzár (lefogó élhalmaz) mérete.
-</p>
-</math-theorem>
-
-<math-theorem>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-<b>10.5. Következmény: Menger tétele éldiszjunkt utakra</b><br>
-Ezek alapján bátran kijelenthetjük, hogy minden esetben a maximális éldiszjunkt utak száma megegyezik a minimális lefogó élhalmaz méretével. Képlettel: $\lambda_G(s,t) = \lambda'_G(s,t)$
-</p>
-</math-theorem>
-
-<math-algorithm>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-<b>10.6. Algoritmus: Éldiszjunkt utak létezésének eldöntése folyamok segítségével</b><br>
-Hogyan döntsük el gyorsan géppel, hogy létezik-e $k$ darab független (éldiszjunkt) út $s$-ből $t$-be?<br><br>
-1. <b>Irányított esetben</b>: Minden utca áteresztőképességét beállítjuk pontosan 1-re, majd lefuttatjuk a Ford-Fulkerson algoritmust. Ha a maximális folyam értéke $\ge k$, akkor a válasz IGEN.<br>
-2. <b>Irányítatlan esetben</b>: Minden kétirányú utcát kicserélünk két egyirányú, 1 kapacitású utcára, majd ugyanúgy lefuttatjuk az algoritmust.
-</p>
-</math-algorithm>
-
-<math-def>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-<b>10.7. Definíció: Lefogó ponthalmaz</b><br>
-Az $s$ és $t$ (nem szomszédos) pontokhoz tartozó <b>lefogó ponthalmaznak</b> nevezünk egy olyan $W \subseteq V(G) \setminus \{s,t\}$ csúcshalmazt (városok egy csoportját), amiket ha kitörlünk a gráfból, akkor teljesen elzárjuk $s$-t $t$-től. Nem a csöveket vágjuk el, hanem komplett csomópontokat robbantunk fel!
-</p>
-</math-def>
-
-<math-theorem>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-<b>10.8. Tétel: Menger tétele (Irányított, pontváltozat)</b><br>
-Ha nem csöveket (éleket), hanem komplett csomópontokat (csúcsokat) vizsgálunk egyirányú utcákban: A teljesen különálló (egyik út sem érinti a másik által használt kereszteződést) útvonalak maximális száma megegyezik a minimális lefogó ponthalmaz (felrobbantott kereszteződések) méretével.
-</p>
-</math-theorem>
-
-<math-theorem>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-<b>10.9. Tétel: Menger tétele (Irányítatlan, pontváltozat)</b><br>
-Ugyanaz az elv érvényes <b>kétirányú utcák</b> esetén is: a független útvonalak maximális száma garantáltan megegyezik az utakat elvágó legkisebb lezárt kereszteződések számával.
-</p>
-</math-theorem>
-
-<math-theorem>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-<b>10.10. Következmény: Menger tétele pontdiszjunkt utakra</b><br>
-A 10.8 és 10.9 tételek miatt minden nem szomszédos $s,t$ csúcspárra a maximális pontdiszjunkt utak száma megegyezik a minimális lefogó ponthalmaz méretével. $\kappa_G(s,t) = \kappa'_G(s,t)$
-</p>
-</math-theorem>
 </div>
+</math-def><math-theorem>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
+                <b>Éldiszjunkt utak és a folyam kapcsolata:</b> Ha van egy $d$ értékű folyamod ($m_f = d$) a $G$ irányított gráfban az $s$-ből $t$-be, ami "bináris" (vagyis minden $e$ csövön vagy pontosan 1, vagy 0 egység víz folyik, azaz $f(e) = 0$ vagy $f(e) = 1$), akkor garantált, hogy a gráfban ki tudsz jelölni pontosan $d$ darab teljesen különálló (éldiszjunkt) útvonalat $s$-ből $t$-be, amiknek minden $e$ élén ott folyik a víz ($f(e) = 1$).
+</p>
+</math-theorem><math-def>
+<div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<ul class="list-none space-y-4 text-slate-800 dark:text-slate-100 font-medium text-sm md:text-base">
+<li class="flex items-start">
+<span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5 shrink-0">$\lambda_G(s,t)$</span>
+<span>Hány darab teljesen független (közös utca nélküli) útvonalat tudunk találni $s$-ből $t$-be? (A maximális <b>éldiszjunkt</b> utak száma a $G$ gráfban).</span>
+</li>
+<li class="flex items-start">
+<span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5 shrink-0">$\lambda'_G(s,t)$</span>
+<span>Hány utcát kell minimálisan felbontani ahhoz, hogy lehetetlen legyen eljutni $s$-ből $t$-be? (A minimális <b>lefogó élhalmaz</b> mérete).</span>
+</li>
+<li class="flex items-start">
+<span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5 shrink-0">$\kappa_G(s,t)$</span>
+<span>Hány olyan útvonal van $s$-ből $t$-be, amik még a kereszteződésekben sem találkoznak egymással? (A maximális <b>pontdiszjunkt</b> utak száma a $G$ gráfban).</span>
+</li>
+<li class="flex items-start">
+<span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5 shrink-0">$\kappa'_G(s,t)$</span>
+<span>Hány kereszteződést kell felrobbantani ahhoz, hogy elvágjuk az összes utat $s$-ből $t$-be? (A minimális <b>lefogó ponthalmaz</b> mérete).</span>
+</li>
+</ul>
 </div>
+</math-def><math-def>
+<div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic mb-4">
+A $G$ irányított gráfban egy utcákból álló $Z \subseteq E(G)$ halmaz <b>lefogja az $s$-ből $t$-be vezető irányított utakat</b>, ha szó szerint elvágja a forgalmat: bármerre is indulsz $s$-ből $t$-be, garantáltan belefutsz legalább egy olyan utcába, ami benne van a $Z$ halmazban (amit lezártunk). (A legkisebb ilyen halmaz mérete pontosan a $\lambda'_G(s,t)$.)<br/><br/>
+Hasonlóan értelmezzük ezt a fogalmat <b>irányítatlan $G$ gráfokra</b> is (kétirányú utcáknál).
+</p>
+</div>
+</math-def><math-theorem>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-4">
+<b>Menger-tétel (egyirányú utcákra):</b> Adott egy egyirányú utcákból álló $G$ irányított gráf, az $s, t \in V(G)$ különböző csúcsaival, és egy $k \ge 1$ egész számmal. A következő három dolog pontosan ugyanazt jelenti (ekvivalensek):
+</p>
+<ul class="list-none space-y-3 mt-4 text-slate-700 dark:text-slate-300">
+<li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(i)</span> <span>Találsz $G$-ben legalább $k$ darab olyan útvonalat $s$-ből $t$-be, amiknek egyetlen közös utcája sincs. ($\lambda_G(s,t) \ge k$)</span></li>
+<li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(ii)</span> <span>Kevesebb mint $k$ (azaz legföljebb $k-1$) utca lezárásával esélytelen elvágni $s$-t $t$-től (tehát legalább $k$ torlasz kell). ($\lambda'_G(s,t) \ge k$)</span></li>
+<li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(iii)</span> <span>A $(G,s,t,c)$ hálózatban, ha minden utcába pontosan 1 egység vizet engedsz ($c$ azonosan $1$), akkor a maximális folyam értéke legalább $k$.</span></li>
+</ul>
+</math-theorem><math-theorem>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-4">
+<b>Menger-tétel (kétirányú utcákra):</b> Adott egy kétirányú utcákból álló $G$ irányítatlan gráf, az $s, t \in V(G)$ különböző csúcsaival, és egy $k \ge 1$ egész számmal. A következő három dolog szintén ugyanazt jelenti (ekvivalensek):
+</p>
+<ul class="list-none space-y-3 mt-4 text-slate-700 dark:text-slate-300">
+<li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(i)</span> <span>Van $G$-ben legalább $k$ darab független (közös utca nélküli) irányítatlan útvonalad $s$-ből $t$-be. ($\lambda_G(s,t) \ge k$)</span></li>
+<li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(ii)</span> <span>Legfeljebb $k-1$ utcát feltúrva nem lehet elvágni az összes utat $s$-ből $t$-be. ($\lambda'_G(s,t) \ge k$)</span></li>
+<li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(iii)</span> <span>Egy $(H,s,t,c)$ hálózatban, ha minden kétirányú utcát kicserélsz két egyirányú csőre (oda-vissza), és mindegyik 1 egységet bír ($c$ azonosan $1$), akkor a maximális folyam legalább $k$.</span></li>
+</ul>
+</math-theorem><math-theorem>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
+<b>Menger-tétel éles változata élekre:</b> Bármilyen városod ($G$ irányított vagy irányítatlan gráfod) is van az $s,t \in V(G)$, $s \neq t$ csúcsokkal, a maximálisan megtalálható, egymástól független utak száma <b>hajszálpontosan megegyezik</b> azzal, ahány utcát le kell zárni az összes út elvágásához! Vagyis: $\lambda_G(s,t) = \lambda'_G(s,t)$.
+</p>
+</math-theorem><math-def>
+<div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic mb-4">
+A $G$ (irányított vagy irányítatlan) gráfban egy kereszteződésekből álló $Y \subseteq V(G)$ csúcshalmaz <b>lefogja az $s$-ből $t$-be vezető utakat</b>, ha miután lezárod őket, lehetetlen eljutni $s$-ből $t$-be. Feltétel, hogy a startot ($s$) és a célt ($t$) nem zárhatod le ($s, t \notin Y$), csak a köztes állomásokat. Bármelyik úton is próbálsz menni, biztosan belefutsz legalább egy lezárt $Y$-beli csomópontba.
+</p>
+</div>
+</math-def><math-theorem>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-4">
+<b>Menger-tétel pontokra (egyirányú utcák):</b> Ha van egy $G$ irányított gráfod az $s, t \in V(G)$ különböző csúcsokkal, és az indulásból ($s$) nincs közvetlen expressz járat a célba ($t$), akkor ahány teljesen független, még csak nem is keresztező <b>pontdiszjunkt</b> útvonalat találsz ($\kappa_G(s,t)$), pontosan annyi csomópontot kell minimálisan blokkolni ahhoz, hogy lehetetlenné tedd az utazást.
+</p>
+</math-theorem><math-theorem>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-4">
+<b>Menger-tétel pontokra (kétirányú utcák):</b> Ugyanez a poén kétirányú utcákra is igaz! Ha adott egy $G$ irányítatlan gráf, $s, t \in V(G)$ különböző, nem szomszédos csúcsokkal, a teljesen független <b>pontdiszjunkt utak</b> maximális száma ($\kappa_G(s,t)$) $s$ és $t$ között megegyezik a minimálisan felrobbantandó csomópontok számával (ami lefogja az utakat).
+</p>
+</math-theorem><math-theorem>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
+<b>Összefoglalva (Menger pontokra általános):</b> Ha a $G$ gráf (irányított vagy irányítatlan) $s,t \in V(G)$, $s \neq t$ csúcsai között nincs direkt autópálya (összekötő él), akkor a maximális pontdiszjunkt utak száma mindig pontosan annyi, mint a minimális lefogó ponthalmaz mérete! Röviden: $\kappa_G(s,t) = \kappa'_G(s,t)$.
+</p>
+</math-theorem></div></div>
+
 <div class="mb-20">
-
 <math-header>
 <div class="flex items-center gap-4 mb-8 mt-16">
 <div class="flex-none bg-slate-800 dark:bg-slate-700 text-white font-black px-4 py-2 rounded-xl shadow-sm text-lg">
@@ -1904,79 +1348,132 @@ A 10.8 és 10.9 tételek miatt minden nem szomszédos $s,t$ csúcspárra a maxim
                 </div>
 <div class="relative w-fit">
 <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                        Többszörös összefüggőség
+                        Összefüggőség
                     </h2>
 <div class="absolute -bottom-2 left-0 w-full h-1.5 bg-slate-800/20 dark:bg-slate-700/50 rounded-full"></div>
 </div>
 </div>
 </math-header>
-<div class="flex flex-col gap-6">
-
-<math-def>
+<div class="flex flex-col gap-6"><math-def>
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#475569] mb-4">k-szoros összefüggőség (mennyire stabil a hálózat?)</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-6">
-<b>10.11. k-szoros összefüggőség</b><br>
-Vegyünk egy $G$ (irányítatlan) gráfot és egy tetszőleges $k \ge 1$ egész számot.
-</p>
+                Képzeljünk el egy $G$ hálózatot és egy $k \ge 1$ számot (ami azt mutatja, mennyire szívós a kötődés).
+            </p>
 <ul class="space-y-4">
 <li class="flex gap-4">
 <span class="flex-none w-1.5 h-1.5 rounded-full bg-[#475569] mt-2"></span>
 <p class="text-slate-700 dark:text-slate-300 text-sm md:text-base leading-relaxed">
-A hálózatot <b>$k$-szorosan él-összefüggőnek</b> nevezzük, ha bárhogyan is vágunk el maximum $(k-1)$ darab élt, a maradék rendszer még mindig összefüggő marad.
-</p>
+                        Azt mondjuk, hogy a $G$ gráf <b>$k$-szorosan élösszefüggő</b>, ha a gonosz manók bárhogyan is vágnak el benne $(k-1)$ drótot (élet), a hálózat mégis egy darabban marad. Tehát legalább $k$ drótot kell elvágni ahhoz, hogy a hálózat szétessen (szétessen a társaság).
+                    </p>
 </li>
 <li class="flex gap-4">
 <span class="flex-none w-1.5 h-1.5 rounded-full bg-[#475569] mt-2"></span>
 <p class="text-slate-700 dark:text-slate-300 text-sm md:text-base leading-relaxed">
-$G$-t <b>$k$-szorosan pont-összefüggőnek</b> mondjuk, ha legalább van benne $k+1$ csúcs, és ha legfeljebb $(k-1)$ csúcsot törlünk a rájuk kötött élekkel együtt, a megmaradt hálózat továbbra is összefüggő marad.
-</p>
+                        A gráf <b>$k$-szorosan pontösszefüggő</b>, ha van benne elég sok csomópont (legalább $k+1$), és ha $(k-1)$ csomópontot (a rájuk kötött drótokkal együtt) "felrobbantanak", a maradék még mindig összefüggő marad. Magyarul, legalább $k$ tagot kell kiütni a rendszerből, hogy szétessen az egész.
+                    </p>
 </li>
 </ul>
-</math-def>
-
-<math-def>
+</math-def><math-def>
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme mb-4">Összefüggőségi számok (szívóssági mutatók)</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-6">
+                Gondolj a $\lambda(G)$-re (lambda) úgy, mint a hálózat "él-szívósságára" – ez az a maximális kábelszám, amennyit vágni kell, hogy szétessen (él-összefüggőségi szám). A $\kappa(G)$ (kappa) pedig a "pont-szívósság", a szükséges robbantások száma csomópontokra (pont-összefüggőségi szám).
+            </p>
+</math-def><math-theorem>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-<b>10.12. Összefüggőségi számok</b><br>
-A $G$ gráf éleire vonatkozó "túlélőképességét" $\lambda(G)$ (lambda) jelöli: ez a legnagyobb olyan $k$ szint, amire a hálózat még $k$-szorosan él-összefüggő. <br/><br/>
-Csúcsokra ugyanezt a stabilitást $\kappa(G)$ (kappa) jelöli: a legnagyobb $k$, amire a gráf még $k$-szorosan pont-összefüggő marad.
-</p>
-</math-def>
-
-<math-theorem>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-<b>10.13. Menger-tétel k-szoros összefüggőségre</b><br>
-Képzeljünk el egy $G$ (irányítatlan) hálózatot és egy $k \ge 1$ egész számot.
-</p>
+                Ha van egy $G$ hálózatunk és egy $k \ge 1$ egész számunk (Menger-tételek konyhanyelven):
+            </p>
 <ul class="mt-4 space-y-4 text-slate-800 dark:text-slate-100 italic text-sm md:text-base list-none pl-4">
 <li class="flex gap-4">
 <span class="flex-none font-bold text-theme">(i)</span>
-<span>$G$ pontosan akkor <b>$k$-szorosan él-összefüggő</b>, ha bármely két csúcs között biztosan találunk $k$ darab éldiszjunkt utat.</span>
+<span><b>Él-szívósság:</b> Bármelyik két ember (csúcs) között el lehet jutni $k$ teljesen különálló útvonalon, amik egyetlen közös szakaszon (dróton) sem osztoznak. (Persze, a köztes haverok ugyanazok lehetnek, de az őt összekötő élek nem.)</span>
 </li>
 <li class="flex gap-4">
 <span class="flex-none font-bold text-theme">(ii)</span>
-<span>$G$ pontosan akkor <b>$k$-szorosan pont-összefüggő</b>, ha kellően nagy (legalább $k+1$ csúcsa van), és bármely két csúcs között létezik $k$ darab pontdiszjunkt út.</span>
+<span><b>Pont-szívósság:</b> Elég nagy a társaság (legalább $k+1$ fő), és bármelyik két arc között van $k$ olyan útvonal, amiknek még csak az útba eső megállói (csúcsai) sem egyeznek meg!</span>
 </li>
 </ul>
-</math-theorem>
-
-<math-def>
+</math-theorem><math-theorem>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-<b>10.13b. Minimális összsúlyú feszítőfa (MST)</b><br>
-A <b>minimális összsúlyú feszítőfa (MST)</b> a legolcsóbb úthálózat: egy olyan fa, ami minden várost (csúcsot) összeköt, de a felhasznált utak (élek) összköltsége a lehető legkisebb!
+                Ha egy gráfot marha nehéz szétrobbantani csomópontok kiiktatásával ($k$-szorosan pontösszefüggő), akkor a drótok elvagdosásával legalább annyira nehéz lesz ($k$-szorosan élösszefüggő is). Csomópontot megsemmisíteni mindig "pusztítóbb" a hálózatra, mint éleket vagdosni!
+            </p>
+</math-theorem><math-def>
+<div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
+Képzeljük el, hogy a csúcsok falvak, az élek pedig a köztük lévő lehetséges földutak, amiknek mind megvan a maga leaszfaltozási költsége ($w$). Egy $F$ feszítőfa a <b>minimális összsúlyú feszítőfa (MST - Minimum Spanning Tree)</b>, ha ez az a hálózat, ami minden falut összeköt (feszítőfa), és ezt úgy teszi, hogy az utakra költött összes pénz ($\sum_{e \in F} w(e)$) a lehető legkevesebb az összes felmerülő opció közül. Fösvény aszfaltozók álma!
 </p>
-</math-def>
-
-<math-algorithm>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-<b>10.14. Kruskal algoritmusa</b><br>
-A Kruskal-algoritmus egy mohó módszer az MST megkeresésére. Csak ennyit csinál: <b>állandóan a legolcsóbb utakat veszi meg!</b><br/><br/>
-1. <b>Sorba rakjuk:</b> Állítsuk sorba az éleket a legolcsóbbtól a legdrágábbig.<br/>
-2. <b>Válogatás:</b> Kezdjük el berakni az éleket a legolcsóbbtól kezdve.<br/>
-3. <b>A szabály:</b> Egy élet <b>csak akkor</b> vehetünk meg, ha nem hoz létre kört a már megvett élekkel! (Különben felesleges).<br/>
-4. <b>Vége:</b> Ha pontosan $n-1$ élet megvettünk, kész vagyunk!
-</p>
-</math-algorithm>
-
 </div>
+</math-def><math-algorithm>
+<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
+<div class="absolute top-0 right-0 p-6 opacity-5 pointer-events-none">
+<svg class="w-24 h-24 text-emerald-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</div>
+<div class="flex items-center mb-6">
+<span class="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md mr-3 text-xs">Pszeudokód</span>
+</div>
+<div class="space-y-6">
+<div class="bg-slate-50 dark:bg-slate-900/50 p-5 rounded-xl border border-slate-100 dark:border-slate-800">
+<p class="text-sm font-bold text-slate-700 dark:text-slate-300">
+<span class="text-emerald-600 dark:text-emerald-400 uppercase mr-2 tracking-tighter">Bemenet:</span> 
+                    Egy egyben lévő (összefüggő) hálózat $n$ faluval és $m$ lehetséges földúttal ($G$), meg a hozzájuk tartozó aszfaltozási költségek ($w$).
+                </p>
+</div>
+<div class="font-mono text-sm md:text-base space-y-2 bg-slate-900 text-slate-300 p-6 md:p-8 rounded-2xl shadow-2xl border border-slate-800">
+<div class="flex gap-4">
+<span class="text-slate-600 shrink-0">1</span>
+<p><span class="text-emerald-400 font-bold">RENDEZZÜK AZ UTAKAT (ÉLEKET)</span> áruk szerint, a legolcsóbbtól a legdrágábbig: $w(e_1) \leq w(e_2) \leq \dots \leq w(e_m)$</p>
+</div>
+<div class="flex gap-4">
+<span class="text-slate-600 shrink-0">2</span>
+<p>$k \leftarrow 0$; $j \leftarrow 1$; $E(F) \leftarrow \emptyset$</p>
+</div>
+<div class="flex gap-4">
+<span class="text-slate-600 shrink-0">3</span>
+<p><span class="text-indigo-400 font-bold uppercase text-xs">ciklus:</span> amíg $k &lt; n - 1$</p>
+</div>
+<div class="flex gap-4 ml-6">
+<span class="text-slate-600 shrink-0">4</span>
+<p class="text-slate-400 font-medium">NÉZZÜK MEG, HOGY A KÖVETKEZŐ LEGOLCSÓBB ÚT KÉT VÉGE (FALUJA) MÁR ÖSSZE VAN-E KÖTVE VALAHOGY</p>
+</div>
+<div class="flex gap-4 ml-6">
+<span class="text-slate-600 shrink-0">5</span>
+<p><span class="text-indigo-400 font-bold uppercase text-xs">ha</span> nincsenek (tehát hasznos az új út), <span class="text-indigo-400 font-bold uppercase text-xs">akkor:</span></p>
+</div>
+<div class="flex gap-4 ml-12 border-l border-slate-700 pl-4">
+<span class="text-slate-600 shrink-0">6</span>
+<p>$E(F) \leftarrow E(F) \cup \{e_j\}$ <span class="text-slate-600 ml-2 italic">// Megvesszük ezt az utat!</span></p>
+</div>
+<div class="flex gap-4 ml-12 border-l border-slate-700 pl-4">
+<span class="text-slate-600 shrink-0">7</span>
+<p>$k \leftarrow k + 1$ <span class="text-slate-600 ml-2 italic">// Strigulázzuk, hány utat vettünk eddig</span></p>
+</div>
+<div class="flex gap-4 ml-6">
+<span class="text-slate-600 shrink-0">8</span>
+<p>$j \leftarrow j + 1$ <span class="text-slate-600 ml-2 italic">// Ugrás a következő legolcsóbb opcióra</span></p>
+</div>
+<div class="flex gap-4">
+<span class="text-slate-600 shrink-0">9</span>
+<p><span class="text-indigo-400 font-bold uppercase text-xs">ciklus vége</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+<div class="bg-emerald-50 dark:bg-emerald-900/10 p-6 rounded-2xl border border-emerald-100 dark:border-emerald-900/30 shadow-sm">
+<h4 class="text-emerald-700 dark:text-emerald-400 font-black mb-3 text-[10px] uppercase tracking-widest">Leállási feltétel</h4>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed italic">
+                Mivel $n$ falut pontosan $n-1$ úttal lehet a legolcsóbban összekötni (hogy mindenhol körmentes legyen), amint megvan az $n-1$ út, a brigád leáll, és kész a legolcsóbb aszfaltozott úthálózat (a feszítőfa)!
+            </p>
+</div>
+<div class="bg-indigo-50 dark:bg-indigo-900/10 p-6 rounded-2xl border border-indigo-100 dark:border-indigo-900/30 shadow-sm">
+<h4 class="text-indigo-700 dark:text-indigo-400 font-black mb-3 text-[10px] uppercase tracking-widest">Komponens vizsgálat (Miért ne csináljunk kört?)</h4>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed italic">
+                A 4. lépés azért nagyon zseniális, hogy ne pazaroljunk aszfaltot: ha két falu amúgy is elérhető egymásból a már lebetonozott utakon keresztül, minek építenénk köztük teljesen új utat? Ezzel a trükkel spóroljuk meg a felesleges köröket.
+            </p>
+</div>
+</div>
+</math-algorithm></div></div>
+
 </div>
 </main>
 <script>
