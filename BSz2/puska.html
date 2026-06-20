@@ -1222,18 +1222,20 @@ Az <strong class="text-emerald-600 dark:text-emerald-400 not-italic uppercase">�
 </div>
 </div>
 </math-header>
-<div class="flex flex-col gap-6"><math-theorem>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-                Ha van egy $G$ irányított gráfod, benne egy $s$ forrás (ahonnan indul az áru) és egy $t$ nyelő (ahova érkezik), és beállítasz egy $f$ folyamot, aminek az értéke $m_f = d$, ráadásul minden élen (csövön) vagy semennyi, vagy pontosan $1$ egységnyi cucc folyik át (vagyis $f(e) = 0$ vagy $f(e) = 1$), akkor a csövek hálózatában garantáltan ki tudsz jelölni pontosan $d$ darab teljesen különálló (éldiszjunkt) útvonalat $s$-től $t$-ig, amelyeken ténylegesen áramlik a cucc ($f(e) = 1$). Vagyis a folyadék egyszerűen $d$ darab, egymást élben nem metsző "csővezetéken" csorog végig.
-            </p>
-</math-theorem>
+<div class="flex flex-col gap-6">
+
+<!-- 10.1 -->
+<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-theorem>
 <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.1. Lemma: Folyamok felbontása utakra</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-Ha minden csövön maximum 1 egységnyi víz folyhat, és te áttolsz a hálózaton $d$ egység vizet, akkor az pontosan $d$ darab teljesen különálló (éldiszjunkt) vízvezeték-útvonalnak felel meg $s$-ből $t$-be.
+Ha van egy $G$ irányított gráfod, benne egy $s$ forrás (ahonnan indul az áru) és egy $t$ nyelő (ahova érkezik), és beállítasz egy $f$ folyamot, aminek az értéke $m_f = d$, ráadásul minden élen (csövön) vagy semennyi, vagy pontosan $1$ egységnyi cucc folyik át (vagyis $f(e) = 0$ vagy $f(e) = 1$), akkor a csövek hálózatában garantáltan ki tudsz jelölni pontosan $d$ darab teljesen különálló (éldiszjunkt) útvonalat $s$-től $t$-ig, amelyeken ténylegesen áramlik a cucc ($f(e) = 1$). Vagyis a folyadék egyszerűen $d$ darab, egymást élben nem metsző "csővezetéken" csorog végig.
 </p>
 </math-theorem>
+</div>
 
+<!-- 10.2 -->
+<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-def>
 <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.2. Definíció: Lefogó élhalmaz</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
@@ -1241,7 +1243,10 @@ Mit jelent az, hogy <strong>"lefogjuk az utakat"</strong>?<br/><br/>
 Képzeld el, hogy a rendőrség blokádot épít, hogy $s$-ből ne lehessen eljutni $t$-be. Kiválasztanak pár utcát, és lezárják őket. Ez a kordon (élhalmaz) akkor "fogja le" tökéletesen az utakat, ha <strong>minden egyes létező útvonal</strong> $s$-ből $t$-be beleütközik legalább egy ilyen lezárt utcába.
 </p>
 </math-def>
+</div>
 
+<!-- 10.3 -->
+<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-theorem>
 <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.3. Tétel: Menger tétele (Irányított, élváltozat)</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
@@ -1253,51 +1258,70 @@ Ha adott egy egyirányú utcákból álló hálózat, és el akarsz jutni $s$-b�
 <li>(iii) Ha minden utca áteresztőképessége pontosan 1, akkor $s$-ből $t$-be legalább $k$ egységnyi "folyadékot" tudsz átnyomni (a maximális folyam $\ge k$).</li>
 </ul>
 </math-theorem>
+</div>
 
+<!-- 10.4 -->
+<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-theorem>
 <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.4. Tétel: Menger tétele (Irányítatlan, élváltozat)</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-Ugyanaz, mint a 10.3., csak <b>kétirányú utcák (irányítatlan gráf)</b> esetén! Itt is garantáltan megegyezik az éldiszjunkt utak száma a lezárandó utcák minimális számával ($\lambda_G(s,t) = \lambda'_G(s,t)$).
+Ugyanaz, mint a 10.3., csak <b>kétirányú utcák (irányítatlan gráf)</b> esetén! Itt is garantáltan megegyezik az éldiszjunkt utak száma a lezárandó utcák minimális számával.
 </p>
 </math-theorem>
+</div>
 
+<!-- 10.5 -->
+<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-theorem>
 <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.5. Következmény: Menger tétele éldiszjunkt utakra</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
 A fenti 10.3 és 10.4 tételek együttes eredménye: Menger tétele kimondja, hogy az éldiszjunkt utak maximális száma pontosan megegyezik a lezárandó utcák (lefogó élhalmaz) minimális számával. $\lambda_G(s,t) = \lambda'_G(s,t)$
 </p>
 </math-theorem>
+</div>
 
-
+<!-- 10.7 -->
+<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-def>
 <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.7. Definíció: Lefogó ponthalmaz</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
 A rendőrök most nem az utcákat, hanem magukat a <b>kereszteződéseket (csúcsokat)</b> zárják le. A kiválasztott kereszteződések halmaza (lefogó ponthalmaz) akkor sikeres, ha minden lehetséges $s$-ből $t$-be vezető út kénytelen átmenni legalább egy lezárt kereszteződésen (kivéve magát $s$-t és $t$-t).
 </p>
 </math-def>
+</div>
 
+<!-- 10.8 -->
+<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-theorem>
 <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.8. Tétel: Menger tétele (Irányított, pontváltozat)</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-Egyirányú utcák hálózatában a legtöbb független útvonal száma $s$-ből $t$-be, amik <strong>még csak kereszteződésekben (csúcsokban) sem találkoznak</strong> (pontdiszjunkt utak, $\kappa_G(s,t)$), teljesen megegyezik azzal a legkisebb darabszámú kereszteződéssel, amiket ha lezársz, teljesen elvágod az utat $s$-ből $t$-be.
+Ha van egy egyirányú úthálózatod, és két adott pont között (ahol nincs közvetlen út) próbálsz közlekedni, akkor a <b>pontdiszjunkt utak</b> maximális száma pontosan megegyezik a <b>lefogó ponthalmaz</b> minimális méretével. Magyarul: ahány kereszteződést le kell zárni ahhoz, hogy teljesen elvágják az utad, pontosan annyi teljesen független (egyik kereszteződésben sem találkozó) útvonal létezik.
 </p>
 </math-theorem>
+</div>
 
+<!-- 10.9 -->
+<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-theorem>
 <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.9. Tétel: Menger tétele (Irányítatlan, pontváltozat)</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-Hajszálpontosan ugyanaz, mint a 10.8., csak <b>kétirányú utcák (irányítatlan gráf)</b> esetén! Itt is érvényes, hogy a pontdiszjunkt utak száma megegyezik a minimális lefogó ponthalmaz méretével.
+Ugyanaz az elv érvényes <b>kétirányú utcák</b> esetén is: a független (csak $s$-ben és $t$-ben találkozó) útvonalak maximális száma garantáltan megegyezik az utakat elvágó legkisebb lezárt kereszteződések (lefogó ponthalmaz) számával.
 </p>
 </math-theorem>
+</div>
 
+<!-- 10.10 -->
+<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-theorem>
 <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.10. Következmény: Menger tétele pontdiszjunkt utakra</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-A fenti 10.8 és 10.9 tételek együttes eredménye: Menger tétele kimondja, hogy a pontdiszjunkt utak maximális száma pontosan megegyezik a lezárandó kereszteződések (lefogó ponthalmaz) minimális számával. $\kappa_G(s,t) = \kappa'_G(s,t)$
+A 10.8 és 10.9 tételek miatt minden nem szomszédos $s,t$ csúcspárra a maximális pontdiszjunkt utak száma megegyezik a minimális lefogó ponthalmaz méretével. $\kappa_G(s,t) = \kappa'_G(s,t)$
 </p>
 </math-theorem>
+</div>
 
-</div></div>
+</div>
+</div>
 <div class="mb-20">
 
 
