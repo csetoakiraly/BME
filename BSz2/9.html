@@ -1726,6 +1726,20 @@ A hálózatokban fellépő bonyolultabb áramlási feladatokat rendre vissza tud
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
                 Legyen $f$ olyan, $m_f = d$ értékű folyam a $G$ irányított gráfban az $s$ termelőből a $t$ fogyasztóba, amire $f(e) = 0$ vagy $f(e) = 1$ minden $e$ élre. Ekkor $G$-ben létezik $d$ olyan éldiszjunkt irányított út $s$-ből $t$-be, amiknek minden $e$ élére $f(e) = 1$.
 </p>
+<details class="group mt-6">
+<summary class="flex items-center gap-3 cursor-pointer select-none text-slate-700 dark:text-slate-300 font-bold hover:text-[#0d9488] dark:hover:text-teal-400 transition-colors">
+<span class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-sm group-open:bg-[#0d9488] group-open:text-white transition-colors">↓</span>
+Bizonyítás mutatása
+</summary>
+<div class="mt-4 pl-9 text-slate-600 dark:text-slate-400 space-y-4 text-sm md:text-base border-l-2 border-slate-200 dark:border-slate-700">
+<p>
+Az állítást indukcióval bizonyítjuk $d$-re. Ha $d = 0$, az állítás üres. Ha $d > 0$, akkor a folyamérték definíciója szerint az $s$-ből több 1 értékű él lép ki, mint ahány lép be. Induljunk el egy ilyen élen egy $v_1$ csúcsba. Mivel $v_1 
+eq t$, a folyammegmaradás miatt $v_1$-ből is ki kell lépnie egy 1 értékű élnek. Így folytatva a sétát, előbb-utóbb eljutunk $t$-be (mivel a gráf véges és körmentesíthető a folyam).
+<br><br>
+Kaptunk egy $s$-ből $t$-be vezető $P$ irányított utat. Csökkentsük az $f(e)$ értékét 0-ra ezen az úton. Így a folyamérték $d-1$ lett, a folyammegmaradás továbbra is teljesül. Az indukciós feltevés szerint ebből a maradékból még $d-1$ éldiszjunkt utat tudunk "kiszálazni", amik a $P$-vel együtt pontosan $d$ éldiszjunkt utat adnak.
+</p>
+</div>
+</details>
 </math-theorem>
 </section>
 
@@ -1770,6 +1784,23 @@ Legyen adott a $G$ irányított gráf, annak az $s, t \in V(G)$ különböző cs
     <li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(ii)</span> Nem létezik legföljebb $k-1$ méretű, az $s$-ből $t$-be vezető irányított utakat lefogó élhalmaz. ($\lambda'_G(s,t) \ge k$)</li>
     <li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(iii)</span> A $(G,s,t,c)$ hálózatban a maximális folyam értéke legalább $k$, ahol $c$ az azonosan $1$ kapacitásfüggvény.</li>
 </ul>
+<details class="group mt-6">
+<summary class="flex items-center gap-3 cursor-pointer select-none text-slate-700 dark:text-slate-300 font-bold hover:text-[#0d9488] dark:hover:text-teal-400 transition-colors">
+<span class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-sm group-open:bg-[#0d9488] group-open:text-white transition-colors">↓</span>
+Bizonyítás mutatása
+</summary>
+<div class="mt-4 pl-9 text-slate-600 dark:text-slate-400 space-y-4 text-sm md:text-base border-l-2 border-slate-200 dark:border-slate-700">
+<p>
+A három állítás ekvivalenciáját ciklikusan bizonyítjuk:
+<br><br>
+<b>(i) $\Rightarrow$ (ii):</b> Triviális. Ha van $k$ db éldiszjunkt út $s$-ből $t$-be, akkor ezeknek nincs közös élük. Ahhoz, hogy az összes utat megszakítsuk, mindegyikből ki kell venni legalább egy élt. Így bármely lefogó élhalmaznak legalább $k$ eleme kell, hogy legyen.
+<br><br>
+<b>(ii) $\Rightarrow$ (iii):</b> Alkalmazzuk a Ford-Fulkerson tételt a $(G,s,t,c)$ hálózatra, ahol minden él kapacitása $c \equiv 1$. A tétel szerint a maximális folyam értéke egyenlő a minimális vágás kapacitásával. Mivel minden él kapacitása 1, egy $s-t$ vágás kapacitása pontosan a vágásban lévő élek száma. Egy vágás élei mindig lefogó élhalmazt alkotnak. A feltétel szerint a legkisebb lefogó élhalmaz mérete $\ge k$, így a minimális vágás is $\ge k$, tehát a maximális folyam is legalább $k$.
+<br><br>
+<b>(iii) $\Rightarrow$ (i):</b> Ha a maximális folyam legalább $k$, akkor választhatunk egy pontosan $k$ értékű <i>egészértékű</i> folyamot (az Egészértékűségi Lemma miatt). Mivel $c \equiv 1$, ez a folyam csak $0$ és $1$ értékeket vesz fel. Erre pontosan ráhúzható a 10.1. Lemma, ami biztosítja $k$ éldiszjunkt út létezését.
+</p>
+</div>
+</details>
 </math-theorem>
 </section>
 
@@ -1796,6 +1827,25 @@ Legyen adott a $G$ irányítatlan gráf, annak az $s, t \in V(G)$ különböző 
 </math-theorem>
 </section>
 
+
+<math-header>
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-[#0d9488] text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-[#0d9488]/20">
+            10.5. Következmény
+        </div>
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-[#0d9488]/30 decoration-4 underline-offset-8 text-balance">
+            Menger tétele éldiszjunkt utakra
+        </h2>
+</div>
+</math-header>
+<section class="mb-16 animate-fade-in text-left" id="section-10-5">
+<math-theorem>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
+Minden $G$ (irányított vagy irányítatlan) gráfra és annak az $s,t \in V(G)$, $s 
+eq t$ csúcsaira $\lambda_G(s,t) = \lambda'_G(s,t)$ teljesül. (Azaz a maximális éldiszjunkt utak száma megegyezik a minimális lefogó élhalmaz méretével).
+</p>
+</math-theorem>
+</section>
 <math-header>
 <div class="flex items-center gap-4 mb-6 mt-12">
 <div class="flex-none bg-[#0d9488] text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-[#0d9488]/20">
@@ -1832,6 +1882,9 @@ otin Y$ és a gráf minden $s$-ből $t$-be vezető útja tartalmaz legalább egy
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-4">
 Legyen adott a $G$ irányított gráf, az $s, t \in V(G)$ különböző csúcsok, amikre nincs él $s$-ből $t$-be. Ekkor a maximálisan megadható $s$-ből $t$-be vezető <b>pontdiszjunkt utak</b> száma ($\kappa_G(s,t)$) megegyezik a minimális $s$-ből $t$-be vezető utakat lefogó ponthalmaz méretével.
 </p>
+<div class="mt-4 bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded text-sm text-yellow-800 dark:text-yellow-200">
+<strong>💡 Megjegyzés a vizsgához:</strong> A hivatalos BME tételsor alapján a pontdiszjunkt esetekben (10.8. és 10.9. tételek) a bizonyítás <strong>nem kérhető számon</strong>, ezért itt nem szerepel!
+</div>
 </math-theorem>
 </section>
 
@@ -1850,8 +1903,31 @@ Legyen adott a $G$ irányított gráf, az $s, t \in V(G)$ különböző csúcsok
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-4">
 Legyen adott a $G$ irányítatlan gráf, az $s, t \in V(G)$ különböző, nem szomszédos csúcsok. Ekkor a maximálisan megadható $s$ és $t$ közötti <b>pontdiszjunkt utak</b> száma ($\kappa_G(s,t)$) megegyezik a minimális $s,t$-utakat lefogó ponthalmaz méretével.
 </p>
+<div class="mt-4 bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded text-sm text-yellow-800 dark:text-yellow-200">
+<strong>💡 Megjegyzés a vizsgához:</strong> A hivatalos BME tételsor alapján a pontdiszjunkt esetekben a bizonyítás <strong>nem kérhető számon</strong>, így a 10.9. tételhez sem kell!
+</div>
 </math-theorem>
 </section>
+
+<math-header>
+<div class="flex items-center gap-4 mb-6 mt-12">
+<div class="flex-none bg-[#0d9488] text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-[#0d9488]/20">
+            10.10. Következmény
+        </div>
+<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-[#0d9488]/30 decoration-4 underline-offset-8 text-balance">
+            Menger tétele pontdiszjunkt utakra
+        </h2>
+</div>
+</math-header>
+<section class="mb-16 animate-fade-in text-left" id="section-10-10">
+<math-theorem>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
+Ha a $G$ (irányított vagy irányítatlan) gráfra és annak az $s,t \in V(G)$, $s 
+eq t$ csúcsaira nincs közvetlen összekötő él, akkor $\kappa_G(s,t) = \kappa'_G(s,t)$ teljesül. (Azaz a maximális pontdiszjunkt utak száma megegyezik a minimális lefogó ponthalmaz méretével).
+</p>
+</math-theorem>
+</section>
+
 
 <math-header>
     <div class="num-badge">9.4c</div>
