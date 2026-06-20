@@ -1773,9 +1773,9 @@ Hasonlóan értelmezzük ezt a fogalmat <b>irányítatlan $G$ gráfokra</b> is.
 Legyen adott a $G$ irányított gráf, annak az $s, t \in V(G)$ különböző csúcsai és a $k \ge 1$ egész. Ekkor az alábbi állítások ekvivalensek:
 </p>
 <ul class="list-none space-y-3 mt-4 text-slate-700 dark:text-slate-300">
-    <li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(i)</span> Létezik $G$-ben $k$ éldiszjunkt irányított út $s$-ből $t$-be. ($\lambda_G(s,t) \ge k$)</li>
-    <li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(ii)</span> Nem létezik legföljebb $k-1$ méretű, az $s$-ből $t$-be vezető irányított utakat lefogó élhalmaz. ($\lambda'_G(s,t) \ge k$)</li>
-    <li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(iii)</span> A $(G,s,t,c)$ hálózatban a maximális folyam értéke legalább $k$, ahol $c$ az azonosan $1$ kapacitásfüggvény.</li>
+    <li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(i)</span> <span>Létezik $G$-ben $k$ éldiszjunkt irányított út $s$-ből $t$-be. ($\lambda_G(s,t) \ge k$)</span></li>
+    <li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(ii)</span> <span>Nem létezik legföljebb $k-1$ méretű, az $s$-ből $t$-be vezető irányított utakat lefogó élhalmaz. ($\lambda'_G(s,t) \ge k$)</span></li>
+    <li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(iii)</span> <span>A $(G,s,t,c)$ hálózatban a maximális folyam értéke legalább $k$, ahol $c$ az azonosan $1$ kapacitásfüggvény.</span></li>
 </ul>
 </math-theorem>
 <math-proof>
@@ -1807,15 +1807,22 @@ A három állítás ekvivalenciáját ciklikusan bizonyítjuk:
 Legyen adott a $G$ irányítatlan gráf, annak az $s, t \in V(G)$ különböző csúcsai és a $k \ge 1$ egész. Ekkor az alábbi állítások ekvivalensek:
 </p>
 <ul class="list-none space-y-3 mt-4 text-slate-700 dark:text-slate-300">
-    <li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(i)</span> Létezik $G$-ben $k$ éldiszjunkt irányítatlan út $s$-ből $t$-be. ($\lambda_G(s,t) \ge k$)</li>
-    <li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(ii)</span> Nem létezik legföljebb $k-1$ méretű, az $s$ és $t$ közti irányítatlan utakat lefogó élhalmaz. ($\lambda'_G(s,t) \ge k$)</li>
-    <li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(iii)</span> A $(H,s,t,c)$ hálózatban a maximális folyam értéke legalább $k$, ahol a $H$ irányított hálózatot úgy kapjuk, hogy $G$ minden irányítatlan élét kicseréljük két ellentétes irányított élre, és $c$ az azonosan $1$ kapacitásfüggvény.</li>
+    <li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(i)</span> <span>Létezik $G$-ben $k$ éldiszjunkt irányítatlan út $s$-ből $t$-be. ($\lambda_G(s,t) \ge k$)</span></li>
+    <li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(ii)</span> <span>Nem létezik legföljebb $k-1$ méretű, az $s$ és $t$ közti irányítatlan utakat lefogó élhalmaz. ($\lambda'_G(s,t) \ge k$)</span></li>
+    <li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(iii)</span> <span>A $(H,s,t,c)$ hálózatban a maximális folyam értéke legalább $k$, ahol a $H$ irányított hálózatot úgy kapjuk, hogy $G$ minden irányítatlan élét kicseréljük két ellentétes irányított élre, és $c$ az azonosan $1$ kapacitásfüggvény.</span></li>
 </ul>
 </math-theorem>
 <math-proof>
 <p>
 Az irányítatlan esetet egyszerűen visszavezetjük az irányítottra (10.3. Tétel):
-Minden irányítatlan élt cseréljünk ki két ellentétes, 1 kapacitású irányított élre. Ezzel kapunk egy $H$ irányított gráfot. Az (i) $\Rightarrow$ (ii) lépés itt is triviális. A (ii) $\Rightarrow$ (iii) lépés ugyanúgy a Ford-Fulkerson tétel alkalmazása $H$-n. A (iii) $\Rightarrow$ (i) lépésben pedig a $H$-ban kapott éldiszjunkt irányított utakról könnyen belátható, hogy nem használják egyszerre ugyanannak az irányítatlan élnek a két irányát (mert az rontaná a folyamot), így az eredeti $G$-ben is éldiszjunkt utakat adnak.
+<br><br>
+<b>Gráf transzformáció:</b> Minden irányítatlan élt cseréljünk ki két ellentétes, 1 kapacitású irányított élre. Ezzel kapunk egy $H$ irányított gráfot.
+<br><br>
+<b>(i) $\Rightarrow$ (ii):</b> Ez a lépés itt is triviális, hasonlóan az irányított esethez.
+<br><br>
+<b>(ii) $\Rightarrow$ (iii):</b> Ugyanúgy a Ford-Fulkerson tétel alkalmazása történik a $H$ hálózaton.
+<br><br>
+<b>(iii) $\Rightarrow$ (i):</b> A $H$-ban kapott éldiszjunkt irányított utakról könnyen belátható, hogy nem használják egyszerre ugyanannak az irányítatlan élnek a két irányát (mert az rontaná a folyamot), így az eredeti $G$-ben is éldiszjunkt utakat adnak.
 </p>
 </math-proof>
 </section>
