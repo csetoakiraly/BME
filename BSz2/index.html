@@ -2030,12 +2030,15 @@ document.addEventListener('DOMContentLoaded', () => {
 </math-def>
 <math-header>
 <div class="num-badge">1.15</div>
-<h2>Dijkstra algoritmusa</h2>
+<h2>A legrövidebb út feladat és Dijkstra algoritmusa</h2>
 </math-header>
 <math-def id="section-1-15">
 <div class="space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed">
 <p>
-            Dijkstra algoritmusa a <strong class="text-slate-900 dark:text-white">legrövidebb út problémát</strong> oldja meg olyan irányított gráfokban, ahol <strong class="text-rose-500">nincsenek negatív élsúlyok</strong>. Az algoritmus folyamatosan karbantart egy $K$ halmazt (a "kész" csúcsok halmazát, amikre a legrövidebb út már megvan), és kiszámítja a táv($v$) távolságokat a többi csúcsra.
+            <strong class="text-indigo-600 dark:text-indigo-400">A legrövidebb út feladat:</strong> Adott egy $G=(V,E)$ (irányított vagy irányítatlan) gráf, ahol minden $e \in E$ élhez egy $w(e) \in \mathbb{R}$ súly (hossz) tartozik. Egy út súlyán (hosszán) a benne szereplő élek súlyainak összegét értjük. A feladat adott $s, t \in V$ csúcsok esetén megtalálni a minimális súlyú $s-t$ utat, vagyis a legrövidebb utat $s$-ből $t$-be.
+        </p>
+<p>
+            Dijkstra algoritmusa ezt a <strong class="text-slate-900 dark:text-white">legrövidebb út problémát</strong> oldja meg olyan irányított gráfokban, ahol <strong class="text-rose-500">nincsenek negatív élsúlyok</strong> ($w(e) \ge 0$). Az algoritmus folyamatosan karbantart egy $K$ halmazt (a "kész" csúcsok halmazát, amikre a legrövidebb út már garantáltan megvan), és kiszámítja a táv($v$) távolságokat a többi csúcsra.
         </p>
 </div>
 </math-def>
@@ -2060,12 +2063,27 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 <math-theorem id="section-1-16">
 <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4 italic text-center md:text-left">
-        Dijkstra algoritmusának lépésszáma
+        Dijkstra algoritmusának lépésszáma és helyessége
     </h3>
 <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-        Az algoritmus 10. sorában a minimumkeresés minden lépésben egyre kisebb halmazon fut le. Ha egyszerű tömböt használunk, a keresések száma $n$-nel arányos minden külső ciklusban, így az eljárás teljes lépésszáma <strong class="text-indigo-600 dark:text-indigo-400">$\mathcal{O}(n^2)$</strong>, ahol $n$ a csúcsok száma.
+        Az algoritmus 10. sorában a minimumkeresés minden lépésben egyre kisebb halmazon fut le. Ha egyszerű tömböt használunk, a keresések száma $n$-nel arányos minden külső ciklusban, így az eljárás teljes lépésszáma <strong class="text-indigo-600 dark:text-indigo-400">$\mathcal{O}(n^2)$</strong>, ahol $n$ a csúcsok száma. (Bonyolultabb adatszerkezettel, pl. Fibonacci kupaccal ez optimalizálható).
     </p>
 </math-theorem>
+
+<math-proof>
+<p class="text-slate-700 dark:text-slate-300 font-medium mb-4">
+    Azt állítjuk, hogy amikor az algoritmus befejeződik, minden $v \in V$ csúcsra a táv($v$) pontosan az $s$-ből $v$-be vezető legrövidebb út súlyával lesz egyenlő.
+</p>
+<p class="text-slate-700 dark:text-slate-300 mb-4">
+    Bizonyítás (Indukcióval a $K$ halmaz méretére):
+</p>
+<ul class="list-disc list-inside space-y-2 text-slate-700 dark:text-slate-300 mb-4">
+    <li><b>Indukciós bázis:</b> Kezdetben $K = \{s\}$, és táv($s$) = 0. Mivel nincsenek negatív élsúlyok, az $s$-ből $s$-be vezető legrövidebb út súlya garantáltan 0.</li>
+    <li><b>Indukciós lépés:</b> Tegyük fel, hogy a feltétel teljesül minden $u \in K$ csúcsra. Legyen az algoritmus aktuális lépésében a legkisebb táv($a$) értékkel rendelkező $a \notin K$ csúcs kiválasztva, melynek szomszédja $v \in K$ volt, azaz táv($a$) = táv($v$) + $w(v,a)$.</li>
+    <li>Mivel minden él súlya $\ge 0$, és a $K$-n kívüli csúcsok közül az $a$-t választottuk a minimális becsléssel, bármilyen más út $s$-ből $a$-ba ki kell lépjen $K$-ból egy $x \notin K$ ponton keresztül. Ennek a kerülőútnak a hossza legalább táv($x$) lenne, de a minimális választás miatt táv($x$) $\ge$ táv($a$). Tehát nem létezhet rövidebb út $a$-ba.</li>
+    <li>Így amikor $a$ bekerül a $K$ halmazba, a táv($a$) értéke már végleges és valóban az optimális legrövidebb út hossza lesz.</li>
+</ul>
+</math-proof>
 <math-header>
 <div class="num-badge">1.14</div>
 

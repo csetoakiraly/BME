@@ -1765,11 +1765,25 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="flex items-center gap-4 mb-6 mt-12">
 <div class="num-badge bg-yellow-500 text-slate-900">4.4</div>
 <h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-yellow-500/30 decoration-4 underline-offset-8 text-balance">
-            A mohó színezés korlátai
+            A mohó színezés és korlátai
         </h2>
 </div>
 </math-header>
 <section class="mb-16 space-y-8 animate-fade-in" id="section-4-4">
+<math-algorithm>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4 italic">
+        Mohó színezés algoritmusa
+    </h3>
+<p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+        A mohó (greedy) színezés egy heurisztikus eljárás egy gráf csúcsainak színezésére.
+    </p>
+<ul class="list-decimal list-inside space-y-2 text-slate-700 dark:text-slate-300">
+    <li>Rendezzük a gráf csúcsait valamilyen tetszőleges $v_1, v_2, \dots, v_n$ sorrendbe.</li>
+    <li>Lépdeljünk végig a csúcsokon ebben a sorrendben.</li>
+    <li>A soron következő $v_i$ csúcsnak mindig adjuk a <b>lehető legkisebb</b> olyan színt (pl. 1, 2, 3, ...), amely még nem szerepel a $v_i$ már kiszínezett szomszédai között.</li>
+</ul>
+</math-algorithm>
+
 <math-theorem>
 <div class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
 <p>
@@ -1914,6 +1928,24 @@ document.addEventListener('DOMContentLoaded', () => {
             </p>
         </div>
     </math-theorem>
+
+    <math-proof>
+        <p class="text-slate-700 dark:text-slate-300 font-medium mb-4">
+            Bizonyítás (Mycielski-konstrukcióval): Teljes indukcióval bizonyítunk $k$-ra.
+        </p>
+        <ul class="list-disc list-inside space-y-2 text-slate-700 dark:text-slate-300 mb-4">
+            <li><b>$k=2$ esetén:</b> Legyen $G_2 = K_2$ (egy él két csúccsal). Ebben nincs háromszög ($\omega(G_2)=2$) és 2 szín kell hozzá ($\chi(G_2)=2$). Az állítás igaz.</li>
+            <li><b>Indukciós lépés:</b> Tegyük fel, hogy $G_k$ gráfra teljesül az állítás (nincs benne háromszög és $\chi(G_k)=k$). Konstruáljuk meg $G_{k+1}$-et a következőképpen:</li>
+            <ul class="list-[circle] list-inside ml-6 space-y-1 text-sm text-slate-600 dark:text-slate-400">
+                <li>Legyenek $G_k$ csúcsai $v_1, v_2, \dots, v_n$.</li>
+                <li>Vegyünk fel minden $v_i$-hez egy új $u_i$ csúcsot (ezeket hívjuk "árnyékcsúcsoknak").</li>
+                <li>Kössük össze az $u_i$ csúcsot az összes olyan $v_j$ csúccsal, amellyel $v_i$ szomszédos volt $G_k$-ban.</li>
+                <li>Végül vegyünk fel egy extra $w$ csúcsot, és kössük össze az összes $u_i$ csúccsal.</li>
+            </ul>
+            <li class="mt-4"><b>Miért nincs benne háromszög?</b> Az eredeti $G_k$-ban nem volt. Két $u$ csúcs között nincs él, az $u$ és $w$ közötti élek sem zárhatnak be háromszöget, mert az $u$-k között nincs él. Egy $v_i-v_j-u_l$ háromszög azt jelentené, hogy $v_i$ és $v_j$ szomszédok, és mindkettő szomszédos $u_l$-lel, ami definíció szerint azt jelentené, hogy $v_l$ szomszédos $v_i$-vel és $v_j$-vel, így $v_i-v_j-v_l$ egy háromszög lenne $G_k$-ban, ami lehetetlen.</li>
+            <li><b>Miért $\chi(G_{k+1}) = k+1$?</b> Ha elég lenne $k$ szín, és $w$ kapná a $k$-adik színt, akkor az összes $u_i$ csak az $1, 2, \dots, k-1$ színeket kaphatná. Mivel $u_i$ ugyanazokat a korlátozásokat szenvedi el, mint $v_i$, ha $v_i$ is a $k$-adik színt kapta, "átszínezhetnénk" $v_i$-t az $u_i$ színére, így $G_k$-t $k-1$ színnel is ki lehetne színezni, ami ellentmond az indukciós feltevésnek.</li>
+        </ul>
+    </math-proof>
 
     <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md">
         <h4 class="text-blue-600 dark:text-blue-400 font-bold mb-4 uppercase tracking-widest text-xs">Jelentőség</h4>

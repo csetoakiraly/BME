@@ -1944,6 +1944,15 @@ document.addEventListener('DOMContentLoaded', () => {
             A hálózati folyamok elméletében a vágás azért fontos, mert minden folyamnak, ami $s$-ből $t$-be tart, előbb-utóbb "át kell kelnie" ezen a határon. A vágás korlátozza a hálózat áteresztőképességét, hasonlóan ahhoz, ahogy egy csővezeték legszűkebb keresztmetszete meghatározza a maximális átfolyást.
         </p>
 </div>
+
+<div class="bg-indigo-50 dark:bg-indigo-900/10 border-l-4 border-indigo-500 p-8 rounded-[2rem] shadow-sm mt-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400 mb-4">A vágás kapacitása</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            Egy $X$ st-vágás **kapacitásán** (jele $c(X)$) az $X$-ből kimenő élek kapacitásának összegét értjük. Formálisan:
+            $$c(X) = \sum \{c(e) : e \text{ kilép } X\text{-ből}\}$$
+            A vágás kapacitása a hálózat maximális "áteresztőképességének" egy felső korlátját adja a forrás és a nyelő között.
+        </p>
+</div>
 </section>
 <math-header>
 <div class="flex items-center gap-4 mb-6 mt-12">
@@ -2148,6 +2157,23 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 </div>
 </math-proof>
+
+<math-algorithm>
+<div class="bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 p-8 rounded-[2rem] shadow-sm mb-8 mt-12">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme-500 mb-6">Algoritmus (Minimális vágás megkeresésére)</h4>
+<div class="space-y-6 text-slate-700 dark:text-slate-300">
+<p class="text-sm md:text-base leading-relaxed">
+    A Ford-Fulkerson tétel bizonyításából közvetlenül adódik a minimális kapacitású vágás megkeresésének algoritmusa:
+</p>
+<ul class="list-decimal pl-5 space-y-3 text-sm md:text-base">
+    <li>Futtassuk le a javítóutas algoritmust, amíg csak lehetséges, és kapjunk meg egy maximális $f$ folyamot.</li>
+    <li>Készítsük el ehhez a maximális folyamhoz tartozó $H_f$ segédgráfot. Mivel a folyam maximális, ebben a segédgráfban már <b>nincs</b> $s$-ből $t$-be vezető irányított út.</li>
+    <li>Legyen $X$ azon csúcsok halmaza, amelyek $s$-ből <b>elérhetőek</b> egy irányított úton a $H_f$ segédgráfban. Ekkor $s \in X$, de $t \notin X$.</li>
+    <li>A kapott $X$ csúcshalmaz egy <b>minimális kapacitású st-vágás</b>, amelynek kapacitása pontosan $m_f$.</li>
+</ul>
+</div>
+</div>
+</math-algorithm>
 </section>
 <math-header>
 <div class="flex items-center gap-4 mb-6 mt-12">

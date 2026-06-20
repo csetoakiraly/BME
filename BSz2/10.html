@@ -1735,8 +1735,28 @@ document.addEventListener('DOMContentLoaded', () => {
 <math-def>
 <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme mb-4">Összefüggőségi számok</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-6">
-                A $G$ gráfra $\lambda(G)$, illetve $\kappa(G)$ jelöli a legnagyobb olyan $k$ egészet, amire $G$ $k$-szorosan él-összefüggő, illetve $k$-szorosan pont-összefüggő.
+                A $G$ gráfra $\lambda(G)$, illetve $\kappa(G)$ jelöli a legnagyobb olyan $k$ egészet, amire $G$ $k$-szorosan él-összefüggő, illetve $k$-szorosan pont-összefüggő. Ezt a gráf (globális) él- és pont-összefüggőségi számának is nevezzük.
             </p>
+</math-def>
+<math-def>
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#475569] mb-4 mt-6">Lokális Összefüggőségi Számok (Diszjunkt Utak Jelölése)</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-6">
+                Két adott csúcs, $s, t \in V(G)$ esetén:
+            </p>
+<ul class="space-y-4">
+<li class="flex gap-4">
+<span class="flex-none w-1.5 h-1.5 rounded-full bg-[#475569] mt-2"></span>
+<p class="text-slate-700 dark:text-slate-300 text-sm md:text-base leading-relaxed">
+                        **$\lambda_G(s,t)$** jelöli a maximálisan megadható $s$-ből $t$-be vezető **éldiszjunkt utak** számát. (Két út éldiszjunkt, ha nincs közös élük.)
+                    </p>
+</li>
+<li class="flex gap-4">
+<span class="flex-none w-1.5 h-1.5 rounded-full bg-[#475569] mt-2"></span>
+<p class="text-slate-700 dark:text-slate-300 text-sm md:text-base leading-relaxed">
+                        **$\kappa_G(s,t)$** jelöli a maximálisan megadható $s$-ből $t$-be vezető **pontdiszjunkt utak** számát. (Két út pontdiszjunkt, ha a végpontjaikon kívül nincs közös csúcsuk.)
+                    </p>
+</li>
+</ul>
 </math-def>
 <div class="px-4 space-y-6 text-slate-600 dark:text-slate-400 text-sm leading-relaxed text-left">
 <p>

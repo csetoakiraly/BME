@@ -290,20 +290,70 @@ html.dark math-example { background: rgba(255,255,255,0.02); border-color: #3341
 </svg>
 </button>
 </div>
-<nav class="flex flex-col p-4 space-y-2 pb-4" id="main-nav">
+<nav class="flex flex-col p-4 space-y-2 pb-24 md:pb-4" id="main-nav">
 <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">Összefoglaló</div>
 <a class="nav-item active" href="puska.html"><span class="font-bold text-sm">Puska (Képletek, Tételek)</span></a>
 <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2">Gráfelmélet</div>
-<a class="nav-item" href="index.html"><span>1. Gráfelméleti alapok</span></a>
-<a class="nav-item" href="2.html"><span>2. Fák tulajdonságai</span></a>
-<a class="nav-item" href="3.html"><span>3. Hamilton-vonalak</span></a>
-<a class="nav-item" href="4.html"><span>4. Gráfok színezése</span></a>
-<a class="nav-item" href="5.html"><span>5. Párosítás fogalma</span></a>
-<a class="nav-item" href="6.html"><span>6. Párosítás páros gráfban</span></a>
-<a class="nav-item" href="7.html"><span>7. Teljes párosítás</span></a>
-<a class="nav-item" href="8.html"><span>8. Hálózatok és folyamok</span></a>
-<a class="nav-item" href="9.html"><span>9. Folyam általánosításai</span></a>
-<a class="nav-item" href="10.html"><span>10. Összefüggőség</span></a>
+<a class="nav-item" href="index.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        1. Tétel
+                    </span>
+<span class="font-bold text-sm">Gráfelméleti alapfogalmak</span>
+</a>
+<a class="nav-item" href="2.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        2. Tétel
+                    </span>
+<span class="font-bold text-sm">Fák tulajdonságai</span>
+</a>
+<a class="nav-item" href="3.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        3. Tétel
+                    </span>
+<span class="font-bold text-sm">Hamilton-körök és -utak</span>
+</a>
+<a class="nav-item" href="4.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        4. Tétel
+                    </span>
+<span class="font-bold text-sm">Gráfok színezése (χ, ω)</span>
+</a>
+<a class="nav-item" href="5.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        5. Tétel
+                    </span>
+<span class="font-bold text-sm">Párosítás fogalma</span>
+</a>
+<a class="nav-item" href="6.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        6. Tétel
+                    </span>
+<span class="font-bold text-sm">Párosítás páros gráfban</span>
+</a>
+<a class="nav-item" href="7.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        7. Tétel
+                    </span>
+<span class="font-bold text-sm">Teljes párosítás (Reguláris)</span>
+</a>
+<a class="nav-item" href="8.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        8. Tétel
+                    </span>
+<span class="font-bold text-sm">Hálózat, folyam, vágás</span>
+</a>
+<a class="nav-item" href="9.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        9. Tétel
+                    </span>
+<span class="font-bold text-sm">Folyam általánosításai</span>
+</a>
+<a class="nav-item" href="10.html">
+<span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
+                        10. Tétel
+                    </span>
+<span class="font-bold text-sm">Összefüggőség</span>
+</a>
 <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">ZH-k és Megoldások</div>
 <a class="nav-item" href="zh_2025.html"><span class="font-bold text-sm">2025 Tavasz Zárthelyi</span></a>
 <a class="nav-item" href="zh_2024.html"><span class="font-bold text-sm">2024 Tavasz Zárthelyi</span></a>
@@ -740,7 +790,13 @@ html.dark math-example { background: rgba(255,255,255,0.02); border-color: #3341
                 $G$ kromatikus számának a jele, mint a "kromatikus" szónál a görög kh: <span class="text-yellow-600 font-bold not-italic">$\chi(G)$</span>.
             </p>
 </div>
-</math-def><math-theorem>
+</math-def><math-algorithm>
+<div class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
+<p>
+                <strong class="not-italic text-yellow-600">Mohó színezés algoritmusa:</strong> Egy faék egyszerűségű trükk. Sorba állítjuk a csúcsokat valahogy, és elkezdünk rajtuk végigmenni. Amelyikhez odaérünk, annak rögtön a kezébe nyomjuk a <strong class="not-italic">legkisebb sorszámú</strong> olyan filctollat (1, 2, 3...), amivel a már kiszínezett szomszédai még NEM firkálták össze magukat.
+            </p>
+</div>
+</math-algorithm><math-theorem>
 <div class="text-xl font-bold text-slate-900 dark:text-white italic leading-relaxed">
 <p>
                 A mohó színezés eléggé béna tud lenni. Bármilyen $k \geq 1$-re létezik olyan gonoszul összerakott ($2k$ csúcsú) $G$ gráf, ami amúgy 2 színnel simán kiszínezhető ($\chi(G) = 2$), de ha pont egy direkt kiszúrt, peches sorrendben etetjük meg a csúcsokat a mohó algoritmussal, akkor az pazarolni fog, és indokolatlanul $k$ darab színt fog elhasználni.
@@ -1201,6 +1257,11 @@ html.dark math-example { background: rgba(255,255,255,0.02); border-color: #3341
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
             Képzeld el, hogy a csőhálózatot kettévágod úgy, hogy a forrás ($s$) nálad marad, a nyelő ($t$) meg a túloldalra kerül. Ezt a nálad maradó csúcshalmazt, az $X$-et hívjuk **st-vágásnak** (vagy simán **vágásnak**, ha amúgy is egyértelmű, miről van szó). Ezzel lehet megtalálni a rendszer szűk keresztmetszetét.
         </p>
+</div><div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+            Egy ilyen vágásnak a **kapacitása** (jele $c(X)$) pontosan az a szám, amit úgy kapsz meg, hogy fogod az összes olyan csövet, amiből a te $X$ térfeledből folyna át a cucc a túloldalra (nyelő felé), és ezeknek a kapacitásait összeadod. Tehát ez a keresztmetszet áteresztőképessége.
+        </p>
 </div><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
 <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Állítás</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
@@ -1226,7 +1287,14 @@ html.dark math-example { background: rgba(255,255,255,0.02); border-color: #3341
                 Ez a "legszűkebb keresztmetszet" elve okosan leírva: Bármely $(G,s,t,c)$ hálózatra $\max\{m_f : f \text{ folyam}\} = \min\{c(X) : X \text{ st-vágás}\}$. Tehát a maximálisan átpréselhető cucc mennyisége pontosan megegyezik a legszűkebb "keresztmetszet" kapacitásával. Hiába van ezer vastag csöved az elején, ha a végén egy szívószálon kell átmennie mindennek.
             </p>
 </div>
-</math-theorem><math-theorem>
+</math-theorem><math-algorithm>
+<div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Algoritmus (Minimális vágás megtalálása)</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
+                Hogyan találod meg a gyakorlatban a minimális vágást? Futtasd le a javítóutas algoritmust, amíg csak tudod. Ha megvan a max folyam, nézd meg a legutolsó $H_f$ segédgráfot. Az $s$-ből elérhető csúcsok halmaza lesz a minimális vágás ($X$), a szűk keresztmetszet.
+            </p>
+</div>
+</math-algorithm><math-theorem>
 <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
 <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Lemma (Egész értékűségi lemma)</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
@@ -1378,6 +1446,25 @@ A $G$ (irányított vagy irányítatlan) gráfban egy kereszteződésekből áll
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-6">
                 Gondolj a $\lambda(G)$-re (lambda) úgy, mint a hálózat "él-szívósságára" – ez az a maximális kábelszám, amennyit vágni kell, hogy szétessen (él-összefüggőségi szám). A $\kappa(G)$ (kappa) pedig a "pont-szívósság", a szükséges robbantások száma csomópontokra (pont-összefüggőségi szám).
             </p>
+</math-def><math-def>
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#475569] mb-4">Lokális Összefüggőségi Számok (Diszjunkt Utak)</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-6">
+                Ha csak két konkrét, $s$ és $t$ csúcs kapcsolatára vagyunk kíváncsiak:
+            </p>
+<ul class="space-y-4">
+<li class="flex gap-4">
+<span class="flex-none w-1.5 h-1.5 rounded-full bg-[#475569] mt-2"></span>
+<p class="text-slate-700 dark:text-slate-300 text-sm md:text-base leading-relaxed">
+                        **$\lambda_G(s,t)$** jelöli a maximális $s$-ből $t$-be vezető **éldiszjunkt utak** számát (utak, amiknek nincs közös élük).
+                    </p>
+</li>
+<li class="flex gap-4">
+<span class="flex-none w-1.5 h-1.5 rounded-full bg-[#475569] mt-2"></span>
+<p class="text-slate-700 dark:text-slate-300 text-sm md:text-base leading-relaxed">
+                        **$\kappa_G(s,t)$** jelöli a maximális $s$-ből $t$-be vezető **pontdiszjunkt utak** számát (utak, amik csak $s$-ben és $t$-ben találkoznak).
+                    </p>
+</li>
+</ul>
 </math-def><math-theorem>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
                 Ha van egy $G$ hálózatunk és egy $k \ge 1$ egész számunk (Menger-tételek konyhanyelven):

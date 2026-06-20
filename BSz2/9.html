@@ -1728,11 +1728,19 @@ A hálózatokban fellépő bonyolultabb áramlási feladatokat rendre vissza tud
 </p>
 </math-theorem>
 <math-proof>
-<p>
-Az állítást indukcióval bizonyítjuk $d$-re. Ha $d = 0$, az állítás üres. Ha $d > 0$, akkor a folyamérték definíciója szerint az $s$-ből több 1 értékű él lép ki, mint ahány lép be. Induljunk el egy ilyen élen egy $v_1$ csúcsba. Mivel $v_1 \neq t$, a folyammegmaradás miatt $v_1$-ből is ki kell lépnie egy 1 értékű élnek. Így folytatva a sétát, előbb-utóbb eljutunk $t$-be (mivel a gráf véges és körmentesíthető a folyam).
-<br><br>
-Kaptunk egy $s$-ből $t$-be vezető $P$ irányított utat. Csökkentsük az $f(e)$ értékét 0-ra ezen az úton. Így a folyamérték $d-1$ lett, a folyammegmaradás továbbra is teljesül. Az indukciós feltevés szerint ebből a maradékból még $d-1$ éldiszjunkt utat tudunk "kiszálazni", amik a $P$-vel együtt pontosan $d$ éldiszjunkt utat adnak.
-</p>
+<div class="relative p-8 md:p-12 bg-white dark:bg-slate-900/40 rounded-[3rem] border-2 border-rose-100 dark:border-rose-900/30 shadow-sm overflow-hidden mt-6">
+<div class="absolute top-0 right-0 p-8 opacity-5">
+<svg class="w-24 h-24 text-rose-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
+</div>
+<h4 class="font-black text-rose-600 dark:text-rose-400 uppercase text-xs tracking-[0.3em] mb-8 flex items-center gap-3">
+<span class="w-8 h-[2px] bg-rose-500"></span>
+    Bizonyítás
+</h4>
+<div class="space-y-4 text-slate-700 dark:text-slate-300">
+<p class="text-sm md:text-base leading-relaxed mb-4">Az állítást indukcióval bizonyítjuk $d$-re. Ha $d = 0$, az állítás üres. Ha $d > 0$, akkor a folyamérték definíciója szerint az $s$-ből több 1 értékű él lép ki, mint ahány lép be. Induljunk el egy ilyen élen egy $v_1$ csúcsba. Mivel $v_1 \neq t$, a folyammegmaradás miatt $v_1$-ből is ki kell lépnie egy 1 értékű élnek. Így folytatva a sétát, előbb-utóbb eljutunk $t$-be (mivel a gráf véges és körmentesíthető a folyam).</p>
+<p class="text-sm md:text-base leading-relaxed mb-4">Kaptunk egy $s$-ből $t$-be vezető $P$ irányított utat. Csökkentsük az $f(e)$ értékét 0-ra ezen az úton. Így a folyamérték $d-1$ lett, a folyammegmaradás továbbra is teljesül. Az indukciós feltevés szerint ebből a maradékból még $d-1$ éldiszjunkt utat tudunk "kiszálazni", amik a $P$-vel együtt pontosan $d$ éldiszjunkt utat adnak.</p>
+</div>
+</div>
 </math-proof>
 </section>
 
@@ -1814,15 +1822,21 @@ Legyen adott a $G$ irányított gráf, annak az $s, t \in V(G)$ különböző cs
 </ul>
 </math-theorem>
 <math-proof>
-<p>
-A három állítás ekvivalenciáját ciklikusan bizonyítjuk:
-<br><br>
-<b>(i) $\Rightarrow$ (ii):</b> Triviális. Ha van $k$ db éldiszjunkt út $s$-ből $t$-be, akkor ezeknek nincs közös élük. Ahhoz, hogy az összes utat megszakítsuk, mindegyikből ki kell venni legalább egy élt. Így bármely lefogó élhalmaznak legalább $k$ eleme kell, hogy legyen.
-<br><br>
-<b>(ii) $\Rightarrow$ (iii):</b> Alkalmazzuk a Ford-Fulkerson tételt a $(G,s,t,c)$ hálózatra, ahol minden él kapacitása $c \equiv 1$. A tétel szerint a maximális folyam értéke egyenlő a minimális vágás kapacitásával. Mivel minden él kapacitása 1, egy $s-t$ vágás kapacitása pontosan a vágásban lévő élek száma. Egy vágás élei mindig lefogó élhalmazt alkotnak. A feltétel szerint a legkisebb lefogó élhalmaz mérete $\ge k$, így a minimális vágás is $\ge k$, tehát a maximális folyam is legalább $k$.
-<br><br>
-<b>(iii) $\Rightarrow$ (i):</b> Ha a maximális folyam legalább $k$, akkor választhatunk egy pontosan $k$ értékű <i>egészértékű</i> folyamot (az Egészértékűségi Lemma miatt). Mivel $c \equiv 1$, ez a folyam csak $0$ és $1$ értékeket vesz fel. Erre pontosan ráhúzható a 10.1. Lemma, ami biztosítja $k$ éldiszjunkt út létezését.
-</p>
+<div class="relative p-8 md:p-12 bg-white dark:bg-slate-900/40 rounded-[3rem] border-2 border-rose-100 dark:border-rose-900/30 shadow-sm overflow-hidden mt-6">
+<div class="absolute top-0 right-0 p-8 opacity-5">
+<svg class="w-24 h-24 text-rose-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
+</div>
+<h4 class="font-black text-rose-600 dark:text-rose-400 uppercase text-xs tracking-[0.3em] mb-8 flex items-center gap-3">
+<span class="w-8 h-[2px] bg-rose-500"></span>
+    Bizonyítás
+</h4>
+<div class="space-y-4 text-slate-700 dark:text-slate-300">
+<p class="text-sm md:text-base leading-relaxed mb-4">A három állítás ekvivalenciáját ciklikusan bizonyítjuk:</p>
+<p class="text-sm md:text-base leading-relaxed mb-4"><b>(i) $\Rightarrow$ (ii):</b> Triviális. Ha van $k$ db éldiszjunkt út $s$-ből $t$-be, akkor ezeknek nincs közös élük. Ahhoz, hogy az összes utat megszakítsuk, mindegyikből ki kell venni legalább egy élt. Így bármely lefogó élhalmaznak legalább $k$ eleme kell, hogy legyen.</p>
+<p class="text-sm md:text-base leading-relaxed mb-4"><b>(ii) $\Rightarrow$ (iii):</b> Alkalmazzuk a Ford-Fulkerson tételt a $(G,s,t,c)$ hálózatra, ahol minden él kapacitása $c \equiv 1$. A tétel szerint a maximális folyam értéke egyenlő a minimális vágás kapacitásával. Mivel minden él kapacitása 1, egy $s-t$ vágás kapacitása pontosan a vágásban lévő élek száma. Egy vágás élei mindig lefogó élhalmazt alkotnak. A feltétel szerint a legkisebb lefogó élhalmaz mérete $\ge k$, így a minimális vágás is $\ge k$, tehát a maximális folyam is legalább $k$.</p>
+<p class="text-sm md:text-base leading-relaxed mb-4"><b>(iii) $\Rightarrow$ (i):</b> Ha a maximális folyam legalább $k$, akkor választhatunk egy pontosan $k$ értékű <i>egészértékű</i> folyamot (az Egészértékűségi Lemma miatt). Mivel $c \equiv 1$, ez a folyam csak $0$ és $1$ értékeket vesz fel. Erre pontosan ráhúzható a 10.1. Lemma, ami biztosítja $k$ éldiszjunkt út létezését.</p>
+</div>
+</div>
 </math-proof>
 </section>
 
@@ -1848,17 +1862,22 @@ Legyen adott a $G$ irányítatlan gráf, annak az $s, t \in V(G)$ különböző 
 </ul>
 </math-theorem>
 <math-proof>
-<p>
-Az irányítatlan esetet egyszerűen visszavezetjük az irányítottra (10.3. Tétel):
-<br><br>
-<b>Gráf transzformáció:</b> Minden irányítatlan élt cseréljünk ki két ellentétes, 1 kapacitású irányított élre. Ezzel kapunk egy $H$ irányított gráfot.
-<br><br>
-<b>(i) $\Rightarrow$ (ii):</b> Ez a lépés itt is triviális, hasonlóan az irányított esethez.
-<br><br>
-<b>(ii) $\Rightarrow$ (iii):</b> Ugyanúgy a Ford-Fulkerson tétel alkalmazása történik a $H$ hálózaton.
-<br><br>
-<b>(iii) $\Rightarrow$ (i):</b> A $H$-ban kapott éldiszjunkt irányított utakról könnyen belátható, hogy nem használják egyszerre ugyanannak az irányítatlan élnek a két irányát (mert az rontaná a folyamot), így az eredeti $G$-ben is éldiszjunkt utakat adnak.
-</p>
+<div class="relative p-8 md:p-12 bg-white dark:bg-slate-900/40 rounded-[3rem] border-2 border-rose-100 dark:border-rose-900/30 shadow-sm overflow-hidden mt-6">
+<div class="absolute top-0 right-0 p-8 opacity-5">
+<svg class="w-24 h-24 text-rose-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
+</div>
+<h4 class="font-black text-rose-600 dark:text-rose-400 uppercase text-xs tracking-[0.3em] mb-8 flex items-center gap-3">
+<span class="w-8 h-[2px] bg-rose-500"></span>
+    Bizonyítás
+</h4>
+<div class="space-y-4 text-slate-700 dark:text-slate-300">
+<p class="text-sm md:text-base leading-relaxed mb-4">Az irányítatlan esetet egyszerűen visszavezetjük az irányítottra (10.3. Tétel):</p>
+<p class="text-sm md:text-base leading-relaxed mb-4"><b>Gráf transzformáció:</b> Minden irányítatlan élt cseréljünk ki két ellentétes, 1 kapacitású irányított élre. Ezzel kapunk egy $H$ irányított gráfot.</p>
+<p class="text-sm md:text-base leading-relaxed mb-4"><b>(i) $\Rightarrow$ (ii):</b> Ez a lépés itt is triviális, hasonlóan az irányított esethez.</p>
+<p class="text-sm md:text-base leading-relaxed mb-4"><b>(ii) $\Rightarrow$ (iii):</b> Ugyanúgy a Ford-Fulkerson tétel alkalmazása történik a $H$ hálózaton.</p>
+<p class="text-sm md:text-base leading-relaxed mb-4"><b>(iii) $\Rightarrow$ (i):</b> A $H$-ban kapott éldiszjunkt irányított utakról könnyen belátható, hogy nem használják egyszerre ugyanannak az irányítatlan élnek a két irányát (mert az rontaná a folyamot), így az eredeti $G$-ben is éldiszjunkt utakat adnak.</p>
+</div>
+</div>
 </math-proof>
 </section>
 
@@ -1881,7 +1900,18 @@ Minden $G$ (irányított vagy irányítatlan) gráfra és annak az $s,t \in V(G)
 
 </math-theorem>
 <math-proof>
-<p>A tétel állítása egyenes következménye a 10.3. és 10.4. Tételeknek. Irányított esetben a 10.3. Tétel alapján a két mennyiség megegyezik. Irányítatlan esetben a 10.4. Tétel biztosítja az egyenlőséget.</p>
+<div class="relative p-8 md:p-12 bg-white dark:bg-slate-900/40 rounded-[3rem] border-2 border-rose-100 dark:border-rose-900/30 shadow-sm overflow-hidden mt-6">
+<div class="absolute top-0 right-0 p-8 opacity-5">
+<svg class="w-24 h-24 text-rose-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
+</div>
+<h4 class="font-black text-rose-600 dark:text-rose-400 uppercase text-xs tracking-[0.3em] mb-8 flex items-center gap-3">
+<span class="w-8 h-[2px] bg-rose-500"></span>
+    Bizonyítás
+</h4>
+<div class="space-y-4 text-slate-700 dark:text-slate-300">
+<p class="text-sm md:text-base leading-relaxed mb-4">A tétel állítása egyenes következménye a 10.3. és 10.4. Tételeknek. Irányított esetben a 10.3. Tétel alapján a két mennyiség megegyezik. Irányítatlan esetben a 10.4. Tétel biztosítja az egyenlőséget.</p>
+</div>
+</div>
 </math-proof>
 </section>
 <math-header>
@@ -1964,7 +1994,18 @@ Ha a $G$ (irányított vagy irányítatlan) gráfra és annak az $s,t \in V(G)$,
 
 </math-theorem>
 <math-proof>
-<p>A tétel állítása közvetlenül adódik a 10.8. és 10.9. Tételekből. Mindkét esetben a pontdiszjunkt utak maximális száma pontosan megegyezik a lefogó ponthalmaz minimális méretével.</p>
+<div class="relative p-8 md:p-12 bg-white dark:bg-slate-900/40 rounded-[3rem] border-2 border-rose-100 dark:border-rose-900/30 shadow-sm overflow-hidden mt-6">
+<div class="absolute top-0 right-0 p-8 opacity-5">
+<svg class="w-24 h-24 text-rose-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg>
+</div>
+<h4 class="font-black text-rose-600 dark:text-rose-400 uppercase text-xs tracking-[0.3em] mb-8 flex items-center gap-3">
+<span class="w-8 h-[2px] bg-rose-500"></span>
+    Bizonyítás
+</h4>
+<div class="space-y-4 text-slate-700 dark:text-slate-300">
+<p class="text-sm md:text-base leading-relaxed mb-4">A tétel állítása közvetlenül adódik a 10.8. és 10.9. Tételekből. Mindkét esetben a pontdiszjunkt utak maximális száma pontosan megegyezik a lefogó ponthalmaz minimális méretével.</p>
+</div>
+</div>
 </math-proof>
 </section>
 
