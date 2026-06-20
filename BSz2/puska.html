@@ -1216,7 +1216,7 @@ Az <strong class="text-emerald-600 dark:text-emerald-400 not-italic uppercase">�
                 </div>
 <div class="relative w-fit">
 <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                        Bsz2 Jegyzet
+                        Menger-tételek
                     </h2>
 <div class="absolute -bottom-2 left-0 w-full h-1.5 bg-slate-800/20 dark:bg-slate-700/50 rounded-full"></div>
 </div>
@@ -1224,171 +1224,92 @@ Az <strong class="text-emerald-600 dark:text-emerald-400 not-italic uppercase">�
 </math-header>
 <div class="flex flex-col gap-6">
 
-<!-- 9.0 -->
-<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-def>
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">9.0. A folyamprobléma általánosításai</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base mb-4">
+<b>9.0. A folyamprobléma általánosításai</b><br>
+</p>
 <ul class="list-disc ml-6 space-y-4 text-slate-700 dark:text-slate-300 text-sm md:text-base">
     <li><b>Több forrás és nyelő:</b> Felveszünk egy fiktív $s^*$ szuper-forrást és $t^*$ szuper-nyelőt végtelen kapacitású élekkel bekötve.</li>
     <li><b>Irányítatlan élek:</b> Minden $\{u, v\}$ irányítatlan élt cseréljünk ki két, ellentétes irányú $u 	o v$ és $v 	o u$ élre az eredeti kapacitással.</li>
     <li><b>Pontkapacitások (Csúcsszéthúzás):</b> Ha egy $v$ csúcson $c(v)$ a korlát, húzzuk szét két csúccsá: $v_{be}$ és $v_{ki}$. Húzzunk közéjük egy irányított élt, melynek kapacitása pontosan $c(v)$.</li>
 </ul>
 </math-def>
-</div>
 
-
-<!-- 10.1 -->
-<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-theorem>
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.1. Lemma: Folyamok felbontása utakra</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
+<b>10.1. Lemma: Folyamok felbontása utakra</b><br>
 Ha van egy $G$ irányított gráfod, benne egy $s$ forrás (ahonnan indul az áru) és egy $t$ nyelő (ahova érkezik), és beállítasz egy $f$ folyamot, aminek az értéke $m_f = d$, ráadásul minden élen (csövön) vagy semennyi, vagy pontosan $1$ egységnyi cucc folyik át (vagyis $f(e) = 0$ vagy $f(e) = 1$), akkor a csövek hálózatában garantáltan ki tudsz jelölni pontosan $d$ darab teljesen különálló (éldiszjunkt) útvonalat $s$-től $t$-ig, amelyeken ténylegesen áramlik a cucc ($f(e) = 1$). Vagyis a folyadék egyszerűen $d$ darab, egymást élben nem metsző "csővezetéken" csorog végig.
 </p>
 </math-theorem>
-</div>
 
-<!-- 10.2 -->
-<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-def>
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.2. Definíció: Lefogó élhalmaz</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-Mit jelent az, hogy <strong>"lefogjuk az utakat"</strong>?<br/><br/>
-Képzeld el, hogy a rendőrség blokádot épít, hogy $s$-ből ne lehessen eljutni $t$-be. Kiválasztanak pár utcát, és lezárják őket. Ez a kordon (élhalmaz) akkor "fogja le" tökéletesen az utakat, ha <strong>minden egyes létező útvonal</strong> $s$-ből $t$-be beleütközik legalább egy ilyen lezárt utcába.
+<b>10.2. Definíció: Lefogó élhalmaz</b><br>
+Az $s$ és $t$ pontokhoz tartozó <b>lefogó élhalmaznak</b> nevezünk egy olyan $X \subseteq E(G)$ élhalmazt (drótok egy csoportját), amiket ha egy kártékony hacker elvág (töröl a gráfból), akkor garantáltan nem fogsz tudni eljutni $s$-ből $t$-be egyetlen úton sem. Olyan, mint egy teljes útzár a két város között.
 </p>
 </math-def>
-</div>
 
-<!-- 10.3 -->
-<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-theorem>
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.3. Tétel: Menger tétele (Irányított, élváltozat)</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-Ha adott egy egyirányú utcákból álló hálózat, és el akarsz jutni $s$-ből $t$-be, akkor a következő három dolog pontosan ugyanazt jelenti ($k \ge 1$ egészre):
-</p>
-<ul class="mt-4 space-y-2 text-slate-800 dark:text-slate-100 italic text-sm md:text-base list-none pl-4">
-<li>(i) Találsz $k$ darab független útvonalat $s$-ből $t$-be (amiknek egyáltalán nincsenek közös utcáik/éleik).</li>
-<li>(ii) A gonosz rendőrök $k - 1$ vagy annál kevesebb utca lezárásával nem tudják teljesen megakadályozni, hogy eljuss $s$-ből $t$-be.</li>
-<li>(iii) Ha minden utca áteresztőképessége pontosan 1, akkor $s$-ből $t$-be legalább $k$ egységnyi "folyadékot" tudsz átnyomni (a maximális folyam $\ge k$).</li>
-</ul>
-</math-theorem>
-</div>
-
-<!-- 10.4 -->
-<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
-<math-theorem>
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.4. Tétel: Menger tétele (Irányítatlan, élváltozat)</h4>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-Ugyanaz, mint a 10.3., csak <b>kétirányú utcák (irányítatlan gráf)</b> esetén! Itt is garantáltan megegyezik az éldiszjunkt utak száma a lezárandó utcák minimális számával.
+<b>10.3. Tétel: Menger tétele (Irányított gráf, élváltozat)</b><br>
+Egyirányú utcákból álló (irányított) $G$ gráfban, bármely $s$ és $t$ csomópontra, a maximálisan felrajzolható egymástól független (csak a startnál és célnál találkozó) útvonalak száma pontosan megegyezik azzal, ahány minimálisan elvágandó utca (él) kell ahhoz, hogy teljesen elzárjuk $s$-t $t$-től (minimális lefogó élhalmaz mérete).
 </p>
 </math-theorem>
-</div>
 
-<!-- 10.5 -->
-<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-theorem>
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.5. Következmény: Menger tétele éldiszjunkt utakra</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-A fenti 10.3 és 10.4 tételek együttes eredménye: Menger tétele kimondja, hogy az éldiszjunkt utak maximális száma pontosan megegyezik a lezárandó utcák (lefogó élhalmaz) minimális számával. $\lambda_G(s,t) = \lambda'_G(s,t)$
+<b>10.4. Tétel: Menger tétele (Irányítatlan gráf, élváltozat)</b><br>
+Kétirányú utcákkal (irányítatlan) operáló $G$ gráfban is igaz ugyanez: a maximális független $s-t$ utak száma pontosan annyi, mint a legkisebb útzár (lefogó élhalmaz) mérete.
 </p>
 </math-theorem>
-</div>
 
-
-<!-- 10.6 -->
-<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-theorem>
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.6. Algoritmus: Éldiszjunkt utak létezésének eldöntése folyamok segítségével</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-Hogyan döntsük el gyorsan géppel, hogy létezik-e $k$ darab független (éldiszjunkt) út $s$-ből $t$-be? <br/><br/>
-Egyszerűen visszavezetjük az egészet egy folyamproblémára! <br/>
-1. <b>Irányított esetben</b>: Minden utca áteresztőképességét (kapacitását) beállítjuk pontosan 1-re, majd lefuttatjuk rajta a hálózatokon megszokott Ford-Fulkerson (vagy Edmonds-Karp) algoritmust. Ha a kiszámolt maximális folyam értéke $\ge k$, akkor a válasz IGEN, van elég út!<br/>
-2. <b>Irányítatlan esetben</b>: Minden kétirányú utcát kicserélünk két egyirányú, 1 kapacitású utcára (az egyik sáv erre, a másik arra megy), majd ugyanúgy lefuttatjuk az algoritmust.
+<b>10.5. Következmény: Menger tétele éldiszjunkt utakra</b><br>
+Ezek alapján bátran kijelenthetjük, hogy minden esetben a maximális éldiszjunkt utak száma megegyezik a minimális lefogó élhalmaz méretével. Képlettel: $\lambda_G(s,t) = \lambda'_G(s,t)$
 </p>
 </math-theorem>
-</div>
-<!-- 10.7 -->
-<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
+
+<math-algorithm>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
+<b>10.6. Algoritmus: Éldiszjunkt utak létezésének eldöntése folyamok segítségével</b><br>
+Hogyan döntsük el gyorsan géppel, hogy létezik-e $k$ darab független (éldiszjunkt) út $s$-ből $t$-be?<br><br>
+1. <b>Irányított esetben</b>: Minden utca áteresztőképességét beállítjuk pontosan 1-re, majd lefuttatjuk a Ford-Fulkerson algoritmust. Ha a maximális folyam értéke $\ge k$, akkor a válasz IGEN.<br>
+2. <b>Irányítatlan esetben</b>: Minden kétirányú utcát kicserélünk két egyirányú, 1 kapacitású utcára, majd ugyanúgy lefuttatjuk az algoritmust.
+</p>
+</math-algorithm>
+
 <math-def>
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.7. Definíció: Lefogó ponthalmaz</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-A rendőrök most nem az utcákat, hanem magukat a <b>kereszteződéseket (csúcsokat)</b> zárják le. A kiválasztott kereszteződések halmaza (lefogó ponthalmaz) akkor sikeres, ha minden lehetséges $s$-ből $t$-be vezető út kénytelen átmenni legalább egy lezárt kereszteződésen (kivéve magát $s$-t és $t$-t).
+<b>10.7. Definíció: Lefogó ponthalmaz</b><br>
+Az $s$ és $t$ (nem szomszédos) pontokhoz tartozó <b>lefogó ponthalmaznak</b> nevezünk egy olyan $W \subseteq V(G) \setminus \{s,t\}$ csúcshalmazt (városok egy csoportját), amiket ha kitörlünk a gráfból, akkor teljesen elzárjuk $s$-t $t$-től. Nem a csöveket vágjuk el, hanem komplett csomópontokat robbantunk fel!
 </p>
 </math-def>
-</div>
 
-<!-- 10.8 -->
-<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-theorem>
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.8. Tétel: Menger tétele (Irányított, pontváltozat)</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-Ha van egy egyirányú úthálózatod, és két adott pont között (ahol nincs közvetlen út) próbálsz közlekedni, akkor a <b>pontdiszjunkt utak</b> maximális száma pontosan megegyezik a <b>lefogó ponthalmaz</b> minimális méretével. Magyarul: ahány kereszteződést le kell zárni ahhoz, hogy teljesen elvágják az utad, pontosan annyi teljesen független (egyik kereszteződésben sem találkozó) útvonal létezik.
+<b>10.8. Tétel: Menger tétele (Irányított, pontváltozat)</b><br>
+Ha nem csöveket (éleket), hanem komplett csomópontokat (csúcsokat) vizsgálunk egyirányú utcákban: A teljesen különálló (egyik út sem érinti a másik által használt kereszteződést) útvonalak maximális száma megegyezik a minimális lefogó ponthalmaz (felrobbantott kereszteződések) méretével.
 </p>
 </math-theorem>
-</div>
 
-<!-- 10.9 -->
-<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-theorem>
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.9. Tétel: Menger tétele (Irányítatlan, pontváltozat)</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-Ugyanaz az elv érvényes <b>kétirányú utcák</b> esetén is: a független (csak $s$-ben és $t$-ben találkozó) útvonalak maximális száma garantáltan megegyezik az utakat elvágó legkisebb lezárt kereszteződések (lefogó ponthalmaz) számával.
+<b>10.9. Tétel: Menger tétele (Irányítatlan, pontváltozat)</b><br>
+Ugyanaz az elv érvényes <b>kétirányú utcák</b> esetén is: a független útvonalak maximális száma garantáltan megegyezik az utakat elvágó legkisebb lezárt kereszteződések számával.
 </p>
 </math-theorem>
-</div>
 
-<!-- 10.10 -->
-<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-theorem>
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.10. Következmény: Menger tétele pontdiszjunkt utakra</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
+<b>10.10. Következmény: Menger tétele pontdiszjunkt utakra</b><br>
 A 10.8 és 10.9 tételek miatt minden nem szomszédos $s,t$ csúcspárra a maximális pontdiszjunkt utak száma megegyezik a minimális lefogó ponthalmaz méretével. $\kappa_G(s,t) = \kappa'_G(s,t)$
 </p>
 </math-theorem>
 </div>
-
-</div>
 </div>
 <div class="mb-20">
 
-
-<math-def>
-<div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Mit jelent a $\lambda_G(s,t)$ és $\kappa_G(s,t)$?</h4>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic mb-4">
-Ezek csak ijesztő jelek nagyon egyszerű dolgokra:
-</p>
-<ul class="list-disc ml-6 space-y-4 text-slate-700 dark:text-slate-300 text-sm">
-    <li><b>$\lambda_G(s,t)$ (Éldiszjunkt utak száma):</b> Maximum hány utat találsz $s$-ből $t$-be úgy, hogy egyetlen utca (él) se legyen közös bennük?</li>
-    <li><b>$\kappa_G(s,t)$ (Pontdiszjunkt utak száma):</b> Maximum hány utat találsz $s$-ből $t$-be úgy, hogy ne csak az utcák, de egyetlen kereszteződés (csúcs) se legyen közös? (Szigorúbb feltétel).</li>
-</ul>
-</div>
-</math-def>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-[#0d9488] text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-[#0d9488]/20">
-            9.0
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-[#0d9488]/30 decoration-4 underline-offset-8 text-balance">
-            A folyamprobléma változatai (A "Trükkök")
-        </h2>
-</div>
-</math-header>
-<section class="mb-16 animate-fade-in text-left">
-<math-def>
-<div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">A lényeg (visszavezetések):</h4>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic mb-4">
-A valóságban nem mindig olyan egyszerű egy hálózat, hogy van egyetlen csap és egyetlen lefolyó. De a matematikusok lusták újat kitalálni, ezért inkább "meghekkelik" a feladatot, hogy úgy nézzen ki, mint a régi! Íme a négy klasszikus trükk:
-</p>
-<ul class="list-disc ml-6 space-y-4 text-slate-700 dark:text-slate-300 text-sm">
-    <li><b>Több gyár és több bolt (Több forrás és nyelő):</b> Képzeljünk el egy "Szuper-Gyárat" ($s^*$), ami végtelen vastag csöveken át ellátja az összes igazi gyárunkat. Ugyanígy a túloldalon csinálunk egy "Szuper-Raktárat" ($t^*$), ahova a boltokból folyik be az áru. Bumm, máris visszajutottunk az "egy forrás, egy nyelő" esethez!</li>
-    <li><b>Kétirányú utak (Irányítatlan élek):</b> Ha egy csőben mindkét irányba folyhat a víz, akkor egyszerűen kicseréljük két darab "egyirányú" csőre, amik egymás mellett futnak ellentétes irányban, ugyanazzal a kapacitással.</li>
-    <li><b>A csomópont is bedugulhat (Pontkapacitások):</b> Mi van, ha maga a szivattyú-állomás (csúcs) a szűk keresztmetszet? Ekkor a csúcsot "kettévágjuk": egy "bemeneti" és egy "kimeneti" félre, és a kettő közé berakunk egy élt, aminek a kapacitása pont a csomópont áteresztőképessége lesz.</li>
-    <li><b>Kötelező kvóták (Alsó korlátok):</b> Ha egy szerződés miatt egy csövön <i>minimum</i> át kell folynia egy adott mennyiségnek, akkor ezt is rá tudjuk húzni az alapfeladatra egy picit nyakatekert segéd-hálózat építésével (a lényeg, hogy ezt is meg lehet oldani).</li>
-</ul>
-</div>
-</math-def>
-</section>
 <math-header>
 <div class="flex items-center gap-4 mb-8 mt-16">
 <div class="flex-none bg-slate-800 dark:bg-slate-700 text-white font-black px-4 py-2 rounded-xl shadow-sm text-lg">
@@ -1396,130 +1317,88 @@ A valóságban nem mindig olyan egyszerű egy hálózat, hogy van egyetlen csap 
                 </div>
 <div class="relative w-fit">
 <h2 class="text-2xl font-black text-slate-800 dark:text-white uppercase tracking-tight leading-none no-underline">
-                        Bsz2 Jegyzet
+                        Többszörös összefüggőség
                     </h2>
 <div class="absolute -bottom-2 left-0 w-full h-1.5 bg-slate-800/20 dark:bg-slate-700/50 rounded-full"></div>
-
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            10.13b
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            Minimális összsúlyú feszítőfa
-        </h2>
+</div>
 </div>
 </math-header>
-<section class="mb-16 space-y-8">
+<div class="flex flex-col gap-6">
+
 <math-def>
-<div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">A lényeg:</h4>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
-Képzeld el, hogy van egy csomó városod (csúcsok), és utakat (élek) akarsz építeni közéjük, hogy bárhonnan el lehessen jutni bárhová. Minden útnak van egy építési költsége (súlya). A <b>minimális összsúlyú feszítőfa (MST)</b> a legolcsóbb úthálózat: egy olyan fa, ami minden várost összeköt, de a felhasznált utak összköltsége a lehető legkisebb!
-</p>
-</div>
-</math-def>
-</section>
-
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            10.14
-        </div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-theme-500/30 decoration-4 underline-offset-8 text-balance">
-            Kruskal algoritmusa
-        </h2>
-</div>
-</math-header>
-<section class="mb-16 space-y-8">
-<math-algorithm>
-<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
-<div class="absolute top-0 right-0 p-6 opacity-5 pointer-events-none">
-<svg class="w-24 h-24 text-emerald-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
-</div>
-<div class="flex items-center mb-6">
-<span class="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md mr-3 text-xs">Hogyan működik?</span>
-</div>
-<div class="space-y-6">
-<p class="text-sm text-slate-800 dark:text-slate-200">
-A Kruskal-algoritmus egy nagyon egyszerű (mohó) módszer az MST megkeresésére. Csak ennyit csinál: <b>állandóan a legolcsóbb utakat veszi meg!</b>
-</p>
-<div class="font-mono text-sm md:text-base space-y-2 bg-slate-900 text-slate-300 p-6 md:p-8 rounded-2xl shadow-2xl border border-slate-800">
-<div class="flex gap-4">
-<span class="text-slate-600 shrink-0">1</span>
-<p><span class="text-emerald-400 font-bold">Sorba rakjuk:</span> Vegyük az összes lehetséges élt (utat), és állítsuk sorba őket a legolcsóbbtól a legdrágábbig.</p>
-</div>
-<div class="flex gap-4">
-<span class="text-slate-600 shrink-0">2</span>
-<p><span class="text-indigo-400 font-bold uppercase text-xs">Válogatás:</span> Kezdjük el szépen sorban berakni a hálózatba az éleket a legolcsóbbtól kezdve.</p>
-</div>
-<div class="flex gap-4">
-<span class="text-slate-600 shrink-0">3</span>
-<p><span class="text-rose-400 font-bold uppercase text-xs">A szabály:</span> Egy élet <b>csak akkor</b> vehetünk meg, ha nem hoz létre kört a már megvett élekkel! (Ha kört hozna létre, azt jelentené, hogy két olyan várost kötnénk össze, amik között már amúgy is van út. Felesleges pénzkidobás, dobjuk el az élet!)</p>
-</div>
-<div class="flex gap-4">
-<span class="text-slate-600 shrink-0">4</span>
-<p><span class="text-emerald-400 font-bold uppercase text-xs">Vége:</span> Ha pontosan $n-1$ élet megvettünk, kész vagyunk! Megvan a legolcsóbb feszítőfa.</p>
-</div>
-</div>
-</div>
-</div>
-</math-algorithm>
-</section>
-</div>
-</div>
-</math-header>
-<div class="flex flex-col gap-6"><math-theorem>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-                Képzeljünk el egy $G$ (irányítatlan) hálózatot és egy $k \ge 1$ egész számot. A Menger-tételként is ismert okosság a következőket mondja:
-            </p>
-<ul class="mt-4 space-y-4 text-slate-800 dark:text-slate-100 italic text-sm md:text-base list-none pl-4">
-<li class="flex gap-4">
-<span class="flex-none font-bold text-theme">(i)</span>
-<span>$G$ pontosan akkor **$k$-szorosan él-összefüggő** (azaz stabil marad, ha maximum $k-1$ drótot elvágnak), ha bármely két gép (csúcs) között biztosan találunk $k$ darab teljesen független "kábelt" (éldiszjunkt utat, amiknek nincs egyetlen közös szakasza sem).</span>
-</li>
-<li class="flex gap-4">
-<span class="flex-none font-bold text-theme">(ii)</span>
-<span>$G$ pontosan akkor **$k$-szorosan pont-összefüggő** (tehát maximum $k-1$ csomópont kiesését is túléli), ha kellően nagy (legalább $k+1$ csúcsa van), és bármely két gép között létezik $k$ darab olyan útvonal, amik útközben semmilyen más gépet (csúcsot) nem érintenek közösen (pontdiszjunkt utak).</span>
-</li>
-</ul>
-</math-theorem><math-theorem>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
-                Ha a $G$ hálózatunk kibírja, hogy csomópontokat szedünk ki belőle (azaz $k$-szorosan pont-összefüggő), akkor ahhoz is elég masszív lesz, hogy drótokat vágjunk el (így $k$-szorosan él-összefüggő is lesz). Logikus, hisz egy gép kilövésével a rákötött összes drót is kuka lesz, tehát a gépek kilövése durvább támadás.
-            </p>
-</math-theorem><math-def>
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#475569] mb-4">k-szoros összefüggőség (Mennyire "golyóálló" a hálózatunk?)</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-6">
-                Vegyünk egy $G$ (irányítatlan) gráfot és egy tetszőleges $k \ge 1$ egész számot.
-            </p>
+<b>10.11. k-szoros összefüggőség</b><br>
+Vegyünk egy $G$ (irányítatlan) gráfot és egy tetszőleges $k \ge 1$ egész számot.
+</p>
 <ul class="space-y-4">
 <li class="flex gap-4">
 <span class="flex-none w-1.5 h-1.5 rounded-full bg-[#475569] mt-2"></span>
 <p class="text-slate-700 dark:text-slate-300 text-sm md:text-base leading-relaxed">
-                        A hálózatot **$k$-szorosan él-összefüggőnek** nevezzük, ha bárhogyan is szabotálják és elvágnak maximum $(k-1)$ darab kábelt (élt), a maradék rendszer még mindig egyben marad, és mindenki tud mindenkivel dumálni (összefüggő gráfot kapunk).
-                    </p>
+A hálózatot <b>$k$-szorosan él-összefüggőnek</b> nevezzük, ha bárhogyan is vágunk el maximum $(k-1)$ darab élt, a maradék rendszer még mindig összefüggő marad.
+</p>
 </li>
 <li class="flex gap-4">
 <span class="flex-none w-1.5 h-1.5 rounded-full bg-[#475569] mt-2"></span>
 <p class="text-slate-700 dark:text-slate-300 text-sm md:text-base leading-relaxed">
-                        $G$-t **$k$-szorosan pont-összefüggőnek** (vagy röviden csak $k$-szorosan összefüggőnek) mondjuk, ha legalább van benne egy minimális gépszám ($k+1$ csúcs), és ha bármilyen okból legfeljebb $(k-1)$ szerver bedöglik (csúcsokat törlünk a rájuk kötött vezetékekkel együtt), a megmaradt hálózat továbbra is egyben van (összefüggő marad).
-                    </p>
+$G$-t <b>$k$-szorosan pont-összefüggőnek</b> mondjuk, ha legalább van benne $k+1$ csúcs, és ha legfeljebb $(k-1)$ csúcsot törlünk a rájuk kötött élekkel együtt, a megmaradt hálózat továbbra is összefüggő marad.
+</p>
 </li>
 </ul>
-</math-def><math-def>
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme mb-4">Összefüggőségi számok (Túlélési maximumok)</h4>
-<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-6">
-                A $G$ gráf éleire vonatkozó "túlélőképességét" $\lambda(G)$ (lambda) jelöli: ez a legnagyobb olyan $k$ szint, amire a hálózat még $k$-szorosan él-összefüggő. Csúcsokra ugyanezt a stabilitást $\kappa(G)$ (kappa) jelöli: a legnagyobb $k$, amire a gráf még $k$-szorosan pont-összefüggő marad.
-            </p>
-</math-def></div></div>
+</math-def>
+
+<math-def>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
+<b>10.12. Összefüggőségi számok</b><br>
+A $G$ gráf éleire vonatkozó "túlélőképességét" $\lambda(G)$ (lambda) jelöli: ez a legnagyobb olyan $k$ szint, amire a hálózat még $k$-szorosan él-összefüggő. <br/><br/>
+Csúcsokra ugyanezt a stabilitást $\kappa(G)$ (kappa) jelöli: a legnagyobb $k$, amire a gráf még $k$-szorosan pont-összefüggő marad.
+</p>
+</math-def>
+
+<math-theorem>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
+<b>10.13. Menger-tétel k-szoros összefüggőségre</b><br>
+Képzeljünk el egy $G$ (irányítatlan) hálózatot és egy $k \ge 1$ egész számot.
+</p>
+<ul class="mt-4 space-y-4 text-slate-800 dark:text-slate-100 italic text-sm md:text-base list-none pl-4">
+<li class="flex gap-4">
+<span class="flex-none font-bold text-theme">(i)</span>
+<span>$G$ pontosan akkor <b>$k$-szorosan él-összefüggő</b>, ha bármely két csúcs között biztosan találunk $k$ darab éldiszjunkt utat.</span>
+</li>
+<li class="flex gap-4">
+<span class="flex-none font-bold text-theme">(ii)</span>
+<span>$G$ pontosan akkor <b>$k$-szorosan pont-összefüggő</b>, ha kellően nagy (legalább $k+1$ csúcsa van), és bármely két csúcs között létezik $k$ darab pontdiszjunkt út.</span>
+</li>
+</ul>
+</math-theorem>
+
+<math-def>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
+<b>10.13b. Minimális összsúlyú feszítőfa (MST)</b><br>
+A <b>minimális összsúlyú feszítőfa (MST)</b> a legolcsóbb úthálózat: egy olyan fa, ami minden várost (csúcsot) összeköt, de a felhasznált utak (élek) összköltsége a lehető legkisebb!
+</p>
+</math-def>
+
+<math-algorithm>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
+<b>10.14. Kruskal algoritmusa</b><br>
+A Kruskal-algoritmus egy mohó módszer az MST megkeresésére. Csak ennyit csinál: <b>állandóan a legolcsóbb utakat veszi meg!</b><br/><br/>
+1. <b>Sorba rakjuk:</b> Állítsuk sorba az éleket a legolcsóbbtól a legdrágábbig.<br/>
+2. <b>Válogatás:</b> Kezdjük el berakni az éleket a legolcsóbbtól kezdve.<br/>
+3. <b>A szabály:</b> Egy élet <b>csak akkor</b> vehetünk meg, ha nem hoz létre kört a már megvett élekkel! (Különben felesleges).<br/>
+4. <b>Vége:</b> Ha pontosan $n-1$ élet megvettünk, kész vagyunk!
+</p>
+</math-algorithm>
+
+</div>
+</div>
 </main>
 <script>
-        function toggleNightMode() {
-            const isDark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('nightMode', isDark);
-        }
-        (function() { if (localStorage.getItem('nightMode') === 'true') document.documentElement.classList.add('dark'); })();
-        window.addEventListener('load', () => { if (window.MathJax) MathJax.typesetPromise(); });
-    </script>
+    function toggleNightMode() {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('nightMode', isDark);
+    }
+    (function() { if (localStorage.getItem('nightMode') === 'true') document.documentElement.classList.add('dark'); })();
+    window.addEventListener('load', () => { if (window.MathJax) MathJax.typesetPromise(); });
+</script>
 </body>
 </html>
