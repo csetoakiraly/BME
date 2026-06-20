@@ -1224,6 +1224,19 @@ Az <strong class="text-emerald-600 dark:text-emerald-400 not-italic uppercase">�
 </math-header>
 <div class="flex flex-col gap-6">
 
+<!-- 9.0 -->
+<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
+<math-def>
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">9.0. A folyamprobléma általánosításai</h4>
+<ul class="list-disc ml-6 space-y-4 text-slate-700 dark:text-slate-300 text-sm md:text-base">
+    <li><b>Több forrás és nyelő:</b> Felveszünk egy fiktív $s^*$ szuper-forrást és $t^*$ szuper-nyelőt végtelen kapacitású élekkel bekötve.</li>
+    <li><b>Irányítatlan élek:</b> Minden $\{u, v\}$ irányítatlan élt cseréljünk ki két, ellentétes irányú $u 	o v$ és $v 	o u$ élre az eredeti kapacitással.</li>
+    <li><b>Pontkapacitások (Csúcsszéthúzás):</b> Ha egy $v$ csúcson $c(v)$ a korlát, húzzuk szét két csúccsá: $v_{be}$ és $v_{ki}$. Húzzunk közéjük egy irányított élt, melynek kapacitása pontosan $c(v)$.</li>
+</ul>
+</math-def>
+</div>
+
+
 <!-- 10.1 -->
 <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-theorem>
@@ -1280,6 +1293,19 @@ A fenti 10.3 és 10.4 tételek együttes eredménye: Menger tétele kimondja, ho
 </math-theorem>
 </div>
 
+
+<!-- 10.6 -->
+<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
+<math-theorem>
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d9488] mb-4">10.6. Algoritmus: Éldiszjunkt utak létezésének eldöntése folyamok segítségével</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
+Hogyan döntsük el gyorsan géppel, hogy létezik-e $k$ darab független (éldiszjunkt) út $s$-ből $t$-be? <br/><br/>
+Egyszerűen visszavezetjük az egészet egy folyamproblémára! <br/>
+1. <b>Irányított esetben</b>: Minden utca áteresztőképességét (kapacitását) beállítjuk pontosan 1-re, majd lefuttatjuk rajta a hálózatokon megszokott Ford-Fulkerson (vagy Edmonds-Karp) algoritmust. Ha a kiszámolt maximális folyam értéke $\ge k$, akkor a válasz IGEN, van elég út!<br/>
+2. <b>Irányítatlan esetben</b>: Minden kétirányú utcát kicserélünk két egyirányú, 1 kapacitású utcára (az egyik sáv erre, a másik arra megy), majd ugyanúgy lefuttatjuk az algoritmust.
+</p>
+</math-theorem>
+</div>
 <!-- 10.7 -->
 <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
 <math-def>
