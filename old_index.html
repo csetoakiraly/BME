@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analízis 2 ZH2 Összefoglaló</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+    </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7; /* Lila szín */
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        .MathJax { color: var(--text-light) !important; }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .sidebar {
+            width: 280px;
+            height: 100vh;
+            position: fixed;
+            padding-top: 20px;
+            z-index: 10;
+            border-right: 1px solid var(--glass-border);
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            overflow-y: auto;
+            border-top-right-radius: 24px;
+            border-bottom-right-radius: 24px;
+        }
+        
+        .sidebar h2 {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            color: var(--secondary);
+            font-weight: 800;
+            text-shadow: 0 0 15px var(--secondary-glow);
+        }
+
+        .sidebar a {
+            display: block;
+            color: var(--text-muted);
+            padding: 15px 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            font-weight: 600;
+            margin: 5px 15px;
+            border-radius: 16px;
+        }
+
+        .sidebar a:hover, .sidebar a.active-link {
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--secondary);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
+
+        .sidebar .back-link {
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.4);
+            border-left: 4px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar .back-link:hover {
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid rgba(255, 255, 255, 0.3);
+            text-shadow: none;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            padding: 50px;
+            width: calc(100% - 280px); /* Kiterjesztve a teljes jobb oldalra */
+            box-sizing: border-box;
+        }
+
+        section {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        section.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            border-radius: 24px; /* Mindenhol lekerekített */
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        h1 { 
+            color: var(--text-light); 
+            border-bottom: 2px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            margin-top: 0;
+            font-weight: 800; /* Extra vastag, mint a képen */
+            letter-spacing: -0.5px;
+            font-size: 2.8rem; /* Kicsit nagyobb, mint a képen */
+        }
+
+        h3 { 
+            color: var(--secondary); 
+            margin-top: 35px; 
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: -0.3px;
+        }
+
+        .explanation {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 4px solid var(--secondary);
+            padding: 15px 20px;
+            border-radius: 0 16px 16px 0;
+            margin: 20px 0;
+            color: #e2e8f0;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        
+        .explanation strong {
+            color: var(--secondary);
+            font-weight: 800;
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+        }
+
+        p, li { 
+            line-height: 1.8; 
+            color: #94a3b8; /* Halványabb szürkésszöveg a kevésbé fontos részekhez */
+            font-size: 1.08rem; 
+            font-weight: 500; /* Vastagabb alap betűtípus */
+        }
+
+        b, strong { 
+            color: #ffffff; /* Erős, ragyogó fehér a fontos kiemeléseknek */
+            font-weight: 800; 
+            letter-spacing: 0.5px;
+        }
+
+        .formula {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            margin: 25px 0;
+            overflow-x: auto;
+            text-align: center;
+            font-size: 1.1rem;
+            box-shadow: inset 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .example {
+            background: rgba(245, 158, 11, 0.05);
+            padding: 30px;
+            border-radius: 24px;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .example::before {
+            content: 'Példa Levezetéssel';
+            position: absolute;
+            top: -14px;
+            left: 30px;
+            background: #f59e0b;
+            color: #fff;
+            padding: 4px 15px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        ul { padding-left: 25px; }
+        li { margin-bottom: 12px; }
+        
+        .graph-box {
+            width: 100%;
+            height: 220px;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 24px;
+            margin-top: 25px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .circle-anim {
+            width: 140px;
+            height: 140px;
+            border: 3px dashed var(--secondary-glow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: #ef4444;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #ef4444;
+        }
+
+        .graph-label {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.95rem;
+            color: var(--secondary);
+            font-weight: bold;
+            letter-spacing: 1px;
+            background: rgba(0,0,0,0.6);
+            padding: 6px 16px;
+            border-radius: 16px;
+            backdrop-filter: blur(5px);
+        }
+
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-track { background: var(--primary); }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
+
+        .menu-btn {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+            padding: 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            background: var(--secondary);
+            color: var(--text-light);
+            box-shadow: 0 4px 20px var(--secondary-glow);
+        }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 5;
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                width: 280px;
+                box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 2.2rem;
+                margin-top: 50px; /* Space for the button */
+            }
+            .card {
+                padding: 25px 20px;
+            }
+            .formula {
+                font-size: 1rem;
+                padding: 15px 10px;
+                overflow-x: auto;
+            }
+            .example, .explanation {
+                padding: 15px;
+                overflow-x: auto;
+            }
+            p, li, .card {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                hyphens: auto;
+            }
+            mjx-container {
+                max-width: 100%;
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="menu-btn" onclick="toggleSidebar()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+    <div class="mobile-overlay" onclick="toggleSidebar()"></div>
+
+    <div class="sidebar">
+        <h2>Analízis 2<br>Zárthelyi Segédlet</h2>
+        <div style="padding: 10px 25px 5px 25px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700;">Témakörök</div>
+        <a href="#" onclick="showSection('s1', this)">1. Szétválasztható DE</a>
+        <a href="#" onclick="showSection('s2', this)">2. Elsőrendű lineáris DE</a>
+        <a href="#" onclick="showSection('s3', this)">3. n-edrendű lineáris DE</a>
+        <a href="#" onclick="showSection('s4', this)">4. Lineáris rekurziók</a>
+        <a href="#" onclick="showSection('s5', this)">5. Sorok konvergenciája</a>
+        <a href="#" class="active-link" onclick="showSection('s6', this)">6. Hatványsorok</a>
+        <a href="#" onclick="showSection('s7', this)">7. Taylor-sorok</a>
+        <a href="#" onclick="showSection('s8', this)">8. Többváltozós Határérték</a>
+        <a href="#" onclick="showSection('s9', this)">9. Parciális Derivált</a>
+        <a href="#" onclick="showSection('s10', this)">10. Szélsőértékek</a>
+        <a href="#" onclick="showSection('s11', this)">11. Kettős integrál</a>
+        <a href="#" onclick="showSection('s12', this)">12. Többváltozós integrál</a>
+        <a href="#" onclick="showSection('s13', this)">13. Fourier-sor</a>
+        
+        <div style="padding: 20px 25px 5px 25px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 10px;">Összefoglalók</div>
+        <a href="#" style="color: #f59e0b; font-weight: bold;" onclick="showSection('zh2', this)">★ ZH2 Összefoglaló</a>
+        <a href="anal-gyakorlatok/index.html" style="color: #a855f7; font-weight: bold; background: rgba(168, 85, 247, 0.1);">📝 Analízis Gyakorlatok</a>
+        <a href="puska.html" style="color: #ef4444; font-weight: bold; background: rgba(239, 68, 68, 0.1);">🔥 Túlélő Puska (ZH2)</a>
+        <a href="def.html" style="color: #3b82f6; font-weight: bold; background: rgba(59, 130, 246, 0.1);">📘 Hivatalos Definíciók (ZH2)</a>
+        
+        <div style="padding: 20px 25px 5px 25px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 10px;">ZH Megoldások</div>
+        <a href="zh2_2026_mo.html" style="color: #4ade80;">★ 2026. ZH2 Megoldások</a>
+        <a href="zh2_2025_mo.html" style="color: #4ade80;">★ 2025. ZH2 Megoldások</a>
+        <a href="zh2_2024_mo.html" style="color: #4ade80;">★ 2024. ZH2 Megoldások</a>
+        <a href="zh2_2023_mo.html" style="color: #4ade80;">★ 2023. ZH2 Megoldások</a>
+        <a href="zh2_2022_mo.html" style="color: #4ade80; margin-bottom: 20px;">★ 2022. ZH2 Megoldások</a>
+        
+        <div style="padding: 20px 25px 5px 25px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 10px;">Vizsgák</div>
+        <a href="vizsga_2024_1.html" style="color: #60a5fa;">📝 2024. Vizsga 1</a>
+        <a href="vizsga_2024_2.html" style="color: #60a5fa;">📝 2024. Vizsga 2</a>
+        <a href="vizsga_2024_3.html" style="color: #60a5fa;">📝 2024. Vizsga 3</a>
+        <a href="vizsga_2024_4.html" style="color: #60a5fa;">📝 2024. Vizsga 4</a>
+        <a href="vizsga_2025_1.html" style="color: #38bdf8;">📝 2025. Vizsga 1</a>
+        <a href="vizsga_2025_2.html" style="color: #38bdf8;">📝 2025. Vizsga 2</a>
+        <a href="vizsga_2025_3.html" style="color: #38bdf8;">📝 2025. Vizsga 3</a>
+        <a href="vizsga_2025_4.html" style="color: #38bdf8; margin-bottom: 20px;">📝 2025. Vizsga 4</a>
+    </div>
+
+    <div class="main-content">
+        
+        <!-- 1. Gyakorlat -->
+        <section id="s1">
+            <h1>1. Szétválasztható változójú egyenletek</h1>
+            <div class="card glass">
+                
+                <h3>1. Általános alak</h3>
+                <p>Olyan elsőrendű differenciálegyenlet, ahol a jobb oldalon az $x$-től és az $y$-tól függő részek szorzatként (vagy hányadosként) szétválaszthatók:</p>
+                <div class="formula">
+                    $$y'(x) = f(x) \cdot g(y(x)) \quad (x \in I)$$
+                </div>
+                <div class="explanation">
+                    <b>Feltétel:</b> $I, J \subseteq \mathbb{R}$ nyílt intervallumok, $f : I \to \mathbb{R}$ és $g : J \to \mathbb{R}$ pedig folytonos függvények.
+                </div>
+
+                <h3>2. Triviális (konstans) megoldások keresése</h3>
+                <p>Mielőtt bármit integrálnánk, meg kell vizsgálni a $g(y)$ zérushelyeit. Ha $g(y_0) = 0$ valamilyen $y_0 \in J$ esetén, akkor a konstans függvény megoldás:</p>
+                <div class="formula">
+                    $$y \equiv y_0 \quad \text{megoldása a differenciálegyenletnek.}$$
+                </div>
+                <div class="explanation">
+                    <b>Miért fontos ez?</b> Mert a következő lépésben osztani fogunk $g(y)$-nal, és nullával nem oszthatunk. Ezeket a megoldásokat a végén külön kell kezelni (hacsak nem olvadnak bele az általános megoldásba).
+                </div>
+
+                <h3>3. Szétválasztás és integrálás (Precíz módszer)</h3>
+                <p>Tegyük fel, hogy $g(y)$ nem nulla. Osszuk el mindkét oldalt $g(y(x))$-szel, és integráljunk $x$ szerint:</p>
+                <div class="formula">
+                    $$\frac{y'(x)}{g(y(x))} = f(x) \implies \int \frac{1}{g(y(x))} y'(x) dx = \int f(x) dx$$
+                </div>
+                <p>Elvégezve az integrálást, kapjuk a megoldást egy implicit $H(y(x)) = F(x) + C$ alakban (ahol $H' = 1/g$ és $F' = f$).</p>
+
+                <h3>4. Formális átalakítás (Gyakorlati módszer)</h3>
+                <p>Ugyanez a gondolatmenet rövidebben is leírható. Bár matematikailag "értelmetlen" a deriváltat törtként kezelni, a gyakorlatban tökéletesen működik:</p>
+                <div class="formula">
+                    $$\frac{dy}{dx} = f(x)g(y)$$
+                </div>
+                <p>"Szorzunk $dx$-szel", osztunk $g(y)$-nal, és mindkét oldal elé írunk egy integráljelet:</p>
+                <div class="formula">
+                    $$\int \frac{1}{g(y)} dy = \int f(x) dx$$
+                </div>
+                <div class="explanation">
+                    <b>ZH Trükk:</b> Számolásnál mindig ezt a formális átalakítást használd! Sokkal gyorsabb és átláthatóbb. Gyűjts mindent, amiben $y$ van, a $dy$ oldalára, és mindent, amiben $x$ van, a $dx$ oldalára.
+                </div>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Szétválasztható változójú egyenlet megoldása</h3>
+                    <p>Oldjuk meg a következő differenciálegyenletet: $y' = 2x y^2$</p>
+                    <p><b>Megoldás:</b><br>1. Vizsgáljuk meg a triviális megoldást ($g(y) = 0$):</p>
+                    <div class="formula">
+                        $$ y^2 = 0 \implies y = 0 $$
+                    </div>
+                    <p>Tehát az $y \equiv 0$ egy megoldás. Most tegyük fel, hogy $y \neq 0$.</p>
+
+                    <p>2. Alkalmazzuk a formális átalakítást ($y' \to \frac{dy}{dx}$):</p>
+                    <div class="formula">
+                        $$ \frac{dy}{dx} = 2x y^2 $$
+                    </div>
+                    <p>Vigyük az $y$-os kifejezéseket a bal oldalra, az $x$-eseket a jobb oldalra (osztunk $y^2$-tel, szorzunk $dx$-szel):</p>
+                    <div class="formula">
+                        $$ \frac{1}{y^2} dy = 2x dx $$
+                    </div>
+
+                    <p>3. Integráljuk mindkét oldalt:</p>
+                    <div class="formula">
+                        $$ \int y^{-2} dy = \int 2x dx \implies -\frac{1}{y} = x^2 + C \quad (C \in \mathbb{R}) $$
+                    </div>
+
+                    <p>4. Fejezzük ki $y$-t (általános megoldás):</p>
+                    <div class="formula">
+                        $$ y(x) = \frac{-1}{x^2 + C} $$
+                    </div>
+                    <p><b>Végeredmény:</b> A megoldások: $y(x) = \frac{-1}{x^2 + C}$ és az $y \equiv 0$ triviális megoldás.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 2. Gyakorlat -->
+        <section id="s2">
+            <h1>2. Elsőrendű lineáris és helyettesítéses differenciálegyenletek</h1>
+            <div class="card glass">
+                
+                <h3>1. Általános alak</h3>
+                <p>Az elsőrendű lineáris differenciálegyenlet normálalakja, ahol $p(x)$ és $q(x)$ folytonos függvények:</p>
+                <div class="formula">
+                    $$y' + p(x)y = q(x)$$
+                </div>
+                <div class="explanation">
+                    <b>Homogén és inhomogén:</b> Ha $q(x) = 0$, akkor az egyenlet <b>homogén</b> (és szétválasztható változójúként megoldható). Ha $q(x) \neq 0$, akkor <b>inhomogén</b>.
+                </div>
+
+                <h3>2. A megoldás menete (Állandók variálása)</h3>
+                <p>A megoldás két lépésből áll. Először megoldjuk a homogén részt:</p>
+                <div class="formula">
+                    $$y' + p(x)y = 0 \implies \int \frac{dy}{y} = -\int p(x) dx$$
+                </div>
+                <p>Ennek általános megoldása $Y_h(x) = C \cdot e^{- \int p(x) dx}$ alakú.</p>
+                <p>A második lépésben a konstanst "variáljuk", azaz feltesszük, hogy $C$ egy $x$-től függő függvény ($c(x)$):</p>
+                <div class="formula">
+                    $$y(x) = c(x) \cdot e^{- \int p(x) dx}$$
+                </div>
+                <p>Ezt visszahelyettesítve az eredeti (inhomogén) egyenletbe, a bal oldalon sok tag kiesik, és $c'(x)$ könnyen integrálhatóvá válik.</p>
+
+                <h3>3. Bernoulli-differenciálegyenlet</h3>
+                <p>Olyan nemlineáris egyenlet, amely helyettesítéssel lineárissá tehető:</p>
+                <div class="formula">
+                    $$y' + p(x)y = q(x)y^\alpha \quad (\alpha \neq 0, \alpha \neq 1)$$
+                </div>
+                <div class="explanation">
+                    <b>Helyettesítés:</b> Osszuk el az egyenletet $y^\alpha$-val, majd vezessük be az $u = y^{1-\alpha}$ új függvényt! Ennek deriváltja $u' = (1-\alpha)y^{-\alpha}y'$, amit visszahelyettesítve egy már elsőrendű lineáris egyenletet kapunk $u$-ra.
+                </div>
+
+                <h3>4. Helyettesítéssel megoldható differenciálegyenletek</h3>
+                <p>Bizonyos típusú egyenleteket ügyes helyettesítéssel azonnal szétválaszthatóvá tehetünk:</p>
+                
+                <p><b>Az $y' = F\left(\frac{y}{x}\right)$ típus:</b></p>
+                <p>Ha a függvény csak az $\frac{y}{x}$ hányadostól függ (például $y' = \frac{y^2+x^2}{xy} = \frac{y}{x} + \frac{x}{y}$), akkor a következő helyettesítést alkalmazzuk:</p>
+                <div class="formula">
+                    $$ u(x) := \frac{y(x)}{x} \implies y(x) = u(x) \cdot x $$
+                </div>
+                <p>Deriválva a szorzatszabállyal: $y' = u'x + u$. Ezt visszahelyettesítve a kapott egyenlet <b>mindig szeparálható</b> $u$-ra nézve:</p>
+                <div class="formula">
+                    $$ u' \cdot x + u = F(u) \implies u' = (F(u) - u)\frac{1}{x} $$
+                </div>
+                
+                <p><b>Az $y' = F(ax + by(x))$ típus:</b></p>
+                <p>Ha a kifejezés egy lineáris kombináció függvénye (például $y' = \sin(x+y)$ vagy $y' = (2x+3y)^2$), akkor a belső kifejezést helyettesítjük:</p>
+                <div class="formula">
+                    $$ u(x) := ax + by(x) \implies u' = a + by' \implies y' = \frac{1}{b}(u' - a) $$
+                </div>
+                <p>Ezt visszahelyettesítve ismét <b>szeparálható</b> egyenletet kapunk $u$-ra nézve:</p>
+                <div class="formula">
+                    $$ \frac{1}{b}(u' - a) = F(u) \implies u' = bF(u) + a $$
+                </div>
+            </div>
+        
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Elsőrendű lineáris differenciálegyenlet</h3>
+                    <p>Oldjuk meg az $y' - \frac{2}{x}y = x^2$ egyenletet ($x > 0$)!</p>
+                    <p><b>Megoldás:</b><br>1. Homogén egyenlet megoldása:</p>
+                    <div class="formula">
+                        $$ y' - \frac{2}{x}y = 0 \implies \frac{dy}{dx} = \frac{2}{x}y \implies \int \frac{dy}{y} = \int \frac{2}{x} dx $$
+                    </div>
+                    <p>Integrálva: $\ln|y| = 2\ln x + C \implies \ln|y| = \ln(x^2) + C$. Ebből a homogén megoldás: $Y_h(x) = c \cdot x^2$.</p>
+
+                    <p>2. Állandók variálása: Legyen $y(x) = c(x)x^2$. Ennek deriváltja a szorzatszabállyal: $y' = c'(x)x^2 + c(x)2x$.</p>
+                    <p>Helyettesítsük vissza az eredeti $y' - \frac{2}{x}y = x^2$ egyenletbe:</p>
+                    <div class="formula">
+                        $$ (c'(x)x^2 + 2xc(x)) - \frac{2}{x}(c(x)x^2) = x^2 $$
+                    </div>
+                    <p>A $c(x)$-es tagok mindig kiesnek! Marad: $c'(x)x^2 = x^2 \implies c'(x) = 1$.</p>
+                    <p>Ezt integrálva kapjuk: $c(x) = x + K$.</p>
+                    <p><b>Végeredmény:</b> $y(x) = (x + K)x^2 = x^3 + Kx^2$.</p>
+                </div></section>
+
+        <!-- 3. Gyakorlat -->
+        <section id="s3">
+            <h1>3. n-edrendű állandó együtthatós lineáris DE</h1>
+            <div class="card glass">
+                
+                <h3>1. Általános alak</h3>
+                <p>Az egyenletben a deriváltak együtthatói csak számok ($a_i \in \mathbb{R}$):</p>
+                <div class="formula">
+                    $$a_n y^{(n)} + a_{n-1} y^{(n-1)} + \dots + a_1 y' + a_0 y = f(x)$$
+                </div>
+
+                <h3>2. Homogén egyenlet megoldása (Karakterisztikus egyenlet)</h3>
+                <p>Ha $f(x) = 0$, az $y = e^{\lambda x}$ próbafüggvénnyel a differenciálegyenlet egy algebrai polinommá (karakterisztikus egyenletté) alakul:</p>
+                <div class="formula">
+                    $$a_n \lambda^n + a_{n-1} \lambda^{n-1} + \dots + a_1 \lambda + a_0 = 0$$
+                </div>
+                <p>Ennek gyökei ($\lambda_i$) alapján írjuk fel az alapmegoldásokat:</p>
+                <ul>
+                    <li><b>Valós, egyszeres gyök ($\lambda$):</b> $e^{\lambda x}$</li>
+                    <li><b>Valós, $k$-szoros gyök ($\lambda$):</b> $e^{\lambda x}, x e^{\lambda x}, \dots, x^{k-1} e^{\lambda x}$</li>
+                    <li><b>Komplex konjugált gyökpár ($\alpha \pm \beta i$):</b> $e^{\alpha x} \cos(\beta x)$ és $e^{\alpha x} \sin(\beta x)$</li>
+                </ul>
+                <div class="explanation">
+                    <b>Általános megoldás:</b> A kapott alapmegoldásokat konstansokkal szorozva összeadjuk: $Y_h(x) = C_1 y_1(x) + C_2 y_2(x) + \dots + C_n y_n(x)$.
+                </div>
+
+                <h3>3. Inhomogén egyenlet megoldása (Próbafüggvény módszer)</h3>
+                <p>Ha az $f(x)$ jobb oldal "szép" (polinom, exponenciális, szinusz/koszinusz vagy ezek szorzata), akkor a partikuláris megoldást ($y_p$) az $f(x)$ alakjához hasonlóan keressük, ismeretlen együtthatókkal ($A, B, C\dots$).</p>
+                <p>Rezonancia: Ha az $f(x)$-ben lévő "frekvencia" (pl. az exponenciális kitevője) megegyezik a homogén megoldás egyik gyökével (multiplicitása $s$), akkor a próbafüggvényt be kell szorozni $x^s$-nel.</p>
+                
+                <div class="formula">
+                    $$y_{ált}(x) = Y_h(x) + y_p(x)$$
+                </div>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Másodrendű állandó együtthatós egyenlet</h3>
+                    <p>Oldjuk meg az $y'' - 5y' + 6y = 0$ homogén egyenletet!</p>
+                    <p><b>Megoldás:</b><br>1. Írjuk fel a karakterisztikus egyenletet (minden deriváltat $\lambda$ megfelelő hatványára cserélünk):</p>
+                    <div class="formula">
+                        $$ \lambda^2 - 5\lambda + 6 = 0 $$
+                    </div>
+                    <p>2. Oldjuk meg a másodfokú egyenletet! A megoldóképlettel vagy szorzattá alakítással: $(\lambda - 2)(\lambda - 3) = 0$.</p>
+                    <p>A két gyök: $\lambda_1 = 2$ és $\lambda_2 = 3$. Mivel ezek valós, egyszeres gyökök, a két alapmegoldás $e^{2x}$ és $e^{3x}$.</p>
+                    <p><b>Végeredmény:</b> Az általános megoldás: $Y_h(x) = C_1 e^{2x} + C_2 e^{3x}$.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. Gyakorlat -->
+        <section id="s4">
+            <h1>4. Lineáris rekurziók és sorok konvergenciája</h1>
+            <div class="card glass">
+                
+                <h3>1. Másodrendű lineáris rekurzió</h3>
+                <p>Egy sorozat elemét az előző kettő lineáris kombinációjaként kapjuk meg:</p>
+                <div class="formula">
+                    $$x_n = A x_{n-1} + B x_{n-2} \quad (n \ge 2)$$
+                </div>
+                
+                <h3>2. Megoldás karakterisztikus egyenlettel</h3>
+                <p>Keressük a megoldást $x_n = q^n$ alakban. Ezt behelyettesítve és $q^{n-2}$-vel osztva kapjuk a karakterisztikus egyenletet:</p>
+                <div class="formula">
+                    $$q^2 - A q - B = 0$$
+                </div>
+                <p>A gyökök ($q_1, q_2$) alapján az explicit képlet:</p>
+                <ul>
+                    <li><b>Két különböző valós gyök:</b> $x_n = C_1 q_1^n + C_2 q_2^n$</li>
+                    <li><b>Egy darab kétszeres gyök ($q$):</b> $x_n = (C_1 + C_2 n) q^n$</li>
+                </ul>
+                <div class="explanation">
+                    <b>Kezdeti értékek:</b> A $C_1$ és $C_2$ konstansokat az első két elem ($x_0, x_1$) behelyettesítésével kapott kétismeretlenes egyenletrendszerből számoljuk ki.
+                </div>
+
+                <h3>3. Végtelen sorok fogalma</h3>
+                <p>Egy $(a_n)$ sorozat elemeinek végtelen összegét sornak nevezzük: $\sum_{n=1}^\infty a_n$.</p>
+                <p>A <b>részletösszegek sorozata</b> ($S_k$) az első $k$ elem összege: $S_k = a_1 + a_2 + \dots + a_k$.</p>
+                <p>A sor <b>konvergens</b> és összege $S$, ha a részletösszegek sorozata tart $S$-hez: $\lim_{k\to\infty} S_k = S$.</p>
+
+                <h3>4. Geometriai (mértani) sor</h3>
+                <p>A leghasznosabb kiszámítható sor, ahol minden tag egy $q$ konstanssal van szorozva az előzőhöz képest.</p>
+                <div class="formula">
+                    $$\sum_{n=0}^{\infty} q^n = \frac{1}{1-q} \quad \text{ha } |q| < 1$$
+                </div>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Fibonacci-szerű rekurzió</h3>
+                    <p>Legyen $x_n = 5x_{n-1} - 6x_{n-2}$, kezdeti feltételek: $x_0 = 1, x_1 = 5$. Adjuk meg az explicit képletet!</p>
+                    <p><b>Megoldás:</b><br>1. Karakterisztikus egyenlet: $q^2 - 5q + 6 = 0$.</p>
+                    <p>2. Gyökök: $q_1 = 2$, $q_2 = 3$. Az általános alak: $x_n = C_1 2^n + C_2 3^n$.</p>
+                    <p>3. Kezdeti feltételek behelyettesítése:</p>
+                    <ul>
+                        <li>$n=0$ esetén: $x_0 = C_1 2^0 + C_2 3^0 \implies C_1 + C_2 = 1$</li>
+                        <li>$n=1$ esetén: $x_1 = C_1 2^1 + C_2 3^1 \implies 2C_1 + 3C_2 = 5$</li>
+                    </ul>
+                    <p>A kétismeretlenes egyenletrendszerből: $C_1 = 1 - C_2$, beírva a másodikba: $2(1-C_2) + 3C_2 = 5 \implies 2 + C_2 = 5 \implies C_2 = 3$. Ebből $C_1 = -2$.</p>
+                    <p><b>Végeredmény:</b> $x_n = -2 \cdot 2^n + 3 \cdot 3^n$.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 5. Gyakorlat -->
+        <section id="s5">
+            <h1>5. Sorok konvergenciakritériumai</h1>
+            <div class="card glass">
+                
+                <h3>1. Szükséges feltétel</h3>
+                <p>Ahhoz, hogy egy sor egyáltalán konvergens lehessen, az $n$-edik tagnak nullához kell tartania:</p>
+                <div class="formula">
+                    $$\text{Ha } \sum_{n=1}^\infty a_n \text{ konvergens} \implies \lim_{n \to \infty} a_n = 0$$
+                </div>
+                <div class="explanation">
+                    <b>Cáfolat:</b> Ha a határérték nem nulla, a sor <b>biztosan divergens</b>! (De ha nulla, attól még lehet divergens is, pl. harmonikus sor).
+                </div>
+
+                <h3>2. Hányadoskritérium (D'Alembert)</h3>
+                <p>Kiszámoljuk az egymást követő tagok hányadosának határértékét:</p>
+                <div class="formula">
+                    $$L = \lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right|$$
+                </div>
+                <ul>
+                    <li>Ha $L < 1$, a sor <b>konvergens</b> (abszolút).</li>
+                    <li>Ha $L > 1$, a sor <b>divergens</b>.</li>
+                    <li>Ha $L = 1$, a kritérium nem dönt (másik teszt kell).</li>
+                </ul>
+
+                <h3>3. Gyökkritérium (Cauchy)</h3>
+                <p>Kiszámoljuk az $n$-edik tag $n$-edik gyökének határértékét (főleg az $n$-edik hatványon lévő kifejezéseknél jó):</p>
+                <div class="formula">
+                    $$L = \lim_{n \to \infty} \sqrt[n]{|a_n|}$$
+                </div>
+                <p>Az eredmény értékelése megegyezik a hányadoskritériuméval ($L < 1$ konvergens, $L > 1$ divergens).</p>
+
+                <h3>4. Integrálkritérium</h3>
+                <p>Ha $f(x)$ pozitív, monoton csökkenő folytonos függvény, és $a_n = f(n)$, akkor az $\sum a_n$ sor és az $\int_1^\infty f(x) dx$ improprius integrál egyszerre konvergens vagy divergens.</p>
+                <div class="explanation">
+                    Ezzel igazolható a <b>Hiperharmonikus sor</b> szabálya: $\sum \frac{1}{n^\alpha}$ konvergens, ha $\alpha > 1$, és divergens, ha $\alpha \le 1$.
+                </div>
+
+                <h3>5. Leibniz-kritérium (Alternáló sorokra)</h3>
+                <p>Egy $\sum_{n=1}^\infty (-1)^n a_n$ alakú (váltakozó előjelű) sor konvergens, ha az $(a_n)$ sorozat tagjai (abszolút értékben) monoton csökkenve tartanak a nullához.</p>
+
+                <h3>6. Sorok alaptulajdonságai</h3>
+                <p>Ha a $\sum a_n$ és $\sum b_n$ sorok konvergensek, akkor az összegük és skalárszorosuk is konvergens, és a műveletek tagonként elvégezhetők:</p>
+                <div class="formula">
+                    $$ \sum_{n=0}^{\infty}(a_n + b_n) = \sum_{n=0}^{\infty}a_n + \sum_{n=0}^{\infty}b_n \quad \text{és} \quad \sum_{n=0}^{\infty}\lambda a_n = \lambda \sum_{n=0}^{\infty}a_n $$
+                </div>
+                
+                <h3>7. Majoráns és Minoráns kritérium</h3>
+                <p><b>Majoráns kritérium:</b> Ha létezik egy ismert <b>konvergens</b> $\sum b_n$ sor, amely minden tagnál nagyobb, akkor az alatta lévő $\sum a_n$ is konvergens (ha a tagok nemnegatívak).</p>
+                <div class="formula">
+                    $$ \text{Ha } 0 \le a_n \le b_n \text{ és } \sum b_n \text{ konv.} \implies \sum a_n \text{ is konv.} $$
+                </div>
+                
+                <p><b>Minoráns kritérium:</b> Ha létezik egy ismert <b>divergens</b> $\sum b_n$ sor (pl. harmonikus sor), amely minden tagnál kisebb, akkor a felette lévő $\sum a_n$ is a végtelenbe tart, azaz divergens.</p>
+                <div class="formula">
+                    $$ \text{Ha } 0 \le b_n \le a_n \text{ és } \sum b_n \text{ div.} \implies \sum a_n \text{ is div.} $$
+                </div>
+            </div>
+        
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Sor konvergenciájának vizsgálata</h3>
+                    <p>Döntsük el a $\sum_{n=1}^\infty \frac{3^n}{n!}$ sor konvergenciáját!</p>
+                    <p><b>Megoldás:</b><br>Mivel faktoriális ($n!$) és exponenciális ($3^n$) kifejezések szerepelnek, a <b>hányadoskritérium</b> a leggyorsabb.</p>
+                    <p>Legyen $a_n = \frac{3^n}{n!}$ és $a_{n+1} = \frac{3^{n+1}}{(n+1)!}$.</p>
+                    <p>Vizsgáljuk a határértéket:</p>
+                    <div class="formula">
+                        $$ L = \lim_{n \to \infty} \frac{a_{n+1}}{a_n} = \lim_{n \to \infty} \frac{\frac{3^{n+1}}{(n+1)!}}{\frac{3^n}{n!}} = \lim_{n \to \infty} \frac{3^{n+1} \cdot n!}{3^n \cdot (n+1)!} $$
+                    </div>
+                    <p>Egyszerűsítsünk! Tudjuk, hogy $3^{n+1} / 3^n = 3$, és $(n+1)! / n! = n+1$:</p>
+                    <div class="formula">
+                        $$ L = \lim_{n \to \infty} \frac{3}{n+1} = 0 $$
+                    </div>
+                    <p>Mivel $L = 0 < 1$, a hányadoskritérium értelmében a sor <b>konvergens</b>.</p>
+                </div></section>
+
+        <!-- 6. Gyakorlat -->
+        <section id="s6" class="active">
+            <h1>6. Hatványsorok</h1>
+            <div class="card glass">
+                
+                <h3>1. Cauchy-féle konvergenciasugár ($R_a$)</h3>
+                <p>A $\sum_{n=0}^{\infty} a_n (x - x_0)^n$ hatványsorhoz tartozó sugár hivatalos definíciója (gyökkritérium alapján):</p>
+                <div class="formula">
+                    $$ R_a := \begin{cases} 
+                    \frac{1}{\limsup_{n \to \infty} \sqrt[n]{|a_n|}} & \text{ha } 0 < \limsup_{n \to \infty} \sqrt[n]{|a_n|} < +\infty \\ 
+                    0 & \text{ha } \limsup_{n \to \infty} \sqrt[n]{|a_n|} = +\infty \\ 
+                    +\infty & \text{ha } \limsup_{n \to \infty} \sqrt[n]{|a_n|} = 0 
+                    \end{cases} $$
+                </div>
+
+                <h3>2. A sugár meghatározása hányadoskritériummal</h3>
+                <p>A gyakorlatban sokkal egyszerűbb kiszámolni a sugarat a szomszédos együtthatók hányadosával (ha a határérték létezik):</p>
+                <div class="formula">
+                    $$ R_a = \lim_{n \to \infty} \left| \frac{a_n}{a_{n+1}} \right| $$
+                </div>
+
+                <h3>3. Cauchy–Hadamard-tétel</h3>
+                <p>Megadja a hatványsor konvergenciatartományát a sugár segítségével:</p>
+                <ul>
+                    <li>Ha $|x - x_0| < R_a$, akkor a sor <b>abszolút konvergens</b> (a belső nyílt intervallumban).</li>
+                    <li>Ha $|x - x_0| > R_a$, akkor a sor <b>divergens</b> (az intervallumon kívül).</li>
+                </ul>
+                <div class="explanation">
+                    <b>Mi a helyzet a határokon?</b> Ha pontosan $|x - x_0| = R_a$ (azaz az intervallum két szélén vagyunk), a tétel nem mond semmit! Ezeket az $x$ értékeket mindig külön, manuálisan kell letesztelni a képletbe behelyettesítve.
+                </div>
+
+                <h3>4. Elemi analitikus függvények tulajdonságai</h3>
+                <p>Ha egy függvény $f(x) := \sum_{n=0}^{\infty} a_n (x - x_0)^n$ alakban van megadva, és $R_a > 0$, akkor a konvergencia-intervallumon ($]x_0 - R_a, x_0 + R_a[$):</p>
+                <ul>
+                    <li><b>Folytonosság:</b> Az $f$ függvény minden belső pontban folytonos.</li>
+                    <li><b>Tagonkénti deriválás:</b> A sor belül tagonként differenciálható, és az új sor konvergenciasugara <b>ugyanaz marad</b>:
+                        <div class="formula">$$ f'(x) = \sum_{n=1}^{\infty} n a_n (x - x_0)^{n-1} $$</div>
+                    </li>
+                    <li><b>Tagonkénti integrálás:</b> A sor tagonként Riemann-integrálható az intervallumon belül:
+                        <div class="formula">$$ \int_\alpha^\beta f(x) dx = \sum_{n=0}^{\infty} \int_\alpha^\beta a_n(x - x_0)^n dx $$</div>
+                    </li>
+                </ul>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Hatványsor konvergenciatartománya</h3>
+                    <p>Határozzuk meg a $\sum_{n=1}^{\infty} \frac{2^n}{n} (x-3)^n$ hatványsor konvergenciatartományát!</p>
+                    <p><b>Megoldás:</b><br>1. Középpont és együttható azonosítása:</p>
+                    <ul>
+                        <li>Középpont: $x_0 = 3$</li>
+                        <li>Együttható: $a_n = \frac{2^n}{n}$</li>
+                    </ul>
+                    <p>2. A konvergenciasugár ($R_a$) kiszámítása a hányadoskritériummal:</p>
+                    <div class="formula">
+                        $$ R_a = \lim_{n \to \infty} \left| \frac{a_n}{a_{n+1}} \right| = \lim_{n \to \infty} \frac{\frac{2^n}{n}}{\frac{2^{n+1}}{n+1}} = \lim_{n \to \infty} \frac{2^n(n+1)}{n 2^{n+1}} = \lim_{n \to \infty} \frac{n+1}{2n} = \frac{1}{2} $$
+                    </div>
+                    <p>A biztos konvergencia intervalluma (a középpontból jobbra-balra $R_a$-t lépve): $]3 - 0.5, 3 + 0.5[ = ]2.5, 3.5[$.</p>
+                    <p>3. Határok (végpontok) vizsgálata:</p>
+                    <ul>
+                        <li><b>$x = 3.5$ esetén:</b> Behelyettesítve a képletbe a sor: $\sum \frac{2^n}{n}(0.5)^n = \sum \frac{1}{n}$. Ez a harmonikus sor, ami <b>divergens</b>.</li>
+                        <li><b>$x = 2.5$ esetén:</b> Behelyettesítve a képletbe a sor: $\sum \frac{2^n}{n}(-0.5)^n = \sum \frac{(-1)^n}{n}$. Ez az alternáló harmonikus sor, ami a Leibniz-kritérium miatt <b>konvergens</b>.</li>
+                    </ul>
+                    <p><b>Végeredmény:</b> A konvergenciatartomány (ahol a sor biztosan nem tart végtelenhez): $[2.5, 3.5[$.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Gyakorlat -->
+        <section id="s7">
+            <h1>7. Taylor-sorok</h1>
+            <div class="card glass">
+                
+                <h3>1. Taylor-polinom ($T_{n,x_0}^f$)</h3>
+                <p>Bonyolult függvények közelítése $n$-edfokú polinommal az $x_0$ pont körül:</p>
+                <div class="formula">
+                    $$T_{n,x_0}^f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!}(x-x_0)^k$$
+                </div>
+
+                <h3>2. Lagrange-maradéktag ($R_n(x)$)</h3>
+                <p>A Taylor-polinom közelítésének hibája. A függvény pontos értéke: $f(x) = T_{n,x_0}^f(x) + R_n(x)$</p>
+                <div class="formula">
+                    $$R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}(x - x_0)^{n+1}$$
+                </div>
+                <div class="explanation">
+                    <b>Célja:</b> A maximális hiba becslése. A $\xi$ egy ismeretlen érték $x_0$ és $x$ között. (A képlet olyan, mint a polinom $n+1$-edik tagja, csak $x_0$ helyett $\xi$-ben deriválva).
+                </div>
+
+                <h3>3. Taylor-sor ($T_{x_0}^f$)</h3>
+                <p>Ha a függvény végtelenszer deriválható, a polinom végtelen sorrá alakul:</p>
+                <div class="formula">
+                    $$T_{x_0}^f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n$$
+                </div>
+
+                <h3>4. Hatványsorok egyértelműsége</h3>
+                <p><b>Minden konvergens hatványsor egyben Taylor-sor is.</b> Ha egy függvény felírható $f(x) = \sum a_n(x - x_0)^n$ alakban, akkor garantált, hogy:</p>
+                <div class="formula">
+                    $$a_n = \frac{f^{(n)}(x_0)}{n!} \quad \implies \quad f^{(n)}(x_0) = n! \cdot a_n$$
+                </div>
+                <div class="explanation">
+                    <b>ZH Trükk:</b> Ne deriválj! Ha ismert sorokból (mértani sor, $e^x$) fel tudod írni a függvényt, az $a_n$ együtthatóból egy szorzással azonnal leolvasható a keresett derivált!
+                </div>
+
+                <h3>5. Analitikus függvény</h3>
+                <p>Egy $f$ függvényt analitikusnak nevezünk az $x_0$ pontban, ha egy $x_0$ körüli nyílt intervallumon előállítható hatványsorként:</p>
+                <div class="formula">
+                    $$f(x) = \sum_{n=0}^{\infty} a_n(x - x_0)^n$$
+                </div>
+
+                <h3>6. A pontbeli analitikusság jellemzése</h3>
+                <p>Legyen $f: \mathbb{R} \to \mathbb{R}$ függvény és $x_0$ egy belső pontja $\text{Dom}(f)$-nek. Ekkor a következő állítások ekvivalensek:</p>
+                <ul>
+                    <li>(i) Az $f$ függvény analitikus az $x_0$ pontban.</li>
+                    <li>(ii) Létezik olyan $r > 0$, hogy minden $x \in ]x_0 - r, x_0 + r[$ esetén $f(x) = T_{x_0}^f(x)$. (Azaz $f$ Taylor-sora előállítja $f$-et az intervallumon.)</li>
+                </ul>
+
+                <h3>7. Nevezetes Maclaurin-sorok ($x_0 = 0$)</h3>
+                <p>A legfontosabb alapfüggvények sorfejtései (ezeket érdemes tudni, és csak <b>behelyettesíteni</b> vizsgán az $x$ helyére deriválás helyett):</p>
+                <div class="formula" style="text-align: left; padding-left: 40px;">
+                    $e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \dots \quad (x \in \mathbb{R})$<br><br>
+                    $\sin(x) = \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n+1}}{(2n+1)!} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \dots \quad (x \in \mathbb{R})$<br><br>
+                    $\cos(x) = \sum_{n=0}^{\infty} (-1)^n \frac{x^{2n}}{(2n)!} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \dots \quad (x \in \mathbb{R})$<br><br>
+                    $\text{sh}(x) = \sum_{n=0}^{\infty} \frac{x^{2n+1}}{(2n+1)!} = x + \frac{x^3}{3!} + \frac{x^5}{5!} + \dots \quad (x \in \mathbb{R})$<br><br>
+                    $\text{ch}(x) = \sum_{n=0}^{\infty} \frac{x^{2n}}{(2n)!} = 1 + \frac{x^2}{2!} + \frac{x^4}{4!} + \dots \quad (x \in \mathbb{R})$<br><br>
+                    $\ln(1+x) = \sum_{n=1}^{\infty} (-1)^{n+1} \frac{x^n}{n} = x - \frac{x^2}{2} + \frac{x^3}{3} - \dots \quad (x \in ]-1, 1])$
+                </div>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">1-2. Példa: Taylor-polinom és hibabecslés</h3>
+                    <p>Írjuk fel az $f(x) = \ln(1+x)$ függvény $x_0 = 0$ körüli másodfokú Taylor-polinomját, és becsüljük meg a hibát az $x=0.1$ pontban!</p>
+                    <p><b>Megoldás:</b><br>1. Deriváltak és helyettesítési értékek $x_0=0$-ban (a másodfokúhoz $n=2$, a hibához kell az $n=3$ is):</p>
+                    <ul>
+                        <li>$f(x) = \ln(1+x) \implies f(0) = \ln(1) = 0$</li>
+                        <li>$f'(x) = \frac{1}{1+x} = (1+x)^{-1} \implies f'(0) = 1$</li>
+                        <li>$f''(x) = -(1+x)^{-2} \implies f''(0) = -1$</li>
+                        <li>$f'''(x) = 2(1+x)^{-3} \implies f'''(\xi) = \frac{2}{(1+\xi)^3}$</li>
+                    </ul>
+                    <p>2. A Taylor-polinom ($T_2$):</p>
+                    <div class="formula">
+                        $$ T_2(x) = 0 + \frac{1}{1!}x + \frac{-1}{2!}x^2 = x - \frac{x^2}{2} $$
+                    </div>
+                    <p>3. Hibabecslés ($x=0.1$ esetén): A Lagrange-maradéktag $R_2(x) = \frac{f'''(\xi)}{3!}x^3$.</p>
+                    <div class="formula">
+                        $$ R_2(0.1) = \frac{\frac{2}{(1+\xi)^3}}{6} (0.1)^3 = \frac{1}{3(1+\xi)^3} \cdot 0.001 $$
+                    </div>
+                    <p>Mivel $\xi \in ]0, 0.1[$, a tört nevezője nagyobb 1-nél, így a kifejezés maximális értéke $\xi=0$ esetén lesz. A hiba tehát biztosan kisebb, mint $\frac{1}{3} \cdot 0.001 \approx 0.00033$.</p>
+
+                    <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
+
+                    <h3 style="color: #f59e0b;">4-7. Példa: Nevezetes sorok és Egyértelműség</h3>
+                    <p>Legyen $f(x) = \frac{1}{1+2x^2}$. Határozzuk meg az $x_0 = 0$ körüli Taylor-sorát, majd számítsuk ki az $f^{(50)}(0)$ értékét deriválás nélkül!</p>
+                    <p><b>Megoldás:</b><br>1. Használjuk a mértani sor képletét $\frac{1}{1-q} = \sum q^n$. Itt a $q$ helyére $(-2x^2)$-et írunk:</p>
+                    <div class="formula">
+                        $$ f(x) = \frac{1}{1 - (-2x^2)} = \sum_{n=0}^{\infty} (-2x^2)^n = \sum_{n=0}^{\infty} (-1)^n 2^n x^{2n} $$
+                    </div>
+                    <p>Ez egy konvergens hatványsor (ha $|2x^2|<1$), tehát az egyértelműség miatt <b>ez maga a Taylor-sor</b>.</p>
+                    <p>2. A $50.$ derivált meghatározása: Tudjuk, hogy a $k$-adik deriváltat az $x^k$ együtthatója adja meg: $a_k = \frac{f^{(k)}(0)}{k!}$.</p>
+                    <p>Az $50$-es kitevőt akkor kapjuk, ha $2n = 50$, azaz $n = 25$. Az együttható ($a_{50}$): $(-1)^{25} 2^{25} = -2^{25}$.</p>
+                    <div class="formula">
+                        $$ \frac{f^{(50)}(0)}{50!} = -2^{25} \quad \implies \quad f^{(50)}(0) = -2^{25} \cdot 50! $$
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Gyakorlat -->
+        <section id="s8">
+            <h1>8. Binomiális sor és Többváltozós Határérték</h1>
+            <div class="card glass">
+                
+                <h3>1. Általánosított binomiális együttható</h3>
+                <p>Kiterjeszti a kombinatorikát bármely valós $\alpha \in \mathbb{R}$ számra ($k \in \mathbb{N}$):</p>
+                <div class="formula">
+                    $$\binom{\alpha}{k} := \begin{cases} 1 & \text{ha } k = 0 \\ \frac{\alpha(\alpha - 1) \dots (\alpha - k + 1)}{k!} & \text{ha } k \neq 0 \end{cases}$$
+                </div>
+                
+                <h3>2. Binomiális sor</h3>
+                <p>Az $(1+x)^\alpha$ kifejezés hatványsor-előállítása (ez egy rendkívül hasznos Taylor-sor):</p>
+                <div class="formula">
+                    $$(1+x)^\alpha = \sum_{k=0}^{\infty} \binom{\alpha}{k} x^k \quad \text{minden } \alpha \in \mathbb{R} \text{ és } x \in ]-1, 1[ \text{ esetén}$$
+                </div>
+                <div class="explanation">
+                    <b>Mire jó?</b> Gyökös és törtes kifejezéseket (pl. $\sqrt{1+x}$) pillanatok alatt sorba tudunk fejteni hosszú deriválások nélkül. Csak írd át az egészet hatványos alakra!
+                </div>
+
+                <h3>3. Konvergens sorozat $\mathbb{R}^n$-ben</h3>
+                <p>Egy $(\mathbf{x}_k)_{k\in\mathbb{N}}$ vektorokból álló sorozat pontosan akkor tart az $\mathbf{x} \in \mathbb{R}^n$ vektorhoz, ha a távolságuk nullához tart:</p>
+                <div class="formula">
+                    $$\lim_{k \to \infty} ||\mathbf{x}_k - \mathbf{x}|| = 0 \quad \text{Jelölés:} \quad \mathbf{x}_k \xrightarrow{k\to\infty} \mathbf{x}$$
+                </div>
+
+                <h3>4. Koordinátánkénti konvergencia</h3>
+                <p>A térbeli konvergencia egyszerűbben megfogalmazva: egy vektorsorozat pontosan akkor tart egy adott ponthoz, ha <b>minden egyes koordinátája külön-külön</b> konvergens a megfelelő ponthoz.</p>
+                <div class="formula">
+                    $$\mathbf{x}_k \to \mathbf{x} \iff \forall i \in \{1, \dots, n\}: (\mathbf{x}_k)_i \to x_i$$
+                </div>
+
+                <h3>5. Átviteli elv (Határértékhez)</h3>
+                <p>Egy $f$ többváltozós függvény határértéke az $\mathbf{a}$ pontban pontosan akkor $b$, ha <b>bármilyen létező</b> $\mathbf{x}_k \to \mathbf{a}$ sorozat (útvonal) esetén a függvényértékek is a $b$-hez tartanak.</p>
+                <div class="formula">
+                    $$\lim_{\mathbf{x} \to \mathbf{a}} f(\mathbf{x}) = b \iff \forall (\mathbf{x}_k)_{k \in \mathbb{N}}, \mathbf{x}_k \to \mathbf{a} \implies f(\mathbf{x}_k) \to b$$
+                </div>
+
+                <h3>6. Szükséges feltételek az origóbeli határértékhez</h3>
+                <p>Ha a határérték létezik a $(0,0)$-ban és értéke $b$, akkor bármelyik tengelyen vagy tetszőleges $y=mx$ egyenesen közelítve is ugyanazt a $b$ értéket kell kapnunk:</p>
+                <div class="formula">
+                    $$\lim_{x\to0} f(x, 0) = b, \quad \lim_{y\to0} f(0, y) = b, \quad \lim_{x\to0} f(x, mx) = b$$
+                </div>
+                <div class="explanation">
+                    <b>Cáfolat (ZH Trükk):</b> Ha találsz két különböző útvonalat (pl. $y=0$ és $y=x$), ahol megközelítve más-más eredményt ad a Limesz, akkor a határérték <b>biztosan nem létezik</b>.
+                </div>
+                
+                <h3>7. Polárkoordinátás transzformáció</h3>
+                <p>Origóbeli határérték <b>bizonyításához</b> hasznos. A közeledést lecseréljük egyetlen távolsági változóra ($r \to 0$), egy tetszőleges $\varphi$ szög mellett.</p>
+                <div class="formula">
+                    $$x = r \cos \varphi, \quad y = r \sin \varphi \implies \lim_{r \to 0} f(r\cos\varphi, r\sin\varphi)$$
+                </div>
+                <div class="explanation">
+                    <b>Miért jó?</b> Amikor $r \to 0$, egyszerre teszteljük az <i>összes létező irányt</i> ($\varphi$). Ha a kapott Limesz (pl. a Rendőrelv miatt) nullát ad és független lesz a $\varphi$ szögtől, akkor bizonyítottuk, hogy a határérték létezik.
+                </div>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">1-2. Példa: Binomiális sorfejtés</h3>
+                    <p>Fejtsük sorba az $f(x) = \frac{1}{\sqrt[3]{8+x}}$ függvényt az origó körül!</p>
+                    <p><b>Megoldás:</b> Átírjuk hatványos alakra és kiemelünk $8$-at, hogy megkapjuk a szükséges $(1+\dots)^\alpha$ alakot:</p>
+                    <div class="formula">
+                        $$ f(x) = (8+x)^{-1/3} = 8^{-1/3}\left(1+\frac{x}{8}\right)^{-1/3} = \frac{1}{2}\left(1+\frac{x}{8}\right)^{-1/3} $$
+                    </div>
+                    <p>A binomiális sor képletét használva ($\alpha = -1/3$ és az $x$ helyett $x/8$ szerepel):</p>
+                    <div class="formula">
+                        $$ f(x) = \frac{1}{2} \sum_{k=0}^{\infty} \binom{-1/3}{k} \left(\frac{x}{8}\right)^k $$
+                    </div>
+
+                    <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
+
+                    <h3 style="color: #f59e0b;">3-4. Példa: Vektorsorozat konvergenciája</h3>
+                    <p>Hova tart az $\mathbf{x}_k = \left( \frac{\sin k}{k}, \frac{2k-1}{k} \right)$ sorozat, ha $k \to \infty$?</p>
+                    <p><b>Megoldás:</b> Koordinátánként külön vizsgáljuk a konvergenciát:</p>
+                    <ul>
+                        <li>X-koordináta: $\lim_{k\to\infty} \frac{\sin k}{k} = 0$ (korlátos osztva végtelennel).</li>
+                        <li>Y-koordináta: $\lim_{k\to\infty} \frac{2k-1}{k} = \lim_{k\to\infty} \left(2 - \frac{1}{k}\right) = 2$.</li>
+                    </ul>
+                    <p>Tehát a vektorsorozat konvergens, és a határértéke a $(0, 2)$ pont.</p>
+
+                    <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
+
+                    <h3 style="color: #f59e0b;">5-6. Példa: Határérték cáfolata</h3>
+                    <p>Létezik-e a $\lim_{(x,y)\to(0,0)} \frac{x^2y}{x^4+y^2}$ határérték?</p>
+                    <p><b>Megoldás:</b> Próbáljuk megközelíteni az origót különböző görbéken! Ha az egyeneseken ($y=mx$) megyünk:</p>
+                    <div class="formula">
+                        $$ \lim_{x\to 0} \frac{x^2(mx)}{x^4+(mx)^2} = \lim_{x\to 0} \frac{mx^3}{x^2(x^2+m^2)} = \lim_{x\to 0} \frac{mx}{x^2+m^2} = 0 $$
+                    </div>
+                    <p>Minden egyenesen $0$ jött ki. De mi van, ha az $y=x^2$ parabolán közelítünk?</p>
+                    <div class="formula">
+                        $$ \lim_{x\to 0} \frac{x^2(x^2)}{x^4+(x^2)^2} = \lim_{x\to 0} \frac{x^4}{2x^4} = \frac{1}{2} $$
+                    </div>
+                    <p>Mivel a két útvonalon eltérő értéket kaptunk ($0 \neq 1/2$), a határérték <b>nem létezik</b>.</p>
+
+                    <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
+
+                    <h3 style="color: #f59e0b;">7. Példa: Határérték bizonyítása (Polárkoordinátákkal)</h3>
+                    <p>Létezik-e a $\lim_{(x,y)\to(0,0)} \frac{x^3+y^3}{x^2+y^2}$ határérték?</p>
+                    <p><b>Megoldás:</b> Használjuk a polárkoordinátás helyettesítést ($x=r\cos\varphi, y=r\sin\varphi$):</p>
+                    <div class="formula">
+                        $$ \lim_{r\to 0} \frac{r^3\cos^3\varphi + r^3\sin^3\varphi}{r^2\cos^2\varphi + r^2\sin^2\varphi} = \lim_{r\to 0} \frac{r^3(\cos^3\varphi + \sin^3\varphi)}{r^2(1)} = \lim_{r\to 0} r(\cos^3\varphi + \sin^3\varphi) $$
+                    </div>
+                    <p>A szögfüggvényes zárójeles rész korlátos, az $r$ pedig nullához tart. Mivel $0 \cdot \text{korlátos} = 0$, a szög ($\varphi$) értékétől teljesen függetlenül mindig nullát kapunk. Tehát a határérték létezik és értéke $0$.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 9. Gyakorlat -->
+        <section id="s9">
+            <h1>9. Parciális Derivált & Gradiens</h1>
+            <div class="card glass">
+                
+                <h3>1. Parciális derivált ($\partial_i f$)</h3>
+                <p>A hivatalos definíció szerint egy egyváltozós függvény deriváltja az $a_i$ pontban, ahol a többi koordinátát rögzítjük:</p>
+                <div class="formula">
+                    $$x \mapsto f(a_1, \dots, x, \dots, a_n)$$
+                </div>
+                <div class="explanation">
+                    <b>Gyakorlatban (Számoláshoz):</b> Csak az $i$-edik változó ($x_i$) szerint deriválunk az $\mathbf{a}$ pontban, a többi változót konstansként (sima számként) kezeljük. Jelölése: $\partial_i f(\mathbf{a})$ vagy $f'_{x_i}(\mathbf{a})$.
+                </div>
+                
+                <h3>2. Totális differenciálhatóság és Gradiens</h3>
+                <p>Egy $f: \mathbb{R}^n \to \mathbb{R}$ függvény az $\mathbf{a}$ belső pontban totálisan differenciálható, ha létezik egy $A \in \mathbb{R}^n$ vektor, amelyre:</p>
+                <div class="formula">
+                    $$\lim_{\mathbf{x} \to \mathbf{a}} \frac{f(\mathbf{x}) - f(\mathbf{a}) - \langle A, \mathbf{x} - \mathbf{a} \rangle}{||\mathbf{x} - \mathbf{a}||} = 0$$
+                </div>
+                <p>Ezt az $A$ vektort a függvény <b>Gradiensének</b> nevezzük ($\text{grad } f(\mathbf{a})$, $f'(\mathbf{a})$ vagy $(Df)(\mathbf{a})$).</p>
+
+                <h3>3. Érintősík egyenlete</h3>
+                <p>Ha $f$ totálisan differenciálható $(x_0, y_0)$-ban, a pontbeli érintősík egyenlete:</p>
+                <div class="formula">
+                    $$\partial_1 f(x_0, y_0)(x - x_0) + \partial_2 f(x_0, y_0)(y - y_0) - (z - f(x_0, y_0)) = 0$$
+                </div>
+
+                <h3>4. Szükséges feltételek a totális deriválhatósághoz</h3>
+                <p>Ha $f$ totálisan differenciálható $\mathbf{a}$-ban, akkor szükségképpen:</p>
+                <ul>
+                    <li>(i) $f$ <b>folytonos</b> az $\mathbf{a}$ pontban.</li>
+                    <li>(ii) Léteznek a parciális deriváltak, és a gradiens vektor pontosan ezekből áll:
+                    <div class="formula">$$\text{grad } f(\mathbf{a}) = \left( \partial_1 f(\mathbf{a}), \dots, \partial_n f(\mathbf{a}) \right)$$</div>
+                    </li>
+                </ul>
+
+                <h3>5. Elégséges feltétel a totális deriválhatósághoz</h3>
+                <p>Ha a $\partial_i f$ parciális deriváltfüggvények léteznek egy környezetben és <b>folytonosak</b> $\mathbf{a}$-ban, akkor $f$ biztosan totálisan differenciálható $\mathbf{a}$-ban.</p>
+
+                <h3>6. Iránymenti derivált ($D_\mathbf{e} f$)</h3>
+                <p>A függvény változási gyorsasága az $\mathbf{a}$ pontból egy tetszőleges $\mathbf{e}$ <b>egységvektor</b> ($||\mathbf{e}|| = 1$) irányába indulva:</p>
+                <div class="formula">
+                    $$D_{\mathbf{e}} f(\mathbf{a}) = \lim_{t \to 0^+} \frac{f(\mathbf{a} + t\mathbf{e}) - f(\mathbf{a})}{t}$$
+                </div>
+
+                <h3>7. Iránymenti derivált kiszámítása</h3>
+                <p>Ha $f$ totálisan differenciálható, a kiszámítás egyszerű skaláris szorzattal történik:</p>
+                <div class="formula">
+                    $$D_{\mathbf{e}} f(\mathbf{a}) = \langle \text{grad } f(\mathbf{a}), \mathbf{e} \rangle$$
+                </div>
+                <div class="explanation">
+                    <b>ZH Trükk:</b> Az $\mathbf{e}$ vektor hossza kötelezően $1$ kell, hogy legyen! Ha a feladat egy $\mathbf{v}$ vektort ad, azt le kell normálni: $\mathbf{e} = \frac{\mathbf{v}}{||\mathbf{v}||}$.
+                </div>
+
+                <h3>8. Iránymenti derivált becslése</h3>
+                <p>Az iránymenti derivált értéke mindig a gradiens hosszának korlátai közé esik:</p>
+                <div class="formula">
+                    $$-||\text{grad } f(\mathbf{a})|| \le D_{\mathbf{e}} f(\mathbf{a}) \le ||\text{grad } f(\mathbf{a})||$$
+                </div>
+
+                <h3>9. Maximális és minimális irányok</h3>
+                <p>Mivel $D_{\mathbf{e}} f(\mathbf{a}) = ||\text{grad } f(\mathbf{a})|| \cos(\alpha)$ (ahol $\alpha$ a gradiens és az $\mathbf{e}$ szöge), az iránymenti derivált:</p>
+                <ul>
+                    <li><b>Maximális</b> ($+||\text{grad } f(\mathbf{a})||$), ha $\alpha = 0$ (pontosan a gradiens irányába megyünk).</li>
+                    <li><b>Minimális</b> ($-||\text{grad } f(\mathbf{a})||$), ha $\alpha = \pi$ (a gradienssel ellentétes irányba megyünk).</li>
+                    <li><b>Nulla</b>, ha $\alpha = \pi/2$ (merőlegesen, azaz szintvonalon haladunk).</li>
+                </ul>
+
+                <h3>10. Teljes differenciál (Hibabecslés)</h3>
+                <p>Kis megváltozások közelítő számítására használjuk (elsőrendű Taylor-polinom). Ha a bemeneti változók $\Delta x$ és $\Delta y$ értékkel változnak, a függvényérték változása (hiba) közelítőleg:</p>
+                <div class="formula">
+                    $$\Delta f \approx df = \partial_1 f(x_0, y_0) \Delta x + \partial_2 f(x_0, y_0) \Delta y$$
+                </div>
+                <div class="explanation">
+                    <b>Relatív hiba:</b> A százalékos hibát úgy kapjuk, hogy a hibát elosztjuk a függvényértékkel: $\frac{\Delta f}{f}$. Maximális hiba számításakor az abszolút értékek összegét vesszük: $|\Delta f| \le |\partial_1 f| |\Delta x| + |\partial_2 f| |\Delta y|$.
+                </div>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">1-5. Példa: Parciális deriváltak, Gradiens és Érintősík</h3>
+                    <p>Legyen $f(x,y) = x^2y + e^{xy}$. Számítsuk ki a parciális deriváltjait, a gradiens vektorát, és írjuk fel az érintősík egyenletét a $P(1, 0)$ pontban!</p>
+                    <p><b>Megoldás:</b><br>1. Parciális deriváltak számítása (mivel a deriváltak folytonosak, a függvény totálisan differenciálható):</p>
+                    <ul>
+                        <li>X-szerint (az $y$ konstans): $\partial_1 f(x,y) = 2xy + y e^{xy}$</li>
+                        <li>Y-szerint (az $x$ konstans): $\partial_2 f(x,y) = x^2 + x e^{xy}$</li>
+                    </ul>
+                    <p>2. Behelyettesítés a $P(1,0)$ pontba a gradienshez:</p>
+                    <ul>
+                        <li>$\partial_1 f(1,0) = 2(1)(0) + 0 \cdot e^0 = 0$</li>
+                        <li>$\partial_2 f(1,0) = 1^2 + 1 \cdot e^0 = 1 + 1 = 2$</li>
+                    </ul>
+                    <p>Tehát a gradiens vektor: $\text{grad } f(1,0) = (0, 2)$. A függvényérték: $f(1,0) = 1^2(0) + e^0 = 1$.</p>
+                    <p>3. Érintősík egyenlete a képlet alapján:</p>
+                    <div class="formula">
+                        $$ 0(x - 1) + 2(y - 0) - (z - 1) = 0 \quad \implies \quad 2y - z + 1 = 0 $$
+                    </div>
+
+                    <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
+
+                    <h3 style="color: #f59e0b;">6-9. Példa: Iránymenti derivált és Szélsőértékek</h3>
+                    <p>Határozzuk meg az előző $f(x,y)$ függvény iránymenti deriváltját a $P(1, 0)$ pontból a $\mathbf{v} = (3, 4)$ vektor irányába! Mik a lehetséges maximális és minimális iránymenti derivált értékek?</p>
+                    <p><b>Megoldás:</b><br>1. Az irányvektor <b>normálása</b> (egységvektorrá alakítása):</p>
+                    <div class="formula">
+                        $$ ||\mathbf{v}|| = \sqrt{3^2 + 4^2} = \sqrt{25} = 5 \quad \implies \quad \mathbf{e} = \left(\frac{3}{5}, \frac{4}{5}\right) $$
+                    </div>
+                    <p>2. Iránymenti derivált kiszámítása a gradiens és az egységvektor skaláris szorzataként:</p>
+                    <div class="formula">
+                        $$ D_{\mathbf{e}} f(1,0) = \langle \text{grad } f(1,0), \mathbf{e} \rangle = \left\langle (0, 2), \left(\frac{3}{5}, \frac{4}{5}\right) \right\rangle = 0 \cdot \frac{3}{5} + 2 \cdot \frac{4}{5} = \frac{8}{5} $$
+                    </div>
+                    <p>3. Becslés és szélsőértékek: A gradiens hossza $||\text{grad } f(1,0)|| = \sqrt{0^2 + 2^2} = 2$.</p>
+                    <ul>
+                        <li>A <b>maximális</b> iránymenti derivált értéke: $+2$ (ha pontosan a gradiens irányába indulunk).</li>
+                        <li>A <b>minimális</b> iránymenti derivált értéke: $-2$ (ha a gradiensnek háttal indulunk).</li>
+                    </ul>
+
+                    <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
+
+                    <h3 style="color: #f59e0b;">10. Példa: Hibabecslés (Teljes differenciál)</h3>
+                    <p>Egy henger sugara $r=2\pm 0.1$ cm, magassága $h=5\pm 0.2$ cm. Becsüljük meg a térfogat maximális hibáját!</p>
+                    <p><b>Megoldás:</b> A térfogat $V(r, h) = r^2 \pi h$. A parciális deriváltak:</p>
+                    <ul>
+                        <li>$\partial_r V = 2r\pi h \implies \partial_r V(2,5) = 20\pi$</li>
+                        <li>$\partial_h V = r^2\pi \implies \partial_h V(2,5) = 4\pi$</li>
+                    </ul>
+                    <p>A maximális hiba becslése a teljes differenciállal:</p>
+                    <div class="formula">
+                        $$ |\Delta V| \le |\partial_r V| \cdot |\Delta r| + |\partial_h V| \cdot |\Delta h| = 20\pi \cdot 0.1 + 4\pi \cdot 0.2 = 2\pi + 0.8\pi = 2.8\pi $$
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. Gyakorlat -->
+        <section id="s10">
+            <h1>10. Szélsőértékek és Derivált Mátrixok</h1>
+            <div class="card glass">
+                
+                <h3>1. Young-tétel</h3>
+                <p>Ha egy $f: \mathbb{R}^n \to \mathbb{R}$ függvény másodrendű parciális deriváltjai folytonosak az $\mathbf{a}$ pontban, akkor a deriválás sorrendje felcserélhető:</p>
+                <div class="formula">
+                    $$\partial_{i,j} f(\mathbf{a}) = \partial_{j,i} f(\mathbf{a})$$
+                </div>
+                <div class="explanation">
+                    <b>Miért jó?</b> Ha kétszer deriválsz (pl. előbb $x$, aztán $y$ szerint), nem kell aggódnod a sorrend miatt. Az $f''_{xy}$ és az $f''_{yx}$ garantáltan ugyanazt az eredményt adja!
+                </div>
+
+                <h3>2. Szimmetrikus mátrix definitsége</h3>
+                <p>Egy $n \times n$-es szimmetrikus mátrix (például a Hesse-mátrix) sajátértékei ($\lambda$) alapján osztályozható:</p>
+                <ul>
+                    <li><b>Pozitív definit:</b> Minden sajátérték pozitív ($\lambda > 0$).</li>
+                    <li><b>Negatív definit:</b> Minden sajátérték negatív ($\lambda < 0$).</li>
+                    <li><b>Indefinit:</b> Vannak pozitív és negatív sajátértékei is.</li>
+                    <li><b>Pozitív/Negatív szemidefinit:</b> Ha megengedett a nulla is ($\lambda \ge 0$ vagy $\lambda \le 0$).</li>
+                </ul>
+
+                <h3>3. Sylvester-kritérium (Főminorok)</h3>
+                <p>Sajátértékek számolása helyett a determinánsokkal ($D_k$) is eldönthető a definitség. Legyen $D_k$ a bal felső $k \times k$-as mátrix determinánsa:</p>
+                <ul>
+                    <li><b>Pozitív definit:</b> Minden főminor szigorúan pozitív ($D_1 > 0, D_2 > 0, \dots, D_n > 0$).</li>
+                    <li><b>Negatív definit:</b> A főminorok előjele alternál, és negatívval kezdődik ($D_1 < 0, D_2 > 0, D_3 < 0, \dots$).</li>
+                </ul>
+
+                <h3>4. Hesse-mátrix ($H_f(\mathbf{a})$)</h3>
+                <p>A másodrendű parciális deriváltakból álló $n \times n$-es mátrix. A Young-tétel miatt ez a mátrix mindig szimmetrikus.</p>
+                <div class="formula">
+                    $$H_f(\mathbf{a}) = \begin{pmatrix} \partial_{1,1} f(\mathbf{a}) & \dots & \partial_{1,n} f(\mathbf{a}) \\ \vdots & \ddots & \vdots \\ \partial_{n,1} f(\mathbf{a}) & \dots & \partial_{n,n} f(\mathbf{a}) \end{pmatrix}$$
+                </div>
+
+                <h3>5. Lokális szélsőérték létezése</h3>
+                <p>Többváltozós függvény szélsőértékének keresése két lépésből áll:</p>
+                <ul>
+                    <li><b>Szükséges feltétel (Stacionárius pont):</b> A gradiens vektor nulla az adott $\mathbf{a}$ pontban ($\text{grad } f(\mathbf{a}) = \mathbf{0}$).</li>
+                    <li><b>Elégséges feltétel (Osztályozás):</b> Megnézzük a Hesse-mátrix $H_f(\mathbf{a})$ definitségét:
+                        <ul>
+                            <li>Ha pozitív definit $\implies$ <b>lokális minimum</b>.</li>
+                            <li>Ha negatív definit $\implies$ <b>lokális maximum</b>.</li>
+                            <li>Ha indefinit $\implies$ <b>nyeregpont</b> (nincs szélsőérték).</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>6. Jacobi-mátrix ($f'(\mathbf{a})$)</h3>
+                <p>Ha a függvény nem egyetlen számot, hanem egy vektort ad vissza ($f = (f_1, \dots, f_m): \mathbb{R}^n \to \mathbb{R}^m$), akkor a deriváltja nem egy gradiens vektor, hanem egy $m \times n$-es mátrix, amelynek sorai a koordinátafüggvények gradiensei:</p>
+                <div class="formula">
+                    $$f'(\mathbf{a}) = \begin{pmatrix} \partial_1 f_1(\mathbf{a}) & \dots & \partial_n f_1(\mathbf{a}) \\ \vdots & \ddots & \vdots \\ \partial_1 f_m(\mathbf{a}) & \dots & \partial_n f_m(\mathbf{a}) \end{pmatrix}$$
+                </div>
+
+                <h3>7. Láncszabály (Függvénykompozíció differenciálása)</h3>
+                <p>Két többváltozós vektorfüggvény kompozíciójának deriváltja megkapható a Jacobi-mátrixok <b>mátrixszorzataként</b>:</p>
+                <div class="formula">
+                    $$(f \circ g)'(\mathbf{a}) = f'(g(\mathbf{a})) \cdot g'(\mathbf{a})$$
+                </div>
+                <div class="explanation">
+                    <b>ZH Trükk:</b> Ne feledd, hogy a mátrixszorzás sorrendje nem felcserélhető! Mindig a "külső" függvény deriváltmátrixát (kiértékelve a belső függvény pontjában) szorozzuk balról a "belső" függvény deriváltmátrixával.
+                </div>
+
+                <h3>8. Feltételes szélsőérték (Lagrange-multiplikátorok)</h3>
+                <p>Keressük az $f(x, y)$ függvény szélsőértékét úgy, hogy egy $g(x, y) = 0$ feltételnek is teljesülnie kell (pl. keressük a maximumot egy adott körön). Segédfüggvényt írunk fel (Lagrange-függvény):</p>
+                <div class="formula">
+                    $$L(x, y, \lambda) = f(x, y) - \lambda \cdot g(x, y)$$
+                </div>
+                <p><b>Megoldás menete:</b></p>
+                <ul>
+                    <li>1. Kiszámítjuk a parciális deriváltakat $x$, $y$ és $\lambda$ szerint (ami maga a feltétel), majd nullával egyenlővé tesszük őket.</li>
+                    <li>2. Megoldjuk az egyenletrendszert:
+                    <div class="formula" style="text-align: left; padding-left: 40px;">
+                        $\partial_x L = 0 \implies \partial_x f - \lambda \partial_x g = 0$<br>
+                        $\partial_y L = 0 \implies \partial_y f - \lambda \partial_y g = 0$<br>
+                        $\partial_\lambda L = 0 \implies -g(x,y) = 0$
+                    </div>
+                    </li>
+                    <li>3. A kapott $(x, y)$ pontokat behelyettesítjük $f(x,y)$-ba, a legnagyobb a maximum, a legkisebb a minimum.</li>
+                </ul>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">1-5. Példa: Lokális szélsőérték keresése</h3>
+                    <p>Keressük meg az $f(x, y) = x^3 - 3x + y^2 - 2y$ függvény lokális szélsőértékeit!</p>
+                    <p><b>Megoldás:</b><br>1. <b>Gradiens (első deriváltak) és stacionárius pontok:</b><br>
+                    $\partial_1 f(x, y) = 3x^2 - 3$<br>
+                    $\partial_2 f(x, y) = 2y - 2$<br>
+                    Tegyük egyenlővé nullával mindkettőt:<br>
+                    $3x^2 - 3 = 0 \implies x^2 = 1 \implies x = \pm 1$<br>
+                    $2y - 2 = 0 \implies 2y = 2 \implies y = 1$<br>
+                    Két stacionárius pontunk van: $P_1(1, 1)$ és $P_2(-1, 1)$.</p>
+
+                    <p>2. <b>Hesse-mátrix (másodlagos deriváltak):</b><br>
+                    $\partial_{1,1} f(x, y) = 6x$<br>
+                    $\partial_{2,2} f(x, y) = 2$<br>
+                    $\partial_{1,2} f(x, y) = \partial_{2,1} f(x, y) = 0$ (Young-tétel miatt szimmetrikus)<br>
+                    </p>
+                    <div class="formula">
+                        $$H_f(x,y) = \begin{pmatrix} 6x & 0 \\ 0 & 2 \end{pmatrix}$$
+                    </div>
+
+                    <p>3. <b>Pontok osztályozása a Sylvester-kritériummal:</b><br>
+                    <b>A $P_1(1, 1)$ pontban:</b></p>
+                    <div class="formula">
+                        $$H_f(1,1) = \begin{pmatrix} 6 & 0 \\ 0 & 2 \end{pmatrix}$$
+                    </div>
+                    <p>A főminorok: $D_1 = 6 > 0$, és a determináns $D_2 = 6 \cdot 2 - 0 = 12 > 0$.<br>
+                    Mivel minden $D_k > 0$, a mátrix <b>pozitív definit</b>, így itt <b>lokális minimum</b> van.</p>
+
+                    <p><b>A $P_2(-1, 1)$ pontban:</b></p>
+                    <div class="formula">
+                        $$H_f(-1,1) = \begin{pmatrix} -6 & 0 \\ 0 & 2 \end{pmatrix}$$
+                    </div>
+                    <p>A főminorok: $D_1 = -6 < 0$, és a determináns $D_2 = -6 \cdot 2 - 0 = -12 < 0$.<br>
+                    Mivel $D_2$ negatív, a Sylvester-kritérium (alternáló előjel $D_2>0$-val) nem teljesül. A mátrix <b>indefinit</b>, így itt <b>nyeregpont</b> van (nincs szélsőérték).</p>
+
+                    <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
+
+                    <h3 style="color: #f59e0b;">6. Példa: Feltételes szélsőérték</h3>
+                    <p>Keressük az $f(x,y) = xy$ szélsőértékeit az $x^2 + y^2 = 8$ feltétel mellett!</p>
+                    <p><b>Megoldás:</b><br>1. A feltétel nullára rendezve: $g(x,y) = x^2 + y^2 - 8 = 0$. A Lagrange-függvény:</p>
+                    <div class="formula">
+                        $$ L(x, y, \lambda) = xy - \lambda(x^2 + y^2 - 8) $$
+                    </div>
+                    <p>2. Egyenletrendszer felírása:</p>
+                    <ul>
+                        <li>(1) $\partial_x L = y - 2\lambda x = 0 \implies y = 2\lambda x$</li>
+                        <li>(2) $\partial_y L = x - 2\lambda y = 0 \implies x = 2\lambda y$</li>
+                        <li>(3) $x^2 + y^2 = 8$</li>
+                    </ul>
+                    <p>3. Megoldás: Helyettesítsük (1)-et (2)-be: $x = 2\lambda(2\lambda x) = 4\lambda^2 x$. Mivel $x=0$-ból $y=0$ jönne (ami nem ad 8-at a kör egyenletében), leoszthatunk $x$-szel: $1 = 4\lambda^2 \implies \lambda = \pm \frac{1}{2}$.</p>
+                    <ul>
+                        <li>Ha $\lambda = \frac{1}{2}$, akkor $y = x$. Beírva (3)-ba: $2x^2 = 8 \implies x^2 = 4 \implies x = \pm 2$. Pontok: $(2,2)$ és $(-2,-2)$.</li>
+                        <li>Ha $\lambda = -\frac{1}{2}$, akkor $y = -x$. Beírva (3)-ba: $2x^2 = 8 \implies x^2 = 4 \implies x = \pm 2$. Pontok: $(2,-2)$ és $(-2,2)$.</li>
+                    </ul>
+                    <p>4. Függvényértékek: $f(2,2) = 4$, $f(-2,-2) = 4$ (ezek a <b>maximumok</b>). $f(2,-2) = -4$, $f(-2,2) = -4$ (ezek a <b>minimumok</b>).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. Gyakorlat -->
+        <section id="s11">
+            <h1>11. Kétváltozós integrál és Polártranszformáció</h1>
+            <div class="card glass">
+                
+                <h3>1. Kettős integrál fogalma</h3>
+                <p>Az $\iint_T f(x,y) dA$ kettős integrál egy $T$ síkbeli tartomány fölötti térfogatot adja meg, ahol $f(x,y)$ a magasság.</p>
+
+                <h3>2. Fubini-tétel (Téglalap tartományon)</h3>
+                <p>Ha $T = [a,b] \times [c,d]$ egy téglalap, akkor a kettős integrál két egymás utáni egyváltozós integrálra bontható, és a sorrend tetszőleges:</p>
+                <div class="formula">
+                    $$\iint_T f(x,y) dA = \int_a^b \left( \int_c^d f(x,y) dy \right) dx = \int_c^d \left( \int_a^b f(x,y) dx \right) dy$$
+                </div>
+
+                <h3>3. Normáltartományok</h3>
+                <p>Nem téglalap alakú tartományoknál a határok függvények lesznek:</p>
+                <ul>
+                    <li><b>Y-szerinti normáltartomány:</b> Az $x$ konstansok között fut ($a \le x \le b$), míg $y$ két függvény között ($g_1(x) \le y \le g_2(x)$). Ekkor belül $y$ szerint integrálunk először.</li>
+                    <li><b>X-szerinti normáltartomány:</b> Az $y$ konstansok között fut ($c \le y \le d$), míg $x$ két függvény között ($h_1(y) \le x \le h_2(y)$). Ekkor belül $x$ szerint integrálunk először.</li>
+                </ul>
+                <div class="explanation">
+                    <b>Alapszabály:</b> A KÜLSŐ integrál határai MINDIG csak számok lehetnek! Sosem maradhat a legvégén változó.
+                </div>
+
+                
+                <h3>4. Általános Integráltranszformáció</h3>
+                <p>Ha egy $\underline{g}(u,v) = (x(u,v), y(u,v))$ folytonosan differenciálható, injektív leképezéssel áttérünk új változókra, akkor az integrálást a következőképpen végezhetjük el:</p>
+                <div class="formula">
+                    $$ \iint_{g(H)} f(x,y) dx dy = \iint_H f(\underline{g}(u,v)) \cdot |\det \underline{g}'(u,v)| du dv $$
+                </div>
+                <div class="explanation">
+                    <b>Mi ez a determináns?</b> A $\det \underline{g}'(u,v)$ nem más, mint a <b>Jacobi-determináns</b>, amely a terület lokális torzulását mutatja meg az új koordinátarendszerben. Ennek abszolút értékével <b>kötelező</b> beszorozni az integrálandó függvényt! A legismertebb ilyen transzformáció a polárkoordinátás áttérés.
+                </div>
+                
+                <h3>5. Polárkoordinátás transzformáció</h3>
+                <p>Ha a tartomány kör, körgyűrű vagy körcikk, sokkal egyszerűbb áttérni szögre ($\varphi$) és távolságra ($r$):</p>
+                <div class="formula">
+                    $$x = r \cos \varphi, \quad y = r \sin \varphi$$
+                </div>
+                <p><b>Jacobi-determináns:</b> Minden transzformációnál az integrálási változók ($dx dy$) átírásakor meg kell szorozni az integrálandó függvényt a Jacobi-determináns abszolút értékével. Polárkoordináták esetén ez mindig $r$:</p>
+                <div class="formula">
+                    $$dx dy \quad \longrightarrow \quad r \cdot dr d\varphi$$
+                </div>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Polártranszformáció</h3>
+                    <p>Számítsuk ki az $\iint_T (x^2 + y^2) dA$ integrált, ahol $T$ az origó középpontú, 2 sugarú negyedkör az első síknegyedben ($x \ge 0, y \ge 0$)!</p>
+                    <p><b>Megoldás:</b><br>1. Határok felírása polárkoordinátákban:</p>
+                    <ul>
+                        <li>A sugár ($r$) fut az origótól a kör széléig: $0 \le r \le 2$.</li>
+                        <li>A szög ($\varphi$) az első síknegyedet fedi le: $0 \le \varphi \le \pi/2$.</li>
+                    </ul>
+                    <p>2. A függvény átírása: $x^2 + y^2 = (r\cos\varphi)^2 + (r\sin\varphi)^2 = r^2(\cos^2\varphi + \sin^2\varphi) = r^2$.</p>
+                    <p>3. Az integrál felírása (ne felejtsük el a szorzást $r$-rel!):</p>
+                    <div class="formula">
+                        $$ \int_0^{\pi/2} \int_0^2 (r^2) \cdot r \, dr \, d\varphi = \int_0^{\pi/2} \int_0^2 r^3 \, dr \, d\varphi $$
+                    </div>
+                    <p>4. Először az $r$ szerinti integrálást végezzük el:</p>
+                    <div class="formula">
+                        $$ \int_0^2 r^3 dr = \left[ \frac{r^4}{4} \right]_0^2 = \frac{16}{4} - 0 = 4 $$
+                    </div>
+                    <p>5. Majd a $\varphi$ szerinti integrálást:</p>
+                    <div class="formula">
+                        $$ \int_0^{\pi/2} 4 d\varphi = [4\varphi]_0^{\pi/2} = 4 \cdot \frac{\pi}{2} - 0 = 2\pi $$
+                    </div>
+                    <p><b>Végeredmény:</b> $2\pi$.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 12. Gyakorlat -->
+        <section id="s12">
+            <h1>12. Többváltozós integrál, Henger- és Gömbi koordináták</h1>
+            <div class="card glass">
+                
+                
+                <h3>1. n-dimenziós Normáltartomány (Definíció)</h3>
+                <ul>
+                    <li><b>1-dimenzióban:</b> Egy zárt intervallum (pl. $[a, b]$).</li>
+                    <li><b>(n+1)-dimenzióban:</b> Egy $H \subseteq \mathbb{R}^{n+1}$ halmaz akkor normáltartomány, ha az "alapja" ($H'$) egy $n$-dimenziós normáltartomány, a "magassága" pedig két folytonos függvény, $g(\underline{x})$ és $h(\underline{x})$ közé esik:
+                    <div class="formula">$$ H = \{(\underline{x}, y) \in H' \times \mathbb{R} \mid g(\underline{x}) \le y \le h(\underline{x})\} $$</div>
+                    </li>
+                </ul>
+
+                <h3>2. Integrálás normáltartományon (Fubini-tétel általánosítása)</h3>
+                <p>Ha egy $f$ függvény folytonos egy ilyen $H$ normáltartományon, akkor az integrálást felbonthatjuk: először a belső változó ($y$) szerint integrálunk a függvényhatárok között, majd a maradék $n$ változó szerint az alap tartományon ($H'$).</p>
+                <div class="formula">
+                    $$ \int_H f = \int_{H'} \left( \int_{g(\underline{x})}^{h(\underline{x})} f(\underline{x}, y) \, dy \right) d\underline{x} $$
+                </div>
+                <div class="explanation">
+                    <b>Miért fontos ez?</b> Ez a tétel garantálja, hogy egy bonyolult (pl. 3 vagy 4 dimenziós) test térfogatát mindig visszavezethetjük több, egymásba ágyazott egyváltozós integrálra!
+                </div>
+                
+                <h3>3. Hármas integrál fogalma</h3>
+                <p>A hármas integrál térbeli ($V$) testekre vonatkozik. Ha az $f(x,y,z) \equiv 1$ függvényt integráljuk, a test térfogatát kapjuk. Ha az $f(x,y,z)$ a sűrűség, akkor a test tömegét.</p>
+
+                <h3>4. Hengerkoordináták (Cilindrikus)</h3>
+                <p>Ha a test hengerszimmetrikus (pl. henger, kúp, paraboloid), a $z$ tengelyt megtartjuk, az $x,y$ síkban pedig polárkoordinátákat használunk:</p>
+                <div class="formula">
+                    $$x = r \cos \varphi, \quad y = r \sin \varphi, \quad z = z$$
+                </div>
+                <p><b>Jacobi-determináns:</b> Itt is az $x,y$ sík transzformációja történik, így az integrálási tényező ismét:</p>
+                <div class="formula">
+                    $$|J| = r \quad \implies \quad dx dy dz \longrightarrow r \cdot dr d\varphi dz$$
+                </div>
+
+                <h3>5. Gömbi koordináták (Szférikus)</h3>
+                <p>Ha a test gömbszimmetrikus (pl. gömb, gömbréteg), három adat határoz meg egy pontot: a távolság az origótól ($r$), a földrajzi hosszúság ($\varphi$, az $xy$ síkon), és a szélesség az északi pólustól ($z$ tengelytől) lefelé mérve ($\vartheta$):</p>
+                <div class="formula">
+                    $$x = r \sin \vartheta \cos \varphi, \quad y = r \sin \vartheta \sin \varphi, \quad z = r \cos \vartheta$$
+                </div>
+                <p>Az általános határok egy teljes gömbre: $r \in [0, R]$, $\varphi \in [0, 2\pi]$, $\vartheta \in [0, \pi]$.</p>
+                <p><b>Jacobi-determináns:</b> Gömbi koordinátáknál a szorzótényező jóval összetettebb:</p>
+                <div class="formula">
+                    $$|J| = r^2 \sin \vartheta \quad \implies \quad dx dy dz \longrightarrow r^2 \sin \vartheta \cdot dr d\varphi d\vartheta$$
+                </div>
+                <div class="explanation">
+                    <b>Tipp:</b> A $\vartheta$ maximális értéke $\pi$ (180 fok), ami a "déli pólust" jelenti. A gömb többi felét a $\varphi$ (ami $2\pi$-ig megy) fedi le körbeforgással. Sose legyen $\vartheta > \pi$!
+                </div>
+
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Térfogatszámítás Gömbi koordinátákkal</h3>
+                    <p>Számítsuk ki egy $R$ sugarú gömb térfogatát hármas integrállal!</p>
+                    <p><b>Megoldás:</b><br>1. A térfogat az $f(x,y,z) = 1$ függvény integrálja a $V$ gömbtartományon.</p>
+                    <p>2. A határok egy teljes gömbre: $0 \le r \le R$, $0 \le \varphi \le 2\pi$, $0 \le \vartheta \le \pi$.</p>
+                    <p>3. Írjuk fel az integrált (a szorzótényező $r^2 \sin \vartheta$!):</p>
+                    <div class="formula">
+                        $$ V = \int_0^{2\pi} \int_0^\pi \int_0^R 1 \cdot r^2 \sin \vartheta \, dr \, d\vartheta \, d\varphi $$
+                    </div>
+                    <p>4. Az integrálok teljesen függetlenek, szétbonthatjuk őket három külön szorzatra:</p>
+                    <div class="formula">
+                        $$ V = \left( \int_0^{2\pi} 1 d\varphi \right) \cdot \left( \int_0^\pi \sin \vartheta d\vartheta \right) \cdot \left( \int_0^R r^2 dr \right) $$
+                    </div>
+                    <p>5. Számítsuk ki a három tagot:</p>
+                    <ul>
+                        <li>$\varphi$: $[ \varphi ]_0^{2\pi} = 2\pi$</li>
+                        <li>$\vartheta$: $[ -\cos \vartheta ]_0^\pi = (-\cos \pi) - (-\cos 0) = -(-1) - (-1) = 2$</li>
+                        <li>$r$: $[ \frac{r^3}{3} ]_0^R = \frac{R^3}{3}$</li>
+                    </ul>
+                    <p><b>Végeredmény:</b> $V = 2\pi \cdot 2 \cdot \frac{R^3}{3} = \frac{4\pi R^3}{3}$, ami valóban a gömb térfogatképlete.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 13. Gyakorlat -->
+        <section id="s13">
+            <h1>13. Fourier-sor és Fourier-transzformált</h1>
+            <div class="card glass">
+                
+                <h3>1. Fourier-sor formális definíciója</h3>
+                <p>Periodikus függvényeket próbálunk szinusz és koszinusz hullámok összegeként felírni. Legyen $f : \mathbb{R} \to \mathbb{R}$ egy $2\pi$ szerint periodikus függvény, amely <b>Riemann-integrálható</b> a $[-\pi, \pi]$ intervallumon.</p>
+                <p>Először definiáljuk a véges $n$-edik részletösszeget:</p>
+                <div class="formula">
+                    $$\Phi_n(f)(x) = \frac{a_0(f)}{2} + \sum_{k=1}^n \left( a_k(f) \cos(kx) + b_k(f) \sin(kx) \right)$$
+                </div>
+                <p>Az $(\Phi_n(f))_{n\in\mathbb{N}}$ függvénysort az $f$ függvény <b>Fourier-sorának</b> nevezzük, amelynek "végtelen" határértékét így jelöljük:</p>
+                <div class="formula">
+                    $$f(x) \sim \frac{a_0(f)}{2} + \sum_{k=1}^\infty \left( a_k(f) \cos(kx) + b_k(f) \sin(kx) \right)$$
+                </div>
+
+                <h3>2. Együtthatók (Euler-Fourier formulák)</h3>
+                <p>Az együtthatókat a függvény megfelelő trigonometrikus taggal való szorzásával és integrálásával kapjuk. A zárójelben lévő $(f)$ jelölés mutatja, hogy ezek az együtthatók az $f$ függvényhez tartoznak:</p>
+                <div class="formula" style="text-align: left; padding-left: 40px;">
+                    $a_0(f) = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) dx$<br><br>
+                    $a_k(f) = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos(kx) dx \quad (k \ge 1)$<br><br>
+                    $b_k(f) = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin(kx) dx \quad (k \ge 1)$
+                </div>
+
+                <h3>3. Páros és páratlan függvények trükkjei</h3>
+                <p>Mivel a koszinusz páros, a szinusz páratlan függvény, az integrálok gyakran egyszerűsödnek a $[-\pi, \pi]$ szimmetrikus intervallumon:</p>
+                <ul>
+                    <li><b>Ha $f(x)$ páros</b> ($f(-x) = f(x)$): Csak koszinuszos tagjai lesznek! A szinuszos együtthatók nulla értéket vesznek fel ($b_n = 0$). Az integrálás felezhető: $\int_{-\pi}^{\pi} = 2 \int_0^{\pi}$.</li>
+                    <li><b>Ha $f(x)$ páratlan</b> ($f(-x) = -f(x)$): Csak szinuszos tagjai lesznek! A koszinuszos együtthatók (és $a_0$) mind nullák ($a_n = 0$).</li>
+                </ul>
+
+                <h3>4. Dirichlet-tétel a konvergenciáról</h3>
+                <p>A Fourier-sor a folytonos pontokban a függvény eredeti értékéhez tart. <b>Szakadási pontokban</b> viszont a bal és jobb oldali határérték számtani közepéhez (pont a feléhez):</p>
+                <div class="formula">
+                    $$\text{Sor összege a szakadásban} = \frac{f(x^+) + f(x^-)}{2}$$
+                </div>
+
+                <h3>5. Fourier-transzformált</h3>
+                <p>Nem periodikus jeleknél a "frekvenciaspektrum" folytonos lesz. Az $f(x)$ függvény (időtartomány) Fourier-transzformáltja az $\hat{f}(\omega)$ (frekvenciatartomány), ami komplex értékű is lehet:</p>
+                <div class="formula">
+                    $$\hat{f}(\omega) = \int_{-\infty}^{\infty} f(x) e^{-i\omega x} dx$$
+                </div>
+
+                <h3>6. A Fourier-transzformált tulajdonságai</h3>
+                <p>A Fourier-transzformált egy lineáris operátor, amelyhez számos hasznos szabály tartozik, melyekkel integrálás nélkül vezethetünk le új transzformáltakat:</p>
+                <ul>
+                    <li><b>(a) Linearitás:</b> $\mathcal{F}(\alpha f + \beta g) = \alpha \mathcal{F}(f) + \beta \mathcal{F}(g)$</li>
+                    <li><b>(b) Időbeli skálázás (nyújtás):</b> Ha az időt $a$-val osztjuk, a frekvencia $a$-val szorzódik és az amplitúdó nő:
+                    <div class="formula">$$ \mathcal{F}\left(x \mapsto f\left(\frac{x}{a}\right)\right)(\omega) = |a|\mathcal{F}(f)(a\omega) $$</div>
+                    </li>
+                    <li><b>(c) Időbeli eltolás:</b> Eltolás az időben egy $e^{-i\omega x_0}$ fázisfordítást (forgatást) okoz a frekvenciatartományban:
+                    <div class="formula">$$ \mathcal{F}(x \mapsto f(x - x_0))(\omega) = e^{-i\omega x_0}\mathcal{F}(f)(\omega) $$</div>
+                    </li>
+                    <li><b>(d) Moduláció (frekvenciatolás):</b> Egy exponenciálissal való szorzás az időtartományban eltolja a spektrumot a frekvenciatartományban:
+                    <div class="formula">$$ \mathcal{F}(x \mapsto e^{i\omega_0 x} f(x))(\omega) = \mathcal{F}(f)(\omega - \omega_0) $$</div>
+                    </li>
+                    <li><b>(e) Szorzás $x$-szel:</b> $x$-szel való szorzás az időben a spektrum deriválását jelenti:
+                    <div class="formula">$$ \mathcal{F}(xf(x))(\omega) = i \mathcal{F}(f)'(\omega) $$</div>
+                    </li>
+                    <li><b>(f) Derivált transzformáltja:</b> A deriválás az időben $i\omega$-val való szorzást jelent a spektrumban:
+                    <div class="formula">$$ \mathcal{F}(f')(\omega) = i\omega \mathcal{F}(f)(\omega) $$</div>
+                    </li>
+                </ul>
+            
+                <div class="example">
+                    <h3 style="margin-top: 0; color: #f59e0b;">Példa: Fourier-együttható kiszámítása</h3>
+                    <p>Legyen $f(x) = x$, ha $x \in [-\pi, \pi]$, és folytassuk periodikusan. Mennyi a Fourier-sora?</p>
+                    <p><b>Megoldás:</b><br>1. Vizsgáljuk a paritást! $f(-x) = -x = -f(x)$, tehát a függvény <b>páratlan</b>.</p>
+                    <p>2. Mivel páratlan, minden $a_n = 0$ és $a_0 = 0$. Csak a $b_n$ együtthatókat kell számolni.</p>
+                    <p>3. $b_n$ felírása és parciális integrálás ($u=x, v'=\sin(nx) \implies u'=1, v=\frac{-\cos(nx)}{n}$):</p>
+                    <div class="formula">
+                        $$ b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} x \sin(nx) dx = \frac{2}{\pi} \int_0^{\pi} x \sin(nx) dx $$
+                    </div>
+                    <div class="formula">
+                        $$ b_n = \frac{2}{\pi} \left[ x \cdot \frac{-\cos(nx)}{n} \right]_0^\pi - \frac{2}{\pi} \int_0^\pi 1 \cdot \frac{-\cos(nx)}{n} dx $$
+                    </div>
+                    <p>A második integrál tag (koszinusz) nullát ad egy teljes periódus alatt. Marad az első tag:</p>
+                    <div class="formula">
+                        $$ b_n = \frac{2}{\pi} \left( \pi \frac{-\cos(n\pi)}{n} - 0 \right) = -\frac{2}{n} \cos(n\pi) = -\frac{2}{n} (-1)^n = \frac{2 (-1)^{n+1}}{n} $$
+                    </div>
+                    <p><b>Végeredmény:</b> $f(x) \sim \sum_{n=1}^\infty \frac{2(-1)^{n+1}}{n} \sin(nx)$.</p>
+                </div></div>
+        </section>
+
+        
+
+        <!-- ZH2 Összefoglaló -->
+        <section id="zh2">
+            <h1 style="color: #f59e0b;">★ ZH2 Szuper-Összefoglaló</h1>
+            <div class="card glass" style="border-color: rgba(245, 158, 11, 0.3);">
+                
+                <h3 style="color: #f59e0b;">1. Hatványsorok, Taylor-sorok és Integrálközelítés</h3>
+                <p><b>Konvergenciasugár (Hányadoskritériummal):</b></p>
+                <div class="formula">$$ R_a = \lim_{n \to \infty} \left| \frac{a_n}{a_{n+1}} \right| $$</div>
+                <p><b>Taylor-polinom / Taylor-sor együtthatója:</b></p>
+                <div class="formula">$$ a_n = \frac{f^{(n)}(x_0)}{n!} \quad \implies \quad f^{(n)}(x_0) = n! \cdot a_n $$</div>
+                <p><b>Nevezetes Maclaurin-sorok ($x_0 = 0$):</b></p>
+                <ul>
+                    <li>$e^x = \sum_{n=0}^\infty \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots$</li>
+                    <li>$\sin(x) = \sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{(2n+1)!} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \dots$</li>
+                    <li>$\cos(x) = \sum_{n=0}^\infty (-1)^n \frac{x^{2n}}{(2n)!} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \dots$</li>
+                    <li>$\text{sh}(x) = \sum_{n=0}^\infty \frac{x^{2n+1}}{(2n+1)!} = x + \frac{x^3}{3!} + \frac{x^5}{5!} + \dots$</li>
+                    <li>$\text{ch}(x) = \sum_{n=0}^\infty \frac{x^{2n}}{(2n)!} = 1 + \frac{x^2}{2!} + \frac{x^4}{4!} + \dots$</li>
+                    <li>$(1+x)^\alpha = \sum_{n=0}^\infty \binom{\alpha}{n} x^n = 1 + \alpha x + \frac{\alpha(\alpha-1)}{2!}x^2 + \dots \quad (\alpha \in \mathbb{R})$ (Binomiális sor)</li>
+                </ul>
+                <p><b>Hibabecslés (Leibniz-sorral történő integrálközelítésnél):</b><br>
+                Ha alternáló (váltakozó előjelű) és nullához tartó sorral integrálunk, a közelítés hibája felülről becsülhető <b>az első elhagyott tag abszolút értékével</b>.</p>
+
+                <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
+
+                <h3 style="color: #f59e0b;">2. Folytonosság és Többváltozós Határérték</h3>
+                <p><b>Átviteli elv a folytonosságra:</b> Egy $f$ függvény pontosan akkor folytonos $\mathbf{a}$-ban, ha minden $\mathbf{x}_k \to \mathbf{a}$ sorozat esetén $f(\mathbf{x}_k) \to f(\mathbf{a})$.</p>
+                <p><b>Cáfolat ($y=mx$ egyenesekkel):</b> Helyettesítsd be az $y=mx$-et! Ha a határérték függ $m$-től, a Limesz <b>nem létezik</b> (így a függvény nem is folytonos).</p>
+                <p><b>Bizonyítás (Polárkoordinátákkal):</b> Helyettesítsd be: $x=r\cos\varphi, y=r\sin\varphi$. Ha $r \to 0$ esetén a kifejezés $0 \cdot \text{korlátos}$ alakú (függetlenül $\varphi$-től), a Limesz <b>létezik és 0</b>.</p>
+
+                <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
+
+                <h3 style="color: #f59e0b;">3. Parciális Deriváltak és Differenciálhatóság</h3>
+                <p><b>Origóbeli derivált (Definíció alapján kötelező!):</b></p>
+                <div class="formula">$$ \partial_x f(0,0) = \lim_{x\to 0} \frac{f(x,0) - f(0,0)}{x} $$</div>
+                <p><b>Totális differenciálhatóság elégséges feltétele:</b> Ha a parciális deriváltak léteznek és <b>folytonosak</b> egy adott pontban (vagy nyílt halmazon), akkor a függvény ott totálisan differenciálható.</p>
+                <p><b>Gradiens vektor:</b></p>
+                <div class="formula">$$ \text{grad } f(\mathbf{a}) = \left( \partial_1 f(\mathbf{a}), \partial_2 f(\mathbf{a}) \right) $$</div>
+                <p><b>Érintősík egyenlete:</b></p>
+                <div class="formula">$$ \partial_1 f(x_0, y_0)(x - x_0) + \partial_2 f(x_0, y_0)(y - y_0) - (z - f(x_0, y_0)) = 0 $$</div>
+                <p><b>Iránymenti derivált ($D_\mathbf{e} f$):</b> FIGYELEM: Az irányvektort <b>normálni kell</b> ($||\mathbf{e}|| = 1$)!</p>
+                <div class="formula">$$ D_{\mathbf{e}} f(\mathbf{a}) = \langle \text{grad } f(\mathbf{a}), \mathbf{e} \rangle $$</div>
+
+                <hr style="border-color: rgba(245, 158, 11, 0.2); margin: 30px 0;">
+
+                <h3 style="color: #f59e0b;">4. Szélsőértékek és Kettős Integrál</h3>
+                <p><b>Lokális Szélsőérték:</b></p>
+                <p>1. <b>Stacionárius pontok:</b> $\text{grad } f(x,y) = (0,0)$.</p>
+                <p>2. <b>Hesse-mátrix:</b> $H_f = \begin{pmatrix} \partial_{1,1} f & \partial_{1,2} f \\ \partial_{2,1} f & \partial_{2,2} f \end{pmatrix}$</p>
+                <p>3. <b>Sylvester-kritérium:</b> A főminorok ($D_1 = \partial_{1,1} f$, $D_2 = \det(H_f)$) alapján:</p>
+                <ul>
+                    <li>Ha $D_1 > 0$ és $D_2 > 0$ $\implies$ <b>Lokális minimum</b>.</li>
+                    <li>Ha $D_1 < 0$ és $D_2 > 0$ $\implies$ <b>Lokális maximum</b>.</li>
+                    <li>Ha $D_2 < 0$ $\implies$ <b>Nyeregpont</b> (nincs szélsőérték).</li>
+                </ul>
+                <p><b>Feltételes Szélsőérték ($g(x,y)=0$ mellett):</b></p>
+                <p>Lagrange-függvény: $L(x, y, \lambda) = f(x, y) - \lambda \cdot g(x, y)$. Deriváld $x, y, \lambda$ szerint, tedd egyenlővé nullával.</p>
+                <p><b>Kettős Integrál normáltartományon:</b></p>
+                <p>Ha a tartomány (pl. háromszög) felírható $a \le x \le b$ és $g_1(x) \le y \le g_2(x)$ alakban, akkor a külső integrál fix számos határok között megy, a belső pedig függvényhatárokkal:</p>
+                <div class="formula">$$ \int_a^b \left( \int_{g_1(x)}^{g_2(x)} f(x,y) \, dy \right) dx $$</div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.mobile-overlay');
+            sidebar.classList.toggle('open');
+            if (sidebar.classList.contains('open')) {
+                overlay.style.display = 'block';
+                setTimeout(() => overlay.classList.add('active'), 10);
+            } else {
+                overlay.classList.remove('active');
+                setTimeout(() => overlay.style.display = 'none', 300);
+            }
+        }
+
+        function showSection(id, element) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+
+            const links = document.querySelectorAll('.sidebar a');
+            links.forEach(l => l.classList.remove('active-link'));
+            element.classList.add('active-link');
+
+            if (window.innerWidth <= 768) {
+                const sidebar = document.querySelector('.sidebar');
+                if (sidebar.classList.contains('open')) {
+                    toggleSidebar();
+                }
+            }
+        }
+    </script>
+</body>
+</html>

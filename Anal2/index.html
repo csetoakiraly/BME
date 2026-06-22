@@ -1631,12 +1631,27 @@ $$ \int_0^{2\pi} \frac{R^3}{3} \,d\varphi = \left[ \frac{R^3}{3} \varphi \right]
 </div>
 
 <div class="explanation">
-  <p><strong>Hasznos számolási szabályok:</strong></p>
+  <p><strong>A 6 legfontosabb számolási szabály (A "Mágikus" 6 képlet):</strong></p>
+  <p>Ezek a szabályok azért zseniálisak, mert segítségükkel bonyolult integrálások nélkül tudunk új transzformáltakat számolni!</p>
   <ul>
-    <li><strong>Linearitás:</strong> Szorzók kiemelhetők és az összeget tagonként lehet transzformálni. \(\mathcal{F}(\alpha f + \beta g) = \alpha \mathcal{F}(f) + \beta \mathcal{F}(g)\)</li>
-    <li><strong>Időbeli eltolás:</strong> Ha eltoljuk a függvényt \(x_0\)-lal, az a transzformáltban egy \(e^{-i\omega x_0}\) szorzót eredményez.</li>
-    <li><strong>Frekvenciabeli eltolás:</strong> Ha a függvényt beszorozzuk \(e^{i\omega_0 x}\)-szel, akkor a transzformált tolódik el \(\omega_0\)-lal.</li>
-    <li><strong>Deriválás szabály:</strong> Ha a függvényt deriválod (\(f'(x)\)), akkor a transzformáltat csak be kell szorozni \(i\omega\)-val! Ez a mérnöki gyakorlatban iszonyú hasznos, mert integrálás/deriválás helyett csak sima szorzást/osztást kell csinálni!</li>
+    <li><strong>1. Linearitás:</strong> Szorzók kiemelhetők és az összeget tagonként lehet transzformálni.
+      <div class="formula">$$ \mathcal{F}(\alpha f + \beta g) = \alpha \mathcal{F}(f) + \beta \mathcal{F}(g) $$</div>
+    </li>
+    <li><strong>2. Időbeli skálázás (nyújtás):</strong> Ha az időt felgyorsítjuk ($a$-val osztjuk), a frekvencia $a$-val szorzódik.
+      <div class="formula">$$ \mathcal{F}\left(x \mapsto f\left(\frac{x}{a}\right)\right)(\omega) = |a|\mathcal{F}(f)(a\omega) $$</div>
+    </li>
+    <li><strong>3. Időbeli eltolás:</strong> Ha eltoljuk a függvényt $x_0$-lal (késik a jel), az a frekvenciában egy szorzót eredményez.
+      <div class="formula">$$ \mathcal{F}(x \mapsto f(x - x_0))(\omega) = e^{-i\omega x_0}\mathcal{F}(f)(\omega) $$</div>
+    </li>
+    <li><strong>4. Moduláció (frekvenciatolás):</strong> Ha egy hullámmal beszorozzuk a jelet, a spektrum eltolódik $\omega_0$-lal (így működik a rádió!).
+      <div class="formula">$$ \mathcal{F}(x \mapsto e^{i\omega_0 x} f(x))(\omega) = \mathcal{F}(f)(\omega - \omega_0) $$</div>
+    </li>
+    <li><strong>5. Szorzás x-szel:</strong> Ha a jelet szorozzuk az idővel, a spektrumot deriválni kell.
+      <div class="formula">$$ \mathcal{F}(xf(x))(\omega) = i \mathcal{F}(f)'(\omega) $$</div>
+    </li>
+    <li><strong>6. Deriválás szabály:</strong> A legfontosabb! Ha a függvényt deriválod ($f'(x)$), a transzformáltat csak be kell szorozni $i\omega$-val. Differenciálegyenletből sima algebra lesz!
+      <div class="formula">$$ \mathcal{F}(f')(\omega) = i\omega \mathcal{F}(f)(\omega) $$</div>
+    </li>
   </ul>
 </div>
 

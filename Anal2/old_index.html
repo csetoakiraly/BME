@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jegyzetek - Főmenü</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7; /* Lila szín */
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+            padding: 50px 20px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            margin-top: 40px;
+        }
+
+        h1 {
+            color: var(--text-light);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            font-size: 3.5rem;
+            margin: 0 0 15px 0;
+            text-shadow: 0 0 20px rgba(255,255,255,0.1);
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .subject-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 220px;
+        }
+
+        /* Csillogó animáció hoverkor */
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transform: skewX(-25deg);
+            transition: 0.5s;
+        }
+
+        .subject-card:hover::before {
+            left: 125%;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(168, 85, 247, 0.2);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .subject-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #a855f7, #4f46e5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 4px 8px rgba(168, 85, 247, 0.3));
+        }
+
+        .subject-title {
+            color: var(--text-light);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            transition: color 0.3s ease;
+        }
+
+        .subject-card:hover .subject-title {
+            color: var(--secondary);
+        }
+
+        .subject-desc {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            font-weight: 500;
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        /* Placeholder kártya jövőbeli tárgyakhoz */
+        .add-new-card {
+            border: 2px dashed rgba(255,255,255,0.1);
+            background: transparent;
+            box-shadow: none;
+            cursor: default;
+        }
+
+        .add-new-card:hover {
+            border-color: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.02);
+            transform: none;
+            box-shadow: none;
+        }
+
+        .add-new-icon {
+            font-size: 3rem;
+            color: rgba(255,255,255,0.2);
+            margin-bottom: 15px;
+        }
+
+        .add-new-text {
+            color: rgba(255,255,255,0.3);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .header { margin-top: 20px; margin-bottom: 40px; }
+            .subjects-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Tantárgyak</h1>
+        <div class="subtitle">Válaszd ki, melyik jegyzetet szeretnéd megnyitni</div>
+    </div>
+
+    <div class="subjects-grid">
+        <!-- Analízis 2 -->
+        <a href="Anal2/index.html" target="_blank" class="subject-card">
+            <div class="subject-icon">∑</div>
+            <h2 class="subject-title">Analízis 2</h2>
+            <p class="subject-desc">Hatványsorok, Taylor-sorok, Többváltozós függvények és Deriválás</p>
+        </a>
+
+        <!-- Bevezetés a számításelméletbe 2 -->
+        <a href="BSz2/index.html" target="_blank" class="subject-card">
+            <div class="subject-icon">💻</div>
+            <h2 class="subject-title">Bev. a számításelméletbe 2</h2>
+            <p class="subject-desc">Gráfok, Kódolás, Kriptográfia és Algoritmusok</p>
+        </a>
+
+        <!-- Számítógép-architektúrák -->
+        <a href="SzAr/index.html" target="_blank" class="subject-card">
+            <div class="subject-icon">🖥️</div>
+            <h2 class="subject-title">Számítógép-architektúrák</h2>
+            <p class="subject-desc">Processzorok, memória, Assembly és számítógépes rendszerek felépítése</p>
+        </a>
+
+        <!-- Algoritmuselmélet -->
+        <a href="AlgEl/index.html" target="_blank" class="subject-card">
+            <div class="subject-icon">🌳</div>
+            <h2 class="subject-title">Algoritmuselmélet</h2>
+            <p class="subject-desc">Keresés, Rendezések, Keresőfák, Gráfalgoritmusok, Bonyolultságelmélet</p>
+        </a>
+
+        <!-- Fizika -->
+        <a href="Fizika/index.html" target="_blank" class="subject-card">
+            <div class="subject-icon">⚡</div>
+            <h2 class="subject-title">Fizika</h2>
+            <p class="subject-desc">Vizsgafeladatok, Számítások, Elektromágnesség, Mechanika</p>
+        </a>
+
+        <!-- Skálázhatóságot jelző helykitöltő -->
+        <div class="subject-card add-new-card">
+            <div class="add-new-icon">+</div>
+            <div class="add-new-text">Új tantárgy hozzáadásához<br>másolj be egy új kártyát a HTML-be</div>
+        </div>
+    </div>
+
+</body>
+</html>
