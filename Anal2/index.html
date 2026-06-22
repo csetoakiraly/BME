@@ -437,41 +437,67 @@
         <section id="s1">
             <h1>1. Szétválasztható változójú egyenletek</h1>
             <div class="card glass">
-<h1>1. feladatsor - elméleti összefoglaló</h1>
+<h1>1. Feladatsor - Elméleti Összefoglaló</h1>
+<h3>Szétválasztható változójú differenciálegyenletek</h3>
 
-<h3>Szétválasztható változójú egyenletek</h3>
-
-<p><b>Általános alak:</b></p>
-<div class="formula">
-$$ y'(x) = f(x)g(y(x)) \quad (x \in I), $$
+<div class="explanation">
+  <p><strong>Miről is van szó?</strong></p>
+  <p>Ezek olyan differenciálegyenletek, amelyeket úgy tudunk szétbontani, hogy az egyik oldalon csak "x"-es dolgok, a másik oldalon pedig csak "y"-os dolgok vannak. A célunk, hogy megtaláljuk azt az \(y(x)\) függvényt, ami igazzá teszi az egyenletet.</p>
 </div>
-<p>ahol \(I, J \subseteq \mathbb{R}\) nyílt intervallumok, \(f : I \to \mathbb{R}\), \(g : J \to \mathbb{R}\) folytonos függvények.</p>
 
-<p><b>Megoldási módszer:</b></p>
+<p><strong>Hogyan ismered fel?</strong></p>
+<p>Az egyenletet mindig át lehet írni a következő "recept" szerinti alakra:</p>
+<div class="formula">
+  $$y' = f(x) \cdot g(y)$$
+</div>
+
+<p><strong>A megoldás lépései (konyhanyelven):</strong></p>
 <ul>
-    <li>Ha \(g(y_0) = 0\) valamilyen \(y_0 \in J\) esetén, akkor \(y \equiv y_0\) megoldása a differenciálegyenletnek.</li>
-    <li>
-        További lehetséges megoldásokat kapunk a következő módon. Legyen \(J_0 \subseteq J\) olyan nyílt intervallum, amely nem tartalmazza \(g\) egyetlen zérushelyét sem, és tegyük fel, hogy \(\text{Ran}(y) \subseteq J_0\). Ekkor \(g(y(x))\)-szel való osztással:
-        <div class="formula">
-        $$ \frac{y'(x)}{g(y(x))} = f(x) \quad (x \in I). $$
-        </div>
-        Integrálva mindkét oldalt:
-        <div class="formula">
-        $$ H(y(x)) = \int \frac{1}{g(y(x))} y'(x) \, dx = \int f(x) \, dx = F(x) + C \quad (C \in \mathbb{R}, x \in I), $$
-        </div>
-        ahol \(H' = \left. \frac{1}{g} \right|_{J_0}\), valamint \(F' = f\).
-    </li>
+  <li><strong>0. lépés: Keresd meg a konstans megoldásokat!</strong> Nézd meg, hogy az "y"-os rész, azaz a \(g(y)\) mikor lesz nulla. Ha találsz egy olyan számot, amire ez nulla lesz (például \(y_0\)), akkor az \(y = y_0\) egy kész, fix megoldás (egy sima vízszintes egyenes).</li>
+  <li><strong>1. lépés: Írd át az y'-t!</strong> Az \(y'\) jelölést cseréld le arra, hogy \(\frac{dy}{dx}\). Ez segít majd a "pakolgatásban".</li>
+  <li><strong>2. lépés: Válaszd szét a változókat!</strong> Rendezd át az egyenletet úgy, hogy az összes "y" és a \(dy\) a bal oldalra kerüljön, az összes "x" és a \(dx\) pedig a jobb oldalra. Formálisan szorzol \(dx\)-szel és osztasz \(g(y)\)-nal.</li>
+  <li><strong>3. lépés: Integrálj mindkét oldalon!</strong> Dobj egy integráljelet mindkét oldal elé, és végezd el az integrálást. Fontos: ne felejtsd el a végén odaírni a jobb oldalhoz a \(+ C\) konstanst!</li>
+  <li><strong>4. lépés: Fejezd ki az y-t (ha tudod)!</strong> A kapott egyenletből próbáld meg algebrailag kifejezni az \(y\)-t, hogy megkapd a végeredményt \(y = \dots\) formában.</li>
 </ul>
 
 <div class="explanation">
-    <p><b>Megjegyzés:</b> Az iménti gondolatmenet rövidebben is írható az alábbi — matematikailag értelmetlen — formális átalakítások segítségével:</p>
-    <div class="formula">
-    $$ \frac{dy}{dx} = f(x)g(y) $$
-    </div>
-    <p>"Szorzunk \(dx\)-szel", osztunk \(g(y)\)-nal, és "mindkét oldal elé írunk egy integráljelet":</p>
-    <div class="formula">
-    $$ \int \frac{1}{g(y)} \, dy = \int f(x) \, dx. $$
-    </div>
+  <p><strong>Tipp:</strong> Bár matematikusok szerint a \(dx\)-szel való szorzás "illegális", a gyakorlatban, mérnökként pont így a legegyszerűbb megjegyezni és használni!</p>
+</div>
+
+<div class="example">
+  <h3>Gyakorlati Példa: \(y' = 2x \cdot y\)</h3>
+  <p>Oldjuk meg lépésről lépésre!</p>
+  
+  <p><strong>0. lépés:</strong> Az "y"-os rész itt simán maga az \(y\). Mikor lesz ez nulla? Ha \(y = 0\). Tehát az \(y = 0\) egy konstans megoldás.</p>
+  
+  <p><strong>1. lépés:</strong> Írjuk át az egyenletet:</p>
+  <div class="formula">
+    $$\frac{dy}{dx} = 2x \cdot y$$
+  </div>
+  
+  <p><strong>2. lépés:</strong> Pakoljuk szét! Osztunk \(y\)-nal és "szorzunk" \(dx\)-szel:</p>
+  <div class="formula">
+    $$\frac{1}{y} dy = 2x dx$$
+  </div>
+  
+  <p><strong>3. lépés:</strong> Integráljunk mindkét oldalon:</p>
+  <div class="formula">
+    $$\int \frac{1}{y} dy = \int 2x dx$$
+  </div>
+  <p>Elvégezve az integrálást (és hozzáadva a \(+ C\)-t a jobb oldalhoz):</p>
+  <div class="formula">
+    $$\ln|y| = x^2 + C$$
+  </div>
+  
+  <p><strong>4. lépés:</strong> Fejezzük ki az \(y\)-t! Emeljük mindkét oldalt az \(e\) hatványára:</p>
+  <div class="formula">
+    $$|y| = e^{x^2 + C} = e^C \cdot e^{x^2}$$
+  </div>
+  <p>Mivel az \(e^C\) csak egy tetszőleges pozitív konstans szám, ezt átnevezhetjük egy új \(K\) konstansnak. Ha levesszük az abszolútérték jelet, a \(K\) lehet negatív is. Ráadásul a 0. lépésben láttuk, hogy az \(y=0\) is megoldás (ekkor \(K=0\)), tehát az összes megoldás egybevonva:</p>
+  <div class="formula">
+    $$y = K \cdot e^{x^2}$$
+  </div>
+  <p>Ahol \(K\) tetszőleges valós szám.</p>
 </div>
 </div>
         </section>
@@ -483,87 +509,127 @@ $$ y'(x) = f(x)g(y(x)) \quad (x \in I), $$
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-<meta charset="UTF-8">
-<title>2. feladatsor – elméleti összefoglaló</title>
+    <meta charset="UTF-8">
+    <title>2. Gyakorlat: Elsőrendű differenciálegyenletek (Konyhanyelven)</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; margin: 20px; }
+        .formula { background: #f4f4f4; padding: 10px; border-radius: 5px; text-align: center; margin: 15px 0; font-size: 1.1em; }
+        .explanation { background: #e9f5ff; padding: 15px; border-left: 5px solid #007bff; margin: 15px 0; }
+        .example { background: #eef9ee; padding: 15px; border-left: 5px solid #28a745; margin: 15px 0; }
+        h1, h2, h3 { color: #333; }
+        ul { margin-bottom: 15px; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
+    <h1>2. Gyakorlat: Elsőrendű differenciálegyenletek</h1>
+    <p>Ezen a gyakorlaton megtanuljuk megoldani a lineáris differenciálegyenleteket és megismerkedünk néhány trükkös helyettesítéssel. Ne pánikolj, van egy-egy jól bevált recept minden típushoz!</p>
 
-<h1>2. feladatsor – elméleti összefoglaló</h1>
+    <h2>1. Elsőrendű homogén lineáris differenciálegyenletek</h2>
+    <div class="explanation">
+        <p><strong>Miről van szó?</strong> Olyan egyenletek, ahol az \(y'\) és \(y\) szépen külön szerepelnek (valamilyen \(x\)-es szorzóval), és a jobb oldalon csak egy nagy <strong>nulla</strong> csücsül.</p>
+        <div class="formula">$$y'(x) + g(x)y(x) = 0$$</div>
+        <p><strong>A recept:</strong></p>
+        <ul>
+            <li><strong>1. lépés:</strong> Nevezd el a \(y\) melletti szorzót \(g(x)\)-nek.</li>
+            <li><strong>2. lépés:</strong> Számold ki \(g(x)\) integrálját: \(G(x) = \int g(x) dx\).</li>
+            <li><strong>3. lépés:</strong> Írd fel a megoldást az alábbi csodaképlettel:</li>
+        </ul>
+        <div class="formula">$$y(x) = C \cdot e^{-G(x)}$$</div>
+        <p>Kész vagy! A \(C\) egy tetszőleges szám (konstans).</p>
+    </div>
 
-<h3>Elsőrendű homogén lineáris differenciálegyenletek</h3>
-<p><strong>Általános alak:</strong></p>
-<div class="formula">
-$$y'(x) + g(x)y(x) = 0 \quad (x \in I),$$
-</div>
-<p>ahol \(I \subseteq \mathbb{R}\) nyílt intervallum és \(g : I \to \mathbb{R}\) folytonos függvény.</p>
+    <div class="example">
+        <h3>Példa: Oldjuk meg az \(y' + 2x y = 0\) egyenletet!</h3>
+        <ul>
+            <li>Látjuk, hogy \(g(x) = 2x\).</li>
+            <li>Integráljuk: \(G(x) = \int 2x \,dx = x^2\). (A "+ C"-t itt ne írd oda az integrálhoz, elég a végén!)</li>
+            <li>A kész megoldás a képlet alapján: \(y(x) = C \cdot e^{-x^2}\). Bumm, meg is van!</li>
+        </ul>
+    </div>
 
-<p><strong>Megoldási módszer:</strong> Megoldjuk szétválasztható változójúként, vagy használjuk az alábbi összefüggést:</p>
-<div class="formula">
-$$y_{h,\text{á}}(x) = Ce^{-G(x)} \quad (x \in I, \; C \in \mathbb{R}),$$
-</div>
-<p>ahol \(G' = g\).</p>
+    <h2>2. Elsőrendű inhomogén lineáris differenciálegyenletek</h2>
+    <div class="explanation">
+        <p><strong>Miről van szó?</strong> Ugyanaz mint az előbb, csak a jobb oldalon már <strong>nem nulla</strong> van, hanem egy \(x\)-től függő függvény, amit \(f(x)\)-nek hívunk.</p>
+        <div class="formula">$$y'(x) + g(x)y(x) = f(x)$$</div>
+        <p><strong>A recept ("konstans variálása" módszer):</strong></p>
+        <ul>
+            <li><strong>1. lépés (Homogén rész):</strong> Csinálj úgy, mintha a jobb oldalon nulla lenne, és oldd meg úgy, ahogy az 1. pontban tanultuk. Kapsz valami ilyesmit: \(y_h = C \cdot \text{valami}(x)\).</li>
+            <li><strong>2. lépés (A trükk):</strong> A \(C\) konstansból csináljunk egy függvényt! Keressük a teljes megoldást \(y(x) = c(x) \cdot \text{valami}(x)\) alakban.</li>
+            <li><strong>3. lépés (Visszahelyettesítés):</strong> Deriváld le ezt az \(y(x)\)-et (szorzatszabállyal!), és helyettesítsd vissza az \(y\)-t és az \(y'\)-t az eredeti, inhomogén egyenletbe. Varázslatos módon le fognak egyszerűsödni a dolgok, és marad valami ilyen: \(c'(x) \cdot \text{valami} = f(x)\).</li>
+            <li><strong>4. lépés (Integrálás):</strong> Fejezd ki \(c'(x)\)-et, majd integrálással számold ki \(c(x)\)-et. (Itt már ne felejtsd el a "+ C"-t a végén!)</li>
+            <li><strong>5. lépés:</strong> Írd be a megkapott \(c(x)\)-et az \(y(x) = c(x) \cdot \text{valami}(x)\) képletbe. Ez a végeredmény!</li>
+        </ul>
+    </div>
 
-<h3>Elsőrendű inhomogén lineáris differenciálegyenletek</h3>
-<p><strong>Általános alak:</strong></p>
-<div class="formula">
-$$y'(x) + g(x)y(x) = f(x) \quad (x \in I),$$
-</div>
-<p>ahol \(I \subseteq \mathbb{R}\) nyílt intervallum, \(f, g : I \to \mathbb{R}\) folytonos függvények.</p>
+    <div class="example">
+        <h3>Példa: Oldjuk meg az \(y' - \frac{1}{x} y = x^2\) egyenletet!</h3>
+        <ul>
+            <li><strong>1. lépés:</strong> Oldjuk meg az \(y' - \frac{1}{x} y = 0\) egyenletet. Itt \(g(x) = -\frac{1}{x}\), az integrálja \(G(x) = -\ln(x)\). A homogén megoldás: \(y_h = C \cdot e^{-(-\ln(x))} = C \cdot e^{\ln(x)} = C \cdot x\).</li>
+            <li><strong>2. lépés:</strong> A megoldást \(y(x) = c(x) \cdot x\) alakban keressük.</li>
+            <li><strong>3. lépés:</strong> Deriváljuk: \(y' = c'(x) \cdot x + c(x) \cdot 1\). Beírjuk az eredeti egyenletbe:
+                <br>\(c'(x) \cdot x + c(x) - \frac{1}{x} \cdot (c(x) \cdot x) = x^2\)
+                <br>\(c'(x) \cdot x + c(x) - c(x) = x^2\)
+                <br>\(c'(x) \cdot x = x^2\)
+                <br>\(c'(x) = x\) (Látod milyen szépen kiesett a \(c(x)\)!)
+            </li>
+            <li><strong>4. lépés:</strong> Integráljuk a kapott deriváltat: \(c(x) = \int x \,dx = \frac{x^2}{2} + C\).</li>
+            <li><strong>5. lépés:</strong> Helyettesítsünk vissza: \(y(x) = \left( \frac{x^2}{2} + C \right) \cdot x = \frac{x^3}{2} + Cx\). Készen is vagyunk!</li>
+        </ul>
+    </div>
 
-<p><strong>Megoldási módszer:</strong></p>
-<div class="explanation">
-<p>Az általános megoldás (jelölje a továbbiakban \(y_{i,\text{á}}\)) előáll a következő alakban (ld. ea.):</p>
-<div class="formula">
-$$y_{i,\text{á}} = y_{i,p} + y_{h,\text{á}},$$
-</div>
-<p>ahol \(y_{i,p}\) az inhomogén egyenlet egy tetszőleges megoldása (más néven partikuláris megoldása).</p>
+    <h2>3. Helyettesítéssel megoldható differenciálegyenletek</h2>
+    <p>Van úgy, hogy az egyenlet ránézésre borzalmas, de egy ügyes cserével (helyettesítéssel) visszavezethető egy egyszerű szétválasztható egyenletre. Két gyakori típus van:</p>
 
-<p>A partikuláris megoldás megkeresésére a <strong>konstans variáció módszerét</strong> használjuk azaz, ha a homogén egyenlet megoldása valamilyen \(\varphi : I \to \mathbb{R}\) függvényre</p>
-<div class="formula">
-$$y_{h,\text{á}}(x) = C\varphi(x) \quad (x \in I, \; C \in \mathbb{R})$$
-</div>
-<p>alakú, akkor az inhomogén egyenlet partikuláris megoldását</p>
-<div class="formula">
-$$y(x) = c(x)\varphi(x) \quad (x \in I)$$
-</div>
-<p>alakban keressük, ahol \(c : I \to \mathbb{R}\) (ismeretlen) differenciálható függvény.</p>
-</div>
+    <h3>3.1. Az \(y/x\) típus</h3>
+    <div class="explanation">
+        <p>Ha a feladatban sok az \(y/x\) tört (például \(y' = \dots y/x \dots\)):</p>
+        <p><strong>A recept:</strong></p>
+        <ul>
+            <li>Legyen \(u = \frac{y}{x}\). Ebből következik, hogy \(y = u \cdot x\).</li>
+            <li>Deriváljuk: \(y' = u' \cdot x + u\).</li>
+            <li>Írd be ezeket az \(y\) és \(y'\) helyére! Kapsz egy szép egyenletet \(u\)-ra, amiben a változók szétválaszthatók.</li>
+            <li>Oldd meg \(u\)-ra, majd a végén az \(u\) helyére írd vissza, hogy \(y/x\), és fejezd ki \(y\)-t.</li>
+        </ul>
+    </div>
 
-<h3>Helyettesítéssel megoldható differenciálegyenletek</h3>
+    <div class="example">
+        <h3>Példa: \(y' = \frac{y}{x} + 1\)</h3>
+        <ul>
+            <li>Legyen \(u = y/x\), így \(y = u \cdot x\), amiből \(y' = u' \cdot x + u\).</li>
+            <li>Helyettesítsük be az eredetibe: \(u' \cdot x + u = u + 1\).</li>
+            <li>Kivonunk \(u\)-t mindkét oldalból: \(u' \cdot x = 1\), azaz \(\frac{du}{dx} \cdot x = 1\).</li>
+            <li>Válasszuk szét a változókat: \(du = \frac{1}{x} dx\).</li>
+            <li>Integráljunk: \(u = \ln|x| + C\).</li>
+            <li>Visszahelyettesítés: mivel \(u = y/x\), így \(\frac{y}{x} = \ln|x| + C\), tehát a végső megoldás \(y = x \ln|x| + C x\).</li>
+        </ul>
+    </div>
 
-<h4>\(y'(x) = F\left(\frac{y(x)}{x}\right)\) típus</h4>
-<div class="explanation">
-<p>Ha \(F : \mathbb{R} \to \mathbb{R}\) függvény, \(I \subseteq \mathbb{R} \setminus \{0\}\) nyílt intervallum, és a differenciálegyenlet</p>
-<div class="formula">
-$$y'(x) = F\left(\frac{y(x)}{x}\right) \quad (x \in I)$$
-</div>
-<p>alakú, akkor az \(u(x) := \frac{y(x)}{x} \quad (x \in I)\) helyettesítéssel érdemes próbálkozni. Ekkor minden \(x \in I\) esetén</p>
-<div class="formula">
-$$y'(x) = u'(x)x + u(x),$$
-</div>
-<p>tehát ez az egyenlet ekvivalens az</p>
-<div class="formula">
-$$u'(x) = (F(u(x)) - u(x)) \frac{1}{x} \quad (x \in I)$$
-</div>
-<p>egyenlettel, ami egy szeparálható differenciálegyenlet.</p>
-</div>
+    <h3>3.2. Az \(ax + by\) típus</h3>
+    <div class="explanation">
+        <p>Ha az egyenletben egy lineáris kifejezés van beágyazva egy függvénybe, azaz \(y' = F(ax + by)\):</p>
+        <p><strong>A recept:</strong></p>
+        <ul>
+            <li>Nevezd el az egész kifejezést \(u\)-nak: \(u = ax + by\).</li>
+            <li>Deriváld le: \(u' = a + b \cdot y'\). Ebből fejezd ki az \(y'\)-t: \(y' = \frac{u' - a}{b}\).</li>
+            <li>Helyettesítsd vissza az eredeti egyenletbe. Itt is egy szétválasztható változójú egyenletet fogsz kapni \(u\)-ra!</li>
+        </ul>
+    </div>
 
-<h4>\(y'(x) = F(ax + by(x))\) típus</h4>
-<div class="explanation">
-<p>Ha \(F : \mathbb{R} \to \mathbb{R}\) függvény \(a \in \mathbb{R}, \; b \in \mathbb{R} \setminus \{0\}\), \(I \subseteq \mathbb{R}\) nyílt intervallum, és a differenciálegyenlet</p>
-<div class="formula">
-$$y'(x) = F(ax + by(x)) \quad (x \in I)$$
-</div>
-<p>alakú, akkor az \(u(x) := ax + by(x) \quad (x \in I)\) helyettesítéssel érdemes próbálkozni. Ekkor minden \(x \in I\) esetén</p>
-<div class="formula">
-$$y'(x) = \frac{1}{b} \left(u'(x) - a\right),$$
-</div>
-<p>tehát ez az egyenlet ekvivalens az</p>
-<div class="formula">
-$$u'(x) = bF(u(x)) + a \quad (x \in I)$$
-</div>
-<p>szeparálható differenciálegyenlettel.</p>
-</div>
+    <div class="example">
+        <h3>Példa: \(y' = (x + y)^2\)</h3>
+        <ul>
+            <li>A csúnya rész a zárójel, így legyen \(u = x + y\).</li>
+            <li>Deriváljuk ezt: \(u' = 1 + y'\), amiből kifejezve az eredeti deriváltat: \(y' = u' - 1\).</li>
+            <li>Helyettesítsük be az egyenletbe: \(u' - 1 = u^2\).</li>
+            <li>Rendezzük szétválaszthatóra: \(u' = u^2 + 1\), azaz \(\frac{du}{dx} = u^2 + 1\).</li>
+            <li>Változók szétválasztása: \(\frac{du}{u^2 + 1} = dx\).</li>
+            <li>Integrálunk (itt észre kell venni, hogy a bal oldal arctan(u) deriváltja): \(\arctan(u) = x + C\).</li>
+            <li>Fejezzük ki \(u\)-t tangenssel: \(u = \tan(x + C)\).</li>
+            <li>Végül írjuk vissza \(u\) helyett, hogy \(x+y\): \(x + y = \tan(x + C)\), amiből \(y = \tan(x + C) - x\).</li>
+        </ul>
+    </div>
 
 </body>
 </html>
@@ -573,102 +639,97 @@ $$u'(x) = bF(u(x)) + a \quad (x \in I)$$
         <section id="s3">
             <h1>3. n-edrendű állandó együtthatós lineáris DE</h1>
             <div class="card glass">
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-<meta charset="UTF-8">
-<title>3. feladatsor - Elméleti összefoglaló</title>
-</head>
-<body>
+<h1>3. Gyakorlat - Elméleti összefoglaló (Konyhanyelven)</h1>
 
-<h1>3. feladatsor - Elméleti összefoglaló</h1>
+<p>Ezen a gyakorlaton az <strong>állandó együtthatós, lineáris differenciálegyenletekkel</strong> fogunk megküzdeni. Ezek azok a "szép" egyenletek, ahol az \(y\) és deriváltjai (\(y'\), \(y''\), stb.) nincsenek se négyzetre emelve, se szinuszba rakva, hanem egyszerűen csak megszorozzuk őket konkrét számokkal és összeadjuk.</p>
 
-<h3>n-edrendű, homogén, lineáris, állandó együtthatós egyenlet</h3>
-<div class="explanation">
-  <p><strong>Általános alak:</strong></p>
-</div>
+<h3>1. A homogén egyenlet (Amikor a jobb oldal nulla)</h3>
+<p>Kezdjük az alapokkal, amikor az egyenlet valami ilyesmi alakra hozható, és a jobb oldala szépen nulla:</p>
+
 <div class="formula">
-  $$y^{(n)}(x) + \sum_{j=0}^{n-1} a_j y^{(j)}(x) = 0 \quad (x \in I)$$
-</div>
-<p>ahol \(I \subseteq \mathbb{R}\) nyílt intervallum, \(a_0, a_1, \dots, a_{n-1} \in \mathbb{R}\).</p>
-
-<div class="explanation">
-  <p><strong>Karakterisztikus egyenlet:</strong></p>
-</div>
-<div class="formula">
-  $$\lambda^n + \sum_{j=0}^{n-1} a_j \lambda^j = 0$$
+  $$ a_n y^{(n)} + \dots + a_1 y' + a_0 y = 0 $$
 </div>
 
-<div class="explanation">
-  <p><strong>1. Tétel.</strong> Legyen \(n \in \mathbb{N}^+\), \(I \subseteq \mathbb{R}\) nyílt intervallum, \(a_0, a_1, \dots, a_{n-1} \in \mathbb{R}\), valamint</p>
-</div>
-<div class="formula">
-  $$K := \left\{ \lambda \in \mathbb{C} \;\middle|\; \lambda^n + \sum_{j=0}^{n-1} a_j \lambda^j = 0 \right\}$$
-</div>
-<p>Minden \(\lambda \in K\) esetén jelölje \(m_\lambda\) a \(\lambda\) gyök multiplicitását, továbbá \(H_\lambda\) az alábbi hozzárendelésekkel értelmezett \(I \to \mathbb{R}\) függvények halmazát:</p>
+<p>Itt nem kell sokat gondolkodni, van egy bejáratott receptünk:</p>
 <ul>
-  <li>\(\lambda \in \mathbb{R}\) esetén:<br>
-      \(x \mapsto x^l e^{\lambda x} \quad (l = 0, \dots, m_\lambda - 1)\)
-  </li>
-  <li>\(\lambda \in \mathbb{C} \setminus \mathbb{R}\) és \(\lambda = \alpha \pm i\beta\) (\(\alpha \in \mathbb{R}, \beta \in \mathbb{R}^+\)) esetén:<br>
-      \(x \mapsto x^l e^{\alpha x} \cos(\beta x) \quad (l = 0, \dots, m_\lambda - 1)\)<br>
-      \(x \mapsto x^l e^{\alpha x} \sin(\beta x) \quad (l = 0, \dots, m_\lambda - 1)\)
+  <li><strong>1. lépés: A Karakterisztikus egyenlet.</strong> Úgy csinálunk, mintha az \(y\) deriváltjai hatványok lennének. Cseréljük ki az \(y''\)-t \(\lambda^2\)-re (lambdára), az \(y'\)-t \(\lambda^1\)-re, a sima \(y\)-t pedig \(1\)-re (vagyis \(\lambda^0\)-ra). Kaptunk egy teljesen átlagos polinom egyenletet.</li>
+  <li><strong>2. lépés: Gyökkeresés.</strong> Oldjuk meg ezt az egyenletet, vagyis keressük meg a gyökeit (pl. másodfokú megoldóképlettel).</li>
+  <li><strong>3. lépés: A megoldás felírása.</strong> A kapott gyökök alapján építjük fel a függvényt. Minden gyök "ad" a megoldásba egy tagot:
+    <ul>
+      <li><em>Ha szép, valós számot kapunk (pl. \(\lambda=2\)):</em> ez egy \(e^{2x}\) függvényt ad. Ha egy gyök többször is kijön (pl. dupla gyök), akkor a másodikat megszorozzuk \(x\)-szel (\(x e^{2x}\)), a harmadikat \(x^2\)-tel, és így tovább.</li>
+      <li><em>Ha komplex számot kapunk (pl. \(\alpha \pm i\beta\)):</em> olyankor előjönnek a szögfüggvények. A megoldásba \(e^{\alpha x} \cos(\beta x)\) és \(e^{\alpha x} \sin(\beta x)\) fog kerülni.</li>
+    </ul>
   </li>
 </ul>
-<p>Ekkor az \(\bigcup_{\lambda \in K} H_\lambda\) függvényhalmaz az \(n\)-edrendű lineáris differenciálegyenlet egy <strong>alaprendszerét</strong> alkotja.</p>
-
-<h3>n-edrendű, inhomogén, lineáris, állandó együtthatós egyenlet</h3>
-<div class="explanation">
-  <p><strong>Általános alak:</strong></p>
-</div>
-<div class="formula">
-  $$y^{(n)}(x) + \sum_{j=0}^{n-1} a_j y^{(j)}(x) = f(x) \quad (x \in I)$$
-</div>
-<p>ahol \(I \subseteq \mathbb{R}\) nyílt intervallum, \(a_0, a_1, \dots, a_{n-1} \in \mathbb{R}\) és \(f : I \to \mathbb{R}\) folytonos függvény.</p>
 
 <div class="explanation">
-  <p><strong>2. Tétel.</strong> Az inhomogén egyenlet általános megoldása (\(y_{i,\text{á}}\)) előáll egy tetszőleges partikuláris megoldásának (\(y_{i,p}\)) és a hozzá tartozó homogén egyenlet általános megoldásának (\(y_{h,\text{á}}\)) összegeként:</p>
-</div>
-<div class="formula">
-  $$y_{i,\text{á}} = y_{i,p} + y_{h,\text{á}}$$
+  <strong>Megjegyzés:</strong> A legvégső megoldás ezeknek az építőkockáknak egy összegéből áll majd, amiket megszorzunk tetszőleges konstansokkal (\(C_1, C_2 \dots\)).
 </div>
 
-<h3>Próbafüggvény-módszer</h3>
-<div class="explanation">
-  <p>Az inhomogén egyenlet egy partikuláris megoldásának megkeresésére szolgál, speciális alakú zavarófüggvény esetén.</p>
-</div>
-<p>Ha a zavarófüggvény</p>
-<div class="formula">
-  $$f(x) = p(x)e^{\alpha x} \sin(\beta x) \quad \text{vagy} \quad f(x) = p(x)e^{\alpha x} \cos(\beta x)$$
-</div>
-<p>alakú (ahol \(p: I \to \mathbb{R}\) polinomfüggvény, \(\alpha, \beta \in \mathbb{R}\)), akkor a megoldást</p>
-<div class="formula">
-  $$y(x) := r(x)e^{\alpha x} \sin(\beta x) + q(x)e^{\alpha x} \cos(\beta x) \quad (x \in I)$$
-</div>
-<p>alakban keressük, ahol \(r, q: I \to \mathbb{R}\) polinomfüggvények, melyeknek foka legfeljebb akkora, mint \(p\) foka.</p>
+<h3>2. Az inhomogén egyenlet (Amikor a jobb oldalon van egy függvény)</h3>
+<p>Na, itt már nem nulla a jobb oldal, hanem van ott valami úgynevezett <em>zavaró függvény</em>, amit az átláthatóság kedvéért nevezzünk \(f(x)\)-nek. Az egész feladat megoldása ekkor két darabból fog állni, amiket a végén egyszerűen összeadunk:</p>
 
-<div class="explanation">
-  <p><strong>Néhány speciális eset:</strong></p>
+<div class="formula">
+  $$ y_{teljes} = y_{hom} + y_{part} $$
 </div>
+
+<p>Itt a recept a következő:</p>
 <ul>
-  <li>Ha \(f(x) = K e^{\alpha x}\), akkor a próbafüggvény \(y(x) = A e^{\alpha x}\)</li>
-  <li>Ha \(f(x) = K \sin(\alpha x)\) vagy \(K \cos(\alpha x)\), akkor a próbafüggvény \(y(x) = A \sin(\alpha x) + B \cos(\alpha x)\)</li>
-  <li>Ha \(f(x) = P_m(x) = \sum_{k=0}^m b_k x^k\) (egy \(m\)-edfokú polinom), akkor a próbafüggvény \(y(x) = Q_m(x)\) (ahol \(Q_m\) egy ismeretlen \(m\)-edfokú polinom)</li>
+  <li><strong>1. lépés:</strong> Letakarjuk a jobb oldalt, mintha ott se lenne (nullának vesszük), és megoldjuk úgy, ahogy fentebb a homogén résznél tanultuk. Ez lesz az \(y_{hom}\).</li>
+  <li><strong>2. lépés:</strong> A <strong>Próbafüggvény-módszerrel</strong> keresünk egyetlen egy megoldást a teljes egyenletre (\(y_{part}\)). Ezt úgy csináljuk, hogy megnézzük a jobb oldalt, és tippelünk egy "hasonló alakú" megoldást, de ismeretlen betűkkel (együtthatókkal).
+    <ul>
+      <li>Ha a jobb oldalon \(e^{5x}\) van, a tippünk \(A e^{5x}\) lesz.</li>
+      <li>Ha szinusz vagy koszinusz van, mondjuk \(\sin(3x)\), a tippünkbe MINDIG bele kell írni a szinuszt és koszinuszt is, ismeretlen együtthatókkal: \(A \sin(3x) + B \cos(3x)\).</li>
+      <li>Ha polinom van, pl. \(3x+2\), a tippünk az ugyanolyan fokú általános polinom: \(Ax+B\) lesz.</li>
+    </ul>
+  </li>
+  <li><strong>3. lépés:</strong> Fogjuk ezt a tippet, deriváljuk amennyiszer kell, és behelyettesítjük az eredeti egyenletbe. A kapott egyenlőségből ki lehet számolni az \(A, B\) betűk értékeit.</li>
 </ul>
-<p>(ahol \(A, B, K, b_1, \dots, b_m \in \mathbb{R}\)). Ha a zavarófüggvény a fenti alakú függvények összege, akkor a megfelelő próbafüggvényeket is össze kell adni.</p>
 
-<div class="explanation">
-  <p><strong>Példa:</strong> Ha a zavarófüggvény \(f(x) = 6e^{3x} + \sin(8x) + 5x^2 + 3\), akkor a partikuláris megoldást<br>
-  \(y(x) = A e^{3x} + B \sin(8x) + C \cos(8x) + D x^2 + E x + F\)<br>
-  alakban keressük. Az \(y\) függvényt \(n\)-szer deriválva és behelyettesítve a differenciálegyenletbe, az együtthatók összehasonlításával a konstansok meghatározhatók (feltéve, hogy nem áll fenn a rezonancia esete).</p>
+<div class="example">
+  <h3>Példa: Lássuk mindezt a gyakorlatban!</h3>
+  <p>Oldjuk meg az alábbi differenciálegyenletet lépésről lépésre!</p>
+  <div class="formula">
+    $$ y'' - 5y' + 6y = 4e^x $$
+  </div>
+  
+  <p><strong>1. Lépés: A homogén rész megoldása</strong></p>
+  <p>Először lenullázzuk a jobb oldalt: \(y'' - 5y' + 6y = 0\).</p>
+  <p>Felírjuk a karakterisztikus egyenletet, vagyis az \(y\)-okat \(\lambda\)-kra cseréljük: \(\lambda^2 - 5\lambda + 6 = 0\).</p>
+  <p>Ennek a másodfokú egyenletnek a két gyöke: \(\lambda_1 = 2\) és \(\lambda_2 = 3\).</p>
+  <p>Tehát a homogén megoldásunk (az \(e^{\lambda x}\) formátumból):</p>
+  <div class="formula">
+    $$ y_{hom} = C_1 e^{2x} + C_2 e^{3x} $$
+  </div>
+  
+  <p><strong>2. Lépés: A partikuláris megoldás megkeresése ("tippelés")</strong></p>
+  <p>Nézzük meg az eredeti egyenlet jobb oldalát: \(4e^x\). Ez egy sima exponenciális függvény, úgyhogy a tippünk is ilyen alakú lesz, csak egy ismeretlen \(A\) számmal:</p>
+  <div class="formula">
+    $$ y_p = A e^x $$
+  </div>
+  <p>Ezt be kell írnunk az eredeti egyenletbe. Ehhez le kell deriválnunk kétszer:</p>
+  <ul>
+    <li>\(y_p' = A e^x\)</li>
+    <li>\(y_p'' = A e^x\)</li>
+  </ul>
+  <p>Helyettesítsük be mindezt az \(y'' - 5y' + 6y = 4e^x\) egyenletbe!</p>
+  <div class="formula">
+    $$ A e^x - 5(A e^x) + 6(A e^x) = 4e^x $$
+  </div>
+  <p>Vonjuk össze a bal oldalt (\(1\) darab - \(5\) darab + \(6\) darab = \(2\) darab):</p>
+  <div class="formula">
+    $$ 2A e^x = 4e^x $$
+  </div>
+  <p>Innen már látszik is (leosztva \(e^x\)-szel), hogy \(2A = 4\), tehát \(A = 2\).</p>
+  <p>A partikuláris megoldásunk, a sikeres "tippünk" tehát: \(y_{part} = 2e^x\).</p>
+  
+  <p><strong>3. Lépés: A teljes megoldás</strong></p>
+  <p>Már csak össze kell adni a két kapott darabot:</p>
+  <div class="formula">
+    $$ y_{teljes} = C_1 e^{2x} + C_2 e^{3x} + 2e^x $$
+  </div>
+  <p>És készen is vagyunk!</p>
 </div>
-
-<div class="explanation">
-  <p><strong>Rezonancia (külső):</strong> Ha a homogén egyenlet megoldásai között szerepel a próbafüggvény valamelyik tagja, akkor ez a módszer nem vezet eredményre. Ilyenkor ezt a tagot (jelölje \(\varphi: I \to \mathbb{R}\)) a próbafüggvényben lecseréljük az \(x \mapsto x\varphi(x)\) függvényre, és innen folytatjuk az eljárást.</p>
-</div>
-
-</body>
-</html>
 </div>
         </section>
 
@@ -676,56 +737,77 @@ $$u'(x) = bF(u(x)) + a \quad (x \in I)$$
         <section id="s4">
             <h1>4. Lineáris rekurziók és sorok konvergenciája</h1>
             <div class="card glass">
-<h1>4. feladatsor – elméleti összefoglaló</h1>
+<h1>4. Gyakorlat: Elméleti összefoglaló konyhanyelven</h1>
 
-<h3>1. Tétel</h3>
-<p>Legyen \(k \in \mathbb{N}^+\) és \(a_1, a_2, \dots, a_k \in \mathbb{R}\), valamint</p>
-<div class="formula">
-$$ K := \left\{ \lambda \in \mathbb{C} \ \middle| \ \lambda^k - \sum_{j=1}^k a_j \lambda^{k-j} = 0 \right\}. $$
-</div>
-<p>Minden \(\lambda \in K\) esetén jelölje \(m_\lambda\) a \(\lambda\) gyök multiplicitását, továbbá \(H_\lambda\) az alábbi hozzárendelésekkel értelmezett számsorozatok halmazát.</p>
-<ul>
-    <li>\(\lambda \in \mathbb{R}\) esetén
-        <div class="formula">$$n \mapsto n^l \lambda^n, \quad l = 0, \dots, m_\lambda - 1$$</div>
-    </li>
-    <li>\(\lambda \in \mathbb{C} \setminus \mathbb{R}\) esetén
-        <div class="formula">$$n \mapsto n^l \left( \lambda^n + (\overline{\lambda})^n \right), \quad l = 0, \dots, m_\lambda - 1$$</div>
-        <div class="formula">$$n \mapsto n^l \mathbf{i} \left( \lambda^n - (\overline{\lambda})^n \right), \quad l = 0, \dots, m_\lambda - 1$$</div>
-    </li>
-</ul>
-<p>Ekkor az \(\bigcup_{\lambda \in K} H_\lambda\) halmaz alaprendszere az \(a_1, \dots, a_k\) együtthatójú \(k\)-adrendű lineáris rekurziónak.</p>
-
-<h3>2. Állítás. (Szükséges feltétel sorok konvergenciájához.)</h3>
-<p>Ha a \(\sum_{n \in \mathbb{N}} a_n\) numerikus sor konvergens, akkor \(\lim_{n \to \infty} a_n = 0\).</p>
-
-<h3>3. Tétel. (Geometriai sor összege.)</h3>
-<div class="formula">
-$$ \sum_{n=0}^\infty q^n = \begin{cases} \frac{1}{1-q} & , \text{ ha } |q| < 1, \\ +\infty & , \text{ ha } q \ge 1. \end{cases} $$
-</div>
+<h3>1. Lineáris rekurziók (visszautalós sorozatok)</h3>
 <div class="explanation">
-<p>Továbbá \(q \le -1\) esetén a \(\sum_{n \in \mathbb{N}} q^n\) sornak nem létezik összege.</p>
+<p>Képzelj el egy olyan számsorozatot, ahol a következő elemet az előzőekből számoljuk ki (mint a Fibonacci-sorozat). A tétel megmondja, hogyan találhatjuk meg a sorozat "alap építőkockáit" (alaprendszerét), hogy egyenesen ki tudjuk számolni az n-edik elemet, anélkül hogy az összes előzőt is ki kéne számolni.</p>
 </div>
-
-<h3>4. Állítás.</h3>
-<p>Legyenek \(\sum_{n \in \mathbb{N}} a_n\) és \(\sum_{n \in \mathbb{N}} b_n\) numerikus sorok, valamint \(\lambda \in \mathbb{R}\). Ekkor a következő állítások teljesülnek.</p>
+<div class="formula">
+$$ \lambda^k - \sum_{j=1}^k a_j \lambda^{k-j} = 0 $$
+</div>
+<p>Lépések az alaprendszer megtalálásához:</p>
 <ul>
-    <li>Ha \(\sum_{n \in \mathbb{N}} a_n\) és \(\sum_{n \in \mathbb{N}} b_n\) konvergens, akkor a \(\sum_{n \in \mathbb{N}} (a_n + b_n)\) sor is konvergens és
-        <div class="formula">$$ \sum_{n=0}^\infty (a_n + b_n) = \sum_{n=0}^\infty a_n + \sum_{n=0}^\infty b_n. $$</div>
-    </li>
-    <li>Ha \(\sum_{n \in \mathbb{N}} a_n\) konvergens, akkor a \(\sum_{n \in \mathbb{N}} \lambda a_n\) sor is konvergens és
-        <div class="formula">$$ \sum_{n=0}^\infty \lambda a_n = \lambda \sum_{n=0}^\infty a_n. $$</div>
-    </li>
+    <li>Felírjuk a fenti "karakterisztikus egyenletet", ami egy polinom. Ennek megkeressük a megoldásait (a \(\lambda\) gyököket).</li>
+    <li>Minden \(\lambda\) gyökből gyártunk alap-sorozatokat. Ha a gyök valós, akkor az alap-sorozatok ilyenek lesznek: \(\lambda^n, n\lambda^n, n^2\lambda^n\), egészen addig, ameddig a gyök hányszorosan volt megoldás (ezt hívják multiplicitásnak).</li>
+    <li>Ha a gyök komplex szám, akkor egy picit bonyolódik a helyzet, és szinuszos-koszinuszos tagok jelennek meg a képletben a valós és képzetes részek miatt.</li>
 </ul>
 
-<h3>5. Tétel. (Majoráns kritérium.)</h3>
-<p>Legyenek \((a_n)_{n \in \mathbb{N}}\) és \((b_n)_{n \in \mathbb{N}}\) olyan számsorozatok, amelyekhez létezik olyan \(N \in \mathbb{N}\), hogy minden \(n \in \mathbb{N}\) és \(n \ge N\) esetén</p>
-<div class="formula">$$ 0 \le a_n \le b_n, $$</div>
-<p>valamint a \(\sum_{n \in \mathbb{N}} b_n\) sor konvergens. Ekkor a \(\sum_{n \in \mathbb{N}} a_n\) sor is konvergens.</p>
+<h3>2. Mikor lehet egy végtelen összeg véges? (Szükséges feltétel)</h3>
+<div class="explanation">
+<p>Ahhoz, hogy végtelen sok számot összeadva egy konkrét, véges számot kapjunk (vagyis a sor "konvergens" legyen), elengedhetetlen, hogy az összeadandó számok egyre kisebbek legyenek, és a végtelen felé haladva nullához tartsanak. Ha az egymás utáni számok nem tartanak nullához (hanem mondjuk 1-hez), akkor egy idő után csupa 1-est adogatunk össze, ami azonnal elszáll. Tehát ha nem nullához tart, a sor biztosan divergens!</p>
+</div>
+<div class="formula">
+$$ \text{Ha a } \sum_{n=0}^{\infty} a_n \text{ sor konvergens, akkor } \lim_{n \to \infty} a_n = 0. $$
+</div>
 
-<h3>6. Tétel. (Minoráns kritérium.)</h3>
-<p>Legyenek \((a_n)_{n \in \mathbb{N}}\) és \((b_n)_{n \in \mathbb{N}}\) olyan számsorozatok, amelyekhez létezik olyan \(N \in \mathbb{N}\), hogy minden \(n \in \mathbb{N}\) és \(n \ge N\) esetén</p>
-<div class="formula">$$ 0 \le b_n \le a_n, $$</div>
-<p>valamint a \(\sum_{n \in \mathbb{N}} b_n\) sor divergens. Ekkor a \(\sum_{n \in \mathbb{N}} a_n\) sor is divergens. Továbbá az is következik, hogy mindkét sor összege \(+\infty\).</p>
+<h3>3. A mértani (geometriai) sor összege</h3>
+<div class="explanation">
+<p>Mi történik, ha egy számot folyamatosan megszorzunk egy \(q\) számmal, és ezeket az eredményeket összeadjuk? Ha ez a \(q\) szorzó 1-nél kisebb és -1-nél nagyobb (azaz a tagok egyre zsugorodnak), akkor az összeg nem száll el, hanem pontosan kiszámolható egy szép és egyszerű képlettel.</p>
+</div>
+<div class="formula">
+$$ \sum_{n=0}^{\infty} q^n = \frac{1}{1 - q}, \text{ ha } |q| < 1 $$
+</div>
+<p>Ha a \(q\) nagyobb vagy egyenlő 1-gyel (vagy \( \le -1 \)), akkor az összeg végtelenbe száll vagy össze-vissza ugrál, tehát ilyenkor nem létezik egyetlen véges összeg.</p>
+
+<h3>4. Sorok összeadása és szorzása egy számmal</h3>
+<div class="explanation">
+<p>A "jól viselkedő" (konvergens) sorokkal nagyon könnyű számolni, pont úgy, ahogy azt az ember elvárná. Ha van két olyan sorunk, ami véges összeghez tart, akkor ezeket nyugodtan összeadhatjuk tagonként, vagy megszorozhatjuk őket egy tetszőleges \(\lambda\) számmal, az új sor is konvergens lesz, és az összege is csak összeadódik vagy beszorzódik.</p>
+</div>
+<div class="formula">
+$$ \sum_{n=0}^{\infty} (a_n + b_n) = \sum_{n=0}^{\infty} a_n + \sum_{n=0}^{\infty} b_n $$
+$$ \sum_{n=0}^{\infty} \lambda a_n = \lambda \sum_{n=0}^{\infty} a_n $$
+</div>
+
+<h3>5. Majoráns kritérium (Felülről becslés)</h3>
+<div class="explanation">
+<p>Ha van egy bonyolult végtelen összegünk, és meg akarjuk tudni, hogy véges-e, használhatunk becslést. Keresünk egy nálánál mindig nagyobb, "szép", ismert sort. Ha ez a nagyobb, felülről ráborított (majoráns) sor tudjuk hogy véges összegű (konvergens), akkor a mi kisebb sorunk sem tud elszállni a végtelenbe, így az is biztosan véges (konvergens) lesz.</p>
+</div>
+<div class="formula">
+$$ \text{Ha } 0 \le a_n \le b_n \text{ minden esetben, és a } \sum b_n \text{ sor konvergens, akkor } \sum a_n \text{ is konvergens.} $$
+</div>
+
+<h3>6. Minoráns kritérium (Alulról becslés)</h3>
+<div class="explanation">
+<p>Ez a felülről becslés ellentettje. Ha keresünk egy olyan sorozatot, ami alulról "tolja felfelé" a miénket (mindig kisebb a miénknél), és tudjuk erről a kisebb (minoráns) sorról, hogy elszáll a végtelenbe (divergens), akkor a mi, ennél is nagyobb sorunknak muszáj szintén elszállnia a végtelenbe.</p>
+</div>
+<div class="formula">
+$$ \text{Ha } 0 \le b_n \le a_n \text{ minden esetben, és a } \sum b_n \text{ sor divergens, akkor } \sum a_n \text{ is divergens.} $$
+</div>
+
+<div class="example">
+<h3>Példa: Majoráns kritérium és Geometriai sor alkalmazása a gyakorlatban</h3>
+<p>Nézzük meg, hogy a \(\sum_{n=0}^{\infty} \frac{1}{3^n + 5}\) végtelen sor konvergens-e (véges szám-e a végtelen sok elem összege)!</p>
+<p><strong>Lépésről lépésre:</strong></p>
+<ol>
+    <li>Látjuk, hogy a kifejezés bonyolult a nevezőben lévő \(3^n + 5\) miatt. Próbáljuk meg egyszerűsíteni becsléssel! Mi lenne, ha elhagynánk az 5-öst? Ha a nevezőt csökkentjük (csak \(3^n\)-re), akkor maga a tört <strong>nagyobb</strong> lesz.</li>
+    <li>Ebből felírhatjuk a következőt: \(\frac{1}{3^n + 5} < \frac{1}{3^n}\). Ezzel meg is találtuk a <strong>majoránsunkat</strong> (a "felülről ráborított" nagyobb sort). Mivel a tagok mindig pozitívak, teljesül a \(0 \le a_n \le b_n\) feltétel.</li>
+    <li>Nézzük meg a nagyobb, azaz a majoráns sort önmagában: \(\sum_{n=0}^{\infty} \frac{1}{3^n}\). Ezt egy picit átalakítva: \(\sum_{n=0}^{\infty} \left(\frac{1}{3}\right)^n\).</li>
+    <li>Ismerős? Ez egy <strong>geometriai sor</strong>, ahol a szorzó \(q = \frac{1}{3}\).</li>
+    <li>A geometriai sor elméletéből (3-as pont) tudjuk, hogy mivel a \(q\) abszolút értéke kisebb mint 1 (\(|1/3| < 1\)), a sor <strong>konvergens</strong>. (Még az összegét is ki tudnánk számolni: \(\frac{1}{1 - 1/3} = 1.5\)).</li>
+    <li><strong>Következtetés:</strong> Mivel a vizsgált "ronda" sorunk minden egyes tagja kisebb, mint egy olyan soré, amiről bebizonyítottuk, hogy konvergens, ezért a <strong>Majoráns kritérium</strong> értelmében a vizsgált sorunk sem tud elszállni a végtelenbe. A sor tehát <strong>konvergens</strong>.</li>
+</ol>
+</div>
 </div>
         </section>
 
@@ -733,66 +815,116 @@ $$ \sum_{n=0}^\infty q^n = \begin{cases} \frac{1}{1-q} & , \text{ ha } |q| < 1, 
         <section id="s5">
             <h1>5. Sorok konvergenciakritériumai</h1>
             <div class="card glass">
-<h1>5. Feladatsor - Elméleti Összefoglaló</h1>
+<h1>5. Gyakorlat: Sorok konvergenciakritériumai és Leibniz-sorok</h1>
 
-<h3>1. Tétel (Gyökkritérium)</h3>
+<h3>1. Gyökkritérium (Gyök-teszt)</h3>
+<p><b>Mikor használjuk?</b> Ha a sorozatunk tagjaiban valami "n-edik hatványon" van (pl. egy nagy zárójel felett ott csücsül az <i>n</i>).</p>
 <div class="explanation">
-  <p>Legyen \((a_n)_{n \in \mathbb{N}}\) nemnegatív tagú számsorozat. Ekkor a következő állítások teljesülnek:</p>
-  <ul>
-    <li>Ha \(\limsup\limits_{n \to \infty} \sqrt[n]{a_n} < 1\), akkor a \(\sum\limits_{n \in \mathbb{N}} a_n\) sor konvergens.</li>
-    <li>Ha \(\limsup\limits_{n \to \infty} \sqrt[n]{a_n} > 1\), akkor a \(\sum\limits_{n \in \mathbb{N}} a_n\) sor divergens.</li>
-  </ul>
-</div>
-
-<h3>2. Tétel (Hányadoskritérium)</h3>
-<div class="explanation">
-  <p>Legyen \((a_n)_{n \in \mathbb{N}}\) pozitív tagú sorozat. Ekkor a következő állítások teljesülnek:</p>
-  <ul>
-    <li>Ha \(\limsup\limits_{n \to \infty} \frac{a_{n+1}}{a_n} < 1\), akkor a \(\sum\limits_{n \in \mathbb{N}} a_n\) sor konvergens.</li>
-    <li>Ha \(\liminf\limits_{n \to \infty} \frac{a_{n+1}}{a_n} > 1\), akkor a \(\sum\limits_{n \in \mathbb{N}} a_n\) sor divergens.</li>
-  </ul>
-</div>
-
-<h3>3. Tétel (Integrálkritérium)</h3>
-<div class="explanation">
-  <p>Legyen \(f : [1, +\infty[ \to \mathbb{R}^+\) monoton csökkenő függvény. Ekkor</p>
+  Kiszámolod a következőt: veszed a sorozat <i>n</i>-edik tagjának <i>n</i>-edik gyökét, és megnézed, hova tart a határértéke, amikor az <i>n</i> tart a végtelenbe. (A szigorú definíció "limesz szuprémumot" mond, de a gyakorlatban az esetek 99%-ában sima limesz is elég, ha nem ugrál a sorozat.)
 </div>
 <div class="formula">
-  $$ \sum_{n=1}^{\infty} f(n) < +\infty \iff \int_{1}^{\infty} f(x) dx < +\infty $$
+  $$ L = \lim_{n \to \infty} \sqrt[n]{a_n} $$
 </div>
+<ul>
+  <li>Ha <b>$L < 1$</b>, akkor a sor <b>konvergens</b> (van egy fix véges összege).</li>
+  <li>Ha <b>$L > 1$</b>, akkor a sor <b>divergens</b> (elszáll a végtelenbe).</li>
+  <li>Ha <b>$L = 1$</b>, akkor ez a teszt sajnos nem tudja eldönteni, más módszert kell keresned.</li>
+</ul>
 
-<h3>4. Definíció (Leibniz-sor)</h3>
+<h3>2. Hányadoskritérium (Hányados-teszt)</h3>
+<p><b>Mikor használjuk?</b> Ha faktoriálisok ($n!$) vagy különféle exponenciális tagok ($2^n$, $3^n$) szerepelnek, mert ezek gyönyörűen ki fognak esni osztásnál.</p>
 <div class="explanation">
-  <p>Azt mondjuk, hogy a \(\sum\limits_{n \in \mathbb{N}} a_n\) numerikus sor <strong>Leibniz-sor</strong>, ha a következő tulajdonságok teljesülnek rá:</p>
-  <ul>
-    <li>(i) Minden \(n \in \mathbb{N}\) esetén \(a_{n+1} \cdot a_n \le 0\) (azaz alternál).</li>
-    <li>(ii) Az \((|a_n|)_{n \in \mathbb{N}}\) sorozat monoton csökkenő.</li>
-    <li>(iii) \(\lim\limits_{n \to \infty} |a_n| = 0\).</li>
-  </ul>
-  <p>Ha az első két tulajdonság csak egy küszöbindextől kezdve teljesül, akkor a \(\sum\limits_{n \in \mathbb{N}} a_n\) sort <em>tágabb értelemben vett Leibniz-sornak</em> nevezzük.</p>
-</div>
-
-<h3>5. Tétel (Leibniz-kritérium)</h3>
-<div class="explanation">
-  <p>Minden tágabb értelemben vett Leibniz-sor konvergens.</p>
-  <p>Ha a \(\sum\limits_{n \in \mathbb{N}} a_n\) Leibniz-sor, és \(S \in \mathbb{R}\) jelöli a sor összegét, akkor minden \(n \in \mathbb{N}\) esetén a hiba (maradéktag) becslésére igaz, hogy:</p>
+  Felírod a sorozat következő tagját ($a_{n+1}$), elosztod a jelenlegi taggal ($a_n$), és megnézed a kapott tört határértékét a végtelenben.
 </div>
 <div class="formula">
-  $$ \left| \sum_{k=0}^{n} a_k - S \right| \le |a_{n+1}| $$
+  $$ L = \lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| $$
+</div>
+<ul>
+  <li>Ha <b>$L < 1$</b>, akkor <b>konvergens</b>.</li>
+  <li>Ha <b>$L > 1$</b>, akkor <b>divergens</b>.</li>
+  <li>Ha <b>$L = 1$</b>, a teszt nem ad egyértelmű választ.</li>
+</ul>
+
+<h3>3. Integrálkritérium</h3>
+<p><b>Mikor használjuk?</b> Amikor a sorozat egy olyan kifejezés, amiből, ha az <i>n</i>-et <i>x</i>-re cseréled, egy nagyon könnyen integrálható függvényt kapsz.</p>
+<div class="explanation">
+  Az $f(x)$ függvénynek pozitívnak és folytonosan csökkenőnek kell lennie. Ezután simán integrálod 1-től a végtelenig. A sor és az improprius integrál "együtt mozog":
+</div>
+<div class="formula">
+  $$ \sum_{n=1}^\infty f(n) \quad \text{és a} \quad \int_1^\infty f(x)\mathrm{d}x $$
+</div>
+<ul>
+  <li>Ha az integrál eredménye egy véges szám, akkor a sor <b>konvergens</b>.</li>
+  <li>Ha az integrál eredménye végtelen ($+\infty$), akkor a sor is <b>divergens</b>.</li>
+</ul>
+
+<h3>4. Leibniz-sorok (Váltakozó előjelű sorok)</h3>
+<p><b>Mikor beszélünk Leibniz-sorról?</b> Amikor a sorozat tagjainak előjele folyamatosan plusz és mínusz között ugrál (például van benne egy $(-1)^n$ szorzó).</p>
+<div class="explanation">
+  Egy ilyen sor biztosan <b>konvergens</b> lesz, ha a mínusz jelek nélkül (abszolút értékben) vett tagokra igaz ez a két nagyon egyszerű dolog:
+  <ol>
+    <li>Egyre kisebbek (monoton csökkennek, pl. $\frac{1}{2}, \frac{1}{3}, \frac{1}{4} \dots$).</li>
+    <li>A sorozat a végtelenben belezuhan a nullába ($\lim_{n \to \infty} |a_n| = 0$).</li>
+  </ol>
 </div>
 
-<h3>6. Definíció (Abszolút és feltételes konvergencia)</h3>
+<h3>5. Hibabecslés Leibniz-soroknál (Az igazi bónuszpontos trükk!)</h3>
+<p>Ha egy konvergens Leibniz-sort (váltakozó előjelűt) nem adsz össze a végtelenig, csak "elvágod" valahol, mondjuk az $N$-edik tagnál, akkor a kimaradt rész miatt hibát követsz el. De mekkorát? A Leibniz-sor varázslata, hogy <b>a hiba mindig kisebb, mint a legelső elhagyott tag abszolút értéke</b>!</p>
+<div class="formula">
+  $$ | Hiba | \le | a_{N+1} | $$
+</div>
+<p>Magyarán: ha összeadsz 10 tagot, a hiba biztosan nem lesz nagyobb, mint a 11-edik tag önmagában.</p>
+
+<h3>6. Abszolút és feltételes konvergencia</h3>
 <div class="explanation">
-  <p>Azt mondjuk, hogy a \(\sum\limits_{n \in \mathbb{N}} a_n\) numerikus sor:</p>
   <ul>
-    <li><strong>abszolút konvergens</strong>, ha a \(\sum\limits_{n \in \mathbb{N}} |a_n|\) sor konvergens,</li>
-    <li><strong>feltételesen konvergens</strong>, ha konvergens, de nem abszolút konvergens.</li>
+    <li><b>Abszolút konvergens:</b> Egy sor annyira durván konvergens, hogy még akkor sem szállna el a végtelenbe, ha minden egyes tagnak levágnánk a mínusz jelét és csupa pozitív számot adnánk össze (azaz a tagok abszolút értékéből képzett sor konvergens). Minden abszolút konvergens sor egyben simán is konvergens!</li>
+    <li><b>Feltételesen konvergens:</b> Ha eredetiben (például a plusz-mínusz váltakozás miatt) konvergens a sor, de amint letiltanád a mínuszokat és mindent pozitívként adnál össze, hirtelen divergessé válna és elszállna a végtelenbe. Ilyenkor a konvergencia feltétele az előjelek váltakozása.</li>
   </ul>
 </div>
 
-<h3>7. Állítás</h3>
-<div class="explanation">
-  <p>Minden abszolút konvergens numerikus sor konvergens.</p>
+<div class="example">
+  <h3>Példák: Hányadoskritérium és Leibniz-sorok a gyakorlatban</h3>
+  
+  <p><b>1. Feladat:</b> Döntsük el, hogy konvergens-e a $ \sum_{n=1}^\infty \frac{2^n}{n!} $ sor!</p>
+  <p><b>Megoldás (Lépésről lépésre receptek):</b></p>
+  <ul>
+    <li>Faktoriálist ($n!$) és hatványt ($2^n$) is látunk, szóval bevetjük a <b>Hányadoskritériumot</b>.</li>
+    <li>Írjuk fel a jelenlegi ($n$-edik) tagot: $$a_n = \frac{2^n}{n!}$$</li>
+    <li>Írjuk fel a következő, $(n+1)$-edik tagot úgy, hogy minden $n$ helyére betolunk egy $(n+1)$-et: $$a_{n+1} = \frac{2^{n+1}}{(n+1)!}$$</li>
+    <li>Osszuk el a következőt a jelenlegivel, és számoljuk ki a határértéket. Mivel törtet törttel osztunk, az ugyanaz, mintha szoroznánk a reciprokával:</li>
+  </ul>
+  <div class="formula">
+    $$ L = \lim_{n \to \infty} \frac{a_{n+1}}{a_n} = \lim_{n \to \infty} \left( \frac{2^{n+1}}{(n+1)!} \cdot \frac{n!}{2^n} \right) $$
+  </div>
+  <ul>
+    <li>Bontsuk szét a tagokat, hogy tudjunk egyszerűsíteni! 
+      $2^{n+1} = 2 \cdot 2^n$, illetve $(n+1)! = (n+1) \cdot n!$
+    </li>
+    <li>A $2^n$ és az $n!$ szépen leegyszerűsödik alul-felül, ami marad:</li>
+  </ul>
+  <div class="formula">
+    $$ L = \lim_{n \to \infty} \frac{2}{n+1} = 0 $$
+  </div>
+  <p>Mivel az $L = 0$ kisebb, mint 1, a sor egyértelműen <b>konvergens</b>!</p>
+
+  <hr>
+
+  <p><b>2. Feladat:</b> Vizsgáljuk meg a $ \sum_{n=1}^\infty \frac{(-1)^n}{n} $ (váltakozó előjelű harmonikus sor) konvergenciáját, és nézzük meg, mennyi hibát követünk el, ha csak az első 10 tagot adjuk össze!</p>
+  <p><b>Megoldás (Leibniz és Hibabecslés):</b></p>
+  <ul>
+    <li>A $(-1)^n$ miatt ez egy váltakozó előjelű sor, úgyhogy nézzük meg, Leibniz-sor-e. Csupaszozzuk le az abszolút értékét: az n-edik tag lényegében $\frac{1}{n}$.</li>
+    <li>Csökkennek a tagok? Igen, az $\frac{1}{2}$ kisebb, mint az $1$, az $\frac{1}{3}$ kisebb, mint az $\frac{1}{2}$, és így tovább.</li>
+    <li>Nullához tart az egész a végtelenben? Igen, $\lim_{n\to\infty} \frac{1}{n} = 0$.</li>
+    <li>Tehát a sor <b>konvergens</b>. (Mellesleg csak <i>feltételesen</i> az, mert ha a mínuszokat levesszük, a $\sum \frac{1}{n}$ sor divergens lenne).</li>
+    <li><b>Hibabecslés:</b> Ha csak az első 10 tagot adjuk össze (vagyis $S \approx s_{10}$), mekkora a maximális tévedésünk?
+        A szabály az volt, hogy a hiba maximum az <b>első elhagyott tag</b> (vagyis a 11. tag) nagysága lehet:
+    </li>
+  </ul>
+  <div class="formula">
+    $$ | Hiba | \le \left| a_{11} \right| = \left| \frac{(-1)^{11}}{11} \right| = \frac{1}{11} $$
+  </div>
+  <p>Vagyis, ha 10 tagig számoljuk össze, maximum $\frac{1}{11}$-del (kb. 0.09-cel) lőhetünk mellé a valós végtelen összegtől!</p>
 </div>
 </div></section>
 
@@ -800,63 +932,81 @@ $$ \sum_{n=0}^\infty q^n = \begin{cases} \frac{1}{1-q} & , \text{ ha } |q| < 1, 
         <section id="s6" class="active">
             <h1>6. Hatványsorok</h1>
             <div class="card glass">
-<h1>6. feladatsor – elméleti összefoglaló</h1>
+<h1>6. Gyakorlat - Hatványsorok és tulajdonságaik</h1>
 
 <div class="explanation">
-    <h3>1. Definíció</h3>
-    <p>Legyen \((a_n)_{n \in \mathbb{N}}\) számsorozat.</p>
-    <div class="formula">
-        $$
-        R_a :=
-        \begin{cases}
-        \frac{1}{\limsup\limits_{n \to \infty} \sqrt[n]{|a_n|}}, & \text{ha } 0 < \limsup\limits_{n \to \infty} \sqrt[n]{|a_n|} < +\infty \\
-        0, & \text{ha } \limsup\limits_{n \to \infty} \sqrt[n]{|a_n|} = +\infty \\
-        +\infty, & \text{ha } \limsup\limits_{n \to \infty} \sqrt[n]{|a_n|} = 0.
-        \end{cases}
-        $$
-    </div>
-    <p>Ekkor \(R_a\)-t az \((a_n)_{n \in \mathbb{N}}\) számsorozathoz tartozó <strong>Cauchy-féle konvergenciasugárnak</strong> nevezzük.</p>
+  <p>Ebben a gyakorlatban a hatványsorokkal foglalkozunk. A hatványsorok olyan "végtelen polinomok", amik a megadott függvényeket képesek közelíteni. A fő feladatunk az, hogy megállapítsuk: milyen \(x\) értékeket írhatunk be anélkül, hogy a végtelen összeg felrobbanna (vagyis mikor lesz szép, konvergens az eredmény).</p>
 </div>
 
-<div class="explanation">
-    <h3>2. Tétel (A Cauchy-féle konvergenciasugár meghatározása a hányadoskritériummal)</h3>
-    <p>Legyen \((a_n)_{n \in \mathbb{N}}\) olyan sorozat, amelynek egyik tagja sem \(0\), és tegyük fel, hogy az \(\left(\frac{|a_{n+1}|}{|a_n|}\right)_{n \in \mathbb{N}}\) sorozatnak létezik határértéke. Ekkor \((|a_n|)_{n \in \mathbb{N}}\) sorozatnak is létezik határértéke és</p>
+<h3>1. A Konvergenciasugár (Meddig működik a sor?)</h3>
+<p>Hogy megtudjuk, mettől meddig "él" a hatványsorunk, ki kell számolnunk egy \(R_a\) számot, a konvergenciasugarat. Ez megmondja, hogy a középponttól számítva mekkora távolságon belül biztonságos a sor. Erre két "konyhakész" receptünk van az együttható (\(a_n\)) alapján:</p>
+
+<ul>
+  <li><strong>A gyökvonós módszer (Cauchy-féle képlet):</strong> Ha az együtthatóban \(n\)-edik hatványok vannak, vonjunk az egészből \(n\)-edik gyököt:
     <div class="formula">
-        $$ \lim_{n \to \infty} \sqrt[n]{|a_n|} = \lim_{n \to \infty} \frac{|a_{n+1}|}{|a_n|}. $$
+    $$ \frac{1}{R_a} = \lim_{n \to \infty} \sqrt[n]{|a_n|} $$
     </div>
-</div>
+  </li>
+  <li><strong>A hányados módszer (D'Alembert-féle képlet):</strong> Ha az együtthatóban faktoriális (\(n!\)) is felbukkan, akkor osszuk el az \(n+1\)-edik tagot az \(n\)-edikkel:
+    <div class="formula">
+    $$ \frac{1}{R_a} = \lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| $$
+    </div>
+  </li>
+</ul>
 
 <div class="explanation">
-    <h3>3. Tétel (Cauchy–Hadamard-tétel)</h3>
-    <p>Legyen \((a_n)_{n \in \mathbb{N}}\) számsorozat, \(x_0 \in \mathbb{R}\) és \(x \in \mathbb{R}\).</p>
-    <ul>
-        <li>Ha \(|x - x_0| < R_a\), akkor a \(\sum\limits_{n \in \mathbb{N}} a_n(x - x_0)^n\) hatványsor abszolút konvergens.</li>
-        <li>Ha \(|x - x_0| > R_a\), akkor a \(\sum\limits_{n \in \mathbb{N}} a_n(x - x_0)^n\) hatványsor divergens.</li>
-    </ul>
+  <p><strong>Fontos megjegyzések:</strong> A kapott limesz értékének a reciprokát kell venned, hogy megkapd a sugarat! Ha a limesz \(0\), akkor a sugár végtelen (\(\infty\)), azaz mindenhol jók vagyunk. Ha a limesz végtelen (\(\infty\)), akkor a sugár \(0\), vagyis a sor egyedül a középpontban ér valamit.</p>
 </div>
 
-<div class="explanation">
-    <h3>4. Tétel (Elemi analitikus függvényének tulajdonságai)</h3>
-    <p>Legyen \((a_n)_{n \in \mathbb{N}}\) számsorozat, \(x_0 \in \mathbb{R}\), és tegyük fel, hogy \(0 < R_a\). Legyen</p>
-    <div class="formula">
-        $$ f(x) := \sum_{n=0}^{\infty} a_n(x - x_0)^n $$
-    </div>
-    <p>minden olyan \(x \in \mathbb{R}\) esetén, amelyre \(\sum\limits_{n \in \mathbb{N}} a_n(x - x_0)^n\) konvergens. Ekkor a következő állítások teljesülnek:</p>
-    <ul>
-        <li>(i) \(]x_0 - R_a, x_0 + R_a[ \subseteq \text{Dom}(f) \subseteq [x_0 - R_a, x_0 + R_a]\).</li>
-        <li>(ii) Az \(f\) függvény az értelmezési tartományának minden pontjában folytonos.</li>
-        <li>(iii) Az \(f\) függvény differenciálható az \(]x_0 - R_a, x_0 + R_a[\) halmazon, és minden \(x \in ]x_0 - R_a, x_0 + R_a[\) esetén
-            <div class="formula">
-                $$ f'(x) = \sum_{n=1}^{\infty} n a_n(x - x_0)^{n-1}. $$
-            </div>
-            Továbbá, ha minden \(n \in \mathbb{N}\) esetén \(b_n := (n + 1)a_{n+1}\), akkor \(R_b = R_a\), tehát a tagonkénti deriválással kapott hatványsor (együtthatóinak) konvergenciasugara megegyezik az eredeti hatványsor (együtthatóinak) konvergenciasugarával.
-        </li>
-        <li>(iv) Ha \(\alpha, \beta \in ]x_0 - R_a, x_0 + R_a[\) és \(\alpha < \beta\), akkor az \(f\) Riemann-integrálható az \([\alpha, \beta]\) intervallumon és
-            <div class="formula">
-                $$ \int_{\alpha}^{\beta} \sum_{n=0}^{\infty} a_n(x - x_0)^n \, \mathrm{d}x = \sum_{n=0}^{\infty} \int_{\alpha}^{\beta} a_n(x - x_0)^n \, \mathrm{d}x $$
-            </div>
-        </li>
-    </ul>
+<h3>2. A Cauchy-Hadamard tétel (Mit mond el a sugár?)</h3>
+<p>Képzeld el, hogy a sorod középpontja \(x_0\) (ezt a sorban lévő \((x - x_0)^n\) rész mutatja meg). A sugár ismeretében három dolgot mondhatunk el:</p>
+<ul>
+  <li>Ha a pontod távolsága a középponttól kisebb, mint a sugár (\(|x - x_0| < R_a\)), a sor abszolút <strong>konvergens</strong> (ez a biztonságos zóna).</li>
+  <li>Ha túl messze vagy a középponttól (\(|x - x_0| > R_a\)), a sor <strong>divergens</strong> (felrobban).</li>
+  <li>Ha pontosan a határon állsz (\(|x - x_0| = R_a\)), akkor a tétel <strong>nem mond semmit</strong>. Itt le kell tesztelned mindkét perempontot egyesével, hagyományos számsorként, a korábban tanult módszerekkel!</li>
+</ul>
+
+<h3>3. Hatványsorok deriválása és integrálása</h3>
+<p>A biztonságos zónájukon (nyílt konvergencia-tartományukon) belül a hatványsorok olyanok, mint a legszebb, legsimább függvények.</p>
+<ul>
+  <li>Nincsenek bennük szakadások vagy ugrások.</li>
+  <li>Bármikor lehet őket <strong>tagonként deriválni</strong> vagy <strong>tagonként integrálni</strong> (nem kell a végtelen szummán kívül ügyeskedni, simán deriválhatod a benne lévő \((x - x_0)^n\) tagot úgy, ahogy tanultad).</li>
+  <li>Óriási segítség: a tagonkénti deriválással és integrálással <strong>a konvergenciasugár nem változik meg</strong>!</li>
+</ul>
+
+<div class="example">
+  <h3>Gyakorlati Példa: Konvergenciatartomány kiszámítása lépésről lépésre</h3>
+  <p>Határozzuk meg a következő hatványsor konvergenciatartományát!</p>
+  <div class="formula">
+  $$ \sum_{n=1}^{\infty} \frac{(x-2)^n}{n \cdot 3^n} $$
+  </div>
+  
+  <p><strong>1. Lépés: Mik az alapadatok?</strong></p>
+  <p>A sor \((x-2)^n\) miatt a középpont \(x_0 = 2\). Az együtthatók sorozata: \(a_n = \frac{1}{n \cdot 3^n}\).</p>
+  
+  <p><strong>2. Lépés: Konvergenciasugár (\(R_a\)) kiszámítása.</strong></p>
+  <p>Mivel sok hatványunk van, toljuk rá a Cauchy-féle gyökvonós módszert:</p>
+  <div class="formula">
+  $$ \frac{1}{R_a} = \lim_{n \to \infty} \sqrt[n]{|a_n|} = \lim_{n \to \infty} \sqrt[n]{\frac{1}{n \cdot 3^n}} = \lim_{n \to \infty} \frac{1}{\sqrt[n]{n} \cdot 3} $$
+  </div>
+  <p>Tudjuk, hogy \(\lim_{n \to \infty} \sqrt[n]{n} = 1\), így a határérték \(1/3\) lesz. Mivel ez \(1/R_a\)-val egyenlő, meg kell fordítanunk! Így a sugár <strong>\(R_a = 3\)</strong>.</p>
+  
+  <p><strong>3. Lépés: A biztonságos zóna (nyílt intervallum) felírása.</strong></p>
+  <p>A sor biztosan konvergens, ha a távolságunk a \(2\)-től kisebb mint \(3\):</p>
+  <div class="formula">
+  $$ |x - 2| < 3 $$
+  </div>
+  <p>Ebből kibontva: \(-3 < x - 2 < 3\), vagyis ha mindenhez hozzáadunk \(2\)-t, kapjuk, hogy <strong>\(-1 < x < 5\)</strong>.</p>
+  
+  <p><strong>4. Lépés: A végpontok ellenőrzése.</strong></p>
+  <p>Most külön be kell helyettesítenünk az \(x = 5\) és \(x = -1\) értékeket az eredeti sorba, hogy megnézzük, mi történik a szakadék szélén:</p>
+  <ul>
+    <li><strong>Ha \(x = 5\):</strong> Kapjuk a \(\sum_{n=1}^\infty \frac{(5-2)^n}{n \cdot 3^n} = \sum_{n=1}^\infty \frac{3^n}{n \cdot 3^n} = \sum_{n=1}^\infty \frac{1}{n}\) sort. Ez a jól ismert harmonikus sor, ami <strong>divergens</strong>. Tehát az \(5\)-ös pontot nem vesszük be.</li>
+    <li><strong>Ha \(x = -1\):</strong> Kapjuk a \(\sum_{n=1}^\infty \frac{(-1-2)^n}{n \cdot 3^n} = \sum_{n=1}^\infty \frac{(-3)^n}{n \cdot 3^n} = \sum_{n=1}^\infty \frac{(-1)^n}{n}\) sort. Ez egy alternáló sor, és a Leibniz-kritérium (csökkenő és nullához tartó tagok) miatt ez bizony <strong>konvergens</strong>! Tehát a \(-1\)-es pont kell nekünk.</li>
+  </ul>
+  
+  <p><strong>Végeredmény:</strong></p>
+  <p>A hatványsor teljes konvergenciatartománya egy balról zárt, jobbról nyílt intervallum: <strong>\([-1, 5[\)</strong>.</p>
 </div>
 </div>
         </section>
@@ -865,84 +1015,95 @@ $$ \sum_{n=0}^\infty q^n = \begin{cases} \frac{1}{1-q} & , \text{ ha } |q| < 1, 
         <section id="s7">
             <h1>7. Taylor-sorok</h1>
             <div class="card glass">
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <title>7. feladatsor - elméleti összefoglaló</title>
-</head>
-<body>
+<h1>7. Gyakorlat: Taylor-polinomok és Taylor-sorok</h1>
 
-<h1>7. feladatsor - Elméleti összefoglaló</h1>
+<p>Ebben a gyakorlatban arról lesz szó, hogyan közelíthetünk "bonyolult" függvényeket sokkal barátságosabb, egyszerű polinomokkal, és hogyan írhatjuk fel őket végtelen sorok formájában.</p>
 
-<h3>1. Definíció (Taylor-polinom)</h3>
-<p>Legyen \(n \in \mathbb{N}\), \(x_0 \in \mathbb{R}\), és tegyük fel, hogy az \(f : \mathbb{R} \hookrightarrow \mathbb{R}\) függvény \(n\)-szer differenciálható az \(x_0\) pontban. Ekkor az</p>
+<h3>1. Taylor-polinom (közelítés)</h3>
+<p>Képzeld el, hogy van egy bonyolult függvényed (pl. egy szinusz vagy egy exponenciális), és szeretnéd őt egy egyszerű polinommal (azaz \(x\), \(x^2\), \(x^3\) stb. összegeivel) helyettesíteni egy bizonyos \(x_0\) pont közelében. Erre való a Taylor-polinom. Ha egy \(n\)-ed fokú Taylor-polinomot keresünk, ahhoz a függvényt \(n\)-szer le kell deriválnunk.</p>
+
 <div class="formula">
-$$x \mapsto \sum_{k=0}^n \frac{f^{(k)}(x_0)}{k!} (x - x_0)^k$$
-</div>
-<p>függvényt az \(f\) függvény \(x_0\) középpontú \(n\)-edrendű Taylor-polinomjának nevezzük és \(T_{n,x_0}^f\)-lal jelöljük.</p>
-
-<h3>2. Tétel (Lagrange-maradéktagos Taylor-formula)</h3>
-<p>Legyen \(x_0 \in \mathbb{R}\), \(r > 0\), \(n \in \mathbb{N}\), és tegyük fel, hogy az \(f : \mathbb{R} \hookrightarrow \mathbb{R}\) függvény \(n + 1\)-szer differenciálható az \(]x_0 - r, x_0 + r[\) intervallumon. Ekkor minden \(x \in ]x_0 - r, x_0 + r[\) esetén létezik olyan \(\xi\), amely \(x_0\) és \(x\) "közé esik" (azaz \(\xi \in ]x_0, x[\) vagy \(\xi \in ]x, x_0[\)), és</p>
-<div class="formula">
-$$f(x) = \sum_{k=0}^n \frac{f^{(k)}(x_0)}{k!} (x - x_0)^k + \frac{f^{(n+1)}(\xi)}{(n + 1)!} (x - x_0)^{n+1}$$
+$$ T_n(x) = f(x_0) + \frac{f'(x_0)}{1!} (x - x_0) + \frac{f''(x_0)}{2!} (x - x_0)^2 + \dots + \frac{f^{(n)}(x_0)}{n!} (x - x_0)^n $$
 </div>
 
-<h3>3. Definíció (Taylor-sor)</h3>
-<p>Legyen \(x_0 \in \mathbb{R}\), és tegyük fel, hogy az \(f : \mathbb{R} \hookrightarrow \mathbb{R}\) függvény végtelenszer differenciálható az \(x_0\) pontban. Ekkor a \(\left(T_{n,x_0}^f\right)_{n\in\mathbb{N}}\) függvénysort az \(f\) függvény \(x_0\)-beli Taylor-sorának nevezzük, és az összegfüggvényét \(T_{x_0}^f\)-fel jelöljük. Azaz minden \(x \in \mathrm{Dom}\left(T_{x_0}^f\right)\) esetén:</p>
-<div class="formula">
-$$T_{x_0}^f(x) = \sum_{n=0}^\infty \frac{f^{(n)}(x_0)}{n!} (x - x_0)^n$$
-</div>
 <div class="explanation">
-    <p><em>Megjegyzés:</em> A végtelenszer differenciálhatóság azt jelenti, hogy minden \(n \in \mathbb{N}\) esetén \(n\)-szer differenciálható.</p>
+    <strong>Hogyan csináld? (Recept):</strong>
+    <ul>
+        <li>Határozd meg, melyik \(x_0\) pont körül kell közelíteni (ha nincs megadva, gyakran \(x_0 = 0\)).</li>
+        <li>Deriváld le a függvényt 1-szer, 2-szer, ... , \(n\)-szer.</li>
+        <li>Helyettesítsd be az \(x_0\) értéket magába a függvénybe és az összes deriváltjába.</li>
+        <li>Oszd el a \(k\)-adik derivált értékét \(k!\)-sal (\(k\) faktoriális, azaz \(1 \cdot 2 \cdot ... \cdot k\)).</li>
+        <li>Szorozd meg \((x - x_0)^k\)-nal.</li>
+        <li>Add össze az egészet! Ezzel megkaptad az \(n\)-ed fokú Taylor-polinomot.</li>
+    </ul>
 </div>
 
-<h3>4. Tétel (Hatványsor együtthatóinak egyértelműsége)</h3>
-<p>Legyen \((a_n)_{n\in\mathbb{N}}\) számsorozat, \(x_0 \in \mathbb{R}\), és tegyük fel, hogy a konvergenciasugár \(R_a > 0\), valamint legyen</p>
+<h3>2. A hiba (Lagrange-féle maradéktag)</h3>
+<p>Mivel a polinom csak <em>közelíti</em> az eredeti függvényt, nyilván van valamekkora hiba. A maradéktag pontosan azt mondja meg, hogy mennyit tévedünk, ha a polinomot használjuk a függvény helyett. A hiba képlete nagyon hasonlít a Taylor-polinom következő, \((n+1)\)-edik tagjához, csak nem az \(x_0\) pontban vesszük a deriváltat, hanem egy titokzatos, \(x\) és \(x_0\) közé eső \(\xi\) (kszí) pontban.</p>
+
 <div class="formula">
-$$f(x) := \sum_{n=0}^\infty a_n(x - x_0)^n$$
-</div>
-<p>minden olyan \(x \in \mathbb{R}\) esetén, amelyre a \(\sum_{n\in\mathbb{N}} a_n(x - x_0)^n\) sor konvergens. Ekkor \(f\) végtelenszer differenciálható \(x_0\)-ban és minden \(k \in \mathbb{N}\) esetén:</p>
-<div class="formula">
-$$f^{(k)}(x_0) = k! \cdot a_k$$
+$$ Hiba = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x - x_0)^{n+1} $$
 </div>
 
-<h3>5. Definíció (Analitikus függvény)</h3>
-<p>Azt mondjuk, hogy az \(f : \mathbb{R} \hookrightarrow \mathbb{R}\) függvény analitikus az \(x_0 \in \mathbb{R}\) pontban, ha létezik olyan \((a_n)_{n\in\mathbb{N}}\) számsorozat és \(r > 0\), hogy \(]x_0 - r, x_0 + r[ \subseteq \mathrm{Dom}(f)\) és minden \(x \in ]x_0 - r, x_0 + r[\) esetén:</p>
+<h3>3. Taylor-sor (végtelen közelítés)</h3>
+<p>Ha nem állunk meg az \(n\)-edik tagnál, hanem a végtelenségig folytatjuk az összegzést, akkor kapjuk a Taylor-sort. Bizonyos "szép" függvények esetén ez a végtelen összeg pontosan megegyezik magával a függvénnyel az \(x_0\) pont valamilyen környezetében (ezt hívják analitikus függvénynek).</p>
+
 <div class="formula">
-$$f(x) = \sum_{n=0}^\infty a_n(x - x_0)^n$$
+$$ f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!} (x - x_0)^n $$
 </div>
 
-<h3>6. Tétel (A pontbeli analitikusság jellemzése)</h3>
-<p>Legyen \(f : \mathbb{R} \hookrightarrow \mathbb{R}\) függvény és \(x_0\) egy belső pontja \(\mathrm{Dom}(f)\)-nek. Ekkor a következő állítások ekvivalensek:</p>
+<div class="explanation">
+    <strong>Tipp a feladatokhoz:</strong> Ha egy sorfejtés meg van adva (pl. szorzók ismétlődnek), akkor tudd, hogy a hatványsor együtthatói egyértelműek! Vagyis a hatványsor \((x-x_0)^k\) melletti szorzója mindig \(\frac{f^{(k)}(x_0)}{k!}\). Ebből sokszor ki lehet számolni egy magas rendű derivált értékét anélkül, hogy a függvényt ténylegesen deriválgatni kellene!
+</div>
+
+<h3>4. Fontos alapfüggvények Taylor-sorai (\(x_0 = 0\) pontban)</h3>
+<p>Ezeket a nevezetes sorfejtéseket (Maclaurin-sorokat) érdemes fejből tudni, mert a feladatokban sokszor ezekből kell építkezni (például ha \(e^{2x}\)-et kérdeznek, csak írj be \(x\) helyett \(2x\)-et a kész képletbe).</p>
+
 <ul>
-    <li>(i) Az \(f\) függvény analitikus az \(x_0\) pontban.</li>
-    <li>(ii) Létezik olyan \(r > 0\), hogy minden \(x \in ]x_0 - r, x_0 + r[\) esetén \(f(x) = T_{x_0}^f(x)\).</li>
+    <li><strong>Exponenciális függvény:</strong> \( \displaystyle e^x = \sum_{k=0}^{\infty} \frac{x^k}{k!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots \)</li>
+    <li><strong>Szinusz:</strong> (csak páratlan kitevők, váltakozó előjellel) <br> \( \displaystyle \sin(x) = \sum_{k=0}^{\infty} (-1)^k \frac{x^{2k+1}}{(2k+1)!} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \dots \)</li>
+    <li><strong>Koszínusz:</strong> (csak páros kitevők, váltakozó előjellel) <br> \( \displaystyle \cos(x) = \sum_{k=0}^{\infty} (-1)^k \frac{x^{2k}}{(2k)!} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \dots \)</li>
+    <li><strong>Szinusz hiperbolikusz (sh):</strong> (mint a szinusz, de minden előjel pozitív) <br> \( \displaystyle \sinh(x) = \sum_{k=0}^{\infty} \frac{x^{2k+1}}{(2k+1)!} = x + \frac{x^3}{3!} + \frac{x^5}{5!} + \dots \)</li>
+    <li><strong>Koszínusz hiperbolikusz (ch):</strong> (mint a koszínusz, de minden előjel pozitív) <br> \( \displaystyle \cosh(x) = \sum_{k=0}^{\infty} \frac{x^{2k}}{(2k)!} = 1 + \frac{x^2}{2!} + \frac{x^4}{4!} + \dots \)</li>
 </ul>
-<div class="explanation">
-    <p>Ezt a tényt úgy fejezzük ki, hogy az \(f\) függvény \(x_0\) középpontú Taylor-sora előállítja \(f\)-et az \(]x_0 - r, x_0 + r[\) intervallumon.</p>
-</div>
 
-<h3>7. Tétel (Nevezetes függvények hatványsor-előállítása)</h3>
-<p>Az \(\exp, \sin, \cos, \sinh, \cosh\) függvényeket előállítja a \(0\) középpontú Taylor-soruk \(\mathbb{R}\)-en, és minden \(x \in \mathbb{R}\) esetén:</p>
-<div class="formula">
-$$e^x = \sum_{k=0}^\infty \frac{x^k}{k!}$$
+<div class="example">
+    <h3>Gyakorlati példa: Harmadfokú Taylor-polinom felírása</h3>
+    <p><strong>Feladat:</strong> Írjuk fel az \( f(x) = \sin(x) \) függvény harmadfokú (\(n=3\)) Taylor-polinomját az \(x_0 = 0\) pont körül!</p>
+    
+    <p><strong>Lépésről lépésre megoldás:</strong></p>
+    <ol>
+        <li>
+            <strong>Deriváljuk a függvényt 3-szor:</strong>
+            <ul>
+                <li>Nulladik (maga a függvény): \( f(x) = \sin(x) \)</li>
+                <li>Első derivált: \( f'(x) = \cos(x) \)</li>
+                <li>Második derivált: \( f''(x) = -\sin(x) \)</li>
+                <li>Harmadik derivált: \( f'''(x) = -\cos(x) \)</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Helyettesítsük be az \(x_0 = 0\) pontot:</strong>
+            <ul>
+                <li>\( f(0) = \sin(0) = 0 \)</li>
+                <li>\( f'(0) = \cos(0) = 1 \)</li>
+                <li>\( f''(0) = -\sin(0) = 0 \)</li>
+                <li>\( f'''(0) = -\cos(0) = -1 \)</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Rakjuk össze a polinomot a képlet alapján:</strong>
+            <br>Képlet: \( T_3(x) = f(0) + \frac{f'(0)}{1!}x + \frac{f''(0)}{2!}x^2 + \frac{f'''(0)}{3!}x^3 \)
+            <br>Helyettesítsük be az előző lépésben kapott számokat:
+            <br>\( T_3(x) = 0 + \frac{1}{1}x + \frac{0}{2}x^2 + \frac{-1}{6}x^3 \)
+        </li>
+        <li>
+            <strong>Egyszerűsítsük:</strong>
+            <br>\( T_3(x) = x - \frac{x^3}{6} \)
+        </li>
+    </ol>
+    <p>Ezzel készen is vagyunk! Ez a polinom egész jól közelíti a szinusz hullámot az origó közelében.</p>
 </div>
-<div class="formula">
-$$\sin(x) = \sum_{k=0}^\infty (-1)^k \frac{x^{2k+1}}{(2k + 1)!}$$
-</div>
-<div class="formula">
-$$\cos(x) = \sum_{k=0}^\infty (-1)^k \frac{x^{2k}}{(2k)!}$$
-</div>
-<div class="formula">
-$$\sinh(x) = \sum_{k=0}^\infty \frac{x^{2k+1}}{(2k + 1)!}$$
-</div>
-<div class="formula">
-$$\cosh(x) = \sum_{k=0}^\infty \frac{x^{2k}}{(2k)!}$$
-</div>
-
-</body>
-</html>
 </div>
         </section>
 
@@ -950,248 +1111,105 @@ $$\cosh(x) = \sum_{k=0}^\infty \frac{x^{2k}}{(2k)!}$$
         <section id="s8">
             <h1>8. Binomiális sor és Többváltozós Határérték</h1>
             <div class="card glass">
-<h1>8. feladatsor - Elméleti összefoglaló</h1>
-
-<div class="explanation">
-    <h3>1. Definíció</h3>
-    <p>Legyen \(\alpha \in \mathbb{R}\) és \(k \in \mathbb{N}\).</p>
-    <div class="formula">
-        $$
-        \binom{\alpha}{k} :=
-        \begin{cases}
-        1, & \text{ha } k = 0 \\
-        \frac{\prod_{j=0}^{k-1} (\alpha - j)}{k!} = \frac{\alpha(\alpha - 1) \dots (\alpha - k + 1)}{k!}, & \text{ha } k \neq 0.
-        \end{cases}
-        $$
-    </div>
-</div>
-
-<div class="explanation">
-    <h3>2. Tétel</h3>
-    <p>A \(\sum_{k \in \mathbb{N}} \binom{\alpha}{k} x^k\) sor minden \(\alpha \in \mathbb{R}\) és \(x \in ]-1, 1[\) esetén konvergens, továbbá</p>
-    <div class="formula">
-        $$ (1 + x)^\alpha = \sum_{k=0}^\infty \binom{\alpha}{k} x^k $$
-    </div>
-</div>
-
-<div class="explanation">
-    <h3>3. Definíció</h3>
-    <p>Legyen \((x_k)_{k\in\mathbb{N}}\) \(\mathbb{R}^n\)-ben haladó sorozat. Azt mondjuk, hogy \((x_k)_{k\in\mathbb{N}}\) konvergens és határértéke az \(x \in \mathbb{R}^n\) vektor, ha \(\|x_k - x\| \xrightarrow{k\to\infty} 0\).<br>
-    Jelölés: \(\lim_{k\to\infty} x_k = x\) vagy \(x_k \xrightarrow{k\to\infty} x\).</p>
-</div>
-
-<div class="explanation">
-    <h3>4. Állítás (Koordinátánkénti konvergencia)</h3>
-    <p>Legyen \((x_k)_{k\in\mathbb{N}}\) \(\mathbb{R}^n\)-ben haladó sorozat, és \(x \in \mathbb{R}^n\). Ekkor</p>
-    <div class="formula">
-        $$ x_k \xrightarrow{k\to\infty} x \iff (\forall i \in \{1, 2, \dots, n\}) : (x_k)_i \xrightarrow{k\to\infty} x_i $$
-    </div>
-</div>
-
-<div class="explanation">
-    <h3>5. Állítás (Átviteli elv)</h3>
-    <p>Legyen \(f: \mathbb{R}^n \dashrightarrow \mathbb{R}\) függvény.</p>
-    <ul>
-        <li>(i) \(a \in \text{Dom}(f)'\) és \(b \in \mathbb{R}\) esetén
-            <div class="formula">
-                $$ \lim_{x\to a} f(x) = b \iff \left( x_k \xrightarrow{k\to\infty} a \implies f(x_k) \xrightarrow{k\to\infty} b \right) $$
-            </div>
-            \(\forall(x_k)_{k\in\mathbb{N}}\) sorozatra, amely \(\text{Dom}(f) \setminus \{a\}\)-ban halad.
-        </li>
-        <li>(ii) \(a \in \text{Dom}(f)\) esetén
-            <div class="formula">
-                $$ f \text{ folytonos } a\text{-ban} \iff \left( x_k \xrightarrow{k\to\infty} a \implies f(x_k) \xrightarrow{k\to\infty} f(a) \right) $$
-            </div>
-            \(\forall(x_k)_{k\in\mathbb{N}}\) sorozatra, amely \(\text{Dom}(f)\)-ben halad.
-        </li>
-    </ul>
-</div>
-
-<div class="explanation">
-    <h3>6. Állítás (Szükséges feltételek az origóbeli határérték létezéséhez kétváltozós függvények esetén)</h3>
-    <p>Legyen \(f: \mathbb{R}^2 \dashrightarrow \mathbb{R}\) függvény, és tegyük fel, hogy a \(0\) belső pontja a \(\text{Dom}(f) \cup \{0\}\) halmaznak. Ha \(f\)-nek létezik határértéke a \(0\) pontban és \(b := \lim_{(x,y)\to(0,0)} f(x, y)\), akkor:</p>
-    <ul>
-        <li>\(\lim_{x\to0} f(x, 0) = b\),</li>
-        <li>\(\lim_{y\to0} f(0, y) = b\),</li>
-        <li>\(\lim_{x\to0} f(x, x) = b\),</li>
-        <li>Minden \(m \in \mathbb{R}\) esetén \(\lim_{x\to0} f(x, mx) = b\).</li>
-    </ul>
-</div>
-
-<div class="explanation">
-    <h3>7. Megjegyzés</h3>
-    <p>Egy \(f: \mathbb{R}^2 \dashrightarrow \mathbb{R}\) függvény origóbeli határértékének kiszámításához sokszor hasznos, ha az átviteli elv használatakor az origóhoz tartó \((x_k, y_k)_{k\in\mathbb{N}}\) pontsorozatot \((r_k \cos(\varphi_k), r_k \sin(\varphi_k))_{k\in\mathbb{N}}\) alakban írjuk fel, ahol \(r_k \xrightarrow{k\to\infty} 0\).</p>
-</div>
-</div>
-        </section>
-
-        <!-- 9. Gyakorlat -->
-        <section id="s9">
-            <h1>9. Parciális Derivált & Gradiens</h1>
-            <div class="card glass">
-<h1>9. feladatsor elméleti összefoglaló</h1>
-
-<h3>1. Definíció.</h3>
-<p>
-    Legyen \( f : \mathbb{R}^n \to \mathbb{R} \) függvény, és \( a \in \mathrm{Dom}(f) \). Ha az
-</p>
-<div class="formula">
-$$ \mathbb{R} \to \mathbb{R}; \quad x \mapsto f(a_1, \dots, a_{i-1}, x, a_{i+1}, \dots, a_n) $$
-</div>
-<p>
-    függvény differenciálható \( a_i \)-ben, akkor azt mondjuk, hogy \( f \)-nek <strong>létezik az \( i \)-edik változó szerinti parciális deriváltja az \( a \) pontban</strong>, és a fenti függvény \( a_i \) pontbeli deriváltját az \( f \) függvény \( a \) pontbeli \( i \)-edik változó szerinti parciális deriváltjának nevezzük, továbbá a \( (\partial_i f)(a) \), \( f'_i(a) \), \( f'_{x_i}(a) \) szimbólumok valamelyikével jelöljük.
-</p>
-
-<h3>2. Definíció.</h3>
-<p>
-    Azt mondjuk, hogy az \( f : \mathbb{R}^n \to \mathbb{R} \) függvény <strong>(totálisan) differenciálható</strong> \( a \)-ban, ha \( a \) belső pontja \( \mathrm{Dom}(f) \)-nek, és létezik olyan \( A \in \mathbb{R}^n \), amelyre teljesül, hogy
-</p>
-<div class="formula">
-$$ \lim_{x \to a} \frac{f(x) - f(a) - \langle A, x - a \rangle}{\|x - a\|} = 0. $$
-</div>
-<p>
-    Ekkor \( A \)-t az \( f \) függvény \( a \) pontbeli (totális) deriváltjának nevezzük, és a \( \mathrm{grad}f(a) \), \( f'(a) \), \( (Df)(a) \) szimbólumok valamelyikével jelöljük.
-</p>
-
-<h3>3. Definíció.</h3>
-<p>
-    Legyen \( f : \mathbb{R}^2 \to \mathbb{R} \) differenciálható az \( (x_0, y_0) \in \mathrm{int}(\mathrm{Dom}(f)) \) pontban. Ekkor a
-</p>
-<div class="formula">
-$$ \partial_1 f(x_0, y_0)(x - x_0) + \partial_2 f(x_0, y_0)(y - y_0) - (z - f(x_0, y_0)) = 0 $$
-</div>
-<p>
-    egyenlettel értelmezett síkot az \( f \) függvény \( (x_0, y_0) \) pontbeli <strong>érintősíkjának</strong> nevezzük.
-</p>
-
-<h3>4. Állítás. (A totális deriválhatóság szükséges feltételei.)</h3>
-<p>
-    Legyen az \( f : \mathbb{R}^n \to \mathbb{R} \) függvény (totálisan) differenciálható \( a \)-ban. Ekkor
-</p>
-<ul>
-    <li>(i) \( f \) folytonos \( a \)-ban,</li>
-    <li>(ii) \( \forall i \in \{1, 2, \dots, n\} \) esetén létezik \( f \)-nek az \( i \)-edik változó szerinti parciális deriváltja \( a \)-ban és
-        <div class="formula">
-        $$ \mathrm{grad}f(a) = (\partial_1 f(a), \dots, \partial_n f(a)). $$
-        </div>
-    </li>
-</ul>
-
-<h3>5. Tétel. (A totális deriválhatóság elégséges feltétele.)</h3>
-<p>
-    Legyen \( f : \mathbb{R}^n \to \mathbb{R} \) függvény. Ha \( a \in \bigcap_{i=1}^n \mathrm{int}(\mathrm{Dom}(\partial_i f)) \) (azaz \( a \)-nak van olyan környezete, amelynek minden pontjában léteznek \( f \) parciális deriváltjai), és \( f \) minden parciális deriváltfüggvénye folytonos \( a \)-ban, akkor \( f \) (totálisan) differenciálható \( a \)-ban.
-</p>
-
-<h3>6. Definíció.</h3>
-<p>
-    Legyen \( f : \mathbb{R}^n \to \mathbb{R} \) függvény, \( a \in \mathrm{int}(\mathrm{Dom}(f)) \), és \( e \in \mathbb{R}^n \) olyan vektor, amelyre \( \|e\| = 1 \). Azt mondjuk, hogy az \( f \) függvény az \( a \) pontban az \( e \) irány mentén <strong>deriválható</strong>, ha a
-</p>
-<div class="formula">
-$$ \lim_{t \to 0^+} \frac{f(a + te) - f(a)}{t} $$
-</div>
-<p>
-    határérték létezik és véges. Ekkor ezt a számot az \( f \) függvény \( a \) pontbeli \( e \) irányú deriváltjának nevezzük, és a \( D_e f(a) \), \( \frac{df(a)}{de} \), \( \frac{\partial f(a)}{\partial e} \) szimbólumok valamelyikével jelöljük.
-</p>
-
-<h3>7. Állítás.</h3>
-<p>
-    Ha az \( f : \mathbb{R}^n \to \mathbb{R} \) függvény (totálisan) differenciálható az \( a \in \mathrm{int}(\mathrm{Dom}(f)) \) pontban, akkor minden \( e \in \mathbb{R}^n \) és \( \|e\| = 1 \) esetén \( f \) az \( e \) irány mentén deriválható az \( a \) pontban, és
-</p>
-<div class="formula">
-$$ D_e f(a) = \langle \mathrm{grad}f(a), e \rangle. $$
-</div>
-
-<h3>8. Állítás.</h3>
-<p>
-    Legyen \( f : \mathbb{R}^n \to \mathbb{R} \) olyan függvény, amely (totálisan) differenciálható az \( a \in \mathrm{int}(\mathrm{Dom}(f)) \) pontban, valamint legyen \( e \in \mathbb{R}^n \), amelyre \( \|e\| = 1 \) teljesül. Ekkor
-</p>
-<div class="formula">
-$$ -\|\mathrm{grad}f(a)\| \le D_e f(a) \le \|\mathrm{grad}f(a)\|. $$
-</div>
-
-<h3>9. Megjegyzés.</h3>
-<div class="explanation">
-    <p>
-        Legyen \( f \) olyan \( \mathbb{R}^n \to \mathbb{R} \) függvény, amely (totálisan) differenciálható az \( a \in \mathrm{int}(\mathrm{Dom}(f)) \) pontban, valamint legyen \( e \in \mathbb{R}^n \), amelyre \( \|e\| = 1 \) teljesül, illetve tegyük fel, hogy \( \mathrm{grad}f(a) \neq \mathbf{0} \). Jelölje \( \alpha \) a \( \mathrm{grad}f(a) \) és \( e \) vektorok szögét. Ekkor \( D_e f(a) = \|\mathrm{grad}f(a)\| \cos(\alpha) \), tehát
-    </p>
-    <div class="formula">
-    $$ \begin{align*}
-    D_e f(a) &= \|\mathrm{grad}f(a)\| \iff \alpha = 0, \\
-    D_e f(a) &= -\|\mathrm{grad}f(a)\| \iff \alpha = \pi, \\
-    D_e f(a) &= 0 \iff \alpha = \frac{\pi}{2}.
-    \end{align*} $$
-    </div>
-</div>
-</div>
-        </section>
-
-        <!-- 10. Gyakorlat -->
-        <section id="s10">
-            <h1>10. Szélsőértékek és Derivált Mátrixok</h1>
-            <div class="card glass">
 <!DOCTYPE html>
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <title>10. feladatsor elméleti összefoglaló</title>
+    <title>8. Gyakorlat - Elméleti Összefoglaló</title>
 </head>
 <body>
 
-<h1>10. feladatsor elméleti összefoglaló</h1>
+<h1>8. Gyakorlat - Elméleti Összefoglaló (Konyhanyelven)</h1>
 
-<h3>1. Tétel (Young-tétel)</h3>
-<p>Legyen \( f : \mathbb{R}^n \to \mathbb{R} \) függvény és tegyük fel, hogy minden \( i, j \in \{1, 2, \dots , n\} \) esetén \( a \in \text{int}(\text{Dom}(\partial_{j,i}f)) \) és \( \partial_{i,j}f \) folytonos az \( a \) pontban. Ekkor minden \( i, j \in \{1, 2, \dots , n\} \) esetén</p>
-<div class="formula">
-$$ \partial_{i,j}f(a) = \partial_{j,i}f(a) $$
-</div>
-
-<h3>2. Tétel</h3>
-<p>Legyen \( A \) egy \( n \times n \)-es szimmetrikus mátrix. Ekkor</p>
-<ul>
-    <li>\( A \) pozitív definit \(\iff\) \( A \) minden sajátértéke pozitív,</li>
-    <li>\( A \) negatív definit \(\iff\) \( A \) minden sajátértéke negatív,</li>
-    <li>\( A \) pozitív szemidefinit \(\iff\) \( A \) minden sajátértéke \(\ge 0\),</li>
-    <li>\( A \) negatív szemidefinit \(\iff\) \( A \) minden sajátértéke \(\le 0\),</li>
-    <li>\( A \) indefinit \(\iff\) \( A \)-nak létezik pozitív és negatív sajátértéke is.</li>
-</ul>
-
-<h3>3. Tétel</h3>
-<p>Legyen \( A = (a_{i,j})_{i,j=1}^n \) egy \( n \times n \)-es szimmetrikus mátrix, és minden \( k \in \{1, 2, \dots , n\} \) esetén jelölje \( D_k \) az \( (a_{i,j})_{i,j=1}^k \) mátrix determinánsát. Ekkor</p>
-<ul>
-    <li>\( A \) pozitív definit \(\iff\) minden \( k \in \{1, 2, \dots , n\} \) esetén \( D_k > 0 \),</li>
-    <li>\( A \) negatív definit \(\iff\) minden \( k \in \{1, 2, \dots , n\} \) esetén \( (-1)^k D_k > 0 \),</li>
-    <li>\( A \) pozitív szemidefinit \(\implies\) minden \( k \in \{1, 2, \dots , n\} \) esetén \( D_k \ge 0 \),</li>
-    <li>\( A \) negatív szemidefinit \(\implies\) minden \( k \in \{1, 2, \dots , n\} \) esetén \( (-1)^k D_k \ge 0 \).</li>
-</ul>
-
-<h3>4. Definíció</h3>
+<h3>1. Általánosított binomiális együttható (Kombinatorika kicsit másképp)</h3>
 <div class="explanation">
-    <p>Legyen \( f : \mathbb{R}^n \to \mathbb{R} \) függvény és tegyük fel, hogy minden \( i, j \in \{1, 2, \dots , n\} \) esetén \( a \in \text{int}(\text{Dom}(\partial_{i,j}f)) \) és \( \partial_{i,j}f \) folytonos az \( a \) pontban. Ekkor a (Young-tétel miatt szimmetrikus) \( (\partial_{j,i}f(a))_{i,j=1}^n \) mátrixot az \( f \) függvény <strong>Hesse-mátrixának</strong> nevezzük az \( a \) pontban, és \( H_f(a) \)-val jelöljük.</p>
+    <p>A jól ismert "n alatt a k" képletet kiterjeszthetjük olyan esetekre is, amikor a felső szám (nevezzük \(\alpha\)-nak) nem csak egész szám lehet, hanem akár tört vagy negatív szám is. Az alsó szám (\(k\)) továbbra is marad pozitív egész (vagy nulla).</p>
+    <ul>
+        <li>Ha \(k = 0\), akkor az eredmény mindig \(1\).</li>
+        <li>Ha \(k > 0\), akkor a képlet a következő:</li>
+    </ul>
+</div>
+<div class="formula">
+    $$ \binom{\alpha}{k} = \frac{\alpha \cdot (\alpha - 1) \cdot (\alpha - 2) \cdot \dots \cdot (\alpha - k + 1)}{k!} $$
+</div>
+<div class="explanation">
+    <p>Gyakorlatban ez azt jelenti, hogy fentről indulsz az \(\alpha\)-val, és k-szor vonsz ki belőle egyet, ezeket összeszorzod, majd elosztod \(k\) faktoriálisával (ami \(1 \cdot 2 \cdot \dots \cdot k\)).</p>
 </div>
 
-<h3>5. Tétel (Elégséges feltétel szélsőérték létezéséhez)</h3>
-<p>Legyen \( f : \mathbb{R}^n \to \mathbb{R} \) függvény és tegyük fel, hogy minden \( i, j \in \{1, 2, \dots , n\} \) esetén \( a \in \text{int}(\text{Dom}(\partial_{i,j}f)) \) és \( \partial_{i,j}f \) folytonos az \( a \) pontban. Ekkor</p>
-<ul>
-    <li>ha \( \text{grad} f(a) = 0 \) és \( H_f(a) \) negatív definit, akkor \( f \)-nek lokális maximuma van \( a \)-ban,</li>
-    <li>ha \( \text{grad} f(a) = 0 \) és \( H_f(a) \) pozitív definit, akkor \( f \)-nek lokális minimuma van \( a \)-ban,</li>
-    <li>ha \( \text{grad} f(a) = 0 \) és \( H_f(a) \) indefinit, akkor \( f \)-nek nincs lokális szélsőértéke \( a \)-ban.</li>
-</ul>
-
-<h3>6. Tétel</h3>
-<p>Ha az \( f = (f_1, f_2, \dots , f_m) : \mathbb{R}^n \to \mathbb{R}^m \) függvény differenciálható az \( a \) pontban, akkor</p>
+<h3>2. A Binomiális sor (Gyökvonás és törtek hatványsorba fejtése)</h3>
+<div class="explanation">
+    <p>Ezzel a trükkel az \((1+x)^\alpha\) alakú kifejezéseket (például gyökös kifejezéseket, mint \(\sqrt{1+x}\), vagy törteseket, mint \(\frac{1}{(1+x)^3}\)) át tudod alakítani egy végtelen összeggé (Taylor-sorrá).</p>
+    <p>Ez az összeg akkor működik ("konvergens"), ha \(x\) értéke \(-1\) és \(1\) közé esik (azaz \(x \in ]-1, 1[\)).</p>
+</div>
 <div class="formula">
-$$ f'(a) = \begin{pmatrix} 
-\partial_1 f_1(a) & \partial_2 f_1(a) & \dots & \partial_n f_1(a) \\
-\partial_1 f_2(a) & \partial_2 f_2(a) & \dots & \partial_n f_2(a) \\
-\vdots & \vdots & \ddots & \vdots \\
-\partial_1 f_m(a) & \partial_2 f_m(a) & \dots & \partial_n f_m(a)
-\end{pmatrix} $$
+    $$ (1+x)^\alpha = \sum_{k=0}^{\infty} \binom{\alpha}{k} x^k $$
 </div>
 
-<h3>7. Tétel (A függvénykompozíció differenciálása)</h3>
-<p>Legyen \( g : \mathbb{R}^n \to \mathbb{R}^m \) és \( f : \mathbb{R}^m \to \mathbb{R}^k \) függvény (\( k \in \mathbb{N}^+ \) rögzített), és tegyük fel, hogy \( g \) differenciálható az \( a \) pontban, és \( f \) differenciálható a \( g(a) \) pontban. Ekkor \( f \circ g \) differenciálható az \( a \) pontban és</p>
+<h3>3-4. Pontok (Vektorok) sorozatának konvergenciája és koordinátánkénti konvergencia</h3>
+<div class="explanation">
+    <p>Ha van egy ponthalmazod (vektorokból álló sorozat), és az a kérdés, hogy tartanak-e egy adott célponthoz, a szabály nagyon egyszerű: egy pontsorozat pontosan akkor tart egy célponthoz, ha <strong>koordinátánként külön-külön</strong> tartanak a megfelelő számok a célpont koordinátáihoz. Tehát az x-koordináták az x-hez, az y-koordináták az y-hoz tartanak, és így tovább.</p>
+</div>
 <div class="formula">
-$$ (f \circ g)'(a) = f'(g(a)) \cdot g'(a). $$
+    $$ x_k \to x \iff \text{minden } i \text{-re: } (x_k)_i \to x_i $$
+</div>
+
+<h3>5. Az átviteli elv (Sorozatokkal számolni a határértéket és a folytonosságot)</h3>
+<div class="explanation">
+    <p>Ez a tétel azt mondja ki, hogy ha egy függvénynek egy adott pontban van valamilyen határértéke, akkor <strong>bármilyen</strong> úton (bármilyen pontsorozattal) is közelítünk ehhez a ponthoz, a függvényértékek is mindig ugyanahhoz a határértékhez fognak tartani.</p>
+    <p>Ugyanez igaz a folytonosságra is: egy szép, szakadás nélküli függvény esetén a pontok közeledésével a kapott függvényértékek is közelednek a célpontban felvett tényleges értékhez.</p>
+</div>
+
+<h3>6. Határérték vizsgálata origóban (Többváltozós függvényeknél)</h3>
+<div class="explanation">
+    <p>Ha egy kétváltozós függvény (pl. \(f(x,y)\)) határértékét vizsgáljuk a \((0,0)\) pontban, és ha ott <strong>létezik</strong> egy konkrét szám (határérték), ahová a függvény tart, akkor ennek az értéknek <strong>függetlennek kell lennie attól, hogy milyen irányból</strong> közelítünk az origóhoz.</p>
+    <p>Ha a határérték \(b\), akkor ennek muszáj kijönnie, ha például:</p>
+    <ul>
+        <li>Csak az x-tengelyen mész az origóba: \(y=0, x \to 0\)</li>
+        <li>Csak az y-tengelyen mész az origóba: \(x=0, y \to 0\)</li>
+        <li>Sőt, <strong>bármilyen</strong> \(y = m \cdot x\) egyenesen (ahol \(m\) a meredekség) közeledsz az origóba!</li>
+    </ul>
+    <p><strong>FONTOS TRÜKK FELADATOKHOZ:</strong> Ha azt akarod belátni, hogy <strong>NINCS</strong> határérték az origóban, elég találnod két különböző egyenest (vagy utat, pl. \(y=x\) és \(y=2x\)), amik mentén máshova tart a függvény. Ha az eredmények különböznek, akkor a függvénynek nincs határértéke abban a pontban!</p>
+</div>
+
+<h3>7. Polárkoordinátás trükk (Ha az egyenesek cserbenhagynak)</h3>
+<div class="explanation">
+    <p>Ha meg akarod mutatni, hogy <strong>van</strong> határérték (mert mondjuk minden egyenesen ugyanaz jön ki, de még nem lehetsz biztos benne), sokszor beválik az origó körüli polárkoordináták használata.
+    Ilyenkor az \(x\) és \(y\) helyett bevezetjük az origótól mért távolságot (\(r\)) és a szöget (\(\varphi\)):</p>
+    <ul>
+        <li>\(x = r \cdot \cos(\varphi)\)</li>
+        <li>\(y = r \cdot \sin(\varphi)\)</li>
+    </ul>
+    <p>Ezután elég azt vizsgálni, hogy mi történik, ha \(r \to 0\) (vagyis megyünk be az origóba), miközben a \(\varphi\) szög tényleg bármi lehet. Ha a végeredmény <strong>független a szögtől</strong>, és tart egy fix számhoz, akkor megvan a határértékünk.</p>
+</div>
+
+<div class="example">
+    <h3>Példa: Határérték létezésének cáfolata egyenesek mentén</h3>
+    <div class="explanation">
+        <p><strong>Feladat:</strong> Vizsgáljuk meg, hogy létezik-e határértéke a következő függvénynek az origóban \((0,0)\)!</p>
+    </div>
+    <div class="formula">
+        $$ f(x,y) = \frac{x \cdot y}{x^2 + y^2} $$
+    </div>
+    <div class="explanation">
+        <p><strong>Megoldás lépésről lépésre:</strong></p>
+        <p>Használjuk a 6. pontban tanultakat! Nézzük meg, mi történik, ha különböző egyenesek mentén közelítünk az origóhoz. Az egyenesek egyenlete \(y = m \cdot x\), ahol \(m\) az egyenes meredeksége.</p>
+        <ol>
+            <li>Helyettesítsük be \(y\) helyére az \(m \cdot x\)-et a függvénybe:
+                $$ f(x, m \cdot x) = \frac{x \cdot (m \cdot x)}{x^2 + (m \cdot x)^2} $$
+            </li>
+            <li>Végezzük el a műveleteket és egyszerűsítsünk:
+                $$ f(x, m \cdot x) = \frac{m \cdot x^2}{x^2 + m^2 \cdot x^2} = \frac{m \cdot x^2}{x^2(1 + m^2)} = \frac{m}{1 + m^2} $$
+            </li>
+            <li>Vegyük észre, hogy az \(x\) teljesen kiesett! A határérték ahogy \(x \to 0\) egyszerűen \(\frac{m}{1 + m^2}\) marad.</li>
+            <li>Ez azt jelenti, hogy ha különböző meredekségű egyeneseken megyünk be az origóba, más-más eredményt kapunk:
+                <ul>
+                    <li>Ha \(m = 0\) (azaz az x-tengelyen megyünk be), az eredmény: \(\frac{0}{1+0} = 0\).</li>
+                    <li>Ha \(m = 1\) (azaz az \(y = x\) egyenesen megyünk be), az eredmény: \(\frac{1}{1+1} = \frac{1}{2}\).</li>
+                </ul>
+            </li>
+        </ol>
+        <p><strong>Következtetés:</strong> Mivel két különböző irányból közeledve két különböző eredményt kaptunk (\(0\) és \(\frac{1}{2}\)), ezért a függvénynek <strong>nem létezik</strong> határértéke az origóban!</p>
+    </div>
 </div>
 
 </body>
@@ -1199,74 +1217,331 @@ $$ (f \circ g)'(a) = f'(g(a)) \cdot g'(a). $$
 </div>
         </section>
 
+        <!-- 9. Gyakorlat -->
+        <section id="s9">
+            <h1>9. Parciális Derivált & Gradiens</h1>
+            <div class="card glass">
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>9. Gyakorlat Elmélet</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  body { font-family: sans-serif; line-height: 1.6; margin: 20px; }
+  .formula { background-color: #f4f4f4; padding: 10px; border-radius: 5px; text-align: center; margin: 15px 0; }
+  .explanation { background-color: #eaf2f8; padding: 15px; border-left: 4px solid #3498db; margin: 15px 0; }
+  .example { background-color: #fef9e7; padding: 20px; border: 1px solid #f4d03f; border-radius: 5px; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h1>9. Gyakorlat: Többváltozós függvények deriválása (konyhanyelven)</h1>
+
+<h3>1. Parciális deriváltak: "Csak az egyikre fókuszálunk"</h3>
+<p>Kétváltozós függvényeknél (pl. \(f(x,y)\)) kétféleképpen is deriválhatunk. Amikor az egyik változó szerint deriválunk, a másik változót úgy kezeljük, mintha csak egy sima szám (konstans) lenne. Ezt hívjuk <b>parciális deriválásnak</b>.</p>
+<ul>
+  <li><b>x szerinti derivált, jelölése \( f'_x \) vagy \( \partial_x f \):</b> Csak az \(x\)-et deriválod a tanult szabályok szerint, az \(y\)-t pedig úgy kezeled, mintha mondjuk egy 5-ös szám lenne.</li>
+  <li><b>y szerinti derivált, jelölése \( f'_y \) vagy \( \partial_y f \):</b> Itt fordítva; az \(x\)-et kezeled számként, és csak az \(y\)-t deriválod.</li>
+</ul>
+
+<h3>2. A Gradiens vektor: "A legmeredekebb irány"</h3>
+<p>A gradiens egy vektor, ami megmutatja, hogy egy adott pontból merre indulva nő a leggyorsabban a függvény értéke. Ezt egyszerűen úgy kapjuk meg, hogy egymás mellé tesszük az \(x\) és \(y\) szerinti parciális deriváltakat.</p>
+<div class="formula">
+$$ \text{grad} f(x,y) = (f'_x(x,y), f'_y(x,y)) $$
+</div>
+
+<h3>3. Érintősík: "A rásimuló lap"</h3>
+<p>Egydimenzióban érintőegyenesünk volt, itt a térben pedig egy érintősíkot tudunk ráilleszteni a függvény (mint hegyoldal) grafikonjára egy adott \((x_0, y_0)\) pontban.</p>
+<div class="explanation">
+  <b>Recept az érintősík felírásához egy \((x_0, y_0)\) pontban:</b>
+  <ol>
+    <li>Számold ki a függvényértéket a megadott pontban: \( z_0 = f(x_0, y_0) \).</li>
+    <li>Számold ki a parciális deriváltak értékét a pontban: \( A = f'_x(x_0, y_0) \) és \( B = f'_y(x_0, y_0) \).</li>
+    <li>Írd be ezeket a számokat az egyenletbe!</li>
+  </ol>
+</div>
+<div class="formula">
+$$ A(x - x_0) + B(y - y_0) - (z - z_0) = 0 $$
+</div>
+
+<h3>4. Totális deriválhatóság: "Szép és sima a felület"</h3>
+<p>Ha egy függvény totálisan deriválható, az a gyakorlatban azt jelenti, hogy "szép", nincsenek rajta hegyes csúcsok, törések vagy szakadások, tehát lehet hozzá érintősíkot húzni.</p>
+<div class="explanation">
+  <ul>
+    <li><b>Hogyan ellenőrizzük, hogy tutira szép-e? (Elégséges feltétel):</b> Számold ki a parciális deriváltakat. Ha ezek a kapott új függvények maguk is szépek, szakadás nélküliek (folytonosak), akkor az eredeti függvény tutira totálisan deriválható.</li>
+    <li><b>Fontos apróság:</b> Ha egy függvény totálisan deriválható, akkor biztosan folytonos, és biztosan vannak parciális deriváltjai. Viszont fordítva ez nem igaz: ha csak azt látjuk, hogy vannak parciális deriváltak, attól még lehet, hogy az a felület valahol mégis csúnya, és nem deriválható totálisan.</li>
+  </ul>
+</div>
+
+<h3>5. Iránymenti derivált: "Milyen meredek, ha arrafelé indulunk?"</h3>
+<p>Ha nem pont az \(x\) vagy \(y\) tengely mentén lépünk, hanem egy tetszőleges \( \mathbf{e} \) irányba, akkor az <b>iránymenti derivált</b> mutatja meg, hogy abba az irányba indulva mekkora a hegyoldal meredeksége.</p>
+<div class="explanation">
+  <b>Fontos szabályok:</b>
+  <ul>
+    <li>Az irányt jelző vektornak mindig <b>egységvektornak</b> kell lennie (vagyis a hossza 1 legyen). Ha a feladatban nem az (pl. v = (3,4)), akkor le kell osztani a hosszával!</li>
+    <li>Kiszámolni pofoszt egyszerű: ha a függvényünk "szép" (totálisan deriválható), akkor a gradienst és az irány-egységvektort kell skalárisan összeszorozni (első koordináta szorozva elsővel + második szorozva másodikkal).</li>
+  </ul>
+</div>
+<div class="formula">
+$$ D_{\mathbf{e}} f = \langle \text{grad} f, \mathbf{e} \rangle = f'_x \cdot e_1 + f'_y \cdot e_2 $$
+</div>
+
+<p><b>A gradiens szuperképességei (extrém esetek):</b></p>
+<ul>
+  <li><b>Legnagyobb növekedés:</b> Pontosan a gradiens vektor irányába indulva lesz a legmeredekebb a hegyoldal. Itt az iránymenti derivált a legnagyobb, értéke pedig pont a gradiens hossza: \( \|\text{grad} f\| \).</li>
+  <li><b>Legnagyobb csökkenés:</b> Ha a gradiensnek hátat fordítasz (180 fokkal ellentétes irány), akkor csökken a leggyorsabban a függvény értéke.</li>
+  <li><b>Szintvonalak haladása:</b> Ha a gradiensre merőlegesen (90 fok) sétálsz, akkor a függvény értéke ott nem változik, vagyis szintvonalon haladsz (az iránymenti derivált itt 0).</li>
+</ul>
+
+<div class="example">
+  <h3>Gyakorlati Példa: Érintősík és iránymenti derivált lépésről lépésre</h3>
+  <p>Legyen a függvényünk \( f(x,y) = x^2 y + 3y^2 \). Vizsgáljuk a \( P(1, 2) \) pontban!</p>
+  
+  <p><b>1. lépés: Függvényérték a pontban</b><br>
+  Behelyettesítünk: \( f(1,2) = 1^2 \cdot 2 + 3 \cdot 2^2 = 2 + 12 = 14 \).</p>
+
+  <p><b>2. lépés: Parciális deriváltak kiszámolása</b><br>
+  \(x\) szerint deriválva (\(y\)-t konstansnak tekintjük, pl. mint egy számot szorzóként):<br>
+  \( f'_x(x,y) = 2x \cdot y + 0 = 2xy \). <br>
+  Az \(x=1, y=2\) pontban: \( A = f'_x(1,2) = 2 \cdot 1 \cdot 2 = 4 \).</p>
+
+  <p>\(y\) szerint deriválva (\(x\)-et tekintjük számnak):<br>
+  \( f'_y(x,y) = x^2 \cdot 1 + 3 \cdot 2y = x^2 + 6y \). <br>
+  A pontban: \( B = f'_y(1,2) = 1^2 + 6 \cdot 2 = 1 + 12 = 13 \).</p>
+
+  <p><b>3. lépés: Gradiens felírása</b><br>
+  A gradiens vektorunk a pontban tehát: \( \text{grad} f(1,2) = (4, 13) \).</p>
+
+  <p><b>4. lépés: Érintősík egyenlete</b><br>
+  Használjuk a fenti receptet: \( A(x - x_0) + B(y - y_0) - (z - z_0) = 0 \).</p>
+  <div class="formula">
+  $$ 4(x - 1) + 13(y - 2) - (z - 14) = 0 $$
+  </div>
+  <i>(Ezt természetesen fel lehet bontani: \( 4x - 4 + 13y - 26 - z + 14 = 0 \Rightarrow 4x + 13y - z - 16 = 0 \))</i>
+
+  <p><b>5. lépés: Iránymenti derivált a \( \mathbf{v} = (3, 4) \) irányába</b><br>
+  A megadott vektor nem egységvektor! Számoljuk ki a hosszát (Pitagorasz-tétel): <br>
+  \( \|\mathbf{v}\| = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5 \).</p>
+  <p>Az irány-egységvektor (leosztunk a hosszal): \( \mathbf{e} = \left(\frac{3}{5}, \frac{4}{5}\right) \).</p>
+  <p>Végül az iránymenti derivált a gradiens \((4, 13)\) és az egységvektor skaláris szorzata:</p>
+  <div class="formula">
+  $$ D_{\mathbf{e}} f(1,2) = 4 \cdot \frac{3}{5} + 13 \cdot \frac{4}{5} = \frac{12}{5} + \frac{52}{5} = \frac{64}{5} = 12.8 $$
+  </div>
+  <p><b>Következtetés:</b> Ha a hegyoldalon az \((1,2)\) pontból elindulunk a \((3,4)\) vektor irányába, minden 1 egységnyi előrehaladással a magasságunk 12.8 egységet fog nőni.</p>
+</div>
+
+</body>
+</html>
+</div>
+        </section>
+
+        <!-- 10. Gyakorlat -->
+        <section id="s10">
+            <h1>10. Szélsőértékek és Derivált Mátrixok</h1>
+            <div class="card glass">
+<h1>10. Gyakorlat: Többváltozós függvények szélsőértéke és deriválása - Konyhanyelven</h1>
+
+<h3>1. Keresztbe deriválás (Young-tétel)</h3>
+<p>
+    Ha egy szép, szakadás nélküli függvényt kétszer deriválsz, mindegy, milyen sorrendben csinálod! 
+    Például, ha először \(x\)-szerint, utána \(y\)-szerint deriválsz, pontosan ugyanazt fogod kapni, mintha fordítva csináltad volna. Ez rengeteg időt spórolhat meg a számolásoknál.
+</p>
+<div class="formula">
+    $$ f_{xy}'' = f_{yx}'' $$
+</div>
+
+<h3>2. A Hesse-mátrix (A második deriváltak táblázata)</h3>
+<p>
+    A Hesse-mátrix nem más, mint a függvény összes lehetséges második deriváltjának egy táblázatba (mátrixba) rendezve. 
+    Kétváltozós esetben ez egy 2x2-es táblázat lesz:
+</p>
+<div class="formula">
+    $$ H = \begin{pmatrix} f_{xx}'' & f_{xy}'' \\ f_{yx}'' & f_{yy}'' \end{pmatrix} $$
+</div>
+
+<h3>3. Hogyan keressünk lokális szélsőértéket (minimumot vagy maximumot)?</h3>
+<div class="explanation">
+    A szélsőérték keresésének biztos receptje kétváltozós függvényekhez (az ún. többváltozós optimalizálás):
+    <ul>
+        <li><b>1. lépés: Keresd meg a gyanús pontokat!</b> Deriváld a függvényt \(x\)-szerint és \(y\)-szerint is, tedd mindkettőt egyenlővé nullával, és oldd meg a kapott egyenletrendszert. Ahol mindkét első derivált nulla, ott lehet szélsőérték. Ezeket a pontokat hívjuk "stacionárius pontoknak".</li>
+        <li><b>2. lépés: Számold ki a Hesse-mátrixot!</b> Készítsd el a második deriváltak táblázatát a fenti módszerrel.</li>
+        <li><b>3. lépés: Helyettesítsd be a gyanús pontokat!</b> Minden gyanús pont koordinátáit (\(x\) és \(y\)) helyettesíts be a Hesse-mátrixba.</li>
+        <li><b>4. lépés: Döntsd el, mi a helyzet!</b> (A determinánsok módszere). Számold ki a mátrix bal felső elemének az értékét (ez a \(D_1\)), és a teljes 2x2-es mátrix determinánsát (ez a \(D_2 = f_{xx}'' \cdot f_{yy}'' - (f_{xy}'')^2\)). 
+            <ul>
+                <li>Ha \(D_2 > 0\) és \(D_1 > 0\) \Rightarrow <b>Lokális minimum</b> (olyan, mint egy völgy alja).</li>
+                <li>Ha \(D_2 > 0\) és \(D_1 < 0\) \Rightarrow <b>Lokális maximum</b> (olyan, mint egy hegycsúcs).</li>
+                <li>Ha \(D_2 < 0\) \Rightarrow <b>Nyeregpont</b> (itt nincs szélsőérték, alakja olyan, mint egy ló nyerge).</li>
+                <li>Ha \(D_2 = 0\) \Rightarrow Pechünk van, ezzel a módszerrel nem tudjuk eldönteni, más trükk kell.</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<h3>4. Mátrixok "előjele" (Definitség)</h3>
+<p>
+    Amikor a Hesse-mátrixot vizsgáljuk a determinánsokkal, valójában a mátrix "előjelét" (szaknyelven: definitségét) nézzük:
+    <ul>
+        <li><b>Pozitív definit:</b> A mátrix "pozitívan" viselkedik (minden sajátértéke vagy az első pár fődeterminánsa pozitív: \(D_1>0, D_2>0\)). Ilyenkor az eredeti függvénynek <b>minimuma</b> van.</li>
+        <li><b>Negatív definit:</b> A mátrix "negatívan" viselkedik (\(D_1<0, D_2>0\), váltakozó előjelek). Ilyenkor a függvénynek <b>maximuma</b> van.</li>
+        <li><b>Indefinit:</b> Pozitív és negatív is egyszerre (kétváltozósnál \(D_2 < 0\)). Ekkor <b>nincs szélsőérték</b>, ez a nyeregpont.</li>
+    </ul>
+</p>
+
+<h3>5. A deriváltmátrix (Jacobi-mátrix)</h3>
+<p>
+    Ha van egy függvényed, ami több bemenetből több kimenetet csinál (például van egy \(f_1\) és egy \(f_2\) egyenleted is, amik \(x, y, z\) változóktól függnek), akkor a derivált már nem csak egy szám vagy egy vektor lesz, hanem egy mátrix. Egyszerűen csak fogod az összes kimeneti függvényt soronként, és mindegyiket lederiválod az összes változó szerint oszloponként.
+</p>
+
+<h3>6. Láncszabály mátrixokkal</h3>
+<p>
+    Hogyan deriválunk egymásba ágyazott függvényeket (pl. amikor az egyik függvény kimenete a másik bemenete lesz)?
+    Ugyanaz az elv, mint az egyváltozós mateknál a "külső függvény deriváltja szorozva a belső függvény deriváltjával" szabály, csak itt a deriváltmátrixokat (Jacobi-mátrixokat) kell összeszorozni a megfelelő sorrendben!
+</p>
+<div class="formula">
+    $$ (f \circ g)'(a) = f'(g(a)) \cdot g'(a) $$
+</div>
+
+<div class="example">
+    <h3>Példa: Szélsőérték keresése lépésről lépésre</h3>
+    <p>
+        Keressük meg az \( f(x,y) = x^2 + y^2 - 2x - 4y + 5 \) függvény lokális szélsőértékeit!
+    </p>
+    <div class="explanation">
+        <b>1. lépés: Keresd meg a gyanús pontokat! (Első deriváltak nullává tétele)</b><br>
+        Deriváljuk a függvényt \(x\) és \(y\) szerint:
+        <ul>
+            <li>\( f_x' = 2x - 2 \)</li>
+            <li>\( f_y' = 2y - 4 \)</li>
+        </ul>
+        Tegyük mindkettőt egyenlővé nullával, hogy megoldjuk az egyenletrendszert:
+        <div class="formula">
+            $$ 2x - 2 = 0 \implies x = 1 $$
+            $$ 2y - 4 = 0 \implies y = 2 $$
+        </div>
+        Tehát az egyetlen gyanús pontunk (stacionárius pont): \( P(1, 2) \). Ez az a pont, ahol érdemes tovább kutakodni.
+        <br><br>
+        
+        <b>2. lépés: Számold ki a Hesse-mátrixot! (Második deriváltak)</b><br>
+        Deriváljuk le újra az első deriváltakat:
+        <ul>
+            <li>\( f_{xx}'' = 2 \) (a \(2x - 2\)-t deriváltuk ismét \(x\)-szerint)</li>
+            <li>\( f_{yy}'' = 2 \) (a \(2y - 4\)-t deriváltuk ismét \(y\)-szerint)</li>
+            <li>\( f_{xy}'' = 0 \) (a \(2x - 2\)-t deriváltuk most \(y\)-szerint)</li>
+            <li>\( f_{yx}'' = 0 \) (a \(2y - 4\)-t deriváltuk most \(x\)-szerint, és lám, a Young-tétel tényleg működik!)</li>
+        </ul>
+        A Hesse-mátrixunk összeállt:
+        <div class="formula">
+            $$ H = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} $$
+        </div>
+        <br>
+        
+        <b>3. lépés: Helyettesítsünk be és döntsük el a típust!</b><br>
+        Mivel a Hesse-mátrixunkban nincsenek \(x\) és \(y\) változók (csak konstans számok), így a \(P(1,2)\) pontban is pontosan ugyanígy néz ki.
+        Nézzük a determinánsokat:
+        <ul>
+            <li>Bal felső elem: \( D_1 = 2 \), ami pozitív (\( > 0 \)).</li>
+            <li>A teljes mátrix determinánsa (főátló szorzata mínusz mellékátló szorzata): \( D_2 = 2 \cdot 2 - 0 \cdot 0 = 4 \), ami szintén pozitív (\( > 0 \)).</li>
+        </ul>
+        Mivel \(D_2 > 0\) és \(D_1 > 0\), a mátrix <b>pozitív definit</b>. A fenti "receptünk" alapján ez azt jelenti, hogy a \( P(1, 2) \) pontban a függvénynek egy szép <b>lokális minimuma</b> van.
+    </div>
+</div>
+</div>
+        </section>
+
         <!-- 11. Gyakorlat -->
         <section id="s11">
             <h1>11. Kétváltozós integrál és Polártranszformáció</h1>
             <div class="card glass">
-<h1>11. feladatsor – Elméleti összefoglaló</h1>
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>11. Gyakorlat: Kettős integrálok</title>
+</head>
+<body>
 
-<h3>1. Tétel (Fubini-tétel téglán)</h3>
+<h1>11. Gyakorlat: Kettős integrálok kiszámítása</h1>
+
+<h3>1. Integrálás téglalapon (Fubini-tétel)</h3>
 <div class="explanation">
-  <p>Ha az \(f : \mathbb{R}^2 \rightarrowtail \mathbb{R}\) függvény Riemann-integrálható a \(T := [a, b] \times [c, d]\) téglán, és az \(\mathbb{R} \rightarrowtail \mathbb{R}; y \mapsto f(x, y)\) függvény Riemann-integrálható \([c, d]\)-n minden \(x \in [a, b]\) esetén, akkor az \(\mathbb{R} \rightarrowtail \mathbb{R}; x \mapsto \int_c^d f(x, y) \,dy\) függvény is (Riemann-)integrálható \([a, b]\)-n és:</p>
+<p>Amikor egy egyszerű téglalap alakú területen (például $x$ megy $a$-tól $b$-ig, $y$ pedig $c$-től $d$-ig) kell integrálni egy szép, szakadás nélküli $f(x,y)$ függvényt, akkor a kettős integrált két darab sima egyváltozós integrállá tudjuk bontani.</p>
 </div>
 <div class="formula">
-  $$ \int_T f = \int_a^b \left( \int_c^d f(x, y) \,dy \right) \,dx $$
+$$ \iint_T f(x,y) \,dx\,dy = \int_a^b \left( \int_c^d f(x,y) \,dy \right) dx = \int_c^d \left( \int_a^b f(x,y) \,dx \right) dy $$
+</div>
+<div class="explanation">
+<p><strong>Recept:</strong> Teljesen mindegy, hogy először $x$-szerint, vagy $y$-szerint integrálsz. Csináld meg a belső integrált úgy, mintha a másik változó csak egy konstans szám lenne, utána pedig a kapott eredményt integráld le a külső változó szerint.</p>
 </div>
 
-<h3>2. Megjegyzés</h3>
+<h3>2. Integrálás normáltartományon</h3>
 <div class="explanation">
-  <p>Ha \(f\) folytonos \(T\)-n, akkor a tétel feltételei automatikusan teljesülnek és:</p>
+<p>Sokszor a terület, ami felett integrálunk, nem egy szép téglalap, hanem mondjuk az $x$ tengelyen rögzített két szám ($a$ és $b$) között van, de az $y$ értékeit alulról és felülről egy-egy függvény ($g(x)$ és $h(x)$) határolja. Ezt hívjuk normáltartománynak.</p>
 </div>
 <div class="formula">
-  $$ \int_T f = \int_a^b \left( \int_c^d f(x, y) \,dy \right) \,dx = \int_c^d \left( \int_a^b f(x, y) \,dx \right) \,dy $$
+$$ \iint_{H_1} f(x,y) \,dx\,dy = \int_a^b \left( \int_{g(x)}^{h(x)} f(x,y) \,dy \right) dx $$
+</div>
+<div class="explanation">
+<p><strong>Recept:</strong> Ilyenkor <strong>mindig</strong> a függvényekkel határolt változó szerint kell először integrálni (ez lesz a belső integrál). A belső integrál határai a függvények lesznek, a külsőé pedig a fix számok. Természetesen fordítva is működik, ha $y$ van két szám között, és $x$-et határolja két függvény.</p>
 </div>
 
-<h3>3. Tétel (Integrálás normáltartományon)</h3>
+<h3>3. Integráltranszformáció és a Jacobi-determináns</h3>
 <div class="explanation">
-  <p>Legyen \(a, b \in \mathbb{R}, a < b\), továbbá \(g, h : \mathbb{R} \to \mathbb{R}\) folytonos függvények, amelyekre minden \(x \in \mathbb{R}\) esetén \(g(x) \le h(x)\) teljesül, és</p>
-  <ul>
-    <li>\(H_1 := \{ (x, y) \in \mathbb{R}^2 \mid x \in [a, b], g(x) \le y \le h(x) \}\)</li>
-    <li>\(H_2 := \{ (x, y) \in \mathbb{R}^2 \mid y \in [a, b], g(y) \le x \le h(y) \}\)</li>
-  </ul>
-  <ul>
-    <li>Ha az \(f : \mathbb{R}^2 \rightarrowtail \mathbb{R}\) függvény folytonos a \(H_1\) halmazon, akkor \(f\) integrálható \(H_1\)-en, és
-      <div class="formula">
-        $$ \int_{H_1} f = \int_a^b \left( \int_{g(x)}^{h(x)} f(x, y) \,dy \right) \,dx $$
-      </div>
-    </li>
-    <li>Ha az \(f : \mathbb{R}^2 \rightarrowtail \mathbb{R}\) függvény folytonos a \(H_2\) halmazon, akkor \(f\) integrálható \(H_2\)-n, és
-      <div class="formula">
-        $$ \int_{H_2} f = \int_a^b \left( \int_{g(y)}^{h(y)} f(x, y) \,dx \right) \,dy $$
-      </div>
-    </li>
-  </ul>
-</div>
-
-<h3>4. Tétel (Integráltranszformáció)</h3>
-<div class="explanation">
-  <p>Legyen \(G \subseteq \mathbb{R}^2\) nyílt halmaz, és \(g : G \to \mathbb{R}^2\) folytonosan differenciálható függvény (azaz differenciálható \(G\)-n és a koordinátafüggvényeinek parciális deriváltjai folytonosak), továbbá \(H \subseteq \mathbb{R}^2\) Jordan-mérhető, \(H \subseteq G\), és tegyük fel, hogy \(g\) injektív az \(\operatorname{int} H\)-n. Ha az \(f : \mathbb{R}^2 \rightarrowtail \mathbb{R}\) függvény korlátos a \(g(H)\) halmazon, akkor</p>
+<p>Ha a terület nagyon csúnya, érdemes bevezetni új változókat (pl. $u$ és $v$), hogy visszakapjunk egy szép téglalapot vagy egyszerűbb alakzatot. Amikor áttérünk az új változókra, nem elég csak behelyettesíteni az új képleteket, hanem be kell szorozni a terület-torzulást mérő "korrekciós tényezővel" is. Ez a korrekciós tényező a Jacobi-determináns abszolút értéke.</p>
 </div>
 <div class="formula">
-  $$ \int_{g(H)} f(x, y) \,d(x, y) = \int_H f(g(u, v)) |\det g'(u, v)| \,d(u, v) $$
-</div>
-<div class="explanation">
-  <p>abban az értelemben, hogy ha az egyik oldal létezik, akkor a másik is és egyenlőek.</p>
+$$ \iint f(x,y) \,dx\,dy = \iint f(g(u,v)) \cdot \left| \det g'(u,v) \right| \,du\,dv $$
 </div>
 
-<h3>5. Tétel (Polártranszformáció)</h3>
+<h3>4. Polártranszformáció</h3>
 <div class="explanation">
-  <p>Legyen \(A \subseteq [0, +\infty[ \times [0, 2\pi]\) Jordan-mérhető, és</p>
-  <div class="formula">
-    $$ P : \mathbb{R}^2 \to \mathbb{R}^2; \quad (r, \varphi) \mapsto (r \cos(\varphi), r \sin(\varphi)). $$
-  </div>
-  <p>Ha az \(f : \mathbb{R}^2 \rightarrowtail \mathbb{R}\) függvény korlátos a \(P(A)\) halmazon, akkor</p>
+<p>A leggyakoribb transzformáció a polárkoordinátás helyettesítés. Ezt akkor érdemes használni, ha a terület kör, körcikk, vagy gyűrű alakú, illetve ha a függvényben megjelenik az $x^2 + y^2$ kifejezés.</p>
+<p><strong>Helyettesítés:</strong></p>
+<ul>
+    <li>$x = r \cos(\varphi)$</li>
+    <li>$y = r \sin(\varphi)$</li>
+    <li>Ilyenkor az összefüggésből adódóan: $x^2 + y^2 = r^2$</li>
+</ul>
+<p>A korrekciós tényező (Jacobi-determináns abszolút értéke) polárkoordináták esetén <strong>mindig $r$</strong>. Ezt sose felejtsd el odaírni az integrál végére!</p>
 </div>
 <div class="formula">
-  $$ \int_{P(A)} f(x, y) \,d(x, y) = \int_A f(r \cos(\varphi), r \sin(\varphi)) r \,d(r, \varphi) $$
+$$ \iint f(x,y) \,dx\,dy = \iint f(r \cos(\varphi), r \sin(\varphi)) \cdot r \,dr\,d\varphi $$
+</div>
+
+<div class="example">
+<h3>Példa: Térfogat számítása polárkoordinátákkal</h3>
+<div class="explanation">
+<p><strong>Feladat:</strong> Számítsuk ki az $f(x,y) = x^2 + y^2$ függvény integrálját (vagyis az alatta lévő térfogatot) azon a tartományon, ami egy origó középpontú, 2 sugarú kör!</p>
+<p><strong>1. Lépés: Határok felírása</strong><br>
+Mivel egy teljes körről van szó, a szög ($\varphi$) $0$-tól $2\pi$-ig megy. A sugár ($r$) pedig az origótól a kör széléig, azaz $0$-tól $2$-ig tart.</p>
+<p><strong>2. Lépés: Helyettesítés a függvénybe</strong><br>
+Tudjuk, hogy $x^2 + y^2 = r^2$.</p>
+<p><strong>3. Lépés: Az integrál felírása és kiszámítása</strong><br>
+Ne felejtsük el a szorzást a külső $r$-rel!</p>
+</div>
+<div class="formula">
+$$ \iint_T (x^2+y^2) \,dx\,dy = \int_0^{2\pi} \left( \int_0^2 r^2 \cdot r \,dr \right) d\varphi $$
 </div>
 <div class="explanation">
-  <p>abban az értelemben, hogy ha az egyik oldal létezik, akkor a másik is és egyenlőek.</p>
+<p>A belső integrál kiszámítása $r$ szerint:</p>
 </div>
+<div class="formula">
+$$ \int_0^2 r^3 \,dr = \left[ \frac{r^4}{4} \right]_0^2 = \frac{16}{4} - 0 = 4 $$
+</div>
+<div class="explanation">
+<p>Most integráljuk ezt a külső változó, $\varphi$ szerint:</p>
+</div>
+<div class="formula">
+$$ \int_0^{2\pi} 4 \,d\varphi = \left[ 4\varphi \right]_0^{2\pi} = 8\pi - 0 = 8\pi $$
+</div>
+<div class="explanation">
+<p>A végeredmény tehát $8\pi$. Látod, mennyivel egyszerűbb volt így, mintha a kör egyenletének gyökeivel ($\sqrt{4-x^2}$) kellett volna szenvedni a normáltartomány felírásakor!</p>
+</div>
+</div>
+
+</body>
+</html>
 </div>
         </section>
 
@@ -1274,67 +1549,97 @@ $$ (f \circ g)'(a) = f'(g(a)) \cdot g'(a). $$
         <section id="s12">
             <h1>12. Többváltozós integrál, Henger- és Gömbi koordináták</h1>
             <div class="card glass">
-<h1>12. feladatsor - elméleti összefoglaló</h1>
+<h1>12. Gyakorlat: Többszörös integrálok, henger- és gömbi koordináták</h1>
 
-<h3>1. Definíció</h3>
+<h3>1. Normáltartományok (Mettől meddig integráljunk?)</h3>
+<div class="explanation">
+<p>Konyhanyelven egy "normáltartomány" egy olyan szép, egybefüggő térrész, amit egyik irányból két konkrét szám (pl. egy sima intervallum), a többi irányból pedig "szép" függvények határolnak alulról és felülről.</p>
 <ul>
-    <li>
-        A \(H \subseteq \mathbb{R}\) halmaz 1-dimenziós normáltartomány, ha kompakt intervallum.
-    </li>
-    <li>
-        A \(H \subseteq \mathbb{R}^{n+1}\) halmaz \(n+1\)-dimenziós normáltartomány, ha létezik olyan \(H' \subseteq \mathbb{R}^n\) \(n\)-dimenziós normáltartomány, valamint \(g, h : \mathbb{R}^n \to \mathbb{R}\) folytonos függvények, amelyekre minden \(x \in H'\) esetén \(g(x) \le h(x)\) teljesül, és
-        <div class="formula">
-            $$ H = \{ (x, y) \in H' \times \mathbb{R} \mid g(x) \le y \le h(x) \} $$
-        </div>
-    </li>
+    <li>1-dimenzióban: ez egyszerűen egy véges vonalszakasz, mondjuk <code>[a, b]</code>.</li>
+    <li>Több dimenzióban: az alapját egy eggyel kisebb dimenziós normáltartomány adja, a magasságát pedig egy "alsó" és egy "felső" határoló függvény közé szorítjuk be. Tehát az utolsó változó (mondjuk a \(z\)) mindig két függvény, például egy "padló" és egy "plafon" közé esik.</li>
 </ul>
-
-<h3>2. Tétel (Integrálás normáltartományon)</h3>
-<p>
-    Legyen \(n \ge 2\) és \(H' \subseteq \mathbb{R}^{n-1}\) \(n-1\)-dimenziós normáltartomány, továbbá \(g, h : \mathbb{R}^{n-1} \to \mathbb{R}\) folytonos függvények, amelyekre minden \(x \in H'\) esetén \(g(x) \le h(x)\) teljesül, és
-</p>
-<div class="formula">
-    $$ H := \{ (x, y) \in H' \times \mathbb{R} \mid g(x) \le y \le h(x) \} $$
-</div>
-<p>
-    Ha az \(f : \mathbb{R}^n \to \mathbb{R}\) függvény folytonos a \(H\) halmazon, akkor \(f\) integrálható \(H\)-n, és
-</p>
-<div class="formula">
-    $$ \int_H f = \int_{H'} \left( \int_{g(x)}^{h(x)} f(x, y) \,dy \right) dx $$
+<p>Amikor integrálni szeretnénk egy ilyen tartományon, akkor a "plafon" és "padló" függvényeket tesszük be a belső integrál határaiba, a külső integrált pedig az alaptartomány felett számoljuk ki. Lényegében sorban egymás után számoljuk ki az integrálokat "belülről kifelé" haladva.</p>
 </div>
 
-<h3>3. Tétel (Henger koordinátázás)</h3>
-<p>
-    Legyen \(A \subseteq \mathbb{R}^+ \times [0, 2\pi] \times \mathbb{R}\) Jordan-mérhető és
-</p>
 <div class="formula">
-    $$ C : \mathbb{R}^3 \to \mathbb{R}^3; \quad (r, \varphi, z) \mapsto (r \cos(\varphi), r \sin(\varphi), z) $$
+$$ \iiint_H f(x, y, z) \,dz\,dy\,dx = \iint_{H'} \left( \int_{g(x,y)}^{h(x,y)} f(x, y, z) \,dz \right) \,dy\,dx $$
 </div>
-<p>
-    Ha az \(f : \mathbb{R}^3 \to \mathbb{R}\) függvény korlátos a \(C(A)\) halmazon, akkor
-</p>
-<div class="formula">
-    $$ \int_{C(A)} f(x, y, z) \,d(x, y, z) = \int_A f(r \cos(\varphi), r \sin(\varphi), z) \cdot r \,d(r, \varphi, z), $$
-</div>
+
+<h3>2. Hengerkoordináták (Hengerszerű alakzatokhoz)</h3>
 <div class="explanation">
-    <p>abban az értelemben, hogy ha az egyik oldal létezik, akkor a másik is és egyenlőek.</p>
+<p>Ha az integrálási tartományunk (a test, amin integrálunk) egy hengerhez, kúphoz, vagy paraboloidhoz hasonlít (tehát körszimmetrikus a Z-tengely körül), érdemes áttérni hengerkoordinátákra. Ezzel sokkal könnyebbé válnak az integrálási határok.</p>
+<p>Ilyenkor a hagyományos \(x\), \(y\) és \(z\) koordináták helyett ezeket használjuk:</p>
+<ul>
+    <li>\(r\): a Z-tengelytől való távolság (sugár)</li>
+    <li>\(\varphi\): az elfordulás szöge az X-tengelyhez képest (0 és \(2\pi\) között)</li>
+    <li>\(z\): a magasság (ez ugyanaz marad, mint eddig!)</li>
+</ul>
+<p>Az áttérés képletei (behelyettesítés a függvénybe):</p>
+<ul>
+    <li>\(x = r \cdot \cos(\varphi)\)</li>
+    <li>\(y = r \cdot \sin(\varphi)\)</li>
+    <li>\(z = z\)</li>
+</ul>
+<p><strong>FONTOS:</strong> Az integrál végére, a \(dz\,dy\,dx\) helyére mindig be kell szorozni egy \(r\)-rel! Ezt nevezzük Jacobi-determinánsnak, és kötelező kiegészítője az új koordinátáknak.</p>
 </div>
 
-<h3>4. Tétel (Gömbi koordinátázás)</h3>
-<p>
-    Legyen \(A \subseteq \mathbb{R}^+ \times [0, \pi] \times [0, 2\pi]\) Jordan-mérhető és
-</p>
 <div class="formula">
-    $$ S : \mathbb{R}^3 \to \mathbb{R}^3; \quad (r, \theta, \varphi) \mapsto (r \sin(\theta) \cos(\varphi), r \sin(\theta) \sin(\varphi), r \cos(\theta)) $$
+$$ \iiint_V f(x, y, z) \,dx\,dy\,dz = \iiint_V f(r \cos\varphi, r \sin\varphi, z) \cdot r \,dr\,d\varphi\,dz $$
 </div>
-<p>
-    Ha az \(f : \mathbb{R}^3 \to \mathbb{R}\) függvény korlátos az \(S(A)\) halmazon, akkor
-</p>
-<div class="formula">
-    $$ \int_{S(A)} f(x, y, z) \,d(x, y, z) = \int_A f(r \sin(\theta) \cos(\varphi), r \sin(\theta) \sin(\varphi), r \cos(\theta)) \cdot r^2 \sin(\theta) \,d(r, \theta, \varphi), $$
-</div>
+
+<h3>3. Gömbi koordináták (Gömbszerű alakzatokhoz)</h3>
 <div class="explanation">
-    <p>abban az értelemben, hogy ha az egyik oldal létezik, akkor a másik is és egyenlőek.</p>
+<p>Ha a testünk gömb vagy gömbcikk alakú, akkor a gömbi koordinátákat érdemes elővenni. Itt a térbeli pontokat az origótól való távolsággal és két szöggel írjuk le.</p>
+<ul>
+    <li>\(r\): az origótól mért távolság</li>
+    <li>\(\theta\): a Z-tengelytől mért "lehajlási" szög (0 és \(\pi\) között, a csúcsról indulva)</li>
+    <li>\(\varphi\): az XY-síkon az elfordulás szöge (0 és \(2\pi\) között)</li>
+</ul>
+<p>Az áttérés képletei:</p>
+<ul>
+    <li>\(x = r \cdot \sin(\theta) \cdot \cos(\varphi)\)</li>
+    <li>\(y = r \cdot \sin(\theta) \cdot \sin(\varphi)\)</li>
+    <li>\(z = r \cdot \cos(\theta)\)</li>
+</ul>
+<p><strong>FONTOS:</strong> Itt a szorzótényező (Jacobi-determináns) sokkal csúnyább, amit kötelező odabiggyeszteni az integrál végére: \(r^2 \sin(\theta)\) !</p>
+</div>
+
+<div class="formula">
+$$ \iiint_V f(x, y, z) \,dx\,dy\,dz = \iiint_V f(\dots) \cdot r^2 \sin(\theta) \,dr\,d\theta\,d\varphi $$
+</div>
+
+<div class="example">
+<h3>Példa: Félgömb térfogatának kiszámítása</h3>
+<p>Számoljuk ki a \(z \geq 0\) térfélbe eső, \(R\) sugarú origó középpontú félgömb térfogatát hármasintegrállal!</p>
+<p><strong>1. Lépés: Áttérés gömbi koordinátákra.</strong><br>
+Mivel egy origó középpontú félgömbről van szó, az új határaink a következők lesznek:
+<ul>
+    <li>A sugár az origótól indul és a gömb pereméig, \(R\)-ig megy: \(0 \leq r \leq R\)</li>
+    <li>Az XY-síkon teljesen körbemegyünk: \(0 \leq \varphi \leq 2\pi\)</li>
+    <li>A Z-tengely tetejétől csak az XY-síkig (vízszintesig) hajlunk le, így: \(0 \leq \theta \leq \frac{\pi}{2}\)</li>
+</ul>
+</p>
+<p><strong>2. Lépés: Az integrál felírása.</strong><br>
+Térfogatot úgy számolunk, hogy a konstans 1-et integráljuk le a test térfogatán. Ne felejtsük el a gömbi szorzót: \(r^2 \sin(\theta)\) !
+</p>
+<div class="formula">
+$$ V = \int_0^{2\pi} \int_0^{\pi/2} \int_0^R 1 \cdot r^2 \sin(\theta) \,dr\,d\theta\,d\varphi $$
+</div>
+<p><strong>3. Lépés: Belülről kifelé integrálunk.</strong><br>
+Először \(r\) szerint határozott integrált számítunk:
+</p>
+<div class="formula">
+$$ \int_0^R r^2 \,dr = \left[ \frac{r^3}{3} \right]_0^R = \frac{R^3}{3} $$
+</div>
+<p>Most \(\theta\) szerint, behelyettesítve az előző eredményt:</p>
+<div class="formula">
+$$ \int_0^{\pi/2} \frac{R^3}{3} \sin(\theta) \,d\theta = \frac{R^3}{3} \left[ -\cos(\theta) \right]_0^{\pi/2} = \frac{R^3}{3} \left( -\cos\left(\frac{\pi}{2}\right) - (-\cos(0)) \right) = \frac{R^3}{3} (0 - (-1)) = \frac{R^3}{3} $$
+</div>
+<p>Végül \(\varphi\) szerint:</p>
+<div class="formula">
+$$ \int_0^{2\pi} \frac{R^3}{3} \,d\varphi = \left[ \frac{R^3}{3} \varphi \right]_0^{2\pi} = \frac{R^3}{3} \cdot 2\pi = \frac{2\pi R^3}{3} $$
+</div>
+<p>Ez pont a jól ismert gömb térfogat képletének \(\left( \frac{4\pi R^3}{3} \right)\) a fele! Ezzel bizonyítottuk a térfogatot gömbi koordináták használatával.</p>
 </div>
 </div>
         </section>
@@ -1343,76 +1648,86 @@ $$ (f \circ g)'(a) = f'(g(a)) \cdot g'(a). $$
         <section id="s13">
             <h1>13. Fourier-sor és Fourier-transzformált</h1>
             <div class="card glass">
-<h1>13. feladatsor – elméleti összefoglaló</h1>
+<h1>13. gyakorlat: Fourier-sorok és Fourier-transzformáció</h1>
 
-<h3>1. Definíció</h3>
-<p>Legyen \( f : \mathbb{R} \to \mathbb{R} \) \( 2\pi \) szerint periodikus függvény, amely Riemann-integrálható a \( [-\pi, \pi] \) intervallumon, továbbá minden \( k \in \mathbb{N} \) esetén</p>
-<div class="formula">
-$$ a_k(f) := \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos(kx) \,\mathrm{d}x \quad \text{és} \quad b_k(f) := \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin(kx) \,\mathrm{d}x $$
-</div>
-<p>és minden \( n \in \mathbb{N} \) esetén értelmezzük a következő függvényt</p>
-<div class="formula">
-$$ \Phi_n(f) : \mathbb{R} \to \mathbb{R}; \quad x \mapsto \frac{a_0(f)}{2} + \sum_{k=1}^{n} (a_k(f) \cos(kx) + b_k(f) \sin(kx)). $$
-</div>
-<p>Ekkor az \( (\Phi_n(f))_{n \in \mathbb{N}} \) függvénysort az \( f \) függvény <strong>Fourier-sorának</strong> nevezzük, az összegfüggvényét pedig \( \Phi(f) \)-fel jelöljük.</p>
-
-<h3>2. Megjegyzés</h3>
+<h3>1. Fourier-sorok (Mire valók és hogyan számoljuk?)</h3>
+<p>Képzeld el, hogy van egy \(2\pi\) szerint periodikusan ismétlődő függvényed, mint például egy hanghullám. A Fourier-sorok lényege, hogy bármilyen "szép" periodikus függvényt fel tudunk építeni egyszerű szinusz és koszinusz hullámok összegeként.</p>
 <div class="explanation">
-<p>Legyen \( f : \mathbb{R} \to \mathbb{R} \) \( 2\pi \) szerint periodikus függvény.</p>
-<ul>
-    <li>Ha \( f \) (véges sok pont kivételével) páros, akkor minden \( k \in \mathbb{N}^+ \) esetén \( b_k(f) = 0 \).</li>
-    <li>Ha \( f \) (véges sok pont kivételével) páratlan, akkor minden \( k \in \mathbb{N} \) esetén \( a_k(f) = 0 \).</li>
-    <li>Minden \( c \in \mathbb{R} \) és \( k \in \mathbb{N}^+ \) esetén \( a_k(f + c) = a_k(f) \) és \( b_k(f + c) = b_k(f) \).</li>
-</ul>
+  <p><strong>A recept a következő:</strong> Számoljuk ki az \(a_k\) és \(b_k\) együtthatókat, amik megmondják, hogy az adott szinuszból vagy koszinuszból mennyi kell a keverékbe.</p>
 </div>
 
-<h3>3. Tétel (Dirichlet-tétel)</h3>
-<p>Legyen \( f : \mathbb{R} \to \mathbb{R} \) \( 2\pi \) szerint periodikus függvény, amely integrálható a \( [-\pi, \pi] \) intervallumon. Tegyük fel, hogy \( [-\pi, \pi] \) felbontható úgy véges sok részintervallumra, hogy ezek belsejében \( f \) monoton és korlátos. Ekkor \( f \) Fourier-sora minden \( x \in \mathbb{R} \) pontban konvergens, és</p>
 <div class="formula">
-$$ (\Phi(f))(x) = \frac{f(x - 0) + f(x + 0)}{2}. $$
+  $$a_k = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos(kx) \, dx$$
 </div>
-
-<h3>4. Definíció</h3>
-<p>Legyen \( f : \mathbb{R} \to \mathbb{R} \) abszolút integrálható függvény. Ekkor az</p>
 <div class="formula">
-$$ \mathcal{F}(f) : \mathbb{R} \to \mathbb{C}; \quad \omega \mapsto \int_{-\infty}^{+\infty} e^{-i\omega x} f(x) \,\mathrm{d}x $$
+  $$b_k = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin(kx) \, dx$$
 </div>
-<p>függvényt az \( f \) függvény <strong>Fourier-transzformáltjának</strong> nevezzük.</p>
 
-<h3>5. Tétel</h3>
-<p>Legyenek \( f, g : \mathbb{R} \to \mathbb{R} \) abszolút integrálható függvények. Ekkor a következő állítások teljesülnek.</p>
-<ul>
-    <li>(a) Minden \( \alpha, \beta \in \mathbb{R} \) esetén
-        <div class="formula">
-        $$ \mathcal{F}(\alpha f + \beta g) = \alpha \mathcal{F}(f) + \beta \mathcal{F}(g), $$
-        </div>
-    </li>
-    <li>(b) Ha \( a \in \mathbb{R} \setminus \{0\} \), akkor minden \( \omega \in \mathbb{R} \) esetén
-        <div class="formula">
-        $$ \mathcal{F}\left(x \mapsto f\left(\frac{x}{a}\right)\right)(\omega) = |a|\mathcal{F}(f)(a\omega). $$
-        </div>
-    </li>
-    <li>(c) Ha \( x_0 \in \mathbb{R} \), akkor minden \( \omega \in \mathbb{R} \) esetén
-        <div class="formula">
-        $$ \mathcal{F}\left(x \mapsto f(x - x_0)\right)(\omega) = e^{-i\omega x_0}\mathcal{F}(f)(\omega). $$
-        </div>
-    </li>
-    <li>(d) Ha \( \omega_0 \in \mathbb{R} \), akkor minden \( \omega \in \mathbb{R} \) esetén
-        <div class="formula">
-        $$ \mathcal{F}\left(x \mapsto e^{i\omega_0 x}f(x)\right)(\omega) = \mathcal{F}(f)(\omega - \omega_0). $$
-        </div>
-    </li>
-    <li>(e) Ha \( \int_{-\infty}^{+\infty} |xf(x)| \,\mathrm{d}x < +\infty \), akkor \( \mathcal{F}(f) \) differenciálható és minden \( \omega \in \mathbb{R} \) esetén
-        <div class="formula">
-        $$ \mathcal{F}\left(x \mapsto xf(x)\right)(\omega) = i\mathcal{F}(f)'(\omega). $$
-        </div>
-    </li>
-    <li>(f) Ha \( f \) differenciálható és \( \int_{-\infty}^{+\infty} |f'(x)| \,\mathrm{d}x < +\infty \), akkor minden \( \omega \in \mathbb{R} \) esetén
-        <div class="formula">
-        $$ \mathcal{F}(f')(\omega) = i\omega\mathcal{F}(f)(\omega). $$
-        </div>
-    </li>
-</ul>
+<p>Ha megvannak az együtthatók, akkor a függvényt az alábbi végtelen összeg (Fourier-sor) közelíti:</p>
+<div class="formula">
+  $$\Phi(f)(x) = \frac{a_0}{2} + \sum_{k=1}^{\infty} \left( a_k \cos(kx) + b_k \sin(kx) \right)$$
+</div>
+
+<div class="explanation">
+  <p><strong>Trükkök, hogy kevesebbet kelljen számolni:</strong></p>
+  <ul>
+    <li>Ha a függvény <strong>páros</strong> (azaz szimmetrikus az y-tengelyre, pl. \(x^2\)), akkor tiszta koszinuszokból áll. Ilyenkor az összes <strong>\(b_k = 0\)</strong>, tehát megúszod a szinuszos integrálok számolását!</li>
+    <li>Ha a függvény <strong>páratlan</strong> (azaz szimmetrikus az origóra, pl. \(x^3\)), akkor tiszta szinuszokból áll. Ilyenkor az összes <strong>\(a_k = 0\)</strong>.</li>
+  </ul>
+</div>
+
+<h3>2. Dirichlet-tétel (Mi a helyzet, ha a függvény szakad?)</h3>
+<p>Ha a függvényed néhol ugrik (szakadása van), felmerül a kérdés: mit fog kiadni a Fourier-sor pontosan a szakadásnál? Melyik értéket veszi fel?</p>
+<div class="explanation">
+  <p>A válasz: a Fourier-sor igazságos! A szakadási pontban pontosan a bal és a jobb oldali határérték <strong>számtani közepét</strong> (átlagát) fogja kiadni.</p>
+</div>
+<div class="formula">
+  $$\Phi(f)(x) = \frac{f(x-0) + f(x+0)}{2}$$
+</div>
+
+<h3>3. Fourier-transzformáció (Ha a függvény nem ismétlődik)</h3>
+<p>Mi van akkor, ha a függvény nem periodikus, hanem mondjuk csak egyetlen egy púp az egész? Ilyenkor már nem elég a diszkrét \(k\) értékekkel számolni (nem sorunk lesz), hanem egy folytonos frekvenciaspektrumot kapunk, ezt hívják Fourier-transzformáltnak.</p>
+<div class="formula">
+  $$\mathcal{F}(f)(\omega) = \int_{-\infty}^{+\infty} e^{-i\omega x} f(x) \, dx$$
+</div>
+
+<div class="explanation">
+  <p><strong>Hasznos számolási szabályok:</strong></p>
+  <ul>
+    <li><strong>Linearitás:</strong> Szorzók kiemelhetők és az összeget tagonként lehet transzformálni. \(\mathcal{F}(\alpha f + \beta g) = \alpha \mathcal{F}(f) + \beta \mathcal{F}(g)\)</li>
+    <li><strong>Időbeli eltolás:</strong> Ha eltoljuk a függvényt \(x_0\)-lal, az a transzformáltban egy \(e^{-i\omega x_0}\) szorzót eredményez.</li>
+    <li><strong>Frekvenciabeli eltolás:</strong> Ha a függvényt beszorozzuk \(e^{i\omega_0 x}\)-szel, akkor a transzformált tolódik el \(\omega_0\)-lal.</li>
+    <li><strong>Deriválás szabály:</strong> Ha a függvényt deriválod (\(f'(x)\)), akkor a transzformáltat csak be kell szorozni \(i\omega\)-val! Ez a mérnöki gyakorlatban iszonyú hasznos, mert integrálás/deriválás helyett csak sima szorzást/osztást kell csinálni!</li>
+  </ul>
+</div>
+
+<div class="example">
+  <h3>Példa: A fűrészfog függvény Fourier-sora</h3>
+  <p>Nézzük meg, hogyan kell ezt a gyakorlatban alkalmazni! Legyen a függvényünk \(f(x) = x\) a \([-\pi, \pi]\) intervallumon, majd ismétlődjön \(2\pi\) szerint. Ez egy fűrészfog alakú hullám.</p>
+  
+  <p><strong>1. Lépés:</strong> Vegyük észre, hogy az \(f(x) = x\) egy páratlan függvény. Ez nagyszerű hír, mert így az összes \(a_k = 0\)! Nem kell koszinuszos integrálokkal szenvedni.</p>
+  
+  <p><strong>2. Lépés:</strong> Számoljuk ki a \(b_k\) együtthatókat parciális integrálással!</p>
+  <div class="formula">
+    $$b_k = \frac{1}{\pi} \int_{-\pi}^{\pi} x \sin(kx) \, dx$$
+  </div>
+  <p>Parciális integrálásnál legyen \(u = x\) és \(v' = \sin(kx)\). Ebből \(u' = 1\) és \(v = -\frac{\cos(kx)}{k}\).</p>
+  <div class="formula">
+    $$b_k = \frac{1}{\pi} \left( \left[ -x \frac{\cos(kx)}{k} \right]_{-\pi}^{\pi} - \int_{-\pi}^{\pi} -\frac{\cos(kx)}{k} \, dx \right)$$
+  </div>
+  <p>A második integrál egy koszinuszt integrál egy teljes periódusára, ami \(0\) lesz. A behelyettesítés a határokon pedig \(\cos(k\pi) = (-1)^k\) miatt a következőre egyszerűsödik:</p>
+  <div class="formula">
+    $$b_k = \frac{1}{\pi} \left( -\pi \frac{(-1)^k}{k} - \pi \frac{(-1)^k}{k} \right) = \frac{-2\pi (-1)^k}{\pi k} = \frac{2(-1)^{k+1}}{k}$$
+  </div>
+
+  <p><strong>3. Lépés:</strong> Írjuk fel a végeredményt!</p>
+  <div class="formula">
+    $$\Phi(f)(x) = \sum_{k=1}^{\infty} \frac{2(-1)^{k+1}}{k} \sin(kx)$$
+  </div>
+  <div class="explanation">
+    <p><strong>Plusz ellenőrzés a Dirichlet-tétellel:</strong> Mi történik pontosan \(x = \pi\)-nél? A függvény ott elpattan (a fűrész foga), balról \(\pi\), jobbról \(-\pi\) az értéke. A tétel szerint a Fourier-sor itt a kettő átlagát, vagyis \(0\)-t fog adni. És tényleg! Ha a képletbe beírod, hogy \(x = \pi\), akkor \(\sin(k\pi) = 0\), így az egész összeg szépen \(0\) lesz.</p>
+  </div>
+</div>
 </div>
         </section>
 
