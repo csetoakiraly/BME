@@ -1556,7 +1556,8 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 <nav class="flex flex-col p-4 space-y-2 pb-24 md:pb-4" id="main-nav">
 <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2 mt-6">Összefoglaló</div>
-<a class="nav-item" href="puska.html"><span class="font-bold text-sm">Puska (Képletek, Tételek)</span></a>
+<a class="nav-item" href="osszefoglalo.html"><span class="font-bold text-sm">Fejezeti Összefoglalók</span></a>
+                <a class="nav-item" href="puska.html"><span class="font-bold text-sm">Puska (Képletek, Tételek)</span></a>
 <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-4 py-2">Gráfelmélet</div>
 <a class="nav-item" href="index.html">
 <span class="theorem-num text-[10px] font-bold uppercase tracking-tighter opacity-50">
@@ -1794,11 +1795,6 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 </math-proof>
 </section>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-emerald-500/30 decoration-4 underline-offset-8 text-balance">
-        Kidolgozott feladat: Kritikus csúcsok vizsgálata
-    </h2>
-</div>
 <math-header>
 <div class="num-badge">2.6</div>
 <h2 class="text-balance">Minimális feszítőfa és a mohó algoritmus</h2>
@@ -1952,7 +1948,11 @@ document.addEventListener('DOMContentLoaded', () => {
         </li>
         <li class="flex items-start gap-3">
             <span class="text-emerald-500 mt-1">●</span>
-            <span><strong>Kritikus csúcsok:</strong> Minden összefüggő gráfból törölhető legalább egy csúcs (pl. egy feszítőfájának levele) úgy, hogy a gráf összefüggő maradjon.</span>
+            <span><strong>Szélességi bejárás (BFS):</strong> Olyan algoritmus, amely távolság szerint rétegenként fedezi fel a gráfot. Használatával legrövidebb utakat (lépésszámokat) találhatunk, valamint felépít egy BFS-fát (feszítőfát) lineáris $\mathcal{O}(n+m)$ időben.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-emerald-500 mt-1">●</span>
+            <span><strong>Minimális feszítőfa és Mohó algoritmus:</strong> Ha egy élhalmazt úgy bővítünk, hogy mindig a legkisebb súlyú, kört nem okozó élt választjuk (mohó stratégia), akkor a kapott fa garantáltan a gráf minimális összsúlyú feszítőfája lesz (pl. Kruskal-algoritmus).</span>
         </li>
     </ul>
 </div>
