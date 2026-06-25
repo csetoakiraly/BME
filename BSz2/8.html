@@ -2285,6 +2285,42 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 </section>
 
+<section class="mb-16 space-y-8 animate-fade-in" id="fejezeti-osszefoglalo">
+<div class="bg-orange-50/50 dark:bg-orange-900/10 border-2 border-orange-200 dark:border-orange-800 p-8 rounded-3xl shadow-sm">
+    <h3 class="text-2xl font-black text-orange-600 dark:text-orange-400 mb-6 italic">Fejezeti összefoglaló</h3>
+    <ul class="space-y-4 text-slate-700 dark:text-slate-300">
+        <li class="flex items-start gap-3">
+            <span class="text-orange-500 mt-1">●</span>
+            <span><strong>Hálózat és folyam:</strong> A hálózat egy irányított gráf forrással ($s$), nyelővel ($t$) és élkapacitásokkal. A folyam egy függvény, ami minden élen teljesíti a kapacitáskorlátot és a belső csúcsokban a folyammegmaradást (konzervációs szabály).</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-orange-500 mt-1">●</span>
+            <span><strong>Folyam értéke ($m_f$):</strong> A forrásból kijövő és oda visszatérő nettó folyammennyiség, amit a feladatokban maximalizálni szeretnénk.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-orange-500 mt-1">●</span>
+            <span><strong>Segédgráf és javítóút:</strong> A segédgráf előre- és visszaélei megmutatják, hol tudjuk a folyamot módosítani. Ha van $s$-ből $t$-be vezető út (javítóút), akkor a folyam értéke még tovább növelhető.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-orange-500 mt-1">●</span>
+            <span><strong>st-vágás és kapacitása:</strong> Olyan csúcshalmaz, amely elválasztja $s$-t és $t$-t. Kapacitása a belőle kilépő élek kapacitásának összege, mely a folyam felső korlátját adja.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-orange-500 mt-1">●</span>
+            <span><strong>Ford-Fulkerson tétel:</strong> A hálózatbéli maximális folyam értéke mindig megegyezik a minimális kapacitású vágás kapacitásával ($\max m_f = \min c(X)$).</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-orange-500 mt-1">●</span>
+            <span><strong>Edmonds-Karp tétel:</strong> Ha a javítóutas algoritmusban mindig a legrövidebb javítóutat választjuk, az algoritmus garantáltan polinomiális időben (legfeljebb $n \cdot m$ lépésben) megáll.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-orange-500 mt-1">●</span>
+            <span><strong>Egészértékűségi lemma:</strong> Amennyiben minden kapacitás egész szám, akkor létezik egész értékű maximális folyam, és a javítóutas algoritmussal pont egy ilyet fogunk találni.</span>
+        </li>
+    </ul>
+</div>
+</section>
+
 <div class="mt-24 p-12 border-2 border-dashed border-orange-500/30 rounded-[3rem] text-center transition-all bg-theme/5" id="complete-section-8">
 <h3 class="text-xl font-black text-theme mb-6 uppercase tracking-widest" id="complete-text-8">
             Mindent megtanultál?

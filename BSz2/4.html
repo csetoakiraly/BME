@@ -2212,6 +2212,37 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 </div>
 </section>
+<section class="mb-16 space-y-8 animate-fade-in" id="fejezeti-osszefoglalo">
+<div class="bg-yellow-50/50 dark:bg-yellow-900/10 border-2 border-yellow-200 dark:border-yellow-800 p-8 rounded-3xl shadow-sm">
+    <h3 class="text-2xl font-black text-yellow-600 dark:text-yellow-400 mb-6 italic">Fejezeti összefoglaló</h3>
+    <ul class="space-y-4 text-slate-700 dark:text-slate-300">
+        <li class="flex items-start gap-3">
+            <span class="text-yellow-500 mt-1">●</span>
+            <span><strong>Páros gráfok:</strong> Egy gráf akkor és csak akkor páros, ha csúcshalmaza két független halmazra bontható, ami azzal ekvivalens, hogy a gráf nem tartalmaz páratlan hosszú kört.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-yellow-500 mt-1">●</span>
+            <span><strong>Kromatikus szám ($\chi$):</strong> Az a legkisebb színmennyiség, amellyel a gráf csúcsai úgy színezhetők, hogy a szomszédosak különböző színűek legyenek. Értéke nem haladhatja meg a maximális fokszámnál eggyel nagyobb számot ($\chi(G) \le \Delta(G) + 1$).</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-yellow-500 mt-1">●</span>
+            <span><strong>Klikkszám ($\omega$):</strong> A legnagyobb teljes részgráf (klikk) csúcsainak száma. Minden gráfra érvényes, hogy $\omega(G) \le \chi(G)$.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-yellow-500 mt-1">●</span>
+            <span><strong>Háromszögmentes gráfok:</strong> Attól, hogy egy gráfban nincsenek háromszögek ($\omega(G)=2$), a kromatikus száma még tetszőlegesen nagy lehet (pl. Mycielski-konstrukció).</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-yellow-500 mt-1">●</span>
+            <span><strong>Intervallumgráfok:</strong> Olyan gráfok, amelyek csúcsai szakaszoknak feleltethetők meg, és szomszédságuk az intervallumok metszésével egyenértékű. Ezekre a gráfokra mindig $\omega(G) = \chi(G)$ (tökéletesek).</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-yellow-500 mt-1">●</span>
+            <span><strong>Mohó színezés:</strong> Általában nem garantál optimális színezést, de intervallumgráfoknál – ha az intervallumokat a bal oldali végpontjuk szerint növekvő sorrendben színezzük – pontosan az optimális ($\chi$) színszámot adja.</span>
+        </li>
+    </ul>
+</div>
+</section>
 <div class="mt-12 p-8 bg-yellow-500/10 border-2 border-dashed border-yellow-500/30 rounded-[2.5rem] text-center transition-all" id="complete-section-4">
 <h3 class="text-xl font-black text-yellow-600 dark:text-yellow-400 mb-4 uppercase" id="complete-text-4">
         Mindent megtanultál?

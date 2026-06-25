@@ -1892,13 +1892,72 @@ document.addEventListener('DOMContentLoaded', () => {
             Mivel minden csúcsot egyszer teszünk be egy $L_i$ listába és minden élet legfeljebb kétszer vizsgálunk meg (irányítatlan esetben), a bejárás teljes lépésszáma <strong class="text-emerald-600 dark:text-emerald-400">$\mathcal{O}(n + m)$</strong>.
         </p>
 </math-theorem>
-</section>
+
+<math-proof>
+<h4 class="text-red-600 dark:text-red-400 font-black mb-6 uppercase tracking-widest text-[10px] flex items-center">
+<span class="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+            Bizonyítás / Levezetés
+        </h4>
+<div class="space-y-6 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
+
+    <!-- Lépésszám / Távolság bizonyítás -->
+    <div class="p-5 bg-white/50 dark:bg-slate-900/40 rounded-xl border border-red-100 dark:border-red-900/20 shadow-sm">
+        <h5 class="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">1. Távolság helyessége (Teljes indukcióval)</h5>
+        <ul class="space-y-2 list-disc list-inside">
+            <li><strong>Alaplépés:</strong> Nyilván igaz $t=0$-ra, hiszen az $s$ startcsúcstól $0$ távolságra csak saját maga van.</li>
+            <li><strong>Indukciós lépés:</strong> Tegyük fel, hogy a $0, 1, \dots, t-1$ távolságú csúcsok pontosan a megfelelő táv értéket kapták meg. Mivel bekerültek az $L_{t-1}$ listába, később sorra kerülnek (aktívak lesznek). Amikor sorra kerülnek, a szomszédjaik, amiknek még $\infty$ a távolsága, mind megkapják a $t-1 + 1 = t$ értéket. Ezek pontosan azok a csúcsok, amik szomszédosak egy $t-1$ távolságúval, de ennél nem közelebbiek $s$-hez. Így a $t$ távolságú csúcsok pontosan a $t$ értéket kapják meg.</li>
+        </ul>
+    </div>
+
+    <!-- BFS-fa bizonyítás -->
+    <div class="p-5 bg-white/50 dark:bg-slate-900/40 rounded-xl border border-red-100 dark:border-red-900/20 shadow-sm">
+        <h5 class="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">2. A BFS-fa tulajdonsága</h5>
+        <p>A fát azok az élek alkotják, amik minden $v \neq s$ csúcsot az <code>előző(v)</code> csúccsal kötnek össze. Ez visszavezethető a feszítőfák tételére (1.26. Tétel): amikor az eljárás elér egy új $v$ csúcsot, és beállítja az <code>előző(v)</code>-t egy $u$-ra, akkor az $\{u, v\}$ él hozzáadása sosem hozhat létre kört, mert a $v$ csúcsot éppen most fedeztük fel. Így egy körmentes, összefüggő részgráf épül fel, ami az $s$-et tartalmazó komponens feszítőfája lesz.</p>
+    </div>
+
+    <!-- Futásidő bizonyítás -->
+    <div class="p-5 bg-white/50 dark:bg-slate-900/40 rounded-xl border border-red-100 dark:border-red-900/20 shadow-sm">
+        <h5 class="text-xs font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">3. A lépésszám elemzése</h5>
+        <p><strong>Szomszédsági listával:</strong> A külső ciklus ($L$ listák) minden csúcsra pontosan egyszer fut le. A belső ciklus (a csúcs szomszédainak vizsgálata) pedig minden élre összesen kétszer fut le (mivel minden élt mindkét végpontjából megvizsgálunk). Tehát az időigény egyenesen arányos a csúcsok és élek számának összegével: $\mathcal{O}(n + m)$, ami <strong>lineáris</strong>.</p>
+        <p class="mt-2 text-xs italic opacity-75">Megjegyzés: Szomszédsági mátrixszal az időigény $\mathcal{O}(n^2)$ lenne, mivel minden csúcsnál a teljes $n$ elemű sort át kellene nézni.</p>
+    </div>
+
+</div>
+</math-proof>
 <math-header>
 <div class="num-badge">2.8</div>
 
 </math-header>
 <section class="mb-16 animate-fade-in" id="section-2-8">
 </section>
+<section class="mb-16 space-y-8 animate-fade-in" id="fejezeti-osszefoglalo">
+<div class="bg-emerald-50/50 dark:bg-emerald-900/10 border-2 border-emerald-200 dark:border-emerald-800 p-8 rounded-3xl shadow-sm">
+    <h3 class="text-2xl font-black text-emerald-600 dark:text-emerald-400 mb-6 italic">Fejezeti összefoglaló</h3>
+    <ul class="space-y-4 text-slate-700 dark:text-slate-300">
+        <li class="flex items-start gap-3">
+            <span class="text-emerald-500 mt-1">●</span>
+            <span><strong>Fák definíciója:</strong> Egy gráfot fának nevezünk, ha összefüggő és nem tartalmaz kört.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-emerald-500 mt-1">●</span>
+            <span><strong>Levelek:</strong> A fa egyfokú csúcsai. Minden legalább két csúcsú fában van legalább két levél.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-emerald-500 mt-1">●</span>
+            <span><strong>Élszám ($m = n - 1$):</strong> Bármely $n$ csúcsú fának pontosan $n - 1$ éle van. Összefüggő gráfnál ez egy alsó, körmentesnél felső korlát az élszámra.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-emerald-500 mt-1">●</span>
+            <span><strong>Feszítőfa:</strong> Egy gráf olyan fa részgráfja, amely a gráf minden csúcsát tartalmazza. Feszítőfa pontosan akkor létezik, ha a gráf összefüggő.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-emerald-500 mt-1">●</span>
+            <span><strong>Kritikus csúcsok:</strong> Minden összefüggő gráfból törölhető legalább egy csúcs (pl. egy feszítőfájának levele) úgy, hogy a gráf összefüggő maradjon.</span>
+        </li>
+    </ul>
+</div>
+</section>
+
 <div class="mt-12 p-8 bg-emerald-500/10 border-2 border-dashed border-emerald-500/30 rounded-[2.5rem] text-center transition-all" id="complete-section-2">
 <h3 class="text-xl font-black text-emerald-600 dark:text-emerald-400 mb-4 uppercase" id="complete-text-2">
         Mindent megtanultál?

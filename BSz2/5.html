@@ -2215,6 +2215,38 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 </div>
 </section>
+<section class="mb-16 space-y-8 animate-fade-in" id="fejezeti-osszefoglalo">
+<div class="bg-rose-50/50 dark:bg-rose-900/10 border-2 border-rose-200 dark:border-rose-800 p-8 rounded-3xl shadow-sm text-left">
+    <h3 class="text-2xl font-black text-rose-600 dark:text-rose-400 mb-6 italic">Fejezeti összefoglaló</h3>
+    <ul class="space-y-4 text-slate-700 dark:text-slate-300">
+        <li class="flex items-start gap-3">
+            <span class="text-rose-500 mt-1">●</span>
+            <span><strong>Párosítási szám ($\nu$):</strong> A maximális méretű párosítás (független élek halmaza) éleinek száma. Bármely gráfban érvényes, hogy $\nu(G) \leq \tau(G)$.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-rose-500 mt-1">●</span>
+            <span><strong>Lefogó pontszám ($\tau$):</strong> A legkisebb méretű lefogó ponthalmaz (ami minden élet lefed) csúcsainak száma.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-rose-500 mt-1">●</span>
+            <span><strong>Függetlenségi szám ($\alpha$):</strong> A legnagyobb méretű független (egymással nem szomszédos) ponthalmaz csúcsainak száma. Izolált pont nélküli gráfokra $\alpha(G) \leq \rho(G)$.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-rose-500 mt-1">●</span>
+            <span><strong>Lefogó élszám ($\rho$):</strong> A legkisebb méretű lefogó élhalmaz éleinek száma (csak izolált pont nélküli gráfokra értelmezhető).</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-rose-500 mt-1">●</span>
+            <span><strong>Gallai-tételek:</strong> Minden $n$ csúcsú gráfban $\alpha(G) + \tau(G) = n$. Ha a gráfnak nincs izolált pontja, akkor az élekre is igaz: $\nu(G) + \rho(G) = n$.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-rose-500 mt-1">●</span>
+            <span><strong>Komplementaritás:</strong> Egy csúcshalmaz pontosan akkor lefogó ponthalmaz, ha a komplementere független ponthalmaz. Ebből következik az $\alpha(G) + \tau(G) = n$ egyenlőség.</span>
+        </li>
+    </ul>
+</div>
+</section>
+
 <div class="mt-12 p-8 bg-rose-500/10 border-2 border-dashed border-rose-500/30 rounded-[2.5rem] text-center transition-all" id="complete-section-5">
 <h3 class="text-xl font-black text-rose-600 dark:text-rose-400 mb-4 uppercase" id="complete-text-5">
         Mindent megtanultál?

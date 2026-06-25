@@ -2085,6 +2085,33 @@ Vegyünk egy $G=(V,E)$ összefüggő gráfot és egy $w: E \to \mathbb{R}$ súly
 </div>
 </div>
 </section>
+<section class="mb-16 space-y-8 animate-fade-in" id="fejezeti-osszefoglalo">
+<div class="bg-slate-50/50 dark:bg-slate-900/10 border-2 border-slate-200 dark:border-slate-800 p-8 rounded-3xl shadow-sm">
+    <h3 class="text-2xl font-black text-slate-600 dark:text-slate-400 mb-6 italic">Fejezeti összefoglaló</h3>
+    <ul class="space-y-4 text-slate-700 dark:text-slate-300">
+        <li class="flex items-start gap-3">
+            <span class="text-slate-500 mt-1">●</span>
+            <span><strong>k-szoros összefüggőség:</strong> Egy gráf $k$-szorosan él-összefüggő, ha $k-1$ él törlése után is összefüggő marad. $k$-szorosan pont-összefüggő, ha legalább $k+1$ csúcsa van, és $k-1$ csúcs törlése után is összefüggő marad.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-slate-500 mt-1">●</span>
+            <span><strong>Összefüggőségi számok:</strong> Az él-összefüggőségi szám ($\lambda(G)$) és a pont-összefüggőségi szám ($\kappa(G)$) a gráf stabilitását és hibatűrését mutatják meg. Kapcsolatukra teljesül: $\kappa(G) \le \lambda(G)$.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-slate-500 mt-1">●</span>
+            <span><strong>Menger tétele:</strong> Egy gráf pontosan akkor $k$-szorosan él-összefüggő (illetve pont-összefüggő), ha bármely két csúcsa között létezik $k$ darab éldiszjunkt (illetve pontdiszjunkt) út.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-slate-500 mt-1">●</span>
+            <span><strong>Konzervatív súlyozás:</strong> Olyan élsúlyozás irányított gráfban, ahol nem létezik negatív összsúlyú irányított kör. Ez az alapfeltétele a legrövidebb út létezésének.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-slate-500 mt-1">●</span>
+            <span><strong>Bellman-Ford algoritmus:</strong> Segítségével megtalálhatjuk egy forráspontból az összes többi csúcsba vezető legrövidebb utat, valamint alkalmas negatív összsúlyú körök detektálására is. A folyamat $O(n \cdot m)$ lépést igényel.</span>
+        </li>
+    </ul>
+</div>
+</section>
 <div class="mt-24 p-12 border-2 border-dashed border-slate-500/30 rounded-[3rem] text-center transition-all bg-theme/5" id="complete-section-10">
 <h3 class="text-xl font-black text-theme mb-6 uppercase tracking-widest" id="complete-text-10">
             Mindent megtanultál?

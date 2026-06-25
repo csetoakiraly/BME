@@ -2210,156 +2210,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 </math-proof>
 </section>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge">3.10</div>
-<h3 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-blue-500/30 decoration-4 underline-offset-8 text-balance italic">
-            Fejezeti összefoglaló: Euler vs. Hamilton
-        </h3>
-</div>
-</math-header>
-<section class="mb-16 space-y-8" id="section-3-10">
-</section>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge">3.11</div>
-<h2 class="text-2xl font-bold text-slate-800 dark:text-white underline decoration-blue-500/30 decoration-4 underline-offset-8">
-            Hamilton-út Tervező: A Csúcsok Bejárása
-        </h2>
-</div>
-</math-header>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="num-badge">3.12</div>
 
-</div>
-</math-header>
-<section class="mb-16 animate-fade-in" id="section-3-12">
-</section>
-<div class="mt-12 p-8 bg-blue-500/10 border-2 border-dashed border-blue-500/30 rounded-[2.5rem] text-center transition-all" id="complete-section-3">
-<h3 class="text-xl font-black text-blue-600 dark:text-blue-400 mb-4 uppercase" id="complete-text-3">
-        Mindent megtanultál?
-    </h3>
-<button class="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-lg transition-all active:scale-95" data-theme-color="blue" id="complete-btn-3" onclick="toggleChapterComplete(3)">
-        Igen! ✅
-    </button>
-</div>
-<style>
-    .node-visited { fill: #3b82f6 !important; stroke: white !important; stroke-width: 3px !important; }
-    .node-current { fill: #10b981 !important; stroke: white !important; stroke-width: 4px !important; r: 14 !important; }
-    .edge-active { stroke: #3b82f6 !important; stroke-width: 4px !important; opacity: 1 !important; stroke-dasharray: 0 !important; }
-    .node-potential { fill: #1e293b !important; stroke: #3b82f6 !important; stroke-width: 2px !important; }
-</style>
-<script>
-    const hSvg = document.getElementById('hamilton-svg');
-let hPath = []; // A bejárt csúcsok indexei
-const hNodes = [
-    { id: 0, x: 150, y: 30 },  { id: 1, x: 240, y: 80 }, 
-    { id: 2, x: 240, y: 180 }, { id: 3, x: 150, y: 230 },
-    { id: 4, x: 60, y: 180 },  { id: 5, x: 60, y: 80 },
-    { id: 6, x: 150, y: 90 },  { id: 7, x: 150, y: 160 }
-];
-
-const hEdges = [
-    [0,1], [1,2], [2,3], [3,4], [4,5], [5,0], // Külső kör
-    [0,6], [6,7], [7,3], [1,6], [4,7], [2,7], [5,6] // Belső élek
-];
-
-function renderHamilton() {
-    hSvg.innerHTML = '';
-    const lastNodeId = hPath.length > 0 ? hPath[hPath.length - 1] : null;
-
-    // 1. Élek
-    hEdges.forEach(edge => {
-        const u = hNodes[edge[0]];
-        const v = hNodes[edge[1]];
-        const isActive = hPath.some((nodeId, idx) => {
-            if (idx === 0) return false;
-            return (hPath[idx-1] === edge[0] && nodeId === edge[1]) || 
-                   (hPath[idx-1] === edge[1] && nodeId === edge[0]);
-        });
-
-        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        line.setAttribute("x1", u.x); line.setAttribute("y1", u.y);
-        line.setAttribute("x2", v.x); line.setAttribute("y2", v.y);
-        line.setAttribute("stroke", isActive ? "#3b82f6" : "#334155");
-        line.setAttribute("stroke-width", isActive ? "4" : "2");
-        if(isActive) line.setAttribute("class", "edge-active transition-all duration-500");
-        hSvg.appendChild(line);
-    });
-
-    // 2. Csúcsok
-    hNodes.forEach(node => {
-        const isVisited = hPath.includes(node.id);
-        const isCurrent = lastNodeId === node.id;
-        const isNeighbor = lastNodeId !== null && hEdges.some(e => 
-            (e[0] === lastNodeId && e[1] === node.id) || (e[1] === lastNodeId && e[0] === node.id)
-        );
-
-        const circ = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        circ.setAttribute("cx", node.x); circ.setAttribute("cy", node.y);
-        circ.setAttribute("r", isCurrent ? "14" : "10");
-        
-        let className = "";
-        if (isCurrent) className = "node-current";
-        else if (isVisited) className = "node-visited";
-        else if (isNeighbor || hPath.length === 0) className = "node-potential";
-        else className = "fill-slate-700 stroke-slate-600";
-
-        circ.setAttribute("class", className + " transition-all duration-300");
-        
-        circ.onclick = () => {
-            if (hPath.length === 0) {
-                hPath.push(node.id);
-            } else if (isNeighbor && !isVisited) {
-                hPath.push(node.id);
-            } else if (isVisited && node.id === hPath[0] && hPath.length === hNodes.length) {
-                // Hamilton-kör zárása
-                document.getElementById('hamilton-success').style.opacity = "1";
-            }
-            checkStatus();
-            renderHamilton();
-        };
-        hSvg.appendChild(circ);
-    });
-
-    document.getElementById('visited-count').innerText = hPath.length;
-}
-
-function checkStatus() {
-    if (hPath.length === 0) return;
-    const last = hPath[hPath.length - 1];
-    const unvisitedNeighbors = hEdges.filter(e => {
-        const neighbor = e[0] === last ? e[1] : (e[1] === last ? e[0] : null);
-        return neighbor !== null && !hPath.includes(neighbor);
-    });
-
-    const canCompleteCycle = hPath.length === hNodes.length && hEdges.some(e => 
-        (e[0] === hPath[0] && e[1] === last) || (e[1] === hPath[0] && e[0] === last)
-    );
-
-    if (unvisitedNeighbors.length === 0 && hPath.length < hNodes.length) {
-        document.getElementById('hamilton-alert').style.opacity = "1";
-    } else {
-        document.getElementById('hamilton-alert').style.opacity = "0";
-    }
-}
-
-function undoHamilton() {
-    hPath.pop();
-    document.getElementById('hamilton-success').style.opacity = "0";
-    renderHamilton();
-}
-
-function resetHamilton() {
-    hPath = [];
-    document.getElementById('hamilton-success').style.opacity = "0";
-    document.getElementById('hamilton-alert').style.opacity = "0";
-    renderHamilton();
-}
-
-renderHamilton();
-</script>
 <script>
     const eSvg = document.getElementById('euler-svg');
     const eLog = document.getElementById('euler-log');
@@ -2519,6 +2370,47 @@ renderHamilton();
         updateValidation();
     }
 </script>
+
+<section class="mb-16 space-y-8 animate-fade-in" id="fejezeti-osszefoglalo">
+<div class="bg-blue-50/50 dark:bg-blue-900/10 border-2 border-blue-200 dark:border-blue-800 p-8 rounded-3xl shadow-sm">
+    <h3 class="text-2xl font-black text-blue-600 dark:text-blue-400 mb-6 italic">Fejezeti összefoglaló</h3>
+    <ul class="space-y-4 text-slate-700 dark:text-slate-300">
+        <li class="flex items-start gap-3">
+            <span class="text-blue-500 mt-1">●</span>
+            <span><strong>Euler-vonalak:</strong> Az <em>Euler-séta</em> a gráf minden élét pontosan egyszer tartalmazza. Ha a séta zárt (visszatér a kezdőpontba), <em>Euler-körsétának</em> nevezzük.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-blue-500 mt-1">●</span>
+            <span><strong>Euler-tétel:</strong> Egy összefüggő gráfban Euler-körséta akkor és csak akkor létezik, ha minden csúcs foka páros. Euler-séta pedig akkor, ha legfeljebb két páratlan fokú csúcs van.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-blue-500 mt-1">●</span>
+            <span><strong>Hierholzer-algoritmus:</strong> Módszer Euler-körök megtalálására: vaktában keresünk egy kört, majd a kimaradt élekből újabb köröket keresünk, és azokat a közös pontoknál "bevarrjuk" a fő sétába.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-blue-500 mt-1">●</span>
+            <span><strong>Hamilton-vonalak:</strong> A <em>Hamilton-út</em> (illetve <em>Hamilton-kör</em>) a gráf összes csúcsát pontosan egyszer érintő út (vagy kör).</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-blue-500 mt-1">●</span>
+            <span><strong>Elégséges feltételek Hamilton-körre:</strong> 
+                <br>- <strong>Dirac-tétel:</strong> Ha egy $n \geq 3$ csúcsú egyszerű gráfban minden csúcs foka $\geq n/2$.
+                <br>- <strong>Ore-tétele:</strong> Ha egy $n \geq 3$ csúcsú egyszerű gráfban bármely két nemszomszédos csúcs fokszámának összege $\geq n$.
+            </span>
+        </li>
+    </ul>
+</div>
+</section>
+
+<div class="mt-12 p-8 bg-blue-500/10 border-2 border-dashed border-blue-500/30 rounded-[2.5rem] text-center transition-all" id="complete-section-3">
+    <h3 class="text-xl font-black text-blue-600 dark:text-blue-400 mb-4 uppercase" id="complete-text-3">
+        Mindent megtanultál?
+    </h3>
+    <button class="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-lg transition-all active:scale-95" data-theme-color="blue" id="complete-btn-3" onclick="markChapterComplete(3)">
+        Igen! ✅
+    </button>
+</div>
+
 </article>
 <script>
     function toggleBeadoModal() {

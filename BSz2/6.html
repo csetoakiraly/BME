@@ -2629,6 +2629,38 @@ document.addEventListener('DOMContentLoaded', initHallInteractive);
 </div>
 </section>
 
+<section class="mb-16 space-y-8 animate-fade-in" id="fejezeti-osszefoglalo">
+<div class="bg-stone-50/50 dark:bg-stone-900/10 border-2 border-stone-200 dark:border-stone-800 p-8 rounded-3xl shadow-sm">
+    <h3 class="text-2xl font-black text-stone-600 dark:text-stone-400 mb-6 italic">Fejezeti összefoglaló</h3>
+    <ul class="space-y-4 text-slate-700 dark:text-slate-300">
+        <li class="flex items-start gap-3">
+            <span class="text-stone-500 mt-1">●</span>
+            <span><strong>Javítóutak és alternáló utak:</strong> A javítóút olyan $M$-re nézve alternáló út, amely szabad $A$-beli csúcsból indul, és szabad $B$-beli csúcsban végződik. Segítségével a párosítás mérete élcserével növelhető.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-stone-500 mt-1">●</span>
+            <span><strong>Javítóutas algoritmus:</strong> Segítségével maximális párosítást kereshetünk. Az eljárás során javítóutakat keresünk, és azokon végighaladva növeljük a párosítás méretét, egészen addig, amíg már nincs több javítóút a gráfban.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-stone-500 mt-1">●</span>
+            <span><strong>Kőnig tétele:</strong> Páros gráfban a maximális párosítás éleinek száma megegyezik a minimális lefogó ponthalmaz csúcsainak számával ($\nu(G) = \tau(G)$). Ha nincs javítóút, a párosítás maximális.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-stone-500 mt-1">●</span>
+            <span><strong>Hall-tétel (Házasítási tétel):</strong> Egy páros gráfban ($G=(A,B;E)$) pontosan akkor létezik $A$-t lefedő párosítás, ha a csúcsok minden $X \subseteq A$ részhalmazának legalább annyi szomszédja van a $B$ halmazban, mint ahány eleme az $X$-nek ($|N(X)| \ge |X|$).</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-stone-500 mt-1">●</span>
+            <span><strong>Frobenius-tétel:</strong> Páros gráfban pontosan akkor van teljes párosítás (ami az összes csúcsot lefedi), ha $|A| = |B|$, és a Hall-feltétel minden részhalmazra teljesül.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-stone-500 mt-1">●</span>
+            <span><strong>Tutte tétele (Kitekintés):</strong> Általános (nem feltétlenül páros) gráfokban pontosan akkor létezik teljes párosítás, ha a gráf minden $X \subseteq V(G)$ csúcsrészhalmazára igaz, hogy a páratlan csúcsszámú komponensek száma az $X$ elhagyása után legfeljebb $|X|$.</span>
+        </li>
+    </ul>
+</div>
+</section>
+
 <div class="mt-24 p-12 border-2 border-dashed border-stone-500/30 rounded-[3rem] text-center transition-all bg-theme/5" id="complete-section-6">
 <h3 class="text-xl font-black text-theme mb-6 uppercase tracking-widest" id="complete-text-6">
             Mindent megtanultál?

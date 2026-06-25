@@ -2088,6 +2088,33 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="num-badge">1.14</div>
 
 </math-header>
+<section class="mb-16 space-y-8 animate-fade-in" id="fejezeti-osszefoglalo">
+<div class="bg-indigo-50/50 dark:bg-indigo-900/10 border-2 border-indigo-200 dark:border-indigo-800 p-8 rounded-3xl shadow-sm">
+    <h3 class="text-2xl font-black text-indigo-600 dark:text-indigo-400 mb-6 italic">Fejezeti összefoglaló</h3>
+    <ul class="space-y-4 text-slate-700 dark:text-slate-300">
+        <li class="flex items-start gap-3">
+            <span class="text-indigo-500 mt-1">●</span>
+            <span><strong>Gráfok alapjai:</strong> Az egyszerű gráf egy $G=(V, E)$ csúcs- és élhalmazból áll. A részgráfok törlésekkel (csúcs/él) kaphatók, a feszített részgráfoknál minden megmaradt él eredeti összeköttetése megmarad.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-indigo-500 mt-1">●</span>
+            <span><strong>Fokszámösszeg-tétel:</strong> Bármely gráfban a fokszámok összege mindig páros, pontosan az élszám kétszerese ($\sum d(v) = 2|E|$).</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-indigo-500 mt-1">●</span>
+            <span><strong>Komplementer és Izomorfia:</strong> A komplementer gráfban a korábban nem szomszédos csúcsok lesznek összekötve. Két gráf izomorf, ha szerkezetileg azonosak, így átrajzolhatók egymásba.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-indigo-500 mt-1">●</span>
+            <span><strong>Bejárások (Séta, Út, Kör):</strong> A séta éleket, az út csúcsokat nem ismétel. A kör olyan zárt séta, amely csak egyetlen csúcsot (a kezdőt/végpontot) ismétel, és ezáltal visszatér a kezdőpontba.</span>
+        </li>
+        <li class="flex items-start gap-3">
+            <span class="text-indigo-500 mt-1">●</span>
+            <span><strong>Összefüggőség és BFS:</strong> A gráf összefüggő, ha bármely két csúcsa között létezik út. A Szélességi bejárás (BFS) egy hatékony algoritmus a legrövidebb utak és az összefüggő komponensek keresésére.</span>
+        </li>
+    </ul>
+</div>
+</section>
 <div class="mt-12 p-8 bg-indigo-500/10 border-2 border-dashed border-indigo-500/30 rounded-[2.5rem] text-center transition-all" id="complete-section-1">
 <h3 class="text-xl font-black text-indigo-600 dark:text-indigo-400 mb-4 uppercase" id="complete-text-1">
         Mindent megtanultál?
