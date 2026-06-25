@@ -1092,24 +1092,6 @@ const graphKB = [
     target: "section-7-8-interactive", 
     color: "violet" 
 },
-{ 
-    title: "7.9 Összefoglaló Kvíz (Élszínezések)", 
-    keys: ["kvíz", "összefoglaló", "élszínezés kérdések", "vizing tétel gyakorlás", "kőnig élszínezés"], 
-    ans: "Interaktív összefoglaló kvíz a 7. fejezethez: Vizing-tétel, Kőnig élszínezési tétele, alsó becslések és reguláris páros gráfok tulajdonságai.", 
-    ref: "7.9", 
-    target: "section-7-9", 
-    color: "violet" 
-},
-{ 
-    title: "7.10 Gráf-mozaikok: Érdekességek (Élszínezés)", 
-    keys: ["érdekességek", "órarendkészítés", "Vizing jelentősége", "körmérkőzések", "páros gráfok előnye"], 
-    ans: "Érdekességek az élszínezés világából: az órarendkészítés matematikai háttere, a páros gráfok optimális színezhetősége és a páratlan létszámú bajnokságok fordulóinak száma.", 
-    ref: "7.10", 
-    target: "section-7-10", 
-    color: "violet" 
-},
-{ 
-    title: "8.1 A hálózat fogalma", 
     keys: ["hálózat definíciója", "kapacitás függvény", "forrás", "nyelő", "kapacitás"], 
     ans: "A hálózat egy olyan $(G,s,t,c)$ négyes, ahol G irányított gráf, s a forrás, t a nyelő, c pedig az élekhez nemnegatív kapacitásokat rendelő függvény.", 
     ref: "8.1", 
@@ -1974,66 +1956,6 @@ function resetEdgeColoring() {
 
 initGraph();
 </script>
-<math-header>
-<div class="flex items-center gap-4 mb-6 mt-12">
-<div class="flex-none bg-theme text-white font-black px-3 py-1 rounded-lg shadow-sm shadow-theme-500/20">
-            7.9
-        </div>
-
-</div>
-</math-header>
-<section class="mb-16 animate-fade-in" id="section-7-9">
-<div class="bg-[#1E0E3D] rounded-[3rem] p-8 md:p-12 border border-[#7C3AED]/30 shadow-2xl relative overflow-hidden group">
-<div class="absolute -right-20 -bottom-20 opacity-10 pointer-events-none group-hover:scale-110 transition-transform duration-700 text-white">
-<svg fill="currentColor" height="400" viewbox="0 0 24 24" width="400">
-<path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2zm-4 11a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
-</svg>
-</div>
-<div class="relative z-10 text-left">
-<div class="flex items-center gap-4 mb-10">
-<div class="p-3 bg-[#7C3AED] rounded-2xl shadow-lg shadow-[#7C3AED]/40 text-white">
-<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
-<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</div>
-<div>
-<h3 class="text-2xl font-black text-white italic tracking-tight">Kromatikus Összefüggések</h3>
-<p class="text-violet-300/60 text-sm italic">Vidd az egeret a kártyák fölé a helyes válaszért!</p>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-<p class="text-violet-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#01 Alsó becslés</p>
-<p class="text-white font-bold italic leading-relaxed text-balance">Milyen univerzális alsó korlát adható az élkromatikus számra a fokszám alapján?</p>
-<div class="mt-4 pt-4 border-t border-white/10 text-violet-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
-                        Válasz: Minden hurokélmentes gráfra $\Delta(G) \leq \chi_e(G)$ teljesül, mivel a maximális fokszámú csúcs élei mind különböző színt igényelnek.
-                    </div>
-</div>
-<div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-<p class="text-violet-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#02 Vizing-tétel</p>
-<p class="text-white font-bold italic leading-relaxed">Hányféle értéket vehet fel egy egyszerű gráf élkromatikus száma a maximális fokszám függvényében?</p>
-<div class="mt-4 pt-4 border-t border-white/10 text-violet-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
-                        Válasz: Legfeljebb kétfélét: vagy $\Delta(G)$, vagy $\Delta(G) + 1$. Ez Vizing tételének közvetlen következménye.
-                    </div>
-</div>
-<div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-<p class="text-violet-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#03 Páros gráfok</p>
-<p class="text-white font-bold italic leading-relaxed">Mennyi a páros gráfok élkromatikus száma?</p>
-<div class="mt-4 pt-4 border-t border-white/10 text-violet-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
-                        Válasz: Kőnig tétele szerint páros gráfok esetén az alsó becslés pontos: $\chi_e(G) = \Delta(G)$.
-                    </div>
-</div>
-<div class="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all cursor-help group/q shadow-sm">
-<p class="text-violet-400 text-[10px] font-black uppercase tracking-[0.2em] mb-3">#04 Teljes párosítás</p>
-<p class="text-white font-bold italic leading-relaxed text-balance">Milyen garanciát ad a regularitás a párosításokra nézve?</p>
-<div class="mt-4 pt-4 border-t border-white/10 text-violet-200 font-bold text-sm opacity-0 group-hover/q:opacity-100 transition-opacity">
-                        Válasz: Minden $d \geq 1$ reguláris páros gráfban biztosan létezik teljes párosítás.
-                    </div>
-</div>
-</div>
-</div>
-</div>
-</section>
 
 <section class="mb-16 space-y-8 animate-fade-in" id="fejezeti-osszefoglalo">
 <div class="bg-violet-50/50 dark:bg-violet-900/10 border-2 border-violet-200 dark:border-violet-800 p-8 rounded-3xl shadow-sm">
