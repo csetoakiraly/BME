@@ -1398,12 +1398,22 @@ A $G$ (irányított vagy irányítatlan) gráfban egy kereszteződésekből áll
 </div>
 </math-def><math-theorem>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-4">
-<b>Menger-tétel pontokra (egyirányú utcák):</b> Ha van egy $G$ irányított gráfod az $s, t \in V(G)$ különböző csúcsokkal, és az indulásból ($s$) nincs közvetlen expressz járat a célba ($t$), akkor ahány teljesen független, még csak nem is keresztező <b>pontdiszjunkt</b> útvonalat találsz ($\kappa_G(s,t)$), pontosan annyi csomópontot kell minimálisan blokkolni ahhoz, hogy lehetetlenné tedd az utazást.
+<b>10.8. Tétel (Menger irányított pontváltozat):</b> Legyen adott a $G$ irányított gráf, az $s, t \in V(G)$ különböző csúcsok, amelyekre $(s,t) \notin E(G)$ és a $k \ge 1$ egész. Ekkor az alábbi állítások ekvivalensek:
 </p>
+<ul class="list-none space-y-3 mt-4 text-slate-700 dark:text-slate-300">
+<li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(i)</span> <span>Létezik $G$-ben $k$ pontdiszjunkt irányított út $s$-ből $t$-be.</span></li>
+<li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(ii)</span> <span>Nem létezik $G$-ben legföljebb $k-1$ csúcsú, az $s$-ből $t$-be vezető irányított utakat lefogó csúcshalmaz.</span></li>
+<li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(iii)</span> <span>A $(H, s, t, c)$ hálózatban a maximális folyam értéke legalább $k$, ahol a $H$ irányított gráf úgy készül $G$-ből, hogy annak minden, $s$-től és $t$-től különböző $v$ csúcsát széthúzzuk a $(v_1, v_2)$ éllé; $c$ pedig az azonosan $1$ kapacitásfüggvény.</span></li>
+</ul>
 </math-theorem><math-theorem>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-4">
-<b>Menger-tétel pontokra (kétirányú utcák):</b> Ugyanez a poén kétirányú utcákra is igaz! Ha adott egy $G$ irányítatlan gráf, $s, t \in V(G)$ különböző, nem szomszédos csúcsokkal, a teljesen független <b>pontdiszjunkt utak</b> maximális száma ($\kappa_G(s,t)$) $s$ és $t$ között megegyezik a minimálisan felrobbantandó csomópontok számával (ami lefogja az utakat).
+<b>10.9. Tétel (Menger irányítatlan pontváltozat):</b> Legyen adott a $G$ irányítatlan gráf, az $s,t \in V(G)$ különböző csúcsok, amikre $\{s,t\} \notin E(G)$ és a $k \ge 1$ egész. Ekkor az alábbi állítások ekvivalensek:
 </p>
+<ul class="list-none space-y-3 mt-4 text-slate-700 dark:text-slate-300">
+<li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(i)</span> <span>Létezik $G$-ben $k$ pontdiszjunkt irányítatlan út $s$-ből $t$-be.</span></li>
+<li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(ii)</span> <span>Nem létezik $G$-ben legföljebb $k-1$ csúcsú, az $s$-ből $t$-be vezető irányítatlan utakat lefogó csúcshalmaz.</span></li>
+<li class="flex items-start"><span class="bg-[#0d9488]/20 text-[#0d9488] px-2 py-0.5 rounded text-xs font-bold mr-3 mt-0.5">(iii)</span> <span>A $(H,s,t,c)$ hálózatban a maximális folyam értéke legalább $k$, ahol a $H$ irányított gráf úgy készül $G$-ből, hogy először $G$ minden $\{u,v\}$ élét helyettesítjük az $(u,v)$ és $(v,u)$ irányított élekkel, majd a kapott gráf minden, $s$-től és $t$-től különböző $v$ csúcsát széthúzzuk a $(v_1,v_2)$ éllé; $c$ pedig az azonosan $1$ kapacitásfüggvény.</span></li>
+</ul>
 </math-theorem><math-theorem>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance">
 <b>Összefoglalva (Menger pontokra általános):</b> Ha a $G$ gráf (irányított vagy irányítatlan) $s,t \in V(G)$, $s \neq t$ csúcsai között nincs direkt autópálya (összekötő él), akkor a maximális pontdiszjunkt utak száma mindig pontosan annyi, mint a minimális lefogó ponthalmaz mérete! Röviden: $\kappa_G(s,t) = \kappa'_G(s,t)$.
