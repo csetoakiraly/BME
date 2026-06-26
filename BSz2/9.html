@@ -1948,8 +1948,13 @@ A $G$ (irányított vagy irányítatlan) gráfban az $Y \subseteq V(G)$ csúcsha
 <section class="mb-16 animate-fade-in text-left" id="section-10-8">
 <math-theorem>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-4">
-Legyen adott a $G$ irányított gráf, az $s, t \in V(G)$ különböző csúcsok, amikre nincs él $s$-ből $t$-be. Ekkor a maximálisan megadható $s$-ből $t$-be vezető <b>pontdiszjunkt utak</b> száma ($\kappa_G(s,t)$) megegyezik a minimális $s$-ből $t$-be vezető utakat lefogó ponthalmaz méretével.
+Legyen adott a $G$ irányított gráf, az $s, t \in V(G)$ különböző csúcsok, amelyekre $(s,t) \notin E(G)$ és a $k \ge 1$ egész. Ekkor az alábbi állítások ekvivalensek:
 </p>
+<ul class="list-[lower-roman] list-inside space-y-2 text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base ml-2 mb-4">
+    <li>Létezik $G$-ben $k$ pontdiszjunkt irányított út $s$-ből $t$-be.</li>
+    <li>Nem létezik $G$-ben legföljebb $k-1$ csúcsú, az $s$-ből $t$-be vezető irányított utakat lefogó csúcshalmaz.</li>
+    <li>A $(H, s, t, c)$ hálózatban a maximális folyam értéke legalább $k$, ahol a $H$ irányított gráf úgy készül $G$-ből, hogy annak minden, $s$-től és $t$-től különböző $v$ csúcsát széthúzzuk a $(v_1, v_2)$ éllé; $c$ pedig az azonosan $1$ kapacitásfüggvény.</li>
+</ul>
 </math-theorem>
 <div class="mt-4 bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded text-sm text-yellow-800 dark:text-yellow-200">
 <strong>💡 Megjegyzés a vizsgához:</strong> A hivatalos BME tételsor alapján a pontdiszjunkt esetekben (10.8. és 10.9. tételek) a bizonyítás <strong>nem kérhető számon</strong>, ezért itt nem szerepel!
@@ -1969,8 +1974,13 @@ Legyen adott a $G$ irányított gráf, az $s, t \in V(G)$ különböző csúcsok
 <section class="mb-16 animate-fade-in text-left" id="section-10-9">
 <math-theorem>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base text-balance mb-4">
-Legyen adott a $G$ irányítatlan gráf, az $s, t \in V(G)$ különböző, nem szomszédos csúcsok. Ekkor a maximálisan megadható $s$ és $t$ közötti <b>pontdiszjunkt utak</b> száma ($\kappa_G(s,t)$) megegyezik a minimális $s,t$-utakat lefogó ponthalmaz méretével.
+Legyen adott a $G$ irányítatlan gráf, az $s,t \in V(G)$ különböző csúcsok, amikre $\{s,t\} \notin E(G)$ és a $k \ge 1$ egész. Ekkor az alábbi állítások ekvivalensek:
 </p>
+<ul class="list-[lower-roman] list-inside space-y-2 text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base ml-2 mb-4">
+    <li>Létezik $G$-ben $k$ pontdiszjunkt irányítatlan út $s$-ből $t$-be.</li>
+    <li>Nem létezik $G$-ben legföljebb $k-1$ csúcsú, az $s$-ből $t$-be vezető irányítatlan utakat lefogó csúcshalmaz.</li>
+    <li>A $(H,s,t,c)$ hálózatban a maximális folyam értéke legalább $k$, ahol a $H$ irányított gráf úgy készül $G$-ből, hogy először $G$ minden $\{u,v\}$ élét helyettesítjük az $(u,v)$ és $(v,u)$ irányított élekkel, majd a kapott gráf minden, $s$-től és $t$-től különböző $v$ csúcsát széthúzzuk a $(v_1,v_2)$ éllé; $c$ pedig az azonosan $1$ kapacitásfüggvény.</li>
+</ul>
 </math-theorem>
 <div class="mt-4 bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded text-sm text-yellow-800 dark:text-yellow-200">
 <strong>💡 Megjegyzés a vizsgához:</strong> A hivatalos BME tételsor alapján a pontdiszjunkt esetekben a bizonyítás <strong>nem kérhető számon</strong>, így a 10.9. tételhez sem kell!
