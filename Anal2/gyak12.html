@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12. Gyakorlat: Többszörös Integrálok</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7;
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: color 0.3s ease;
+        }
+        .back-btn:hover { color: var(--text-light); }
+        h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+        .task-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+            backdrop-filter: blur(10px);
+        }
+        .task-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .task-number {
+            background: var(--task-bg);
+            color: var(--task-color);
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+        .task-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin: 0;
+            line-height: 1.4;
+        }
+        .solution-section {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 25px;
+        }
+        .solution-title {
+            color: #4ade80;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .step {
+            margin-bottom: 25px;
+        }
+        .step:last-child {
+            margin-bottom: 0;
+        }
+        .step-title {
+            color: #cbd5e1;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .math-block {
+            overflow-x: auto;
+            padding: 15px 0;
+            font-size: 1.1rem;
+        }
+        .final-result {
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #4ade80;
+        }
+        .note {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid #f59e0b;
+            padding: 15px 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+            color: #fcd34d;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Vissza a főoldalra
+        </a>
+
+        <h1>12. Gyakorlat</h1>
+        <p class="subtitle">Hármas integrálok, henger- és gömbi koordináták alkalmazása</p>
+
+        <!-- 2. Feladat -->
+        <div class="task-card">
+            <div class="task-header">
+                <div class="task-number">2</div>
+                <h3 class="task-title">$\iiint_V 1 \,dx\,dy\,dz = ?$ Ahol $V$ korlátos térrész határai: az $x^2+y^2=9$ egyenletű hengerfelület, valamint a $z=0$ és $x+z=4$ egyenletű síkok.</h3>
+            </div>
+            <div class="solution-section">
+                <div class="solution-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 16.1L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.1z"/></svg>
+                    Megoldás és Magyarázat
+                </div>
+                
+                <div class="note">
+                    <strong>Hengerkoordináták:</strong> Mivel az alaptartományunk az $xy$-síkon egy kör ($x^2+y^2 \le 9$), a $z$ magasság pedig síkokkal van határolva, a hengerkoordinátázás a legtisztább út! Képletek: $x=r\cos\varphi$, $y=r\sin\varphi$, $z=m$. A Jakobi-determináns: $r$.
+                </div>
+
+                <div class="step">
+                    <div class="step-title">1. A határok megállapítása:</div>
+                    <p>Az $xy$-síkon az alaptartomány a 3 sugarú kör, origó középponttal. Itt $0 \le r \le 3$, és mivel a teljes kört bejárjuk, $0 \le \varphi \le 2\pi$.</p>
+                    <p>A "magasság" ($z$) alsó határa a padló, azaz $z=0$. A felső határa a ferde sík, azaz $x+z=4 \implies z = 4-x$.</p>
+                    <p>Hengerkoordinátákkal kifejezve a felső határ: $z = 4 - r\cos\varphi$.</p>
+                    <div class="math-block">$$ 0 \le z \le 4-r\cos\varphi $$</div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">2. A térfogat-integrál felírása és kiszámítása:</div>
+                    <p>Beírjuk a határokat és a Jakobi-féle szorzót ($r$):</p>
+                    <div class="math-block">$$ V = \int_0^{2\pi} \int_0^3 \int_0^{4-r\cos\varphi} 1 \cdot r \,dz\,dr\,d\varphi $$</div>
+                    <p>Belső integrál ($z$ szerint):</p>
+                    <div class="math-block">$$ \int_0^{4-r\cos\varphi} r \,dz = r[z]_0^{4-r\cos\varphi} = r(4-r\cos\varphi) = 4r - r^2\cos\varphi $$</div>
+                    <p>Középső integrál ($r$ szerint):</p>
+                    <div class="math-block">$$ \int_0^3 (4r - r^2\cos\varphi) \,dr = \left[ 2r^2 - \frac{r^3}{3}\cos\varphi \right]_0^3 = 2(9) - \frac{27}{3}\cos\varphi = 18 - 9\cos\varphi $$</div>
+                    <p>Külső integrál ($\varphi$ szerint):</p>
+                    <div class="math-block">$$ \int_0^{2\pi} (18 - 9\cos\varphi) \,d\varphi = \left[ 18\varphi - 9\sin\varphi \right]_0^{2\pi} = (36\pi - 0) - (0 - 0) = 36\pi $$</div>
+                </div>
+
+                <div class="final-result">
+                    $V = 36\pi$
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Feladat -->
+        <div class="task-card">
+            <div class="task-header">
+                <div class="task-number">3</div>
+                <h3 class="task-title">$\iiint_V \frac{1}{\sqrt{x^2+y^2}} \,dx\,dy\,dz = ?$ Ahol $V$ határai: $z = x^2+y^2$ paraboloid, valamint a $z=4$ sík.</h3>
+            </div>
+            <div class="solution-section">
+                <div class="solution-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 16.1L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.1z"/></svg>
+                    Megoldás és Magyarázat
+                </div>
+                
+                <div class="note">
+                    <strong>Hengerkoordináták paraboloidnál:</strong> Ha az alakzat $x^2+y^2$-t tartalmaz (mint a $z=x^2+y^2$ paraboloid), a hengerkoordináták a nyerők. Ne feledd: ilyenkor a $z$ az alsó felülettől a felsőig megy ($z \in [r^2, 4]$).
+                </div>
+
+                <div class="step">
+                    <div class="step-title">1. A határok megállapítása:</div>
+                    <p>A test alja a $z = x^2+y^2$ paraboloid (ami polárban $z = r^2$). Teteje a $z = 4$ sík.</p>
+                    <p>Nézzük meg, hol metszi egymást a kettő: $r^2 = 4 \implies r = 2$. Tehát a test egy 2 sugarú kör felett helyezkedik el az xy-síkon vetítve.</p>
+                    <div class="math-block">$$ 0 \le \varphi \le 2\pi, \quad 0 \le r \le 2, \quad \text{és} \quad r^2 \le z \le 4 $$</div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">2. A függvény transzformálása:</div>
+                    <p>Az integrandus: $\frac{1}{\sqrt{x^2+y^2}} = \frac{1}{\sqrt{r^2}} = \frac{1}{r}$.</p>
+                    <p>Szorozzuk meg a Jakobi-determinánssal ($r$): $ \frac{1}{r} \cdot r = 1 $.</p>
+                    <p>Tehát az integrandus gyönyörűen 1-re egyszerűsödik!</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">3. Az integrál kiszámítása:</div>
+                    <div class="math-block">$$ I = \int_0^{2\pi} \int_0^2 \int_{r^2}^4 1 \,dz\,dr\,d\varphi $$</div>
+                    <p>Belső integrál ($z$ szerint):</p>
+                    <div class="math-block">$$ \int_{r^2}^4 1 \,dz = [z]_{r^2}^4 = 4 - r^2 $$</div>
+                    <p>Középső integrál ($r$ szerint):</p>
+                    <div class="math-block">$$ \int_0^2 (4 - r^2) \,dr = \left[ 4r - \frac{r^3}{3} \right]_0^2 = 8 - \frac{8}{3} = \frac{16}{3} $$</div>
+                    <p>Külső integrál ($\varphi$ szerint):</p>
+                    <div class="math-block">$$ \int_0^{2\pi} \frac{16}{3} \,d\varphi = \frac{16}{3} \cdot 2\pi = \frac{32\pi}{3} $$</div>
+                </div>
+
+                <div class="final-result">
+                    $I = \frac{32\pi}{3}$
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Feladat -->
+        <div class="task-card">
+            <div class="task-header">
+                <div class="task-number">5</div>
+                <h3 class="task-title">Számítsuk ki a $z = \sqrt{8-x^2-y^2}$ és a $z = \sqrt{x^2+y^2}$ felületek által határolt térrész térfogatát.</h3>
+            </div>
+            <div class="solution-section">
+                <div class="solution-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 16.1L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.1z"/></svg>
+                    Megoldás és Magyarázat
+                </div>
+
+                <div class="note">
+                    <strong>Gömbi koordináták!</strong> A "fagyitölcsér" alakzat (alul kúp, felül gömb) tipikus esete a gömbi koordinátázásnak! Képletek: $x = \rho \sin\theta \cos\varphi$, $y = \rho \sin\theta \sin\varphi$, $z = \rho \cos\theta$. A Jakobi: $\rho^2 \sin\theta$. Emlékeztető: a $\theta$ szög a "z-tengelytől lehajlás szöge" (0 a zeniten, $\pi/2$ az egyenlítőn).
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">1. A felületek felismerése:</div>
+                    <p>A $z = \sqrt{x^2+y^2}$ egy <b>kúp</b>. Ez a tölcsér alja.</p>
+                    <p>A $z = \sqrt{8-x^2-y^2} \implies z^2 + x^2 + y^2 = 8$ egy origó középpontú <b>$\sqrt{8}$ sugarú gömb</b> felső fele. Ez a fagyi gombóc a tölcsérben.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">2. A határok megállapítása gömbi koordinátákban:</div>
+                    <p>A rádiusz ($\rho$) az origótól fut ki a gömbhéjig, így $0 \le \rho \le \sqrt{8}$.</p>
+                    <p>Körbe megyünk-e? Igen, az alakzat forgásszimmetrikus a z-tengely körül. Tehát a $\varphi$ (azimut szög az xy-síkon) körbeér: $0 \le \varphi \le 2\pi$.</p>
+                    <p>A deklinációs szög ($\theta$): A legfelső pontban $z$-tengelyen indul ($0^\circ$). Lehajlik egészen a kúp faláig. A kúp egyenlete: $z = \sqrt{x^2+y^2}$. Gömbibe írva: $\rho\cos\theta = \sqrt{\rho^2\sin^2\theta\cos^2\varphi + \rho^2\sin^2\theta\sin^2\varphi} = \rho\sin\theta$. Osztva $\rho$-val: $\cos\theta = \sin\theta \implies \tan\theta = 1 \implies \theta = \frac{\pi}{4}$.</p>
+                    <p>Tehát a lehajlási szög: $0 \le \theta \le \frac{\pi}{4}$.</p>
+                    <div class="math-block">$$ 0 \le \rho \le \sqrt{8}, \quad 0 \le \theta \le \frac{\pi}{4}, \quad 0 \le \varphi \le 2\pi $$</div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">3. A Térfogat-integrál kiszámítása:</div>
+                    <p>Az integrálandó függvény 1 (térfogat), szorozva a Jakobival ($\rho^2\sin\theta$).</p>
+                    <div class="math-block">$$ V = \int_0^{2\pi} \int_0^{\pi/4} \int_0^{\sqrt{8}} \rho^2\sin\theta \,d\rho\,d\theta\,d\varphi $$</div>
+                    <p>Mivel a határok függetlenek, szeparálhatjuk a három integrált szorzattá!</p>
+                    <div class="math-block">$$ V = \left( \int_0^{2\pi} 1 \,d\varphi \right) \cdot \left( \int_0^{\pi/4} \sin\theta \,d\theta \right) \cdot \left( \int_0^{\sqrt{8}} \rho^2 \,d\rho \right) $$</div>
+                    <p>Szögek: $[\varphi]_0^{2\pi} = 2\pi$. Lehajlás: $[-\cos\theta]_0^{\pi/4} = -\cos(\pi/4) - (-\cos(0)) = -\frac{\sqrt{2}}{2} + 1 = 1 - \frac{\sqrt{2}}{2}$.</p>
+                    <p>Sugár: $\left[ \frac{\rho^3}{3} \right]_0^{\sqrt{8}} = \frac{8\sqrt{8}}{3} = \frac{16\sqrt{2}}{3}$.</p>
+                    <p>Összeszorozva:</p>
+                    <div class="math-block">$$ V = 2\pi \cdot \left( 1 - \frac{\sqrt{2}}{2} \right) \cdot \frac{16\sqrt{2}}{3} = \frac{32\sqrt{2}\pi}{3} \left( 1 - \frac{\sqrt{2}}{2} \right) = \frac{32\sqrt{2}\pi}{3} - \frac{32\pi}{3} $$</div>
+                </div>
+
+                <div class="final-result">
+                    $V = \frac{32\pi}{3}(\sqrt{2} - 1)$
+                </div>
+            </div>
+        </div>
+        
+        <!-- 6. Feladat -->
+        <div class="task-card">
+            <div class="task-header">
+                <div class="task-number">6</div>
+                <h3 class="task-title">Legyen $V := \{(x,y,z) \in \mathbb{R}^3 \mid x^2+y^2+z^2 \le 9, \ x \le 0, \ y \ge 0, \ z \le 0 \}$. $\iiint_V xy^2z^3 \,dx\,dy\,dz = ?$</h3>
+            </div>
+            <div class="solution-section">
+                <div class="solution-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 16.1L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.1z"/></svg>
+                    Megoldás és Magyarázat
+                </div>
+
+                <div class="note">
+                    A feltételek miatt az alakzat egy origó középpontú, 3 sugarú gömbnek mindössze egy <b>nyolcadrésze</b> (egy konkrét térnyolcad)! A gömbi koordináták határai ebből tökéletesen leolvashatók.
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">1. A határok megállapítása (gömbi):</div>
+                    <p>Gömb sugara $\sqrt{9} = 3$, tehát $0 \le \rho \le 3$.</p>
+                    <p>A $z \le 0$ azt jelenti, hogy az <b>alsó félgömbön</b> vagyunk. A lehajlási szög ($\theta$) 0 az északi sarkon, $\pi/2$ az egyenlítőn. Mivel a déli féltekén vagyunk, a szög az egyenlítőtől lefelé a déli sarkig ($\pi$) tart. Így $\frac{\pi}{2} \le \theta \le \pi$.</p>
+                    <p>Az $x \le 0, y \ge 0$ a második síknegyedet (fent balra az xy-síkon) fedi le. Emiatt az azimut szög ($\varphi$) $90^\circ$-tól $180^\circ$-ig, azaz $\frac{\pi}{2} \le \varphi \le \pi$.</p>
+                    <div class="math-block">$$ 0 \le \rho \le 3, \quad \frac{\pi}{2} \le \theta \le \pi, \quad \frac{\pi}{2} \le \varphi \le \pi $$</div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">2. A függvény felírása:</div>
+                    <p>$f(x,y,z) = x \cdot y^2 \cdot z^3$. Helyettesítsük be a gömbi komponenseket!</p>
+                    <p>$x = \rho\sin\theta\cos\varphi$</p>
+                    <p>$y^2 = \rho^2\sin^2\theta\sin^2\varphi$</p>
+                    <p>$z^3 = \rho^3\cos^3\theta$</p>
+                    <p>Jakobi: $\rho^2\sin\theta$</p>
+                    <p>Szorozzuk össze mind a 4 részt:</p>
+                    <div class="math-block">$$ (\rho\sin\theta\cos\varphi)(\rho^2\sin^2\theta\sin^2\varphi)(\rho^3\cos^3\theta)(\rho^2\sin\theta) = \rho^8 \cdot \sin^4\theta\cos^3\theta \cdot \cos\varphi\sin^2\varphi $$</div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">3. Az integrál kiszámítása (szeparálva!):</div>
+                    <p>Mivel a határok mind konstansok, három külön 1-dimenziós integrál szorzatát kell kiszámolnunk.</p>
+                    <p><b>Rádiusz ($\rho$):</b></p>
+                    <div class="math-block">$$ \int_0^3 \rho^8 \,d\rho = \left[ \frac{\rho^9}{9} \right]_0^3 = \frac{3^9}{3^2} = 3^7 = 2187 $$</div>
+                    <p><b>Azimut ($\varphi$):</b> $\int_{\pi/2}^\pi \sin^2\varphi \cos\varphi \,d\varphi$. Mint fentebb, $\sin$ belső deriváltja ott van, tehát $\frac{\sin^3\varphi}{3}$.</p>
+                    <div class="math-block">$$ \left[ \frac{\sin^3\varphi}{3} \right]_{\pi/2}^\pi = \frac{0}{3} - \frac{1}{3} = -\frac{1}{3} $$</div>
+                    <p><b>Deklináció ($\theta$):</b> $\int_{\pi/2}^\pi \sin^4\theta \cos^3\theta \,d\theta$. Itt trükközni kell, mert páratlan kitevőjű a $\cos$. Írjuk át az egyik $\cos^2$-t $1-\sin^2$-re!</p>
+                    <div class="math-block">$$ \sin^4\theta \cdot \cos^2\theta \cdot \cos\theta = \sin^4\theta (1-\sin^2\theta) \cos\theta = (\sin^4\theta - \sin^6\theta)\cos\theta $$</div>
+                    <p>Integrálja: $\frac{\sin^5\theta}{5} - \frac{\sin^7\theta}{7}$. Határok: $\pi/2$-től $\pi$-ig.</p>
+                    <div class="math-block">$$ \left[ \frac{\sin^5\theta}{5} - \frac{\sin^7\theta}{7} \right]_{\pi/2}^\pi = (0 - 0) - \left( \frac{1}{5} - \frac{1}{7} \right) = - \frac{7-5}{35} = -\frac{2}{35} $$</div>
+                    <p><b>Mindet összeszorozva:</b></p>
+                    <div class="math-block">$$ I = 2187 \cdot \left( -\frac{1}{3} \right) \cdot \left( -\frac{2}{35} \right) = \frac{2187 \cdot 2}{3 \cdot 35} = \frac{729 \cdot 2}{35} = \frac{1458}{35} $$</div>
+                </div>
+
+                <div class="final-result">
+                    $I = \frac{1458}{35}$
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

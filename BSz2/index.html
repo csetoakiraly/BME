@@ -1680,8 +1680,12 @@ document.addEventListener('DOMContentLoaded', () => {
 </math-header>
 <math-def id="section-1-1">
 <div class="text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic">
-        Legyen $V \neq \emptyset$ tetszőleges, véges halmaz. Legyen továbbá $E$ egy olyan halmaz, aminek minden eleme a $V$ egy két elemű részhalmaza. 
-        Ekkor a $G = (V, E)$ párt <strong class="text-slate-900 dark:text-white not-italic border-b-2 border-emerald-200 dark:border-emerald-800">egyszerű gráfnak</strong> nevezzük, aminek a csúcshalmaza $V(G) = V$ és az élhalmaza $E(G) = E$.
+        Képzelj el egy $V \neq \emptyset$ tetszőleges, véges halmazt (csúcsok), és egy $E$ multihalmazt (élek), melynek elemei a csúcsokból képzett párok (vagy egyelemű halmazok hurokél esetén). A $G = (V, E)$ struktúrát (általános) <strong class="text-slate-900 dark:text-white not-italic border-b-2 border-emerald-200 dark:border-emerald-800">gráfnak</strong> (vagy multigráfnak) nevezzük. Egy gráfban megengedettek a <strong>többszörös (párhuzamos) élek</strong> (két csúcs között több él is fut), illetve a <strong>hurokélek</strong> (egy csúcsot önmagával összekötő él) is.
+    </div>
+</math-def>
+<math-def>
+<div class="text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic">
+        Ha kikötjük, hogy az $E$ halmaz minden eleme a $V$ halmaznak pontosan egy <em>két elemű részhalmaza</em> (azaz nincsenek hurokélek és nincsenek párhuzamos élek sem), akkor a $G = (V, E)$ párt <strong class="text-slate-900 dark:text-white not-italic border-b-2 border-emerald-200 dark:border-emerald-800">egyszerű gráfnak</strong> nevezzük.
     </div>
 </math-def>
 <math-header>

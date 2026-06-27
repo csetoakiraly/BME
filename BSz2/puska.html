@@ -382,8 +382,12 @@ html.dark math-example { background: rgba(255,255,255,0.02); border-color: #3341
 <h3 class="text-emerald-700 dark:text-emerald-400 mb-2"><b>Gráfelméleti alapfogalmak:</b> gráf, egyszerű gráf, komplementer gráf, izomorfia, részgráf, feszített részgráf, élsorozat, séta, út, kör, összefüggő gráf, komponens. <b>Legrövidebb út feladat:</b> Dijkstra algoritmusa (nemnegatív élsúlyok).</h3>
 </div><math-def id="section-1-1">
 <div class="text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic">
-        Képzelj el egy $V \neq \emptyset$ halmazt, amiben csúcsok (pontok) vannak. Az $E$ pedig a köztük lévő élek (vonalak) halmaza, amik mindig pontosan két csúcsot kötnek össze. 
-        Ezt a $G = (V, E)$ párost hívjuk <strong class="text-slate-900 dark:text-white not-italic border-b-2 border-emerald-200 dark:border-emerald-800">egyszerű gráfnak</strong>, ahol a csúcsok halmaza $V(G) = V$, az éleké pedig $E(G) = E$. (Nincsenek benne hurkok, sem többszörös élek, tök egyszerű az egész.)
+        Képzelj el egy $V \neq \emptyset$ halmazt, amiben csúcsok (pontok) vannak, és egy $E$ multihalmazt, amiben a köztük lévő élek (vonalak). Ezt a $G = (V, E)$ párost hívjuk általános <strong class="text-slate-900 dark:text-white not-italic border-b-2 border-emerald-200 dark:border-emerald-800">gráfnak</strong> (vagy multigráfnak). Egy gráfban megengedett, hogy két csúcs között több él is fusson (<strong>többszörös vagy párhuzamos élek</strong>), illetve egy csúcs önmagával legyen összekötve (<strong>hurokél</strong>).
+    </div>
+</math-def>
+<math-def>
+<div class="text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic">
+        Ha kikötjük, hogy a gráfban nincsenek hurkok, sem többszörös élek, azaz minden él pontosan két különböző csúcsot köt össze (és legfeljebb csak egyszer), akkor azt <strong class="text-slate-900 dark:text-white not-italic border-b-2 border-emerald-200 dark:border-emerald-800">egyszerű gráfnak</strong> nevezzük. (Tök egyszerű az egész.)
     </div>
 </math-def><math-theorem id="section-1-2">
 <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4 italic text-center md:text-left">

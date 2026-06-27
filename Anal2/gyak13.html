@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13. Gyakorlat: Fourier-sorok és Fourier-transzformáció</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7;
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: color 0.3s ease;
+        }
+        .back-btn:hover { color: var(--text-light); }
+        h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+        .task-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+            backdrop-filter: blur(10px);
+        }
+        .task-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .task-number {
+            background: var(--task-bg);
+            color: var(--task-color);
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+        .task-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin: 0;
+            line-height: 1.4;
+        }
+        .solution-section {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 25px;
+        }
+        .solution-title {
+            color: #4ade80;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .step {
+            margin-bottom: 25px;
+        }
+        .step:last-child {
+            margin-bottom: 0;
+        }
+        .step-title {
+            color: #cbd5e1;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .math-block {
+            overflow-x: auto;
+            padding: 15px 0;
+            font-size: 1.1rem;
+        }
+        .final-result {
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #4ade80;
+        }
+        .note {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid #f59e0b;
+            padding: 15px 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+            color: #fcd34d;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Vissza a főoldalra
+        </a>
+
+        <h1>13. Gyakorlat</h1>
+        <p class="subtitle">Fourier-sorok, Dirichlet-tétel és Fourier-transzformációk</p>
+
+        <!-- 1. Feladat -->
+        <div class="task-card">
+            <div class="task-header">
+                <div class="task-number">1</div>
+                <h3 class="task-title">Határozzuk meg az alábbi $2\pi$ szerint periodikus függvény Fourier-sorát:
+                    <br>$f(x) = -3$, ha $x \in [-\pi/2, 0[$
+                    <br>$f(x) = 3$, ha $x \in [0, \pi/2[$
+                    <br>$f(x) = 0$ minden más pontban a $[-\pi, \pi]$ intervallumon.
+                    <br>Jelölje $\Phi$ a Fourier-sor összegfüggvényét. $\Phi(-\pi) = ?, \Phi(0) = ?$
+                </h3>
+            </div>
+            <div class="solution-section">
+                <div class="solution-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 16.1L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.1z"/></svg>
+                    Megoldás és Magyarázat
+                </div>
+                
+                <div class="note">
+                    <strong>Páratlan függvény!</strong> Észrevehető, hogy $f(-x) = -f(x)$. A negatív tartományban -3 az értéke, a pozitívban +3. Páratlan függvények esetén az $a_0 = 0$ és minden $a_k = 0$. Csak a $b_k$ (szinuszos) együtthatókat kell kiszámolnunk!
+                </div>
+
+                <div class="step">
+                    <div class="step-title">1. A $b_k$ együtthatók kiszámítása:</div>
+                    <div class="math-block">$$ b_k = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)\sin(kx) \,dx $$</div>
+                    <p>Mivel a függvény páratlan, a szorzat ($f(x) \cdot \sin(kx)$) páros függvény lesz (páratlan $\times$ páratlan = páros). Egy páros függvényt szimmetrikus intervallumon elég csak a felén integrálni, és venni a dupláját:</p>
+                    <div class="math-block">$$ b_k = \frac{2}{\pi} \int_0^{\pi} f(x)\sin(kx) \,dx $$</div>
+                    <p>A $[0, \pi]$ szakaszon az $f(x)$ értéke csak a $[0, \pi/2]$ szakaszon nem nulla (ott pontosan 3).</p>
+                    <div class="math-block">$$ b_k = \frac{2}{\pi} \int_0^{\pi/2} 3\sin(kx) \,dx = \frac{6}{\pi} \left[ -\frac{\cos(kx)}{k} \right]_0^{\pi/2} = \frac{6}{\pi k} \left( -\cos(k\pi/2) - (-\cos(0)) \right) = \frac{6}{\pi k} (1 - \cos(k\pi/2)) $$</div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">2. A Fourier-sor felírása:</div>
+                    <p>A Fourier-sor alakja (mivel $a_k = 0$):</p>
+                    <div class="math-block">$$ \Phi(x) = \sum_{k=1}^\infty \frac{6}{\pi k} (1 - \cos(k\pi/2)) \sin(kx) $$</div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">3. Dirichlet-tétel alkalmazása ($\Phi(-\pi)$ és $\Phi(0)$):</div>
+                    <p>A Dirichlet-tétel szerint szakadási helyeken a Fourier-sor összegfüggvénye a bal és jobb oldali határértékek számtani közepéhez tart:</p>
+                    <div class="math-block">$$ \Phi(x_0) = \frac{f(x_0-) + f(x_0+)}{2} $$</div>
+                    <p><b>$\Phi(-\pi)$ pontban:</b> A $2\pi$ periodicitás miatt $-\pi$-nél és $+\pi$-nél ugyanaz az érték, de ezen a szakaszon a függvény konstans 0 (mivel $[-\pi, -\pi/2]$ és $[\pi/2, \pi]$ között 0). Folytonos, értéke 0. Tehát $\Phi(-\pi) = 0$.</p>
+                    <p><b>$\Phi(0)$ pontban:</b> $x=0$-nál szakadás van. Balról ($0-$) az értéke $-3$, jobbról ($0+$) az értéke $3$.</p>
+                    <div class="math-block">$$ \Phi(0) = \frac{-3 + 3}{2} = 0 $$</div>
+                </div>
+
+                <div class="final-result">
+                    $\Phi(x) = \sum_{k=1}^\infty \frac{6}{\pi k} (1 - \cos(k\pi/2)) \sin(kx)$ <br><br> $\Phi(-\pi) = 0, \quad \Phi(0) = 0$
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Feladat -->
+        <div class="task-card">
+            <div class="task-header">
+                <div class="task-number">2</div>
+                <h3 class="task-title">Legyen $f$ egy $2\pi$ szerint periodikus függvény, amelyre minden $x \in ]0, 2\pi]$ esetén $f(x) := |x - \pi|$. Számoljuk ki a Fourier-sorát. Határozzuk meg a $\sum \frac{1}{(2k+1)^2}$ összeg értékét a sor segítségével!</h3>
+            </div>
+            <div class="solution-section">
+                <div class="solution-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 16.1L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.1z"/></svg>
+                    Megoldás és Magyarázat
+                </div>
+                
+                <div class="note">
+                    A függvény egy "V" alakú ék, aminek a csúcsa $\pi$-nél van (ott az értéke 0). $0$-nál és $2\pi$-nél pedig az értéke $\pi$. Ha eltolnánk a $[-\pi, \pi]$ intervallumra, látszana, hogy ez egy <b>páros függvény</b> (abszolútérték fv)! Tehát most $b_k = 0$ lesz minden $k$-ra.
+                </div>
+
+                <div class="step">
+                    <div class="step-title">1. Az $a_0$ együttható:</div>
+                    <div class="math-block">$$ a_0 = \frac{1}{\pi} \int_0^{2\pi} |x - \pi| \,dx $$</div>
+                    <p>Az abszolútérték görbe alatti terület két derékszögű háromszög. Az alapjuk $\pi$, magasságuk $\pi$. Egy háromszög területe $\pi^2/2$, kettőé $\pi^2$. Tehát az integrál értéke $\pi^2$.</p>
+                    <div class="math-block">$$ a_0 = \frac{1}{\pi} (\pi^2) = \pi $$</div>
+                    <p>A sor legelső konstans tagja emiatt $\frac{a_0}{2} = \frac{\pi}{2}$.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">2. Az $a_k$ együtthatók (parciális integrálással):</div>
+                    <p>Helyettesítsük az intervallumot $[0, 2\pi]$-re. A páros tulajdonság miatt az integrál szimmetrikus a $\pi$-re:</p>
+                    <div class="math-block">$$ a_k = \frac{1}{\pi} \int_0^{2\pi} |x-\pi|\cos(kx) \,dx = \frac{2}{\pi} \int_\pi^{2\pi} (x-\pi)\cos(kx) \,dx $$</div>
+                    <p>Itt $(x-\pi)$ pozitív, így elhagytuk az abszolútértéket. Parciális integrálás: $u = (x-\pi)$, $v' = \cos(kx) \implies u' = 1, v = \frac{\sin(kx)}{k}$.</p>
+                    <div class="math-block">$$ \int_\pi^{2\pi} (x-\pi)\cos(kx) \,dx = \left[ (x-\pi)\frac{\sin(kx)}{k} \right]_\pi^{2\pi} - \int_\pi^{2\pi} 1 \cdot \frac{\sin(kx)}{k} \,dx $$</div>
+                    <p>A kiértékelt rész a határokon eltűnik (mert $\sin(k \cdot 2\pi) = 0$ és $\sin(k\pi) = 0$). Marad az integrál:</p>
+                    <div class="math-block">$$ = - \left[ -\frac{\cos(kx)}{k^2} \right]_\pi^{2\pi} = \frac{\cos(k \cdot 2\pi) - \cos(k\pi)}{k^2} = \frac{1 - (-1)^k}{k^2} $$</div>
+                    <p>Visszaszorozva $2/\pi$-vel:</p>
+                    <div class="math-block">$$ a_k = \frac{2(1 - (-1)^k)}{\pi k^2} $$</div>
+                    <p>Ha $k$ páros (pl. 2, 4), akkor $(-1)^k = 1$, így $a_k = 0$. Ha $k$ páratlan (pl. 1, 3, 5 $\rightarrow 2m+1$), akkor $(-1)^k = -1$, és a számláló 2 lesz, így $a_k = \frac{4}{\pi k^2}$.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">3. A sor összege egy konkrét pontban ($x=0$):</div>
+                    <p>A Fourier sor összege (ami mindenhol megegyezik $f(x)$-szel, mert a függvény folytonos, nincsenek szakadások):</p>
+                    <div class="math-block">$$ f(x) = \frac{\pi}{2} + \sum_{k \text{ páratlan}} \frac{4}{\pi k^2} \cos(kx) $$</div>
+                    <p>Vegyük fel az $x=0$ pontot. Tudjuk, hogy az eredeti képlet szerint itt is periodikus, tehát az értéke azonos a $2\pi$-vel, ami $\pi$. $f(0) = \pi$. Behelyettesítve a sorba (tudva, hogy $\cos(0)=1$):</p>
+                    <div class="math-block">$$ \pi = \frac{\pi}{2} + \sum_{m=0}^\infty \frac{4}{\pi (2m+1)^2} \cdot 1 $$</div>
+                    <div class="math-block">$$ \frac{\pi}{2} = \frac{4}{\pi} \sum_{m=0}^\infty \frac{1}{(2m+1)^2} $$</div>
+                    <p>Átrendezve megkapjuk a keresett összeget:</p>
+                    <div class="math-block">$$ \sum_{m=0}^\infty \frac{1}{(2m+1)^2} = \frac{\pi^2}{8} $$</div>
+                </div>
+
+                <div class="final-result">
+                    $\sum_{k=0}^\infty \frac{1}{(2k+1)^2} = \frac{\pi^2}{8}$
+                </div>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 60px; margin-bottom: 30px; font-weight: 800; font-size: 2rem;">Fourier-transzformáció Tulajdonságai</h2>
+
+        <!-- 5. Feladat -->
+        <div class="task-card">
+            <div class="task-header">
+                <div class="task-number">5</div>
+                <h3 class="task-title">Fejezzük ki $f$ Fourier-transzformáltja segítségével az alábbi függvények Fourier-transzformáltját:
+                    <br>a) $x \mapsto f(2x - 3)$
+                    <br>b) $x \mapsto f(2(x - 3))$
+                    <br>c) $x \mapsto x^2 f(3x)''$
+                </h3>
+            </div>
+            <div class="solution-section">
+                <div class="solution-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 16.1L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.1z"/></svg>
+                    Megoldás és Magyarázat
+                </div>
+
+                <div class="note">
+                    <strong>Szabályok:</strong> 
+                    <br>- Eltolás: $\mathscr{F}(f(x-x_0))(\omega) = e^{-i\omega x_0} \mathscr{F}(f)(\omega)$
+                    <br>- Skálázás: $\mathscr{F}(f(ax))(\omega) = \frac{1}{|a|} \mathscr{F}(f)(\frac{\omega}{a})$
+                    <br>- Deriválás (időben): $\mathscr{F}(f'(x))(\omega) = i\omega \mathscr{F}(f)(\omega)$
+                    <br>- Szorzás x-szel (frekvencia deriválás): $\mathscr{F}(x \cdot f(x))(\omega) = i \frac{d}{d\omega} \mathscr{F}(f)(\omega)$
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">a) $g(x) = f(2x - 3)$</div>
+                    <p>Ez egy időbeli skálázás és eltolás egyben. Írjuk át úgy, hogy először egy $h(x) = f(2x)$ függvényt definiálunk. Ekkor $g(x) = h(x - 1.5)$, hiszen $f(2(x - 1.5)) = f(2x-3)$.</p>
+                    <p>1. Skálázás: $\mathscr{F}(h)(\omega) = \frac{1}{2} \mathscr{F}(f)(\frac{\omega}{2})$.</p>
+                    <p>2. Eltolás 1.5-tel (időeltolás = exponenciális szorzó a frekvenciatérben):</p>
+                    <div class="math-block">$$ \mathscr{F}(g)(\omega) = e^{-i\omega 1.5} \mathscr{F}(h)(\omega) = e^{-1.5i\omega} \frac{1}{2} \mathscr{F}(f)\left(\frac{\omega}{2}\right) $$</div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">b) $g(x) = f(2(x - 3))$</div>
+                    <p>Ez olyan, mintha a skálázott $h(x) = f(2x)$ függvényt eltoltuk volna 3-mal: $h(x-3) = f(2(x-3))$.</p>
+                    <div class="math-block">$$ \mathscr{F}(g)(\omega) = e^{-i\omega 3} \mathscr{F}(h)(\omega) = e^{-3i\omega} \frac{1}{2} \mathscr{F}(f)\left(\frac{\omega}{2}\right) $$</div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">c) $g(x) = x^2 f''(3x)$</div>
+                    <p>1. Legyen $h(x) = f(3x)$. Ennek F-transzformáltja: $H(\omega) = \frac{1}{3} \mathscr{F}(f)\left(\frac{\omega}{3}\right)$.</p>
+                    <p>2. A feladatban $f''(3x)$ van, ami nem egyenlő a $h''(x)$-szel! A láncszabály miatt $h'(x) = 3f'(3x)$, és $h''(x) = 9f''(3x)$. Ebből következik, hogy $f''(3x) = \frac{1}{9} h''(x)$.</p>
+                    <p>A derivált transzformáltja: $\mathscr{F}(h'')(\omega) = (i\omega)^2 H(\omega) = -\omega^2 H(\omega)$.</p>
+                    <p>Tehát $\mathscr{F}(f''(3x))(\omega) = \frac{1}{9} (-\omega^2) H(\omega) = -\frac{\omega^2}{27} \mathscr{F}(f)\left(\frac{\omega}{3}\right)$. Jelöljük ezt $K(\omega)$-val.</p>
+                    <p>3. Most jön az $x^2$-zél szorzás. Ha az időtartományban $x$-szel szorzunk, a frekvenciatartományban differenciálunk és szorzunk $i$-vel. $\mathscr{F}(x \cdot y(x)) = i \frac{d}{d\omega} Y(\omega)$. Itt $x^2$-tel szorzunk, így kétszer deriválunk és $(i)^2 = -1$-gyel szorzunk: $\mathscr{F}(x^2 y(x)) = - \frac{d^2}{d\omega^2} Y(\omega)$.</p>
+                    <p>Tehát a végeredmény $K(\omega)$ kétszeres deriváltja $\omega$ szerint, beszorozva $-1$-gyel:</p>
+                    <div class="math-block">$$ \mathscr{F}(x^2 f''(3x))(\omega) = - \frac{d^2}{d\omega^2} \left[ -\frac{\omega^2}{27} \mathscr{F}(f)\left(\frac{\omega}{3}\right) \right] = \frac{1}{27} \frac{d^2}{d\omega^2} \left[ \omega^2 \mathscr{F}(f)\left(\frac{\omega}{3}\right) \right] $$</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 7. Feladat -->
+        <div class="task-card">
+            <div class="task-header">
+                <div class="task-number">7</div>
+                <h3 class="task-title">Tudjuk, hogy minden $\omega \in \mathbb{R}$ esetén $\mathscr{F}(x \mapsto e^{-|x|})(\omega) = \frac{2}{1+\omega^2}$. Határozzuk meg az $f(x) = e^{-|3x-6|}$ függvény Fourier-transzformáltját.</h3>
+            </div>
+            <div class="solution-section">
+                <div class="solution-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 16.1L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.1z"/></svg>
+                    Megoldás és Magyarázat
+                </div>
+
+                <div class="step">
+                    <div class="step-title">1. A függvény átalakítása (szétválasztás):</div>
+                    <p>A $3x-6$ kifejezést érdemes kiemelni: $3(x-2)$. Tehát $f(x) = e^{-|3(x-2)|}$.</p>
+                    <p>Jelöljük az alapfüggvényt így: $g(x) = e^{-|x|}$. A megadott információ szerint $G(\omega) = \frac{2}{1+\omega^2}$.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">2. Skálázás alkalmazása:</div>
+                    <p>Skálázzuk $g(x)$-et: $h(x) = g(3x) = e^{-|3x|}$.</p>
+                    <p>A skálázási tétel: $\mathscr{F}(h)(\omega) = \frac{1}{|a|} G\left(\frac{\omega}{a}\right) = \frac{1}{3} G\left(\frac{\omega}{3}\right)$.</p>
+                    <div class="math-block">$$ H(\omega) = \frac{1}{3} \cdot \frac{2}{1 + (\frac{\omega}{3})^2} = \frac{2}{3(1 + \frac{\omega^2}{9})} = \frac{2}{3 + \frac{\omega^2}{3}} = \frac{6}{9 + \omega^2} $$</div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">3. Eltolás alkalmazása:</div>
+                    <p>Toljuk el $h(x)$-et 2-vel jobbra: $f(x) = h(x-2) = e^{-|3(x-2)|} = e^{-|3x-6|}$.</p>
+                    <p>Az eltolási tétel szerint szorozni kell $e^{-i\omega x_0}$-lal, ami most $e^{-2i\omega}$.</p>
+                    <div class="math-block">$$ \mathscr{F}(f)(\omega) = e^{-2i\omega} H(\omega) = e^{-2i\omega} \frac{6}{9 + \omega^2} $$</div>
+                </div>
+
+                <div class="final-result">
+                    $\mathscr{F}(f)(\omega) = \frac{6 e^{-2i\omega}}{9 + \omega^2}$
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
