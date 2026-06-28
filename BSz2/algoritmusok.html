@@ -272,6 +272,7 @@ math-lab {
    ============================================================ */
 html.dark body, html.dark aside, html.dark main { background-color: #0f172a !important; color: #f1f5f9 !important; }
 html.dark p, html.dark span, html.dark li, html.dark h1, html.dark h2, html.dark h3 { color: #f1f5f9 !important; }
+html.dark span.bg-indigo-100 { color: #3730a3 !important; }
 html.dark .mjx-chtml { filter: invert(1) hue-rotate(180deg) brightness(1.5) !important; }
 
 /* Dark mode az egyedi elemekhez */
@@ -1709,6 +1710,26 @@ Ezen az oldalon gyűjtöttük össze a tételsor által megkövetelt összes fon
     <p><strong>Feltétel:</strong> A gráfban csak <strong>nemnegatív élsúlyok</strong> lehetnek.</p>
     <p><strong>Működés:</strong> Két halmazt tartunk nyilván: a már kész csúcsokat (akiknek tudjuk a végleges távolságát), és a még feldolgozásra várókat. Kezdetben a start csúcs távolsága 0, a többié végtelen. Minden lépésben kiválasztjuk a legkisebb ideiglenes távolságú csúcsot, véglegesítjük, majd az összes szomszédjának frissítjük a távolságát (ha a mostani csúcson keresztül rövidebb az út).</p>
 </div>
+
+<div class="mt-8 pt-6 border-t-2 border-dashed border-slate-200 dark:border-slate-700">
+<div class="font-mono text-sm text-slate-800 dark:text-slate-300 space-y-2">
+<p><span class="text-slate-500 font-bold">Bemenet:</span> Egy $n$ csúcsú $G = (V,E)$ irányított gráf, egy $w : E \to \mathbb{R}^+ \cup \{0\}$ nemnegatív súlyfüggvény és egy $s \in V$ csúcs</p>
+<hr class="border-indigo-200 dark:border-indigo-800 my-3"/>
+<p>1: táv($s$) $\leftarrow 0$; minden $v \in V, v \neq s$-re táv($v$) $\leftarrow \infty$</p>
+<p>2: minden $v \in V, v \neq s$-re előző($v$) $\leftarrow *$</p>
+<p>3: $K \leftarrow \{s\}$; $a \leftarrow s$</p>
+<p>4: <strong class="text-indigo-600 dark:text-indigo-400">ciklus:</strong> amíg $K \neq V$</p>
+<p class="pl-4">5: <strong class="text-indigo-600 dark:text-indigo-400">ciklus:</strong> $e$ végigfut az $e = (a, v), v \notin K$ éleken</p>
+<p class="pl-8">6: <strong>ha</strong> táv($v$) $&gt;$ táv($a$) + $w(e)$, <strong>akkor:</strong></p>
+<p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">7: táv($v$) $\leftarrow$ táv($a$) + $w(e)$</p>
+<p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">8: előző($v$) $\leftarrow a$</p>
+<p class="pl-4">9: <strong>ciklus vége</strong></p>
+<p class="pl-4">10: $a$ legyen egy olyan $a \notin K$ csúcs, amire táv($a$) = $\min\{$táv($v$) : $v \notin K\}$</p>
+<p class="pl-4">11: $K \leftarrow K \cup \{a\}$</p>
+<p>12: <strong>ciklus vége</strong></p>
+</div>
+
+</div>
 </math-algorithm>
 
 <!-- 2. Tétel -->
@@ -1721,6 +1742,26 @@ Ezen az oldalon gyűjtöttük össze a tételsor által megkövetelt összes fon
     <p><strong>Cél:</strong> A gráf bejárása szintek (távolságok) szerint, illetve súlyozatlan gráfban a legrövidebb út megkeresése.</p>
     <p><strong>Lépésszám:</strong> $\mathcal{O}(V + E)$, vagyis arányos a csúcsok és élek számának összegével.</p>
     <p><strong>Működés:</strong> Egy sort (Queue) használunk. Betesszük a kezdőcsúcsot a sorba, beállítjuk a távolságát 0-ra. Ameddig a sor nem üres, kivesszük a legelső elemet, és minden még nem vizsgált szomszédját betesszük a sor végére, a távolságukat pedig az aktuális csúcs távolsága + 1-re állítjuk. Közben felépül a BFS-fa.</p>
+</div>
+
+<div class="mt-8 pt-6 border-t-2 border-dashed border-slate-200 dark:border-slate-700">
+<div class="font-mono text-sm text-slate-800 dark:text-slate-300 space-y-2">
+<p><span class="text-slate-500 font-bold">Bemenet:</span> Egy $n$ csúcsú $G = (V,E)$ gráf és egy $s \in V$ kezdőcsúcs</p>
+<hr class="border-emerald-200 dark:border-emerald-800 my-3"/>
+<p>1: minden $v \in V$-re táv($v$) $\leftarrow \infty$; előző($v$) $\leftarrow *$</p>
+<p>2: táv($s$) $\leftarrow 0$; $i \leftarrow 0$; $L_0 \leftarrow \{s\}$</p>
+<p>3: <strong class="text-emerald-600 dark:text-emerald-400">ciklus:</strong> amíg $L_i \neq \emptyset$</p>
+<p class="pl-4">4: $L_{i+1} \leftarrow \emptyset$</p>
+<p class="pl-4">5: <strong class="text-emerald-600 dark:text-emerald-400">ciklus:</strong> minden $u \in L_i$ csúcsra és minden $\{u, v\} \in E$ élre:</p>
+<p class="pl-8">6: <strong>ha</strong> táv($v$) = $\infty$, <strong>akkor:</strong></p>
+<p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">7: táv($v$) $\leftarrow i + 1$</p>
+<p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">8: előző($v$) $\leftarrow u$</p>
+<p class="pl-12 font-bold text-emerald-600 dark:text-emerald-400">9: $L_{i+1} \leftarrow L_{i+1} \cup \{v\}$</p>
+<p class="pl-4">10: <strong>ciklus vége</strong></p>
+<p class="pl-4">11: $i \leftarrow i + 1$</p>
+<p>12: <strong>ciklus vége</strong></p>
+</div>
+
 </div>
 </math-algorithm>
 
@@ -1735,6 +1776,23 @@ Ezen az oldalon gyűjtöttük össze a tételsor által megkövetelt összes fon
     <p><strong>Tulajdonság:</strong> Ezzel bizonyítható a $\chi(G) \le \Delta(G) + 1$ felső becslés. Az eredmény erősen függ a csúcsok sorrendjétől.</p>
     <p><strong>Működés:</strong> Sorba állítjuk a csúcsokat $v_1, \dots, v_n$. Sorban haladunk, és a $v_i$ csúcsnak mindig azt a legkisebb sorszámú színt (1, 2, 3...) adjuk, ami a már kiszínezett szomszédjai között még <strong>nem szerepel</strong>.</p>
 </div>
+
+<div class="mt-8 pt-6 border-t-2 border-dashed border-slate-200 dark:border-slate-700">
+
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4 italic">
+        Mohó színezés algoritmusa
+    </h3>
+<p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
+        A mohó (greedy) színezés egy heurisztikus eljárás egy gráf csúcsainak színezésére.
+    </p>
+<ul class="list-decimal list-inside space-y-2 text-slate-700 dark:text-slate-300">
+    <li>Rendezzük a gráf csúcsait valamilyen tetszőleges $v_1, v_2, \dots, v_n$ sorrendbe.</li>
+    <li>Lépdeljünk végig a csúcsokon ebben a sorrendben.</li>
+    <li>A soron következő $v_i$ csúcsnak mindig adjuk a <b>lehető legkisebb</b> olyan színt (pl. 1, 2, 3, ...), amely még nem szerepel a $v_i$ már kiszínezett szomszédai között.</li>
+</ul>
+
+
+</div>
 </math-algorithm>
 
 <!-- 4. Tétel -->
@@ -1747,6 +1805,10 @@ Ezen az oldalon gyűjtöttük össze a tételsor által megkövetelt összes fon
     <p><strong>Cél:</strong> Intervallumok jó színezése a lehető legkevesebb színnel (pl. teremfoglalás).</p>
     <p><strong>Működés:</strong> Rendezzük az intervallumokat a <strong>bal végpontjuk (kezdési idejük)</strong> szerint növekvő sorrendbe! Ezután ezen a sorrenden futtassuk le a sima Mohó színezés algoritmusát. Intervallumgráfokon ez a specifikus sorrend garantálja, hogy pontosan $\omega(G)$ színnel fogjuk kiszínezni a gráfot (ami az optimum).</p>
 </div>
+
+<div class="mt-8 pt-6 border-t-2 border-dashed border-slate-200 dark:border-slate-700">
+<div class="mt-4 p-4 bg-slate-100 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700"><p class="text-slate-700 dark:text-slate-300 italic text-sm">Megjegyzés: Ennek a tételnek nincs külön kóddoboza, egyszerűen futtassuk le a fenti Mohó színezés algoritmust a megadott speciális (bal végpont szerinti) sorrenden!</p></div>
+</div>
 </math-algorithm>
 
 <!-- 6. Tétel -->
@@ -1758,6 +1820,49 @@ Ezen az oldalon gyűjtöttük össze a tételsor által megkövetelt összes fon
 <div class="space-y-3 text-sm md:text-base text-slate-700 dark:text-slate-300">
     <p><strong>Cél:</strong> Maximális párosítás keresése páros gráfban.</p>
     <p><strong>Működés:</strong> Tetszőleges $M$ párosításból indulunk (lehet az üres is). Keresünk egy <strong>javítóutat</strong>, ami egy szabad $A$-beli csúcsból indul, szabad $B$-beli csúcsba érkezik, és az élei váltakozva nem $M$-beliek és $M$-beliek. Ha találtunk ilyet, az úton az éleket "megcseréljük" (az eddigi $M$-belieket kivesszük, a nem $M$-belieket betesszük), így a párosítás mérete 1-gyel nő. Ezt ismételjük, amíg van javítóút. (Ha nincs javítóút, Kőnig tétele szerint a párosítás maximális).</p>
+</div>
+
+<div class="mt-8 pt-6 border-t-2 border-dashed border-slate-200 dark:border-slate-700">
+<div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Algoritmus</h4>
+<p class="text-slate-800 dark:text-white font-bold mb-4 uppercase text-sm tracking-tight">
+            JAVÍTÓUTAS ALGORITMUS (MAXIMÁLIS PÁROSÍTÁS KERESÉSÉRE PÁROS GRÁFBAN)
+        </p>
+<p class="text-slate-700 dark:text-slate-300 mb-6 font-medium">
+<b>Bemenet:</b> Egy $G = (A,B;E)$ páros gráf
+        </p>
+<div class="space-y-3 font-mono text-sm sm:text-base text-slate-800 dark:text-slate-200 ml-2">
+<div class="flex gap-4">
+<span class="text-amber-600/50 font-black w-4">1</span>
+<p>$M \leftarrow \emptyset$ (vagy ehelyett $M$ lehet tetszőleges kezdeti párosítás is)</p>
+</div>
+<div class="flex gap-4">
+<span class="text-amber-600/50 font-black w-4">2</span>
+<p><b>ciklus</b></p>
+</div>
+<div class="flex gap-4 ml-6 md:ml-10">
+<span class="text-amber-600/50 font-black w-4">3</span>
+<p>KERESSÜNK EGY $P$ JAVÍTÓUTAT az $M$ párosításra nézve</p>
+</div>
+<div class="flex gap-4 ml-6 md:ml-10">
+<span class="text-amber-600/50 font-black w-4">4</span>
+<p><b>ha</b> nem létezik $M$-re nézve javítóút, <b>akkor: stop</b></p>
+</div>
+<div class="flex gap-4 ml-6 md:ml-10">
+<span class="text-amber-600/50 font-black w-4">5</span>
+<p><b>különben:</b></p>
+</div>
+<div class="flex gap-4 ml-12 md:ml-20">
+<span class="text-amber-600/50 font-black w-4">6</span>
+<p>$M \leftarrow M \setminus \{P \text{ páros sorszámú élei}\} \cup \{P \text{ páratlan sorszámú élei}\}$</p>
+</div>
+<div class="flex gap-4">
+<span class="text-amber-600/50 font-black w-4">7</span>
+<p><b>ciklus vége</b></p>
+</div>
+</div>
+</div>
+
 </div>
 </math-algorithm>
 
@@ -1772,6 +1877,42 @@ Ezen az oldalon gyűjtöttük össze a tételsor által megkövetelt összes fon
     <p><strong>Edmonds-Karp tétel:</strong> Ha a BFS algoritmust használjuk a <em>legrövidebb</em> javítóút megkeresésére, az algoritmus mindig polinomiális időben megáll.</p>
     <p><strong>Működés:</strong> Egy létező $f$ folyamból indulunk. Felépítjük a $H_f$ segédgráfot (előreélek szabad kapacitással, visszaélek az eddigi folyammal). Keresünk benne egy irányított utat $s$-ből $t$-be. Megkeressük az út szűk keresztmetszetét ($\delta$), majd a folyam értékét módosítjuk $\delta$-val az út mentén (előre éleken növeljük, visszaéleken csökkentjük). Ezt ismételjük a leállásig.</p>
 </div>
+
+<div class="mt-8 pt-6 border-t-2 border-dashed border-slate-200 dark:border-slate-700">
+
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme-500 mb-6">Maximális folyam keresésére</h4>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<span class="text-xs font-black text-slate-400">Bemenet:</span>
+<span class="text-sm font-bold text-slate-700 dark:text-slate-200">egy $(G,s,t,c)$ hálózat.</span>
+</div>
+
+<div class="font-mono text-sm text-slate-800 dark:text-slate-200 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+    <table class="w-full text-left border-collapse">
+        <tbody>
+            <tr class="align-top"><td class="w-8 font-black text-theme-500 select-none pb-2">1</td><td class="pb-2">Minden $e \in E(G)$-re $f(e) \leftarrow 0$ (vagy $f$ lehet tetszőleges kezdeti folyam).</td></tr>
+            <tr class="align-top"><td class="w-8 font-black text-theme-500 select-none pb-2">2</td><td class="pb-2 font-bold">ciklus</td></tr>
+            <tr class="align-top"><td class="w-8 font-black text-theme-500 select-none pb-2">3</td><td class="pb-2 pl-4">Készítsük el az $f$-hez tartozó $H_f$ segédgráfot a 9.4. Definíció szerint.</td></tr>
+            <tr class="align-top"><td class="w-8 font-black text-theme-500 select-none pb-2">4</td><td class="pb-2 pl-4">FUTTASSUK A BFS ALGORITMUST $P$ javítóút keresésére $f$-re nézve;<br>vagyis keressünk $H_f$-ben egy $P$ irányított utat $s$-ből $t$-be.</td></tr>
+            <tr class="align-top"><td class="w-8 font-black text-theme-500 select-none pb-2">5</td><td class="pb-2 pl-4 font-bold">ha <span class="font-normal">nem létezik $f$-re nézve javítóút,</span> akkor: <span class="text-rose-500">stop</span></td></tr>
+            <tr class="align-top"><td class="w-8 font-black text-theme-500 select-none pb-2">6</td><td class="pb-2 pl-4 font-bold">különben:</td></tr>
+            <tr class="align-top"><td class="w-8 font-black text-theme-500 select-none pb-2">7</td><td class="pb-2 pl-8">$\delta_1 \leftarrow \min\{c(e) - f(e) : e \text{ előreéle } P\text{-nek}\}$<br>$\delta_2 \leftarrow \min\{f(e) : e \text{ megfordítottja visszaéle } P\text{-nek}\}$<br>$\delta \leftarrow \min\{\delta_1, \delta_2\}$</td></tr>
+            <tr class="align-top"><td class="w-8 font-black text-theme-500 select-none pb-2">8</td><td class="pb-2 pl-8">Minden $e \in E(G)$-re<br>
+                $f(e) \leftarrow$<br>
+                <div class="pl-4 mt-1 border-l-2 border-slate-300 dark:border-slate-600">
+                    $f(e) + \delta$, ha $e$ előreéle $P$-nek;<br>
+                    $f(e) - \delta$, ha $e$ megfordítottja visszaéle $P$-nek;<br>
+                    $f(e)$, egyébként.
+                </div>
+            </td></tr>
+            <tr class="align-top"><td class="w-8 font-black text-theme-500 select-none">9</td><td class="font-bold">ciklus vége</td></tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+</div>
 </math-algorithm>
 
 <!-- 8. Tétel -->
@@ -1784,6 +1925,25 @@ Ezen az oldalon gyűjtöttük össze a tételsor által megkövetelt összes fon
     <p><strong>Cél:</strong> Miután megvan a maximális folyam, hogyan kapjuk meg a hozzá tartozó minimális kapacitású vágást?</p>
     <p><strong>Működés:</strong> Futtassuk le a javítóutas algoritmust leállásig, így kapunk egy $f$ maximális folyamot. Építsük fel a végső $H_f$ segédgráfot (ebben már nincs $s \to t$ út). Legyen $X$ azon csúcsok halmaza, amelyek $s$-ből <strong>elérhetőek</strong> egy irányított úton a $H_f$-ben. Ekkor az $X$ és $V(G) \setminus X$ közötti vágás garantáltan a minimális kapacitású st-vágás.</p>
 </div>
+
+<div class="mt-8 pt-6 border-t-2 border-dashed border-slate-200 dark:border-slate-700">
+
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-theme-500 mb-6">Minimális vágás megkeresésére</h4>
+<div class="space-y-6 text-slate-700 dark:text-slate-300">
+<p class="text-sm md:text-base leading-relaxed">
+    A Ford-Fulkerson tétel bizonyításából közvetlenül adódik a minimális kapacitású vágás megkeresésének algoritmusa:
+</p>
+<ul class="list-decimal pl-5 space-y-3 text-sm md:text-base">
+    <li>Futtassuk le a javítóutas algoritmust, amíg csak lehetséges, és kapjunk meg egy maximális $f$ folyamot.</li>
+    <li>Készítsük el ehhez a maximális folyamhoz tartozó $H_f$ segédgráfot. Mivel a folyam maximális, ebben a segédgráfban már <b>nincs</b> $s$-ből $t$-be vezető irányított út.</li>
+    <li>Legyen $X$ azon csúcsok halmaza, amelyek $s$-ből <b>elérhetőek</b> egy irányított úton a $H_f$ segédgráfban. Ekkor $s \in X$, de $t \notin X$.</li>
+    <li>A kapott $X$ csúcshalmaz egy <b>minimális kapacitású st-vágás</b>, amelynek kapacitása pontosan $m_f$.</li>
+</ul>
+</div>
+
+
+
+</div>
 </math-algorithm>
 
 <!-- 10. Tétel -->
@@ -1795,6 +1955,80 @@ Ezen az oldalon gyűjtöttük össze a tételsor által megkövetelt összes fon
 <div class="space-y-3 text-sm md:text-base text-slate-700 dark:text-slate-300">
     <p><strong>Cél:</strong> Minimális összsúlyú feszítőfa (MST) keresése egy él-súlyozott gráfban.</p>
     <p><strong>Működés:</strong> Rendezzük a gráf összes élét a súlyuk szerint <strong>növekvő sorrendbe</strong>. Üres élhalmazból (erdőből) indulunk. Haladunk az éleken a legkisebbtől a legnagyobbig: ha a vizsgált élt hozzáadva a gráfhoz <strong>nem keletkezik kör</strong> (vagyis az él két végpontja még nem volt egy komponensben), akkor az élet beválasztjuk a feszítőfába. Ezt addig folytatjuk, amíg pontosan $n-1$ élet ki nem választottunk.</p>
+</div>
+
+<div class="mt-8 pt-6 border-t-2 border-dashed border-slate-200 dark:border-slate-700">
+
+<div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-md overflow-hidden relative">
+<div class="absolute top-0 right-0 p-6 opacity-5 pointer-events-none">
+<svg class="w-24 h-24 text-emerald-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</div>
+<div class="flex items-center mb-6">
+<span class="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md mr-3 text-xs">Pszeudokód</span>
+</div>
+<div class="space-y-6">
+<div class="bg-slate-50 dark:bg-slate-900/50 p-5 rounded-xl border border-slate-100 dark:border-slate-800">
+<p class="text-sm font-bold text-slate-700 dark:text-slate-300">
+<span class="text-emerald-600 dark:text-emerald-400 uppercase mr-2 tracking-tighter">Bemenet:</span> 
+                    Egy $n$ csúcsú és $m$ élű $G = (V,E)$ összefüggő gráf és egy $w: E \to \mathbb{R}$ súlyfüggvény.
+                </p>
+</div>
+<div class="font-mono text-sm md:text-base space-y-2 bg-slate-900 text-slate-300 p-6 md:p-8 rounded-2xl shadow-2xl border border-slate-800">
+<div class="flex gap-4">
+<span class="text-slate-600 shrink-0">1</span>
+<p><span class="text-emerald-400 font-bold">RENDEZZÜK AZ ÉLEKET</span> a $w(e)$ súlyok szerinti növekvő sorrendbe: $w(e_1) \leq w(e_2) \leq \dots \leq w(e_m)$</p>
+</div>
+<div class="flex gap-4">
+<span class="text-slate-600 shrink-0">2</span>
+<p>$k \leftarrow 0$; $j \leftarrow 1$; $E(F) \leftarrow \emptyset$</p>
+</div>
+<div class="flex gap-4">
+<span class="text-slate-600 shrink-0">3</span>
+<p><span class="text-indigo-400 font-bold uppercase text-xs">ciklus:</span> amíg $k &lt; n - 1$</p>
+</div>
+<div class="flex gap-4 ml-6">
+<span class="text-slate-600 shrink-0">4</span>
+<p class="text-slate-400 font-medium">VIZSGÁLJUK MEG, HOGY $e_j$ VÉGPONTJAI KÜLÖNBÖZŐ KOMPONENSBEN VANNAK-E</p>
+</div>
+<div class="flex gap-4 ml-6">
+<span class="text-slate-600 shrink-0">5</span>
+<p><span class="text-indigo-400 font-bold uppercase text-xs">ha</span> igen, <span class="text-indigo-400 font-bold uppercase text-xs">akkor:</span></p>
+</div>
+<div class="flex gap-4 ml-12 border-l border-slate-700 pl-4">
+<span class="text-slate-600 shrink-0">6</span>
+<p>$E(F) \leftarrow E(F) \cup \{e_j\}$ <span class="text-slate-600 ml-2 italic">// Él beválogatása</span></p>
+</div>
+<div class="flex gap-4 ml-12 border-l border-slate-700 pl-4">
+<span class="text-slate-600 shrink-0">7</span>
+<p>$k \leftarrow k + 1$</p>
+</div>
+<div class="flex gap-4 ml-6">
+<span class="text-slate-600 shrink-0">8</span>
+<p>$j \leftarrow j + 1$</p>
+</div>
+<div class="flex gap-4">
+<span class="text-slate-600 shrink-0">9</span>
+<p><span class="text-indigo-400 font-bold uppercase text-xs">ciklus vége</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+<div class="bg-emerald-50 dark:bg-emerald-900/10 p-6 rounded-2xl border border-emerald-100 dark:border-emerald-900/30 shadow-sm">
+<h4 class="text-emerald-700 dark:text-emerald-400 font-black mb-3 text-[10px] uppercase tracking-widest">Leállási feltétel</h4>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed italic">
+                Az algoritmus pontosan $n-1$ él beválogatása után áll meg. Ekkorra garantáltan egy minimális súlyú összefüggő feszítőfát kapunk.
+            </p>
+</div>
+<div class="bg-indigo-50 dark:bg-indigo-900/10 p-6 rounded-2xl border border-indigo-100 dark:border-indigo-900/30 shadow-sm">
+<h4 class="text-indigo-700 dark:text-indigo-400 font-black mb-3 text-[10px] uppercase tracking-widest">Komponens vizsgálat</h4>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed italic">
+                A 4. lépés a „lelke” a körmentességnek: ha két pont már azonos komponensben van, egy új él kört zárna be közöttük.
+            </p>
+</div>
+</div>
+
+
 </div>
 </math-algorithm>
 </article>
