@@ -8,6 +8,8 @@ html_files += glob.glob('/Users/danielcseto/Desktop/BME/Anal2/anal-gyakorlatok/*
 new_exams_section = """        <div style="padding: 20px 25px 5px 25px; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 10px;">Vizsgák</div>
         <div style="padding: 10px 25px 5px 25px; font-size: 0.75rem; color: #a855f7; font-weight: bold; text-transform: uppercase;">2026 Tavasz</div>
         <a href="vizsga_2026_1.html" style="color: #fca5a5;">📝 2026. Vizsga 1</a>
+        <a href="vizsga_2026_2.html" style="color: #fca5a5;">📝 2026. Vizsga 2</a>
+        <a href="vizsga_2026_3.html" style="color: #fca5a5;">📝 2026. Vizsga 3</a>
         <div style="padding: 10px 25px 5px 25px; font-size: 0.75rem; color: #a855f7; font-weight: bold; text-transform: uppercase;">2025 Tavasz</div>
         <a href="vizsga_2025_1.html" style="color: #38bdf8;">📝 2025. Vizsga 1</a>
         <a href="vizsga_2025_2.html" style="color: #38bdf8;">📝 2025. Vizsga 2</a>

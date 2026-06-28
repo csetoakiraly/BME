@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026. Vizsga 2 Megoldások</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7;
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        h1 { 
+            color: white; 
+            font-weight: 800; 
+            font-size: 2.8rem; 
+            text-align: center; 
+            margin-bottom: 50px; 
+            letter-spacing: -0.5px;
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            margin-top: 0; 
+            border-bottom: 1px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .task-description {
+            background: var(--task-bg);
+            border-left: 5px solid var(--task-color);
+            padding: 25px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 35px;
+            font-size: 1.25rem;
+            color: #e0f2fe;
+            line-height: 1.7;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .task-description strong {
+            color: var(--task-color);
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .formula-box {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 4px solid var(--secondary);
+            padding: 20px 25px;
+            border-radius: 0 16px 16px 0;
+            margin: 25px 0;
+            font-size: 1.25rem;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        .formula-box b {
+            color: var(--secondary);
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .calc-step {
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 3px solid rgba(255,255,255,0.15);
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            line-height: 2;
+        }
+
+        .math-block {
+            margin: 15px 0;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .result {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+            padding: 20px 25px;
+            border-radius: 16px;
+            display: block;
+            font-weight: 700;
+            margin-top: 30px;
+            font-size: 1.4rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);
+        }
+
+        .mjx-chtml { color: white !important; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 30px 15px; }
+            .card { padding: 25px 20px; }
+            h1 { font-size: 2.2rem; }
+            .task-description, .calc-step { font-size: 1.1rem; }
+            .result { font-size: 1.2rem; }
+            mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Vissza az Összefoglalóhoz
+        </a>
+
+        <h1>2026. Június 16. Vizsga (α variáns) Megoldások</h1>
+
+        <h2 style="text-align: center; color: white; border: none; margin-bottom: 40px; margin-top: 60px; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px;">Teszt rész</h2>
+
+        <div class="card">
+            <h2>1. Lineáris differenciálegyenlet fokszáma</h2>
+            
+            <div class="task-description">
+                <strong>1. Feladat (5 pont)</strong>
+                Mi a fokszáma annak a legalacsonyabb rendű, homogén, állandó együtthatós lineáris differenciálegyenletnek, melynek egy megoldása $x^2 + 3xe^{-x} \cos x$ ?
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $2;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $3;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $4;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $5;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $6;$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $7;$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $8.$</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Karakterisztikus gyökök visszakövetkeztetése:</b><br>
+                A megoldásfüggvény tagjai megadják a karakterisztikus egyenlet gyökeit és azok multiplicitását. A diﬀerenciálegyenlet rendje (fokszáma) egyenlő a gyökök multiplicitásainak összegével.
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    1. Az $x^2 = x^2 e^{0x}$ tagból következik, hogy a $\lambda = 0$ gyöke az egyenletnek, mégpedig 3-as multiplicitással (hiszen $x^0, x^1, x^2$ a megoldások). Ez $3$ gyököt jelent.
+                </div>
+                <div class="math-block">
+                    2. A $3xe^{-x} \cos x$ tagból következik, hogy $\lambda = -1 \pm i$ komplex konjugált gyökpár megoldás, méghozzá 2-es multiplicitással (az $x$ szorzó miatt). Ez $2 	imes 2 = 4$ gyököt jelent.
+                </div>
+                <div class="math-block">
+                    3. Összesen tehát a minimális fokszám: $3 + 4 = 7$.
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: 7
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>2. Magasabbrendű derivált Taylor-sorral</h2>
+            
+            <div class="task-description">
+                <strong>2. Feladat (5 pont)</strong>
+                Legyen $f(x) = x \sin\left(\frac{x^2}{2}\right)$. Ekkor $f^{(7)}(0) = ?$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $0;$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $-105;$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $105;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $-630;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $630;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más.</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Taylor-sorok és deriváltak kapcsolata:</b><br>
+                A Maclaurin-sorfejtésből tudjuk, hogy az $x^n$ tag együtthatója $a_n = \frac{f^{(n)}(0)}{n!}$. Így az $n$-edik deriváltat úgy kapjuk meg, hogy az $x^n$ együtthatóját beszorozzuk $n!$-sal.
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    1. A szinuszfüggvény ismert sorfejtése: $\sin t = t - \frac{t^3}{3!} + \frac{t^5}{5!} - \dots$
+                </div>
+                <div class="math-block">
+                    2. Helyettesítsünk $t = \frac{x^2}{2}$-t:
+                    $$ \sin\left(\frac{x^2}{2}\right) = \frac{x^2}{2} - \frac{\left(\frac{x^2}{2}\right)^3}{6} + \dots = \frac{x^2}{2} - \frac{x^6}{48} + \dots $$
+                </div>
+                <div class="math-block">
+                    3. Szorozzuk meg $x$-szel, hogy megkapjuk $f(x)$-et:
+                    $$ f(x) = x \left( \frac{x^2}{2} - \frac{x^6}{48} + \dots \right) = \frac{x^3}{2} - \frac{x^7}{48} + \dots $$
+                </div>
+                <div class="math-block">
+                    4. Az $x^7$ együtthatója $a_7 = -\frac{1}{48}$. Ebből a derivált:
+                    $$ f^{(7)}(0) = a_7 \cdot 7! = -\frac{1}{48} \cdot 5040 = -105 $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: -105
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>3. Fourier-transzformált definíció alapján</h2>
+            
+            <div class="task-description">
+                <strong>3. Feladat (5 pont)</strong>
+                Az $f(x) = \frac{2}{9 + x^2}$ függvény Fourier-transzformáltja a $0$ pontban:
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $0;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $1;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $\pi;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $6\pi;$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $\frac{2\pi}{3};$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más.</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Fourier-transzformált a 0 pontban:</b><br>
+                $\hat{f}(\omega) = \int_{-\infty}^{\infty} f(x) e^{-i\omega x} dx$. Ha $\omega = 0$, akkor az exponenciális tag 1 lesz, vagyis egyszerűen a függvény teljes területét (integrálját) kell kiszámolni: $\hat{f}(0) = \int_{-\infty}^{\infty} f(x) dx$.
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    $$ \hat{f}(0) = \int_{-\infty}^{\infty} \frac{2}{9 + x^2} dx $$
+                </div>
+                <div class="math-block">
+                    A primitív függvény $\arctan$-nal fejezhető ki:
+                    $$ 2 \cdot \frac{1}{3} \left[ \arctan\left(\frac{x}{3}\right) \right]_{-\infty}^{\infty} $$
+                </div>
+                <div class="math-block">
+                    A határértékek behelyettesítésével:
+                    $$ \frac{2}{3} \left( \frac{\pi}{2} - \left(-\frac{\pi}{2}\right) \right) = \frac{2}{3} (\pi) = \frac{2\pi}{3} $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: $rac{2\pi}{3}$
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>4. Kétváltozós függvény feltételes szélsőértéke</h2>
+            
+            <div class="task-description">
+                <strong>4. Feladat (5 pont)</strong>
+                Az $f(x, y) = x^2 - xy + y^2$ függvény maximuma az $\{(x, y) : x^2 + y^2 \le 1\}$ halmazon
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $0;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $1;$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $\frac{3}{2};$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $1 + \frac{\sqrt{2}}{2};$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más.</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Szélsőérték zárt tartományon:</b><br>
+                Meg kell vizsgálni a tartomány belsejét (gradienst nullázni) és a peremét ($x = \cos t, y = \sin t$ paraméterezéssel).
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    1. A tartomány belsejében: $f'_x = 2x - y = 0$ és $f'_y = -x + 2y = 0 \implies x=0, y=0$. Itt a függvényérték $f(0,0) = 0$.
+                </div>
+                <div class="math-block">
+                    2. A peremen ($x^2 + y^2 = 1$): Helyettesítsünk polárkoordinátákkal: $x = \cos t, y = \sin t$.
+                    $$ f(t) = \cos^2 t - \cos t \sin t + \sin^2 t = 1 - \sin t \cos t $$
+                </div>
+                <div class="math-block">
+                    3. Használjuk a kettős szög azonosságot ($\sin(2t) = 2 \sin t \cos t$):
+                    $$ f(t) = 1 - \frac{1}{2}\sin(2t) $$
+                </div>
+                <div class="math-block">
+                    4. Ennek maximuma akkor van, ha $\sin(2t)$ a lehető legkisebb, azaz $-1$.
+                    $$ f_{max} = 1 - \frac{1}{2}(-1) = 1 + \frac{1}{2} = \frac{3}{2} $$
+                </div>
+            </div>
+
+            <div class="result">
+                Eredmény: $rac{3}{2}$
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>5-7. Igaz / Hamis Állítások</h2>
+            
+            <div class="task-description">
+                <strong>5. Feladat (3 × 3 = 9 pont)</strong>
+                A $T = \{(x, y) \in \mathbb{R}^2 : x^2 + (y + 3)^2 \le 9\}$ halmaz a következő módon írható le:
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li style="margin-bottom: 10px;">
+                        $T = \left\{(x, y) : y \in [-6, 0], x \in \left[-\sqrt{9 -(y + 3)^2}, \sqrt{9 -(y + 3)^2}\right]\right\}$
+                        <br><strong style="color: #4ade80;">✓ IGAZ</strong> (Ez a kör hagyományos y-szerinti normáltartományos felírása).
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        $T = \left\{(r \cos \phi, r \sin \phi) : \phi \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right], r \in [0, 6 \cos \phi]\right\}$
+                        <br><strong style="color: #f87171;">✗ HAMIS</strong> (Ez egy pozitív x-tengely mentén eltolt kört ír le, nekünk lefelé tolt kell).
+                    </li>
+                    <li>
+                        $T = \{(r \cos \phi, r \sin \phi - 3) : \phi \in [0, 2\pi], r \in [0, 3]\}$
+                        <br><strong style="color: #4ade80;">✓ IGAZ</strong> (Eltolt polárkoordináta-rendszer tökéletes felírása).
+                    </li>
+                </ul>
+            </div>
+
+            <div class="task-description">
+                <strong>6. Feladat (3 × 3 = 9 pont)</strong>
+                Az $y'y + x = 0$ differenciálegyenlet $y(0) = -4$ kezdeti feltételnek megfelelő maximális megoldása áthalad:
+                <div class="calc-step" style="margin: 10px 0; font-size: 1rem;">
+                    <b>Megoldás:</b> $y dy = -x dx \implies \frac{y^2}{2} = -\frac{x^2}{2} + C \implies x^2 + y^2 = 2C$. A feltételből $0 + 16 = 2C \implies 16 = 2C$. Így a görbe egyenlőre: $x^2 + y^2 = 16$, és mivel $y(0) = -4$ negatív, a megoldás az alsó félkör: $y(x) = -\sqrt{16-x^2}$.
+                </div>
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li style="margin-bottom: 10px;">az origón; <strong style="color: #f87171;">✗ HAMIS</strong> ($0^2 + 0^2 \neq 16$)</li>
+                    <li style="margin-bottom: 10px;">az $(2, 2)$ ponton; <strong style="color: #f87171;">✗ HAMIS</strong> ($2^2 + 2^2 \neq 16$)</li>
+                    <li>a $(2\sqrt{2}, -2\sqrt{2})$ ponton; <strong style="color: #4ade80;">✓ IGAZ</strong> (Rajta van a körön és y negatív).</li>
+                </ul>
+            </div>
+
+            <div class="task-description">
+                <strong>7. Feladat (4 × 3 = 12 pont)</strong>
+                Az $f(n + 1) = 4f(n) - f(n - 1)$ lineáris rekurziónak:
+                <div class="calc-step" style="margin: 10px 0; font-size: 1rem;">
+                    <b>Megoldás:</b> A karakterisztikus egyenlet $r^2 - 4r + 1 = 0$, gyökei $r_{1,2} = 2 \pm \sqrt{3}$. A megoldás: $f(n) = A(2+\sqrt{3})^n + B(2-\sqrt{3})^n$. Itt $2+\sqrt{3} > 1$ és $2-\sqrt{3} \in (0, 1)$.
+                </div>
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li style="margin-bottom: 10px;">Minden megoldása korlátos; <strong style="color: #f87171;">✗ HAMIS</strong> (Ha $A \neq 0$, végtelenbe tart).</li>
+                    <li style="margin-bottom: 10px;">Van 0-hoz tartó megoldása; <strong style="color: #4ade80;">✓ IGAZ</strong> (Ha $A = 0$, akkor exponenciálisan csökken).</li>
+                    <li style="margin-bottom: 10px;">Van olyan megoldása, amire $\sum f(n)$ konvergens; <strong style="color: #4ade80;">✓ IGAZ</strong> (Ha $A = 0$, akkor egy konvergens mértani sor).</li>
+                    <li>Nincs olyan megoldása, amire $f(n) \to -\infty$; <strong style="color: #f87171;">✗ HAMIS</strong> (Ha $A = -1$, akkor oda tart).</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 style="text-align: center; color: white; border: none; margin-bottom: 40px; margin-top: 80px; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px;">Kifejtős rész</h2>
+
+        <div class="card">
+            <h2>1. Többdimenziós integrálok (12+12 = 24 pont)</h2>
+            
+            <div class="task-description">
+                <strong>a) Kettős integrál polárkoordinátákkal</strong>
+                Legyen $T = \{(x, y) : 1 \le x^2 + y^2 \le 4, \quad 0 \le x \le y\}$. Számítsa ki a következő integrált:
+                $$ \iint_T xy^3 dx dy $$
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    1. A tartomány felírása polárkoordinátákkal: $x = r \cos \phi$, $y = r \sin \phi$.
+                    A határok: $1 \le r \le 2$. Mivel $0 \le x \le y$, az első síknegyedben vagyunk a $y=x$ egyenes felett, így $\phi \in \left[\frac{\pi}{4}, \frac{\pi}{2}\right]$.
+                </div>
+                <div class="math-block">
+                    2. Az integrál felírása (ne felejtsük el a Jacobi-determinánst: $r$):
+                    $$ \int_{\pi/4}^{\pi/2} \int_1^2 (r \cos \phi) (r^3 \sin^3 \phi) \cdot r \, dr \, d\phi = \int_{\pi/4}^{\pi/2} \int_1^2 r^5 \cos \phi \sin^3 \phi \, dr \, d\phi $$
+                </div>
+                <div class="math-block">
+                    3. A változók szétválaszthatóak:
+                    $$ \left( \int_1^2 r^5 dr \right) \cdot \left( \int_{\pi/4}^{\pi/2} \cos \phi \sin^3 \phi d\phi \right) $$
+                </div>
+                <div class="math-block">
+                    4. Az integrálok kiszámítása:
+                    $$ \left[ \frac{r^6}{6} \right]_1^2 = \frac{64 - 1}{6} = \frac{63}{6} = \frac{21}{2} $$
+                    $$ \left[ \frac{\sin^4 \phi}{4} \right]_{\pi/4}^{\pi/2} = \frac{1}{4} - \frac{1/4}{4} = \frac{1}{4} - \frac{1}{16} = \frac{3}{16} $$
+                </div>
+                <div class="math-block">
+                    5. A végeredmény:
+                    $$ \frac{21}{2} \cdot \frac{3}{16} = \frac{63}{32} $$
+                </div>
+            </div>
+
+            <div class="task-description" style="margin-top: 50px;">
+                <strong>b) Hármas integrál normáltartományon</strong>
+                Számítsa ki az $\iiint_H 2x \, d(x, y, z)$ integrált, ahol $H$ az $x = 0$, $y = 0$, $z = 0$, $x + y + z = 3$ síkok által meghatározott korlátos tartomány.
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    1. A normáltartomány határai: $x \in [0, 3]$, $\quad y \in [0, 3-x]$, $\quad z \in [0, 3-x-y]$.
+                </div>
+                <div class="math-block">
+                    2. Az integrál felírása:
+                    $$ \int_0^3 \int_0^{3-x} \int_0^{3-x-y} 2x \, dz \, dy \, dx $$
+                </div>
+                <div class="math-block">
+                    3. Integrálás $z$ szerint:
+                    $$ \int_0^3 \int_0^{3-x} 2x (3-x-y) \, dy \, dx $$
+                </div>
+                <div class="math-block">
+                    4. Integrálás $y$ szerint:
+                    $$ \int_0^3 2x \left[ -\frac{(3-x-y)^2}{2} \right]_{y=0}^{3-x} dx = \int_0^3 x(3-x)^2 dx $$
+                </div>
+                <div class="math-block">
+                    5. Zárójel felbontása és integrálás $x$ szerint:
+                    $$ \int_0^3 x(9 - 6x + x^2) dx = \int_0^3 (9x - 6x^2 + x^3) dx $$
+                    $$ = \left[ \frac{9x^2}{2} - 2x^3 + \frac{x^4}{4} \right]_0^3 = \frac{81}{2} - 54 + \frac{81}{4} = \frac{162 - 216 + 81}{4} = \frac{27}{4} $$
+                </div>
+            </div>
+            
+            <div class="result">
+                a) Eredmény: $rac{63}{32}$ <br>
+                b) Eredmény: $rac{27}{4}$
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>2. Fourier-sorok (12 pont)</h2>
+            
+            <div class="task-description">
+                Legyen $f(x) = 2x - 3$, ha $x \in (-\pi, \pi]$, és $f(x + 2\pi) = f(x)$. Számolja ki $f$ Fourier-sorát, és adja meg a Fourier-sor $\Phi(x)$ összegét!
+            </div>
+
+            <div class="formula-box">
+                <b>Okos megoldás:</b><br>
+                A $2x-3$ függvény úgy tekinthető, mint a páratlan $2x$ függvény és az állandó (páros) $-3$ függvény összege. Emiatt az együtthatókat nagyon egyszerűen lehet számolni: a $-3$ eltolás adja az $a_0$-t, az $a_n$ együtthatók nullák (mert a maradék páratlan), a $b_n$ együtthatók pedig csak a $2x$-ből jönnek!
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    1. $a_0$ együttható:
+                    $$ a_0 = \frac{1}{\pi} \int_{-\pi}^{\pi} (2x - 3) dx = \frac{1}{\pi} \left[ x^2 - 3x \right]_{-\pi}^{\pi} = \frac{1}{\pi} \left( (\pi^2 - 3\pi) - (\pi^2 + 3\pi) \right) = \frac{-6\pi}{\pi} = -6 $$
+                </div>
+                <div class="math-block">
+                    2. $a_n$ együtthatók: Mivel $2x$ páratlan (integrálja koszinusszal $0$) és a $-3\cos(nx)$ integrálja szintén $0$, $a_n = 0$.
+                </div>
+                <div class="math-block">
+                    3. $b_n$ együtthatók:
+                    $$ b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} 2x \sin(nx) dx = \frac{2}{\pi} \int_{-\pi}^{\pi} x \sin(nx) dx $$
+                    Parciális integrálással ($u=x, v'=\sin(nx)$):
+                    $$ = \frac{2}{\pi} \left[ \frac{-x \cos(nx)}{n} \right]_{-\pi}^{\pi} + \frac{2}{\pi} \int_{-\pi}^{\pi} \frac{\cos(nx)}{n} dx $$
+                    A második rész integrálja $0$. A behelyettesítés:
+                    $$ = \frac{2}{\pi} \left( \frac{-\pi (-1)^n}{n} - \frac{\pi (-1)^n}{n} \right) = \frac{-4 (-1)^n}{n} = \frac{4(-1)^{n+1}}{n} $$
+                </div>
+                <div class="math-block">
+                    4. A Fourier-sor:
+                    $$ \Phi(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} b_n \sin(nx) = -3 + \sum_{n=1}^{\infty} \frac{4(-1)^{n+1}}{n} \sin(nx) $$
+                </div>
+                <div class="math-block">
+                    5. A Fourier-sor összege (Dirichlet-tétel alapján a szakadási helyeken, azaz $x=\pi+2k\pi$ a jobb- és baloldali határérték átlaga):
+                    $$ \Phi(x) = \begin{cases} 2x - 3 & \text{ha } x \in (-\pi, \pi) \\ -3 & \text{ha } x = \pi \end{cases} $$
+                </div>
+            </div>
+            
+            <div class="result">
+                Fourier-sor: $\Phi(x) = -3 + \sum_{n=1}^{\infty} rac{4(-1)^{n+1}}{n} \sin(nx)$
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>3. Elmélet: Gyökkritérium (14 pont)</h2>
+            
+            <div class="task-description">
+                Mondja ki és bizonyítsa be a numerikus sorokra vonatkozó gyökkritériumot!
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    <b>Tétel:</b> Legyen $a_n \ge 0$.
+                    <br>1) Ha $\forall n \in \mathbb{N} : \sqrt[n]{a_n} \ge 1$, akkor $\sum_{n \in \mathbb{N}} a_n = \infty$ (Divergens).
+                    <br>2) Ha $\exists q < 1, \forall n \in \mathbb{N} : \sqrt[n]{a_n} \le q$, akkor $\sum_{n \in \mathbb{N}} a_n < \infty$ (Konvergens).
+                </div>
+                <div class="math-block">
+                    <b>Bizonyítás (Divergencia):</b>
+                    <br>Ha $\sqrt[n]{a_n} \ge 1$, azaz $a_n \ge 1$, akkor a sor tagjai nem tartanak a $0$-hoz (a konvergencia szükséges feltétele nem teljesül). Minoránskritérium alapján is: $\sum a_n \ge \sum 1 = \infty$.
+                </div>
+                <div class="math-block">
+                    <b>Bizonyítás (Konvergencia):</b>
+                    <br>Ha $\sqrt[n]{a_n} \le q < 1$, akkor az $n$-edik hatványra emelve $a_n \le q^n$. Majoránskritériummal összahasonlítjuk a $\sum q^n$ mértani sorral, ami $0 \le q < 1$ miatt konvergens, így a mi sorunk is az.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>4. Érintősík (Plusz 10 pont)</h2>
+            
+            <div class="task-description">
+                A sík mely pontjában párhuzamos az $f(x, y) = x^3 - 4xy + y^2$ függvény érintősíkja az $x - 2y + z = 6$ síkkal?
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    1. A megadott sík egyenletének normálvektora: $\mathbf{n_1} = (1, -2, 1)$.
+                </div>
+                <div class="math-block">
+                    2. A felület egyenlete $z = f(x,y)$, aminek érintősík-normálvektora: $\mathbf{n_2} = (f'_x, f'_y, -1)$. Ahhoz, hogy párhuzamosak legyenek, a két vektornak egyeznie kell (vagy skalárszorosának, de a $z$ koordináta miatt: $(f'_x, f'_y, -1) = c(1, -2, 1) \implies c = -1$). Tehát $f'_x = -1$ és $f'_y = 2$.
+                </div>
+                <div class="math-block">
+                    3. Kiszámoljuk a parciális deriváltakat:
+                    $$ f'_x = 3x^2 - 4y = -1 $$
+                    $$ f'_y = -4x + 2y = 2 $$
+                </div>
+                <div class="math-block">
+                    4. Megoldjuk az egyenletrendszert:
+                    A másodikból: $2y = 4x + 2 \implies y = 2x + 1$.
+                    Behelyettesítve az elsőbe:
+                    $$ 3x^2 - 4(2x + 1) = -1 \implies 3x^2 - 8x - 4 = -1 \implies 3x^2 - 8x - 3 = 0 $$
+                </div>
+                <div class="math-block">
+                    5. A másodfokú egyenlet megoldóképletével:
+                    $$ x_{1,2} = \frac{8 \pm \sqrt{64 - 4(3)(-3)}}{6} = \frac{8 \pm 10}{6} $$
+                    Ebből $x_1 = 3$ és $x_2 = -\frac{1}{3}$.
+                </div>
+                <div class="math-block">
+                    6. Visszahelyettesítve $y = 2x + 1$-be:
+                    Ha $x_1 = 3$, akkor $y_1 = 7$.
+                    Ha $x_2 = -\frac{1}{3}$, akkor $y_2 = \frac{1}{3}$.
+                </div>
+            </div>
+            
+            <div class="result">
+                Eredmény: A $(3, 7)$ és a $(-\frac{1}{3}, \frac{1}{3})$ pontokban.
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

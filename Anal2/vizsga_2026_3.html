@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026. Vizsga 3 Megoldások</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7;
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        h1 { 
+            color: white; 
+            font-weight: 800; 
+            font-size: 2.8rem; 
+            text-align: center; 
+            margin-bottom: 50px; 
+            letter-spacing: -0.5px;
+        }
+
+        h2 { 
+            color: var(--secondary); 
+            margin-top: 0; 
+            border-bottom: 1px solid var(--glass-border); 
+            padding-bottom: 15px; 
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .task-description {
+            background: var(--task-bg);
+            border-left: 5px solid var(--task-color);
+            padding: 25px;
+            border-radius: 0 16px 16px 0;
+            margin-bottom: 35px;
+            font-size: 1.25rem;
+            color: #e0f2fe;
+            line-height: 1.7;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .task-description strong {
+            color: var(--task-color);
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .formula-box {
+            background: rgba(168, 85, 247, 0.08);
+            border-left: 4px solid var(--secondary);
+            padding: 20px 25px;
+            border-radius: 0 16px 16px 0;
+            margin: 25px 0;
+            font-size: 1.25rem;
+            color: #e2e8f0;
+            line-height: 1.8;
+        }
+
+        .formula-box b {
+            color: var(--secondary);
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .calc-step {
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 3px solid rgba(255,255,255,0.15);
+            font-size: 1.25rem;
+            color: #f1f5f9;
+            line-height: 2;
+        }
+
+        .math-block {
+            margin: 15px 0;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .result {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+            padding: 20px 25px;
+            border-radius: 16px;
+            display: block;
+            font-weight: 700;
+            margin-top: 30px;
+            font-size: 1.4rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.1);
+        }
+
+        .mjx-chtml { color: white !important; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 30px 15px; }
+            .card { padding: 25px 20px; }
+            h1 { font-size: 2.2rem; }
+            .task-description, .calc-step { font-size: 1.1rem; }
+            .result { font-size: 1.2rem; }
+            mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Vissza az Összefoglalóhoz
+        </a>
+
+        <h1>2026. Június 23. Vizsga (α variáns) Megoldások</h1>
+
+        <h2 style="text-align: center; color: white; border: none; margin-bottom: 40px; margin-top: 60px; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px;">Teszt rész</h2>
+
+        <div class="card">
+            <h2>1. Differenciálegyenlet lokális szélsőértékei</h2>
+            
+            <div class="task-description">
+                <strong>1. Feladat (5 pont)</strong>
+                Az $y' = x^2 - 2x + y^2 + 1$ differenciálegyenlet megoldásai között lokális szélsőértékhelye:
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $1$-nek van;</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $2$-nek van;</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> végtelen soknak van;</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> egyiknek sincs. <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Lokális szélsőérték feltétele:</b><br>
+                Szélsőérték ott lehet, ahol $y' = 0$. Teljesülése esetén meg kell vizsgálni a magasabbrendű deriváltakat. Ha az első nem nulla derivált páratlan rendű (pl. $y'''$), akkor az adott pontban inflexiós pont van, nem szélsőérték.
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    1. Tegyük egyenlővé nullával az első deriváltat:
+                    $$ y' = x^2 - 2x + 1 + y^2 = (x-1)^2 + y^2 = 0 $$
+                </div>
+                <div class="math-block">
+                    2. Mivel két négyzetszám összege csak akkor nulla, ha mindkettő nulla, az egyetlen stacionárius pont:
+                    $$ x = 1, \quad y = 0 $$
+                </div>
+                <div class="math-block">
+                    3. Deriváljuk az egyenletet még egyszer (impliciten $x$ szerint), hogy megnézzük $y''$-t a $(1, 0)$ pontban:
+                    $$ y'' = 2x - 2 + 2yy' = 2(x-1) + 2yy' $$
+                    Behelyettesítve $x=1, y=0, y'=0$-t:
+                    $$ y''(1) = 2(0) + 2(0)(0) = 0 $$
+                </div>
+                <div class="math-block">
+                    4. Mivel $y'' = 0$, tovább kell deriválni:
+                    $$ y''' = 2 + 2(y')^2 + 2yy'' $$
+                    Behelyettesítve a pontot:
+                    $$ y'''(1) = 2 + 0 + 0 = 2 \neq 0 $$
+                </div>
+                <div class="math-block">
+                    5. Mivel az első nem nulla derivált a harmadik (páratlan), ez a pont <b>inflexiós pont</b>, szélsőérték egyáltalán nincs.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>2. Végtelen sor összege Taylor-sorral</h2>
+            
+            <div class="task-description">
+                <strong>2. Feladat (5 pont)</strong>
+                Számítsa ki a következő sor összegét: $\sum_{n=1}^\infty \frac{(-1)^{2n}}{(n + 1)!} = ?$
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $e^{-1} - 1;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $\cos 1 + \frac{1}{2};$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $e - 1;$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $e - 2;$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $\cosh 1 - 1;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más.</li>
+                </ul>
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    1. Vegyük észre, hogy a számláló $(-1)^{2n}$ mindig $1$ (mivel $2n$ páros).
+                    $$ \sum_{n=1}^\infty \frac{1}{(n + 1)!} = \frac{1}{2!} + \frac{1}{3!} + \frac{1}{4!} + \dots $$
+                </div>
+                <div class="math-block">
+                    2. Az exponenciális függvény ismert Maclaurin sora $x=1$ helyen:
+                    $$ e^1 = \sum_{k=0}^\infty \frac{1}{k!} = \frac{1}{0!} + \frac{1}{1!} + \frac{1}{2!} + \frac{1}{3!} + \dots $$
+                    $$ e = 1 + 1 + \frac{1}{2!} + \frac{1}{3!} + \dots = 2 + \sum_{n=1}^\infty \frac{1}{(n + 1)!} $$
+                </div>
+                <div class="math-block">
+                    3. Átrendezve kapjuk az eredményt:
+                    $$ \sum_{n=1}^\infty \frac{1}{(n + 1)!} = e - 2 $$
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>3. Trigonometrikus függvény Fourier-sora</h2>
+            
+            <div class="task-description">
+                <strong>3. Feladat (5 pont)</strong>
+                Az $f(x) = \sin^2(x)$ függvény Fourier-sorában az $a_2$ együttható értéke:
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $-1;$</li>
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $-\frac{1}{2};$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $0;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $\frac{1}{2};$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $1;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más.</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <b>Trükk:</b><br>
+                Ha a függvény felírható véges sok szinusz és koszinusz összegeként (trigonometrikus polinom), akkor <b>az pont megegyezik a saját Fourier-sorával</b>! Integrálás helyett csak linearizálni kell.
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    1. A jól ismert trigonometrikus azonosság alapján (linearizálás):
+                    $$ \sin^2(x) = \frac{1 - \cos(2x)}{2} = \frac{1}{2} - \frac{1}{2}\cos(2x) $$
+                </div>
+                <div class="math-block">
+                    2. Ez a kifejezés maga a Fourier-sor! A $\cos(2x)$ együtthatója felel meg az $a_2$ értéknek:
+                    $$ a_2 = -\frac{1}{2} $$
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>4. Iránymenti derivált</h2>
+            
+            <div class="task-description">
+                <strong>4. Feladat (5 pont)</strong>
+                Az $f(x, y) = \sqrt{x^2 + 2y^2}$ függvény $(3, -4)$ irányú egységvektor szerinti iránymenti deriváltja az $(1, -2)$ pontban:
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li><input type="checkbox" checked onclick="return false;" style="accent-color: #4ade80; transform: scale(1.4); margin-right: 12px; cursor: default;"> $\frac{19}{15};$ <strong style="color: #4ade80; background: rgba(74, 222, 128, 0.15); padding: 4px 10px; border-radius: 8px; margin-left: 10px; border: 1px solid rgba(74, 222, 128, 0.4); font-size: 1.05rem; letter-spacing: 0.5px; box-shadow: 0 0 10px rgba(74,222,128,0.2);">✓ HELYES MEGOLDÁS</strong></li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $-\frac{8}{3};$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $\frac{7}{16};$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> $0;$</li>
+                    <li><input type="checkbox" disabled style="transform: scale(1.4); margin-right: 12px; opacity: 0.5;"> más.</li>
+                </ul>
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    1. Először képezzük a megadott irányvektor egységvektorát:
+                    $$ \vec{v} = (3, -4) \implies |\vec{v}| = \sqrt{3^2 + (-4)^2} = 5 \implies \vec{e} = \left(\frac{3}{5}, -\frac{4}{5}\right) $$
+                </div>
+                <div class="math-block">
+                    2. Kiszámoljuk a függvény gradiensét:
+                    $$ \nabla f = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} \right) = \left( \frac{2x}{2\sqrt{x^2+2y^2}}, \frac{4y}{2\sqrt{x^2+2y^2}} \right) = \left( \frac{x}{\sqrt{x^2+2y^2}}, \frac{2y}{\sqrt{x^2+2y^2}} \right) $$
+                </div>
+                <div class="math-block">
+                    3. Behelyettesítjük a $(1, -2)$ pontot. A nevező értéke: $\sqrt{1^2 + 2(-2)^2} = \sqrt{1 + 8} = 3$.
+                    $$ \nabla f(1, -2) = \left( \frac{1}{3}, \frac{-4}{3} \right) $$
+                </div>
+                <div class="math-block">
+                    4. Az iránymenti derivált a gradiens és az egységvektor skalárszorzata:
+                    $$ f'_{\vec{e}} = \nabla f \cdot \vec{e} = \left(\frac{1}{3}\right)\left(\frac{3}{5}\right) + \left(\frac{-4}{3}\right)\left(-\frac{4}{5}\right) = \frac{3}{15} + \frac{16}{15} = \frac{19}{15} $$
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>5-7. Igaz / Hamis Állítások</h2>
+            
+            <div class="task-description">
+                <strong>5. Feladat (3 × 3 = 9 pont)</strong>
+                Az $y = x + 2$ és $y = x^2$ görbék által határolt korlátos tartomány normáltartományként felírva:
+                <div class="calc-step" style="margin: 10px 0; font-size: 1rem;">
+                    <b>Metszéspontok:</b> $x^2 = x + 2 \implies x^2 - x - 2 = 0 \implies x_1 = -1, x_2 = 2$.
+                </div>
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li style="margin-bottom: 10px;">
+                        $x \in [-1, 2], y \in [x^2, x + 2]$
+                        <br><strong style="color: #4ade80;">✓ IGAZ</strong> (Hagyományos, x szerinti normáltartományos integrálási határok).
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        $\{y \in [0, 4], x = [y - 2, \sqrt{y}]\}$
+                        <br><strong style="color: #f87171;">✗ HAMIS</strong> (Hiányzik belőle a parabola bal oldali ága az $y \in [0,1]$ szakaszon, ami $-\sqrt{y}$-tól tart).
+                    </li>
+                    <li>
+                        $\{y \in [0, 1], x = [-\sqrt{y}, \sqrt{y}]\} \cup \{y \in [1, 4], x = [y - 2, \sqrt{y}]\}$
+                        <br><strong style="color: #4ade80;">✓ IGAZ</strong> (Tökéletes felosztás y szerinti integrálásra: az alsó rész egy teljes parabola szelet, a felsőt pedig egyenes és parabola határolja).
+                    </li>
+                </ul>
+            </div>
+
+            <div class="task-description">
+                <strong>6. Feladat (3 × 3 = 9 pont)</strong>
+                Az $y^{(6)} - 16y'' = 0$ differenciálegyenlet megoldása:
+                <div class="calc-step" style="margin: 10px 0; font-size: 1rem;">
+                    <b>Megoldás:</b> A karakterisztikus egyenlet $\lambda^6 - 16\lambda^2 = 0 \implies \lambda^2(\lambda^4 - 16) = 0$. A gyökök: $0, 0, 2, -2, 2i, -2i$. A bázisfüggvények: $1, x, e^{2x}, e^{-2x}, \cos(2x), \sin(2x)$.
+                </div>
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li style="margin-bottom: 10px;">$8x^2 + \cos(2x)$; <strong style="color: #f87171;">✗ HAMIS</strong> (Mivel a $0$ csak kétszeres gyök, az $x^2$ nem bázisfüggvény).</li>
+                    <li style="margin-bottom: 10px;">$x \sin(2x)$; <strong style="color: #f87171;">✗ HAMIS</strong> (Nincs komplex többszörös gyök, ezért a szinuszt nem szorozhatjuk $x$-szel).</li>
+                    <li>$\cosh(2x) - \sin(2x)$; <strong style="color: #4ade80;">✓ IGAZ</strong> (Mivel $\cosh(2x) = \frac{e^{2x} + e^{-2x}}{2}$, ez tökéletesen felírható a bázisfüggvények lineáris kombinációjaként).</li>
+                </ul>
+            </div>
+
+            <div class="task-description">
+                <strong>7. Feladat (4 × 3 = 12 pont)</strong>
+                Az $f(x, y) = \frac{x \sin(x^2)}{2x^2 + 3y^2}$ ha $(x, y) \neq (0, 0)$, és $0$ egyébként függvény:
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 15px;">
+                    <li style="margin-bottom: 10px;">mindenhol folytonos; <strong style="color: #4ade80;">✓ IGAZ</strong> (Polárba áttérve a nevezőben $r^2$ van, míg a számláló nagyságrendileg $r^3$-ként viselkedik, így $\lim \to 0$).</li>
+                    <li style="margin-bottom: 10px;">az origóban az első változó szerinti deriváltja 0; <strong style="color: #f87171;">✗ HAMIS</strong> ($f'_x(0,0) = \lim_{x \to 0} \frac{\frac{\sin(x^2)}{2x} - 0}{x} = \lim_{x \to 0} \frac{\sin(x^2)}{2x^2} = \frac{1}{2}$).</li>
+                    <li style="margin-bottom: 10px;">az origóban a második változó szerinti deriváltja 0; <strong style="color: #4ade80;">✓ IGAZ</strong> (Mivel $x=0$ mentén a függvény azonosan $0$, a derivált is $0$).</li>
+                    <li>mindenhol létezik az $[ 1, 0 ]$ irányú iránymenti deriváltja; <strong style="color: #4ade80;">✓ IGAZ</strong> (Ez pontosan az $x$ szerinti deriváltat jelenti, ami az előbb láttuk, hogy létezik).</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 style="text-align: center; color: white; border: none; margin-bottom: 40px; margin-top: 80px; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px;">Kifejtős rész</h2>
+
+        <div class="card">
+            <h2>1. Hármas integrál hengerkoordinátákkal (20 pont)</h2>
+            
+            <div class="task-description">
+                Számolja ki az $f(x, y, z) = 2x$ függvény integrálját az $x^2 + y^2 = 9$, $z = 0$ és $x + 2y + z = 10$ felületek által meghatározott korlátos tartományon!
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    1. Térjünk át hengerkoordinátákra: $x = r \cos \phi$, $y = r \sin \phi$, $z = z$.
+                    A henger alapja az $x^2 + y^2 \le 9$ kör, így a határok: $r \in [0, 3]$ és $\phi \in [0, 2\pi]$.
+                </div>
+                <div class="math-block">
+                    2. A z határok a $z=0$ síktól a ferde síkig futnak: $z \in [0, 10 - x - 2y] \implies z \in [0, 10 - r(\cos\phi + 2\sin\phi)]$.
+                </div>
+                <div class="math-block">
+                    3. Az integrál felírása (a Jacobi determináns, azaz $r$ szorzásával):
+                    $$ \iiint_V 2x \, dz \, dy \, dx = \int_0^3 \int_0^{2\pi} \int_0^{10 - r(\cos\phi + 2\sin\phi)} (2r \cos\phi) \cdot r \, dz \, d\phi \, dr $$
+                </div>
+                <div class="math-block">
+                    4. Integrálás $z$ szerint (mivel a belső rész nem függ z-től, csak szorzunk a határokkal):
+                    $$ \int_0^3 \int_0^{2\pi} 2r^2 \cos\phi \big(10 - r(\cos\phi + 2\sin\phi)\big) \, d\phi \, dr $$
+                </div>
+                <div class="math-block">
+                    5. Zárójel felbontása:
+                    $$ \int_0^3 \int_0^{2\pi} \Big( 20r^2 \cos\phi - 2r^3 \cos^2\phi - 4r^3 \cos\phi \sin\phi \Big) \, d\phi \, dr $$
+                </div>
+                <div class="math-block">
+                    6. Integrálás $\phi$ szerint:
+                    Tudjuk, hogy a $\cos\phi$ és a $\cos\phi\sin\phi$ integrálja egy teljes periódusra ($0$-tól $2\pi$-ig) pontosan $0$. Csak a $\cos^2\phi$ tag marad, aminek az integrálja $\pi$.
+                    $$ \int_0^3 \left( 0 - 2r^3(\pi) - 0 \right) dr = -2\pi \int_0^3 r^3 \, dr $$
+                </div>
+                <div class="math-block">
+                    7. Kiszámoljuk a végeredményt:
+                    $$ -2\pi \left[ \frac{r^4}{4} \right]_0^3 = -2\pi \cdot \frac{81}{4} = -\frac{81\pi}{2} $$
+                </div>
+            </div>
+            
+            <div class="result">
+                Eredmény: $-\frac{81\pi}{2}$
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>2. Konvolúció Fourier-transzformáltja (16 pont)</h2>
+            
+            <div class="task-description">
+                Tudjuk, hogy $\mathcal{F}\{e^{-|x|}\}(\omega) = \frac{2}{1 + \omega^2}$. Legyen $f(x) = e^{-2|x|}$ és $g(x) = e^{-5|x|}$. Számolja ki az $f * g$ (konvolúció) függvény Fourier-transzformáltját!
+            </div>
+
+            <div class="formula-box">
+                <b>Használatos tételek:</b><br>
+                1. <b>Hasonlósági tétel:</b> Ha $\mathcal{F}\{f(x)\} = F(\omega)$, akkor $\mathcal{F}\{f(ax)\} = \frac{1}{|a|} F\left(\frac{\omega}{a}\right)$.<br>
+                2. <b>Konvolúció tétel:</b> Két függvény konvolúciójának Fourier-transzformáltja megegyezik a Fourier-transzformáltjaik szorzatával: $\mathcal{F}\{f * g\} = \mathcal{F}\{f\} \cdot \mathcal{F}\{g\}$.
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    1. A hasonlósági tétel alkalmazása az $f(x) = e^{-2|x|}$ függvényre ($a=2$):
+                    $$ \mathcal{F}\{f(x)\}(\omega) = \frac{1}{2} \cdot \frac{2}{1 + (\omega/2)^2} = \frac{1}{1 + \frac{\omega^2}{4}} = \frac{4}{4 + \omega^2} $$
+                </div>
+                <div class="math-block">
+                    2. A hasonlósági tétel alkalmazása a $g(x) = e^{-5|x|}$ függvényre ($a=5$):
+                    $$ \mathcal{F}\{g(x)\}(\omega) = \frac{1}{5} \cdot \frac{2}{1 + (\omega/5)^2} = \frac{2/5}{1 + \frac{\omega^2}{25}} = \frac{10}{25 + \omega^2} $$
+                </div>
+                <div class="math-block">
+                    3. A konvolúció tétel alkalmazása (a transzformáltak összeszorzása):
+                    $$ \mathcal{F}\{(f * g)(x)\}(\omega) = \left( \frac{4}{4 + \omega^2} \right) \cdot \left( \frac{10}{25 + \omega^2} \right) = \frac{40}{(4 + \omega^2)(25 + \omega^2)} $$
+                </div>
+            </div>
+            
+            <div class="result">
+                Eredmény: $\frac{40}{(4 + \omega^2)(25 + \omega^2)}$
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>3. Elmélet: Differenciálegyenletek tulajdonsága (14 pont)</h2>
+            
+            <div class="task-description">
+                Mondja ki és igazolja, mit mondhatunk lineáris inhomogén differenciálegyenletek megoldásának különbségéről!
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    <b>Tétel:</b> Ha $y_1$ és $y_2$ megoldásai egy lineáris <b>inhomogén</b> differenciálegyenletnek, akkor a különbségük ($y_1 - y_2$) az ahhoz tartozó lineáris <b>homogén</b> differenciálegyenletnek lesz megoldása.
+                </div>
+                <div class="math-block">
+                    <b>Bizonyítás:</b>
+                    Legyen a lineáris differenciáloperátor $L$. Az inhomogén egyenletet ekkor felírhatjuk $L(y) = f(x)$ alakban.
+                    <br>Mivel az $L$ operátor <b>lineáris</b> (azaz a deriválások és az x-függő szorzások megőrzik a linearitást), érvényes rá, hogy:
+                    $$ L(y_1 - y_2) = L(y_1) - L(y_2) $$
+                </div>
+                <div class="math-block">
+                    Mivel feltettük, hogy $y_1$ és $y_2$ mindketten az inhomogén egyenlet megoldásai, tudjuk, hogy $L(y_1) = f(x)$ és $L(y_2) = f(x)$.
+                    Behelyettesítve:
+                    $$ L(y_1 - y_2) = f(x) - f(x) = 0 $$
+                    Ez pedig pontosan a homogén egyenlet definíciója! A bizonyítás ezzel kész.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>4. Lineáris rekurzió (Plusz 10 pont)</h2>
+            
+            <div class="task-description">
+                Igazolja, hogy ha az $x^2 - ax + b = 0$ egyenletnek egyetlen $q \in \mathbb{R}$ valós megoldása van, akkor az $f(n + 1) = a f(n) - b f(n - 1)$ lineáris rekurziót kielégíti az $f(n) = n q^n$ sorozat!
+            </div>
+
+            <div class="calc-step">
+                <div class="math-block">
+                    1. Ha a másodfokú egyenletnek egyetlen valós megoldása van, akkor az teljes négyzet, és felírható az alábbi alakban:
+                    $$ (x - q)^2 = x^2 - 2qx + q^2 = 0 $$
+                    Ebből látszik, hogy az együtthatók: $a = 2q$ és $b = q^2$.
+                </div>
+                <div class="math-block">
+                    2. Helyettesítsük be az $a$ és $b$ értékeket, valamint a tesztelendő $f(n) = n q^n$ sorozatot a rekurzió jobb oldalába:
+                    $$ a f(n) - b f(n - 1) = (2q)(n q^n) - (q^2)\big((n - 1) q^{n-1}\big) $$
+                </div>
+                <div class="math-block">
+                    3. Vonjuk össze a hatványokat:
+                    $$ = 2n q^{n+1} - (n - 1) q^{n+1} $$
+                </div>
+                <div class="math-block">
+                    4. Emeljük ki a közös $q^{n+1}$ szorzót:
+                    $$ = q^{n+1} \big(2n - (n - 1)\big) = q^{n+1} (n + 1) = (n + 1) q^{n+1} $$
+                </div>
+                <div class="math-block">
+                    5. A kapott eredmény pontosan az $f(n)$ formula az $(n+1)$-edik elemre, vagyis $f(n+1)$. 
+                    Ezzel az állítást beláttuk!
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
