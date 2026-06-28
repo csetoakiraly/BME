@@ -108,7 +108,7 @@ math-header h2 {
     text-underline-offset: 8px;
 }
 
-math-def, math-theorem, math-proof, math-example, math-lab, math-quiz {
+math-def, math-theorem, math-proof, math-example, math-algorithm, math-lab, math-quiz {
     display: block;
     margin-bottom: 2.5rem;
     border-radius: 1.25rem;
@@ -206,6 +206,34 @@ math-example::before {
     border-radius: 0.4rem;
     margin-bottom: 1rem;
 }
+
+/* ALGORITMUS */
+math-algorithm {
+    padding: 1.5rem;
+    background: #faf5ff; /* Purple-50 */
+    border: 1px solid #f3e8ff; /* Purple-100 */
+    border-left: 6px solid #a855f7; /* Purple-500 */
+    color: #334155;
+    display: block;
+    margin-bottom: 2.5rem;
+    border-radius: 1.25rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+math-algorithm::before {
+    content: "ALGORITMUS";
+    display: inline-block;
+    background: #f3e8ff;
+    color: #6b21a8; /* Purple-800 */
+    font-size: 0.6rem;
+    font-weight: 900;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.4rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
 /* INTERAKTÍV LABOR STÍLUSA */
 math-lab {
     display: block;
@@ -254,6 +282,7 @@ html.dark math-trivia { background: linear-gradient(to bottom right, rgba(30, 41
 html.dark math-theorem { background: rgba(245, 158, 11, 0.05); border-color: #78350f; }
 html.dark math-proof { background: rgba(239, 68, 68, 0.05); border-color: #991b1b; color: #f1f5f9; }
 html.dark math-example { background: rgba(255,255,255,0.02); border-color: #334155; }
+html.dark math-algorithm { background: rgba(168, 85, 247, 0.05); border-color: #581c87; color: #f1f5f9; }
 
 /* ============================================================
    6. MOBIL ÉS RESPONSIVE
