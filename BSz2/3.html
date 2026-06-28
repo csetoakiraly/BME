@@ -1685,38 +1685,7 @@ document.addEventListener('DOMContentLoaded', () => {
             Ha $P$ ráadásul körséta, akkor $P$-t <strong>Euler-körsétának</strong> (vagy Euler-körnek) mondjuk.
         </p>
 </math-def>
-<div class="bg-slate-900 rounded-3xl p-8 text-white border border-slate-700/50 shadow-xl">
-<h3 class="text-xl font-bold mb-4 italic text-blue-400 text-balance">Vizuális különbség</h3>
-<p class="text-slate-400 text-sm mb-8 leading-relaxed">
-            Míg egy egyszerű kör csak a csúcsok egy részét érinti, az Euler-körnek a gráf <strong>összes élén</strong> át kell haladnia.
-        </p>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-<div class="bg-slate-800/50 p-6 rounded-2xl border border-blue-500/30 flex flex-col items-center group hover:bg-slate-800 transition-colors">
-<span class="text-[10px] font-black text-blue-400 uppercase mb-6 tracking-widest">Gráf Euler-körrel</span>
-<svg class="drop-shadow-lg" height="100" viewbox="0 0 140 100" width="140">
-<path d="M 20 80 L 70 20 L 120 80 L 20 80 L 45 50 L 95 50 L 120 80" fill="none" stroke="#3b82f6" stroke-linejoin="round" stroke-width="3"></path>
-<circle cx="20" cy="80" fill="white" r="5"></circle>
-<circle cx="70" cy="20" fill="white" r="5"></circle>
-<circle cx="120" cy="80" fill="white" r="5"></circle>
-<circle cx="45" cy="50" fill="white" r="5"></circle>
-<circle cx="95" cy="50" fill="white" r="5"></circle>
-</svg>
-<p class="mt-4 text-[10px] text-slate-500 italic">Minden él bejárható egyetlen vonallal.</p>
-</div>
-<div class="bg-slate-800/50 p-6 rounded-2xl border border-rose-500/30 flex flex-col items-center group hover:bg-slate-800 transition-colors">
-<span class="text-[10px] font-black text-rose-400 uppercase mb-6 tracking-widest text-center">Csak egyszerű kör</span>
-<svg class="drop-shadow-lg opacity-80" height="100" viewbox="0 0 140 100" width="140">
-<polygon fill="none" points="40,20 100,20 100,80 40,80" stroke="#f43f5e" stroke-width="3"></polygon>
-<line stroke="#475569" stroke-width="2" x1="70" x2="70" y1="20" y2="80"></line>
-<circle cx="40" cy="20" fill="white" r="5"></circle>
-<circle cx="100" cy="20" fill="white" r="5"></circle>
-<circle cx="100" cy="80" fill="white" r="5"></circle>
-<circle cx="40" cy="80" fill="white" r="5"></circle>
-</svg>
-<p class="mt-4 text-[10px] text-slate-500 italic text-center text-balance">A belső él kimarad, így ez nem Euler-körséta.</p>
-</div>
-</div>
-</div>
+
 </section>
 <math-header>
 <div class="num-badge">3.2</div>
@@ -1756,32 +1725,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 </div>
 </math-proof>
-<div class="bg-slate-900 rounded-3xl p-8 text-white border border-slate-700/50 shadow-xl">
-<h3 class="text-xl font-bold mb-4 italic text-blue-400">Miért kell páros fokszám?</h3>
-<p class="text-slate-400 text-sm mb-8">
-            Minden alkalommal, amikor áthaladsz egy csúcson, <strong>két élt</strong> használsz el: egyet a belépéshez és egyet a kilépéshez.
-        </p>
-<div class="flex flex-col items-center">
-<div class="bg-slate-800 rounded-2xl p-8 border border-slate-700 w-full max-w-md flex justify-center items-center relative overflow-hidden">
-<svg height="100" viewbox="0 0 200 100" width="200">
-<circle class="animate-pulse" cx="100" cy="50" fill="#3b82f6" r="12"></circle>
-<text fill="white" font-size="10" text-anchor="middle" x="100" y="80">v (Áthaladási pont)</text>
-<path d="M 20 50 L 85 50" stroke="#94a3b8" stroke-dasharray="4" stroke-width="3"></path>
-<path d="M 115 50 L 180 50" stroke="#94a3b8" stroke-dasharray="4" stroke-width="3"></path>
-<path d="M 30 40 L 70 40" fill="none" marker-end="url(#arrow)" stroke="#3b82f6" stroke-width="2"></path>
-<path d="M 130 40 L 170 40" fill="none" marker-end="url(#arrow)" stroke="#3b82f6" stroke-width="2"></path>
-<defs>
-<marker id="arrow" markerheight="6" markerwidth="6" orient="auto-start-reverse" refx="5" refy="5" viewbox="0 0 10 10">
-<path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6"></path>
-</marker>
-</defs>
-</svg>
-</div>
-<p class="mt-6 text-[10px] text-slate-500 uppercase font-black tracking-widest">
-                Belépő él (1) + Kilépő él (1) = 2 él (Páros egység)
-            </p>
-</div>
-</div>
+
 </section>
 <math-header>
 <div class="num-badge">3.3</div>
@@ -1824,23 +1768,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <p class="text-slate-400 text-sm mb-12">Figyeld meg a paritást: a belépéshez mindig tartoznia kell egy kilépésnek.</p>
 <div class="flex flex-col items-center">
 <div class="bg-slate-800/50 rounded-2xl p-8 border border-slate-700 w-full max-w-lg aspect-video flex justify-center items-center">
-<svg class="overflow-visible" height="150" viewbox="0 0 300 150" width="300">
-<path d="M 40 100 Q 100 100 140 75" fill="none" stroke="#334155" stroke-dasharray="6" stroke-width="4"></path>
-<path class="animate-[dash_2s_linear_infinite]" d="M 40 100 Q 100 100 135 78" fill="none" marker-end="url(#blue-arrow)" stroke="#3b82f6" stroke-width="3" style="stroke-dasharray: 100; stroke-dashoffset: 100;"></path>
-<circle cx="150" cy="75" fill="white" r="10"></circle>
-<text fill="white" font-size="12" font-weight="bold" text-anchor="middle" x="150" y="105">x csúcs (Páros fokú)</text>
-<path d="M 160 75 Q 200 50 260 50" fill="none" stroke="#334155" stroke-dasharray="6" stroke-width="4"></path>
-<path class="animate-[dash_2s_linear_infinite_1s]" d="M 165 72 Q 200 50 255 50" fill="none" marker-end="url(#green-arrow)" stroke="#10b981" stroke-width="3" style="stroke-dasharray: 100; stroke-dashoffset: 100;"></path>
-<defs>
-<marker id="blue-arrow" markerheight="5" markerwidth="5" orient="auto-start-reverse" refx="5" refy="5" viewbox="0 0 10 10">
-<path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6"></path>
-</marker>
-<marker id="green-arrow" markerheight="5" markerwidth="5" orient="auto-start-reverse" refx="5" refy="5" viewbox="0 0 10 10">
-<path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981"></path>
-</marker>
-</defs>
-<style> @keyframes dash { to { stroke-dashoffset: 0; } } </style>
-</svg>
+
 </div>
 <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
 <div class="bg-blue-500/10 p-3 rounded-lg border border-blue-500/20 text-center">
@@ -1910,34 +1838,9 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 </div>
 </div>
-<div class="bg-slate-900 rounded-3xl p-8 text-white border border-slate-700/50">
-<h3 class="text-xl font-bold mb-4 italic text-blue-400">Hogyan működik a beszúrás?</h3>
-<p class="text-slate-400 text-sm mb-8 leading-relaxed">
-            Az algoritmus lényege, hogy a már meglévő $P$ körbe újabb és újabb $Q$ köröket "varrunk bele" a közös $v$ csúcsok mentén. Ez garantálja, hogy a végén egyetlen összefüggő vonallal minden élet érintünk.
-        </p>
-<div class="flex flex-col items-center">
-<div class="bg-slate-800 rounded-2xl p-6 border border-slate-700 w-full max-w-md aspect-video flex justify-center items-center relative">
-<svg height="120" viewbox="0 0 240 120" width="240">
-<circle cx="80" cy="60" fill="none" r="40" stroke="#3b82f6" stroke-width="3"></circle>
-<text fill="#3b82f6" font-size="14" font-weight="bold" text-anchor="middle" x="80" y="65">P</text>
-<circle class="animate-ping" cx="120" cy="60" fill="white" r="6"></circle>
-<circle cx="120" cy="60" fill="white" r="5"></circle>
-<text fill="white" font-size="10" text-anchor="middle" x="120" y="50">v</text>
-<circle cx="160" cy="60" fill="none" r="40" stroke="#10b981" stroke-dasharray="4" stroke-width="3"></circle>
-<text fill="#10b981" font-size="14" font-weight="bold" text-anchor="middle" x="160" y="65">Q</text>
-</svg>
-</div>
-<div class="mt-6 flex flex-wrap justify-center gap-6 text-[10px] font-black uppercase tracking-widest text-slate-500">
-<span class="flex items-center gap-2"><span class="w-3 h-3 bg-blue-500 rounded-full"></span> Meglévő séta (P)</span>
-<span class="flex items-center gap-2"><span class="w-3 h-3 bg-emerald-500 rounded-full border border-dashed border-white"></span> Új kör (Q)</span>
-</div>
-</div>
-</div>
+
 </section>
-<math-header>
-<div class="num-badge">3.4.1</div>
-<h2 class="text-balance">Interaktív szimuláció</h2>
-</math-header>
+
 <math-header>
 <div class="flex items-center gap-4 mb-6 mt-12">
 <div class="num-badge">3.5</div>
@@ -1957,44 +1860,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </p>
 </div>
 </math-def>
-<div class="bg-slate-900 rounded-3xl p-8 text-white border border-slate-700/50">
-<h3 class="text-xl font-bold mb-4 italic text-blue-400">Vizuális különbségtétel</h3>
-<p class="text-slate-400 text-sm mb-10 leading-relaxed">
-            Míg az Euler-vonalaknál az <strong>élek</strong> összeszámolása a cél, a Hamilton-vonalaknál minden <strong>csúcson</strong> kell pontosan egyszer áthaladnunk.
-        </p>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-<div class="flex flex-col items-center">
-<span class="text-[10px] font-black text-blue-400 uppercase mb-4 tracking-widest">Hamilton-út (Csúcs-fókuszú)</span>
-<svg class="overflow-visible" height="120" viewbox="0 0 160 120" width="160">
-<g stroke="#334155" stroke-width="1">
-<line x1="20" x2="140" y1="20" y2="20"></line>
-<line x1="20" x2="140" y1="100" y2="100"></line>
-<line x1="20" x2="20" y1="20" y2="100"></line>
-<line x1="140" x2="140" y1="20" y2="100"></line>
-<line x1="20" x2="140" y1="20" y2="100"></line>
-</g>
-<path class="animate-pulse" d="M 20 20 L 20 100 L 140 100 L 140 20" fill="none" stroke="#3b82f6" stroke-linejoin="round" stroke-width="4"></path>
-<circle cx="20" cy="20" fill="#3b82f6" r="6"></circle>
-<circle cx="20" cy="100" fill="#3b82f6" r="6"></circle>
-<circle cx="140" cy="100" fill="#3b82f6" r="6"></circle>
-<circle cx="140" cy="20" fill="#3b82f6" r="6"></circle>
-</svg>
-<p class="mt-4 text-[10px] text-slate-500 italic">Minden csúcsot érint, de nem minden élet.</p>
-</div>
-<div class="flex flex-col items-center">
-<span class="text-[10px] font-black text-emerald-400 uppercase mb-4 tracking-widest">Hamilton-kör (Zárt bejárás)</span>
-<svg class="overflow-visible" height="120" viewbox="0 0 160 120" width="160">
-<path d="M 80 15 L 145 60 L 80 105 L 15 60 Z" fill="none" stroke="#10b981" stroke-linejoin="round" stroke-width="4"></path>
-<line stroke="#334155" stroke-width="1" x1="15" x2="145" y1="60" y2="60"></line>
-<circle cx="80" cy="15" fill="#10b981" r="6"></circle>
-<circle cx="145" cy="60" fill="#10b981" r="6"></circle>
-<circle cx="80" cy="105" fill="#10b981" r="6"></circle>
-<circle cx="15" cy="60" fill="#10b981" r="6"></circle>
-</svg>
-<p class="mt-4 text-[10px] text-slate-500 italic">Zárt hurok, ami minden csúcson átmegy.</p>
-</div>
-</div>
-</div>
+
 </section>
 <math-header>
 <div class="flex items-center gap-4 mb-6 mt-12">
@@ -2036,30 +1902,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 </div>
 </math-proof>
-<div class="bg-slate-900 rounded-3xl p-8 text-white border border-slate-700/50">
-<h3 class="text-xl font-bold mb-4 italic text-blue-400">Komponensek és vágások</h3>
-<p class="text-slate-400 text-sm mb-8 leading-relaxed">
-            Képzeld el a Hamilton-kört egy láncként. Ha $k$ helyen elvágod (törölsz egy szemet), legfeljebb $k$ darab összefüggő láncdarabot kapsz.
-        </p>
-<div class="flex flex-col items-center">
-<div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700 w-full max-w-md aspect-video flex justify-center items-center relative">
-<svg height="120" viewbox="0 0 240 120" width="240">
-<circle cx="120" cy="60" fill="none" r="45" stroke="#334155" stroke-dasharray="4" stroke-width="2"></circle>
-<path d="M 120 15 A 45 45 0 0 1 165 60" fill="none" stroke="#3b82f6" stroke-linecap="round" stroke-width="4"></path>
-<path d="M 150 100 A 45 45 0 0 1 90 100" fill="none" stroke="#3b82f6" stroke-linecap="round" stroke-width="4"></path>
-<path d="M 75 60 A 45 45 0 0 1 120 15" fill="none" stroke="#3b82f6" stroke-linecap="round" stroke-width="4"></path>
-<circle cx="120" cy="15" fill="#f43f5e" r="5"></circle>
-<circle cx="165" cy="60" fill="#f43f5e" r="5"></circle>
-<circle cx="75" cy="60" fill="#f43f5e" r="5"></circle>
-<text fill="#f43f5e" font-size="8" font-weight="bold" text-anchor="middle" x="120" y="10">TÖRÖLT CSÚCSOK (k=3)</text>
-<text fill="#3b82f6" font-size="10" font-weight="bold" text-anchor="middle" x="120" y="65">KOMPONENSEK ≤ 3</text>
-</svg>
-</div>
-<p class="mt-6 text-[10px] text-slate-500 uppercase font-black tracking-widest text-center">
-                A tétel segít cáfolni a Hamiltonicity-t: ha találsz $k$ csúcsot, aminek törlése &gt;$k$ komponenst ad, nincs Hamilton-kör.
-            </p>
-</div>
-</div>
+
 </section>
 <math-header>
 <div class="flex items-center gap-4 mb-6 mt-12">
@@ -2149,20 +1992,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             Az 5.4a ábra mutatja, hogy $\pi$-ről $\pi'$-re áttérve a sorrendben egymást követő csúcspárok listája csak két helyen változik: a $\{v_1, v_n\}$ és $\{v_k, v_{k+1}\}$ párok helyett a $\{v_1, v_{k+1}\}$ és $\{v_k, v_n\}$ párok lépnek be. Ezzel $e(\pi')$ legalább 1-gyel nagyobb lesz $e(\pi)$-nél.
                         </p>
 </div>
-<div class="flex flex-col items-center">
-<div class="bg-slate-900 rounded-2xl p-6 border border-slate-700 w-full flex justify-center items-center">
-<svg class="overflow-visible" height="180" viewbox="0 0 240 180" width="240">
-<ellipse cx="120" cy="90" fill="none" rx="90" ry="70" stroke="#475569" stroke-dasharray="4" stroke-width="2"></ellipse>
-<line stroke="#f43f5e" stroke-width="3" x1="40" x2="160" y1="50" y2="40"></line>
-<line stroke="#f43f5e" stroke-width="3" x1="100" x2="200" y1="155" y2="130"></line>
-<circle cx="40" cy="50" fill="white" r="6" stroke="#f43f5e" stroke-width="2"></circle> <text fill="white" font-size="10" x="30" y="40">v1</text>
-<circle cx="200" cy="130" fill="white" r="6" stroke="#f43f5e" stroke-width="2"></circle> <text fill="white" font-size="10" x="210" y="145">vn</text>
-<circle cx="100" cy="155" fill="white" r="6" stroke="#f43f5e" stroke-width="2"></circle> <text fill="white" font-size="10" x="90" y="175">vk</text>
-<circle cx="160" cy="40" fill="white" r="6" stroke="#f43f5e" stroke-width="2"></circle> <text fill="white" font-size="10" x="170" y="30">vk+1</text>
-</svg>
-</div>
-<span class="mt-4 text-[10px] font-black uppercase text-slate-500 tracking-widest">5.4a ábra</span>
-</div>
+
 </div>
 </div>
 <div class="bg-slate-50 dark:bg-slate-900/30 p-6 md:p-10 rounded-3xl border border-slate-200 dark:border-slate-800">
@@ -2189,23 +2019,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             Mivel azonban legföljebb $n-1$ csúcs közül választhatunk (hiszen $v_n$ nem lehet sem kék, sem zöld), a <strong class="text-slate-900 dark:text-white">skatulya-elv</strong> miatt kell lennie olyan $v_k$ csúcsnak, ami mindkét színt megkapta.
                         </p>
 </div>
-<div class="flex flex-col items-center">
-<div class="bg-slate-900 rounded-2xl p-6 border border-slate-700 w-full flex justify-center items-center">
-<svg class="overflow-visible" height="180" viewbox="0 0 240 180" width="240">
-<ellipse cx="120" cy="90" fill="none" rx="90" ry="70" stroke="#475569" stroke-dasharray="2" stroke-width="1"></ellipse>
-<line opacity="0.3" stroke="#3b82f6" stroke-width="1" x1="40" x2="160" y1="50" y2="40"></line>
-<line opacity="0.3" stroke="#3b82f6" stroke-width="1" x1="40" x2="120" y1="50" y2="20"></line>
-<line opacity="0.3" stroke="#10b981" stroke-width="1" x1="200" x2="100" y1="130" y2="155"></line>
-<line opacity="0.3" stroke="#10b981" stroke-width="1" x1="200" x2="210" y1="130" y2="70"></line>
-<circle cx="40" cy="50" fill="#1e293b" r="6" stroke="white"></circle> <text fill="white" font-size="8" x="30" y="40">v1</text>
-<circle cx="200" cy="130" fill="#1e293b" r="6" stroke="white"></circle> <text fill="white" font-size="8" x="210" y="145">vn</text>
-<circle cx="100" cy="155" fill="#10b981" r="7" stroke="#3b82f6" stroke-width="3"></circle>
-<text fill="white" font-size="9" font-weight="bold" x="90" y="175">vk (Kék &amp; Zöld)</text>
-<circle cx="160" cy="40" fill="#3b82f6" r="5"></circle>
-</svg>
-</div>
-<span class="mt-4 text-[10px] font-black uppercase text-slate-500 tracking-widest">5.4b ábra</span>
-</div>
+
 </div>
 </div>
 </div>
