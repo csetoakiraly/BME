@@ -1155,30 +1155,47 @@ html.dark math-example { background: rgba(255,255,255,0.02); border-color: #3341
 </div>
 </math-header>
 <div class="flex flex-col gap-6"><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">7.25. Következmény</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic">
-            Ha a $G = (A,B;E)$ páros gráf (mondjuk a fiúk és lányok csoportja) $d$-reguláris, vagyis mindenki pont ugyanannyi $d$ embert ismer a másik csoportból (ahol $d \geq 1$), akkor $G$-ben fixen van teljes párosítás. Azaz mindenkinek jut egy egyedi pár, senki sem marad szingli.
+<b>Tétel.</b> Ha a $G = (A,B;E)$ páros gráf $d$-reguláris, ahol $d \geq 1$ tetszőleges egész, akkor $G$-ben van teljes párosítás.
         </p>
+<div class="mt-4 pt-4 border-t border-amber-200/50 dark:border-amber-800/30 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+<b>Bizonyítás:</b> Mivel $G$ minden élének pontosan az egyik végpontja $A$-beli és minden $A$-beli csúcsra $d$ él illeszkedik, ezért $G$ élszámára $|E| = d \cdot |A|$ adódik. Hasonlóan kapjuk, hogy $|E| = d \cdot |B|$. Ezekből tehát $d \cdot |A| = d \cdot |B|$ és így $|A| = |B|$ adódik.<br><br>
+        Legyen $X \subseteq A$ tetszőleges és jelölje $E_X$ az $X$ csúcsaira illeszkedő élek halmazát; ezeknek a $B$-beli végpontja tehát $N(X)$-beli. Hasonlóan a fentiekhez, mivel minden $X$-beli csúcsra pontosan $d$ darab $E_X$-beli él illeszkedik, ezért $|E_X| = d \cdot |X|$. $N(X)$ csúcsaira nem csak $E_X$-béli élek illeszkedhetnek, de annyi ezekről is elmondható, hogy mindegyikre legföljebb $d$ darab $E_X$-béli él illeszkedik; így $|E_X| \leq d \cdot |N(X)|$. Ezek összevetéséből $d \cdot |X| \leq d \cdot |N(X)|$ és így $|X| \leq |N(X)|$ adódik.<br><br>
+        Megmutattuk tehát, hogy a Frobenius-tétel feltételei teljesülnek, így $G$-ben valóban létezik teljes párosítás.
+</div>
 </div><div class="bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-500 p-8 rounded-[2rem] shadow-sm mb-8">
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">Definíció</h4>
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400 mb-4">8.1. Definíció</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
-<b>Definíció (Élszínezés és Élkromatikus szám).</b> Képzeld el, hogy a $G$ gráf élei mondjuk utak a városok (csúcsok) között. A gráf akkor <b>él színezhető</b> $k \geq 1$ színnel, ha ezeket az utakat be tudjuk úgy színezni, hogy egy városból kiinduló utak (közös csúcsra illeszkedő élek) sosem egyforma színűek. Azt a minimális $k$ színt, ami ehhez a művelethez feltétlenül szükséges, nevezzük a gráf <b>élkromatikus számának</b> (gyakori jelölése: $\chi'(G)$ vagy $\chi_e(G)$). Vagyis ennyi színnel még meg lehet oldani az összeütközés-mentes színezést, de $(k-1)$-gyel már tuti nem.
+<b>Definíció (Élszínezés és Élkromatikus szám).</b> Legyen $G$ egy gráf és $k \geq 1$ egész szám. A $G$ gráf $k$ színnel <b>él színezhető</b>, ha $G$ minden éle kiszínezhető $k$ adott (tetszőleges) színnel úgy, hogy $G$ bármely két szomszédos (vagyis közös csúcsra illeszkedő) élének a színe különböző. A $G$ <b>élkromatikus száma</b> $k$ (gyakori jelölése: $\chi_e(G)$), ha $G$ $k$ színnel él színezhető, de $(k-1)$-gyel már nem.
         </p>
 </div><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Állítás</h4>
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">8.3. Állítás</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
-<b>Állítás.</b> Józan paraszti ésszel: ha van egy olyan csúcsod, amiből a legtöbb, mondjuk $\Delta(G)$ darab él fut ki, akkor ezekhez az élekhez kapásból legalább ennyi különböző szín fog kelleni. Ezért a szükséges színek száma, $\chi_e(G)$ biztosan nem lehet kisebb, mint a gráf maximális fokszáma, vagyis $\Delta(G) \leq \chi_e(G)$ (feltéve, hogy a $G$ gráf hurokélmentes).
+<b>Állítás.</b> Minden (hurokélmentes) $G$ gráfra $\Delta(G) \leq \chi_e(G)$ teljesül.
         </p>
 </div><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
 <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">8.4. Tétel</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
-<b>Vizing tétele.</b> Ez egy elég menő dolog: bármilyen egyszerű $G$ gráf (ahol nincs többszörös él, se hurokél) élszínezéséhez elég vagy pont annyi szín, mint a max fokszám ($\Delta(G)$), vagy legfeljebb csak egyetlen plussz szín kell hozzá! Szóval a színek száma garantáltan $\chi_e(G) \leq \Delta(G) + 1$. Nem fognak elszállni a színek!
+<b>Vizing tétele.</b> Minden $G$ egyszerű gráfra $\chi_e(G) \leq \Delta(G) + 1$ teljesül.
         </p>
 </div><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
-<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Tétel</h4>
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">Mohó becslés és Shannon tétele</h4>
 <p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
-<b>Kőnig élszínezési tétele.</b> Ha a $G = (A,B;E)$ egy páros gráf (tehát van egy bal meg egy jobb csoport), akkor a helyzet még jobb! Sosem kell az a +1 extra szín. Fixen meg tudod oldani az élek színezését pontosan a max fokszámnyi színnel. Tehát mindig igaz, hogy $\chi_e(G) = \Delta(G)$.
+<b>Mohó színezés:</b> Ha a mohó eljárást élszínezésekre adaptáljuk, könnyen belátható, hogy $\chi_e(G) \leq 2 \cdot \Delta(G) - 1$.<br><br>
+<b>Shannon tétele (1949):</b> Ennél erősebb felső korlát: $\chi_e(G) \leq \left\lfloor \frac{3}{2}\Delta(G) \right\rfloor$ igaz minden $G$ gráfra (tehát nem csak az egyszerű gráfokra). A $\frac{3}{2}$-es szorzó már nem javítható.
         </p>
+</div><div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-8 rounded-[2rem] shadow-sm mb-8">
+<h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-amber-600 dark:text-amber-400 mb-4">8.6. Tétel</h4>
+<p class="text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic text-sm md:text-base">
+<b>Kőnig élszínezési tétele.</b> Minden $G = (A,B;E)$ páros gráfra $\chi_e(G) = \Delta(G)$ teljesül.
+        </p>
+<div class="mt-4 pt-4 border-t border-amber-200/50 dark:border-amber-800/30 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+<b>Bizonyítás:</b> Legyen $d = \Delta(G)$. A tételt először abban az esetben bizonyítjuk be, ha $G$-ben minden pont foka $d$, vagyis $G$ $d$-reguláris. A $d = 0$ esetben az állítás igaz. Ha $d \geq 1$, akkor a 7.25. Következmény szerint $G$-ben létezik egy $M_1$ teljes párosítás. Színezzük ki $M_1$ éleit 1-es színűre, majd hagyjuk el őket $G$-ből. A kapott $G_1$ gráf nyilván $(d - 1)$-reguláris... Ennek az eljárásnak a folytatásával, a 7.25. Következmény $d$-szer való egymás után alkalmazásával valóban egy helyes, $d$ színnel való élszínezését kapjuk $G$-nek.<br><br>
+        Térjünk most rá arra az esetre, amikor $G$ nem $d$-reguláris. A bizonyítás kulcsa az lesz, hogy $G$-t kiegészítjük további élekkel és esetleg csúcsokkal úgy, hogy $d$-reguláris gráfot kapjunk. Ha $|A| \neq |B|$, akkor $A$ és $B$ közül a kisebbikhez vegyünk fel annyi új csúcsot, hogy azonos méretűek legyenek. A kapott gráfban válasszunk egy tetszőleges olyan $a \in A, b \in B$ csúcspárt, amikre $d(a) < d$ és $d(b) < d$ teljesül és kössük össze $a$-t és $b$-t egy új éllel; majd ezt folytassuk egészen addig, amíg létezik ilyen csúcspár. Az eljárás végén kapott gráfot jelölje $G'$.<br><br>
+        Megmutatjuk, hogy $G'$ már $d$-reguláris. Jelölje ehhez $G'$ éleinek a számát $m$. Mivel az élek hozzávételéből álló folyamat megállt, ezért $A$ és $B$ közül legalább az egyikben már minden pont foka $d$; tegyük fel, hogy ez például $A$-ra igaz. Ekkor tehát $m = d \cdot |A|$. A $B$ csúcsai nyilván legföljebb $d$ fokúak... Ha tehát létezne $B$-ben $d$-nél kisebb fokú csúcs, akkor ebből $m < d \cdot |B|$ következne. Azonban $|A| = |B|$ miatt $d \cdot |A| < d \cdot |B|$ lehetetlen, így valóban nem létezhet $B$-ben sem $d$-nél kisebb fokú csúcs.<br><br>
+        Tehát $G'$ $d$-reguláris, így a bizonyítás első bekezdésében írtak szerint $d$ színnel élszínezhető. Mivel azonban $G$ minden éle szerepel $G'$-ben is, ezzel $G$-nek is megadtuk egy helyes élszínezését $d = \Delta(G)$ színnel. Ebből $\chi_e(G) = \Delta(G)$ valóban következik.
+</div>
 </div></div></div>
 
 <div class="mb-20">
