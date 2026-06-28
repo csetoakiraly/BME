@@ -192,15 +192,15 @@
                 <div class="step">
                     <div class="step-title">2. A kettős integrál felírása és kiszámítása:</div>
                     <p>Mivel egy téglalapról van szó, az integrálások sorrendje mindegy. Integráljuk az $f(x,y) = y^2$ függvényt!</p>
-                    <div class="math-block">$$ V = \iint_T y^2 \,dx\,dy = \int_0^4 \left( \int_0^2 y^2 \,dx ight) dy $$</div>
+                    <div class="math-block">$$ V = \iint_T y^2 \,dx\,dy = \int_0^4 \left( \int_0^2 y^2 \,dx \right) dy $$</div>
                     <p>A belső integrál $x$ szerint történik. Mivel az integrandusban ($y^2$) nincs $x$, ez konstansként viselkedik:</p>
                     <div class="math-block">$$ \int_0^2 y^2 \,dx = y^2 \cdot [x]_0^2 = y^2(2 - 0) = 2y^2 $$</div>
                     <p>Most jöhet a külső integrál $y$ szerint:</p>
-                    <div class="math-block">$$ V = \int_0^4 2y^2 \,dy = 2 \left[ rac{y^3}{3} ight]_0^4 = 2 \cdot rac{64}{3} = rac{128}{3} $$</div>
+                    <div class="math-block">$$ V = \int_0^4 2y^2 \,dy = 2 \left[ \frac{y^3}{3} \right]_0^4 = 2 \cdot \frac{64}{3} = \frac{128}{3} $$</div>
                 </div>
 
                 <div class="final-result">
-                    $V = rac{128}{3}$
+                    $V = \frac{128}{3}$
                 </div>
             </div>
         </div>
@@ -218,29 +218,29 @@
                 </div>
                 
                 <div class="note">
-                    <strong>Tipp a sorrendhez:</strong> Bár téglalap felett integrálunk, a sorrend egyáltalán nem mindegy a bonyolultság szempontjából! Ha $x$ szerint integrálunk először, akkor az integrandus $x \cdot \sin(x y^2)$ alakú, ami parciális integrálást igényelne. De ha $y$ szerint integrálunk először, észrevehetjük, hogy az $x y^2$ belső függvény deriváltja $y$ szerint éppen $2xy$, ami (majdnem) ott van kívül szorzóként! Ezért érdemes az $\int \left( \int \dots dy ight) dx$ sorrendet választani.
+                    <strong>Tipp a sorrendhez:</strong> Bár téglalap felett integrálunk, a sorrend egyáltalán nem mindegy a bonyolultság szempontjából! Ha $x$ szerint integrálunk először, akkor az integrandus $x \cdot \sin(x y^2)$ alakú, ami parciális integrálást igényelne. De ha $y$ szerint integrálunk először, észrevehetjük, hogy az $x y^2$ belső függvény deriváltja $y$ szerint éppen $2xy$, ami (majdnem) ott van kívül szorzóként! Ezért érdemes az $\int \left( \int \dots dy \right) dx$ sorrendet választani.
                 </div>
 
                 <div class="step">
                     <div class="step-title">1. Belső integrál ($y$ szerint):</div>
                     <div class="math-block">$$ \int_0^\pi xy \sin(xy^2) \,dy $$</div>
-                    <p>Helyettesítéses integrálást alkalmazunk, hiszen $rac{\partial}{\partial y}(xy^2) = 2xy$. Így felismerhető az $f'(g(y)) \cdot g'(y)$ alak egy konstans szorzó erejéig:</p>
-                    <div class="math-block">$$ = rac{1}{2} \int_0^\pi (2xy) \cdot \sin(xy^2) \,dy = rac{1}{2} \left[ -\cos(xy^2) ight]_{y=0}^{y=\pi} $$</div>
+                    <p>Helyettesítéses integrálást alkalmazunk, hiszen $\frac{\partial}{\partial y}(xy^2) = 2xy$. Így felismerhető az $f'(g(y)) \cdot g'(y)$ alak egy konstans szorzó erejéig:</p>
+                    <div class="math-block">$$ = \frac{1}{2} \int_0^\pi (2xy) \cdot \sin(xy^2) \,dy = \frac{1}{2} \left[ -\cos(xy^2) \right]_{y=0}^{y=\pi} $$</div>
                     <p>Behelyettesítve a határokat:</p>
-                    <div class="math-block">$$ = rac{1}{2} \left( -\cos(x\pi^2) - (-\cos(x \cdot 0)) ight) = rac{1}{2} \left( 1 - \cos(\pi^2 x) ight) $$</div>
+                    <div class="math-block">$$ = \frac{1}{2} \left( -\cos(x\pi^2) - (-\cos(x \cdot 0)) \right) = \frac{1}{2} \left( 1 - \cos(\pi^2 x) \right) $$</div>
                 </div>
 
                 <div class="step">
                     <div class="step-title">2. Külső integrál ($x$ szerint):</div>
                     <p>Most integráljuk az eredményt $x$ szerint a $[2, 4]$ intervallumon:</p>
-                    <div class="math-block">$$ I = \int_2^4 rac{1}{2} \left( 1 - \cos(\pi^2 x) ight) \,dx = rac{1}{2} \left[ x - rac{\sin(\pi^2 x)}{\pi^2} ight]_2^4 $$</div>
+                    <div class="math-block">$$ I = \int_2^4 \frac{1}{2} \left( 1 - \cos(\pi^2 x) \right) \,dx = \frac{1}{2} \left[ x - \frac{\sin(\pi^2 x)}{\pi^2} \right]_2^4 $$</div>
                     <p>Felső határ (4) mínusz alsó határ (2):</p>
-                    <div class="math-block">$$ = rac{1}{2} \left( \left( 4 - rac{\sin(4\pi^2)}{\pi^2} ight) - \left( 2 - rac{\sin(2\pi^2)}{\pi^2} ight) ight) $$</div>
+                    <div class="math-block">$$ = \frac{1}{2} \left( \left( 4 - \frac{\sin(4\pi^2)}{\pi^2} \right) - \left( 2 - \frac{\sin(2\pi^2)}{\pi^2} \right) \right) $$</div>
                     <p>Mivel $4\pi^2$ és $2\pi^2$ nem egész többszörösei a $\pi$-nek (hanem transzcendens számok, kb 39.4 és 19.7), a szinuszos kifejezéseket nem tudjuk tovább egyszerűsíteni, maradnak így.</p>
                 </div>
 
                 <div class="final-result">
-                    $I = 1 - rac{\sin(4\pi^2) - \sin(2\pi^2)}{2\pi^2}$
+                    $I = 1 - \frac{\sin(4\pi^2) - \sin(2\pi^2)}{2\pi^2}$
                 </div>
             </div>
         </div>
@@ -273,17 +273,17 @@
 
                 <div class="step">
                     <div class="step-title">3. A külső integrál ($x$ szerint):</div>
-                    <div class="math-block">$$ I = \int_{-2}^3 (x^3 + 6x^2 - x^4) \,dx = \left[ rac{x^4}{4} + 2x^3 - rac{x^5}{5} ight]_{-2}^3 $$</div>
+                    <div class="math-block">$$ I = \int_{-2}^3 (x^3 + 6x^2 - x^4) \,dx = \left[ \frac{x^4}{4} + 2x^3 - \frac{x^5}{5} \right]_{-2}^3 $$</div>
                     <p>Felső határ (3):</p>
-                    <div class="math-block">$$ rac{81}{4} + 2(27) - rac{243}{5} = rac{81}{4} + 54 - 48.6 = 20.25 + 54 - 48.6 = 25.65 $$</div>
+                    <div class="math-block">$$ \frac{81}{4} + 2(27) - \frac{243}{5} = \frac{81}{4} + 54 - 48.6 = 20.25 + 54 - 48.6 = 25.65 $$</div>
                     <p>Alsó határ (-2):</p>
-                    <div class="math-block">$$ rac{16}{4} + 2(-8) - rac{-32}{5} = 4 - 16 + 6.4 = -5.6 $$</div>
+                    <div class="math-block">$$ \frac{16}{4} + 2(-8) - \frac{-32}{5} = 4 - 16 + 6.4 = -5.6 $$</div>
                     <p>A kettő különbsége:</p>
-                    <div class="math-block">$$ I = 25.65 - (-5.6) = 31.25 = rac{125}{4} $$</div>
+                    <div class="math-block">$$ I = 25.65 - (-5.6) = 31.25 = \frac{125}{4} $$</div>
                 </div>
 
                 <div class="final-result">
-                    $I = rac{125}{4}$
+                    $I = \frac{125}{4}$
                 </div>
             </div>
         </div>
@@ -310,7 +310,7 @@
                     <p>Ha lerajzoljuk a görbéket: $x = \sqrt[3]{y}$ az ugyanaz, mint az $y = x^3$ parabola. Az $x$ értékek az $y=x^3$ görbétől (balról) az $x=2$ függőleges egyenesig (jobbra) tartanak.</p>
                     <p>Cseréljük fel a rendet! Írjuk fel a tartományt $x$-szerint normáltartományként (azaz most $x$ lesz a külső határoló):</p>
                     <p>Az $x$ értéke a 0-tól egészen 2-ig fut. Egy adott $x$ helyen az $y$ értéke 0-tól (alulról) indul és felmegy az $y=x^3$ görbéig. Tehát az új határok:</p>
-                    <div class="math-block">$$ 0 \le x \le 2 \quad 	ext{és} \quad 0 \le y \le x^3 $$</div>
+                    <div class="math-block">$$ 0 \le x \le 2 \quad \text{és} \quad 0 \le y \le x^3 $$</div>
                 </div>
 
                 <div class="step">
@@ -319,13 +319,13 @@
                     <p>A belső integrál $y$ szerint nevetségesen egyszerű, hiszen $\sqrt{1+x^4}$ egy konstans $y$ szempontjából:</p>
                     <div class="math-block">$$ \int_0^{x^3} \sqrt{1+x^4} \,dy = \sqrt{1+x^4} \cdot [y]_0^{x^3} = x^3\sqrt{1+x^4} $$</div>
                     <p>Most integráljuk ezt $x$ szerint. Felismerhető, hogy az $1+x^4$ belső függvény deriváltja $4x^3$, mi pedig pont egy $x^3$-t kaptunk külső szorzónak! Kiegészítjük egy 4-es szorzóval és egy $1/4$-es osztóval ($f'(x) \cdot \sqrt{f(x)}$ alak):</p>
-                    <div class="math-block">$$ I = rac{1}{4} \int_0^2 4x^3(1+x^4)^{1/2} \,dx = rac{1}{4} \left[ rac{(1+x^4)^{3/2}}{3/2} ight]_0^2 = rac{1}{6} \left[ (1+x^4)^{3/2} ight]_0^2 $$</div>
+                    <div class="math-block">$$ I = \frac{1}{4} \int_0^2 4x^3(1+x^4)^{1/2} \,dx = \frac{1}{4} \left[ \frac{(1+x^4)^{3/2}}{3/2} \right]_0^2 = \frac{1}{6} \left[ (1+x^4)^{3/2} \right]_0^2 $$</div>
                     <p>Behelyettesítés:</p>
-                    <div class="math-block">$$ = rac{1}{6} \left( (1+16)^{3/2} - (1+0)^{3/2} ight) = rac{1}{6} \left( 17\sqrt{17} - 1 ight) $$</div>
+                    <div class="math-block">$$ = \frac{1}{6} \left( (1+16)^{3/2} - (1+0)^{3/2} \right) = \frac{1}{6} \left( 17\sqrt{17} - 1 \right) $$</div>
                 </div>
 
                 <div class="final-result">
-                    $I = rac{17\sqrt{17} - 1}{6}$
+                    $I = \frac{17\sqrt{17} - 1}{6}$
                 </div>
             </div>
         </div>
@@ -356,21 +356,21 @@
 
                 <div class="step">
                     <div class="step-title">2. Integrálás $x$ szerint (belső):</div>
-                    <div class="math-block">$$ \int_y^{y+1} (xy^2 - y) \,dx = \left[ rac{x^2}{2}y^2 - xy ight]_x=y^{x=y+1} $$</div>
+                    <div class="math-block">$$ \int_y^{y+1} (xy^2 - y) \,dx = \left[ \frac{x^2}{2}y^2 - xy \right]_x=y^{x=y+1} $$</div>
                     <p>Behelyettesítés (felső mínusz alsó):</p>
-                    <div class="math-block">$$ = \left( rac{(y+1)^2}{2}y^2 - (y+1)y ight) - \left( rac{y^2}{2}y^2 - y^2 ight) $$</div>
-                    <div class="math-block">$$ = \left( rac{y^4 + 2y^3 + y^2}{2} - y^2 - y ight) - \left( rac{y^4}{2} - y^2 ight) $$</div>
-                    <div class="math-block">$$ = rac{y^4}{2} + y^3 + rac{y^2}{2} - y^2 - y - rac{y^4}{2} + y^2 = y^3 + rac{y^2}{2} - y $$</div>
+                    <div class="math-block">$$ = \left( \frac{(y+1)^2}{2}y^2 - (y+1)y \right) - \left( \frac{y^2}{2}y^2 - y^2 \right) $$</div>
+                    <div class="math-block">$$ = \left( \frac{y^4 + 2y^3 + y^2}{2} - y^2 - y \right) - \left( \frac{y^4}{2} - y^2 \right) $$</div>
+                    <div class="math-block">$$ = \frac{y^4}{2} + y^3 + \frac{y^2}{2} - y^2 - y - \frac{y^4}{2} + y^2 = y^3 + \frac{y^2}{2} - y $$</div>
                 </div>
 
                 <div class="step">
                     <div class="step-title">3. Integrálás $y$ szerint (külső):</div>
-                    <div class="math-block">$$ I = \int_0^1 \left( y^3 + rac{y^2}{2} - y ight) \,dy = \left[ rac{y^4}{4} + rac{y^3}{6} - rac{y^2}{2} ight]_0^1 $$</div>
-                    <div class="math-block">$$ = rac{1}{4} + rac{1}{6} - rac{1}{2} = rac{3 + 2 - 6}{12} = -rac{1}{12} $$</div>
+                    <div class="math-block">$$ I = \int_0^1 \left( y^3 + \frac{y^2}{2} - y \right) \,dy = \left[ \frac{y^4}{4} + \frac{y^3}{6} - \frac{y^2}{2} \right]_0^1 $$</div>
+                    <div class="math-block">$$ = \frac{1}{4} + \frac{1}{6} - \frac{1}{2} = \frac{3 + 2 - 6}{12} = -\frac{1}{12} $$</div>
                 </div>
 
                 <div class="final-result">
-                    $I = -rac{1}{12}$
+                    $I = -\frac{1}{12}$
                 </div>
             </div>
         </div>
@@ -405,21 +405,21 @@
                     <p>Balról mindig az $y = x+1$ egyenes határolja. Ebből fejezzük ki $x$-et: $x = y-1$.</p>
                     <p>Jobbról mindig az $y = \sqrt{1-x^2}$ körív határolja. Fejezzük ki az $x$-et (mivel $x>0$ a jobb oldalon): $x = \sqrt{1-y^2}$.</p>
                     <p>Tehát az EGYETLEN új, összevont integrál határai:</p>
-                    <div class="math-block">$$ 0 \le y \le 1 \quad 	ext{és} \quad y-1 \le x \le \sqrt{1-y^2} $$</div>
+                    <div class="math-block">$$ 0 \le y \le 1 \quad \text{és} \quad y-1 \le x \le \sqrt{1-y^2} $$</div>
                 </div>
 
                 <div class="step">
                     <div class="step-title">3. Az integrál kiszámítása:</div>
-                    <div class="math-block">$$ I = \int_0^1 \left( \int_{y-1}^{\sqrt{1-y^2}} 2x \,dx ight) \,dy $$</div>
+                    <div class="math-block">$$ I = \int_0^1 \left( \int_{y-1}^{\sqrt{1-y^2}} 2x \,dx \right) \,dy $$</div>
                     <p>Belső integrál $x$ szerint:</p>
-                    <div class="math-block">$$ \int_{y-1}^{\sqrt{1-y^2}} 2x \,dx = \left[ x^2 ight]_{x=y-1}^{x=\sqrt{1-y^2}} = \left( \sqrt{1-y^2} ight)^2 - (y-1)^2 $$</div>
+                    <div class="math-block">$$ \int_{y-1}^{\sqrt{1-y^2}} 2x \,dx = \left[ x^2 \right]_{x=y-1}^{x=\sqrt{1-y^2}} = \left( \sqrt{1-y^2} \right)^2 - (y-1)^2 $$</div>
                     <div class="math-block">$$ = (1-y^2) - (y^2 - 2y + 1) = 1 - y^2 - y^2 + 2y - 1 = 2y - 2y^2 $$</div>
                     <p>Külső integrál $y$ szerint:</p>
-                    <div class="math-block">$$ I = \int_0^1 (2y - 2y^2) \,dy = \left[ y^2 - rac{2y^3}{3} ight]_0^1 = 1 - rac{2}{3} = rac{1}{3} $$</div>
+                    <div class="math-block">$$ I = \int_0^1 (2y - 2y^2) \,dy = \left[ y^2 - \frac{2y^3}{3} \right]_0^1 = 1 - \frac{2}{3} = \frac{1}{3} $$</div>
                 </div>
 
                 <div class="final-result">
-                    $I = rac{1}{3}$
+                    $I = \frac{1}{3}$
                 </div>
             </div>
         </div>
@@ -439,7 +439,8 @@
                 </div>
                 
                 <div class="note">
-                    <strong>Polárkoordináták!</strong> Ha kört, körívet, vagy $x^2+y^2$ kifejezést látunk, szinte biztosan polárkoordinátákra kell áttérni! Képletek: $x = r\cos(arphi)$, $y = r\sin(arphi)$, és a Jacob-determináns miatt a legvégén mindig bejön egy extra $r$ szorzó! ($dx\,dy ightarrow r\,dr\,darphi$)
+                    <strong>Polárkoordináták!</strong> Ha kört, körívet, vagy $x^2+y^2$ kifejezést látunk, szinte biztosan polárkoordinátákra kell áttérni! Képletek: $x = r\cos(\varphi)$, $y = r\sin(\varphi)$, és a Jacob-determináns miatt a legvégén mindig bejön egy extra $r$ szorzó! ($dx\,dy 
+ightarrow r\,dr\,d\varphi$)
                 </div>
 
                 <div class="step">
@@ -447,33 +448,33 @@
                     <p>$x^2+y^2 \le 9$: Origó középpontú 3 sugarú kör belseje. Tehát $r \in [0, 3]$.</p>
                     <p>$y \ge 0, x \le 0$: A második síknegyedről van szó (fent balra).</p>
                     <p>$y \ge |x|$: Mivel $x$ negatív, $|x| = -x$. Tehát $y \ge -x$. Az $y = -x$ egyenes a második síknegyedet pontosan középen felezi (ez a $135^\circ$-os vonal). Ennél is feljebb lévő rész kell, azaz az $y$-tengelytől az $y=-x$ egyenesig tartó cikkely.</p>
-                    <p>Szögekben kifejezve ($arphi$ a pozitív x-tengelytől indul): Az $y$-tengely teteje $90^\circ$ ($rac{\pi}{2}$), az $y=-x$ egyenes $135^\circ$ ($rac{3\pi}{4}$).</p>
-                    <div class="math-block">$$ 0 \le r \le 3 \quad 	ext{és} \quad rac{\pi}{2} \le arphi \le rac{3\pi}{4} $$</div>
+                    <p>Szögekben kifejezve ($\varphi$ a pozitív x-tengelytől indul): Az $y$-tengely teteje $90^\circ$ ($\frac{\pi}{2}$), az $y=-x$ egyenes $135^\circ$ ($\frac{3\pi}{4}$).</p>
+                    <div class="math-block">$$ 0 \le r \le 3 \quad \text{és} \quad \frac{\pi}{2} \le \varphi \le \frac{3\pi}{4} $$</div>
                 </div>
 
                 <div class="step">
                     <div class="step-title">2. A Terület kiszámítása:</div>
                     <p>Terület integrál: $\iint_T 1 \,dx\,dy$. Polárkoordinátákkal (behozva a $+r$ Jacobit!):</p>
-                    <div class="math-block">$$ A = \int_{\pi/2}^{3\pi/4} \int_0^3 r \,dr\,darphi $$</div>
+                    <div class="math-block">$$ A = \int_{\pi/2}^{3\pi/4} \int_0^3 r \,dr\,d\varphi $$</div>
                     <p>Mivel a határok konstansok, az integrálok szeparálhatók szorzattá:</p>
-                    <div class="math-block">$$ A = \left( \int_{\pi/2}^{3\pi/4} 1 \,darphi ight) \cdot \left( \int_0^3 r \,dr ight) = [arphi]_{\pi/2}^{3\pi/4} \cdot \left[ rac{r^2}{2} ight]_0^3 = \left(rac{3\pi}{4} - rac{2\pi}{4}ight) \cdot rac{9}{2} = rac{\pi}{4} \cdot rac{9}{2} = rac{9\pi}{8} $$</div>
+                    <div class="math-block">$$ A = \left( \int_{\pi/2}^{3\pi/4} 1 \,d\varphi \right) \cdot \left( \int_0^3 r \,dr \right) = [\varphi]_{\pi/2}^{3\pi/4} \cdot \left[ \frac{r^2}{2} \right]_0^3 = \left(\frac{3\pi}{4} - \frac{2\pi}{4}\right) \cdot \frac{9}{2} = \frac{\pi}{4} \cdot \frac{9}{2} = \frac{9\pi}{8} $$</div>
                 </div>
 
                 <div class="step">
                     <div class="step-title">3. Az $x^2$ integrálja:</div>
-                    <p>Most integráljuk be az $x^2$-et! $x = r\cosarphi$, tehát $x^2 = r^2\cos^2arphi$. Ne felejtsük a $+r$ Jacobit!</p>
-                    <div class="math-block">$$ I = \int_{\pi/2}^{3\pi/4} \int_0^3 (r^2\cos^2arphi) \cdot r \,dr\,darphi = \int_{\pi/2}^{3\pi/4} \int_0^3 r^3\cos^2arphi \,dr\,darphi $$</div>
+                    <p>Most integráljuk be az $x^2$-et! $x = r\cos\varphi$, tehát $x^2 = r^2\cos^2\varphi$. Ne felejtsük a $+r$ Jacobit!</p>
+                    <div class="math-block">$$ I = \int_{\pi/2}^{3\pi/4} \int_0^3 (r^2\cos^2\varphi) \cdot r \,dr\,d\varphi = \int_{\pi/2}^{3\pi/4} \int_0^3 r^3\cos^2\varphi \,dr\,d\varphi $$</div>
                     <p>Újra szeparáljuk:</p>
-                    <div class="math-block">$$ I = \left( \int_{\pi/2}^{3\pi/4} \cos^2arphi \,darphi ight) \cdot \left( \int_0^3 r^3 \,dr ight) $$</div>
-                    <p>A sugaras rész: $\left[ rac{r^4}{4} ight]_0^3 = rac{81}{4}$. A szöges részhez lineárisan kell alakítani a $\cos^2$-et a képlettel: $\cos^2arphi = rac{1+\cos(2arphi)}{2}$.</p>
-                    <div class="math-block">$$ \int_{\pi/2}^{3\pi/4} rac{1+\cos(2arphi)}{2} \,darphi = \left[ rac{arphi}{2} + rac{\sin(2arphi)}{4} ight]_{\pi/2}^{3\pi/4} $$</div>
-                    <div class="math-block">$$ = \left( rac{3\pi/4}{2} + rac{\sin(3\pi/2)}{4} ight) - \left( rac{\pi/2}{2} + rac{\sin(\pi)}{4} ight) = \left( rac{3\pi}{8} - rac{1}{4} ight) - \left( rac{\pi}{4} + 0 ight) = rac{\pi}{8} - rac{1}{4} $$</div>
+                    <div class="math-block">$$ I = \left( \int_{\pi/2}^{3\pi/4} \cos^2\varphi \,d\varphi \right) \cdot \left( \int_0^3 r^3 \,dr \right) $$</div>
+                    <p>A sugaras rész: $\left[ \frac{r^4}{4} \right]_0^3 = \frac{81}{4}$. A szöges részhez lineárisan kell alakítani a $\cos^2$-et a képlettel: $\cos^2\varphi = \frac{1+\cos(2\varphi)}{2}$.</p>
+                    <div class="math-block">$$ \int_{\pi/2}^{3\pi/4} \frac{1+\cos(2\varphi)}{2} \,d\varphi = \left[ \frac{\varphi}{2} + \frac{\sin(2\varphi)}{4} \right]_{\pi/2}^{3\pi/4} $$</div>
+                    <div class="math-block">$$ = \left( \frac{3\pi/4}{2} + \frac{\sin(3\pi/2)}{4} \right) - \left( \frac{\pi/2}{2} + \frac{\sin(\pi)}{4} \right) = \left( \frac{3\pi}{8} - \frac{1}{4} \right) - \left( \frac{\pi}{4} + 0 \right) = \frac{\pi}{8} - \frac{1}{4} $$</div>
                     <p>Összeszorozva a sugár integráljával:</p>
-                    <div class="math-block">$$ I = \left(rac{\pi}{8} - rac{1}{4}ight) \cdot rac{81}{4} = rac{81\pi}{32} - rac{81}{16} $$</div>
+                    <div class="math-block">$$ I = \left(\frac{\pi}{8} - \frac{1}{4}\right) \cdot \frac{81}{4} = \frac{81\pi}{32} - \frac{81}{16} $$</div>
                 </div>
 
                 <div class="final-result">
-                    $A = rac{9\pi}{8} \quad 	ext{és} \quad \iint x^2 = rac{81\pi - 162}{32}$
+                    $A = \frac{9\pi}{8} \quad \text{és} \quad \iint x^2 = \frac{81\pi - 162}{32}$
                 </div>
             </div>
         </div>
@@ -493,29 +494,29 @@
                 <div class="step">
                     <div class="step-title">1. Határok felírása (polárkoordináták):</div>
                     <p>Az $1 \le x^2+y^2 \le 9$ egy origó középpontú <b>körgyűrű</b>, aminek belső sugara 1, külső sugara 3. Tehát $r \in [1, 3]$.</p>
-                    <p>Az $y \ge 0, x \le 0$ pedig pontosan a <b>második síknegyed</b>et fedi le, azaz a $90^\circ$ ($rac{\pi}{2}$) és $180^\circ$ ($\pi$) közötti tartományt. Tehát $arphi \in [rac{\pi}{2}, \pi]$.</p>
+                    <p>Az $y \ge 0, x \le 0$ pedig pontosan a <b>második síknegyed</b>et fedi le, azaz a $90^\circ$ ($\frac{\pi}{2}$) és $180^\circ$ ($\pi$) közötti tartományt. Tehát $\varphi \in [\frac{\pi}{2}, \pi]$.</p>
                 </div>
 
                 <div class="step">
                     <div class="step-title">2. A függvény transzformálása:</div>
-                    <p>$f(x,y) = x y^2$. Helyettesítsük be a polár képleteket: $x = r\cosarphi$, $y = r\sinarphi$.</p>
-                    <div class="math-block">$$ f(r, arphi) = (r\cosarphi)(r^2\sin^2arphi) = r^3\cosarphi\sin^2arphi $$</div>
-                    <p>A Jakobi ($r$) miatt az integrálandó kifejezésünk $r^4\cosarphi\sin^2arphi$ lesz!</p>
+                    <p>$f(x,y) = x y^2$. Helyettesítsük be a polár képleteket: $x = r\cos\varphi$, $y = r\sin\varphi$.</p>
+                    <div class="math-block">$$ f(r, \varphi) = (r\cos\varphi)(r^2\sin^2\varphi) = r^3\cos\varphi\sin^2\varphi $$</div>
+                    <p>A Jakobi ($r$) miatt az integrálandó kifejezésünk $r^4\cos\varphi\sin^2\varphi$ lesz!</p>
                 </div>
 
                 <div class="step">
                     <div class="step-title">3. Az integrál kiszámítása:</div>
-                    <div class="math-block">$$ I = \int_{\pi/2}^{\pi} \int_1^3 (r^4\cosarphi\sin^2arphi) \,dr\,darphi = \left( \int_{\pi/2}^{\pi} \cosarphi\sin^2arphi \,darphi ight) \cdot \left( \int_1^3 r^4 \,dr ight) $$</div>
+                    <div class="math-block">$$ I = \int_{\pi/2}^{\pi} \int_1^3 (r^4\cos\varphi\sin^2\varphi) \,dr\,d\varphi = \left( \int_{\pi/2}^{\pi} \cos\varphi\sin^2\varphi \,d\varphi \right) \cdot \left( \int_1^3 r^4 \,dr \right) $$</div>
                     <p>Sugaras rész:</p>
-                    <div class="math-block">$$ \int_1^3 r^4 \,dr = \left[ rac{r^5}{5} ight]_1^3 = rac{243}{5} - rac{1}{5} = rac{242}{5} $$</div>
-                    <p>Szöges rész (észrevesszük, hogy $\sinarphi$ deriváltja $\cosarphi$, tehát ez egy $f^2(x)\cdot f'(x)$ típusú integrál, aminek az eredménye $f^3(x)/3$!):</p>
-                    <div class="math-block">$$ \int_{\pi/2}^{\pi} \sin^2arphi \cosarphi \,darphi = \left[ rac{\sin^3arphi}{3} ight]_{\pi/2}^\pi = rac{\sin^3(\pi)}{3} - rac{\sin^3(\pi/2)}{3} = 0 - rac{1}{3} = -rac{1}{3} $$</div>
+                    <div class="math-block">$$ \int_1^3 r^4 \,dr = \left[ \frac{r^5}{5} \right]_1^3 = \frac{243}{5} - \frac{1}{5} = \frac{242}{5} $$</div>
+                    <p>Szöges rész (észrevesszük, hogy $\sin\varphi$ deriváltja $\cos\varphi$, tehát ez egy $f^2(x)\cdot f'(x)$ típusú integrál, aminek az eredménye $f^3(x)/3$!):</p>
+                    <div class="math-block">$$ \int_{\pi/2}^{\pi} \sin^2\varphi \cos\varphi \,d\varphi = \left[ \frac{\sin^3\varphi}{3} \right]_{\pi/2}^\pi = \frac{\sin^3(\pi)}{3} - \frac{\sin^3(\pi/2)}{3} = 0 - \frac{1}{3} = -\frac{1}{3} $$</div>
                     <p>Összeszorozva:</p>
-                    <div class="math-block">$$ I = -rac{1}{3} \cdot rac{242}{5} = -rac{242}{15} $$</div>
+                    <div class="math-block">$$ I = -\frac{1}{3} \cdot \frac{242}{5} = -\frac{242}{15} $$</div>
                 </div>
 
                 <div class="final-result">
-                    $I = -rac{242}{15}$
+                    $I = -\frac{242}{15}$
                 </div>
             </div>
         </div>
@@ -533,40 +534,40 @@
                 </div>
                 
                 <div class="note">
-                    <strong>Eltolt origójú kör polárkoordinátás egyenlete!</strong> Mivel az integrandusban van egy gyönyörű $(x^2+y^2)^3$ tag, az eltolt polárkoordinátázás helyett (ahol az eltolt kör közepe az origó), sokszor érdemes meghagyni a <b>normál polárkoordinátázást</b>, de a görbe egyenletét kifejezni $r$-re és $arphi$-re!
+                    <strong>Eltolt origójú kör polárkoordinátás egyenlete!</strong> Mivel az integrandusban van egy gyönyörű $(x^2+y^2)^3$ tag, az eltolt polárkoordinátázás helyett (ahol az eltolt kör közepe az origó), sokszor érdemes meghagyni a <b>normál polárkoordinátázást</b>, de a görbe egyenletét kifejezni $r$-re és $\varphi$-re!
                 </div>
 
                 <div class="step">
                     <div class="step-title">1. A határok megállapítása normál polárral:</div>
-                    <p>Írjuk be az $x^2 - 6x + y^2 = 0$ egyenletbe a polárképleteket ($x^2+y^2 = r^2$, $x = r\cosarphi$):</p>
-                    <div class="math-block">$$ r^2 - 6r\cosarphi = 0 \implies r(r - 6\cosarphi) = 0 \implies r = 6\cosarphi $$</div>
-                    <p>Ez azt jelenti, hogy az origóból induló rádiusz vektor egészen a $r = 6\cosarphi$ görbéig megy kifelé! Tehát $r \in [0, 6\cosarphi]$.</p>
+                    <p>Írjuk be az $x^2 - 6x + y^2 = 0$ egyenletbe a polárképleteket ($x^2+y^2 = r^2$, $x = r\cos\varphi$):</p>
+                    <div class="math-block">$$ r^2 - 6r\cos\varphi = 0 \implies r(r - 6\cos\varphi) = 0 \implies r = 6\cos\varphi $$</div>
+                    <p>Ez azt jelenti, hogy az origóból induló rádiusz vektor egészen a $r = 6\cos\varphi$ görbéig megy kifelé! Tehát $r \in [0, 6\cos\varphi]$.</p>
                     <p>A $0 \le y$ (felső félsík) miatt, és mivel az egész kör a pozitív x-tengelyen helyezkedik el (origón átmenő 3 sugarú kör a $(3,0)$ középponttal), a szög a $0$-tól $\pi/2$-ig mehet csak. (A negyedik síknegyedbe nem megyünk le, mert $y \ge 0$).</p>
-                    <div class="math-block">$$ 0 \le arphi \le rac{\pi}{2} \quad 	ext{és} \quad 0 \le r \le 6\cosarphi $$</div>
+                    <div class="math-block">$$ 0 \le \varphi \le \frac{\pi}{2} \quad \text{és} \quad 0 \le r \le 6\cos\varphi $$</div>
                 </div>
 
                 <div class="step">
                     <div class="step-title">2. A függvény transzformálása:</div>
-                    <p>$f(x,y) = y(x^2+y^2)^3$. Polárral: $y = r\sinarphi$, a zárójel $r^2$. Ezt köbre emelve $r^6$. Tehát: $(r\sinarphi)(r^6) = r^7\sinarphi$.</p>
-                    <p>Ne felejtsük a $+r$ Jacobit! Az integrálandó valami $r^8\sinarphi$ lesz.</p>
+                    <p>$f(x,y) = y(x^2+y^2)^3$. Polárral: $y = r\sin\varphi$, a zárójel $r^2$. Ezt köbre emelve $r^6$. Tehát: $(r\sin\varphi)(r^6) = r^7\sin\varphi$.</p>
+                    <p>Ne felejtsük a $+r$ Jacobit! Az integrálandó valami $r^8\sin\varphi$ lesz.</p>
                 </div>
 
                 <div class="step">
                     <div class="step-title">3. Integrálás:</div>
-                    <div class="math-block">$$ I = \int_0^{\pi/2} \int_0^{6\cosarphi} r^8\sinarphi \,dr\,darphi $$</div>
+                    <div class="math-block">$$ I = \int_0^{\pi/2} \int_0^{6\cos\varphi} r^8\sin\varphi \,dr\,d\varphi $$</div>
                     <p>Belső integrál ($r$ szerint):</p>
-                    <div class="math-block">$$ \int_0^{6\cosarphi} r^8 \,dr = \left[ rac{r^9}{9} ight]_0^{6\cosarphi} = rac{6^9\cos^9arphi}{9} $$</div>
-                    <p>Külső integrál ($arphi$ szerint):</p>
-                    <div class="math-block">$$ I = \int_0^{\pi/2} rac{6^9}{9} \cos^9arphi \sinarphi \,darphi $$</div>
-                    <p>Húzzuk ki a konstanst. Az integrandus $\cos^9arphi \sinarphi$. Vegyük észre, hogy a koszinusz belső deriváltja a $-\sinarphi$, ami (mínusz előjellel) épp ott van!</p>
-                    <div class="math-block">$$ I = -rac{6^9}{9} \int_0^{\pi/2} \cos^9arphi (-\sinarphi) \,darphi = -rac{6^9}{9} \left[ rac{\cos^{10}arphi}{10} ight]_0^{\pi/2} $$</div>
+                    <div class="math-block">$$ \int_0^{6\cos\varphi} r^8 \,dr = \left[ \frac{r^9}{9} \right]_0^{6\cos\varphi} = \frac{6^9\cos^9\varphi}{9} $$</div>
+                    <p>Külső integrál ($\varphi$ szerint):</p>
+                    <div class="math-block">$$ I = \int_0^{\pi/2} \frac{6^9}{9} \cos^9\varphi \sin\varphi \,d\varphi $$</div>
+                    <p>Húzzuk ki a konstanst. Az integrandus $\cos^9\varphi \sin\varphi$. Vegyük észre, hogy a koszinusz belső deriváltja a $-\sin\varphi$, ami (mínusz előjellel) épp ott van!</p>
+                    <div class="math-block">$$ I = -\frac{6^9}{9} \int_0^{\pi/2} \cos^9\varphi (-\sin\varphi) \,d\varphi = -\frac{6^9}{9} \left[ \frac{\cos^{10}\varphi}{10} \right]_0^{\pi/2} $$</div>
                     <p>Behelyettesítés:</p>
-                    <div class="math-block">$$ = -rac{6^9}{90} \left( \cos^{10}(\pi/2) - \cos^{10}(0) ight) = -rac{6^9}{90} (0 - 1) = rac{6^9}{90} $$</div>
-                    <p>Kicsit egyszerűsítve: $6^9 = 2^9 \cdot 3^9$. $90 = 2 \cdot 9 \cdot 5 = 2 \cdot 3^2 \cdot 5$. Az eredmény $rac{2^8 \cdot 3^7}{5}$. De a $rac{6^9}{90}$ is tökéletes válasz.</p>
+                    <div class="math-block">$$ = -\frac{6^9}{90} \left( \cos^{10}(\pi/2) - \cos^{10}(0) \right) = -\frac{6^9}{90} (0 - 1) = \frac{6^9}{90} $$</div>
+                    <p>Kicsit egyszerűsítve: $6^9 = 2^9 \cdot 3^9$. $90 = 2 \cdot 9 \cdot 5 = 2 \cdot 3^2 \cdot 5$. Az eredmény $\frac{2^8 \cdot 3^7}{5}$. De a $\frac{6^9}{90}$ is tökéletes válasz.</p>
                 </div>
 
                 <div class="final-result">
-                    $I = rac{6^9}{90}$
+                    $I = \frac{6^9}{90}$
                 </div>
             </div>
         </div>
