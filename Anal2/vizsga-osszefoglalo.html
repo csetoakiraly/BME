@@ -515,12 +515,43 @@
                         <div class="task-number">13</div>
                         <h3 class="task-title">Fourier Transzformáció (13. Gyakorlat)</h3>
                     </div>
-                    <p><b>Operációs Tételek (A Legfontosabbak):</b></p>
-                    <ul>
-                        <li><b>Időskála (Skálázás):</b> $f(ax) \implies \frac{1}{|a|} \mathscr{F}(f)\left(\frac{\omega}{a}\right)$</li>
-                        <li><b>Eltolás:</b> $f(x-x_0) \implies e^{-i\omega x_0} \mathscr{F}(f)(\omega)$</li>
-                        <li><b>Derivált:</b> $f'(x) \implies i\omega \cdot \mathscr{F}(f)(\omega)$</li>
-                    </ul>
+                    <div class="step">
+                        <div class="step-title">Fourier-transzformáció Operációs Szabályai</div>
+                        <table>
+                            <tr>
+                                <th>Művelet az idő/tér tartományban ($x$)</th>
+                                <th>Hatása a frekvenciatartományban ($\omega$)</th>
+                            </tr>
+                            <tr>
+                                <td><b>Linearitás:</b> $\alpha f(x) + \beta g(x)$</td>
+                                <td>$\alpha \mathscr{F}(f)(\omega) + \beta \mathscr{F}(g)(\omega)$</td>
+                            </tr>
+                            <tr>
+                                <td><b>Skálázás:</b> $f(ax)$ \quad ($a \neq 0$)</td>
+                                <td>$\frac{1}{|a|} \mathscr{F}(f)\left(\frac{\omega}{a}\right)$</td>
+                            </tr>
+                            <tr>
+                                <td><b>Időbeli eltolás:</b> $f(x - x_0)$</td>
+                                <td>$e^{-i\omega x_0} \mathscr{F}(f)(\omega)$</td>
+                            </tr>
+                            <tr>
+                                <td><b>Moduláció (Frekvencia eltolás):</b> $e^{i\omega_0 x} f(x)$</td>
+                                <td>$\mathscr{F}(f)(\omega - \omega_0)$</td>
+                            </tr>
+                            <tr>
+                                <td><b>Deriválás:</b> $f'(x)$</td>
+                                <td>$i\omega \cdot \mathscr{F}(f)(\omega)$</td>
+                            </tr>
+                            <tr>
+                                <td><b>Második derivált:</b> $f''(x)$</td>
+                                <td>$-\omega^2 \cdot \mathscr{F}(f)(\omega)$</td>
+                            </tr>
+                            <tr>
+                                <td><b>Szorzás $x$-szel:</b> $x \cdot f(x)$</td>
+                                <td>$i \cdot \frac{d}{d\omega} \big[ \mathscr{F}(f)(\omega) \big]$</td>
+                            </tr>
+                        </table>
+                    </div>
                     <p><b>Trükk összetett feladathoz (pl. $\mathscr{F}(f'(2x+1))$):</b> Mindig bontsd fel két (vagy három) lépésre! Először vezesd be a belső függvényt (pl. $h(x) = f'(x)$), alkalmazd rá a derivált szabályt. Utána jöhet a skálázás ($2x$), végül az eltolás (figyelve, hogy az eltolás $x_0 = -1/2$ lesz, mert $2(x+1/2) = 2x+1$). Nagyon figyelj a sorrendre és arra, hogy a skálázás bejövetele után a belső frekvencia már $\omega/2$ lesz!</p>
 
                     <div class="step" style="margin-top: 2rem;">
@@ -531,15 +562,23 @@
                                 <th>Transzformáltja ($\mathscr{F}(f)(\omega)$)</th>
                             </tr>
                             <tr>
-                                <td>$e^{-a|x|}$ \quad ($a > 0$)</td>
+                                <td>$e^{-a|x|}$ &emsp; ($a > 0$)</td>
                                 <td>$\frac{2a}{a^2 + \omega^2}$</td>
                             </tr>
                             <tr>
-                                <td>$e^{-ax} \cdot H(x)$ \quad ($a > 0$)<br><small><i>H(x) a Heaviside (lépcső) függvény</i></small></td>
+                                <td>$e^{-ax} \cdot H(x)$ &emsp; ($a > 0$)<br><small style="color:var(--text-muted)"><i>H(x) a Heaviside (lépcső) függvény</i></small></td>
                                 <td>$\frac{1}{a + i\omega}$</td>
                             </tr>
                             <tr>
-                                <td>$1$ (Kliensfüggvény)</td>
+                                <td>$1_{[-a, a]}(x)$ &emsp; ($a > 0$)<br><small style="color:var(--text-muted)"><i>Négyszögjel ($-a$-tól $a$-ig 1, amúgy 0)</i></small></td>
+                                <td>$\frac{2\sin(a\omega)}{\omega}$</td>
+                            </tr>
+                            <tr>
+                                <td>$\text{sgn}(x)$ <br><small style="color:var(--text-muted)"><i>Előjelfüggvény</i></small></td>
+                                <td>$\frac{2}{i\omega}$</td>
+                            </tr>
+                            <tr>
+                                <td>$1$ (Konstans)</td>
                                 <td>$2\pi \delta(\omega)$</td>
                             </tr>
                             <tr>
