@@ -329,6 +329,22 @@
                             <br>- Ha $f(x)$ <b>PÁRATLAN</b> ($f(-x) = -f(x)$): Minden $a_k = 0$ és $a_0 = 0$. (Csak szinuszok).
                         </div>
                     </div>
+
+                    <div class="step">
+                        <div class="step-title">Fontos Trigonometrikus Azonosságok (Integráláshoz)</div>
+                        <p>Fourier-soroknál és integráloknál szinte mindig ezekkel kell "linearizálni" a négyzetes vagy szorzatalakú kifejezéseket:</p>
+                        <ul>
+                            <li><b>Négyzetes alakok linearizálása:</b> 
+                                <br>$\sin^2(x) = \frac{1 - \cos(2x)}{2}$
+                                <br>$\cos^2(x) = \frac{1 + \cos(2x)}{2}$
+                            </li>
+                            <li><b>Szorzatok összeggé alakítása (Fourier-együtthatókhoz):</b>
+                                <br>$\sin(a)\cos(b) = \frac{1}{2}\big[\sin(a+b) + \sin(a-b)\big]$
+                                <br>$\sin(a)\sin(b) = \frac{1}{2}\big[\cos(a-b) - \cos(a+b)\big]$
+                                <br>$\cos(a)\cos(b) = \frac{1}{2}\big[\cos(a+b) + \cos(a-b)\big]$
+                            </li>
+                        </ul>
+                    </div>
                     <div class="step">
                         <div class="step-title">Dirichlet-tétel (Konvergenciatétel)</div>
                         <p>Ha egy függvény szakaszonként monoton és korlátos, a Fourier-sora mindenhol konvergens. Ahol folytonos, ott a függvényértékhez tart. Ahol szakadása van, ott a bal- és jobboldali határérték <b>átlagához</b>: $\Phi(x) = \frac{f(x-0) + f(x+0)}{2}$.</p>
