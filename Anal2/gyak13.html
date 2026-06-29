@@ -276,6 +276,107 @@
 
         <h2 style="margin-top: 60px; margin-bottom: 30px; font-weight: 800; font-size: 2rem;">Fourier-transzformáció Tulajdonságai</h2>
 
+        <!-- 3. Feladat -->
+        <div class="task-card">
+            <div class="task-header">
+                <div class="task-number">3</div>
+                <h3 class="task-title">3. feladat: Összetett szakaszos függvény Fourier-együtthatóinak meghatározása</h3>
+            </div>
+            <div class="solution-section">
+                <div class="solution-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 16.1L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.1z"/></svg>
+                    Megoldás és Magyarázat
+                </div>
+
+                <div class="step">
+                    <div class="step-title">1. A függvény elemzése és a konstans tag meghatározása</div>
+                <b>Lépés 1.1: A függvény definíciója.</b><br>
+                A megadott $ 2\pi $ szerint periodikus függvény:
+                <div class="math-block">$$  f(x) = \begin{cases} \pi + x & \text{ha } x \in [-\pi/2, 0[ \ x & \text{ha } x \in [0, \pi/2[ \ \pi/2 & \text{egyébként a } [-\pi, \pi[ \text{ intervallumon} \end{cases}  $$</div>
+                
+                <b>Lépés 1.2: Az $ a_0 $ együttható kiszámítása.</b><br>
+                A 13. fejezet 1. definíciója alapján:
+                <div class="math-block">$$  a_0 = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \, dx  $$</div>
+                Bontsuk fel az integrált a szakaszokra:
+                <div class="math-block">$$  a_0 = \frac{1}{\pi} \left( \int_{-\pi}^{-\pi/2} \frac{\pi}{2} \, dx + \int_{-\pi/2}^0 (\pi+x) \, dx + \int_0^{\pi/2} x \, dx + \int_{\pi/2}^{\pi} \frac{\pi}{2} \, dx \right)  $$</div>
+                <div class="math-block">$$  a_0 = \frac{1}{\pi} \left( \frac{\pi^2}{4} + \left[\pi x + \frac{x^2}{2}\right]_{-\pi/2}^0 + \left[\frac{x^2}{2}\right]_0^{\pi/2} + \frac{\pi^2}{4} \right)  $$</div>
+                <div class="math-block">$$  a_0 = \frac{1}{\pi} \left( \frac{\pi^2}{4} + (\frac{\pi^2}{2} - \frac{\pi^2}{8}) + \frac{\pi^2}{8} + \frac{\pi^2}{4} \right) = \frac{\pi^2}{\pi} = \mathbf{\pi}  $$</div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">2. A trigonometrikus együtthatók meghatározása</div>
+                <b>Lépés 2.1: Az $ a_k $ és $ b_k $ együtthatók felírása.</b><br>
+                A feladat szerint az $ a_k $ együtthatók (a koszinuszos tagok) nullának adódnak:
+                <div class="math-block">$$  a_k = \mathbf{0} \quad (k \in \mathbb{N}^+)  $$</div>
+                Ez arra utal, hogy a függvénynek van egyfajta "eltolt" páratlan szimmetriája a konstans tag levonása után.
+                </div>
+
+                <div class="step">
+                    <b>Lépés 2.2: A $ b_k $ együtthatók kiszámítása.</b><br>
+                A szinuszos együtthatók képlete:
+                <div class="math-block">$$  b_k = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin(kx) \, dx  $$</div>
+                A részletes integrálás és az addíciós tételek alkalmazása után a végeredmény:
+                <div class="math-block">$$  b_k = \mathbf{\frac{2}{k^2\pi} \sin(k\frac{\pi}{2}) - \frac{1}{k}}  $$</div>
+                <i>Megjegyzés:</i> A $ \sin(k\pi) $ tag az integrálás során kiesik, így a megadott formula írja le a harmonikusok amplitúdóját.
+                </div>
+
+                <div class="step">
+                    <div class="step-title">3. Összegzés</div>
+                <b>Végeredmény:</b> A Fourier-együtthatók: 
+                $ a_0 = \pi $, $ a_k = 0 $ és $ b_k = \frac{2}{k^2\pi} \sin(k\frac{\pi}{2}) - \frac{1}{k} $ minden $ k \in \mathbb{N}^+ $ esetén.
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Feladat -->
+        <div class="task-card">
+            <div class="task-header">
+                <div class="task-number">4</div>
+                <h3 class="task-title">4. feladat: Vizsgafeladat (2024. június 4.) — Fourier-sor konvergenciája és együtthatók</h3>
+            </div>
+            <div class="solution-section">
+                <div class="solution-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 16.1L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.1z"/></svg>
+                    Megoldás és Magyarázat
+                </div>
+
+                <div class="step">
+                    <div class="step-title">a) A Dirichlet-tétel kimondása</div>
+                <b>Lépés: Elméleti alapok.</b><br>
+                A 13. fejezet 3. tétele (Dirichlet-tétel) szerint:
+                <blockquote style="font-style: italic;">
+                    Ha egy $ 2\pi $ szerint periodikus függvény szakaszonként monoton és korlátos, akkor Fourier-sora minden $ x \in \mathbb{R} $ pontban konvergens, és az összege:
+                    <div class="math-block">$$  (\Phi(f))(x) = \frac{f(x-0) + f(x+0)}{2}  $$</div>
+                </blockquote>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">b) Az összegfüggvény értékei és grafikonja</div>
+                <b>Lépés 1: Érték számítása $ x = 0 $-ban.</b><br>
+                Itt a függvénynek szakadása van:
+                <ul>
+                    <li>Bal oldali határérték: $ \lim_{x \to 0^-} (x + \pi) = \pi $.</li>
+                    <li>Jobb oldali határérték: $ \lim_{x \to 0^+} x = 0 $.</li>
+                </ul>
+                A Dirichlet-tétel alapján: $ \Phi(0) = \frac{\pi + 0}{2} = \mathbf{\pi/2} $.<br><br>
+
+                <b>Lépés 2: Érték számítása $ x = -\pi/2 $-ben.</b><br>
+                Mivel a függvény ezen a szakaszon ($ x+\pi $) folytonos:
+                <div class="math-block">$$  \Phi(-\pi/2) = f(-\pi/2) = -\pi/2 + \pi = \mathbf{\pi/2}  $$</div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">c) Az $ a_3(f) $ Fourier-együttható kiszámítása</div>
+                <b>Lépés: Paritás és integrálás.</b><br>
+                Vegyük észre, hogy ha a függvényből levonjuk a konstans $ \pi/2 $ eltolást, egy <b>páratlan függvényt</b> kapunk ($ g(x) = f(x) - \pi/2 $).<br>
+                A 13. fejezet 2. megjegyzése alapján páratlan függvények esetén minden $ a_k = 0 $.<br>
+                Mivel $ a_k(f) = a_k(g) $ minden $ k \ge 1 $ esetén:
+                <div class="math-block">$$  \mathbf{a_3(f) = 0}  $$</div>
+                <i>Megjegyzés:</i> Ez az eredmény integrálással is kijön: $ \frac{1}{\pi} \int_{-\pi}^0 (x+\pi)\cos(3x)dx + \frac{1}{\pi} \int_0^\pi x\cos(3x)dx = 0 $.
+                </div>
+            </div>
+        </div>
+
         <!-- 5. Feladat -->
         <div class="task-card">
             <div class="task-header">
@@ -328,6 +429,52 @@
             </div>
         </div>
 
+        <!-- 6. Feladat -->
+        <div class="task-card">
+            <div class="task-header">
+                <div class="task-number">6</div>
+                <h3 class="task-title">6. feladat: Szakaszosan konstans függvény Fourier-transzformáltja</h3>
+            </div>
+            <div class="solution-section">
+                <div class="solution-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 16.1L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.1z"/></svg>
+                    Megoldás és Magyarázat
+                </div>
+
+                <div class="step">
+                    <div class="step-title">1. Az integrál felállítása a definíció alapján</div>
+                <b>Lépés 1.1: A definíció alkalmazása.</b><br>
+                A 13. fejezet 4. definíciója szerint az abszolút integrálható $ f $ függvény Fourier-transzformáltja:
+                <div class="math-block">$$  \mathscr{F}(f)(\omega) = \int_{-\infty}^{+\infty} e^{-i\omega x} f(x) \, dx  $$</div>
+                
+                <b>Lépés 1.2: Az integrálási tartomány felosztása.</b><br>
+                A függvény definíciója alapján csak a $[-1, 1]$ intervallumon kell integrálnunk:
+                <div class="math-block">$$  \mathscr{F}(f)(\omega) = \int_{-1}^{0} (-1) \cdot e^{-i\omega x} \, dx + \int_{0}^{1} 1 \cdot e^{-i\omega x} \, dx  $$</div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">2. Az integrál kiszámítása ($ \omega \neq 0 $ esetén)</div>
+                <b>Lépés 2.1: Primitív függvények meghatározása.</b><br>
+                Az $ e^{ax} $ integrálási szabályát használva:
+                <div class="math-block">$$  \left[ \frac{e^{-i\omega x}}{i\omega} \right]_{-1}^0 + \left[ \frac{e^{-i\omega x}}{-i\omega} \right]_0^1 = \frac{1}{i\omega} (e^0 - e^{i\omega}) - \frac{1}{i\omega} (e^{-i\omega} - e^0)  $$</div>
+                
+                <b>Lépés 2.2: Egyszerűsítés az Euler-formulával.</b><br>
+                <div class="math-block">$$  \frac{1}{i\omega} (1 - e^{i\omega} - e^{-i\omega} + 1) = \frac{1}{i\omega} (2 - (e^{i\omega} + e^{-i\omega}))  $$</div>
+                Tudjuk, hogy $ e^{i\omega} + e^{-i\omega} = 2\cos\omega $, így:
+                <div class="math-block">$$  \frac{2 - 2\cos\omega}{i\omega} = \frac{2(1 - \cos\omega)}{i\omega} = \mathbf{\frac{2i}{\omega}(\cos\omega - 1)}  $$</div>
+                Mivel $ 1/i = -i $, a számlálóba víve az $ i $-t az előjel megfordul. Ez pontosan a megadott végeredmény.
+                </div>
+
+                <div class="step">
+                    <div class="step-title">3. A speciális eset ($ \omega = 0 $)</div>
+                <b>Lépés: A transzformált értéke az origóban.</b><br>
+                Ha $ \omega = 0 $, akkor $ e^0 = 1 $, tehát a transzformált értéke a függvény teljes integrálja:
+                <div class="math-block">$$  \mathscr{F}(f)(0) = \int_{-1}^{0} -1 \, dx + \int_{0}^{1} 1 \, dx = -1 + 1 = \mathbf{0}  $$</div>
+                Ez megerősíti a végeredményben szereplő feltételes definíciót.
+                </div>
+            </div>
+        </div>
+
         <!-- 7. Feladat -->
         <div class="task-card">
             <div class="task-header">
@@ -362,6 +509,56 @@
 
                 <div class="final-result">
                     $\mathscr{F}(f)(\omega) = \frac{6 e^{-2i\omega}}{9 + \omega^2}$
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. Feladat -->
+        <div class="task-card">
+            <div class="task-header">
+                <div class="task-number">8</div>
+                <h3 class="task-title">8. feladat: Vizsgafeladat (2024. június 11.) — Összetett derivált Fourier-transzformáltja</h3>
+            </div>
+            <div class="solution-section">
+                <div class="solution-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 16.1L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.1z"/></svg>
+                    Megoldás és Magyarázat
+                </div>
+
+                <div class="step">
+                    <div class="step-title">1. A feladat elemzése és a transzformációk azonosítása</div>
+                <b>Lépés 1.1: A belső függvény átírása.</b><br>
+                A keresett kifejezés: $ \mathscr{F}(x \mapsto f'(2x + 1)) $.<br>
+                Alakítsuk át a belső részt úgy, hogy a skálázás és az eltolás jól látható legyen:
+                <div class="math-block">$$  f'(2x + 1) = f'(2(x + 1/2))  $$</div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">2. Az operációs tételek alkalmazása</div>
+                <b>Lépés 2.1: Skálázás és eltolás szabálya.</b><br>
+                A 13. fejezet 5. tétele alapján alkalmazzuk a következőket:
+                <ul>
+                    <li><b>Skálázás ($ a=2 $):</b> A 5.(b) pont szerint ez egy $ \frac{1}{2} $ szorzót és a frekvencia felezését ($ \omega/2 $) jelenti.</li>
+                    <li><b>Eltolás ($ x_0 = -1/2 $):</b> A 5.(c) pont szerint a transzformáltat meg kell szorozni az $ e^{-i\omega(-1/2)} = e^{i\omega/2} $ faktorral.</li>
+                </ul>
+                Ekkor a belső $ f' $ függvény transzformáltja:
+                <div class="math-block">$$  \mathscr{F}(f'(2x+1)) = \frac{1}{2} e^{i\omega/2} \mathscr{F}(f')\left(\frac{\omega}{2}\right)  $$</div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">3. A deriválási szabály bevezetése</div>
+                <b>Lépés 3.1: A derivált transzformáltja.</b><br>
+                A 5.(f) tétel szerint $ \mathscr{F}(f')(\omega) = i\omega \mathscr{F}(f)(\omega) $.<br>
+                Nagyon fontos, hogy ezt a már skálázott frekvenciára ($ \omega/2 $) alkalmazzuk:
+                <div class="math-block">$$  \mathscr{F}(f')\left(\frac{\omega}{2}\right) = i \cdot \frac{\omega}{2} \cdot \mathscr{F}(f)\left(\frac{\omega}{2}\right)  $$</div>
+                </div>
+
+                <div class="step">
+                    <div class="step-title">4. Végső összeállítás</div>
+                <b>Lépés 4.1: A részeredmények összeszorzása.</b><br>
+                <div class="math-block">$$  \mathscr{F}(f'(2x+1)) = \frac{1}{2} e^{i\omega/2} \cdot \left( i \frac{\omega}{2} \mathscr{F}(f)\left(\frac{\omega}{2}\right) \right)  $$</div>
+                <div class="math-block">$$  \mathscr{F}(f'(2x+1)) = \mathbf{\frac{i\omega}{4} e^{i\frac{\omega}{2}} \mathscr{F}(f)\left(\frac{\omega}{2}\right)}  $$</div>
+                <b>Végeredmény:</b> A transzformáltat sikerült kifejezni az eredeti függvény transzformáltjával.
                 </div>
             </div>
         </div>
