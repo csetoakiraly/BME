@@ -227,6 +227,16 @@
                         <p>Ha $f(x)$ pozitív, monoton csökkenő függvény, amire $f(n) = a_n$, akkor a $\sum_{n=1}^\infty a_n$ sor és az $\int_1^\infty f(x) \, dx$ improprius integrál egyszerre konvergens vagy divergens.</p>
                     </div>
                     <div class="step">
+                        
+                    <div class="step">
+                        <div class="step-title">Majoráns és Minoráns Kritérium</div>
+                        <p>Ha $0 \le a_n \le b_n$ minden $n$-re:</p>
+                        <ul>
+                            <li><b>Majoráns:</b> Ha a "nagyobb" $\sum b_n$ konvergens, akkor a "kisebb" $\sum a_n$ is konvergens.</li>
+                            <li><b>Minoráns:</b> Ha a "kisebb" $\sum a_n$ divergens (pl. $\sum \frac{1}{n}$), akkor a "nagyobb" $\sum b_n$ is divergens.</li>
+                        </ul>
+                    </div>
+                    <div class="step">
                         <div class="step-title">Nevezetes sorok</div>
                         <ul>
                             <li><b>Harmonikus sor:</b> $\sum \frac{1}{n}$ <b>divergens</b>. (Általában: $\sum \frac{1}{n^\alpha}$ konvergens, ha $\alpha > 1$, divergens, ha $\alpha \le 1$).</li>
@@ -235,7 +245,22 @@
                     </div>
                 </div>
 
+                
                 <div class="task-card">
+                    <div class="task-header">
+                        <div class="task-number">T1.5</div>
+                        <h3 class="task-title">Hatványsorok Konvergenciatartománya</h3>
+                    </div>
+                    <p>Egy $\sum a_n (x - x_0)^n$ alakú hatványsor a középpontjában ($x_0$) mindig konvergens.</p>
+                    <div class="step">
+                        <div class="step-title">Konvergenciasugár ($R$) és Szimmetria</div>
+                        <p>A sor az $(x_0 - R, x_0 + R)$ nyílt intervallumon belül <b>abszolút konvergens</b>, rajta kívül divergens. A határokon ($x_0 - R$ és $x_0 + R$) külön meg kell vizsgálni.</p>
+                        <div class="note">
+                            <b>Teszt trükk:</b> Ha megadják, hogy egy $x_1$ pontban a sor konvergens, akkor a konvergenciasugár legalább akkora, mint az $x_1$ távolsága a középponttól: $R \ge |x_1 - x_0|$. Így minden olyan $x$ pontban, amire $|x - x_0| < |x_1 - x_0|$, a sor biztosan konvergens!
+                        </div>
+                    </div>
+                </div>
+<div class="task-card">
                     <div class="task-header">
                         <div class="task-number">T2</div>
                         <h3 class="task-title">Nevezetes Taylor-sorok (Maclaurin-sorok)</h3>
@@ -271,6 +296,17 @@
                             <td>$\ln(1+x)$</td>
                             <td>$\sum_{n=1}^\infty (-1)^{n-1} \frac{x^n}{n} = x - \frac{x^2}{2} + \frac{x^3}{3} - \dots$</td>
                             <td>$x \in (-1, 1]$</td>
+                        </tr>
+
+                        <tr>
+                            <td>$\sinh x$ (sh)</td>
+                            <td>$\sum_{n=0}^\infty \frac{x^{2n+1}}{(2n+1)!} = x + \frac{x^3}{3!} + \frac{x^5}{5!} + \dots$</td>
+                            <td>$x \in \mathbb{R}$</td>
+                        </tr>
+                        <tr>
+                            <td>$\cosh x$ (ch)</td>
+                            <td>$\sum_{n=0}^\infty \frac{x^{2n}}{(2n)!} = 1 + \frac{x^2}{2!} + \frac{x^4}{4!} + \dots$</td>
+                            <td>$x \in \mathbb{R}$</td>
                         </tr>
                     </table>
                 </div>
@@ -317,7 +353,28 @@
                 </div>
             </div>
 
-            <!-- 2. RÉSZ: KIFEJTŐS -->
+            
+                <div class="task-card">
+                    <div class="task-header">
+                        <div class="task-number">T5</div>
+                        <h3 class="task-title">Kétváltozós Függvények (Határérték, Folytonosság, Integrál)</h3>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">Kétváltozós Határérték Létezése</div>
+                        <p>Ha a $\lim_{(x,y)\to(0,0)} f(x,y)$ határértéket keressük, és különböző egyenesek (pl. $x=y$ és $x=-y$ vagy $y=mx$) mentén közeledve <b>más-más eredményt kapunk</b>, akkor a határérték <b>nem létezik</b>!</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">Weierstrass-tétel (Minimum, Maximum)</div>
+                        <p>Ha $f(x,y)$ <b>folytonos</b> egy <b>korlátos és zárt</b> (kompakt) halmazon (pl. egy egyenlőtlenséggel megadott körlemez: $x^2+y^2 \le 1$), akkor a függvény ott <b>garantáltan felveszi a minimumát és a maximumát</b>.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">Integrálási határok felcserélése (Fubini-tétel)</div>
+                        <div class="note">
+                            <b>Aranyszabály tesztekhez:</b> Kettős integrálnál a legkülső (utolsóként elvégzett) integrál határai <b>mindig konstansok (számok) kell legyenek</b>! Sosem lehet változó a külső határ! Továbbá az integrálások sorrendje ($dx dy$ vagy $dy dx$) felcserélhető, ha a határok konstansok, de ha változó határok vannak, a sorrendcsere új határok felírását igényli (ábrázolni kell a tartományt).
+                        </div>
+                    </div>
+                </div>
+<!-- 2. RÉSZ: KIFEJTŐS -->
             <div class="section-dev">
                 <div class="section-header">2. Rész: Kifejtős (Algoritmusok és Lépések)</div>
                 
@@ -449,7 +506,33 @@
                         <li><b>Derivált:</b> $f'(x) \implies i\omega \cdot \mathscr{F}(f)(\omega)$</li>
                     </ul>
                     <p><b>Trükk összetett feladathoz (pl. $\mathscr{F}(f'(2x+1))$):</b> Mindig bontsd fel két (vagy három) lépésre! Először vezesd be a belső függvényt (pl. $h(x) = f'(x)$), alkalmazd rá a derivált szabályt. Utána jöhet a skálázás ($2x$), végül az eltolás (figyelve, hogy az eltolás $x_0 = -1/2$ lesz, mert $2(x+1/2) = 2x+1$). Nagyon figyelj a sorrendre és arra, hogy a skálázás bejövetele után a belső frekvencia már $\omega/2$ lesz!</p>
-                </div>
+
+                    <div class="step" style="margin-top: 2rem;">
+                        <div class="step-title">Alap Fourier-transzformált Párok (Képletek)</div>
+                        <table>
+                            <tr>
+                                <th>Függvény ($f(x)$)</th>
+                                <th>Transzformáltja ($\mathscr{F}(f)(\omega)$)</th>
+                            </tr>
+                            <tr>
+                                <td>$e^{-a|x|}$ \quad ($a > 0$)</td>
+                                <td>$\frac{2a}{a^2 + \omega^2}$</td>
+                            </tr>
+                            <tr>
+                                <td>$e^{-ax} \cdot H(x)$ \quad ($a > 0$)<br><small><i>H(x) a Heaviside (lépcső) függvény</i></small></td>
+                                <td>$\frac{1}{a + i\omega}$</td>
+                            </tr>
+                            <tr>
+                                <td>$1$ (Kliensfüggvény)</td>
+                                <td>$2\pi \delta(\omega)$</td>
+                            </tr>
+                            <tr>
+                                <td>$\delta(x)$ (Dirac-delta)</td>
+                                <td>$1$</td>
+                            </tr>
+                        </table>
+                    </div>
+                                    </div>
             </div>
 
             <br><br>
