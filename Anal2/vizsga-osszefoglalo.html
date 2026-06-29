@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analízis 2 Vizsga Összefoglaló (Puska)</title>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #a855f7;
+            --secondary-glow: rgba(168, 85, 247, 0.5);
+            --task-color: #38bdf8;
+            --task-bg: rgba(56, 189, 248, 0.1);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            
+            --test-color: #10b981; /* Emerald */
+            --test-bg: rgba(16, 185, 129, 0.1);
+            --dev-color: #f59e0b; /* Amber */
+            --dev-bg: rgba(245, 158, 11, 0.1);
+            --guide-color: #ec4899; /* Pink */
+            --guide-bg: rgba(236, 72, 153, 0.1);
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+
+        .page-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            background: linear-gradient(135deg, #fff 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+        }
+
+        .section-header {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 3rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        /* Test Section Theme */
+        .section-test .section-header { color: var(--test-color); border-color: var(--test-bg); }
+        .section-test .task-number { background: var(--test-bg); color: var(--test-color); }
+        .section-test .task-card { border-left: 4px solid var(--test-color); }
+
+        /* Dev Section Theme */
+        .section-dev .section-header { color: var(--dev-color); border-color: var(--dev-bg); }
+        .section-dev .task-number { background: var(--dev-bg); color: var(--dev-color); }
+        .section-dev .task-card { border-left: 4px solid var(--dev-color); }
+
+        /* Guide Section Theme */
+        .section-guide .section-header { color: var(--guide-color); border-color: var(--guide-bg); }
+        .section-guide .task-number { background: var(--guide-bg); color: var(--guide-color); }
+        .section-guide .task-card { border-left: 4px solid var(--guide-color); }
+
+        .task-card {
+            background: var(--glass-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--glass-shadow);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .task-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .task-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .task-title {
+            margin: 0;
+            font-size: 1.3rem;
+            color: #fff;
+            flex: 1;
+        }
+
+        .step {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .step-title {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .math-block {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .note {
+            background: rgba(234, 179, 8, 0.1);
+            border-left: 4px solid #eab308;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+            color: #fef08a;
+        }
+
+        p {
+            line-height: 1.6;
+            margin: 0.5rem 0;
+        }
+
+        ul {
+            line-height: 1.6;
+            padding-left: 1.5rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        th {
+            background: rgba(255,255,255,0.05);
+            font-weight: 600;
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+    <layout-wrapper>
+        <a href="index.html" style="display: inline-block; margin-bottom: 20px; color: var(--secondary); text-decoration: none; font-weight: bold;">← Vissza a főoldalra</a>
+        
+        <main-content class="main-content">
+            <div class="header">
+                <h1>Analízis 2: Vizsga Összefoglaló (Puska)</h1>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Minden, ami a teszthez és a kifejtős részhez kell, egy helyen.</p>
+            </div>
+
+            <!-- 1. RÉSZ: TESZT -->
+            <div class="section-test">
+                <div class="section-header">1. Rész: Teszt (Gyorstalpaló & Formulák)</div>
+                
+                <div class="task-card">
+                    <div class="task-header">
+                        <div class="task-number">T1</div>
+                        <h3 class="task-title">Numerikus Sorok Konvergenciakritériumai</h3>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">Hányados- és Gyökkritérium (d'Alembert & Cauchy)</div>
+                        <p>Legyen $\sum a_n$ egy pozitív tagú sor. Vizsgáljuk a következő határértékeket:</p>
+                        <ul>
+                            <li><b>Hányadoskritérium:</b> $\lim_{n \to \infty} \frac{a_{n+1}}{a_n} = L$</li>
+                            <li><b>Gyökkritérium:</b> $\lim_{n \to \infty} \sqrt[n]{a_n} = L$</li>
+                        </ul>
+                        <p><b>Eredmény:</b> Ha $L < 1$, a sor <b>konvergens</b>. Ha $L > 1$, a sor <b>divergens</b>. Ha $L = 1$, a kritérium <b>nem dönt</b>.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">Integrálkritérium</div>
+                        <p>Ha $f(x)$ pozitív, monoton csökkenő függvény, amire $f(n) = a_n$, akkor a $\sum_{n=1}^\infty a_n$ sor és az $\int_1^\infty f(x) \, dx$ improprius integrál egyszerre konvergens vagy divergens.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">Nevezetes sorok</div>
+                        <ul>
+                            <li><b>Harmonikus sor:</b> $\sum \frac{1}{n}$ <b>divergens</b>. (Általában: $\sum \frac{1}{n^\alpha}$ konvergens, ha $\alpha > 1$, divergens, ha $\alpha \le 1$).</li>
+                            <li><b>Mértani sor:</b> $\sum q^n$ konvergens, ha $|q| < 1$. Összege: $\frac{a_0}{1-q}$.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <div class="task-header">
+                        <div class="task-number">T2</div>
+                        <h3 class="task-title">Nevezetes Taylor-sorok (Maclaurin-sorok)</h3>
+                    </div>
+                    <p>Az origó ($x_0 = 0$) körüli sorbafejtések és konvergenciatartományuk ($KT$):</p>
+                    <table>
+                        <tr>
+                            <th>Függvény</th>
+                            <th>Sor</th>
+                            <th>Konvergenciatartomány (KT)</th>
+                        </tr>
+                        <tr>
+                            <td>$e^x$</td>
+                            <td>$\sum_{n=0}^\infty \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots$</td>
+                            <td>$x \in \mathbb{R}$</td>
+                        </tr>
+                        <tr>
+                            <td>$\sin x$</td>
+                            <td>$\sum_{n=0}^\infty (-1)^n \frac{x^{2n+1}}{(2n+1)!} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \dots$</td>
+                            <td>$x \in \mathbb{R}$</td>
+                        </tr>
+                        <tr>
+                            <td>$\cos x$</td>
+                            <td>$\sum_{n=0}^\infty (-1)^n \frac{x^{2n}}{(2n)!} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \dots$</td>
+                            <td>$x \in \mathbb{R}$</td>
+                        </tr>
+                        <tr>
+                            <td>$\frac{1}{1-x}$</td>
+                            <td>$\sum_{n=0}^\infty x^n = 1 + x + x^2 + x^3 + \dots$ (Mértani sor)</td>
+                            <td>$x \in (-1, 1)$</td>
+                        </tr>
+                        <tr>
+                            <td>$\ln(1+x)$</td>
+                            <td>$\sum_{n=1}^\infty (-1)^{n-1} \frac{x^n}{n} = x - \frac{x^2}{2} + \frac{x^3}{3} - \dots$</td>
+                            <td>$x \in (-1, 1]$</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="task-card">
+                    <div class="task-header">
+                        <div class="task-number">T3</div>
+                        <h3 class="task-title">Fourier-sorok: Alapok és Szimmetriák</h3>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">Fourier-együtthatók $[-\pi, \pi]$ intervallumon</div>
+                        <ul>
+                            <li>$a_0 = \frac{1}{\pi} \int_{-\pi}^\pi f(x) dx$ (A függvény átlaga szorozva 2-vel)</li>
+                            <li>$a_k = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos(kx) dx$ (Koszinuszos tagok)</li>
+                            <li>$b_k = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin(kx) dx$ (Szinuszos tagok)</li>
+                        </ul>
+                        <div class="note">
+                            <b>Szimmetria trükkök:</b> 
+                            <br>- Ha $f(x)$ <b>PÁROS</b> ($f(-x) = f(x)$): Minden $b_k = 0$. (Csak koszinuszok).
+                            <br>- Ha $f(x)$ <b>PÁRATLAN</b> ($f(-x) = -f(x)$): Minden $a_k = 0$ és $a_0 = 0$. (Csak szinuszok).
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">Dirichlet-tétel (Konvergenciatétel)</div>
+                        <p>Ha egy függvény szakaszonként monoton és korlátos, a Fourier-sora mindenhol konvergens. Ahol folytonos, ott a függvényértékhez tart. Ahol szakadása van, ott a bal- és jobboldali határérték <b>átlagához</b>: $\Phi(x) = \frac{f(x-0) + f(x+0)}{2}$.</p>
+                    </div>
+                </div>
+                
+                <div class="task-card">
+                    <div class="task-header">
+                        <div class="task-number">T4</div>
+                        <h3 class="task-title">Többváltozós Függvények & Szélsőérték</h3>
+                    </div>
+                    <ul>
+                        <li><b>Gradiens (Iránymenti derivált):</b> $\operatorname{grad} f(x,y) = \left[ f'_x, f'_y \right]$. Egy adott $\underline{v}$ irányú (ahol $|\underline{v}|=1$) derivált: $f'_v = \operatorname{grad} f \cdot \underline{v}$.</li>
+                        <li><b>Érintősík egyenlete $(x_0, y_0)$-ban:</b> $z = f(x_0, y_0) + f'_x(x_0, y_0)(x - x_0) + f'_y(x_0, y_0)(y - y_0)$.</li>
+                        <li><b>Lokális szélsőérték (Hesse-mátrix):</b> 
+                            Kiszámoljuk a parciális deriváltakat, majd a Hesse-mátrix determinánsát: $D = f''_{xx} \cdot f''_{yy} - (f''_{xy})^2$.
+                            <br>- Ha $D > 0$ és $f''_{xx} > 0 \implies$ <b>Lokális minimum</b>.
+                            <br>- Ha $D > 0$ és $f''_{xx} < 0 \implies$ <b>Lokális maximum</b>.
+                            <br>- Ha $D < 0 \implies$ <b>Nyeregpont</b> (nincs szélsőérték).
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 2. RÉSZ: KIFEJTŐS -->
+            <div class="section-dev">
+                <div class="section-header">2. Rész: Kifejtős (Algoritmusok és Lépések)</div>
+                
+                <div class="task-card">
+                    <div class="task-header">
+                        <div class="task-number">K1</div>
+                        <h3 class="task-title">Differenciálegyenletek Algoritmusai</h3>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-title">1. Szétválasztható változójú ($y' = f(x) \cdot g(y)$)</div>
+                        <p>Írjuk $y'$-t $\frac{dy}{dx}$ formába. "Szorozzuk fel" a $dx$-et, és osszuk le $g(y)$-t úgy, hogy az egyik oldalon csak $y$, a másikon csak $x$ legyen:</p>
+                        <div class="math-block">$$ \int \frac{1}{g(y)} \, dy = \int f(x) \, dx $$</div>
+                        <p>Végül integrálunk, és ha lehet, kifejezzük az $y$-t.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">2. Elsőrendű lineáris ($y' + p(x)y = q(x)$)</div>
+                        <p><b>Megoldás Integráló Tényezővel ($I(x)$):</b></p>
+                        <ol>
+                            <li>Számoljuk ki az integráló tényezőt: $I(x) = e^{\int p(x) dx}$. (A konstans $+C$-t itt elhagyjuk).</li>
+                            <li>Szorozzuk meg a teljes egyenletet $I(x)$-szel! A bal oldal mindig $(I(x) \cdot y)'$ lesz.</li>
+                            <li>Integráljuk mindkét oldalt: $I(x) \cdot y = \int I(x) \cdot q(x) dx + C$.</li>
+                            <li>Fejezzük ki $y$-t az $I(x)$-szel való leosztással.</li>
+                        </ol>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">3. Másodrendű lineáris, állandó együtthatós ($ay'' + by' + cy = f(x)$)</div>
+                        <p>A megoldás két részből áll: $y = y_H + y_P$.</p>
+                        <p><b>1. Homogén megoldás ($y_H$):</b> Oldjuk meg az $ay'' + by' + cy = 0$ egyenletet. Írjuk fel a karakterisztikus egyenletet: $ar^2 + br + c = 0$.
+                            <br>- Ha 2 valós gyök ($r_1 \neq r_2$): $y_H = C_1 e^{r_1 x} + C_2 e^{r_2 x}$
+                            <br>- Ha 1 valós gyök ($r_1 = r_2$): $y_H = C_1 e^{r_1 x} + C_2 x e^{r_1 x}$
+                            <br>- Ha komplex gyökök ($\alpha \pm \beta i$): $y_H = e^{\alpha x} (C_1 \cos(\beta x) + C_2 \sin(\beta x))$
+                        </p>
+                        <p><b>2. Inhomogén partikuláris megoldás ($y_P$):</b> A zavaró függvény ($f(x)$) alapján felírunk egy próbafüggvényt.
+                            <br>- Ha $f(x) = \text{Polinom}$: Próbafüggvény = Általános polinom (pl. $Ax+B$).
+                            <br>- Ha $f(x) = c \cdot e^{kx}$: Próbafüggvény = $A e^{kx}$.
+                            <br>- Ha $f(x) = c \cdot \sin(kx)$ vagy $\cos(kx)$: Próbafüggvény = $A \sin(kx) + B \cos(kx)$.
+                            <br><i>Rezonancia:</i> Ha a próbafüggvény valamelyik tagja megegyezik a homogén megoldás egy tagjával, szorozzuk meg $x$-szel!
+                        </p>
+                        <p>Deriváljuk le $y_P$-t kétszer, helyettesítsük be az eredeti egyenletbe, és együttható-összehasonlítással számoljuk ki az $A, B$ paramétereket!</p>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <div class="task-header">
+                        <div class="task-number">K2</div>
+                        <h3 class="task-title">Rekurzív Sorozatok (Differenciaegyenletek)</h3>
+                    </div>
+                    <p>Egy $x_{n} = a x_{n-1} + b x_{n-2}$ alakú homogén egyenlet megoldása nagyon hasonló a diffegyenletekhez!</p>
+                    <ol>
+                        <li><b>Karakterisztikus egyenlet:</b> Helyettesítsünk $x_n$ helyébe $\lambda^n$-t. Ekkor: $\lambda^2 - a\lambda - b = 0$.</li>
+                        <li><b>Gyökök alapján általános megoldás:</b>
+                            <br>- Ha 2 különböző valós gyök ($\lambda_1 \neq \lambda_2$): $x_n = C_1 \lambda_1^n + C_2 \lambda_2^n$.
+                            <br>- Ha 1 dupla gyök ($\lambda_1 = \lambda_2$): $x_n = (C_1 + n C_2) \lambda_1^n$.
+                        </li>
+                        <li><b>Konstansok ($C_1, C_2$) meghatározása:</b> Használjuk fel a megadott kezdeti feltételeket (pl. $x_0 = \dots, x_1 = \dots$), és oldjuk meg az egyenletrendszert.</li>
+                    </ol>
+                </div>
+
+                <div class="task-card">
+                    <div class="task-header">
+                        <div class="task-number">K3</div>
+                        <h3 class="task-title">Többes Integrálok (Kettős és Hármas)</h3>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">Polárkoordináták (Kettős integrál - Körszerű tartományok)</div>
+                        <p>Transzformáció: $x = r \cos \varphi, \quad y = r \sin \varphi$. <b>Jacobi determináns:</b> $r$.</p>
+                        <p>$dx dy \to r dr d\varphi$. Egy körtartomány egyenes határokká válik: $0 \le r \le R$, és $0 \le \varphi \le 2\pi$.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">Hengerkoordináták (Hármas integrál - Henger, forgástest)</div>
+                        <p>Transzformáció: $x = r \cos \varphi, \quad y = r \sin \varphi, \quad z = z$. <b>Jacobi determináns:</b> $r$.</p>
+                        <p>$dx dy dz \to r dz dr d\varphi$. Kiváló olyan testekhez, amelyek z-tengely körül szimmetrikusak, és lapos "tetejük/aljuk" van (pl. egy henger, amit elvág egy sík).</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">Gömbi koordináták (Hármas integrál - Gömb, Kúp)</div>
+                        <p>Transzformáció: $x = \rho \sin \theta \cos \varphi, \quad y = \rho \sin \theta \sin \varphi, \quad z = \rho \cos \theta$. <b>Jacobi determináns:</b> $\rho^2 \sin \theta$.</p>
+                        <p>$dx dy dz \to \rho^2 \sin \theta \, d\rho d\theta d\varphi$. Sugár: $\rho \ge 0$, Irányszög: $0 \le \varphi \le 2\pi$, Lehajlási szög (z-tengelytől): $0 \le \theta \le \pi$. (Kúp esetén $\theta$ a kúp faláig tart, ami gyakran egy konstans, pl. $\pi/4$).</p>
+                    </div>
+                </div>
+
+                <div class="task-card">
+                    <div class="task-header">
+                        <div class="task-number">K4</div>
+                        <h3 class="task-title">Taylor-polinomok és Hibabecslés</h3>
+                    </div>
+                    <p><b>Az $n$-ed fokú Taylor polinom $x_0$-körül:</b></p>
+                    <div class="math-block">$$ T_n(x) = f(x_0) + f'(x_0)(x-x_0) + \frac{f''(x_0)}{2!}(x-x_0)^2 + \dots + \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n $$</div>
+                    <p><b>Lagrange-féle maradéktag (Hibabecslés):</b> A polinom és a valódi függvény eltérése egy adott $x$ pontban maximum ennyi lehet:</p>
+                    <div class="math-block">$$ R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!} (x - x_0)^{n+1} $$</div>
+                    <p>Ahol $\xi$ egy <i>ismeretlen</i> pont $x_0$ és $x$ között. Hibabecslésnél a célunk, hogy megkeressük az $f^{(n+1)}(\xi)$ kifejezés <b>legnagyobb lehetséges értékét (maximumát)</b> az adott $[x_0, x]$ intervallumon, és azzal számoljuk ki az $R_n(x)$ értékét.</p>
+                </div>
+            </div>
+
+            <!-- 3. RÉSZ: GYAKORLATI ÚTMUTATÓ -->
+            <div class="section-guide">
+                <div class="section-header">3. Rész: Gyorstalpaló az utolsó gyakorlatokhoz (11-13)</div>
+                
+                <div class="task-card">
+                    <div class="task-header">
+                        <div class="task-number">11</div>
+                        <h3 class="task-title">Kettős Integrál (11. Gyakorlat)</h3>
+                    </div>
+                    <p><b>Mikor váltsunk polárba?</b> Ha az integrálandó függvényben $x^2+y^2$ szerepel, vagy a tartomány körcikk, körlap. Mindig emlékezz a Jacobi-szorzóra ($r$): $dx dy = r dr d\varphi$. 
+                    <br>Trükk: Egy $(x-R)^2 + y^2 = R^2$ eltolt kör egyenlete polárban: $r^2 - 2Rr\cos\varphi = 0 \implies r = 2R\cos\varphi$. Itt az $r$ határa a forgásszög ($\varphi$) függvénye lesz!</p>
+                </div>
+
+                <div class="task-card">
+                    <div class="task-header">
+                        <div class="task-number">12</div>
+                        <h3 class="task-title">Hármas Integrál (12. Gyakorlat)</h3>
+                    </div>
+                    <p><b>Henger vs. Gömbi:</b> 
+                    <br>- Ha a testnek lapos alja vagy teteje van (síkok metszik), például paraboloid és sík által bezárt tér, akkor <b>Hengerkoordináta</b> a nyerő. (Ne feledd: Jacobi=$r$).
+                    <br>- Ha a test csak gömbökből és kúpokból áll, és mindkettő origó középpontú, akkor <b>Gömbi koordináta</b> a tökéletes. Egy $z = \sqrt{x^2+y^2}$ kúp gömbibe átírva: $\rho\cos\theta = \rho\sin\theta \implies \tan\theta = 1 \implies \theta = \pi/4$. (Ne feledd: Jacobi=$\rho^2\sin\theta$).</p>
+                </div>
+
+                <div class="task-card">
+                    <div class="task-header">
+                        <div class="task-number">13</div>
+                        <h3 class="task-title">Fourier Transzformáció (13. Gyakorlat)</h3>
+                    </div>
+                    <p><b>Operációs Tételek (A Legfontosabbak):</b></p>
+                    <ul>
+                        <li><b>Időskála (Skálázás):</b> $f(ax) \implies \frac{1}{|a|} \mathscr{F}(f)\left(\frac{\omega}{a}\right)$</li>
+                        <li><b>Eltolás:</b> $f(x-x_0) \implies e^{-i\omega x_0} \mathscr{F}(f)(\omega)$</li>
+                        <li><b>Derivált:</b> $f'(x) \implies i\omega \cdot \mathscr{F}(f)(\omega)$</li>
+                    </ul>
+                    <p><b>Trükk összetett feladathoz (pl. $\mathscr{F}(f'(2x+1))$):</b> Mindig bontsd fel két (vagy három) lépésre! Először vezesd be a belső függvényt (pl. $h(x) = f'(x)$), alkalmazd rá a derivált szabályt. Utána jöhet a skálázás ($2x$), végül az eltolás (figyelve, hogy az eltolás $x_0 = -1/2$ lesz, mert $2(x+1/2) = 2x+1$). Nagyon figyelj a sorrendre és arra, hogy a skálázás bejövetele után a belső frekvencia már $\omega/2$ lesz!</p>
+                </div>
+            </div>
+
+            <br><br>
+        </main-content>
+    </layout-wrapper>
+    
+</body>
+</html>
