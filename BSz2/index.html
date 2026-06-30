@@ -1680,9 +1680,16 @@ document.addEventListener('DOMContentLoaded', () => {
 <h2>Alapfogalmak</h2>
 </math-header>
 <math-def id="section-1-1">
-<div class="text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic">
-        A gráf fogalmát úgy értelmeztük, hogy az egy <strong>csúcshalmazból</strong> és egy <strong>élhalmazból</strong> áll. Egy gráfban előfordulhatnak <strong>többszörös (párhuzamos) élek</strong> (ha két csúcs között több él is fut), illetve <strong>hurokélek</strong> (olyan él, amelynek a két végpontja azonos). Ha a gráfban nincsenek hurokélek és nincsenek párhuzamos élek sem (azaz minden él a csúcshalmaz egy pontosan kételemű részhalmaza), akkor azt <strong class="text-slate-900 dark:text-white not-italic border-b-2 border-emerald-200 dark:border-emerald-800">egyszerű gráfnak</strong> nevezzük.
-    </div>
+<div class="space-y-4 text-slate-700 dark:text-slate-200 text-lg leading-relaxed italic">
+    <p>
+        <strong class="text-slate-900 dark:text-white not-italic border-b-2 border-emerald-200 dark:border-emerald-800">Egyszerű gráf:</strong> 
+        Legyen $V \neq \emptyset$ tetszőleges, véges halmaz. Legyen továbbá $E$ egy olyan halmaz, aminek minden eleme a $V$ egy pontosan kételemű részhalmaza (formálisan: $E \subseteq \binom{V}{2}$). Ekkor a $G = (V,E)$ rendezett párt egyszerű gráfnak nevezzük, aminek a csúcshalmaza $V(G) = V$ és az élhalmaza $E(G) = E$.
+    </p>
+    <p>
+        <strong class="text-slate-900 dark:text-white not-italic border-b-2 border-indigo-200 dark:border-indigo-800">Általános gráf (Gráf):</strong>
+        Ha egy gráfban megengedett, hogy két csúcs között több különböző él is fusson (ezeket <strong>többszörös</strong> vagy <strong>párhuzamos éleknek</strong> nevezzük), illetve hogy egy él két végpontja azonos legyen (ezeket <strong>hurokéleknek</strong> nevezzük), akkor általános gráfról, vagy egyszerűen gráf fogalmáról beszélünk.
+    </p>
+</div>
 </math-def>
 <math-header>
 <div class="num-badge">1.2</div>
